@@ -12,25 +12,29 @@ import tempfile
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--messaging-root", required=True, type=Path,
                     help="cli-messaging checkout with dist/ and installed dependencies")
-parser.add_argument("runner", choices=["run", "combined", "semantic", "resources", "typecheck"])
+parser.add_argument("runner", choices=["run", "combined", "semantic", "resources", "typecheck", "candidates", "matrix-typecheck"])
 args, forwarded = parser.parse_known_args()
 root = args.messaging_root.resolve()
 for path in [root / "dist/services/messages.js", root / "dist/services/messages-combined.js",
              root / "node_modules"]:
     if not path.exists():
         parser.error(f"missing {path}; build the selected cli-messaging checkout first")
-if args.runner == "typecheck" and forwarded:
+if args.runner.endswith("typecheck") and forwarded:
     parser.error("typecheck accepts no additional arguments")
 area = Path(__file__).resolve().parent
 stage = Path(tempfile.mkdtemp(prefix="cli-testing-search-"))
 (stage / "package.json").write_text(json.dumps({"type": "module"}) + "\n")
 harness = stage / "bench/message-search-quality"
 shutil.copytree(area / "message-search", harness)
+if (area / "matrix").exists():
+    shutil.copytree(area / "matrix", stage / "bench/matrix")
 (stage / "dist").symlink_to(root / "dist", target_is_directory=True)
 (stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
-command = (["pnpm", "exec", "tsc", "-p", str(harness / "tsconfig.json")]
-           if args.runner == "typecheck"
-           else ["node", str(harness / f"{args.runner}.ts"), *forwarded])
+selected_harness = stage / "bench/matrix" if args.runner in ["candidates", "matrix-typecheck"] else harness
+selected_script = "export" if args.runner == "candidates" else args.runner
+command = (["pnpm", "exec", "tsc", "-p", str(selected_harness / "tsconfig.json")]
+           if args.runner.endswith("typecheck")
+           else ["node", str(selected_harness / f"{selected_script}.ts"), *forwarded])
 metadata = {"messagingRoot": str(root), "runner": args.runner,
             "command": command, "node": subprocess.check_output(["node", "--version"], text=True).strip(),
             "messagingPackage": json.loads((root / "package.json").read_text())["version"]}

@@ -79,7 +79,8 @@ interface, not a benchmark result proving superior search quality.
 ## Ranking model shortlist
 
 Sizes below are selected weight files, decimal MB/GB, excluding tokenizer/config/runtime unless
-explicitly stated. Only the current model's RAM has been measured. Quantization may affect ranking
+explicitly stated. The original probe measured the current model; the later [matrix](matrix/README.md) adds
+small-model native CPU measurements. Quantization may affect ranking
 and must be evaluated; different models' scores or thresholds are not interchangeable.
 
 | Model | Published footprint | Proposed role and constraints |
@@ -168,6 +169,7 @@ and batched execution of the current multilingual model, followed by a suitable 
 alternative. Typed decision models and late interaction remain later architecture experiments.
 Use fresh held-out topics and report quality, complete download bytes, RAM and latency separately.
 
-No new alternative weights were installed, no hosted Jev call was made, and no public search behavior
-changed during this research. Future selection uses fresh held-out families rather than retuning
+The initial architecture review installed no alternative weights and made no hosted Jev call.
+The later [matrix](matrix/README.md) explicitly prepares TinyBERT and MiniLM-L6 and compares smaller
+ranking methods. Public search behaviour remains unchanged. Future selection uses fresh held-out families rather than retuning
 against the already exposed keyword/question results.

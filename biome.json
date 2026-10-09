@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "extends": ["@leemour/cli-core/biome"],
   "files": {
-    "includes": ["**", "!**/dist", "!**/node_modules", "!pnpm-lock.yaml", "!.claude/settings.json"]
+    "includes": ["**", "!**/dist", "!**/node_modules", "!pnpm-lock.yaml", "!.claude/settings.json"],
+    "maxSize": 8388608
   },
   "overrides": [
     {
@@ -48,6 +49,19 @@
             "noConsole": "off"
           }
         }
+      }
+    },
+    {
+      "includes": [
+        "performance/search/matrix/results/**",
+        "performance/search/matrix/fresh.json",
+        "performance/search/matrix/models/**"
+      ],
+      "formatter": {
+        "enabled": false
+      },
+      "assist": {
+        "enabled": false
       }
     }
   ]

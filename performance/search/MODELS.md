@@ -8,8 +8,9 @@ comparators. A newer model is a candidate to test; its release date does not est
 
 This document explains the choices from the beginning. [The benchmark](message-search/README.md)
 contains the recorded evidence; [the technical research](combined-search-model-research.md)
-contains the wider shortlist. Only e5-small and the current multilingual MiniLM reranker have been
-used in our ranking experiments. We have not downloaded the proposed alternatives or called Jev.
+contains the wider shortlist. The initial ranking experiments used e5-small and the multilingual MiniLM reranker. The later
+[lightweight matrix](matrix/README.md) also tests TinyBERT, MiniLM-L6, lexical methods and small
+trained feature rankers. Larger alternatives remain untested; no hosted Jev call was made.
 
 ## 1. A concrete search example
 
@@ -243,8 +244,8 @@ For the model we actually ran:
 | Scoring time for 300 short pairs | About 3.25 seconds |
 
 These are observations from [resources.json](message-search/resources.json), not a model-only RAM
-breakdown or a maximum for longer inputs, batches or multiple simultaneous searches. We have not
-measured RAM for the alternatives. Decimal MB/GB and binary MiB/GiB are different units.
+breakdown or a maximum for longer inputs, batches or multiple simultaneous searches. The [matrix](matrix/README.md#disk-ram-and-runtime) now measures native CPU RAM for the two small
+rerankers and existing models; larger alternatives remain unmeasured. Decimal MB/GB and binary MiB/GiB are different units.
 
 Here is a practical shortlist, with **selected weight files**, excluding other assets unless stated:
 
@@ -314,7 +315,7 @@ cutting the pool to 50 before improving the first ranking stage loses answers. A
 cannot restore messages that were removed. Paraphrases have no relevant lexical candidates even
 at 300, so they need a candidate-generation improvement rather than only a new reranker.
 
-The current priority is the simpler sequence in [lightweight ranking](LIGHTWEIGHT-RANKING.md#next-experiments-and-how-to-judge-them).
+The current priority is the simpler sequence in [lightweight ranking](LIGHTWEIGHT-RANKING.md#comparison-and-further-validation).
 If that sequence exposes a need for a stronger stage, the following additional experiments apply:
 
 1. **Hold retrieval and weights fixed; optimise execution.** Compare native and batched inference

@@ -105,7 +105,11 @@ not establish a need for larger universal embeddings. The joint multilingual rer
 that more detailed query-message comparison can help, but its current memory/latency costs are
 not acceptable evidence for a lightweight default.
 
-## Next experiments and how to judge them
+## Comparison and further validation
+
+The [matrix](matrix/README.md) now measures the approaches below. Its small pairwise feature
+ranker is the most promising lightweight direction; broader fresh validation is required before
+production adoption.
 
 1. Keep the same scoped 300-candidate pool. Evaluate BM25/term-rarity scoring and character/phrase
    features, using archive statistics where applicable and keeping explicit syntax strict.
@@ -123,4 +127,5 @@ stage preserves actual answers and evidence before the stronger model sees the f
 Report actual-answer Success@1/3/10, graded nDCG, evidence recall, no-answer hits, per-language
 results, cold/warm latency, peak RAM and complete asset bytes. A small download is not a speed
 measurement. Resource limits should be explicit experiment constraints, with current quality gates
-retained rather than quietly weakened. No new model weights were downloaded for this research.
+retained rather than quietly weakened. The initial size inspection downloaded no weights. The subsequent [comparison matrix](matrix/README.md)
+explicitly prepared the two small models, compared all six categories and recorded CPU/RAM results.

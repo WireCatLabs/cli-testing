@@ -1,0 +1,16 @@
+{
+  "qmdCommit": "93d211f9ef4a869a9aed0d075ca767dda552627f",
+  "cpu": "AMD Ryzen AI 9 HX 470 w/ Radeon 890M",
+  "python": "3.12.13",
+  "uvVersion": "uv 0.12.3 (x86_64-unknown-linux-gnu)",
+  "phaseNotes": "v1 was exploratory. v2 corrects the RSS high-water source, adds direct lexical stage timing and independent metrics tests. Unbatched neural checks were added after the batch-order discrepancy; supervised configs/labels were unchanged. No held-out tuning or default adoption.",
+  "inputAndSourceHashes": {
+    "performance/search/matrix/export.ts": "0304c1df05b3cb4dcf0aa0ca51f3c3210595ad53f10fe7f9f4977b2b4654269e",
+    "performance/search/matrix/generate-fresh.py": "90b8b8a14b69e1ba102e3445e773d14be87db4d9289fefab8cee50629c2078a1",
+    "performance/search/matrix/fresh.json": "eea01d14e9e1e8eb25c314210334e28306dc95f234b1180c7edcbe877a34c397",
+    "performance/search/matrix/matrix.py": "899aa4983000a5f562d046452dec58847db06fb38e449d88891ddf64035410bb",
+    "performance/search/matrix/metrics.py": "e9b096945526ab49c2cf9ab8c6b83bdc942c7585d4f261d9ce54a09f384f8aac",
+    "performance/search/matrix/neural.py": "f245817ff474974a9c2ecf79439aaeb10294c727c6b79b3ba8a37bde5f8e7364",
+    "performance/search/matrix/requirements.lock": "1285fccc3e76e33a844475a3766bc97d355aca790a30b697f13a42de72afc4ae"
+  }
+}

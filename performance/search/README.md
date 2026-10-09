@@ -11,6 +11,10 @@ messages and an explicitly selected cli-messaging **build**, including the exper
 service. It never imports that project's TypeScript source, opens an existing message store or
 contacts a messenger. The public CLI/MCP search defaults are unchanged.
 
+The [tool review](TOOL-RESEARCH.md) examines QMD, Meilisearch and Typesense. The
+[lightweight matrix](matrix/README.md) records 23 tested approaches, fresh held-out results and
+small-model resource measurements.
+
 ## Layout
 
 | Path | Purpose |

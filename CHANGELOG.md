@@ -26,6 +26,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   `--previous`; legacy scanner runs are read without edits. Transcript redactions support file snapshots.
 
 
+- A search comparison matrix with 23 ranking variants, a fresh synthetic holdout, QMD/Meilisearch/
+  Typesense research and measured small-model CPU resources. Results distinguish actual answers
+  from supporting evidence and retain missing-fact failures.
 - Offline search research under `performance/search/`: synthetic fixtures and historical ranking
   evidence moved from cli-messaging, a launcher against an explicit build, and a detailed model
   guide. The published suite API is unchanged.
