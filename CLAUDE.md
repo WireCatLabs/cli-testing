@@ -5,6 +5,8 @@ as a development dependency. Start with the one page that covers what you are ab
 
 - [`docs/dev/ARCHITECTURE.md`](docs/dev/ARCHITECTURE.md) — the suite groups and how a CLI plugs in.
 - [`docs/dev/BACKLOG.md`](docs/dev/BACKLOG.md) — what comes next, in order.
+- [`docs/security/`](docs/security/METHOD.md) — how a security audit is run and repeated; its
+  scripts are in `scripts/security/` and `scripts/agent/`.
 - [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md) — the shared conventions, and what differs here.
 - [`docs/dev/TESTING.md`](docs/dev/TESTING.md) — the checks and the coverage floor.
 - [`docs/dev/agents.md`](docs/dev/agents.md) — what an agent may change here, and what stops it.

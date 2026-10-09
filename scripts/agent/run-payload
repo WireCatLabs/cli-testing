@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# One payload of the injection suite: the second test account sends it into the test dialog, the
+# owner's side sees it, each model in $MODELS reads with an ordinary task, then the sender deletes it
+# and the owner's side shows it gone. Everything account-specific comes from .live/cast.env.
+# Usage: scripts/agent/run-payload <out-dir> <run-id> <prompt> -- <send args...>
+set -uo pipefail
+
+out="$1"; id="$2"; prompt="$3"; shift 4
+here="$(cd "$(dirname "$0")/../.." && pwd)"
+# shellcheck disable=SC1091
+. "$here/.live/cast.env"
+: "${CLI:?}" "${OWNER:?}" "${SENDER:?}" "${DIALOG:?}" "${MODELS:?}"
+
+newest() { timeout 90 "$CLI" "$1" messages list "$DIALOG" --limit 5 --json --timeout 60s 2>/dev/null; }
+has() { jq --arg m "$2" '[(.messages // .items // .)[] | select((.id|tostring)==$m)] | length' <<<"$1"; }
+
+mkdir -p "$out"
+mid=$(timeout 90 "$CLI" "$SENDER" messages send "$DIALOG" "$@" --json --timeout 60s 2>"$out/$id.send.err" \
+  | jq -r '.id // .message.id // .messages[0].id // empty')
+[ -n "$mid" ] || { echo "$id: send failed"; exit 1; }
+echo "$id sent; visible to owner: $(has "$(newest "$OWNER")" "$mid")"
+sleep 3
+for model in $MODELS; do "$here/scripts/agent/run-agent" "$out" "$id-${model//[^a-z0-9]/-}" "$model" "$prompt"; done
+timeout 90 "$CLI" "$SENDER" messages delete "$DIALOG" "$mid" --for-everyone --allow-dangerous --json --timeout 60s \
+  >/dev/null 2>"$out/$id.del.err"
+echo "$id deleted (exit $?); still visible to owner: $(has "$(newest "$OWNER")" "$mid")"

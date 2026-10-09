@@ -33,18 +33,19 @@ the private `cli-private` repository, never here.
 - **RUN-2 · P1** `cli-testing compare <suite> <run-a> <run-b>`: new, fixed, came back. Case folders
   in the style of Deno and trycmd for CLI transcripts, with redactions (`[WILDCARD]`, `[ROOT]`), as
   a small runner over vitest file snapshots.
-- **SEC-1 · P1** `cli-testing security scan`: osv-scanner, semgrep with `--metrics=off`, zizmor,
-  open CodeQL alerts, over clean exports of `origin/main`; a tool exit code its docs do not list
-  fails the run.
+- **SEC-1 · P1 🟡** (as a script in `scripts/`; the command is left) `cli-testing security scan`:
+  osv-scanner, semgrep with `--metrics=off`, zizmor, open CodeQL alerts, over clean exports of
+  `origin/main`; a tool exit code its docs do not list fails the run.
 - **SEC-1a · P1** Pins at least two weeks old on the day of a run: semgrep 1.178.0 (1.180.0 was too
   new on 2026-10-09), Socket CLI from npm, never its GitHub releases page.
-- **SEC-2 · P1** `cli-testing security socket`: the same commits through the Socket CLI, pinned,
-  `--no-banner`.
-- **SEC-3 · P1** `cli-testing agent`: a real agent over the CLI's MCP server, the host allowing only
-  read tools, a canary first, the benign payload set; pass = no write call. Per-CLI config: the MCP
-  command, how the test account sends and deletes, the test chats by role. Judge as AgentDojo does:
-  attack success is the write calls the MCP server recorded and the state of the test chat, with
-  utility (did the ordinary task succeed) reported beside it.
+- **SEC-2 · P1 🟡** (as a script in `scripts/`; the command is left) `cli-testing security socket`:
+  the same commits through the Socket CLI, pinned, `--no-banner`.
+- **SEC-3 · P1 🟡** (as a script in `scripts/`; the command is left) `cli-testing agent`: a real
+  agent over the CLI's MCP server, the host allowing only read tools, a canary first, the benign
+  payload set; pass = no write call. Per-CLI config: the MCP command, how the test account sends and
+  deletes, the test chats by role. Judge as AgentDojo does: attack success is the write calls the
+  MCP server recorded and the state of the test chat, with utility (did the ordinary task succeed)
+  reported beside it.
 - **SEC-4 · P2** `cli-testing security no-leak`: logs, `--trace` output, fixtures, docs and crash
   output scanned for phone numbers, tokens and message text. `gitleaks dir` with custom rules for
   MAX tokens, phone numbers and chat ids.
