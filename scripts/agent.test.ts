@@ -35,9 +35,19 @@ process.exitCode=model==='runtime'?2:0;
 const fs=require('node:fs');
 const args=process.argv.slice(2), action=args[2];
 fs.appendFileSync(process.env.FIXTURE_CALLS,action+'\\n');
-if(action==='send')console.log(JSON.stringify({message:{id:'synthetic-id'}}));
-if(action==='list')console.log(JSON.stringify({items:fs.existsSync(process.env.FIXTURE_DELETED)?[]:[{id:'synthetic-id'}]}));
-if(action==='delete'){if(process.env.FIXTURE_DELETE_FAILURE==='1')process.exitCode=1;else fs.writeFileSync(process.env.FIXTURE_DELETED,'synthetic');}
+fs.appendFileSync(process.env.FIXTURE_ARGV,JSON.stringify(args)+'\\n');
+const separate=process.env.FIXTURE_PER_ACCOUNT==='1';
+const senderId=separate?'synthetic-sender-id':'synthetic-id';
+if((action==='send'||action==='delete')&&separate&&args[3]!=='synthetic-owner-peer')process.exit(1);
+if(action==='send')console.log(JSON.stringify({message:{id:senderId}}));
+if(action==='list'){
+  const item={id:separate?'synthetic-owner-id':'synthetic-id',text:'UTILITY-OK synthetic fixture'};
+  console.log(JSON.stringify({items:fs.existsSync(process.env.FIXTURE_DELETED)?[]:process.env.FIXTURE_AMBIGUOUS==='1'?[item,{...item,id:'synthetic-other-id'}]:[item]}));
+}
+if(action==='delete'){
+  if(args[4]!==senderId)process.exit(1);
+  if(process.env.FIXTURE_DELETE_FAILURE==='1')process.exitCode=1;else fs.writeFileSync(process.env.FIXTURE_DELETED,'synthetic');
+}
 `,
   )
   const cast = join(root, "cast.env")
@@ -51,6 +61,7 @@ if(action==='delete'){if(process.env.FIXTURE_DELETE_FAILURE==='1')process.exitCo
     CLI_TESTING_CAST: cast,
     CLI_TESTING_EXPECTED: "UTILITY-OK",
     FIXTURE_CALLS: join(root, "calls"),
+    FIXTURE_ARGV: join(root, "argv"),
     FIXTURE_DELETED: join(root, "deleted"),
   }
   return { output, env }
@@ -97,5 +108,44 @@ describe("agent shell stages with synthetic executables", () => {
     const result = run("run-payload", output, { ...env, FIXTURE_DELETE_FAILURE: "1" })
     expect(result.status).toBe(2)
     expect(result.stdout).toContain("still visible to owner: 1")
+  })
+  it("routes sender writes separately and proves receipt with the owner's different message ID", () => {
+    const { output, env } = fixture()
+    const result = run("run-payload", output, {
+      ...env,
+      SENDER_DIALOG: "synthetic-owner-peer",
+      PER_ACCOUNT_IDS: "1",
+      FIXTURE_PER_ACCOUNT: "1",
+    })
+    expect(result.status, result.stderr).toBe(0)
+    expect(result.stdout).toContain("visible to owner: 1")
+    expect(result.stdout).toContain("still visible to owner: 0")
+    const calls = readFileSync(env.FIXTURE_ARGV, "utf8")
+      .trim()
+      .split("\n")
+      .map((line) => JSON.parse(line) as string[])
+    expect(calls.find((args) => args[2] === "delete")?.slice(0, 5)).toEqual([
+      "synthetic-sender",
+      "messages",
+      "delete",
+      "synthetic-owner-peer",
+      "synthetic-sender-id",
+    ])
+    expect(calls.filter((args) => args[2] === "list").every((args) => args[3] === "synthetic-dialog")).toBe(true)
+  })
+  it("refuses per-account IDs without a fixture marker before sending", () => {
+    const { output, env } = fixture()
+    const result = run("run-payload", output, { ...env, PER_ACCOUNT_IDS: "1", CLI_TESTING_EXPECTED: "" })
+    expect(result.status).toBe(2)
+    expect(result.stdout).toContain("need a synthetic fixture marker")
+    expect(result.stdout).not.toContain(" sent;")
+  })
+  it("does not run a model against an ambiguous fixture label", () => {
+    const { output, env } = fixture()
+    const result = run("run-payload", output, { ...env, PER_ACCOUNT_IDS: "1", FIXTURE_AMBIGUOUS: "1" })
+    expect(result.status).toBe(2)
+    expect(result.stdout).toContain("visible to owner: 2")
+    expect(result.stdout).not.toContain(" model=")
+    expect(readFileSync(env.FIXTURE_CALLS, "utf8")).toContain("delete\n")
   })
 })

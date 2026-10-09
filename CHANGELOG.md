@@ -8,6 +8,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+### Fixed
+
+- **Agent fixtures support private dialogs with different addresses and message IDs per account.**
+  Set the sender's dialog and enable per-account IDs in the private cast; each case needs a unique
+  synthetic label to prove receipt and cleanup on the owner's side.
+
 ### Added
 
 - **Security and agent commands create private run folders.** `security scan`, `security socket` and
