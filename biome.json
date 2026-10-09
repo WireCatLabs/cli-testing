@@ -33,6 +33,22 @@
           }
         }
       }
+    },
+    {
+      "includes": ["performance/search/message-search/**"],
+      "formatter": {
+        "enabled": false
+      },
+      "assist": {
+        "enabled": false
+      },
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
     }
   ]
 }

@@ -25,6 +25,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
 - **Run comparison distinguishes new, fixed and returning scanner observations.** Carry history with
   `--previous`; legacy scanner runs are read without edits. Transcript redactions support file snapshots.
 
+
+- Offline search research under `performance/search/`: synthetic fixtures and historical ranking
+  evidence moved from cli-messaging, a launcher against an explicit build, and a detailed model
+  guide. The published suite API is unchanged.
 - **The suite groups** — `SUITE_GROUPS`: security, contract, performance, ux, analyzers, live, seed.
 
 - **The security audit, written down to repeat** — `docs/security/` (method, runbook, agent test,
