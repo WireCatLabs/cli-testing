@@ -5,7 +5,10 @@
  *   bun run scripts/smoke.ts
  */
 import { strict as assert } from "node:assert"
-import { SUITE_GROUPS } from "../src/index.ts"
+import { compareRuns, redactTranscript, SUITE_GROUPS } from "../src/index.ts"
 
 assert.ok(SUITE_GROUPS.includes("security"))
+const empty = { schema: 1 as const, suite: "security", complete: true, observations: [], known: [] }
+assert.deepEqual(compareRuns("security", empty, empty), { new: [], fixed: [], cameBack: [], unchanged: [] })
+assert.equal(redactTranscript("/synthetic-root/file", ["/synthetic-root"]), "[ROOT]/file")
 console.log("smoke ok")

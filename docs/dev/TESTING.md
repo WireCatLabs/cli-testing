@@ -19,15 +19,18 @@ On 2026-10-04: a file under `src/` importing `node:sqlite`, `bun:sqlite`, `node:
 Drizzle and mtcute failed `pnpm lint` on each line; a type error in a test and in `scripts/` failed
 `pnpm typecheck`.
 
-## No sandbox
+## Isolated test files
 
-The package touches no file, keyring or network, and the lint rule keeps it that way, so there is no
-`setupFiles` sandbox. Add one with the first thing that touches the machine.
+`test/sandbox.ts` points `TMPDIR` at a temporary directory removed after each test file.
+Run-folder tests use synthetic scanner records there. Process runners are injected for scans and
+agent cases; tests never run those suites against accounts. The process boundary test starts only
+Node with a synthetic stdout value, and checks a missing executable. Messenger-library imports
+remain forbidden by Biome.
 
 ## Coverage has a floor
 
 [`vitest.config.ts`](../../vitest.config.ts) holds it, just under what the suite reached on
-2026-10-04 by the code this package was copied from; reset it once the first suite lands. Every file at
+2026-10-04 by the code this package was copied from; the first suite keeps these floors. Every file at
 least 50 % of its lines. Raise it when coverage rises; never lower it to let a change through.
 
 ## Live checks

@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     include: ["src/**/*.test.ts", "scripts/**/*.test.ts"],
     globals: false,
+    setupFiles: ["test/sandbox.ts"],
     coverage: {
       provider: "v8",
       include: ["src/**/*.ts"],

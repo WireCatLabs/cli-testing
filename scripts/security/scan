@@ -84,8 +84,8 @@ for checkout in "$@"; do
   if [ -d .github ]; then
     run_tool zizmor "0 11 12 13 14" "$out/zizmor.json" zizmor --offline --format json .github
   fi
-  gh api --paginate "repos/$(slug "$checkout")/code-scanning/alerts?state=open&per_page=100" > "$out/codeql.json"
-  status+=("$name codeql open_alerts=$(jq -s 'add | length' "$out/codeql.json")")
+  gh api --paginate --slurp "repos/$(slug "$checkout")/code-scanning/alerts?state=open&per_page=100" > "$out/codeql.json"
+  status+=("$name codeql open_alerts=$(jq 'flatten | length' "$out/codeql.json")")
   echo "$name done" >&2
 done
 

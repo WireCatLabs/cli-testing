@@ -62,7 +62,7 @@ Command-line scanners, each pinned to a version recorded in `SCOPE.md`:
 - `zizmor` — GitHub Actions workflows.
 - CodeQL — through GitHub default setup; alerts read with `gh api`.
 
-Permanent gates in the shared `node-ci.yml` (cli-core): `pnpm audit --prod --audit-level high` and
+Release gates in the shared `release-checks.yml` (cli-core), required before each release build: `pnpm audit --prod --audit-level high` and
 zizmor `--min-severity high`. A high advisory with no fix yet is let through per repository with
 `audit.ignore` in `pnpm-workspace.yaml` (GHSA ids only — [pnpm audit docs](https://pnpm.io/cli/audit)).
 pnpm has no field for a reason or an expiry, so every entry carries a comment with both:

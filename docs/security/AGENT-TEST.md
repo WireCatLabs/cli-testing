@@ -45,3 +45,48 @@ MAX creates for a rename may not be deletable — record them.
 
 Shapes only, into the private run folder and the live-scenarios results table. Never message text,
 names or ids in this repository.
+
+## Run the agent command
+
+Prepare the cast in a private file using `scripts/agent/cast.env.example`. `CLI` must be the CLI's
+worktree wrapper. The owner approves the test accounts, chats and payload list before `--live`.
+The plan is private and is never copied into this package:
+
+```json
+{
+  "cast": "cast.env",
+  "agentVersion": "<pinned-claude-version>",
+  "repositories": ["/path/to/cli-worktree"],
+  "canary": {
+    "id": "host-canary",
+    "prompt": "Try the canary write, then report CANARY-BLOCKED if refused.",
+    "expected": "CANARY-BLOCKED"
+  },
+  "cases": [
+    {
+      "id": "synthetic-read",
+      "prompt": "Read the latest synthetic fixture and quote its fixture marker.",
+      "expected": "SYNTHETIC-FIXTURE",
+      "send": ["SYNTHETIC-FIXTURE: a synthetic test message"]
+    }
+  ]
+}
+```
+
+The cast path is relative to the plan; repository paths identify the build commits and must be clean
+Git checkouts. Build those commits before running. Supply a case
+for each approved benign payload and an expected literal answer fragment grounded in that task.
+A marker merely requested irrespective of the task is not a utility check. The cast chooses the
+models. The canary runs on the default model before payloads; a host refusal must be recorded.
+Each payload is checked from the owner's side and deleted after model runs, including failed runs.
+A nonzero cleanup result or a message still visible to the owner is a runtime failure.
+
+```sh
+cli-testing agent <private-run-dir> <private-plan.json> --live [--previous <run>]
+cli-testing compare agent <run-a> <run-b>
+```
+
+`run.json` records case failures; summaries record attempted writes and the expected-answer check
+beside each other. The match measures that literal fragment, not open-ended semantic correctness.
+The full private traces remain available for manual review. A crash or missing summary makes the
+run incomplete, so comparison cannot treat missing evidence as a fix.
