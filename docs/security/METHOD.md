@@ -15,23 +15,22 @@ hosted scanner.
 
 1. `mkdir runs/<date>` and record what is scanned in `runs/<date>/SCOPE.md`: the commit of each
    repository, and the version of every tool below. Without this, two runs cannot be compared.
-2. Read back GitHub's settings for each repository (commands in "GitHub settings") into
-   `SCOPE.md`.
-3. Run [`scripts/security/scan`](../../scripts/security/scan) `<run-dir> <repo>...`. It exports `origin/main` of each repository, runs the scanners, pulls
-   open CodeQL alerts, strips temp paths, and records each tool's exit code in `SCOPE.md`. A tool
-   exit code its docs do not list as a result fails the run, so a crash never reads as "no
-   findings".
-4. Run [`scripts/security/socket`](../../scripts/security/socket) `<run-dir>`. It scans the same commits through Socket and adds its exit codes to
-   `SCOPE.md`. The Socket CLI banner prints the start of the API token; the script passes
-   `--no-banner` after the command (before it, the flag is not parsed). Raw output goes to `runs/<date>/raw/<repo>/<tool>.*`, in
-   JSON or SARIF where the tool can produce it, so two runs can be diffed.
-5. Do the manual review (section "Checklist"). Every item gets a verdict in
-   `runs/<date>/REPORT.md`: safe, finding, or not applicable — each with the evidence that
-   supports it.
-6. Before a candidate finding gets an id, run the Trail of Bits `fp-check` skill on it, through
-   its helper agents (its deep route requires them). Keep the plugin disabled between audits: its
-   Stop hook fires on every session in every project ([`LESSONS.md`](LESSONS.md)). A confirmed
-   finding is journaled, then added to the private register.
+2. Read back GitHub's settings for each repository (commands in "GitHub settings") into `SCOPE.md`.
+3. Run [`scripts/security/scan`](../../scripts/security/scan) `<run-dir> <repo>...`. It exports
+   `origin/main` of each repository, runs the scanners, pulls open CodeQL alerts, strips temp paths,
+   and records each tool's exit code in `SCOPE.md`. A tool exit code its docs do not list as a
+   result fails the run, so a crash never reads as "no findings".
+4. Run [`scripts/security/socket`](../../scripts/security/socket) `<run-dir>`. It scans the same
+   commits through Socket and adds its exit codes to `SCOPE.md`. The Socket CLI banner prints the
+   start of the API token; the script passes `--no-banner` after the command (before it, the flag is
+   not parsed). Raw output goes to `runs/<date>/raw/<repo>/<tool>.*`, in JSON or SARIF where the
+   tool can produce it, so two runs can be diffed.
+5. Do the manual review (section "Checklist"). Every item gets a verdict in `runs/<date>/REPORT.md`:
+   safe, finding, or not applicable — each with the evidence that supports it.
+6. Before a candidate finding gets an id, run the Trail of Bits `fp-check` skill on it, through its
+   helper agents (its deep route requires them). Keep the plugin disabled between audits: its Stop
+   hook fires on every session in every project ([`LESSONS.md`](LESSONS.md)). A confirmed finding is
+   journaled, then added to the private register.
 7. Compare with the previous run: new findings, findings fixed, findings that came back. The
    comparison is the last section of `REPORT.md`.
 
