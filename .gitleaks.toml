@@ -1,0 +1,12 @@
+# Secret scanning: the default rules, nothing provider-shaped to add — this package holds no token.
+#
+#   gitleaks git --redact .              the whole history
+#   gitleaks git --staged --redact .     what is about to be committed — the pre-commit hook
+#
+# `--redact` keeps a finding's secret out of the terminal and the CI log.
+
+[extend]
+useDefault = true
+
+[allowlist]
+paths = ['''pnpm-lock\.yaml''']

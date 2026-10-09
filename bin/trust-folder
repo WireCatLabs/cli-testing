@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+# Marks folders as trusted in a Claude Code profile, as accepting its trust dialog once would. Without
+# it a new worktree's .claude/settings.json is partly ignored ("this workspace has not been trusted").
+#
+#   bin/trust-folder <folder>...        # profile: $CLAUDE_CONFIG_DIR, else ~/.ccs/instances/my
+set -eu
+
+profile="${CLAUDE_CONFIG_DIR:-$HOME/.ccs/instances/my}"
+state="$profile/.claude.json"
+[ -f "$state" ] || { echo "no Claude profile at $profile — set CLAUDE_CONFIG_DIR" >&2; exit 1; }
+for folder in "$@"; do
+  path=$(CDPATH='' cd -- "$folder" && pwd)
+  next=$(mktemp "$profile/.claude.json.XXXXXX")
+  jq --arg path "$path" '.projects[$path] = ((.projects[$path] // {}) + {hasTrustDialogAccepted: true})' "$state" > "$next"
+  mv "$next" "$state"
+  echo "trusted in $(basename "$profile"): $path"
+done

@@ -1,0 +1,62 @@
+{
+  "name": "@leemour/cli-tasks",
+  "version": "0.1.0",
+  "description": "Open tasks waiting on the owner — questions, requests, mentions, promises — with the rules that open and close them; storage is the host's",
+  "license": "MIT",
+  "author": "Viacheslav Ptsarev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leemour/cli-tasks.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@11.20.0",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "typecheck": "tsc --build --force --emitDeclarationOnly && tsc -p tsconfig.test.json && tsc -p tsconfig.scripts.json",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "docs:check": "cli-dev docs-check --rules scripts/docs-rules.ts && cspell --no-progress --no-summary README.md && rumdl check --config node_modules/@leemour/cli-core/config/rumdl.toml README.md CHANGELOG.md CLAUDE.md docs/dev/*.md",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:slow": "vitest run --reporter=json --outputFile=coverage/tests.json >/dev/null; cli-dev slow-tests",
+    "smoke:bun": "bun run scripts/smoke.ts",
+    "prepare": "lefthook install || true",
+    "secrets:scan": "gitleaks git --no-banner --redact .",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@cspell/dict-en-gb": "^5.0.34",
+    "@cspell/dict-ru_ru": "^2.3.2",
+    "@leemour/cli-core": "0.17.0",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "^5.0.3",
+    "cspell": "^10.3.6",
+    "lefthook": "^2.1.16",
+    "rumdl": "^0.2.78",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}

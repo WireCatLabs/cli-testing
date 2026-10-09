@@ -1,0 +1,84 @@
+{
+  "crossSessionInbound": "accept",
+  "permissions": {
+    "additionalDirectories": [
+      "/home/leemour/Projects/AI/cli-messaging",
+      "/home/leemour/Projects/AI/cli-core"
+    ],
+    "allow": [
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm -s typecheck)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm -s lint)",
+      "Bash(pnpm test)",
+      "Bash(pnpm -s test)",
+      "Bash(pnpm test:coverage)",
+      "Bash(pnpm docs:check)",
+      "Bash(npm view *)",
+      "Bash(git fetch)",
+      "Bash(git fetch *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push)",
+      "Bash(git push *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr merge *)"
+    ],
+    "deny": [
+      "Bash(sudo)",
+      "Bash(sudo *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/writes-stay-inside.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/sandbox-stays-on.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "filesystem": {
+      "allowWrite": [
+        "/home/leemour/Projects/AI/cli-core/**",
+        "/home/leemour/Projects/AI/cli-messaging/**",
+        "/home/leemour/Projects/AI/cli-tasks/**",
+        "/home/leemour/Projects/AI/max-cli/docs_ai/.git/**",
+        "/tmp/**",
+        "/var/tmp/claude/**",
+        "~/.cache/**",
+        "~/.local/share/pnpm/**",
+        "~/.npm/**"
+      ],
+      "allowRead": [
+        "~/.ssh/id_ed25519.pub",
+        "~/.ssh/known_hosts"
+      ],
+      "denyRead": [
+        "~/.ssh",
+        "~/.gnupg",
+        "~/.aws",
+        "~/.npmrc",
+        "~/.pypirc"
+      ]
+    },
+    "network": {
+      "allowAllUnixSockets": true
+    }
+  }
+}
