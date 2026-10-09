@@ -158,14 +158,15 @@ unmeasured; checkpoint precision, runtime, input length, batching and accelerato
 
 ## Recommended experiment order
 
-1. Compare the current weights under native CPU execution and length-grouped batches, with ranking
-   equivalence, memory and cold/warm latency checks. This isolates implementation cost from model quality.
-2. Add a tiny English control and one permissively licensed multilingual reranker, then evaluate a
-   fast-to-strong cascade. Keep the 300-message retrieval pool until shortlist recall proves equivalent.
-3. Test Laya-multilingual on a few finalists for actual answer/support/none and context-needed decisions.
-   Measure answer-only success, false hits, calibration and the extra end-to-end latency.
-4. Investigate a multilingual late-interaction index if recurrent online pair inference remains too costly.
-   Jina listwise ranking is a useful separately licensed architecture comparator.
+Start with [lightweight ranking](LIGHTWEIGHT-RANKING.md): no-neural-weight lexical/sparse scoring,
+small feature-based learning to rank, then TinyBERT and MiniLM-L6 CPU comparisons. The former
+180 configurations did not evaluate every lexical/statistical or learned ranking approach.
+Keep large checkpoints as optional comparators rather than default downloads.
+
+If a compact first stage preserves answers but needs stronger finalist judgments, compare native
+and batched execution of the current multilingual model, followed by a suitable small multilingual
+alternative. Typed decision models and late interaction remain later architecture experiments.
+Use fresh held-out topics and report quality, complete download bytes, RAM and latency separately.
 
 No new alternative weights were installed, no hosted Jev call was made, and no public search behavior
 changed during this research. Future selection uses fresh held-out families rather than retuning

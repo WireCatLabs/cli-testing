@@ -1,6 +1,7 @@
 # Search quality and performance experiments
 
-Start with [MODELS.md](MODELS.md) for the plain-language model explanation, then
+Start with [LIGHTWEIGHT-RANKING.md](LIGHTWEIGHT-RANKING.md) for the small-footprint options,
+then [MODELS.md](MODELS.md) for the plain-language model explanation, then
 [the evaluation guide](combined-search-evaluation.md) for the metrics. The
 [model research](combined-search-model-research.md) contains the technical shortlist and sources.
 [message-search/README.md](message-search/README.md) describes the fixtures, runners and results.

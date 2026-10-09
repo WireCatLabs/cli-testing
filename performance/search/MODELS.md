@@ -1,9 +1,10 @@
 # How search models work, what they cost, and what we should test
 
 Our best tested ranking model improves search quality on the synthetic benchmark, but the current
-implementation takes several seconds to examine 300 messages. We should first make that same
-model run more efficiently, then compare smaller or differently structured models. A newer model
-is a candidate to test; its release date does not tell us whether it is faster or better here.
+implementation takes several seconds and substantial process RAM to examine 300 messages. The
+preferred next investigation is [lightweight ranking](LIGHTWEIGHT-RANKING.md): formulas and small
+feature rankers first, followed by tiny task-specific neural rerankers. Larger models are optional
+comparators. A newer model is a candidate to test; its release date does not establish suitability.
 
 This document explains the choices from the beginning. [The benchmark](message-search/README.md)
 contains the recorded evidence; [the technical research](combined-search-model-research.md)
@@ -313,7 +314,8 @@ cutting the pool to 50 before improving the first ranking stage loses answers. A
 cannot restore messages that were removed. Paraphrases have no relevant lexical candidates even
 at 300, so they need a candidate-generation improvement rather than only a new reranker.
 
-A useful experiment sequence is:
+The current priority is the simpler sequence in [lightweight ranking](LIGHTWEIGHT-RANKING.md#next-experiments-and-how-to-judge-them).
+If that sequence exposes a need for a stronger stage, the following additional experiments apply:
 
 1. **Hold retrieval and weights fixed; optimise execution.** Compare native and batched inference
    with the existing scores/rankings. Measure cold load, warm scoring, full-query latency and RAM.
