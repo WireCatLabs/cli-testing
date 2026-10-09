@@ -19,9 +19,6 @@ the private `cli-private` repository, never here.
 
 ## Phase 0 — the repository
 
-- **OPS-1 · P1** Repository settings as the other CLI repositories: secret scanning, push
-  protection, vulnerability alerts, security updates, CodeQL default setup, `npm` environment
-  limited to `main`.
 - **OPS-2 · P1 🚩** Trusted publisher for `@wirecat/cli-testing` on npmjs.com (GitHub Actions,
   `WireCatLabs/cli-testing`, `release.yml`, environment `npm`) — the owner's step on npm.
 - **OPS-3 · P1** A reusable `release-checks` workflow in cli-core that each CLI's `release.yml`
