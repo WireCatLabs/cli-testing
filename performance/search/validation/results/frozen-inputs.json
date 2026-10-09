@@ -1,0 +1,21 @@
+{
+  "inputSha256": "d0b88e5bcb2321950796b45b223d3f032c600aeb8b5634f9c1ac264bf93d1905",
+  "modelSha256": "ae73da95ec09ba208f4a196b93a18895f3272592ee47abd66956babc425a0c27",
+  "runnerSha256": "3a8b452f2bb9017901d2bf12ba06c413ff20b246832f7ed101b814caa52ab678",
+  "featuresSha256": "880878cb6f15dfdbc38c323072066e1605781986b641023c9d4a23024439fe5f",
+  "fixtureSha256": "438c3e852f702aed7c8a47256f8a7371f2d537362fcb1e29468e360afe4c8ae0",
+  "workerSha256": "f245817ff474974a9c2ecf79439aaeb10294c727c6b79b3ba8a37bde5f8e7364",
+  "configs": [
+    "raw",
+    "reply-context"
+  ],
+  "rankers": [
+    "retrieval",
+    "bm25",
+    "frozen-feature",
+    "frozen-no-role-cues",
+    "tinybert",
+    "current-native"
+  ],
+  "policy": "No weight fitting or holdout selection. Floors use calibration queries only. Context adds only eligible direct replies and parents. Scope controls remain strict."
+}

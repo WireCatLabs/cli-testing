@@ -26,6 +26,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   `--previous`; legacy scanner runs are read without edits. Transcript redactions support file snapshots.
 
 
+- Search robustness validation with frozen weights, calibration/holdout topics, eligible reply
+  context, negation/conditional-approval cases and separate answer/evidence judgments.
 - A search comparison matrix with 23 ranking variants, a fresh synthetic holdout, QMD/Meilisearch/
   Typesense research and measured small-model CPU resources. Results distinguish actual answers
   from supporting evidence and retain missing-fact failures.

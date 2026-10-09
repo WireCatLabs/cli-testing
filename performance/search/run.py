@@ -12,7 +12,7 @@ import tempfile
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--messaging-root", required=True, type=Path,
                     help="cli-messaging checkout with dist/ and installed dependencies")
-parser.add_argument("runner", choices=["run", "combined", "semantic", "resources", "typecheck", "candidates", "matrix-typecheck"])
+parser.add_argument("runner", choices=["run", "combined", "semantic", "resources", "typecheck", "candidates", "matrix-typecheck", "validation-candidates", "validation-typecheck"])
 args, forwarded = parser.parse_known_args()
 root = args.messaging_root.resolve()
 for path in [root / "dist/services/messages.js", root / "dist/services/messages-combined.js",
@@ -28,10 +28,13 @@ harness = stage / "bench/message-search-quality"
 shutil.copytree(area / "message-search", harness)
 if (area / "matrix").exists():
     shutil.copytree(area / "matrix", stage / "bench/matrix")
+if (area / "validation").exists():
+    shutil.copytree(area / "validation", stage / "bench/validation")
 (stage / "dist").symlink_to(root / "dist", target_is_directory=True)
 (stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
-selected_harness = stage / "bench/matrix" if args.runner in ["candidates", "matrix-typecheck"] else harness
-selected_script = "export" if args.runner == "candidates" else args.runner
+selected_harness = (stage / "bench/validation" if args.runner.startswith("validation-")
+                    else stage / "bench/matrix" if args.runner in ["candidates", "matrix-typecheck"] else harness)
+selected_script = "export" if args.runner.endswith("candidates") else args.runner
 command = (["pnpm", "exec", "tsc", "-p", str(selected_harness / "tsconfig.json")]
            if args.runner.endswith("typecheck")
            else ["node", str(selected_harness / f"{selected_script}.ts"), *forwarded])

@@ -107,9 +107,10 @@ not acceptable evidence for a lightweight default.
 
 ## Comparison and further validation
 
-The [matrix](matrix/README.md) now measures the approaches below. Its small pairwise feature
-ranker is the most promising lightweight direction; broader fresh validation is required before
-production adoption.
+The [matrix](matrix/README.md) measures the approaches below. The
+[robustness validation](validation/README.md) exposes brittle negation/proposal cues in its frozen
+feature model. Lexical ranking plus eligible context is the cheapest default direction; a better
+trained feature ranker remains an option requiring fresh validation.
 
 1. Keep the same scoped 300-candidate pool. Evaluate BM25/term-rarity scoring and character/phrase
    features, using archive statistics where applicable and keeping explicit syntax strict.

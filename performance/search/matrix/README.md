@@ -172,8 +172,8 @@ scores, launch metadata, exported models and source/input hashes are retained be
 reports in `message-search/` were not overwritten. Independent metric tests cover support versus
 actual answer, graded discounts, missing evidence, cutoffs and no-answer denominators.
 
-The strongest lightweight direction from this comparison is the pairwise feature scorer. Validate
-it on more varied, fresh topics with independent labels before porting it into production. In
-particular, challenge its negative/proposal cues with genuine decisions containing negation,
-contradictions, terse replies and thread context. Add dev-only abstention calibration and fresh
-missing-fact validation separately. A tiny file is valuable only if those tests preserve quality.
+The pairwise feature scorer is a promising result on this fixture, with limited transfer evidence.
+The [subsequent robustness validation](../validation/README.md) finds failures on genuine negated
+decisions and conditional approvals, so the frozen model is not ready for production. Lexical
+scoring with useful eligible context remains the modest-resource default direction to investigate.
+Better feature training and separate answerability calibration require further fresh validation.

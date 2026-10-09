@@ -3,7 +3,7 @@
   "extends": ["@leemour/cli-core/biome"],
   "files": {
     "includes": ["**", "!**/dist", "!**/node_modules", "!pnpm-lock.yaml", "!.claude/settings.json"],
-    "maxSize": 8388608
+    "maxSize": 16777216
   },
   "overrides": [
     {
@@ -55,7 +55,9 @@
       "includes": [
         "performance/search/matrix/results/**",
         "performance/search/matrix/fresh.json",
-        "performance/search/matrix/models/**"
+        "performance/search/matrix/models/**",
+        "performance/search/validation/results/**",
+        "performance/search/validation/fixture.json"
       ],
       "formatter": {
         "enabled": false

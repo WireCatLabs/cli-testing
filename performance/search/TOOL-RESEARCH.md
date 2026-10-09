@@ -4,6 +4,10 @@ This review inspected publisher documentation and QMD source; it did not install
 complete QMD, Typesense or Meilisearch applications. The [matrix](matrix/README.md) benchmarks
 our own bounded message-ranking variants inspired by some of their ideas.
 
+A large hybrid footprint does not establish inefficiency. We have not measured complete engines
+on equivalent tasks. The [follow-up validation](validation/README.md#cost-and-the-category-choice)
+compares the costs and limitations of ranking categories within our own prototype.
+
 ## QMD
 
 QMD source was inspected at commit

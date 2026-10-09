@@ -15,6 +15,10 @@ The [tool review](TOOL-RESEARCH.md) examines QMD, Meilisearch and Typesense. The
 [lightweight matrix](matrix/README.md) records 23 tested approaches, fresh held-out results and
 small-model resource measurements.
 
+The [robustness validation](validation/README.md) challenges negation, conditional approvals and
+reply context. It shows why the first feature model is not ready for production and distinguishes
+cheap ranking from reliable answer-availability decisions.
+
 ## Layout
 
 | Path | Purpose |
