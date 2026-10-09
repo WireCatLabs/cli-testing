@@ -1,26 +1,18 @@
 # Architecture
 
-Published as `@leemour/cli-tasks`. The `tasks` commands are built in cli-messaging, which stores
-tasks behind `TaskStore` and mounts the commands into tg-cli and max-cli.
+Published as `@wirecat/cli-testing`, a development dependency of max-cli and tg-cli.
 
-## The modules
-
-| File | What |
+| Path | What |
 |---|---|
-| [`src/model.ts`](../../src/model.ts) | `Task`, its kinds, states and origins, `closeTask` and `TaskError` |
-| [`src/store.ts`](../../src/store.ts) | `TaskStore`, the host's side, and `matches`, the filter every store applies the same way |
-| [`src/service.ts`](../../src/service.ts) | `createTaskService`: add, close, list, stats over a store — one method per command (`tasks close --as done\|dismissed`) |
-| [`src/testing/`](../../src/testing/memory-store.ts) | `memoryTaskStore`, published as `/testing` |
+| [`src/index.ts`](../../src/index.ts) | `SUITE_GROUPS`, the groups every suite belongs to |
 
-## The two lines this package does not cross
+## The seams
 
-1. **Storage is the host's.** `cli-messaging` keeps tasks in a file of its own, `tasks.db`, beside
-   the message store and outside its migrations. This package has no SQLite and no filesystem; the
-   lint rule in [`biome.json`](../../biome.json) refuses them under `src/`.
-2. **A locator is a string.** `msg:…` today; an email or a note later. Resolving it to something a
-   person can read is the host's job, so this package imports nothing from cli-messaging.
+1. **A CLI is reached from outside only** — its binary, its MCP server over stdio, its packed
+   tarball. A CLI supplies a small config file in its own repository; nothing per-CLI lives here.
+2. **A run writes a folder** — what was scanned (commits, tool versions, exit codes), the raw output,
+   and a report — in the same layout for every run of a suite, so any two runs compare.
+3. **Results go where the caller says** — for the owner's CLIs, the private `cli-private`
+   repository. This package keeps none.
 
-## Who consumes it
-
-`cli-messaging` depends on an exact version, implements `TaskStore`, runs the rules that add and
-close tasks, and mounts the commands. tg-cli and max-cli get them by pinning cli-messaging.
+The order the suites are built in is [`BACKLOG.md`](BACKLOG.md).

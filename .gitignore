@@ -37,5 +37,5 @@ coverage/
 /.claude/scheduled_tasks.json
 /.claude/workflows
 
-# Live-check cast: chat and account ids, never committed (bin/live-tasks).
+# Live-check cast: chat and account ids, never committed.
 /.live/

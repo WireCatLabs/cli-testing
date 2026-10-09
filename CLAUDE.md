@@ -1,25 +1,30 @@
-# cli-tasks — working rules
+# cli-testing — working rules
 
-Open tasks waiting on the owner — an unanswered question, a request, a mention, a promise — published
-as `@leemour/cli-tasks`. `cli-messaging` feeds it from messages and mounts its commands into tg-cli
-and max-cli. Start with the one page that covers what you are about to touch:
+Test suites for the WireCat CLIs, published as `@wirecat/cli-testing` and used by max-cli and tg-cli
+as a development dependency. Start with the one page that covers what you are about to touch:
 
-- [`docs/dev/ARCHITECTURE.md`](docs/dev/ARCHITECTURE.md) — the modules, the storage seam, who consumes it.
+- [`docs/dev/ARCHITECTURE.md`](docs/dev/ARCHITECTURE.md) — the suite groups and how a CLI plugs in.
+- [`docs/dev/BACKLOG.md`](docs/dev/BACKLOG.md) — what comes next, in order.
 - [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md) — the shared conventions, and what differs here.
 - [`docs/dev/TESTING.md`](docs/dev/TESTING.md) — the checks and the coverage floor.
 - [`docs/dev/agents.md`](docs/dev/agents.md) — what an agent may change here, and what stops it.
 
 ## The constraints that shape everything
 
-1. **Nothing here knows a messenger or a database.** A task points at its source by a locator string;
-   the host stores tasks behind `TaskStore` and resolves a locator to a message. `biome.json` refuses
-   SQLite, `node:fs`, Drizzle, cli-messaging and messenger libraries under `src/`.
-2. **A task never holds message text.** Only the locator. A deleted message leaves nothing here.
-3. **`cli-messaging` depends on this package, never the other way round.**
-4. **A closed task never opens again.** A rule seeing the same source returns the task it already made;
-   only a person or an agent adds a second task to a source, and only of another kind.
-5. **A change reaches tg-cli and max-cli only through a release** of this package, then of
-   cli-messaging, which both CLIs pin exactly.
+1. **A suite drives a CLI from the outside.** Its binary, its MCP server, its published package —
+   never its source. What a CLI must supply (its MCP command, how the test account sends and
+   deletes, which chats are test chats) is config in that CLI's repository. `biome.json` refuses
+   messenger libraries and cli-messaging under `src/`.
+2. **Nothing touches a real account on its own.** `live` and the agent suite run only when the owner
+   starts them, on the test profiles and test chats of a private cast that is never committed.
+3. **Public tools, private results.** Run results, the findings register and the cast live in the
+   private `cli-private` repository. Nothing here names an unfixed vulnerability.
+4. **Speed of development comes first.** No suite runs on a pull request or a commit: on a release,
+   on demand or on a schedule only.
+5. **No message, token or phone number in a fixture, an output file or a document.** Seed data is
+   synthetic.
+6. **Every external tool is pinned** — a version, and a checksum where it is a downloaded binary —
+   and each run records the versions it used.
 
 ## Comments
 

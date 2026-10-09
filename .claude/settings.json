@@ -57,7 +57,7 @@
       "allowWrite": [
         "/home/leemour/Projects/AI/cli-core/**",
         "/home/leemour/Projects/AI/cli-messaging/**",
-        "/home/leemour/Projects/AI/cli-tasks/**",
+        "/home/leemour/Projects/AI/cli-testing/**",
         "/home/leemour/Projects/AI/max-cli/docs_ai/.git/**",
         "/tmp/**",
         "/var/tmp/claude/**",

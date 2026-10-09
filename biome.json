@@ -13,26 +13,19 @@
             "noRestrictedImports": {
               "level": "error",
               "options": {
-                "paths": {
-                  "node:sqlite": "cli-tasks stores nothing itself: the host implements TaskStore",
-                  "bun:sqlite": "cli-tasks stores nothing itself: the host implements TaskStore",
-                  "node:fs": "cli-tasks stores nothing itself: the host implements TaskStore",
-                  "node:fs/promises": "cli-tasks stores nothing itself: the host implements TaskStore"
-                },
                 "patterns": [
                   {
                     "group": [
-                      "better-sqlite3",
-                      "drizzle-orm",
-                      "drizzle-orm/*",
                       "@leemour/cli-messaging*",
-                      "@leemour/cli-messaging*/**"
+                      "@leemour/cli-messaging*/**",
+                      "@wirecat/cli-messaging*",
+                      "@wirecat/cli-messaging*/**",
+                      "@mtcute/*",
+                      "ws",
+                      "**/telegram/**",
+                      "**/max/**"
                     ],
-                    "message": "cli-tasks stores nothing itself and knows no messenger: the host implements TaskStore and resolves a locator"
-                  },
-                  {
-                    "group": ["@mtcute/*", "ws", "**/telegram/**", "**/max/**"],
-                    "message": "cli-tasks knows no messenger: a task points at its source by a locator string"
+                    "message": "cli-testing drives a CLI through its binary and its MCP server, never its code: what a CLI needs is config in that CLI's repository"
                   }
                 ]
               }

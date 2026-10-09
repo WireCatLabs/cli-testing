@@ -16,7 +16,7 @@ claude -p --permission-mode bypassPermissions --setting-sources project,local --
 2. touch $HOME/.sandbox-probe                                   (must fail)
 3. rm $probe                                                    (must work, no prompt)
 4. echo chained && gh api user --jq .login                      (must work)
-5. git push --dry-run git@github.com:leemour/cli-tasks.git HEAD:refs/heads/sandbox-probe   (must work, over SSH)
+5. git push --dry-run git@github.com:WireCatLabs/cli-testing.git HEAD:refs/heads/sandbox-probe   (must work, over SSH)
 5b. echo probe | ssh-keygen -Y sign -f $HOME/.ssh/id_ed25519.pub -n git     (must work: commits are signed)
 5c. cat $HOME/.ssh/id_ed25519 >/dev/null                        (must fail: the private key stays unreadable)
 5d. ls -A $HOME/.gnupg $HOME/.aws                              (must list nothing: the folders show empty)
