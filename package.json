@@ -1,12 +1,12 @@
 {
-  "name": "@leemour/cli-tasks",
-  "version": "0.1.0",
-  "description": "Open tasks waiting on the owner — questions, requests, mentions, promises — with the rules that open and close them; storage is the host's",
+  "name": "@wirecat/cli-testing",
+  "version": "0.0.0",
+  "description": "Test suites for the WireCat CLIs, run against the built binary and its MCP server: security, contract, performance, UX, analyzers, live checks and seed data",
   "license": "MIT",
   "author": "Viacheslav Ptsarev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leemour/cli-tasks.git"
+    "url": "git+https://github.com/WireCatLabs/cli-testing.git"
   },
   "type": "module",
   "engines": {
@@ -22,10 +22,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./testing": {
-      "types": "./dist/testing/index.d.ts",
-      "default": "./dist/testing/index.js"
     }
   },
   "scripts": {

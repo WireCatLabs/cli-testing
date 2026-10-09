@@ -1,4 +1,4 @@
-# Running agents on cli-tasks
+# Running agents on cli-testing
 
 The guards are copied from tg-cli's
 [`docs/dev/agents.md`](https://github.com/leemour/tg-cli/blob/main/docs/dev/agents.md), where each was

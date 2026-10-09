@@ -12,8 +12,9 @@ adds only what differs.
 **`src/` is the package.** Every `.ts` file under it is published. A new entry point is a new
 `exports` entry in `package.json` and a line in [`scripts/smoke.ts`](../../scripts/smoke.ts).
 
-**The clock and the id are arguments.** `createTaskService` takes `now` and `newId`; the real ones
-are only defaults, so a test never waits and never guesses an id.
+**The clock, the id and the process runner are arguments.** A suite takes `now`, `newId` and how
+to start a process; the real ones are only defaults, so a test never waits, never guesses an id and
+never starts a real CLI.
 
 ## Documents
 

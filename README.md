@@ -1,41 +1,24 @@
-# @leemour/cli-tasks
+# @wirecat/cli-testing
 
-Things still waiting on you — an unanswered question, a request, a mention, a promise — kept as a list
-an agent can read and close. It knows no messenger and no database: a task points at what it is about
-by a locator, and the host stores the tasks.
+Test suites for the WireCat command-line tools — max-cli and tg-cli first. A suite drives a CLI the
+way a user or an agent does: through its built binary, its MCP server and its published package,
+never through its source code. Each CLI adds this package as a development dependency, so users
+never install it.
 
-Used by [`cli-messaging`](https://github.com/leemour/cli-messaging), which adds tasks from the
-messages it reads and gives tg-cli and max-cli the same `tasks` commands. What changed in each
-version is in [`CHANGELOG.md`](CHANGELOG.md).
+Suites come in groups, and each runs on its own:
 
-```ts
-import { createTaskService } from "@leemour/cli-tasks"
-import { memoryTaskStore } from "@leemour/cli-tasks/testing"
-
-const tasks = createTaskService({ store: memoryTaskStore() })
-const question = {
-  source: "msg:tg:chat-1:100",
-  sourceKind: "message",
-  account: "tg:owner",
-  group: "chat-1",
-  kind: "question",
-  origin: "rule",
-} as const
-
-const { task } = await tasks.add(question)
-await tasks.close(task.id, { as: "dismissed", by: "owner", reason: "no-reply-needed" })
-await tasks.add(question) // { task: <the same task, still dismissed>, created: false }
-```
-
-## What is in it
-
-| | |
+| Group | What it checks |
 |---|---|
-| `Task` | the source locator, the account, a group key for listing, `kind`, `state`, `origin`, the times — never the text it points at |
-| `closeTask` | the one state rule: an `open` task becomes `done` or `dismissed`, and a closed one stays closed |
-| `TaskStore` | what the host implements: get, the tasks on one source, insert, update, list |
-| `createTaskService` | `add`, `close`, `list`, `stats`. A rule makes at most one task per source in an account; a person or an agent may add one of another kind |
-| `/testing` | `memoryTaskStore` |
+| `security` | dependency advisories, static analysis, workflow safety, package behaviour, prompt injection through an agent, secrets or personal data in output |
+| `contract` | machine-mode output, exit codes, MCP tool schemas, protocol drift |
+| `performance` | start time, command speed, long-running servers, bad networks |
+| `ux` | installing and upgrading on each package manager and system, whether an agent finds the right tool |
+| `analyzers` | heavier linters and static analyzers than a pull request runs |
+| `live` | shape-only checks on real test accounts, started by the owner |
+| `seed` | synthetic data for search, reports, templates and docs |
+
+None of them runs on every change: they run when a version is released, on demand or on a schedule,
+so they never slow down work on the CLIs.
 
 ## Releasing
 
