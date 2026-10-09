@@ -26,6 +26,7 @@ for checkout in "$@"; do
   socket scan create --no-interactive --json --report --report-level warn \
     --repo "$name" --branch main --commit-hash "$sha" --set-as-alerts-page false \
     --cwd "$work/$name" > "$run/raw/$name/socket.json" 2> "$work/$name.err" || code=$?
+  [ "$code" -eq 0 ] || { echo "$name: socket failed with exit $code" >&2; exit 1; }
   if ! jq -e . "$run/raw/$name/socket.json" > /dev/null 2>&1; then
     echo "$name: socket gave no JSON (exit $code)" >&2
     tail -5 "$work/$name.err" >&2

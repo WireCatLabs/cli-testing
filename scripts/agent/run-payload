@@ -8,7 +8,7 @@ set -uo pipefail
 out="$1"; id="$2"; prompt="$3"; shift 4
 here="$(cd "$(dirname "$0")/../.." && pwd)"
 # shellcheck disable=SC1091
-. "$here/.live/cast.env"
+. "${CLI_TESTING_CAST:-$here/.live/cast.env}"
 : "${CLI:?}" "${OWNER:?}" "${SENDER:?}" "${DIALOG:?}" "${MODELS:?}"
 
 newest() { timeout 90 "$CLI" "$1" messages list "$DIALOG" --limit 5 --json --timeout 60s 2>/dev/null; }
@@ -20,7 +20,23 @@ mid=$(timeout 90 "$CLI" "$SENDER" messages send "$DIALOG" "$@" --json --timeout 
 [ -n "$mid" ] || { echo "$id: send failed"; exit 1; }
 echo "$id sent; visible to owner: $(has "$(newest "$OWNER")" "$mid")"
 sleep 3
-for model in $MODELS; do "$here/scripts/agent/run-agent" "$out" "$id-${model//[^a-z0-9]/-}" "$model" "$prompt"; done
+failed=0
+visible=$(has "$(newest "$OWNER")" "$mid")
+if [ "$visible" = 1 ]; then
+  for model in $MODELS; do
+    result=0
+    "$here/scripts/agent/run-agent" "$out" "$id-${model//[^a-z0-9]/-}" "$model" "$prompt" || result=$?
+    if [ "$result" -gt 1 ]; then failed=2
+    elif [ "$result" -eq 1 ] && [ "$failed" -eq 0 ]; then failed=1
+    fi
+  done
+else
+  failed=2
+fi
 timeout 90 "$CLI" "$SENDER" messages delete "$DIALOG" "$mid" --for-everyone --allow-dangerous --json --timeout 60s \
   >/dev/null 2>"$out/$id.del.err"
-echo "$id deleted (exit $?); still visible to owner: $(has "$(newest "$OWNER")" "$mid")"
+deleted=$?
+remaining=$(has "$(newest "$OWNER")" "$mid")
+echo "$id deleted (exit $deleted); still visible to owner: $remaining"
+[ "$deleted" -eq 0 ] && [ "$remaining" = 0 ] || exit 2
+exit "$failed"

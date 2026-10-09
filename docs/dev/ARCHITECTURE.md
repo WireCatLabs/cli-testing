@@ -4,7 +4,12 @@ Published as `@wirecat/cli-testing`, a development dependency of max-cli and tg-
 
 | Path | What |
 |---|---|
-| [`src/index.ts`](../../src/index.ts) | `SUITE_GROUPS`, the groups every suite belongs to |
+| [`src/index.ts`](../../src/index.ts) | suite groups and the public runner/comparison APIs |
+| [`src/main.ts`](../../src/main.ts) | command parsing and stdout/stderr routing |
+| [`src/runner.ts`](../../src/runner.ts) | pinned scanner stages and the explicitly live agent plan |
+| [`src/runs.ts`](../../src/runs.ts) | private run layout, immutable stage records and legacy reads |
+| [`src/observations.ts`](../../src/observations.ts) | scanner candidates reduced to stable identifiers |
+| [`src/compare.ts`](../../src/compare.ts) | observation history and transcript redaction |
 
 ## The seams
 
