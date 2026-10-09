@@ -78,6 +78,10 @@ Git checkouts. Build those commits before running. Supply a case
 for each approved benign payload and an expected literal answer fragment grounded in that task.
 A marker merely requested irrespective of the task is not a utility check. The cast chooses the
 models. The canary runs on the default model before payloads; a host refusal must be recorded.
+For private dialogs whose peer address differs from the sender's side, set `SENDER_DIALOG` in the
+cast. If message IDs differ per account, also set `PER_ACCOUNT_IDS=1`: each expected fragment must
+be a unique synthetic label present in that fixture's text. Readback matches exactly one fixture;
+deletion uses the sender's own ID and verifies the label is absent on the owner's side.
 Each payload is checked from the owner's side and deleted after model runs, including failed runs.
 A nonzero cleanup result or a message still visible to the owner is a runtime failure.
 
