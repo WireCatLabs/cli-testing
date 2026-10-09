@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+# Runs the scanners of docs/security/METHOD.md over a clean export of origin/main of each checkout.
+# Usage: scripts/security/scan <run-dir> <checkout>...
+#   scripts/security/scan ~/Projects/AI/cli-private/security/runs/2026-11-01 ~/Projects/AI/max-cli ~/Projects/AI/tg-cli
+# Writes <run-dir>/SCOPE.md and <run-dir>/raw/<repo>/{osv,semgrep,zizmor,codeql}.json.
+set -euo pipefail
+
+run="$1"; shift
+[ "$#" -gt 0 ] || { echo "usage: scan <run-dir> <checkout>..." >&2; exit 2; }
+work="$(mktemp -d)"
+trap 'rm -rf "$work"' EXIT
+mkdir -p "$run/raw"
+scope="$run/SCOPE.md"
+
+slug() { git -C "$1" remote get-url origin | sed -E 's#^(git@github\.com:|https://github\.com/)##; s#\.git$##'; }
+
+{
+  echo "# Run $(basename "$run") — scope"
+  echo
+  echo "Exported from \`origin/main\` of each repository."
+  echo
+  echo "## Commits"
+  echo
+} > "$scope"
+
+names=()
+for checkout in "$@"; do
+  name="$(basename "$checkout")"
+  names+=("$name")
+  git -C "$checkout" fetch -q origin main
+  echo "- $(slug "$checkout") \`$(git -C "$checkout" rev-parse origin/main)\`" >> "$scope"
+  mkdir -p "$work/$name"
+  git -C "$checkout" archive origin/main | tar -x -C "$work/$name"
+done
+
+{
+  echo
+  echo "## Tools"
+  echo
+  echo "- osv-scanner $(osv-scanner --version | head -1 | awk '{print $3}')"
+  echo "- semgrep $(semgrep --version)"
+  echo "- $(zizmor --version)"
+  echo
+  echo "## GitHub settings"
+  echo
+  for checkout in "$@"; do
+    s="$(slug "$checkout")"
+    a="$(gh api "repos/$s" --jq '.security_and_analysis | "secret_scanning=\(.secret_scanning.status) push_protection=\(.secret_scanning_push_protection.status) security_updates=\(.dependabot_security_updates.status)"')"
+    c="$(gh api "repos/$s/code-scanning/default-setup" --jq .state)"
+    echo "- $s: $a codeql=$c"
+  done
+} >> "$scope"
+
+# Fails the run on any exit code the tool's docs do not list as a result, so a crash never reads as
+# "no findings": osv-scanner 0/1, semgrep 0 (no --error), zizmor 0 or 11-14.
+status=()
+run_tool() {
+  local tool="$1" ok="$2" file="$3"; shift 3
+  local code=0
+  "$@" > "$file" || code=$?
+  status+=("$name $tool exit=$code")
+  if [[ " $ok " != *" $code "* ]]; then
+    echo "$name: $tool failed with exit $code" >&2
+    exit 1
+  fi
+}
+
+i=0
+for checkout in "$@"; do
+  name="${names[$i]}"; i=$((i + 1))
+  out="$run/raw/$name"
+  mkdir -p "$out"
+  cd "$work/$name"
+  if [ -f pnpm-lock.yaml ]; then
+    run_tool osv-scanner "0 1" "$out/osv.json" osv-scanner scan source -r --format json .
+  fi
+  run_tool semgrep "0" "$out/semgrep.json" semgrep scan --metrics=off --quiet --json \
+    --config p/javascript --config p/typescript --config p/nodejs --config p/secrets \
+    --config p/github-actions .
+  if jq -e '[.errors[] | select(.type[0]? != "PartialParsing")] | length > 0' "$out/semgrep.json" > /dev/null; then
+    echo "$name: semgrep reported errors other than PartialParsing" >&2
+    exit 1
+  fi
+  if [ -d .github ]; then
+    run_tool zizmor "0 11 12 13 14" "$out/zizmor.json" zizmor --offline --format json .github
+  fi
+  gh api --paginate "repos/$(slug "$checkout")/code-scanning/alerts?state=open&per_page=100" > "$out/codeql.json"
+  status+=("$name codeql open_alerts=$(jq -s 'add | length' "$out/codeql.json")")
+  echo "$name done" >&2
+done
+
+# Temp paths differ on every run; strip them so two runs diff cleanly.
+find "$run/raw" -name '*.json' -exec sed -i "s|$work/[^/\"]*/||g" {} +
+
+{
+  echo
+  echo "## Tool exit codes"
+  echo
+  for s in "${status[@]}"; do echo "- $s"; done
+} >> "$scope"
+
+echo "$run" >&2

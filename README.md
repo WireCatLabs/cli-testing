@@ -20,6 +20,12 @@ Suites come in groups, and each runs on its own:
 None of them runs on every change: they run when a version is released, on demand or on a schedule,
 so they never slow down work on the CLIs.
 
+## Security audits
+
+How an audit is run and repeated: [`docs/security/METHOD.md`](docs/security/METHOD.md), the commands
+in [`RUNBOOK.md`](docs/security/RUNBOOK.md), the agent injection test in
+[`AGENT-TEST.md`](docs/security/AGENT-TEST.md). Results stay private.
+
 ## Releasing
 
 `bin/release` on a clean `main` publishes the version in `package.json` through GitHub Actions and

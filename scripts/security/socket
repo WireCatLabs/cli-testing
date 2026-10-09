@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Socket stage of a run: scans the commits recorded in <run-dir>/SCOPE.md, so its results match the
+# other scanners. Needs `socket login` done once by the owner in his own terminal, never through an
+# agent's shell: the token must not reach a transcript.
+# Usage: scripts/security/socket <run-dir> <checkout>...   (the same checkouts as `scan`)
+set -euo pipefail
+
+run="$1"; shift
+work="$(mktemp -d)"
+trap 'rm -rf "$work"' EXIT
+
+# --no-banner and --no-spinner go after the command: before it they are not parsed, and the banner
+# prints the start of the API token.
+socket() { pnpm dlx @socketsecurity/cli@1.1.179 "$@" --no-banner --no-spinner; }
+
+slug() { git -C "$1" remote get-url origin | sed -E 's#^(git@github\.com:|https://github\.com/)##; s#\.git$##'; }
+
+status=()
+for checkout in "$@"; do
+  name="$(basename "$checkout")"
+  sha="$(sed -nE "s#^- $(slug "$checkout") \`([0-9a-f]{40})\`\$#\\1#p" "$run/SCOPE.md")"
+  [ -n "$sha" ] || { echo "$name: no commit for $(slug "$checkout") in $run/SCOPE.md — run scan first" >&2; exit 1; }
+  mkdir -p "$work/$name" "$run/raw/$name"
+  git -C "$checkout" archive "$sha" | tar -x -C "$work/$name"
+  code=0
+  socket scan create --no-interactive --json --report --report-level warn \
+    --repo "$name" --branch main --commit-hash "$sha" --set-as-alerts-page false \
+    --cwd "$work/$name" > "$run/raw/$name/socket.json" 2> "$work/$name.err" || code=$?
+  if ! jq -e . "$run/raw/$name/socket.json" > /dev/null 2>&1; then
+    echo "$name: socket gave no JSON (exit $code)" >&2
+    tail -5 "$work/$name.err" >&2
+    exit 1
+  fi
+  status+=("$name socket exit=$code")
+  echo "$name done" >&2
+done
+
+{
+  echo
+  echo "## Socket"
+  echo
+  echo "- @socketsecurity/cli 1.1.179, same commits as above"
+  for s in "${status[@]}"; do echo "- $s"; done
+} >> "$run/SCOPE.md"

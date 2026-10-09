@@ -12,3 +12,6 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
 
 - **The suite groups** — `SUITE_GROUPS`: security, contract, performance, ux, analyzers, live, seed.
   No suite runs yet.
+- **The security audit, written down to repeat** — `docs/security/` (method, runbook, agent test,
+  reviewer prompts, lessons) and the scripts it uses: `scripts/security/scan`,
+  `scripts/security/socket`, `scripts/agent/run-agent`, `scripts/agent/run-payload`.
