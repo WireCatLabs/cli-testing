@@ -1,0 +1,27 @@
+{
+  "sourceRepository": "https://github.com/leemour/cli-messaging",
+  "sourceCommit": "13d352ad5735042e716cfb62a85262bac296f374",
+  "files": {
+    "bench/message-search-quality/README.md": "46b81cedde484052fd06d46177f56085a27411bd632c36e2eb1c559da9b01072",
+    "bench/message-search-quality/augmented-baseline.json": "ca465966054e2d6500ebcb2258964c77e582ae5a3873133c96d60a21acc02a45",
+    "bench/message-search-quality/baseline.json": "012482cd44f1889563560e270163c23e409f1a97385405a3de288b25acdcf904",
+    "bench/message-search-quality/combined-dev.json": "b0fba48a06848347a6bed395d813c219a1fcc87405ebe76c6a154d07f12223fe",
+    "bench/message-search-quality/combined.ts": "b71dd53f4ba99a5d690a313569b048c0bc801d27fa29576e74ec0b58fa50ee44",
+    "bench/message-search-quality/corpus.json": "31ffb8689e06d315a9be7d2ba0094a859b05cb67fc17eb68e4b5b4f5744a0b20",
+    "bench/message-search-quality/crossencoder-dev.json": "b9a357daf8da98a1c9055cf4b76781e754e07011d12c73c52e4d267fb1ee446e",
+    "bench/message-search-quality/crossencoder.ts": "2d044b35dc1f4ac769127e1b86303b5b4d20f7970eb2ea9a47df729153e96aa0",
+    "bench/message-search-quality/generate-questions.py": "2108b5464d438fea8ba2299d0d637caad4f41f433e8d25e0682902a67275e902",
+    "bench/message-search-quality/generate.py": "8f7fe18cd8509fa3dce2f3a2be5c96552dad2c925b7e5ab52ba58835f7314628",
+    "bench/message-search-quality/prepare-reranker.py": "53b27c4363edfd2a434de437b2eed930571acc8c8d7fe076bb564b4bedb80ab4",
+    "bench/message-search-quality/questions.json": "390ff1475964d982a06afaf9e2f6f840f5b8304fcffe58ebedd5a0ea8d54478e",
+    "bench/message-search-quality/reranker.json": "8efb505319d19cb42772dc02438cd99c68cfd4771bcba8890aac3ec81b1538d3",
+    "bench/message-search-quality/resources.json": "0d272fd7ce55a570fec24f1f0bee7f6f1a1e91f59a79e4e0e00e684bebab7751",
+    "bench/message-search-quality/resources.ts": "c31780bb82a420ace3120bbc54385b514820077c4db75706f07c25daca4b173d",
+    "bench/message-search-quality/run.ts": "4b6fe3eccec01b1f95704b4447aa7647070cbc213fd524f6f665b630ca7ef507",
+    "bench/message-search-quality/semantic-dev.json": "c9458a55c8102769ace83b7f5938fbb9f934d3c2bd41ef856723e174977d65f8",
+    "bench/message-search-quality/semantic.ts": "bea007961d0dc1d237824c274029f81dce28c4840e8df88c9b2b282d9bf07fd5",
+    "bench/message-search-quality/tsconfig.json": "f48c0b3c2dc08ce4224db334c607dcdc5eb6f37dadff40e1b564bf6a45af81ce",
+    "docs/dev/combined-search-evaluation.md": "3d96ea28070a5aab209c4e9aa30b4a6fdbe7a83fa29cbb51db52494a41666587",
+    "docs/dev/combined-search-model-research.md": "3356aea3c08c66dc565269bf32910367e4f4690cb9044f29104412ed383aea9a"
+  }
+}

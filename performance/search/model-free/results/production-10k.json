@@ -1,0 +1,3390 @@
+{
+  "node": "v24.19.0",
+  "messages": 10341,
+  "background": 10000,
+  "fixtureSha256": "c3a2550ed19de21bc09aca51f232d9678b94636013253751d63d01f9fab9f8ad",
+  "runnerSha256": "b2f67d117921ce63a7cb631063001576b87493830cfe34306fa7dfe99fb89a63",
+  "productionSha256": {
+    "services/messages-discovery.js": "63a0c13cad9703f886d75381487b551d960b6eb13ef66019493be6c3e1861830",
+    "services/messages-combined.js": "7abf77eeafb8fd8bea4751bb3557743532b814c56f1831639c843f1e2b0904af",
+    "search/question-plan.js": "4cd3f0e9c3e7dd426d42a569f16411a219b148b9f6abb4412b318ebdfa0da43c",
+    "store/sqlite/search.js": "ef1969cbb87d0608a4f93fa99cb0e9f6c07546dfaa65e0f184954c955ac86ba4",
+    "store/sqlite/lucene.js": "ce49bdcc74e5741652d51730ac1d65f88760f4e9ea17aaffb09f4dab2efaaaa8"
+  },
+  "setupMs": 7.642294000000021,
+  "baselineRss": 96694272,
+  "setupRss": 99360768,
+  "firstMs": 87.65290700000003,
+  "firstRss": 112730112,
+  "warmP50Ms": 20.435217000000023,
+  "warmP95Ms": 24.398881000000017,
+  "peakRss": 122560512,
+  "databaseBytes": 7958528,
+  "storePath": "/tmp/discovery-production-VFiQiu/synthetic.db",
+  "summary": [
+    {
+      "mode": "strict",
+      "queries": 24,
+      "answerable": 16,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "p50Ms": 6.821373999999992,
+      "p95Ms": 8.441021999999975
+    },
+    {
+      "mode": "discover",
+      "queries": 24,
+      "answerable": 16,
+      "answerAt1": 0.125,
+      "answerAt3": 0.875,
+      "answerAt10": 1,
+      "mrrAt10": 0.5208333333333333,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7480529461975234,
+      "falseHits": 0,
+      "p50Ms": 9.038091000000009,
+      "p95Ms": 22.636093999999957
+    }
+  ],
+  "rows": [
+    {
+      "id": "fresh-helix-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "How long are Helix logs kept?",
+      "ids": [],
+      "elapsedMs": 12.919450999999981,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-helix-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "What is the log lifetime for Helix?",
+      "ids": [],
+      "elapsedMs": 7.37472200000002,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-quartz-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Who has Quartz production access?",
+      "ids": [],
+      "elapsedMs": 6.569400999999971,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-quartz-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Who can enter Quartz production?",
+      "ids": [],
+      "elapsedMs": 5.786213000000032,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-rivet-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "Which Rivet service build is current?",
+      "ids": [],
+      "elapsedMs": 5.448307999999997,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-rivet-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "What version does Rivet run now?",
+      "ids": [],
+      "elapsedMs": 6.821373999999992,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-atlas-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "What time does Atlas export run?",
+      "ids": [],
+      "elapsedMs": 6.187674999999956,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-atlas-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "When is the Atlas daily export?",
+      "ids": [],
+      "elapsedMs": 7.188722999999982,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-beacon-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Where is Beacon storage located?",
+      "ids": [],
+      "elapsedMs": 6.503367000000026,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-beacon-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the final Beacon storage region?",
+      "ids": [],
+      "elapsedMs": 6.205628999999931,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-finch-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "Who is the external auditor for Finch?",
+      "ids": [],
+      "elapsedMs": 6.16538300000002,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-finch-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "What is the Finch audit fee?",
+      "ids": [],
+      "elapsedMs": 5.6416209999999865,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-кедр-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "Сколько дней хранятся логи Кедр?",
+      "ids": [],
+      "elapsedMs": 7.6494069999999965,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-кедр-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "Какой срок хранения логов Кедр?",
+      "ids": [],
+      "elapsedMs": 6.86093900000003,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-сокол-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Кому разрешён доступ на сервер Сокол?",
+      "ids": [],
+      "elapsedMs": 7.3377120000000104,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-сокол-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Кто может войти на сервер Сокол?",
+      "ids": [],
+      "elapsedMs": 5.791071999999986,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-парус-0",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "Какая сборка сервиса Парус работает сейчас?",
+      "ids": [],
+      "elapsedMs": 6.466298000000052,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-парус-1",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "Какая версия Парус сейчас в работе?",
+      "ids": [],
+      "elapsedMs": 6.343277000000057,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-маяк-0",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "Во сколько идёт выгрузка Маяк?",
+      "ids": [],
+      "elapsedMs": 5.898241999999982,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-маяк-1",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "Когда ежедневная выгрузка Маяк?",
+      "ids": [],
+      "elapsedMs": 7.738944999999944,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-гранит-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Где хранение данных Гранит?",
+      "ids": [],
+      "elapsedMs": 7.174216000000001,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-гранит-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Какой окончательный регион хранения Гранит?",
+      "ids": [],
+      "elapsedMs": 7.7484020000000555,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-ручей-0",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "Кто внешний аудитор Ручей?",
+      "ids": [],
+      "elapsedMs": 8.187455999999997,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-ручей-1",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "Сколько стоит аудит Ручей?",
+      "ids": [],
+      "elapsedMs": 8.441021999999975,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-helix-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "How long are Helix logs kept?",
+      "ids": [
+        "200004",
+        "200005",
+        "200003",
+        "200001",
+        "1009990",
+        "1009980",
+        "1009970",
+        "1009960",
+        "1009950",
+        "1009940"
+      ],
+      "elapsedMs": 22.636093999999957,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.25,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5865409417085417,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 300,
+        "repliesAdded": 0,
+        "truncated": true,
+        "terms": [
+          "long",
+          "helix",
+          "logs",
+          "kept",
+          "retention"
+        ],
+        "queries": [
+          "(long OR helix OR logs OR kept OR retention)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200004",
+          "locator": "msg:synthetic/500/501/200004",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "kept"
+            ],
+            "missingTerms": [
+              "long",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "200005",
+          "locator": "msg:synthetic/500/501/200005",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "retention"
+            ],
+            "missingTerms": [
+              "long",
+              "kept"
+            ]
+          }
+        },
+        {
+          "id": "200003",
+          "locator": "msg:synthetic/500/501/200003",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "retention"
+            ],
+            "missingTerms": [
+              "long",
+              "kept"
+            ]
+          }
+        },
+        {
+          "id": "200001",
+          "locator": "msg:synthetic/500/501/200001",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "retention"
+            ],
+            "missingTerms": [
+              "long",
+              "kept"
+            ]
+          }
+        },
+        {
+          "id": "1009990",
+          "locator": "msg:synthetic/500/899/1009990",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "helix",
+              "logs"
+            ],
+            "missingTerms": [
+              "long",
+              "kept",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009980",
+          "locator": "msg:synthetic/500/899/1009980",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "helix",
+              "logs"
+            ],
+            "missingTerms": [
+              "long",
+              "kept",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009970",
+          "locator": "msg:synthetic/500/899/1009970",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "helix",
+              "logs"
+            ],
+            "missingTerms": [
+              "long",
+              "kept",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009960",
+          "locator": "msg:synthetic/500/899/1009960",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "helix",
+              "logs"
+            ],
+            "missingTerms": [
+              "long",
+              "kept",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009950",
+          "locator": "msg:synthetic/500/899/1009950",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "helix",
+              "logs"
+            ],
+            "missingTerms": [
+              "long",
+              "kept",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009940",
+          "locator": "msg:synthetic/500/899/1009940",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "helix",
+              "logs"
+            ],
+            "missingTerms": [
+              "long",
+              "kept",
+              "retention"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-helix-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "What is the log lifetime for Helix?",
+      "ids": [
+        "200005",
+        "200002",
+        "200003",
+        "200001",
+        "1009990",
+        "1009980",
+        "1009970",
+        "1009960",
+        "1009950",
+        "1009940"
+      ],
+      "elapsedMs": 26.061439999999948,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.25,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6758840844016503,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 300,
+        "repliesAdded": 0,
+        "truncated": true,
+        "terms": [
+          "log",
+          "lifetime",
+          "helix",
+          "retention"
+        ],
+        "queries": [
+          "(log OR lifetime OR helix OR retention)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200005",
+          "locator": "msg:synthetic/500/501/200005",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "helix",
+              "retention"
+            ],
+            "missingTerms": [
+              "lifetime"
+            ]
+          }
+        },
+        {
+          "id": "200002",
+          "locator": "msg:synthetic/500/501/200002",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "lifetime",
+              "helix"
+            ],
+            "missingTerms": [
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "200003",
+          "locator": "msg:synthetic/500/501/200003",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "helix",
+              "retention"
+            ],
+            "missingTerms": [
+              "lifetime"
+            ]
+          }
+        },
+        {
+          "id": "200001",
+          "locator": "msg:synthetic/500/501/200001",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "helix",
+              "retention"
+            ],
+            "missingTerms": [
+              "lifetime"
+            ]
+          }
+        },
+        {
+          "id": "1009990",
+          "locator": "msg:synthetic/500/899/1009990",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "log",
+              "helix"
+            ],
+            "missingTerms": [
+              "lifetime",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009980",
+          "locator": "msg:synthetic/500/899/1009980",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "log",
+              "helix"
+            ],
+            "missingTerms": [
+              "lifetime",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009970",
+          "locator": "msg:synthetic/500/899/1009970",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "log",
+              "helix"
+            ],
+            "missingTerms": [
+              "lifetime",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009960",
+          "locator": "msg:synthetic/500/899/1009960",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "log",
+              "helix"
+            ],
+            "missingTerms": [
+              "lifetime",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009950",
+          "locator": "msg:synthetic/500/899/1009950",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "log",
+              "helix"
+            ],
+            "missingTerms": [
+              "lifetime",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "1009940",
+          "locator": "msg:synthetic/500/899/1009940",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "log",
+              "helix"
+            ],
+            "missingTerms": [
+              "lifetime",
+              "retention"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-quartz-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Who has Quartz production access?",
+      "ids": [
+        "200033",
+        "200030",
+        "200032",
+        "200031",
+        "200034",
+        "200004"
+      ],
+      "elapsedMs": 13.498075999999969,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6561037799490683,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "quartz",
+          "production",
+          "access"
+        ],
+        "queries": [
+          "(quartz OR production OR access)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200033",
+          "locator": "msg:synthetic/500/502/200033",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200030",
+          "locator": "msg:synthetic/500/502/200030",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200032",
+          "locator": "msg:synthetic/500/502/200032",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200031",
+          "locator": "msg:synthetic/500/502/200031",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200034",
+          "locator": "msg:synthetic/500/502/200034",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "access"
+            ]
+          }
+        },
+        {
+          "id": "200004",
+          "locator": "msg:synthetic/500/501/200004",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "production"
+            ],
+            "missingTerms": [
+              "quartz",
+              "access"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-quartz-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Who can enter Quartz production?",
+      "ids": [
+        "200033",
+        "200030",
+        "200034",
+        "200032",
+        "200031",
+        "200004"
+      ],
+      "elapsedMs": 11.422733999999991,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6728853390803202,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "queries": [
+          "(enter OR quartz OR production)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200033",
+          "locator": "msg:synthetic/500/502/200033",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200030",
+          "locator": "msg:synthetic/500/502/200030",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200034",
+          "locator": "msg:synthetic/500/502/200034",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200032",
+          "locator": "msg:synthetic/500/502/200032",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200031",
+          "locator": "msg:synthetic/500/502/200031",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200004",
+          "locator": "msg:synthetic/500/501/200004",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "production"
+            ],
+            "missingTerms": [
+              "enter",
+              "quartz"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-rivet-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "Which Rivet service build is current?",
+      "ids": [
+        "200061",
+        "200059",
+        "200060",
+        "200062",
+        "200063"
+      ],
+      "elapsedMs": 13.397748999999976,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6561037799490683,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "rivet",
+          "service",
+          "build",
+          "current"
+        ],
+        "queries": [
+          "(rivet OR service OR build OR current)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200061",
+          "locator": "msg:synthetic/500/503/200061",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "rivet",
+              "service",
+              "build",
+              "current"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200059",
+          "locator": "msg:synthetic/500/503/200059",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "rivet",
+              "service",
+              "build"
+            ],
+            "missingTerms": [
+              "current"
+            ]
+          }
+        },
+        {
+          "id": "200060",
+          "locator": "msg:synthetic/500/503/200060",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "rivet",
+              "service",
+              "build"
+            ],
+            "missingTerms": [
+              "current"
+            ]
+          }
+        },
+        {
+          "id": "200062",
+          "locator": "msg:synthetic/500/503/200062",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "rivet",
+              "build"
+            ],
+            "missingTerms": [
+              "service",
+              "current"
+            ]
+          }
+        },
+        {
+          "id": "200063",
+          "locator": "msg:synthetic/500/503/200063",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "service",
+              "build",
+              "current"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-rivet-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "What version does Rivet run now?",
+      "ids": [
+        "200063",
+        "200059",
+        "200092",
+        "200089",
+        "200088",
+        "200062",
+        "200061",
+        "200060"
+      ],
+      "elapsedMs": 21.504072000000065,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7865048891265763,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 8,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "version",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "queries": [
+          "(version OR rivet OR run OR now)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200063",
+          "locator": "msg:synthetic/500/503/200063",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "version",
+              "rivet"
+            ],
+            "missingTerms": [
+              "run",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200059",
+          "locator": "msg:synthetic/500/503/200059",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "rivet",
+              "now"
+            ],
+            "missingTerms": [
+              "version",
+              "run"
+            ]
+          }
+        },
+        {
+          "id": "200092",
+          "locator": "msg:synthetic/500/504/200092",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "run"
+            ],
+            "missingTerms": [
+              "version",
+              "rivet",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200089",
+          "locator": "msg:synthetic/500/504/200089",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "run"
+            ],
+            "missingTerms": [
+              "version",
+              "rivet",
+              "now"
+            ],
+            "parent": "msg:synthetic/500/504/200088"
+          }
+        },
+        {
+          "id": "200088",
+          "locator": "msg:synthetic/500/504/200088",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "run"
+            ],
+            "missingTerms": [
+              "version",
+              "rivet",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200062",
+          "locator": "msg:synthetic/500/503/200062",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "version",
+              "run",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200061",
+          "locator": "msg:synthetic/500/503/200061",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "version",
+              "run",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200060",
+          "locator": "msg:synthetic/500/503/200060",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "version",
+              "run",
+              "now"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-atlas-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "What time does Atlas export run?",
+      "ids": [
+        "200089",
+        "200088",
+        "200092",
+        "200090",
+        "200091"
+      ],
+      "elapsedMs": 14.867795000000001,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9726097514324383,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "time",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "queries": [
+          "(time OR atlas OR export OR run)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200089",
+          "locator": "msg:synthetic/500/504/200089",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "time",
+              "atlas",
+              "export",
+              "run"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/504/200088"
+          }
+        },
+        {
+          "id": "200088",
+          "locator": "msg:synthetic/500/504/200088",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "time",
+              "atlas",
+              "export",
+              "run"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200092",
+          "locator": "msg:synthetic/500/504/200092",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "atlas",
+              "export",
+              "run"
+            ],
+            "missingTerms": [
+              "time"
+            ]
+          }
+        },
+        {
+          "id": "200090",
+          "locator": "msg:synthetic/500/504/200090",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "time",
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "run"
+            ]
+          }
+        },
+        {
+          "id": "200091",
+          "locator": "msg:synthetic/500/504/200091",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "time",
+              "run"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-atlas-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "When is the Atlas daily export?",
+      "ids": [
+        "200089",
+        "200088",
+        "200091",
+        "200092",
+        "200090",
+        "200005"
+      ],
+      "elapsedMs": 16.222436000000016,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "queries": [
+          "(atlas OR daily OR export)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200089",
+          "locator": "msg:synthetic/500/504/200089",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "atlas",
+              "daily",
+              "export"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/504/200088"
+          }
+        },
+        {
+          "id": "200088",
+          "locator": "msg:synthetic/500/504/200088",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "atlas",
+              "daily",
+              "export"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200091",
+          "locator": "msg:synthetic/500/504/200091",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "atlas",
+              "daily",
+              "export"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200092",
+          "locator": "msg:synthetic/500/504/200092",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "daily"
+            ]
+          }
+        },
+        {
+          "id": "200090",
+          "locator": "msg:synthetic/500/504/200090",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "daily"
+            ]
+          }
+        },
+        {
+          "id": "200005",
+          "locator": "msg:synthetic/500/501/200005",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "daily"
+            ],
+            "missingTerms": [
+              "atlas",
+              "export"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-beacon-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Where is Beacon storage located?",
+      "ids": [
+        "200120",
+        "200119",
+        "200117",
+        "200118"
+      ],
+      "elapsedMs": 9.77054499999997,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5706417189553201,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "queries": [
+          "(beacon OR storage OR located)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200120",
+          "locator": "msg:synthetic/500/505/200120",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "beacon",
+              "storage",
+              "located"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200119",
+          "locator": "msg:synthetic/500/505/200119",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "located"
+            ]
+          }
+        },
+        {
+          "id": "200117",
+          "locator": "msg:synthetic/500/505/200117",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "located"
+            ]
+          }
+        },
+        {
+          "id": "200118",
+          "locator": "msg:synthetic/500/505/200118",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "located"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-beacon-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the final Beacon storage region?",
+      "ids": [
+        "200119",
+        "200117",
+        "200118",
+        "200120"
+      ],
+      "elapsedMs": 7.037259000000063,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6934264036172708,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "queries": [
+          "(final OR beacon OR storage OR region)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200119",
+          "locator": "msg:synthetic/500/505/200119",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "final",
+              "beacon",
+              "storage",
+              "region"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200117",
+          "locator": "msg:synthetic/500/505/200117",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "beacon",
+              "storage",
+              "region"
+            ],
+            "missingTerms": [
+              "final"
+            ]
+          }
+        },
+        {
+          "id": "200118",
+          "locator": "msg:synthetic/500/505/200118",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "beacon",
+              "storage",
+              "region"
+            ],
+            "missingTerms": [
+              "final"
+            ]
+          }
+        },
+        {
+          "id": "200120",
+          "locator": "msg:synthetic/500/505/200120",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "final",
+              "region"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-finch-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "Who is the external auditor for Finch?",
+      "ids": [
+        "200145",
+        "200148",
+        "200147",
+        "200146"
+      ],
+      "elapsedMs": 6.794923999999924,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9674679834891693,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "external",
+          "auditor",
+          "finch"
+        ],
+        "queries": [
+          "(external OR auditor OR finch)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200145",
+          "locator": "msg:synthetic/500/506/200145",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "external",
+              "auditor",
+              "finch"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200148",
+          "locator": "msg:synthetic/500/506/200148",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "auditor",
+              "finch"
+            ],
+            "missingTerms": [
+              "external"
+            ]
+          }
+        },
+        {
+          "id": "200147",
+          "locator": "msg:synthetic/500/506/200147",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "finch"
+            ],
+            "missingTerms": [
+              "external",
+              "auditor"
+            ]
+          }
+        },
+        {
+          "id": "200146",
+          "locator": "msg:synthetic/500/506/200146",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "finch"
+            ],
+            "missingTerms": [
+              "external",
+              "auditor"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-finch-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "What is the Finch audit fee?",
+      "ids": [
+        "200148",
+        "200146",
+        "200145",
+        "200147"
+      ],
+      "elapsedMs": 7.311212000000069,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "queries": [
+          "(finch OR audit OR fee)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200148",
+          "locator": "msg:synthetic/500/506/200148",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "finch",
+              "audit",
+              "fee"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200146",
+          "locator": "msg:synthetic/500/506/200146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "finch",
+              "audit",
+              "fee"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200145",
+          "locator": "msg:synthetic/500/506/200145",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "finch",
+              "audit"
+            ],
+            "missingTerms": [
+              "fee"
+            ]
+          }
+        },
+        {
+          "id": "200147",
+          "locator": "msg:synthetic/500/506/200147",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "finch"
+            ],
+            "missingTerms": [
+              "audit",
+              "fee"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-кедр-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "Сколько дней хранятся логи Кедр?",
+      "ids": [
+        "200175",
+        "200173",
+        "200174",
+        "200177",
+        "200176",
+        "200289",
+        "200288",
+        "200286"
+      ],
+      "elapsedMs": 9.038091000000009,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7939234660462212,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 8,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр",
+          "хранение"
+        ],
+        "queries": [
+          "(днеи OR хранятся OR логи OR кедр OR хранение)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200175",
+          "locator": "msg:synthetic/500/507/200175",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "днеи",
+              "хранятся",
+              "логи",
+              "кедр"
+            ],
+            "missingTerms": [
+              "хранение"
+            ]
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "логи",
+              "кедр",
+              "хранение"
+            ],
+            "missingTerms": [
+              "днеи",
+              "хранятся"
+            ]
+          }
+        },
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "логи",
+              "кедр",
+              "хранение"
+            ],
+            "missingTerms": [
+              "днеи",
+              "хранятся"
+            ]
+          }
+        },
+        {
+          "id": "200177",
+          "locator": "msg:synthetic/500/507/200177",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "логи",
+              "кедр"
+            ],
+            "missingTerms": [
+              "днеи",
+              "хранятся",
+              "хранение"
+            ]
+          }
+        },
+        {
+          "id": "200176",
+          "locator": "msg:synthetic/500/507/200176",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "логи",
+              "кедр"
+            ],
+            "missingTerms": [
+              "днеи",
+              "хранятся",
+              "хранение"
+            ]
+          }
+        },
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "хранение"
+            ],
+            "missingTerms": [
+              "днеи",
+              "хранятся",
+              "логи",
+              "кедр"
+            ]
+          }
+        },
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "хранение"
+            ],
+            "missingTerms": [
+              "днеи",
+              "хранятся",
+              "логи",
+              "кедр"
+            ]
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "хранение"
+            ],
+            "missingTerms": [
+              "днеи",
+              "хранятся",
+              "логи",
+              "кедр"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-кедр-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "Какой срок хранения логов Кедр?",
+      "ids": [
+        "200174",
+        "200173",
+        "200176",
+        "200289",
+        "200288",
+        "200286",
+        "200177",
+        "200175"
+      ],
+      "elapsedMs": 7.483805999999959,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6556040163013276,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 8,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "срок",
+          "хранения",
+          "логов",
+          "кедр",
+          "хранение"
+        ],
+        "queries": [
+          "(срок OR хранения OR логов OR кедр OR хранение)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "срок",
+              "хранения",
+              "логов",
+              "кедр",
+              "хранение"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "хранения",
+              "логов",
+              "кедр",
+              "хранение"
+            ],
+            "missingTerms": [
+              "срок"
+            ]
+          }
+        },
+        {
+          "id": "200176",
+          "locator": "msg:synthetic/500/507/200176",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "логов",
+              "кедр"
+            ],
+            "missingTerms": [
+              "срок",
+              "хранения",
+              "хранение"
+            ]
+          }
+        },
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "хранения",
+              "хранение"
+            ],
+            "missingTerms": [
+              "срок",
+              "логов",
+              "кедр"
+            ]
+          }
+        },
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "хранения",
+              "хранение"
+            ],
+            "missingTerms": [
+              "срок",
+              "логов",
+              "кедр"
+            ]
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "хранения",
+              "хранение"
+            ],
+            "missingTerms": [
+              "срок",
+              "логов",
+              "кедр"
+            ]
+          }
+        },
+        {
+          "id": "200177",
+          "locator": "msg:synthetic/500/507/200177",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "логов",
+              "кедр"
+            ],
+            "missingTerms": [
+              "срок",
+              "хранения",
+              "хранение"
+            ]
+          }
+        },
+        {
+          "id": "200175",
+          "locator": "msg:synthetic/500/507/200175",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "логов",
+              "кедр"
+            ],
+            "missingTerms": [
+              "срок",
+              "хранения",
+              "хранение"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-сокол-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Кому разрешён доступ на сервер Сокол?",
+      "ids": [
+        "200204",
+        "200202",
+        "200203",
+        "200205"
+      ],
+      "elapsedMs": 7.118610999999987,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.68349402851663,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "разрешен",
+          "доступ",
+          "сервер",
+          "сокол"
+        ],
+        "queries": [
+          "(разрешен OR доступ OR сервер OR сокол)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200204",
+          "locator": "msg:synthetic/500/508/200204",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "разрешен",
+              "доступ",
+              "сервер",
+              "сокол"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "доступ",
+              "сервер",
+              "сокол"
+            ],
+            "missingTerms": [
+              "разрешен"
+            ]
+          }
+        },
+        {
+          "id": "200203",
+          "locator": "msg:synthetic/500/508/200203",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "доступ",
+              "сервер",
+              "сокол"
+            ],
+            "missingTerms": [
+              "разрешен"
+            ]
+          }
+        },
+        {
+          "id": "200205",
+          "locator": "msg:synthetic/500/508/200205",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "сокол"
+            ],
+            "missingTerms": [
+              "разрешен",
+              "доступ",
+              "сервер"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-сокол-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Кто может войти на сервер Сокол?",
+      "ids": [
+        "200204",
+        "200202",
+        "200203",
+        "200205"
+      ],
+      "elapsedMs": 8.556909000000019,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.68349402851663,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "может",
+          "воити",
+          "сервер",
+          "сокол"
+        ],
+        "queries": [
+          "(может OR воити OR сервер OR сокол)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200204",
+          "locator": "msg:synthetic/500/508/200204",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "сервер",
+              "сокол"
+            ],
+            "missingTerms": [
+              "может",
+              "воити"
+            ]
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "сервер",
+              "сокол"
+            ],
+            "missingTerms": [
+              "может",
+              "воити"
+            ]
+          }
+        },
+        {
+          "id": "200203",
+          "locator": "msg:synthetic/500/508/200203",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "сервер",
+              "сокол"
+            ],
+            "missingTerms": [
+              "может",
+              "воити"
+            ]
+          }
+        },
+        {
+          "id": "200205",
+          "locator": "msg:synthetic/500/508/200205",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "сокол"
+            ],
+            "missingTerms": [
+              "может",
+              "воити",
+              "сервер"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-парус-0",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "Какая сборка сервиса Парус работает сейчас?",
+      "ids": [
+        "200232",
+        "200230",
+        "200231",
+        "200233",
+        "200202"
+      ],
+      "elapsedMs": 8.094811999999934,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.639909328045346,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "queries": [
+          "(сборка OR сервиса OR парус OR работает OR сеичас)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200232",
+          "locator": "msg:synthetic/500/509/200232",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "сборка",
+              "сервиса",
+              "парус",
+              "работает",
+              "сеичас"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200230",
+          "locator": "msg:synthetic/500/509/200230",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "сборка",
+              "сервиса",
+              "парус",
+              "работает",
+              "сеичас"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200231",
+          "locator": "msg:synthetic/500/509/200231",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "сборка",
+              "сервиса",
+              "парус",
+              "работает"
+            ],
+            "missingTerms": [
+              "сеичас"
+            ]
+          }
+        },
+        {
+          "id": "200233",
+          "locator": "msg:synthetic/500/509/200233",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "парус"
+            ],
+            "missingTerms": [
+              "сборка",
+              "сервиса",
+              "работает",
+              "сеичас"
+            ]
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "сеичас"
+            ],
+            "missingTerms": [
+              "сборка",
+              "сервиса",
+              "парус",
+              "работает"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-парус-1",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "Какая версия Парус сейчас в работе?",
+      "ids": [
+        "200233",
+        "200232",
+        "200230",
+        "200202",
+        "200231"
+      ],
+      "elapsedMs": 7.844442999999956,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.3333333333333333,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6885288809404666,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "версия",
+          "парус",
+          "сеичас",
+          "работе"
+        ],
+        "queries": [
+          "(версия OR парус OR сеичас OR работе)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200233",
+          "locator": "msg:synthetic/500/509/200233",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "версия",
+              "парус"
+            ],
+            "missingTerms": [
+              "сеичас",
+              "работе"
+            ]
+          }
+        },
+        {
+          "id": "200232",
+          "locator": "msg:synthetic/500/509/200232",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "парус",
+              "сеичас"
+            ],
+            "missingTerms": [
+              "версия",
+              "работе"
+            ]
+          }
+        },
+        {
+          "id": "200230",
+          "locator": "msg:synthetic/500/509/200230",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "парус",
+              "сеичас"
+            ],
+            "missingTerms": [
+              "версия",
+              "работе"
+            ]
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "сеичас"
+            ],
+            "missingTerms": [
+              "версия",
+              "парус",
+              "работе"
+            ]
+          }
+        },
+        {
+          "id": "200231",
+          "locator": "msg:synthetic/500/509/200231",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "парус"
+            ],
+            "missingTerms": [
+              "версия",
+              "сеичас",
+              "работе"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-маяк-0",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "Во сколько идёт выгрузка Маяк?",
+      "ids": [
+        "200261",
+        "200259",
+        "200258",
+        "200260"
+      ],
+      "elapsedMs": 11.537128000000052,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8213137146137828,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "выгрузка",
+          "маяк"
+        ],
+        "queries": [
+          "(выгрузка OR маяк)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200261",
+          "locator": "msg:synthetic/500/510/200261",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200259",
+          "locator": "msg:synthetic/500/510/200259",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/510/200258"
+          }
+        },
+        {
+          "id": "200258",
+          "locator": "msg:synthetic/500/510/200258",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200260",
+          "locator": "msg:synthetic/500/510/200260",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-маяк-1",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "Когда ежедневная выгрузка Маяк?",
+      "ids": [
+        "200261",
+        "200259",
+        "200258",
+        "200260"
+      ],
+      "elapsedMs": 14.593710999999985,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8213137146137828,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "queries": [
+          "(ежедневная OR выгрузка OR маяк)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200261",
+          "locator": "msg:synthetic/500/510/200261",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "ежедневная",
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200259",
+          "locator": "msg:synthetic/500/510/200259",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "ежедневная",
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/510/200258"
+          }
+        },
+        {
+          "id": "200258",
+          "locator": "msg:synthetic/500/510/200258",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "ежедневная",
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200260",
+          "locator": "msg:synthetic/500/510/200260",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "выгрузка",
+              "маяк"
+            ],
+            "missingTerms": [
+              "ежедневная"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-гранит-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Где хранение данных Гранит?",
+      "ids": [
+        "200289",
+        "200288",
+        "200286",
+        "200173",
+        "200287",
+        "200174"
+      ],
+      "elapsedMs": 8.771521000000007,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5437713091520254,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "queries": [
+          "(хранение OR данных OR гранит)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "хранение",
+              "данных",
+              "гранит"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "хранение",
+              "гранит"
+            ],
+            "missingTerms": [
+              "данных"
+            ]
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "хранение",
+              "гранит"
+            ],
+            "missingTerms": [
+              "данных"
+            ]
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "хранение"
+            ],
+            "missingTerms": [
+              "данных",
+              "гранит"
+            ]
+          }
+        },
+        {
+          "id": "200287",
+          "locator": "msg:synthetic/500/511/200287",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "гранит"
+            ],
+            "missingTerms": [
+              "хранение",
+              "данных"
+            ]
+          }
+        },
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "хранение"
+            ],
+            "missingTerms": [
+              "данных",
+              "гранит"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-гранит-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Какой окончательный регион хранения Гранит?",
+      "ids": [
+        "200288",
+        "200286",
+        "200289",
+        "200287",
+        "200174",
+        "200173"
+      ],
+      "elapsedMs": 8.535367999999949,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6509209298071326,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "queries": [
+          "(окончательныи OR регион OR хранения OR гранит)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "окончательныи",
+              "регион",
+              "хранения",
+              "гранит"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "регион",
+              "хранения",
+              "гранит"
+            ],
+            "missingTerms": [
+              "окончательныи"
+            ]
+          }
+        },
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "хранения",
+              "гранит"
+            ],
+            "missingTerms": [
+              "окончательныи",
+              "регион"
+            ]
+          }
+        },
+        {
+          "id": "200287",
+          "locator": "msg:synthetic/500/511/200287",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "гранит"
+            ],
+            "missingTerms": [
+              "окончательныи",
+              "регион",
+              "хранения"
+            ]
+          }
+        },
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "хранения"
+            ],
+            "missingTerms": [
+              "окончательныи",
+              "регион",
+              "гранит"
+            ]
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "хранения"
+            ],
+            "missingTerms": [
+              "окончательныи",
+              "регион",
+              "гранит"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-ручей-0",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "Кто внешний аудитор Ручей?",
+      "ids": [
+        "200314",
+        "200317",
+        "200315",
+        "200316"
+      ],
+      "elapsedMs": 8.618274000000042,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "queries": [
+          "(внешнии OR аудитор OR ручеи)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200314",
+          "locator": "msg:synthetic/500/512/200314",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "внешнии",
+              "аудитор",
+              "ручеи"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200317",
+          "locator": "msg:synthetic/500/512/200317",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "ручеи"
+            ],
+            "missingTerms": [
+              "внешнии",
+              "аудитор"
+            ]
+          }
+        },
+        {
+          "id": "200315",
+          "locator": "msg:synthetic/500/512/200315",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "ручеи"
+            ],
+            "missingTerms": [
+              "внешнии",
+              "аудитор"
+            ]
+          }
+        },
+        {
+          "id": "200316",
+          "locator": "msg:synthetic/500/512/200316",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "ручеи"
+            ],
+            "missingTerms": [
+              "внешнии",
+              "аудитор"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-ручей-1",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "Сколько стоит аудит Ручей?",
+      "ids": [
+        "200316",
+        "200317",
+        "200314",
+        "200315"
+      ],
+      "elapsedMs": 8.404753000000028,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7328286204777911,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "queries": [
+          "(стоит OR аудит OR ручеи)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200316",
+          "locator": "msg:synthetic/500/512/200316",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "стоит",
+              "аудит",
+              "ручеи"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200317",
+          "locator": "msg:synthetic/500/512/200317",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "аудит",
+              "ручеи"
+            ],
+            "missingTerms": [
+              "стоит"
+            ]
+          }
+        },
+        {
+          "id": "200314",
+          "locator": "msg:synthetic/500/512/200314",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "ручеи"
+            ],
+            "missingTerms": [
+              "стоит",
+              "аудит"
+            ]
+          }
+        },
+        {
+          "id": "200315",
+          "locator": "msg:synthetic/500/512/200315",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "ручеи"
+            ],
+            "missingTerms": [
+              "стоит",
+              "аудит"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

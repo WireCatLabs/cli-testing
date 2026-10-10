@@ -39,3 +39,9 @@ coverage/
 
 # Live-check cast: chat and account ids, never committed.
 /.live/
+
+# Worktrees can share installed dependencies through a local link.
+/node_modules
+
+# Offline Python research bytecode remains local.
+**/__pycache__/

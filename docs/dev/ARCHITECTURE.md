@@ -21,3 +21,12 @@ Published as `@wirecat/cli-testing`, a development dependency of max-cli and tg-
    repository. This package keeps none.
 
 The order the suites are built in is [`BACKLOG.md`](BACKLOG.md).
+
+## Offline search research
+
+[performance/search/](../../performance/search/README.md) holds synthetic search fixtures, ranking
+experiments and model documentation. This owner-requested research area is outside the published
+`src/` suite groups. Its launcher runs against an explicitly selected built cli-messaging artifact,
+including the internal prototype, without importing TypeScript source or opening a real account.
+Historical synthetic reports transferred from cli-messaging are retained here as research evidence;
+new runs use explicit output locations. Operational and private-account results remain private.

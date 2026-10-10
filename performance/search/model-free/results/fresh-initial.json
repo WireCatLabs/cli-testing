@@ -1,0 +1,7036 @@
+{
+  "schemaVersion": 1,
+  "node": "v24.19.0",
+  "fixtureSha256": "c3a2550ed19de21bc09aca51f232d9678b94636013253751d63d01f9fab9f8ad",
+  "productionSha256": {
+    "services/messages-combined.js": "d10aeb5f7049f615503d59c37df109bcd284f53b5cfceaac0151f2d7e2ca60e9",
+    "services/messages.js": "62f927cddd912275bb46a7c990d64881c2b4a22eac12d54f484fd5ca4223a3e4",
+    "services/messages-search.js": "35eb4ed1dcc002a80985327ffa9f6bd25a5ee6b1a31f3024203a38b6605c7d2a",
+    "search/lucene/parser.js": "5e5562c7512785a06c15bfa05915618c24e0eb7dfac9f73d502958cf02705184",
+    "search/stem.js": "84475baa966a17595c480015668dc77da60409a00c391aa9ca6a718433386007",
+    "store/normalize.js": "2c59c9a7c7486b37754b639d26d036c20054aff2c18470ba0524115d9da24de0",
+    "store/sqlite/lucene.js": "efd3f9909ac8205b02019160be2234821f4dacba26d01dc754c1e7e888173964"
+  },
+  "sourceSha256": {
+    "runner": "e7734e8268d1288265d670dc63cc8daf53269b68a5558653d7735d1e8908c51f",
+    "planner": "7cc904fbd1165c7d521ecd03589d3ab17ceae69c8d94e129e9797d72adcdfaaa",
+    "search": "ef60458f68ee5bfb4c34b3d4f7b7388cce04287361e795b28fb5585b45435b72"
+  },
+  "messages": 345,
+  "setupMs": 209.676492,
+  "baselineMemory": {
+    "rss": 98598912,
+    "heapTotal": 33460224,
+    "heapUsed": 21847448,
+    "external": 9488381,
+    "arrayBuffers": 405803
+  },
+  "setupMemory": {
+    "rss": 111321088,
+    "heapTotal": 37130240,
+    "heapUsed": 24747416,
+    "external": 9307583,
+    "arrayBuffers": 224906
+  },
+  "coldProbe": {
+    "input": "What time does Atlas export run? chat:504",
+    "firstQueryMs": 64.71273799999994,
+    "warmP50Ms": 14.79212999999993,
+    "warmP95Ms": 20.91620499999999,
+    "memoryAfterFirstQuery": {
+      "rss": 118517760,
+      "heapTotal": 37130240,
+      "heapUsed": 20024744,
+      "external": 9307643,
+      "arrayBuffers": 224966
+    },
+    "repeats": 10
+  },
+  "memory": {
+    "rss": 133787648,
+    "heapTotal": 38440960,
+    "heapUsed": 23441832,
+    "external": 9475847,
+    "arrayBuffers": 362963
+  },
+  "peakRssBytes": 133787648,
+  "storePath": "/tmp/model-free-search-HjiEKB/synthetic.db",
+  "summaries": [
+    {
+      "mode": "direct",
+      "queries": 24,
+      "answerable": 16,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "p50Ms": 6.851429000000053,
+      "p95Ms": 8.779323999999974
+    },
+    {
+      "mode": "question",
+      "queries": 24,
+      "answerable": 16,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0.1875,
+      "answerMrrAt10": 0.11458333333333333,
+      "answerSuccessAt10": 0.3125,
+      "answerCandidateSuccess": 0.3125,
+      "evidenceRecallAt10": 0.3125,
+      "ndcgAt10": 0.253407917899257,
+      "falseHits": 0,
+      "p50Ms": 10.76955600000008,
+      "p95Ms": 20.84956000000011
+    },
+    {
+      "mode": "context",
+      "queries": 24,
+      "answerable": 16,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0.4375,
+      "answerMrrAt10": 0.21875,
+      "answerSuccessAt10": 0.5625,
+      "answerCandidateSuccess": 0.5625,
+      "evidenceRecallAt10": 0.3680555555555556,
+      "ndcgAt10": 0.3205301031057059,
+      "falseHits": 0,
+      "p50Ms": 10.09679499999993,
+      "p95Ms": 18.904572000000144
+    },
+    {
+      "mode": "content",
+      "queries": 24,
+      "answerable": 16,
+      "answerSuccessAt1": 0.0625,
+      "answerSuccessAt3": 0.375,
+      "answerMrrAt10": 0.24479166666666666,
+      "answerSuccessAt10": 0.5625,
+      "answerCandidateSuccess": 0.5625,
+      "evidenceRecallAt10": 0.3680555555555556,
+      "ndcgAt10": 0.3375020640373383,
+      "falseHits": 0,
+      "p50Ms": 14.823930000000018,
+      "p95Ms": 22.866091000000097
+    },
+    {
+      "mode": "coverage",
+      "queries": 24,
+      "answerable": 16,
+      "answerSuccessAt1": 0.0625,
+      "answerSuccessAt3": 0.375,
+      "answerMrrAt10": 0.24479166666666666,
+      "answerSuccessAt10": 0.5625,
+      "answerCandidateSuccess": 0.5625,
+      "evidenceRecallAt10": 0.3680555555555556,
+      "ndcgAt10": 0.3375020640373383,
+      "falseHits": 0,
+      "p50Ms": 14.328381000000036,
+      "p95Ms": 24.82228999999961
+    }
+  ],
+  "controls": [
+    {
+      "request": {
+        "ast": {
+          "version": 1,
+          "language": "lucene-v1",
+          "root": {
+            "kind": "boolean",
+            "clauses": [
+              {
+                "node": {
+                  "kind": "predicate",
+                  "field": "text",
+                  "operator": "term",
+                  "value": "Helix",
+                  "span": {
+                    "start": 0,
+                    "end": 5
+                  }
+                },
+                "occur": "must"
+              },
+              {
+                "node": {
+                  "kind": "predicate",
+                  "field": "text",
+                  "operator": "term",
+                  "value": "log",
+                  "span": {
+                    "start": 6,
+                    "end": 9
+                  }
+                },
+                "occur": "must"
+              },
+              {
+                "node": {
+                  "kind": "predicate",
+                  "field": "text",
+                  "operator": "term",
+                  "value": "retention",
+                  "span": {
+                    "start": 10,
+                    "end": 19
+                  }
+                },
+                "occur": "must"
+              }
+            ],
+            "span": {
+              "start": 0,
+              "end": 19
+            }
+          }
+        },
+        "limit": 10
+      },
+      "ids": [
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "passed": true
+    },
+    {
+      "request": {
+        "text": "\"Helix log retention\"",
+        "limit": 10
+      },
+      "ids": [
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "passed": true
+    },
+    {
+      "request": {
+        "text": "Helix AND log AND retention",
+        "limit": 10
+      },
+      "ids": [
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "passed": true
+    },
+    {
+      "request": {
+        "text": "Helix log retention",
+        "limit": 10,
+        "exact": true
+      },
+      "ids": [
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "passed": true
+    },
+    {
+      "request": {
+        "text": "Helix log retention",
+        "limit": 10,
+        "newest": true
+      },
+      "ids": [
+        "200001",
+        "200003",
+        "200005"
+      ],
+      "passed": true
+    },
+    {
+      "request": {
+        "text": "When does Larch export time run? chat:501 from:700 date:2026-10-08",
+        "limit": 10,
+        "timezone": "UTC"
+      },
+      "ids": [
+        "999001",
+        "999002"
+      ],
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "id": "fresh-helix-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "direct",
+      "input": "How long are Helix logs kept?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "long helix logs kept",
+          "long helix logs retention"
+        ],
+        "scope": "",
+        "terms": [
+          "long",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "rankingTerms": [
+          "how",
+          "long",
+          "are",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "removed": [
+          "how",
+          "are"
+        ],
+        "aliases": [
+          "kept -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 11.220842999999945,
+      "contextMs": 0,
+      "scoringMs": 0.002364000000056876,
+      "totalMs": 11.225451999999905
+    },
+    {
+      "id": "fresh-helix-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "direct",
+      "input": "What is the log lifetime for Helix?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "log lifetime helix",
+          "log retention helix"
+        ],
+        "scope": "",
+        "terms": [
+          "log",
+          "lifetime",
+          "helix"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "log",
+          "lifetime",
+          "for",
+          "helix"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": [
+          "lifetime -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.2223129999999855,
+      "contextMs": 0,
+      "scoringMs": 0.0020729999999957727,
+      "totalMs": 5.226330999999959
+    },
+    {
+      "id": "fresh-quartz-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "direct",
+      "input": "Who has Quartz production access?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "quartz production access"
+        ],
+        "scope": "",
+        "terms": [
+          "quartz",
+          "production",
+          "access"
+        ],
+        "rankingTerms": [
+          "who",
+          "has",
+          "quartz",
+          "production",
+          "access"
+        ],
+        "removed": [
+          "who",
+          "has"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 4.18969699999991,
+      "contextMs": 0,
+      "scoringMs": 0.0016630000000077416,
+      "totalMs": 4.193243999999936
+    },
+    {
+      "id": "fresh-quartz-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "direct",
+      "input": "Who can enter Quartz production?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "enter quartz production"
+        ],
+        "scope": "",
+        "terms": [
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "rankingTerms": [
+          "who",
+          "can",
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "removed": [
+          "who",
+          "can"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.913880999999947,
+      "contextMs": 0,
+      "scoringMs": 0.0035360000000537184,
+      "totalMs": 7.921795999999972
+    },
+    {
+      "id": "fresh-rivet-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "direct",
+      "input": "Which Rivet service build is current?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "rivet service build current"
+        ],
+        "scope": "",
+        "terms": [
+          "rivet",
+          "service",
+          "build",
+          "current"
+        ],
+        "rankingTerms": [
+          "which",
+          "rivet",
+          "service",
+          "build",
+          "is",
+          "current"
+        ],
+        "removed": [
+          "which",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 8.77254199999993,
+      "contextMs": 0,
+      "scoringMs": 0.0034059999999271895,
+      "totalMs": 8.779323999999974
+    },
+    {
+      "id": "fresh-rivet-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "direct",
+      "input": "What version does Rivet run now?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "version rivet run now"
+        ],
+        "scope": "",
+        "terms": [
+          "version",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "rankingTerms": [
+          "what",
+          "version",
+          "does",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.774069000000054,
+      "contextMs": 0,
+      "scoringMs": 0.003116000000090935,
+      "totalMs": 7.7810120000000325
+    },
+    {
+      "id": "fresh-atlas-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "direct",
+      "input": "What time does Atlas export run?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "time atlas export run"
+        ],
+        "scope": "",
+        "terms": [
+          "time",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "rankingTerms": [
+          "what",
+          "time",
+          "does",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.380351000000019,
+      "contextMs": 0,
+      "scoringMs": 0.004598999999984699,
+      "totalMs": 7.391021000000023
+    },
+    {
+      "id": "fresh-atlas-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "direct",
+      "input": "When is the Atlas daily export?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "atlas daily export"
+        ],
+        "scope": "",
+        "terms": [
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "rankingTerms": [
+          "when",
+          "is",
+          "the",
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "removed": [
+          "when",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.189892999999984,
+      "contextMs": 0,
+      "scoringMs": 0.0027549999999791908,
+      "totalMs": 7.1962350000000015
+    },
+    {
+      "id": "fresh-beacon-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "direct",
+      "input": "Where is Beacon storage located?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "beacon storage located"
+        ],
+        "scope": "",
+        "terms": [
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "rankingTerms": [
+          "where",
+          "is",
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "removed": [
+          "where",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.2209009999999125,
+      "contextMs": 0,
+      "scoringMs": 0.002364000000056876,
+      "totalMs": 5.22535999999991
+    },
+    {
+      "id": "fresh-beacon-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "direct",
+      "input": "What is the final Beacon storage region?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "final beacon storage region"
+        ],
+        "scope": "",
+        "terms": [
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.572460999999976,
+      "contextMs": 0,
+      "scoringMs": 0.00243399999999383,
+      "totalMs": 7.577089999999998
+    },
+    {
+      "id": "fresh-finch-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "direct",
+      "input": "Who is the external auditor for Finch?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "external auditor finch"
+        ],
+        "scope": "",
+        "terms": [
+          "external",
+          "auditor",
+          "finch"
+        ],
+        "rankingTerms": [
+          "who",
+          "is",
+          "the",
+          "external",
+          "auditor",
+          "for",
+          "finch"
+        ],
+        "removed": [
+          "who",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.3496920000000046,
+      "contextMs": 0,
+      "scoringMs": 0.002253999999993539,
+      "totalMs": 5.353819999999928
+    },
+    {
+      "id": "fresh-finch-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "direct",
+      "input": "What is the Finch audit fee?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "finch audit fee"
+        ],
+        "scope": "",
+        "terms": [
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 4.903875999999968,
+      "contextMs": 0,
+      "scoringMs": 0.0021439999999302017,
+      "totalMs": 4.90768300000002
+    },
+    {
+      "id": "fresh-кедр-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "direct",
+      "input": "Сколько дней хранятся логи Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "днеи хранятся логи кедр",
+          "днеи хранение логи кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": [
+          "хранятся -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.522768000000042,
+      "contextMs": 0,
+      "scoringMs": 0.0019839999999931024,
+      "totalMs": 7.526745000000005
+    },
+    {
+      "id": "fresh-кедр-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "direct",
+      "input": "Какой срок хранения логов Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "срок хранения логов кедр",
+          "хранение хранения логов кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "какои",
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": [
+          "срок -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.235012999999981,
+      "contextMs": 0,
+      "scoringMs": 0.0017839999999296197,
+      "totalMs": 6.238419000000022
+    },
+    {
+      "id": "fresh-сокол-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "direct",
+      "input": "Кому разрешён доступ на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "разрешен доступ сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "разрешен",
+          "доступ",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кому",
+          "разрешен",
+          "доступ",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кому",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.098451000000068,
+      "contextMs": 0,
+      "scoringMs": 0.0016130000000202926,
+      "totalMs": 5.101586999999995
+    },
+    {
+      "id": "fresh-сокол-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "direct",
+      "input": "Кто может войти на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "может воити сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "может",
+          "воити",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кто",
+          "может",
+          "воити",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кто",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.580210000000079,
+      "contextMs": 0,
+      "scoringMs": 0.0016030000000455402,
+      "totalMs": 6.583496000000082
+    },
+    {
+      "id": "fresh-парус-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "direct",
+      "input": "Какая сборка сервиса Парус работает сейчас?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "сборка сервиса парус работает сеичас"
+        ],
+        "scope": "",
+        "terms": [
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "rankingTerms": [
+          "какая",
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "removed": [
+          "какая"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 4.833424000000036,
+      "contextMs": 0,
+      "scoringMs": 0.0016030000000455402,
+      "totalMs": 4.836418999999978
+    },
+    {
+      "id": "fresh-парус-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "direct",
+      "input": "Какая версия Парус сейчас в работе?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "версия парус сеичас работе"
+        ],
+        "scope": "",
+        "terms": [
+          "версия",
+          "парус",
+          "сеичас",
+          "работе"
+        ],
+        "rankingTerms": [
+          "какая",
+          "версия",
+          "парус",
+          "сеичас",
+          "в",
+          "работе"
+        ],
+        "removed": [
+          "какая",
+          "в"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.452481000000034,
+      "contextMs": 0,
+      "scoringMs": 0.001772999999957392,
+      "totalMs": 6.456097
+    },
+    {
+      "id": "fresh-маяк-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "direct",
+      "input": "Во сколько идёт выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "во",
+          "сколько",
+          "идет",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "во",
+          "сколько",
+          "идет"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 8.44993599999998,
+      "contextMs": 0,
+      "scoringMs": 0.0032259999999268985,
+      "totalMs": 8.456598999999983
+    },
+    {
+      "id": "fresh-маяк-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "direct",
+      "input": "Когда ежедневная выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "ежедневная выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "когда",
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "когда"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.285091999999963,
+      "contextMs": 0,
+      "scoringMs": 0.003065999999989799,
+      "totalMs": 7.291382999999996
+    },
+    {
+      "id": "fresh-гранит-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "direct",
+      "input": "Где хранение данных Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "хранение данных гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "где",
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "removed": [
+          "где"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.846429000000057,
+      "contextMs": 0,
+      "scoringMs": 0.002123999999980697,
+      "totalMs": 6.851429000000053
+    },
+    {
+      "id": "fresh-гранит-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "direct",
+      "input": "Какой окончательный регион хранения Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "окончательныи регион хранения гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "какои",
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.955473999999981,
+      "contextMs": 0,
+      "scoringMs": 0.002054000000043743,
+      "totalMs": 6.9591910000000325
+    },
+    {
+      "id": "fresh-ручей-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "direct",
+      "input": "Кто внешний аудитор Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "внешнии аудитор ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "кто",
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "removed": [
+          "кто"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.705829999999992,
+      "contextMs": 0,
+      "scoringMs": 0.0016329999999697975,
+      "totalMs": 5.708945999999969
+    },
+    {
+      "id": "fresh-ручей-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "direct",
+      "input": "Сколько стоит аудит Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "стоит аудит ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.767376000000013,
+      "contextMs": 0,
+      "scoringMs": 0.0018330000000332802,
+      "totalMs": 5.770792000000029
+    },
+    {
+      "id": "fresh-helix-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "question",
+      "input": "How long are Helix logs kept?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "long helix logs kept",
+          "long helix logs retention"
+        ],
+        "scope": "",
+        "terms": [
+          "long",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "rankingTerms": [
+          "how",
+          "long",
+          "are",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "removed": [
+          "how",
+          "are"
+        ],
+        "aliases": [
+          "kept -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200004",
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "candidateIds": [
+        "200004",
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5865409417085417,
+      "falseHits": 0,
+      "lookupMs": 18.94707200000005,
+      "contextMs": 0,
+      "scoringMs": 0.17086000000006152,
+      "totalMs": 19.120037000000025
+    },
+    {
+      "id": "fresh-helix-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "question",
+      "input": "What is the log lifetime for Helix?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "log lifetime helix",
+          "log retention helix"
+        ],
+        "scope": "",
+        "terms": [
+          "log",
+          "lifetime",
+          "helix"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "log",
+          "lifetime",
+          "for",
+          "helix"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": [
+          "lifetime -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "candidateIds": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6758840844016503,
+      "falseHits": 0,
+      "lookupMs": 21.71117599999991,
+      "contextMs": 0,
+      "scoringMs": 0.16116299999998773,
+      "totalMs": 21.875172999999904
+    },
+    {
+      "id": "fresh-quartz-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "question",
+      "input": "Who has Quartz production access?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "quartz production access"
+        ],
+        "scope": "",
+        "terms": [
+          "quartz",
+          "production",
+          "access"
+        ],
+        "rankingTerms": [
+          "who",
+          "has",
+          "quartz",
+          "production",
+          "access"
+        ],
+        "removed": [
+          "who",
+          "has"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200032",
+        "200033",
+        "200030",
+        "200031"
+      ],
+      "candidateIds": [
+        "200032",
+        "200033",
+        "200030",
+        "200031"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.46737094873235197,
+      "falseHits": 0,
+      "lookupMs": 10.739631000000031,
+      "contextMs": 0,
+      "scoringMs": 0.12715800000000854,
+      "totalMs": 10.869494000000032
+    },
+    {
+      "id": "fresh-quartz-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "question",
+      "input": "Who can enter Quartz production?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "enter quartz production"
+        ],
+        "scope": "",
+        "terms": [
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "rankingTerms": [
+          "who",
+          "can",
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "removed": [
+          "who",
+          "can"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 9.842898999999989,
+      "contextMs": 0,
+      "scoringMs": 0.09196199999996679,
+      "totalMs": 9.93800699999997
+    },
+    {
+      "id": "fresh-rivet-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "question",
+      "input": "Which Rivet service build is current?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "rivet service build current"
+        ],
+        "scope": "",
+        "terms": [
+          "rivet",
+          "service",
+          "build",
+          "current"
+        ],
+        "rankingTerms": [
+          "which",
+          "rivet",
+          "service",
+          "build",
+          "is",
+          "current"
+        ],
+        "removed": [
+          "which",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200061"
+      ],
+      "candidateIds": [
+        "200061"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 10.687833000000069,
+      "contextMs": 0,
+      "scoringMs": 0.07908799999995608,
+      "totalMs": 10.76955600000008
+    },
+    {
+      "id": "fresh-rivet-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "question",
+      "input": "What version does Rivet run now?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "version rivet run now"
+        ],
+        "scope": "",
+        "terms": [
+          "version",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "rankingTerms": [
+          "what",
+          "version",
+          "does",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 9.419234000000074,
+      "contextMs": 0,
+      "scoringMs": 0.025587999999970634,
+      "totalMs": 9.447696999999948
+    },
+    {
+      "id": "fresh-atlas-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "question",
+      "input": "What time does Atlas export run?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "time atlas export run"
+        ],
+        "scope": "",
+        "terms": [
+          "time",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "rankingTerms": [
+          "what",
+          "time",
+          "does",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088"
+      ],
+      "candidateIds": [
+        "200088"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "lookupMs": 8.121429999999918,
+      "contextMs": 0,
+      "scoringMs": 0.07531099999982871,
+      "totalMs": 8.199375999999802
+    },
+    {
+      "id": "fresh-atlas-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "question",
+      "input": "When is the Atlas daily export?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "atlas daily export"
+        ],
+        "scope": "",
+        "terms": [
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "rankingTerms": [
+          "when",
+          "is",
+          "the",
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "removed": [
+          "when",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088",
+        "200091"
+      ],
+      "candidateIds": [
+        "200088",
+        "200091"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.39480936517049525,
+      "falseHits": 0,
+      "lookupMs": 7.08714000000009,
+      "contextMs": 0,
+      "scoringMs": 0.09409600000003593,
+      "totalMs": 7.1829700000000685
+    },
+    {
+      "id": "fresh-beacon-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "question",
+      "input": "Where is Beacon storage located?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "beacon storage located"
+        ],
+        "scope": "",
+        "terms": [
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "rankingTerms": [
+          "where",
+          "is",
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "removed": [
+          "where",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200120"
+      ],
+      "candidateIds": [
+        "200120"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.264447999999902,
+      "contextMs": 0,
+      "scoringMs": 0.042559999999866704,
+      "totalMs": 6.308510000000069
+    },
+    {
+      "id": "fresh-beacon-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "question",
+      "input": "What is the final Beacon storage region?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "final beacon storage region"
+        ],
+        "scope": "",
+        "terms": [
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200119"
+      ],
+      "candidateIds": [
+        "200119"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.044891000000007,
+      "contextMs": 0,
+      "scoringMs": 0.04914199999984703,
+      "totalMs": 7.095475999999962
+    },
+    {
+      "id": "fresh-finch-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "question",
+      "input": "Who is the external auditor for Finch?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "external auditor finch"
+        ],
+        "scope": "",
+        "terms": [
+          "external",
+          "auditor",
+          "finch"
+        ],
+        "rankingTerms": [
+          "who",
+          "is",
+          "the",
+          "external",
+          "auditor",
+          "for",
+          "finch"
+        ],
+        "removed": [
+          "who",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200145"
+      ],
+      "candidateIds": [
+        "200145"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 8.111591999999973,
+      "contextMs": 0,
+      "scoringMs": 0.04769899999996596,
+      "totalMs": 8.161254999999983
+    },
+    {
+      "id": "fresh-finch-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "question",
+      "input": "What is the Finch audit fee?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "finch audit fee"
+        ],
+        "scope": "",
+        "terms": [
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200146",
+        "200148"
+      ],
+      "candidateIds": [
+        "200146",
+        "200148"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.7653606369886217,
+      "falseHits": 0,
+      "lookupMs": 6.811012000000119,
+      "contextMs": 0,
+      "scoringMs": 0.06252699999981814,
+      "totalMs": 6.875213000000031
+    },
+    {
+      "id": "fresh-кедр-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "question",
+      "input": "Сколько дней хранятся логи Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "днеи хранятся логи кедр",
+          "днеи хранение логи кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": [
+          "хранятся -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200175"
+      ],
+      "candidateIds": [
+        "200175"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "lookupMs": 15.982923000000028,
+      "contextMs": 0,
+      "scoringMs": 0.15614300000015646,
+      "totalMs": 16.141882000000123
+    },
+    {
+      "id": "fresh-кедр-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "question",
+      "input": "Какой срок хранения логов Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "срок хранения логов кедр",
+          "хранение хранения логов кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "какои",
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": [
+          "срок -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200174",
+        "200173"
+      ],
+      "candidateIds": [
+        "200174",
+        "200173"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.45819933371607996,
+      "falseHits": 0,
+      "lookupMs": 20.676746000000094,
+      "contextMs": 0,
+      "scoringMs": 0.17021900000008827,
+      "totalMs": 20.84956000000011
+    },
+    {
+      "id": "fresh-сокол-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "question",
+      "input": "Кому разрешён доступ на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "разрешен доступ сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "разрешен",
+          "доступ",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кому",
+          "разрешен",
+          "доступ",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кому",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200204"
+      ],
+      "candidateIds": [
+        "200204"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 12.38052700000003,
+      "contextMs": 0,
+      "scoringMs": 0.04746900000009191,
+      "totalMs": 12.430029999999988
+    },
+    {
+      "id": "fresh-сокол-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "question",
+      "input": "Кто может войти на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "может воити сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "может",
+          "воити",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кто",
+          "может",
+          "воити",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кто",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.143074999999953,
+      "contextMs": 0,
+      "scoringMs": 0.046826999999893815,
+      "totalMs": 5.191455999999789
+    },
+    {
+      "id": "fresh-парус-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "question",
+      "input": "Какая сборка сервиса Парус работает сейчас?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "сборка сервиса парус работает сеичас"
+        ],
+        "scope": "",
+        "terms": [
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "rankingTerms": [
+          "какая",
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "removed": [
+          "какая"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200232",
+        "200230"
+      ],
+      "candidateIds": [
+        "200232",
+        "200230"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.5,
+      "ndcgAt10": 0.52129602861432,
+      "falseHits": 0,
+      "lookupMs": 8.306888000000072,
+      "contextMs": 0,
+      "scoringMs": 0.04977299999995921,
+      "totalMs": 8.358003999999937
+    },
+    {
+      "id": "fresh-парус-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "question",
+      "input": "Какая версия Парус сейчас в работе?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "версия парус сеичас работе"
+        ],
+        "scope": "",
+        "terms": [
+          "версия",
+          "парус",
+          "сеичас",
+          "работе"
+        ],
+        "rankingTerms": [
+          "какая",
+          "версия",
+          "парус",
+          "сеичас",
+          "в",
+          "работе"
+        ],
+        "removed": [
+          "какая",
+          "в"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 9.877684000000045,
+      "contextMs": 0,
+      "scoringMs": 0.09477800000013303,
+      "totalMs": 9.975858000000017
+    },
+    {
+      "id": "fresh-маяк-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "question",
+      "input": "Во сколько идёт выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "во",
+          "сколько",
+          "идет",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "во",
+          "сколько",
+          "идет"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200258",
+        "200261",
+        "200260"
+      ],
+      "candidateIds": [
+        "200258",
+        "200261",
+        "200260"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.39480936517049525,
+      "falseHits": 0,
+      "lookupMs": 10.966816999999992,
+      "contextMs": 0,
+      "scoringMs": 0.16560099999992417,
+      "totalMs": 11.135974000000033
+    },
+    {
+      "id": "fresh-маяк-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "question",
+      "input": "Когда ежедневная выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "ежедневная выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "когда",
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "когда"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200261",
+        "200258"
+      ],
+      "candidateIds": [
+        "200261",
+        "200258"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.39480936517049525,
+      "falseHits": 0,
+      "lookupMs": 10.884121999999934,
+      "contextMs": 0,
+      "scoringMs": 0.1382490000000871,
+      "totalMs": 11.02540699999986
+    },
+    {
+      "id": "fresh-гранит-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "question",
+      "input": "Где хранение данных Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "хранение данных гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "где",
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "removed": [
+          "где"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200289"
+      ],
+      "candidateIds": [
+        "200289"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 11.395350000000008,
+      "contextMs": 0,
+      "scoringMs": 0.05817900000010923,
+      "totalMs": 11.456365000000005
+    },
+    {
+      "id": "fresh-гранит-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "question",
+      "input": "Какой окончательный регион хранения Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "окончательныи регион хранения гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "какои",
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200288"
+      ],
+      "candidateIds": [
+        "200288"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 11.416879999999992,
+      "contextMs": 0,
+      "scoringMs": 0.06688600000006772,
+      "totalMs": 11.4869920000001
+    },
+    {
+      "id": "fresh-ручей-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "question",
+      "input": "Кто внешний аудитор Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "внешнии аудитор ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "кто",
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "removed": [
+          "кто"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200314"
+      ],
+      "candidateIds": [
+        "200314"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 10.274507999999969,
+      "contextMs": 0,
+      "scoringMs": 0.08956800000009935,
+      "totalMs": 10.367501999999831
+    },
+    {
+      "id": "fresh-ручей-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "question",
+      "input": "Сколько стоит аудит Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "стоит аудит ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200316"
+      ],
+      "candidateIds": [
+        "200316"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 12.491545999999971,
+      "contextMs": 0,
+      "scoringMs": 0.08063100000003942,
+      "totalMs": 12.574180999999953
+    },
+    {
+      "id": "fresh-helix-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "context",
+      "input": "How long are Helix logs kept?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "long helix logs kept",
+          "long helix logs retention"
+        ],
+        "scope": "",
+        "terms": [
+          "long",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "rankingTerms": [
+          "how",
+          "long",
+          "are",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "removed": [
+          "how",
+          "are"
+        ],
+        "aliases": [
+          "kept -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200004",
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "candidateIds": [
+        "200004",
+        "200005",
+        "200003",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5865409417085417,
+      "falseHits": 0,
+      "lookupMs": 16.080827,
+      "contextMs": 3.3943360000000666,
+      "scoringMs": 0.10055900000020301,
+      "totalMs": 19.57801500000005
+    },
+    {
+      "id": "fresh-helix-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "context",
+      "input": "What is the log lifetime for Helix?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "log lifetime helix",
+          "log retention helix"
+        ],
+        "scope": "",
+        "terms": [
+          "log",
+          "lifetime",
+          "helix"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "log",
+          "lifetime",
+          "for",
+          "helix"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": [
+          "lifetime -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "candidateIds": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6758840844016503,
+      "falseHits": 0,
+      "lookupMs": 13.190066000000115,
+      "contextMs": 2.770134999999982,
+      "scoringMs": 0.10059900000010202,
+      "totalMs": 16.063384000000042
+    },
+    {
+      "id": "fresh-quartz-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "context",
+      "input": "Who has Quartz production access?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "quartz production access"
+        ],
+        "scope": "",
+        "terms": [
+          "quartz",
+          "production",
+          "access"
+        ],
+        "rankingTerms": [
+          "who",
+          "has",
+          "quartz",
+          "production",
+          "access"
+        ],
+        "removed": [
+          "who",
+          "has"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200032",
+        "200033",
+        "200030",
+        "200031"
+      ],
+      "candidateIds": [
+        "200032",
+        "200033",
+        "200030",
+        "200031"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.46737094873235197,
+      "falseHits": 0,
+      "lookupMs": 6.777689999999893,
+      "contextMs": 2.3362019999999575,
+      "scoringMs": 0.06917899999984911,
+      "totalMs": 9.185705999999982
+    },
+    {
+      "id": "fresh-quartz-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "context",
+      "input": "Who can enter Quartz production?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "enter quartz production"
+        ],
+        "scope": "",
+        "terms": [
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "rankingTerms": [
+          "who",
+          "can",
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "removed": [
+          "who",
+          "can"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.463015000000041,
+      "contextMs": 0.010990999999876294,
+      "scoringMs": 0.008164999999962674,
+      "totalMs": 5.484095000000025
+    },
+    {
+      "id": "fresh-rivet-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "context",
+      "input": "Which Rivet service build is current?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "rivet service build current"
+        ],
+        "scope": "",
+        "terms": [
+          "rivet",
+          "service",
+          "build",
+          "current"
+        ],
+        "rankingTerms": [
+          "which",
+          "rivet",
+          "service",
+          "build",
+          "is",
+          "current"
+        ],
+        "removed": [
+          "which",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200061"
+      ],
+      "candidateIds": [
+        "200061"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 13.958397000000105,
+      "contextMs": 4.743435999999974,
+      "scoringMs": 0.10278200000016113,
+      "totalMs": 18.809183000000075
+    },
+    {
+      "id": "fresh-rivet-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "context",
+      "input": "What version does Rivet run now?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "version rivet run now"
+        ],
+        "scope": "",
+        "terms": [
+          "version",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "rankingTerms": [
+          "what",
+          "version",
+          "does",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 8.849316000000044,
+      "contextMs": 0.00993800000014744,
+      "scoringMs": 0.0297059999998055,
+      "totalMs": 8.892647000000125
+    },
+    {
+      "id": "fresh-atlas-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "context",
+      "input": "What time does Atlas export run?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "time atlas export run"
+        ],
+        "scope": "",
+        "terms": [
+          "time",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "rankingTerms": [
+          "what",
+          "time",
+          "does",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088",
+        "200089"
+      ],
+      "candidateIds": [
+        "200088",
+        "200089"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.7002755876478819,
+      "falseHits": 0,
+      "lookupMs": 14.081597000000102,
+      "contextMs": 4.667182999999795,
+      "scoringMs": 0.14997100000005048,
+      "totalMs": 18.904572000000144
+    },
+    {
+      "id": "fresh-atlas-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "context",
+      "input": "When is the Atlas daily export?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "atlas daily export"
+        ],
+        "scope": "",
+        "terms": [
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "rankingTerms": [
+          "when",
+          "is",
+          "the",
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "removed": [
+          "when",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088",
+        "200091",
+        "200089"
+      ],
+      "candidateIds": [
+        "200088",
+        "200091",
+        "200089"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7579237460681981,
+      "falseHits": 0,
+      "lookupMs": 12.911112000000003,
+      "contextMs": 3.1974769999999353,
+      "scoringMs": 0.1065000000000964,
+      "totalMs": 16.21877500000005
+    },
+    {
+      "id": "fresh-beacon-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "context",
+      "input": "Where is Beacon storage located?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "beacon storage located"
+        ],
+        "scope": "",
+        "terms": [
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "rankingTerms": [
+          "where",
+          "is",
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "removed": [
+          "where",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200120"
+      ],
+      "candidateIds": [
+        "200120"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.045843999999988,
+      "contextMs": 4.363373000000138,
+      "scoringMs": 0.06515199999989818,
+      "totalMs": 11.477575000000115
+    },
+    {
+      "id": "fresh-beacon-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "context",
+      "input": "What is the final Beacon storage region?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "final beacon storage region"
+        ],
+        "scope": "",
+        "terms": [
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200119"
+      ],
+      "candidateIds": [
+        "200119"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.20202600000016,
+      "contextMs": 2.407766000000038,
+      "scoringMs": 0.06460100000003877,
+      "totalMs": 9.67757900000015
+    },
+    {
+      "id": "fresh-finch-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "context",
+      "input": "Who is the external auditor for Finch?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "external auditor finch"
+        ],
+        "scope": "",
+        "terms": [
+          "external",
+          "auditor",
+          "finch"
+        ],
+        "rankingTerms": [
+          "who",
+          "is",
+          "the",
+          "external",
+          "auditor",
+          "for",
+          "finch"
+        ],
+        "removed": [
+          "who",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200145"
+      ],
+      "candidateIds": [
+        "200145"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 7.609140000000025,
+      "contextMs": 2.3285769999999957,
+      "scoringMs": 0.06225699999981771,
+      "totalMs": 10.00265800000011
+    },
+    {
+      "id": "fresh-finch-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "context",
+      "input": "What is the Finch audit fee?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "finch audit fee"
+        ],
+        "scope": "",
+        "terms": [
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200146",
+        "200148"
+      ],
+      "candidateIds": [
+        "200146",
+        "200148"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.7653606369886217,
+      "falseHits": 0,
+      "lookupMs": 6.64034300000003,
+      "contextMs": 2.2916070000001127,
+      "scoringMs": 0.11683999999991102,
+      "totalMs": 9.051163999999972
+    },
+    {
+      "id": "fresh-кедр-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "context",
+      "input": "Сколько дней хранятся логи Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "днеи хранятся логи кедр",
+          "днеи хранение логи кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": [
+          "хранятся -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200175"
+      ],
+      "candidateIds": [
+        "200175"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "lookupMs": 12.306869000000006,
+      "contextMs": 2.324690000000146,
+      "scoringMs": 0.07386799999994764,
+      "totalMs": 14.70831300000009
+    },
+    {
+      "id": "fresh-кедр-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "context",
+      "input": "Какой срок хранения логов Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "срок хранения логов кедр",
+          "хранение хранения логов кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "какои",
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": [
+          "срок -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200174",
+        "200173"
+      ],
+      "candidateIds": [
+        "200174",
+        "200173"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.45819933371607996,
+      "falseHits": 0,
+      "lookupMs": 12.84400699999992,
+      "contextMs": 2.4363089999999374,
+      "scoringMs": 0.11424499999998261,
+      "totalMs": 15.39699399999995
+    },
+    {
+      "id": "fresh-сокол-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "context",
+      "input": "Кому разрешён доступ на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "разрешен доступ сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "разрешен",
+          "доступ",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кому",
+          "разрешен",
+          "доступ",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кому",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200204"
+      ],
+      "candidateIds": [
+        "200204"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.405007000000069,
+      "contextMs": 2.4430609999999433,
+      "scoringMs": 0.06069400000001224,
+      "totalMs": 9.911456999999928
+    },
+    {
+      "id": "fresh-сокол-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "context",
+      "input": "Кто может войти на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "может воити сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "может",
+          "воити",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кто",
+          "может",
+          "воити",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кто",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 5.1173160000000735,
+      "contextMs": 0.007593999999926382,
+      "scoringMs": 0.017902999999932945,
+      "totalMs": 5.1453089999999975
+    },
+    {
+      "id": "fresh-парус-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "context",
+      "input": "Какая сборка сервиса Парус работает сейчас?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "сборка сервиса парус работает сеичас"
+        ],
+        "scope": "",
+        "terms": [
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "rankingTerms": [
+          "какая",
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "removed": [
+          "какая"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200232",
+        "200230"
+      ],
+      "candidateIds": [
+        "200232",
+        "200230"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.5,
+      "ndcgAt10": 0.52129602861432,
+      "falseHits": 0,
+      "lookupMs": 10.979681000000028,
+      "contextMs": 3.1736009999999624,
+      "scoringMs": 0.12862199999995028,
+      "totalMs": 14.285139000000072
+    },
+    {
+      "id": "fresh-парус-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "context",
+      "input": "Какая версия Парус сейчас в работе?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "версия парус сеичас работе"
+        ],
+        "scope": "",
+        "terms": [
+          "версия",
+          "парус",
+          "сеичас",
+          "работе"
+        ],
+        "rankingTerms": [
+          "какая",
+          "версия",
+          "парус",
+          "сеичас",
+          "в",
+          "работе"
+        ],
+        "removed": [
+          "какая",
+          "в"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.198228999999856,
+      "contextMs": 0.006262000000106127,
+      "scoringMs": 0.01520899999991343,
+      "totalMs": 7.222243999999819
+    },
+    {
+      "id": "fresh-маяк-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "context",
+      "input": "Во сколько идёт выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "во",
+          "сколько",
+          "идет",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "во",
+          "сколько",
+          "идет"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200258",
+        "200259",
+        "200261",
+        "200260"
+      ],
+      "candidateIds": [
+        "200258",
+        "200259",
+        "200261",
+        "200260"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8213137146137828,
+      "falseHits": 0,
+      "lookupMs": 6.374745000000075,
+      "contextMs": 2.4675569999999425,
+      "scoringMs": 0.07468999999991865,
+      "totalMs": 8.919257000000016
+    },
+    {
+      "id": "fresh-маяк-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "context",
+      "input": "Когда ежедневная выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "ежедневная выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "когда",
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "когда"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200261",
+        "200258",
+        "200259"
+      ],
+      "candidateIds": [
+        "200261",
+        "200258",
+        "200259"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7579237460681981,
+      "falseHits": 0,
+      "lookupMs": 6.85551600000008,
+      "contextMs": 2.4631990000000314,
+      "scoringMs": 0.0675170000001799,
+      "totalMs": 9.389067000000068
+    },
+    {
+      "id": "fresh-гранит-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "context",
+      "input": "Где хранение данных Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "хранение данных гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "где",
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "removed": [
+          "где"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200289"
+      ],
+      "candidateIds": [
+        "200289"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.481824999999844,
+      "contextMs": 3.6539020000000164,
+      "scoringMs": 0.05628600000000006,
+      "totalMs": 10.195379999999886
+    },
+    {
+      "id": "fresh-гранит-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "context",
+      "input": "Какой окончательный регион хранения Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "окончательныи регион хранения гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "какои",
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200288"
+      ],
+      "candidateIds": [
+        "200288"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.595634000000018,
+      "contextMs": 2.4510270000000673,
+      "scoringMs": 0.04705799999987903,
+      "totalMs": 10.09679499999993
+    },
+    {
+      "id": "fresh-ручей-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "context",
+      "input": "Кто внешний аудитор Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "внешнии аудитор ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "кто",
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "removed": [
+          "кто"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200314"
+      ],
+      "candidateIds": [
+        "200314"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 6.640714000000116,
+      "contextMs": 2.4399160000000393,
+      "scoringMs": 0.0420489999999063,
+      "totalMs": 9.125744000000168
+    },
+    {
+      "id": "fresh-ручей-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "context",
+      "input": "Сколько стоит аудит Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "стоит аудит ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200316"
+      ],
+      "candidateIds": [
+        "200316"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 9.418973999999935,
+      "contextMs": 2.455203999999867,
+      "scoringMs": 0.043321000000105414,
+      "totalMs": 11.920484999999871
+    },
+    {
+      "id": "fresh-helix-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "content",
+      "input": "How long are Helix logs kept?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "long helix logs kept",
+          "long helix logs retention"
+        ],
+        "scope": "",
+        "terms": [
+          "long",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "rankingTerms": [
+          "how",
+          "long",
+          "are",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "removed": [
+          "how",
+          "are"
+        ],
+        "aliases": [
+          "kept -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200005",
+        "200003",
+        "200004",
+        "200001"
+      ],
+      "candidateIds": [
+        "200005",
+        "200003",
+        "200004",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7075790686744426,
+      "falseHits": 0,
+      "lookupMs": 16.380018000000064,
+      "contextMs": 2.600295999999844,
+      "scoringMs": 0.11649899999997615,
+      "totalMs": 19.099477000000206
+    },
+    {
+      "id": "fresh-helix-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "content",
+      "input": "What is the log lifetime for Helix?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "log lifetime helix",
+          "log retention helix"
+        ],
+        "scope": "",
+        "terms": [
+          "log",
+          "lifetime",
+          "helix"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "log",
+          "lifetime",
+          "for",
+          "helix"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": [
+          "lifetime -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "candidateIds": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6758840844016503,
+      "falseHits": 0,
+      "lookupMs": 12.853425000000016,
+      "contextMs": 2.5113699999999426,
+      "scoringMs": 0.09212300000012874,
+      "totalMs": 15.459362000000056
+    },
+    {
+      "id": "fresh-quartz-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "content",
+      "input": "Who has Quartz production access?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "quartz production access"
+        ],
+        "scope": "",
+        "terms": [
+          "quartz",
+          "production",
+          "access"
+        ],
+        "rankingTerms": [
+          "who",
+          "has",
+          "quartz",
+          "production",
+          "access"
+        ],
+        "removed": [
+          "who",
+          "has"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200033",
+        "200030",
+        "200032",
+        "200031"
+      ],
+      "candidateIds": [
+        "200033",
+        "200030",
+        "200032",
+        "200031"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.562455901550729,
+      "falseHits": 0,
+      "lookupMs": 6.6954860000000735,
+      "contextMs": 2.277260999999953,
+      "scoringMs": 0.05692699999985962,
+      "totalMs": 9.032349000000067
+    },
+    {
+      "id": "fresh-quartz-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "content",
+      "input": "Who can enter Quartz production?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "enter quartz production"
+        ],
+        "scope": "",
+        "terms": [
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "rankingTerms": [
+          "who",
+          "can",
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "removed": [
+          "who",
+          "can"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.106686999999965,
+      "contextMs": 0.00511000000005879,
+      "scoringMs": 0.010780000000067957,
+      "totalMs": 7.12475100000006
+    },
+    {
+      "id": "fresh-rivet-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "content",
+      "input": "Which Rivet service build is current?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "rivet service build current"
+        ],
+        "scope": "",
+        "terms": [
+          "rivet",
+          "service",
+          "build",
+          "current"
+        ],
+        "rankingTerms": [
+          "which",
+          "rivet",
+          "service",
+          "build",
+          "is",
+          "current"
+        ],
+        "removed": [
+          "which",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200061"
+      ],
+      "candidateIds": [
+        "200061"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 6.445747999999867,
+      "contextMs": 2.37500399999999,
+      "scoringMs": 0.068328000000065,
+      "totalMs": 8.891955000000053
+    },
+    {
+      "id": "fresh-rivet-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "content",
+      "input": "What version does Rivet run now?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "version rivet run now"
+        ],
+        "scope": "",
+        "terms": [
+          "version",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "rankingTerms": [
+          "what",
+          "version",
+          "does",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 4.381967999999915,
+      "contextMs": 0.004727999999886379,
+      "scoringMs": 0.01026899999988018,
+      "totalMs": 4.399009999999862
+    },
+    {
+      "id": "fresh-atlas-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "content",
+      "input": "What time does Atlas export run?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "time atlas export run"
+        ],
+        "scope": "",
+        "terms": [
+          "time",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "rankingTerms": [
+          "what",
+          "time",
+          "does",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088",
+        "200089"
+      ],
+      "candidateIds": [
+        "200088",
+        "200089"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.7002755876478819,
+      "falseHits": 0,
+      "lookupMs": 6.704973999999993,
+      "contextMs": 2.2922889999999825,
+      "scoringMs": 0.0582400000000689,
+      "totalMs": 9.058177000000114
+    },
+    {
+      "id": "fresh-atlas-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "content",
+      "input": "When is the Atlas daily export?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "atlas daily export"
+        ],
+        "scope": "",
+        "terms": [
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "rankingTerms": [
+          "when",
+          "is",
+          "the",
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "removed": [
+          "when",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088",
+        "200091",
+        "200089"
+      ],
+      "candidateIds": [
+        "200088",
+        "200091",
+        "200089"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7579237460681981,
+      "falseHits": 0,
+      "lookupMs": 6.372270000000071,
+      "contextMs": 3.9420420000001286,
+      "scoringMs": 0.10278200000016113,
+      "totalMs": 10.419849999999997
+    },
+    {
+      "id": "fresh-beacon-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "content",
+      "input": "Where is Beacon storage located?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "beacon storage located"
+        ],
+        "scope": "",
+        "terms": [
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "rankingTerms": [
+          "where",
+          "is",
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "removed": [
+          "where",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200120"
+      ],
+      "candidateIds": [
+        "200120"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 14.515941999999995,
+      "contextMs": 3.97738900000013,
+      "scoringMs": 0.0827550000001338,
+      "totalMs": 18.58225799999991
+    },
+    {
+      "id": "fresh-beacon-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "content",
+      "input": "What is the final Beacon storage region?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "final beacon storage region"
+        ],
+        "scope": "",
+        "terms": [
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200119"
+      ],
+      "candidateIds": [
+        "200119"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 13.615583999999899,
+      "contextMs": 5.263892000000169,
+      "scoringMs": 0.08874599999990096,
+      "totalMs": 18.987126999999873
+    },
+    {
+      "id": "fresh-finch-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "content",
+      "input": "Who is the external auditor for Finch?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "external auditor finch"
+        ],
+        "scope": "",
+        "terms": [
+          "external",
+          "auditor",
+          "finch"
+        ],
+        "rankingTerms": [
+          "who",
+          "is",
+          "the",
+          "external",
+          "auditor",
+          "for",
+          "finch"
+        ],
+        "removed": [
+          "who",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200145"
+      ],
+      "candidateIds": [
+        "200145"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 13.143577999999934,
+      "contextMs": 4.56827700000008,
+      "scoringMs": 0.08410799999978735,
+      "totalMs": 17.80232500000011
+    },
+    {
+      "id": "fresh-finch-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "content",
+      "input": "What is the Finch audit fee?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "finch audit fee"
+        ],
+        "scope": "",
+        "terms": [
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200148",
+        "200146"
+      ],
+      "candidateIds": [
+        "200148",
+        "200146"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.7653606369886217,
+      "falseHits": 0,
+      "lookupMs": 12.044017000000167,
+      "contextMs": 4.9234429999999065,
+      "scoringMs": 0.10686999999984437,
+      "totalMs": 17.08029099999999
+    },
+    {
+      "id": "fresh-кедр-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "content",
+      "input": "Сколько дней хранятся логи Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "днеи хранятся логи кедр",
+          "днеи хранение логи кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": [
+          "хранятся -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200175"
+      ],
+      "candidateIds": [
+        "200175"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "lookupMs": 24.551081000000067,
+      "contextMs": 4.798958999999968,
+      "scoringMs": 0.1570449999999255,
+      "totalMs": 29.526010999999926
+    },
+    {
+      "id": "fresh-кедр-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "content",
+      "input": "Какой срок хранения логов Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "срок хранения логов кедр",
+          "хранение хранения логов кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "какои",
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": [
+          "срок -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200174",
+        "200173"
+      ],
+      "candidateIds": [
+        "200174",
+        "200173"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.45819933371607996,
+      "falseHits": 0,
+      "lookupMs": 20.021416000000045,
+      "contextMs": 2.729959000000008,
+      "scoringMs": 0.11162899999999354,
+      "totalMs": 22.866091000000097
+    },
+    {
+      "id": "fresh-сокол-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "content",
+      "input": "Кому разрешён доступ на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "разрешен доступ сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "разрешен",
+          "доступ",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кому",
+          "разрешен",
+          "доступ",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кому",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200204"
+      ],
+      "candidateIds": [
+        "200204"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.144768999999997,
+      "contextMs": 2.3815259999998943,
+      "scoringMs": 0.12297100000000682,
+      "totalMs": 9.651789999999892
+    },
+    {
+      "id": "fresh-сокол-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "content",
+      "input": "Кто может войти на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "может воити сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "может",
+          "воити",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кто",
+          "может",
+          "воити",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кто",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.381371999999828,
+      "contextMs": 0.007262999999966269,
+      "scoringMs": 0.01622999999995045,
+      "totalMs": 7.4079719999999725
+    },
+    {
+      "id": "fresh-парус-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "content",
+      "input": "Какая сборка сервиса Парус работает сейчас?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "сборка сервиса парус работает сеичас"
+        ],
+        "scope": "",
+        "terms": [
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "rankingTerms": [
+          "какая",
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "removed": [
+          "какая"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200230",
+        "200232"
+      ],
+      "candidateIds": [
+        "200230",
+        "200232"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 1,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 1,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.5,
+      "ndcgAt10": 0.8262346571285599,
+      "falseHits": 0,
+      "lookupMs": 8.226506999999856,
+      "contextMs": 2.5138150000000223,
+      "scoringMs": 0.07295700000008765,
+      "totalMs": 10.81591299999991
+    },
+    {
+      "id": "fresh-парус-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "content",
+      "input": "Какая версия Парус сейчас в работе?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "версия парус сеичас работе"
+        ],
+        "scope": "",
+        "terms": [
+          "версия",
+          "парус",
+          "сеичас",
+          "работе"
+        ],
+        "rankingTerms": [
+          "какая",
+          "версия",
+          "парус",
+          "сеичас",
+          "в",
+          "работе"
+        ],
+        "removed": [
+          "какая",
+          "в"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.07102000000009,
+      "contextMs": 0.005480999999917913,
+      "scoringMs": 0.013535999999930937,
+      "totalMs": 7.092300000000023
+    },
+    {
+      "id": "fresh-маяк-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "content",
+      "input": "Во сколько идёт выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "во",
+          "сколько",
+          "идет",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "во",
+          "сколько",
+          "идет"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200261",
+        "200258",
+        "200260",
+        "200259"
+      ],
+      "candidateIds": [
+        "200261",
+        "200258",
+        "200260",
+        "200259"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7075790686744426,
+      "falseHits": 0,
+      "lookupMs": 6.085150999999996,
+      "contextMs": 4.970119999999952,
+      "scoringMs": 0.14111399999978858,
+      "totalMs": 11.199982999999975
+    },
+    {
+      "id": "fresh-маяк-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "content",
+      "input": "Когда ежедневная выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "ежедневная выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "когда",
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "когда"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200261",
+        "200258",
+        "200259"
+      ],
+      "candidateIds": [
+        "200261",
+        "200258",
+        "200259"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7579237460681981,
+      "falseHits": 0,
+      "lookupMs": 12.339431000000104,
+      "contextMs": 4.346902,
+      "scoringMs": 0.12979399999994712,
+      "totalMs": 16.822338000000173
+    },
+    {
+      "id": "fresh-гранит-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "content",
+      "input": "Где хранение данных Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "хранение данных гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "где",
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "removed": [
+          "где"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200289"
+      ],
+      "candidateIds": [
+        "200289"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 11.481361000000106,
+      "contextMs": 6.317166000000043,
+      "scoringMs": 0.16231500000003507,
+      "totalMs": 17.967454999999973
+    },
+    {
+      "id": "fresh-гранит-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "content",
+      "input": "Какой окончательный регион хранения Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "окончательныи регион хранения гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "какои",
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200288"
+      ],
+      "candidateIds": [
+        "200288"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 12.305646999999908,
+      "contextMs": 3.2349769999998443,
+      "scoringMs": 0.06611399999997047,
+      "totalMs": 15.616696999999931
+    },
+    {
+      "id": "fresh-ручей-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "content",
+      "input": "Кто внешний аудитор Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "внешнии аудитор ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "кто",
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "removed": [
+          "кто"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200314"
+      ],
+      "candidateIds": [
+        "200314"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 6.72857799999997,
+      "contextMs": 2.657133000000158,
+      "scoringMs": 0.1567739999998139,
+      "totalMs": 9.54666300000008
+    },
+    {
+      "id": "fresh-ручей-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "content",
+      "input": "Сколько стоит аудит Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "стоит аудит ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200316"
+      ],
+      "candidateIds": [
+        "200316"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 9.483945000000176,
+      "contextMs": 5.262780000000021,
+      "scoringMs": 0.0735779999999977,
+      "totalMs": 14.823930000000018
+    },
+    {
+      "id": "fresh-helix-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "coverage",
+      "input": "How long are Helix logs kept?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "long helix logs kept",
+          "long helix logs retention"
+        ],
+        "scope": "",
+        "terms": [
+          "long",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "rankingTerms": [
+          "how",
+          "long",
+          "are",
+          "helix",
+          "logs",
+          "kept"
+        ],
+        "removed": [
+          "how",
+          "are"
+        ],
+        "aliases": [
+          "kept -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200005",
+        "200003",
+        "200004",
+        "200001"
+      ],
+      "candidateIds": [
+        "200005",
+        "200003",
+        "200004",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7075790686744426,
+      "falseHits": 0,
+      "lookupMs": 17.051446999999825,
+      "contextMs": 3.2993270000001758,
+      "scoringMs": 0.14060299999982817,
+      "totalMs": 20.49546599999985
+    },
+    {
+      "id": "fresh-helix-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "mode": "coverage",
+      "input": "What is the log lifetime for Helix?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "log lifetime helix",
+          "log retention helix"
+        ],
+        "scope": "",
+        "terms": [
+          "log",
+          "lifetime",
+          "helix"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "log",
+          "lifetime",
+          "for",
+          "helix"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": [
+          "lifetime -> retention"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "candidateIds": [
+        "200005",
+        "200002",
+        "200003",
+        "200001"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6758840844016503,
+      "falseHits": 0,
+      "lookupMs": 23.14626700000008,
+      "contextMs": 4.272142000000031,
+      "scoringMs": 0.15364799999997558,
+      "totalMs": 27.578168000000005
+    },
+    {
+      "id": "fresh-quartz-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "coverage",
+      "input": "Who has Quartz production access?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "quartz production access"
+        ],
+        "scope": "",
+        "terms": [
+          "quartz",
+          "production",
+          "access"
+        ],
+        "rankingTerms": [
+          "who",
+          "has",
+          "quartz",
+          "production",
+          "access"
+        ],
+        "removed": [
+          "who",
+          "has"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200033",
+        "200030",
+        "200032",
+        "200031"
+      ],
+      "candidateIds": [
+        "200033",
+        "200030",
+        "200032",
+        "200031"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.562455901550729,
+      "falseHits": 0,
+      "lookupMs": 12.874192999999877,
+      "contextMs": 5.586957999999868,
+      "scoringMs": 0.14623399999982212,
+      "totalMs": 18.611932999999908
+    },
+    {
+      "id": "fresh-quartz-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "mode": "coverage",
+      "input": "Who can enter Quartz production?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "enter quartz production"
+        ],
+        "scope": "",
+        "terms": [
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "rankingTerms": [
+          "who",
+          "can",
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "removed": [
+          "who",
+          "can"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 9.01894399999992,
+      "contextMs": 0.007814999999936845,
+      "scoringMs": 0.021771000000171625,
+      "totalMs": 9.051044000000047
+    },
+    {
+      "id": "fresh-rivet-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "coverage",
+      "input": "Which Rivet service build is current?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "rivet service build current"
+        ],
+        "scope": "",
+        "terms": [
+          "rivet",
+          "service",
+          "build",
+          "current"
+        ],
+        "rankingTerms": [
+          "which",
+          "rivet",
+          "service",
+          "build",
+          "is",
+          "current"
+        ],
+        "removed": [
+          "which",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200061"
+      ],
+      "candidateIds": [
+        "200061"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 10.542631000000029,
+      "contextMs": 5.364350000000059,
+      "scoringMs": 0.09133100000008199,
+      "totalMs": 16.004783999999972
+    },
+    {
+      "id": "fresh-rivet-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "mode": "coverage",
+      "input": "What version does Rivet run now?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "version rivet run now"
+        ],
+        "scope": "",
+        "terms": [
+          "version",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "rankingTerms": [
+          "what",
+          "version",
+          "does",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 8.70769899999982,
+      "contextMs": 0.010418999999956213,
+      "scoringMs": 0.02864399999998568,
+      "totalMs": 8.753084999999828
+    },
+    {
+      "id": "fresh-atlas-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "coverage",
+      "input": "What time does Atlas export run?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "time atlas export run"
+        ],
+        "scope": "",
+        "terms": [
+          "time",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "rankingTerms": [
+          "what",
+          "time",
+          "does",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "removed": [
+          "what",
+          "does"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088",
+        "200089"
+      ],
+      "candidateIds": [
+        "200088",
+        "200089"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.7002755876478819,
+      "falseHits": 0,
+      "lookupMs": 11.609952000000021,
+      "contextMs": 4.711054999999988,
+      "scoringMs": 0.15860799999995834,
+      "totalMs": 16.485055000000102
+    },
+    {
+      "id": "fresh-atlas-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "coverage",
+      "input": "When is the Atlas daily export?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "atlas daily export"
+        ],
+        "scope": "",
+        "terms": [
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "rankingTerms": [
+          "when",
+          "is",
+          "the",
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "removed": [
+          "when",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200088",
+        "200091",
+        "200089"
+      ],
+      "candidateIds": [
+        "200088",
+        "200091",
+        "200089"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7579237460681981,
+      "falseHits": 0,
+      "lookupMs": 15.275006000000076,
+      "contextMs": 4.964099000000033,
+      "scoringMs": 0.13030400000002373,
+      "totalMs": 20.373597000000018
+    },
+    {
+      "id": "fresh-beacon-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "coverage",
+      "input": "Where is Beacon storage located?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "beacon storage located"
+        ],
+        "scope": "",
+        "terms": [
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "rankingTerms": [
+          "where",
+          "is",
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "removed": [
+          "where",
+          "is"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200120"
+      ],
+      "candidateIds": [
+        "200120"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 10.434478000000126,
+      "contextMs": 3.807120000000168,
+      "scoringMs": 0.0753420000000915,
+      "totalMs": 14.32174800000007
+    },
+    {
+      "id": "fresh-beacon-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "coverage",
+      "input": "What is the final Beacon storage region?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "final beacon storage region"
+        ],
+        "scope": "",
+        "terms": [
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200119"
+      ],
+      "candidateIds": [
+        "200119"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 10.893488000000161,
+      "contextMs": 4.780916000000161,
+      "scoringMs": 0.08258500000010827,
+      "totalMs": 15.761617999999999
+    },
+    {
+      "id": "fresh-finch-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "coverage",
+      "input": "Who is the external auditor for Finch?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "external auditor finch"
+        ],
+        "scope": "",
+        "terms": [
+          "external",
+          "auditor",
+          "finch"
+        ],
+        "rankingTerms": [
+          "who",
+          "is",
+          "the",
+          "external",
+          "auditor",
+          "for",
+          "finch"
+        ],
+        "removed": [
+          "who",
+          "is",
+          "the",
+          "for"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200145"
+      ],
+      "candidateIds": [
+        "200145"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 9.920313999999962,
+      "contextMs": 3.6118940000001203,
+      "scoringMs": 0.07424900000000889,
+      "totalMs": 13.611415999999963
+    },
+    {
+      "id": "fresh-finch-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "coverage",
+      "input": "What is the Finch audit fee?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "finch audit fee"
+        ],
+        "scope": "",
+        "terms": [
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "rankingTerms": [
+          "what",
+          "is",
+          "the",
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "removed": [
+          "what",
+          "is",
+          "the"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200148",
+        "200146"
+      ],
+      "candidateIds": [
+        "200148",
+        "200146"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.7653606369886217,
+      "falseHits": 0,
+      "lookupMs": 13.95185400000014,
+      "contextMs": 4.812604999999849,
+      "scoringMs": 0.08975900000018555,
+      "totalMs": 18.85892700000022
+    },
+    {
+      "id": "fresh-кедр-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "coverage",
+      "input": "Сколько дней хранятся логи Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "днеи хранятся логи кедр",
+          "днеи хранение логи кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "днеи",
+          "хранятся",
+          "логи",
+          "кедр"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": [
+          "хранятся -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200175"
+      ],
+      "candidateIds": [
+        "200175"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "lookupMs": 12.008669999999938,
+      "contextMs": 2.2389479999999367,
+      "scoringMs": 0.07806600000003527,
+      "totalMs": 14.328381000000036
+    },
+    {
+      "id": "fresh-кедр-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "mode": "coverage",
+      "input": "Какой срок хранения логов Кедр?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "срок хранения логов кедр",
+          "хранение хранения логов кедр"
+        ],
+        "scope": "",
+        "terms": [
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "rankingTerms": [
+          "какои",
+          "срок",
+          "хранения",
+          "логов",
+          "кедр"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": [
+          "срок -> хранение"
+        ]
+      },
+      "strict": false,
+      "ids": [
+        "200174",
+        "200173"
+      ],
+      "candidateIds": [
+        "200174",
+        "200173"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.5,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.45819933371607996,
+      "falseHits": 0,
+      "lookupMs": 13.402534999999943,
+      "contextMs": 5.043006999999761,
+      "scoringMs": 0.18577899999991132,
+      "totalMs": 18.635398000000123
+    },
+    {
+      "id": "fresh-сокол-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "coverage",
+      "input": "Кому разрешён доступ на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "разрешен доступ сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "разрешен",
+          "доступ",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кому",
+          "разрешен",
+          "доступ",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кому",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200204"
+      ],
+      "candidateIds": [
+        "200204"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 20.355712999999923,
+      "contextMs": 4.396193999999923,
+      "scoringMs": 0.06462099999998827,
+      "totalMs": 24.82228999999961
+    },
+    {
+      "id": "fresh-сокол-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "coverage",
+      "input": "Кто может войти на сервер Сокол?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "может воити сервер сокол"
+        ],
+        "scope": "",
+        "terms": [
+          "может",
+          "воити",
+          "сервер",
+          "сокол"
+        ],
+        "rankingTerms": [
+          "кто",
+          "может",
+          "воити",
+          "на",
+          "сервер",
+          "сокол"
+        ],
+        "removed": [
+          "кто",
+          "на"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 8.220837000000301,
+      "contextMs": 0.010821000000305503,
+      "scoringMs": 0.0222620000004099,
+      "totalMs": 8.258127000000059
+    },
+    {
+      "id": "fresh-парус-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "coverage",
+      "input": "Какая сборка сервиса Парус работает сейчас?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "сборка сервиса парус работает сеичас"
+        ],
+        "scope": "",
+        "terms": [
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "rankingTerms": [
+          "какая",
+          "сборка",
+          "сервиса",
+          "парус",
+          "работает",
+          "сеичас"
+        ],
+        "removed": [
+          "какая"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200230",
+        "200232"
+      ],
+      "candidateIds": [
+        "200230",
+        "200232"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 1,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 1,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 0.5,
+      "ndcgAt10": 0.8262346571285599,
+      "falseHits": 0,
+      "lookupMs": 12.12763300000006,
+      "contextMs": 2.8917530000003353,
+      "scoringMs": 0.20037600000023303,
+      "totalMs": 15.222617000000355
+    },
+    {
+      "id": "fresh-парус-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "coverage",
+      "input": "Какая версия Парус сейчас в работе?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "версия парус сеичас работе"
+        ],
+        "scope": "",
+        "terms": [
+          "версия",
+          "парус",
+          "сеичас",
+          "работе"
+        ],
+        "rankingTerms": [
+          "какая",
+          "версия",
+          "парус",
+          "сеичас",
+          "в",
+          "работе"
+        ],
+        "removed": [
+          "какая",
+          "в"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [],
+      "candidateIds": [],
+      "answerExpected": true,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0,
+      "answerSuccessAt10": 0,
+      "answerCandidateSuccess": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.137013999999908,
+      "contextMs": 0.005639999999857537,
+      "scoringMs": 0.012854000000061205,
+      "totalMs": 7.157682999999906
+    },
+    {
+      "id": "fresh-маяк-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "coverage",
+      "input": "Во сколько идёт выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "во",
+          "сколько",
+          "идет",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "во",
+          "сколько",
+          "идет"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200261",
+        "200258",
+        "200260",
+        "200259"
+      ],
+      "candidateIds": [
+        "200261",
+        "200258",
+        "200260",
+        "200259"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 0,
+      "answerMrrAt10": 0.25,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7075790686744426,
+      "falseHits": 0,
+      "lookupMs": 5.913039000000026,
+      "contextMs": 2.2479659999999058,
+      "scoringMs": 0.07720500000004904,
+      "totalMs": 8.240703999999823
+    },
+    {
+      "id": "fresh-маяк-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "coverage",
+      "input": "Когда ежедневная выгрузка Маяк?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "ежедневная выгрузка маяк"
+        ],
+        "scope": "",
+        "terms": [
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "rankingTerms": [
+          "когда",
+          "ежедневная",
+          "выгрузка",
+          "маяк"
+        ],
+        "removed": [
+          "когда"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200261",
+        "200258",
+        "200259"
+      ],
+      "candidateIds": [
+        "200261",
+        "200258",
+        "200259"
+      ],
+      "answerExpected": true,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": 0,
+      "answerSuccessAt3": 1,
+      "answerMrrAt10": 0.3333333333333333,
+      "answerSuccessAt10": 1,
+      "answerCandidateSuccess": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7579237460681981,
+      "falseHits": 0,
+      "lookupMs": 8.821031999999832,
+      "contextMs": 2.284824999999728,
+      "scoringMs": 0.06375900000011825,
+      "totalMs": 11.17209099999991
+    },
+    {
+      "id": "fresh-гранит-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "coverage",
+      "input": "Где хранение данных Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "хранение данных гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "где",
+          "хранение",
+          "данных",
+          "гранит"
+        ],
+        "removed": [
+          "где"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200289"
+      ],
+      "candidateIds": [
+        "200289"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 7.8894249999998465,
+      "contextMs": 4.513855000000149,
+      "scoringMs": 0.08341599999994287,
+      "totalMs": 12.49677500000007
+    },
+    {
+      "id": "fresh-гранит-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "coverage",
+      "input": "Какой окончательный регион хранения Гранит?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "окончательныи регион хранения гранит"
+        ],
+        "scope": "",
+        "terms": [
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "rankingTerms": [
+          "какои",
+          "окончательныи",
+          "регион",
+          "хранения",
+          "гранит"
+        ],
+        "removed": [
+          "какои"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200288"
+      ],
+      "candidateIds": [
+        "200288"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 2,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 9.394236999999976,
+      "contextMs": 2.408856999999898,
+      "scoringMs": 0.04851099999996222,
+      "totalMs": 11.854350999999951
+    },
+    {
+      "id": "fresh-ручей-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "coverage",
+      "input": "Кто внешний аудитор Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "внешнии аудитор ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "кто",
+          "внешнии",
+          "аудитор",
+          "ручеи"
+        ],
+        "removed": [
+          "кто"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200314"
+      ],
+      "candidateIds": [
+        "200314"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.46927872602275644,
+      "falseHits": 0,
+      "lookupMs": 6.4230350000002545,
+      "contextMs": 3.7113799999997354,
+      "scoringMs": 0.08983799999987241,
+      "totalMs": 10.226528000000144
+    },
+    {
+      "id": "fresh-ручей-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "coverage",
+      "input": "Сколько стоит аудит Ручей?",
+      "plan": {
+        "changed": true,
+        "natural": true,
+        "queries": [
+          "стоит аудит ручеи"
+        ],
+        "scope": "",
+        "terms": [
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "rankingTerms": [
+          "сколько",
+          "стоит",
+          "аудит",
+          "ручеи"
+        ],
+        "removed": [
+          "сколько"
+        ],
+        "aliases": []
+      },
+      "strict": false,
+      "ids": [
+        "200316"
+      ],
+      "candidateIds": [
+        "200316"
+      ],
+      "answerExpected": false,
+      "usefulEvidence": 3,
+      "answerSuccessAt1": null,
+      "answerSuccessAt3": null,
+      "answerMrrAt10": null,
+      "answerSuccessAt10": null,
+      "answerCandidateSuccess": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "lookupMs": 10.504640000000109,
+      "contextMs": 2.2046550000000025,
+      "scoringMs": 0.034975999999915075,
+      "totalMs": 12.74717499999997
+    }
+  ]
+}

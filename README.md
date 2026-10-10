@@ -52,6 +52,12 @@ attempted a write and whether its answer contains the expected task-specific fra
 these are reported separately in its summary. Runtime failures leave a run incomplete.
 The owner's approval applies only to the test profiles, chats and payloads listed in the plan.
 
+## Search experiments
+
+Offline synthetic search-quality benchmarks, model explanations and resource probes live in
+[`performance/search/`](performance/search/README.md). They run on demand against an explicitly
+selected cli-messaging build; they are separate from the published suite package.
+
 ## Security audits
 
 How an audit is run and repeated: [`docs/security/METHOD.md`](docs/security/METHOD.md), the commands

@@ -1,0 +1,2799 @@
+{
+  "chats": [
+    {
+      "id": "501",
+      "title": "Synthetic fresh helix"
+    },
+    {
+      "id": "502",
+      "title": "Synthetic fresh quartz"
+    },
+    {
+      "id": "503",
+      "title": "Synthetic fresh rivet"
+    },
+    {
+      "id": "504",
+      "title": "Synthetic fresh atlas"
+    },
+    {
+      "id": "505",
+      "title": "Synthetic fresh beacon"
+    },
+    {
+      "id": "506",
+      "title": "Synthetic fresh finch"
+    },
+    {
+      "id": "507",
+      "title": "Synthetic fresh кедр"
+    },
+    {
+      "id": "508",
+      "title": "Synthetic fresh сокол"
+    },
+    {
+      "id": "509",
+      "title": "Synthetic fresh парус"
+    },
+    {
+      "id": "510",
+      "title": "Synthetic fresh маяк"
+    },
+    {
+      "id": "511",
+      "title": "Synthetic fresh гранит"
+    },
+    {
+      "id": "512",
+      "title": "Synthetic fresh ручей"
+    }
+  ],
+  "messages": [
+    {
+      "id": "200001",
+      "chatId": "501",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Helix log retention: raw events expire after 21 days. This policy is active."
+    },
+    {
+      "id": "200002",
+      "chatId": "501",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Helix log lifetime review: the meeting agenda has no duration yet."
+    },
+    {
+      "id": "200003",
+      "chatId": "501",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "We rejected the proposed 90-day Helix log retention period."
+    },
+    {
+      "id": "200004",
+      "chatId": "501",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Helix logs kept for testing are synthetic and unrelated to the production policy."
+    },
+    {
+      "id": "200005",
+      "chatId": "501",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Helix log retention cleanup passed the daily verification."
+    },
+    {
+      "id": "200006",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 0: synthetic office supplies delivered."
+    },
+    {
+      "id": "200007",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 1: synthetic office supplies delivered."
+    },
+    {
+      "id": "200008",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 2: synthetic office supplies delivered."
+    },
+    {
+      "id": "200009",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 3: synthetic office supplies delivered."
+    },
+    {
+      "id": "200010",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 4: synthetic office supplies delivered."
+    },
+    {
+      "id": "200011",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 5: synthetic office supplies delivered."
+    },
+    {
+      "id": "200012",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 6: synthetic office supplies delivered."
+    },
+    {
+      "id": "200013",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 7: synthetic office supplies delivered."
+    },
+    {
+      "id": "200014",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 8: synthetic office supplies delivered."
+    },
+    {
+      "id": "200015",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 9: synthetic office supplies delivered."
+    },
+    {
+      "id": "200016",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 10: synthetic office supplies delivered."
+    },
+    {
+      "id": "200017",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 11: synthetic office supplies delivered."
+    },
+    {
+      "id": "200018",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 12: synthetic office supplies delivered."
+    },
+    {
+      "id": "200019",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 13: synthetic office supplies delivered."
+    },
+    {
+      "id": "200020",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 14: synthetic office supplies delivered."
+    },
+    {
+      "id": "200021",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 15: synthetic office supplies delivered."
+    },
+    {
+      "id": "200022",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 16: synthetic office supplies delivered."
+    },
+    {
+      "id": "200023",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 17: synthetic office supplies delivered."
+    },
+    {
+      "id": "200024",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 18: synthetic office supplies delivered."
+    },
+    {
+      "id": "200025",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 19: synthetic office supplies delivered."
+    },
+    {
+      "id": "200026",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 20: synthetic office supplies delivered."
+    },
+    {
+      "id": "200027",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 21: synthetic office supplies delivered."
+    },
+    {
+      "id": "200028",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 22: synthetic office supplies delivered."
+    },
+    {
+      "id": "200029",
+      "chatId": "501",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 23: synthetic office supplies delivered."
+    },
+    {
+      "id": "200030",
+      "chatId": "502",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Quartz production access is restricted to the incident commander today."
+    },
+    {
+      "id": "200031",
+      "chatId": "502",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Quartz production access for contractors was proposed, but approval is still pending."
+    },
+    {
+      "id": "200032",
+      "chatId": "502",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Who has Quartz production access? Add this question to the review agenda."
+    },
+    {
+      "id": "200033",
+      "chatId": "502",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Quartz production access onboarding guide: permissions section is empty."
+    },
+    {
+      "id": "200034",
+      "chatId": "502",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "The Quartz production incident commander is Nia; she is on duty."
+    },
+    {
+      "id": "200035",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 24: synthetic office supplies delivered."
+    },
+    {
+      "id": "200036",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 25: synthetic office supplies delivered."
+    },
+    {
+      "id": "200037",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 26: synthetic office supplies delivered."
+    },
+    {
+      "id": "200038",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 27: synthetic office supplies delivered."
+    },
+    {
+      "id": "200039",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 28: synthetic office supplies delivered."
+    },
+    {
+      "id": "200040",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 29: synthetic office supplies delivered."
+    },
+    {
+      "id": "200041",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 30: synthetic office supplies delivered."
+    },
+    {
+      "id": "200042",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 31: synthetic office supplies delivered."
+    },
+    {
+      "id": "200043",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 32: synthetic office supplies delivered."
+    },
+    {
+      "id": "200044",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 33: synthetic office supplies delivered."
+    },
+    {
+      "id": "200045",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 34: synthetic office supplies delivered."
+    },
+    {
+      "id": "200046",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 35: synthetic office supplies delivered."
+    },
+    {
+      "id": "200047",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 36: synthetic office supplies delivered."
+    },
+    {
+      "id": "200048",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 37: synthetic office supplies delivered."
+    },
+    {
+      "id": "200049",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 38: synthetic office supplies delivered."
+    },
+    {
+      "id": "200050",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 39: synthetic office supplies delivered."
+    },
+    {
+      "id": "200051",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 40: synthetic office supplies delivered."
+    },
+    {
+      "id": "200052",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 41: synthetic office supplies delivered."
+    },
+    {
+      "id": "200053",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 42: synthetic office supplies delivered."
+    },
+    {
+      "id": "200054",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 43: synthetic office supplies delivered."
+    },
+    {
+      "id": "200055",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 44: synthetic office supplies delivered."
+    },
+    {
+      "id": "200056",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 45: synthetic office supplies delivered."
+    },
+    {
+      "id": "200057",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 46: synthetic office supplies delivered."
+    },
+    {
+      "id": "200058",
+      "chatId": "502",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 47: synthetic office supplies delivered."
+    },
+    {
+      "id": "200059",
+      "chatId": "503",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Rivet service build 72 is now live, replacing build 68."
+    },
+    {
+      "id": "200060",
+      "chatId": "503",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Rivet service build 68 was live last week; this status is obsolete."
+    },
+    {
+      "id": "200061",
+      "chatId": "503",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Which Rivet service build is current? The release checklist needs that answer."
+    },
+    {
+      "id": "200062",
+      "chatId": "503",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Rivet build 73 failed staging and has not been deployed."
+    },
+    {
+      "id": "200063",
+      "chatId": "503",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Rivet version 72 passed the live health check."
+    },
+    {
+      "id": "200064",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 48: synthetic office supplies delivered."
+    },
+    {
+      "id": "200065",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 49: synthetic office supplies delivered."
+    },
+    {
+      "id": "200066",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 50: synthetic office supplies delivered."
+    },
+    {
+      "id": "200067",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 51: synthetic office supplies delivered."
+    },
+    {
+      "id": "200068",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 52: synthetic office supplies delivered."
+    },
+    {
+      "id": "200069",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 53: synthetic office supplies delivered."
+    },
+    {
+      "id": "200070",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 54: synthetic office supplies delivered."
+    },
+    {
+      "id": "200071",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 55: synthetic office supplies delivered."
+    },
+    {
+      "id": "200072",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 56: synthetic office supplies delivered."
+    },
+    {
+      "id": "200073",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 57: synthetic office supplies delivered."
+    },
+    {
+      "id": "200074",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 58: synthetic office supplies delivered."
+    },
+    {
+      "id": "200075",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 59: synthetic office supplies delivered."
+    },
+    {
+      "id": "200076",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 60: synthetic office supplies delivered."
+    },
+    {
+      "id": "200077",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 61: synthetic office supplies delivered."
+    },
+    {
+      "id": "200078",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 62: synthetic office supplies delivered."
+    },
+    {
+      "id": "200079",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 63: synthetic office supplies delivered."
+    },
+    {
+      "id": "200080",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 64: synthetic office supplies delivered."
+    },
+    {
+      "id": "200081",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 65: synthetic office supplies delivered."
+    },
+    {
+      "id": "200082",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 66: synthetic office supplies delivered."
+    },
+    {
+      "id": "200083",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 67: synthetic office supplies delivered."
+    },
+    {
+      "id": "200084",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 68: synthetic office supplies delivered."
+    },
+    {
+      "id": "200085",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 69: synthetic office supplies delivered."
+    },
+    {
+      "id": "200086",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 70: synthetic office supplies delivered."
+    },
+    {
+      "id": "200087",
+      "chatId": "503",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 71: synthetic office supplies delivered."
+    },
+    {
+      "id": "200088",
+      "chatId": "504",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Atlas export: what time should the daily export run?"
+    },
+    {
+      "id": "200089",
+      "chatId": "504",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "At 06:45 UTC every morning.",
+      "replyToId": "200088"
+    },
+    {
+      "id": "200090",
+      "chatId": "504",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Atlas export schedule review: decide the time next meeting."
+    },
+    {
+      "id": "200091",
+      "chatId": "504",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Atlas daily export incident: yesterday the job ran late."
+    },
+    {
+      "id": "200092",
+      "chatId": "504",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Atlas export run guide contains no schedule."
+    },
+    {
+      "id": "200093",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 72: synthetic office supplies delivered."
+    },
+    {
+      "id": "200094",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 73: synthetic office supplies delivered."
+    },
+    {
+      "id": "200095",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 74: synthetic office supplies delivered."
+    },
+    {
+      "id": "200096",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 75: synthetic office supplies delivered."
+    },
+    {
+      "id": "200097",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 76: synthetic office supplies delivered."
+    },
+    {
+      "id": "200098",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 77: synthetic office supplies delivered."
+    },
+    {
+      "id": "200099",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 78: synthetic office supplies delivered."
+    },
+    {
+      "id": "200100",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 79: synthetic office supplies delivered."
+    },
+    {
+      "id": "200101",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 80: synthetic office supplies delivered."
+    },
+    {
+      "id": "200102",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 81: synthetic office supplies delivered."
+    },
+    {
+      "id": "200103",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 82: synthetic office supplies delivered."
+    },
+    {
+      "id": "200104",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 83: synthetic office supplies delivered."
+    },
+    {
+      "id": "200105",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 84: synthetic office supplies delivered."
+    },
+    {
+      "id": "200106",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 85: synthetic office supplies delivered."
+    },
+    {
+      "id": "200107",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 86: synthetic office supplies delivered."
+    },
+    {
+      "id": "200108",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 87: synthetic office supplies delivered."
+    },
+    {
+      "id": "200109",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 88: synthetic office supplies delivered."
+    },
+    {
+      "id": "200110",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 89: synthetic office supplies delivered."
+    },
+    {
+      "id": "200111",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 90: synthetic office supplies delivered."
+    },
+    {
+      "id": "200112",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 91: synthetic office supplies delivered."
+    },
+    {
+      "id": "200113",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 92: synthetic office supplies delivered."
+    },
+    {
+      "id": "200114",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 93: synthetic office supplies delivered."
+    },
+    {
+      "id": "200115",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 94: synthetic office supplies delivered."
+    },
+    {
+      "id": "200116",
+      "chatId": "504",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 95: synthetic office supplies delivered."
+    },
+    {
+      "id": "200117",
+      "chatId": "505",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Beacon storage region is Warsaw according to the active infrastructure record."
+    },
+    {
+      "id": "200118",
+      "chatId": "505",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Beacon storage region is Prague according to the active billing record; neither record has been reconciled."
+    },
+    {
+      "id": "200119",
+      "chatId": "505",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Beacon storage region review agenda: no final decision recorded."
+    },
+    {
+      "id": "200120",
+      "chatId": "505",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Where is Beacon storage located? The onboarding template repeats the question."
+    },
+    {
+      "id": "200121",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 96: synthetic office supplies delivered."
+    },
+    {
+      "id": "200122",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 97: synthetic office supplies delivered."
+    },
+    {
+      "id": "200123",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 98: synthetic office supplies delivered."
+    },
+    {
+      "id": "200124",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 99: synthetic office supplies delivered."
+    },
+    {
+      "id": "200125",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 100: synthetic office supplies delivered."
+    },
+    {
+      "id": "200126",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 101: synthetic office supplies delivered."
+    },
+    {
+      "id": "200127",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 102: synthetic office supplies delivered."
+    },
+    {
+      "id": "200128",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 103: synthetic office supplies delivered."
+    },
+    {
+      "id": "200129",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 104: synthetic office supplies delivered."
+    },
+    {
+      "id": "200130",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 105: synthetic office supplies delivered."
+    },
+    {
+      "id": "200131",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 106: synthetic office supplies delivered."
+    },
+    {
+      "id": "200132",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 107: synthetic office supplies delivered."
+    },
+    {
+      "id": "200133",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 108: synthetic office supplies delivered."
+    },
+    {
+      "id": "200134",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 109: synthetic office supplies delivered."
+    },
+    {
+      "id": "200135",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 110: synthetic office supplies delivered."
+    },
+    {
+      "id": "200136",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 111: synthetic office supplies delivered."
+    },
+    {
+      "id": "200137",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 112: synthetic office supplies delivered."
+    },
+    {
+      "id": "200138",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 113: synthetic office supplies delivered."
+    },
+    {
+      "id": "200139",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 114: synthetic office supplies delivered."
+    },
+    {
+      "id": "200140",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 115: synthetic office supplies delivered."
+    },
+    {
+      "id": "200141",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 116: synthetic office supplies delivered."
+    },
+    {
+      "id": "200142",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 117: synthetic office supplies delivered."
+    },
+    {
+      "id": "200143",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 118: synthetic office supplies delivered."
+    },
+    {
+      "id": "200144",
+      "chatId": "505",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 119: synthetic office supplies delivered."
+    },
+    {
+      "id": "200145",
+      "chatId": "506",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Finch audit planning begins next month; no external auditor has been selected."
+    },
+    {
+      "id": "200146",
+      "chatId": "506",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Finch audit fee is not quoted and no contract exists."
+    },
+    {
+      "id": "200147",
+      "chatId": "506",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Finch engineering budget: 300 euros for internal test equipment."
+    },
+    {
+      "id": "200148",
+      "chatId": "506",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Finch audit checklist: auditor name and fee are blank."
+    },
+    {
+      "id": "200149",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 120: synthetic office supplies delivered."
+    },
+    {
+      "id": "200150",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 121: synthetic office supplies delivered."
+    },
+    {
+      "id": "200151",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 122: synthetic office supplies delivered."
+    },
+    {
+      "id": "200152",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 123: synthetic office supplies delivered."
+    },
+    {
+      "id": "200153",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 124: synthetic office supplies delivered."
+    },
+    {
+      "id": "200154",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 125: synthetic office supplies delivered."
+    },
+    {
+      "id": "200155",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 126: synthetic office supplies delivered."
+    },
+    {
+      "id": "200156",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 127: synthetic office supplies delivered."
+    },
+    {
+      "id": "200157",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 128: synthetic office supplies delivered."
+    },
+    {
+      "id": "200158",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 129: synthetic office supplies delivered."
+    },
+    {
+      "id": "200159",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 130: synthetic office supplies delivered."
+    },
+    {
+      "id": "200160",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 131: synthetic office supplies delivered."
+    },
+    {
+      "id": "200161",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 132: synthetic office supplies delivered."
+    },
+    {
+      "id": "200162",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 133: synthetic office supplies delivered."
+    },
+    {
+      "id": "200163",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 134: synthetic office supplies delivered."
+    },
+    {
+      "id": "200164",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 135: synthetic office supplies delivered."
+    },
+    {
+      "id": "200165",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 136: synthetic office supplies delivered."
+    },
+    {
+      "id": "200166",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 137: synthetic office supplies delivered."
+    },
+    {
+      "id": "200167",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 138: synthetic office supplies delivered."
+    },
+    {
+      "id": "200168",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 139: synthetic office supplies delivered."
+    },
+    {
+      "id": "200169",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 140: synthetic office supplies delivered."
+    },
+    {
+      "id": "200170",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 141: synthetic office supplies delivered."
+    },
+    {
+      "id": "200171",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 142: synthetic office supplies delivered."
+    },
+    {
+      "id": "200172",
+      "chatId": "506",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 143: synthetic office supplies delivered."
+    },
+    {
+      "id": "200173",
+      "chatId": "507",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Кедр: хранение логов ограничено 12 днями, затем они удаляются автоматически."
+    },
+    {
+      "id": "200174",
+      "chatId": "507",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Кедр: срок хранения логов — вопрос для повестки, ответа в ней нет."
+    },
+    {
+      "id": "200175",
+      "chatId": "507",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Кедр: хранить логи 60 дней предлагали, но предложение отклонили."
+    },
+    {
+      "id": "200176",
+      "chatId": "507",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Кедр: проверка удаления логов завершена успешно."
+    },
+    {
+      "id": "200177",
+      "chatId": "507",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Кедр: логи тестового стенда не описывают рабочую политику."
+    },
+    {
+      "id": "200178",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 144: synthetic office supplies delivered."
+    },
+    {
+      "id": "200179",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 145: synthetic office supplies delivered."
+    },
+    {
+      "id": "200180",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 146: synthetic office supplies delivered."
+    },
+    {
+      "id": "200181",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 147: synthetic office supplies delivered."
+    },
+    {
+      "id": "200182",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 148: synthetic office supplies delivered."
+    },
+    {
+      "id": "200183",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 149: synthetic office supplies delivered."
+    },
+    {
+      "id": "200184",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 150: synthetic office supplies delivered."
+    },
+    {
+      "id": "200185",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 151: synthetic office supplies delivered."
+    },
+    {
+      "id": "200186",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 152: synthetic office supplies delivered."
+    },
+    {
+      "id": "200187",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 153: synthetic office supplies delivered."
+    },
+    {
+      "id": "200188",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 154: synthetic office supplies delivered."
+    },
+    {
+      "id": "200189",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 155: synthetic office supplies delivered."
+    },
+    {
+      "id": "200190",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 156: synthetic office supplies delivered."
+    },
+    {
+      "id": "200191",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 157: synthetic office supplies delivered."
+    },
+    {
+      "id": "200192",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 158: synthetic office supplies delivered."
+    },
+    {
+      "id": "200193",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 159: synthetic office supplies delivered."
+    },
+    {
+      "id": "200194",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 160: synthetic office supplies delivered."
+    },
+    {
+      "id": "200195",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 161: synthetic office supplies delivered."
+    },
+    {
+      "id": "200196",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 162: synthetic office supplies delivered."
+    },
+    {
+      "id": "200197",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 163: synthetic office supplies delivered."
+    },
+    {
+      "id": "200198",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 164: synthetic office supplies delivered."
+    },
+    {
+      "id": "200199",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 165: synthetic office supplies delivered."
+    },
+    {
+      "id": "200200",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 166: synthetic office supplies delivered."
+    },
+    {
+      "id": "200201",
+      "chatId": "507",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 167: synthetic office supplies delivered."
+    },
+    {
+      "id": "200202",
+      "chatId": "508",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Сокол: доступ на сервер сейчас есть только у дежурного администратора."
+    },
+    {
+      "id": "200203",
+      "chatId": "508",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Сокол: доступ на сервер подрядчикам дадут после подписания договора; договор не подписан."
+    },
+    {
+      "id": "200204",
+      "chatId": "508",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Сокол: кому разрешён доступ на сервер — поле формы пока пустое."
+    },
+    {
+      "id": "200205",
+      "chatId": "508",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Сокол: дежурный администратор сегодня Олег."
+    },
+    {
+      "id": "200206",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 168: synthetic office supplies delivered."
+    },
+    {
+      "id": "200207",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 169: synthetic office supplies delivered."
+    },
+    {
+      "id": "200208",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 170: synthetic office supplies delivered."
+    },
+    {
+      "id": "200209",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 171: synthetic office supplies delivered."
+    },
+    {
+      "id": "200210",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 172: synthetic office supplies delivered."
+    },
+    {
+      "id": "200211",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 173: synthetic office supplies delivered."
+    },
+    {
+      "id": "200212",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 174: synthetic office supplies delivered."
+    },
+    {
+      "id": "200213",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 175: synthetic office supplies delivered."
+    },
+    {
+      "id": "200214",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 176: synthetic office supplies delivered."
+    },
+    {
+      "id": "200215",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 177: synthetic office supplies delivered."
+    },
+    {
+      "id": "200216",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 178: synthetic office supplies delivered."
+    },
+    {
+      "id": "200217",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 179: synthetic office supplies delivered."
+    },
+    {
+      "id": "200218",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 180: synthetic office supplies delivered."
+    },
+    {
+      "id": "200219",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 181: synthetic office supplies delivered."
+    },
+    {
+      "id": "200220",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 182: synthetic office supplies delivered."
+    },
+    {
+      "id": "200221",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 183: synthetic office supplies delivered."
+    },
+    {
+      "id": "200222",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 184: synthetic office supplies delivered."
+    },
+    {
+      "id": "200223",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 185: synthetic office supplies delivered."
+    },
+    {
+      "id": "200224",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 186: synthetic office supplies delivered."
+    },
+    {
+      "id": "200225",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 187: synthetic office supplies delivered."
+    },
+    {
+      "id": "200226",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 188: synthetic office supplies delivered."
+    },
+    {
+      "id": "200227",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 189: synthetic office supplies delivered."
+    },
+    {
+      "id": "200228",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 190: synthetic office supplies delivered."
+    },
+    {
+      "id": "200229",
+      "chatId": "508",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 191: synthetic office supplies delivered."
+    },
+    {
+      "id": "200230",
+      "chatId": "509",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Парус: сборка сервиса 84 работает сейчас вместо прежней сборки 79."
+    },
+    {
+      "id": "200231",
+      "chatId": "509",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Парус: сборка сервиса 79 работала раньше; запись больше не актуальна."
+    },
+    {
+      "id": "200232",
+      "chatId": "509",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Парус: какая сборка сервиса работает сейчас — вопрос из старой анкеты."
+    },
+    {
+      "id": "200233",
+      "chatId": "509",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Парус: версия 85 ещё тестируется и не установлена."
+    },
+    {
+      "id": "200234",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 192: synthetic office supplies delivered."
+    },
+    {
+      "id": "200235",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 193: synthetic office supplies delivered."
+    },
+    {
+      "id": "200236",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 194: synthetic office supplies delivered."
+    },
+    {
+      "id": "200237",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 195: synthetic office supplies delivered."
+    },
+    {
+      "id": "200238",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 196: synthetic office supplies delivered."
+    },
+    {
+      "id": "200239",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 197: synthetic office supplies delivered."
+    },
+    {
+      "id": "200240",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 198: synthetic office supplies delivered."
+    },
+    {
+      "id": "200241",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 199: synthetic office supplies delivered."
+    },
+    {
+      "id": "200242",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 200: synthetic office supplies delivered."
+    },
+    {
+      "id": "200243",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 201: synthetic office supplies delivered."
+    },
+    {
+      "id": "200244",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 202: synthetic office supplies delivered."
+    },
+    {
+      "id": "200245",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 203: synthetic office supplies delivered."
+    },
+    {
+      "id": "200246",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 204: synthetic office supplies delivered."
+    },
+    {
+      "id": "200247",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 205: synthetic office supplies delivered."
+    },
+    {
+      "id": "200248",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 206: synthetic office supplies delivered."
+    },
+    {
+      "id": "200249",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 207: synthetic office supplies delivered."
+    },
+    {
+      "id": "200250",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 208: synthetic office supplies delivered."
+    },
+    {
+      "id": "200251",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 209: synthetic office supplies delivered."
+    },
+    {
+      "id": "200252",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 210: synthetic office supplies delivered."
+    },
+    {
+      "id": "200253",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 211: synthetic office supplies delivered."
+    },
+    {
+      "id": "200254",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 212: synthetic office supplies delivered."
+    },
+    {
+      "id": "200255",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 213: synthetic office supplies delivered."
+    },
+    {
+      "id": "200256",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 214: synthetic office supplies delivered."
+    },
+    {
+      "id": "200257",
+      "chatId": "509",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 215: synthetic office supplies delivered."
+    },
+    {
+      "id": "200258",
+      "chatId": "510",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Маяк: во сколько должна идти ежедневная выгрузка?"
+    },
+    {
+      "id": "200259",
+      "chatId": "510",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Каждый день в 17:20 по Москве.",
+      "replyToId": "200258"
+    },
+    {
+      "id": "200260",
+      "chatId": "510",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Маяк: расписание выгрузки нужно обсудить, тут нет времени запуска."
+    },
+    {
+      "id": "200261",
+      "chatId": "510",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Маяк: вчера ежедневная выгрузка закончилась с ошибкой."
+    },
+    {
+      "id": "200262",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 216: synthetic office supplies delivered."
+    },
+    {
+      "id": "200263",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 217: synthetic office supplies delivered."
+    },
+    {
+      "id": "200264",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 218: synthetic office supplies delivered."
+    },
+    {
+      "id": "200265",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 219: synthetic office supplies delivered."
+    },
+    {
+      "id": "200266",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 220: synthetic office supplies delivered."
+    },
+    {
+      "id": "200267",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 221: synthetic office supplies delivered."
+    },
+    {
+      "id": "200268",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 222: synthetic office supplies delivered."
+    },
+    {
+      "id": "200269",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 223: synthetic office supplies delivered."
+    },
+    {
+      "id": "200270",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 224: synthetic office supplies delivered."
+    },
+    {
+      "id": "200271",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 225: synthetic office supplies delivered."
+    },
+    {
+      "id": "200272",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 226: synthetic office supplies delivered."
+    },
+    {
+      "id": "200273",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 227: synthetic office supplies delivered."
+    },
+    {
+      "id": "200274",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 228: synthetic office supplies delivered."
+    },
+    {
+      "id": "200275",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 229: synthetic office supplies delivered."
+    },
+    {
+      "id": "200276",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 230: synthetic office supplies delivered."
+    },
+    {
+      "id": "200277",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 231: synthetic office supplies delivered."
+    },
+    {
+      "id": "200278",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 232: synthetic office supplies delivered."
+    },
+    {
+      "id": "200279",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 233: synthetic office supplies delivered."
+    },
+    {
+      "id": "200280",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 234: synthetic office supplies delivered."
+    },
+    {
+      "id": "200281",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 235: synthetic office supplies delivered."
+    },
+    {
+      "id": "200282",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 236: synthetic office supplies delivered."
+    },
+    {
+      "id": "200283",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 237: synthetic office supplies delivered."
+    },
+    {
+      "id": "200284",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 238: synthetic office supplies delivered."
+    },
+    {
+      "id": "200285",
+      "chatId": "510",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 239: synthetic office supplies delivered."
+    },
+    {
+      "id": "200286",
+      "chatId": "511",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Гранит: регион хранения в рабочей карточке указан как Берлин."
+    },
+    {
+      "id": "200287",
+      "chatId": "511",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Гранит: другой действующий документ указывает Вену; противоречие не устранено."
+    },
+    {
+      "id": "200288",
+      "chatId": "511",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Гранит: окончательный регион хранения — пустой пункт плана обсуждения."
+    },
+    {
+      "id": "200289",
+      "chatId": "511",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Гранит: где хранение данных — заголовок раздела без ответа."
+    },
+    {
+      "id": "200290",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 240: synthetic office supplies delivered."
+    },
+    {
+      "id": "200291",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 241: synthetic office supplies delivered."
+    },
+    {
+      "id": "200292",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 242: synthetic office supplies delivered."
+    },
+    {
+      "id": "200293",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 243: synthetic office supplies delivered."
+    },
+    {
+      "id": "200294",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 244: synthetic office supplies delivered."
+    },
+    {
+      "id": "200295",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 245: synthetic office supplies delivered."
+    },
+    {
+      "id": "200296",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 246: synthetic office supplies delivered."
+    },
+    {
+      "id": "200297",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 247: synthetic office supplies delivered."
+    },
+    {
+      "id": "200298",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 248: synthetic office supplies delivered."
+    },
+    {
+      "id": "200299",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 249: synthetic office supplies delivered."
+    },
+    {
+      "id": "200300",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 250: synthetic office supplies delivered."
+    },
+    {
+      "id": "200301",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 251: synthetic office supplies delivered."
+    },
+    {
+      "id": "200302",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 252: synthetic office supplies delivered."
+    },
+    {
+      "id": "200303",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 253: synthetic office supplies delivered."
+    },
+    {
+      "id": "200304",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 254: synthetic office supplies delivered."
+    },
+    {
+      "id": "200305",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 255: synthetic office supplies delivered."
+    },
+    {
+      "id": "200306",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 256: synthetic office supplies delivered."
+    },
+    {
+      "id": "200307",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 257: synthetic office supplies delivered."
+    },
+    {
+      "id": "200308",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 258: synthetic office supplies delivered."
+    },
+    {
+      "id": "200309",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 259: synthetic office supplies delivered."
+    },
+    {
+      "id": "200310",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 260: synthetic office supplies delivered."
+    },
+    {
+      "id": "200311",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 261: synthetic office supplies delivered."
+    },
+    {
+      "id": "200312",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 262: synthetic office supplies delivered."
+    },
+    {
+      "id": "200313",
+      "chatId": "511",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 263: synthetic office supplies delivered."
+    },
+    {
+      "id": "200314",
+      "chatId": "512",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Ручей: внешний аудитор ещё не выбран."
+    },
+    {
+      "id": "200315",
+      "chatId": "512",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Ручей: стоимость аудита не согласована и договор отсутствует."
+    },
+    {
+      "id": "200316",
+      "chatId": "512",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Ручей: внутреннее тестирование стоило 900 рублей; это не аудит."
+    },
+    {
+      "id": "200317",
+      "chatId": "512",
+      "senderId": "700",
+      "timestamp": "2026-10-08T12:00:00.000Z",
+      "text": "Ручей: аудит — форма без имени исполнителя и цены."
+    },
+    {
+      "id": "200318",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 264: synthetic office supplies delivered."
+    },
+    {
+      "id": "200319",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 265: synthetic office supplies delivered."
+    },
+    {
+      "id": "200320",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 266: synthetic office supplies delivered."
+    },
+    {
+      "id": "200321",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 267: synthetic office supplies delivered."
+    },
+    {
+      "id": "200322",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 268: synthetic office supplies delivered."
+    },
+    {
+      "id": "200323",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 269: synthetic office supplies delivered."
+    },
+    {
+      "id": "200324",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 270: synthetic office supplies delivered."
+    },
+    {
+      "id": "200325",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 271: synthetic office supplies delivered."
+    },
+    {
+      "id": "200326",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 272: synthetic office supplies delivered."
+    },
+    {
+      "id": "200327",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 273: synthetic office supplies delivered."
+    },
+    {
+      "id": "200328",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 274: synthetic office supplies delivered."
+    },
+    {
+      "id": "200329",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 275: synthetic office supplies delivered."
+    },
+    {
+      "id": "200330",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 276: synthetic office supplies delivered."
+    },
+    {
+      "id": "200331",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 277: synthetic office supplies delivered."
+    },
+    {
+      "id": "200332",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 278: synthetic office supplies delivered."
+    },
+    {
+      "id": "200333",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 279: synthetic office supplies delivered."
+    },
+    {
+      "id": "200334",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 280: synthetic office supplies delivered."
+    },
+    {
+      "id": "200335",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 281: synthetic office supplies delivered."
+    },
+    {
+      "id": "200336",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 282: synthetic office supplies delivered."
+    },
+    {
+      "id": "200337",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 283: synthetic office supplies delivered."
+    },
+    {
+      "id": "200338",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 284: synthetic office supplies delivered."
+    },
+    {
+      "id": "200339",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 285: synthetic office supplies delivered."
+    },
+    {
+      "id": "200340",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 286: synthetic office supplies delivered."
+    },
+    {
+      "id": "200341",
+      "chatId": "512",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Inventory receipt 287: synthetic office supplies delivered."
+    }
+  ],
+  "queries": [
+    {
+      "id": "fresh-helix-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "text": "How long are Helix logs kept?",
+      "scope": "chat:501",
+      "relevant": {
+        "200001": 2,
+        "200003": 1,
+        "200005": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-helix-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "text": "What is the log lifetime for Helix?",
+      "scope": "chat:501",
+      "relevant": {
+        "200001": 2,
+        "200003": 1,
+        "200005": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-quartz-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "text": "Who has Quartz production access?",
+      "scope": "chat:502",
+      "relevant": {
+        "200030": 2,
+        "200031": 1,
+        "200034": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-quartz-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "text": "Who can enter Quartz production?",
+      "scope": "chat:502",
+      "relevant": {
+        "200030": 2,
+        "200031": 1,
+        "200034": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-rivet-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "text": "Which Rivet service build is current?",
+      "scope": "chat:503",
+      "relevant": {
+        "200059": 2,
+        "200062": 1,
+        "200063": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-rivet-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "text": "What version does Rivet run now?",
+      "scope": "chat:503",
+      "relevant": {
+        "200059": 2,
+        "200062": 1,
+        "200063": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-atlas-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "text": "What time does Atlas export run?",
+      "scope": "chat:504",
+      "relevant": {
+        "200088": 1,
+        "200089": 2,
+        "200091": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-atlas-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "text": "When is the Atlas daily export?",
+      "scope": "chat:504",
+      "relevant": {
+        "200088": 1,
+        "200089": 2,
+        "200091": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-beacon-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "Where is Beacon storage located?",
+      "scope": "chat:505",
+      "relevant": {
+        "200117": 1,
+        "200118": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "fresh-beacon-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "What is the final Beacon storage region?",
+      "scope": "chat:505",
+      "relevant": {
+        "200117": 1,
+        "200118": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "fresh-finch-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "text": "Who is the external auditor for Finch?",
+      "scope": "chat:506",
+      "relevant": {
+        "200145": 1,
+        "200146": 1,
+        "200148": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "fresh-finch-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "text": "What is the Finch audit fee?",
+      "scope": "chat:506",
+      "relevant": {
+        "200145": 1,
+        "200146": 1,
+        "200148": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "fresh-кедр-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "text": "Сколько дней хранятся логи Кедр?",
+      "scope": "chat:507",
+      "relevant": {
+        "200173": 2,
+        "200175": 1,
+        "200176": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-кедр-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "text": "Какой срок хранения логов Кедр?",
+      "scope": "chat:507",
+      "relevant": {
+        "200173": 2,
+        "200175": 1,
+        "200176": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-сокол-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "text": "Кому разрешён доступ на сервер Сокол?",
+      "scope": "chat:508",
+      "relevant": {
+        "200202": 2,
+        "200203": 1,
+        "200205": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-сокол-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "text": "Кто может войти на сервер Сокол?",
+      "scope": "chat:508",
+      "relevant": {
+        "200202": 2,
+        "200203": 1,
+        "200205": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-парус-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "text": "Какая сборка сервиса Парус работает сейчас?",
+      "scope": "chat:509",
+      "relevant": {
+        "200230": 2,
+        "200233": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-парус-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "text": "Какая версия Парус сейчас в работе?",
+      "scope": "chat:509",
+      "relevant": {
+        "200230": 2,
+        "200233": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-маяк-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "text": "Во сколько идёт выгрузка Маяк?",
+      "scope": "chat:510",
+      "relevant": {
+        "200258": 1,
+        "200259": 2,
+        "200261": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-маяк-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "text": "Когда ежедневная выгрузка Маяк?",
+      "scope": "chat:510",
+      "relevant": {
+        "200258": 1,
+        "200259": 2,
+        "200261": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "fresh-гранит-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "text": "Где хранение данных Гранит?",
+      "scope": "chat:511",
+      "relevant": {
+        "200286": 1,
+        "200287": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "fresh-гранит-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "text": "Какой окончательный регион хранения Гранит?",
+      "scope": "chat:511",
+      "relevant": {
+        "200286": 1,
+        "200287": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "fresh-ручей-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "text": "Кто внешний аудитор Ручей?",
+      "scope": "chat:512",
+      "relevant": {
+        "200314": 1,
+        "200315": 1,
+        "200317": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "fresh-ручей-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "missing-fact",
+      "text": "Сколько стоит аудит Ручей?",
+      "scope": "chat:512",
+      "relevant": {
+        "200314": 1,
+        "200315": 1,
+        "200317": 1
+      },
+      "answerExpected": false
+    }
+  ]
+}

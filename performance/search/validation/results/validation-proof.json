@@ -1,0 +1,9 @@
+{
+  "historicalRankingsReproduced": 144,
+  "historicalModelSha256": "ae73da95ec09ba208f4a196b93a18895f3272592ee47abd66956babc425a0c27",
+  "fittedWeightsDuringValidation": false,
+  "modelDownloadsDuringValidation": false,
+  "cpu": "AMD Ryzen AI 9 HX 470 w/ Radeon 890M",
+  "scope": "Synthetic temporary store only; parent and reply must both satisfy the production scope-only query.",
+  "labels": "Synthetic author labels; not an independently judged real-message collection."
+}

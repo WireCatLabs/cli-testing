@@ -1,0 +1,12 @@
+{
+  "messagingRoot": "/home/leemour/Projects/AI/cli-messaging-wt-combined-search",
+  "runner": "validation-candidates",
+  "command": [
+    "node",
+    "/tmp/cli-testing-search-a1fzke0g/bench/validation/export.ts"
+  ],
+  "node": "v24.19.0",
+  "messagingPackage": "0.213.0",
+  "messagingCommit": "ac68a778a782f64a707f1655fe60cce571321f32",
+  "testingCommit": "5ecfdf341bf47fdb786410c23f4ed260df149574"
+}
