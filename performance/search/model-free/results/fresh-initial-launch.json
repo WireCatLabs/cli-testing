@@ -1,0 +1,15 @@
+{
+  "messagingRoot": "/home/leemour/Projects/AI/cli-messaging-wt-combined-search",
+  "runner": "path",
+  "command": [
+    "node",
+    "/tmp/cli-testing-search-wjtbrec_/bench/model-free/run.ts",
+    "--fixture",
+    "/home/leemour/Projects/AI/cli-testing/.worktrees/search-experiments/performance/search/model-free/fresh.json",
+    "--compare-ranking"
+  ],
+  "node": "v24.19.0",
+  "messagingPackage": "0.213.0",
+  "messagingCommit": "ac68a778a782f64a707f1655fe60cce571321f32",
+  "testingCommit": "c9931e41f0e76a6748a7039986fcebccaa1fdcca"
+}

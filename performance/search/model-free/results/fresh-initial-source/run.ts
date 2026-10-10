@@ -42,12 +42,8 @@ process.env.TZ = "UTC"
 const coldStart = performance.now()
 const store = await openStore({ path: process.env.MESSAGING_STORE })
 const account = { provider: "synthetic", account: "500" }
-const modes: ("direct" | "question" | "context" | "content" | "coverage" | "discovery")[] = [
-  "direct",
-  "question",
-  "context",
-]
-if (process.argv.includes("--compare-ranking")) modes.push("content", "coverage", "discovery")
+const modes: ("direct" | "question" | "context" | "content" | "coverage")[] = ["direct", "question", "context"]
+if (process.argv.includes("--compare-ranking")) modes.push("content", "coverage")
 try {
   await store.saveChats(
     account,
@@ -170,13 +166,12 @@ try {
         index,
         store,
         { text: input, limit: 10, timezone: "UTC" },
-        mode === "content" || mode === "coverage" || mode === "discovery" ? "context" : mode,
-        mode === "content" || mode === "discovery" ? "content-bm25" : mode === "coverage" ? "coverage-bm25" : "bm25",
-        mode === "discovery",
+        mode === "content" || mode === "coverage" ? "context" : mode,
+        mode === "content" ? "content-bm25" : mode === "coverage" ? "coverage-bm25" : "bm25",
       )
       const ids = found.items.map((m) => m.id)
       assert.equal(ids.length, new Set(ids).size)
-      if (q.group !== "question") assert.ok(found.items.every((m) => m.chatId === q.scope.match(/chat:(\d+)/u)?.[1]))
+      assert.ok(found.items.every((m) => m.chatId === q.scope.match(/chat:(\d+)/u)?.[1]))
       const actual = Object.entries(q.relevant)
         .filter(([, grade]) => grade === 2)
         .map(([id]) => id)

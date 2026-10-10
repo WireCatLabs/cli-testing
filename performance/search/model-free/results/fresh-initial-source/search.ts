@@ -44,7 +44,6 @@ export async function search(
   request: SearchQuery,
   mode: "direct" | "question" | "context",
   ranking: "bm25" | "content-bm25" | "coverage-bm25" = "bm25",
-  relaxed = false,
 ) {
   request.signal?.throwIfAborted()
   const started = performance.now()
@@ -71,15 +70,6 @@ export async function search(
       const fused = (previous?.fused ?? 0) + 1 / (60 + rank + 1)
       union.set(m.locator, { ...m, fused })
     })
-  }
-  if (relaxed && plan.changed && !strict) {
-    const terms = [...new Set(plan.terms.concat(plan.aliases.flatMap((a) => words(a.split(" -> ")[1] ?? ""))))]
-    const text = `(${terms.join(" OR ")})${plan.scope ? ` ${plan.scope}` : ""}`
-    const found = await searchStore(store, index.account, { ...request, text, language: "lucene", limit: 300 })
-    for (const [rank, m] of found.items.entries()) {
-      const previous = union.get(m.locator)
-      union.set(m.locator, { ...m, fused: (previous?.fused ?? 0) + 1 / (60 + rank + 1) })
-    }
   }
   let candidates = [...union.values()].sort((a, b) => b.fused - a.fused).slice(0, 300)
   const originalIds = candidates.map((m) => m.id)

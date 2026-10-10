@@ -26,6 +26,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   `--previous`; legacy scanner runs are read without edits. Transcript redactions support file snapshots.
 
 
+- Fresh search questions expose candidate gaps in the frozen model-free path. A build-driven
+  discovery benchmark now separates ingestion from query RAM, measures archive scaling and
+  retains low rank-one quality, paraphrase failures and missing-fact partial hits.
 - A model-free search prototype that retrieves from actual questions, ranks with stemmed BM25
   and adds eligible reply context. Synthetic results include paraphrase failures, strict-search
   checks, latency and full-process memory; public search defaults remain unchanged.

@@ -1,0 +1,22 @@
+{
+  "messagingRoot": "/home/leemour/Projects/AI/cli-messaging-wt-combined-search",
+  "runner": "production",
+  "coreScope": "@wirecat",
+  "packageAliases": {
+    "@leemour/cli-messaging-onnx": "@wirecat/cli-messaging-onnx"
+  },
+  "command": [
+    "node",
+    "/tmp/cli-testing-search-cl2ws1du/bench/model-free/production.ts",
+    "--background",
+    "0",
+    "--query-store",
+    "/tmp/discovery-production-iYXnkD/synthetic.db",
+    "--fixture",
+    "/home/leemour/Projects/AI/cli-testing/.worktrees/search-experiments/performance/search/model-free/fixture.json"
+  ],
+  "node": "v24.19.0",
+  "messagingPackage": "0.215.0",
+  "messagingCommit": "878a4afad80172c350eda378b2a9ca8d63404349",
+  "testingCommit": "c9931e41f0e76a6748a7039986fcebccaa1fdcca"
+}

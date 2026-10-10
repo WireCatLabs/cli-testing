@@ -15,6 +15,7 @@ runners = {
     "typecheck": ("message-search", "typecheck"), "candidates": ("matrix", "export"),
     "matrix-typecheck": ("matrix", "typecheck"), "validation-candidates": ("validation", "export"),
     "validation-typecheck": ("validation", "typecheck"), "path": ("model-free", "run"),
+    "production": ("model-free", "production"),
     "path-typecheck": ("model-free", "typecheck"), "path-tests": ("model-free", "tests"),
 }
 parser = argparse.ArgumentParser(description=__doc__)
@@ -39,12 +40,35 @@ ignored = shutil.ignore_patterns("results", "__pycache__", "*-dev.json", "baseli
 shutil.copytree(area / folder, selected_harness, ignore=ignored)
 if folder == "matrix":
     shutil.copytree(area / "message-search", stage / "bench/message-search-quality", ignore=ignored)
+selected_package = json.loads((root / "package.json").read_text())
+core_scope = "@wirecat" if any("@wirecat/cli-core" in selected_package.get(group, {}) for group in ("dependencies", "devDependencies", "peerDependencies")) else "@leemour"
+config_path = selected_harness / "tsconfig.json"
+config = json.loads(config_path.read_text())
+config["extends"] = f"{core_scope}/cli-core/tsconfig.base.json"
+config_path.write_text(json.dumps(config, indent=2) + "\n")
 (stage / "dist").symlink_to(root / "dist", target_is_directory=True)
-(stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
+aliases = {}
+if core_scope == "@wirecat":
+    dependencies = stage / "node_modules"
+    dependencies.mkdir()
+    for entry in (root / "node_modules").iterdir():
+        if entry.name != "@leemour":
+            (dependencies / entry.name).symlink_to(entry, target_is_directory=entry.is_dir())
+    legacy = dependencies / "@leemour"
+    legacy.mkdir()
+    if (root / "node_modules/@leemour").exists():
+        for entry in (root / "node_modules/@leemour").iterdir():
+            (legacy / entry.name).symlink_to(entry, target_is_directory=entry.is_dir())
+    native = root / "node_modules/@wirecat/cli-messaging-onnx"
+    if native.exists() and not (legacy / "cli-messaging-onnx").exists():
+        (legacy / "cli-messaging-onnx").symlink_to(native, target_is_directory=True)
+        aliases["@leemour/cli-messaging-onnx"] = "@wirecat/cli-messaging-onnx"
+else:
+    (stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
 command = (["pnpm", "exec", "tsc", "-p", str(selected_harness / "tsconfig.json")]
            if selected_script == "typecheck"
            else ["node", str(selected_harness / f"{selected_script}.ts"), *forwarded])
-metadata = {"messagingRoot": str(root), "runner": args.runner,
+metadata = {"messagingRoot": str(root), "runner": args.runner, "coreScope": core_scope, "packageAliases": aliases,
             "command": command, "node": subprocess.check_output(["node", "--version"], text=True).strip(),
             "messagingPackage": json.loads((root / "package.json").read_text())["version"]}
 for label, path in [("messagingCommit", root), ("testingCommit", area)]:

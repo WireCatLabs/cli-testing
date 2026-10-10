@@ -1,4 +1,4 @@
-"""Freeze calibration and holdout fixtures challenging the published feature ranker."""
+"""Build the topic-template fixture for the model-free question-search experiment."""
 import json
 from pathlib import Path
 

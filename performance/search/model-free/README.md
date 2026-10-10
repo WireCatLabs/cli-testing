@@ -4,6 +4,11 @@ This prototype tests a complete path from the user's question to ranked messages
 neural weights, embedding cache or inference runtime. It runs the selected cli-messaging build
 against a newly created synthetic SQLite store; it never opens an existing account store.
 
+The subsequent [fresh-question and storage-backed evaluation](FRESH-VALIDATION.md) tests new
+wording, records a large drop in frozen-prototype quality and evaluates the integrated shared
+CLI/MCP/SDK discovery option through 100,000 background messages. The historical results below
+remain the snapshot prototype measurement.
+
 ## What changed
 
 The earlier robustness test retrieved candidates using hand-written keyword anchors. This test

@@ -21,7 +21,9 @@ cheap ranking from reliable answer-availability decisions.
 
 The [model-free path](model-free/README.md) now tests actual questions end to end without manual
 keyword anchors: bounded lexical planning, stemmed BM25 and eligible reply context. It records
-ranking failures, full-process RAM and the storage work needed before production integration.
+ranking failures and full-process RAM. The [fresh validation](model-free/FRESH-VALIDATION.md)
+now measures the built storage-backed discovery option and archive scaling, with strict defaults
+preserved and missing-fact partial hits explicitly retained.
 
 ## Layout
 
@@ -48,7 +50,9 @@ python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" comb
 The launcher stages the unchanged benchmark scripts in a new temporary directory and links only
 `dist/` and installed dependencies from the selected checkout. This preserves their relative
 imports and the historical runner hashes without committing a machine-specific path or installing
-another copy of the runtime. It records both repository commits, package version, Node version
+another copy of the runtime. It adapts the staged TypeScript base to the selected package scope and, for renamed native
+packages, records a temporary legacy import alias without editing archived scripts. It records
+both repository commits, package version, Node version
 and command in `launch.json`; existing reports also record input and relevant build-file hashes.
 The temporary harness, launch metadata and benchmark stores are retained for inspection.
 

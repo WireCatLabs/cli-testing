@@ -59,7 +59,8 @@
         "performance/search/validation/results/**",
         "performance/search/validation/fixture.json",
         "performance/search/model-free/results/**",
-        "performance/search/model-free/fixture.json"
+        "performance/search/model-free/fixture.json",
+        "performance/search/model-free/fresh.json"
       ],
       "formatter": {
         "enabled": false
