@@ -4,6 +4,16 @@
 MAX, Telegram, and Zoom keep their plans and reviewed snapshots in `contracts/` in their own
 repositories. The shared runner is also exported as `runContracts` from `@wirecat/cli-testing`.
 
+## Toolkit distribution
+
+The first rollout pins the validated
+[0.2.0 toolkit preview](https://github.com/WireCatLabs/cli-testing/releases/tag/toolkit-v0.2.0)
+tarball as a development dependency, with its SHA512 integrity recorded in each CLI lockfile.
+It is the exact artifact checked by release run `38092344081`; npm publication failed after
+validation and remains pending the package trusted-publisher configuration. The GitHub preview
+tag does not imply that npm version 0.2.0 was published. Repository installs resolve the pinned
+asset normally; no local npm login is required to run the contract checks.
+
 ## Checks
 
 - Help output matches a reviewed snapshot.
