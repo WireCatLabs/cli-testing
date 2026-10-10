@@ -97,7 +97,7 @@ Every tested configuration has dev recall@10 0.3625, MRR@10 0.375 and nDCG@10 0.
 no-answer false hits. None meets the approved 0.45/0.50/0.40 gates. [combined-dev.json](combined-dev.json)
 records each configuration, measured timing and hashes, and the diagnostic dev rankings. No
 combined held-out result is produced when dev fails. The original baseline is preserved.
-The [revised proposal](https://github.com/leemour/cli-messaging/blob/feat/combined-search/docs/dev/combined-search.md#measured-lexical-experiment-and-revised-proposal)
+The [revised proposal](https://github.com/WireCatLabs/cli-messaging/blob/feat/combined-search/docs/dev/combined-search.md#measured-lexical-experiment-and-revised-proposal)
 requests a semantic evaluation before public adoption. Timings are from this small corpus on a
 shared machine; they are not release-scale latency evidence.
 

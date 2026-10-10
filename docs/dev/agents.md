@@ -1,7 +1,7 @@
 # Running agents on cli-testing
 
 The guards are copied from tg-cli's
-[`docs/dev/agents.md`](https://github.com/leemour/tg-cli/blob/main/docs/dev/agents.md), where each was
+[`docs/dev/agents.md`](https://github.com/WireCatLabs/tg-cli/blob/main/docs/dev/agents.md), where each was
 measured; `bin/check-agents` proves they hold here.
 
 ## What an agent may do, and what stops it

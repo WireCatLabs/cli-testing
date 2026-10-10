@@ -1,8 +1,8 @@
 # Combined message search: evidence, pipeline and measurement
 
 The public search is unchanged. The internal lexical service and local reranking experiments are
-in draft PR [803](https://github.com/leemour/cli-messaging/pull/803). The
-[design](https://github.com/leemour/cli-messaging/blob/feat/combined-search/docs/dev/combined-search.md) describes the pending transition; the
+in draft PR [803](https://github.com/WireCatLabs/cli-messaging/pull/803). The
+[design](https://github.com/WireCatLabs/cli-messaging/blob/feat/combined-search/docs/dev/combined-search.md) describes the pending transition; the
 [benchmark README](message-search/README.md) links reproducible inputs, runners,
 model pins and raw results. No experiment opens the real store or a messenger account.
 

@@ -1,6 +1,6 @@
 # Local ranking models and decision layers
 
-This research supports the [combined-search design](https://github.com/leemour/cli-messaging/blob/feat/combined-search/docs/dev/combined-search.md) and
+This research supports the [combined-search design](https://github.com/WireCatLabs/cli-messaging/blob/feat/combined-search/docs/dev/combined-search.md) and
 [evaluation notes](combined-search-evaluation.md). It proposes experiments rather than a public
 model/default change. The current model is measured locally; alternative model sizes come from
 publisher model cards and public Hub file metadata. Published GPU timings are not laptop CPU timings.
