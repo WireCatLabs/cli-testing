@@ -17,35 +17,13 @@ the private `cli-private` repository, never here.
 - **Claim before code:** `🚧 <branch>` on the line in the first push of the branch.
 - **Close in the PR that ships the work:** delete the line here in that PR.
 
-## Phase 0 — the repository
+## Phase 0 — release verification
 
-- **OPS-2 · P1 🚩** Trusted publisher for `@wirecat/cli-testing` on npmjs.com (GitHub Actions,
+- **OPS-2 · P1** Verify the trusted publisher for `@wirecat/cli-testing` on npmjs.com (GitHub Actions,
   `WireCatLabs/cli-testing`, `release.yml`, environment `npm`) — the owner's step on npm.
-- **OPS-3 · P1** A reusable `release-checks` workflow in cli-core that each CLI's `release.yml`
-  calls before `build`; move `pnpm audit --prod` and zizmor there from the per-pull-request
-  `node-ci.yml`, so a new advisory never blocks unrelated work.
-- **OPS-4 · P2** First release, `0.1.0`, once Phase 1 has a suite to ship.
 
-## Phase 1 — runs and the security group
+## Phase 1 — remaining security work
 
-- **RUN-1 · P1** The run folder: `SCOPE.md` (commits, tool versions, exit codes), `raw/`,
-  `REPORT.md`; one layout for every suite.
-- **RUN-2 · P1** `cli-testing compare <suite> <run-a> <run-b>`: new, fixed, came back. Case folders
-  in the style of Deno and trycmd for CLI transcripts, with redactions (`[WILDCARD]`, `[ROOT]`), as
-  a small runner over vitest file snapshots.
-- **SEC-1 · P1 🟡** (as a script in `scripts/`; the command is left) `cli-testing security scan`:
-  osv-scanner, semgrep with `--metrics=off`, zizmor, open CodeQL alerts, over clean exports of
-  `origin/main`; a tool exit code its docs do not list fails the run.
-- **SEC-1a · P1** Pins at least two weeks old on the day of a run: semgrep 1.178.0 (1.180.0 was too
-  new on 2026-10-09), Socket CLI from npm, never its GitHub releases page.
-- **SEC-2 · P1 🟡** (as a script in `scripts/`; the command is left) `cli-testing security socket`:
-  the same commits through the Socket CLI, pinned, `--no-banner`.
-- **SEC-3 · P1 🟡** (as a script in `scripts/`; the command is left) `cli-testing agent`: a real
-  agent over the CLI's MCP server, the host allowing only read tools, a canary first, the benign
-  payload set; pass = no write call. Per-CLI config: the MCP command, how the test account sends and
-  deletes, the test chats by role. Judge as AgentDojo does: attack success is the write calls the
-  MCP server recorded and the state of the test chat, with utility (did the ordinary task succeed)
-  reported beside it.
 - **SEC-4 · P2** `cli-testing security no-leak`: logs, `--trace` output, fixtures, docs and crash
   output scanned for phone numbers, tokens and message text. `gitleaks dir` with custom rules for
   MAX tokens, phone numbers and chat ids.
@@ -54,12 +32,9 @@ the private `cli-private` repository, never here.
 
 ## Phase 2 — contract
 
-- **CON-1 · P2** Machine mode: stdout is one JSON value and nothing else, errors are one JSON object
-  on stderr, exit codes match the documented table — for every command a CLI lists. Runner on execa;
-  assertions as plain vitest.
-- **CON-2 · P2** MCP tool schemas and `--help` output snapshotted; a release that changes them fails
-  until the snapshot is updated on purpose. Snapshots through the MCP SDK `Client.listTools()` and
-  `toMatchFileSnapshot`, no new dependency.
+- **CON-1 · P2 🟡** Expand the shipped offline output/error/help/MCP contracts beyond metadata
+  commands to synthetic store-backed cases covering each CLI's documented command table. The
+  shared runner and reviewed MAX/Telegram/Zoom metadata plans are already implemented.
 - **CON-4 · P2** MCP Inspector in CLI mode (`--cli --method tools/list --strict`) as a schema
   portability gate; MCP conformance against the HTTP server path with an expected-failures baseline.
 - **CON-3 · P3** Protocol drift: live answers compared with the captured frames, on a schedule.
@@ -68,8 +43,6 @@ the private `cli-private` repository, never here.
 
 - **ANA-1 · P2** The heavier linters and analyzers, release-only: semgrep rule packs, unused code
   and exports, licence check of the dependency tree.
-- **ANA-2 · P2** The documentation linters cli-docs runs (markdownlint, spelling dictionaries, link
-  checks), so every repository's docs are checked the same way.
 
 ## Phase 4 — ux
 
