@@ -40,7 +40,7 @@ not migration of every historical default store or preservation by reset command
 
 ## Leak coverage and limits
 
-Every process's stderr is scanned for credential/phone patterns and synthetic canaries. Requested
+MCP stderr is capped at 64 KiB and scanned before returning schemas. Every process's stderr is scanned for credential/phone patterns and synthetic canaries. Requested
 synthetic data on stdout may explicitly allow its canaries, while credential/phone patterns remain
 checked. Other stdout must be clean. MAX/Telegram's `--trace` and `--record` cases exercise recorded
 success and failure paths; the generated run tree is scanned without copying its contents into

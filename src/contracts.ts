@@ -48,6 +48,7 @@ export interface ContractProcess {
   cwd: string
   env: Record<string, string>
   timeout: number
+  canaries?: string[]
 }
 export interface ContractResult {
   exit: number
@@ -80,11 +81,20 @@ export const readContractTools = async (process: ContractProcess): Promise<unkno
   const client = new Client({ name: "wirecat-contract", version: "1" })
   const transport = new StdioClientTransport({ ...process, stderr: "pipe" })
   // The SDK inherits selected variables even with env supplied; HOME and all profile paths are overridden below.
-  transport.stderr?.on("data", () => {})
+  let diagnostic = ""
+  let exceeded = false
+  transport.stderr?.on("data", (chunk) => {
+    if (exceeded) return
+    diagnostic += String(chunk)
+    if (Buffer.byteLength(diagnostic) > 64 * 1024) {
+      exceeded = true
+      diagnostic = ""
+    }
+  })
   const signal = AbortSignal.timeout(process.timeout)
+  const tools: unknown[] = []
   try {
     await client.connect(transport, { timeout: process.timeout, signal })
-    const tools: unknown[] = []
     const seen = new Set<string>()
     let cursor: string | undefined
     do {
@@ -95,10 +105,12 @@ export const readContractTools = async (process: ContractProcess): Promise<unkno
       if (cursor) seen.add(cursor)
       if (tools.length > 10000) throw new Error("MCP tool list exceeded its limit")
     } while (cursor)
-    return tools
   } finally {
     await client.close()
   }
+  if (exceeded) throw new Error("MCP diagnostics exceeded their limit")
+  if (findLeaks(diagnostic, process.canaries).length) throw new Error("sensitive data in MCP diagnostics")
+  return tools
 }
 
 const canonical = (value: unknown): unknown => {
@@ -207,7 +219,14 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
     for (const directory of ["CONFIG", "STATE", "CACHE"]) env[`${app}_${directory}_DIR`] = join(root, app, directory)
     env[`${app}_NO_UPDATE_CHECK`] = "1"
   }
-  const invocation: ContractProcess = { command: plan.command, args: plan.args ?? [], cwd: root, env, timeout }
+  const invocation: ContractProcess = {
+    command: plan.command,
+    args: plan.args ?? [],
+    cwd: root,
+    env,
+    timeout,
+    ...(plan.canaries ? { canaries: plan.canaries } : {}),
+  }
   const values = new Map<string, string | number>([["root", root]])
   if (plan.previous) values.set("previousEntry", plan.previous.entry)
   let seeded = new Map<string, string>()

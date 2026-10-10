@@ -331,3 +331,29 @@ it("permits only explicitly reviewed diagnostics and preserves numeric capture t
   const changed = await runContracts(plan([one]), { run: () => ({ exit: 0, stdout: '{"id":7}', stderr: "5 terms\n" }) })
   expect(changed.passed).toBe(false)
 })
+
+it("checks MCP stderr for synthetic leaks and bounds diagnostics before returning schemas", async () => {
+  const server = join(tmpdir(), "diagnostic-mcp.mjs")
+  writeFileSync(
+    server,
+    `import {createInterface} from 'node:readline';
+const mode=process.argv[2];
+createInterface({input:process.stdin}).on('line',line=>{
+ const m=JSON.parse(line);if(!('id' in m))return;
+ const result=m.method==='initialize'?{protocolVersion:m.params.protocolVersion,capabilities:{tools:{}},serverInfo:{name:'synthetic',version:'1'}}:{tools:[]};
+ const respond=()=>process.stdout.write(JSON.stringify({jsonrpc:'2.0',id:m.id,result})+'\\n');
+ if(m.method==='initialize')process.stderr.write(mode==='leak'?'wirecat-synthetic-diagnostic-canary':mode==='large'?'x'.repeat(65537):'ordinary diagnostic',respond);else respond();
+});`,
+  )
+  const invocation = {
+    command: process.execPath,
+    args: [server, "clean"],
+    cwd: tmpdir(),
+    env: {},
+    timeout: 2000,
+    canaries: ["wirecat-synthetic-diagnostic-canary"],
+  }
+  expect(await readContractTools(invocation)).toEqual([])
+  await expect(readContractTools({ ...invocation, args: [server, "leak"] })).rejects.toThrow("sensitive data")
+  await expect(readContractTools({ ...invocation, args: [server, "large"] })).rejects.toThrow("exceeded")
+})
