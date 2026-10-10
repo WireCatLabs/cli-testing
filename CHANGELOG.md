@@ -6,6 +6,25 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- Fresh search questions expose candidate gaps in the frozen model-free path. A build-driven
+  discovery benchmark now separates ingestion from query RAM, measures archive scaling and
+  retains low rank-one quality, paraphrase failures and missing-fact partial hits.
+- A model-free search prototype that retrieves from actual questions, ranks with stemmed BM25
+  and adds eligible reply context. Synthetic results include paraphrase failures, strict-search
+  checks, latency and full-process memory; public search defaults remain unchanged.
+- Search robustness validation with frozen weights, calibration/holdout topics, eligible reply
+  context, negation/conditional-approval cases and separate answer/evidence judgments.
+- A search comparison matrix with 23 ranking variants, a fresh synthetic holdout, QMD/Meilisearch/
+  Typesense research and measured small-model CPU resources. Results distinguish actual answers
+  from supporting evidence and retain missing-fact failures.
+- Offline search research under `performance/search/`: synthetic fixtures and historical ranking
+  evidence moved from cli-messaging, a launcher against an explicit build, and a detailed model
+  guide. The published suite API is unchanged.
+
 ## 0.1.0 — 10.10.2026
 
 ### Fixed
@@ -25,21 +44,6 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
 - **Run comparison distinguishes new, fixed and returning scanner observations.** Carry history with
   `--previous`; legacy scanner runs are read without edits. Transcript redactions support file snapshots.
 
-
-- Fresh search questions expose candidate gaps in the frozen model-free path. A build-driven
-  discovery benchmark now separates ingestion from query RAM, measures archive scaling and
-  retains low rank-one quality, paraphrase failures and missing-fact partial hits.
-- A model-free search prototype that retrieves from actual questions, ranks with stemmed BM25
-  and adds eligible reply context. Synthetic results include paraphrase failures, strict-search
-  checks, latency and full-process memory; public search defaults remain unchanged.
-- Search robustness validation with frozen weights, calibration/holdout topics, eligible reply
-  context, negation/conditional-approval cases and separate answer/evidence judgments.
-- A search comparison matrix with 23 ranking variants, a fresh synthetic holdout, QMD/Meilisearch/
-  Typesense research and measured small-model CPU resources. Results distinguish actual answers
-  from supporting evidence and retain missing-fact failures.
-- Offline search research under `performance/search/`: synthetic fixtures and historical ranking
-  evidence moved from cli-messaging, a launcher against an explicit build, and a detailed model
-  guide. The published suite API is unchanged.
 - **The suite groups** — `SUITE_GROUPS`: security, contract, performance, ux, analyzers, live, seed.
 
 - **The security audit, written down to repeat** — `docs/security/` (method, runbook, agent test,
