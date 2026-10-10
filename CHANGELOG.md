@@ -22,6 +22,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
 - Installed `cli-testing` bin symlinks execute normally. Malformed contract JSON and no-leak setup
   errors no longer echo raw input in diagnostics.
 
+## 0.2.1 — 11.10.2026
+
+### Changed — may break callers
+
+- Package references, documentation and fixtures use the WireCat namespace throughout.
+
 ## 0.2.0 — 11.10.2026
 
 ### Security

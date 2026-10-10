@@ -1,7 +1,7 @@
 # Offline upgrade checks
 
 Run these checks to verify that a candidate CLI preserves synthetic state made by the supported
-published version. They use actual Node binaries and installed npm aliases, never CLI source APIs
+published version. They use actual Node binaries and installed npm aliases in a separate test dependency directory, never CLI source APIs
 for assertions. Dependency installation happens before isolation and can access the registry;
 the CLI processes cannot use the network, keyring, native addons or child processes.
 
@@ -14,7 +14,9 @@ the CLI processes cannot use the network, keyring, native addons or child proces
 | Zoom | `@wirecat/zoom-cli` 0.2.1 | none | profile config, imported transcript, meetings, search and export |
 
 The previous alias is the release baseline for the next candidate, so its version can equal the
-checkout's package version until the next version bump. Update it deliberately after a release;
+checkout's package version until the next version bump. The previous packages have their own frozen lockfile under `contracts/previous/`, installed only
+by the full-validation gate. Their bins cannot shadow normal development commands.
+Update the baseline deliberately after a release;
 keep the legacy-schema probe pinned separately. The runner checks `--version` before using it.
 
 MAX/Telegram use a caller-owned fixture generator that resolves the previous executable's real

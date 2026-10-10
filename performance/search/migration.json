@@ -23,5 +23,16 @@
     "bench/message-search-quality/tsconfig.json": "f48c0b3c2dc08ce4224db334c607dcdc5eb6f37dadff40e1b564bf6a45af81ce",
     "docs/dev/combined-search-evaluation.md": "3d96ea28070a5aab209c4e9aa30b4a6fdbe7a83fa29cbb51db52494a41666587",
     "docs/dev/combined-search-model-research.md": "3356aea3c08c66dc565269bf32910367e4f4690cb9044f29104412ed383aea9a"
+  },
+  "namespaceNormalization": {
+    "namespace": "@wirecat",
+    "files": {
+      "performance/search/message-search/crossencoder.ts": "a7d9b3475227bcaaba9f583c32915dde2aba4c60fcd0b5cff40b15f63f1e66a8",
+      "performance/search/model-free/results/production-100k-launch.json": "0b4a1152a8c6d8035ccaed3f8905a96b92e6f4fbf5ddc29e3ade4ee1604d0b48",
+      "performance/search/model-free/results/production-10k-launch.json": "c78bc9073a3a2b245fe5fe6efc8d0aee8c702f4c76e1fc4e7d56824a01af3d87",
+      "performance/search/model-free/results/production-fresh-launch.json": "bcecf768d246cad86dddfc16905796bfdf45db9a3cf18cad3786b366c32c4a06",
+      "performance/search/model-free/results/production-original-launch.json": "4ab51702c02ace1be4fe9bef62e230324b0a71f8273cb07d0f41eb4877b2ff71",
+      "performance/search/run.py": "4e4ff3c84ac063d59126fb7caaf48523cd54aafd29e084fa3ccc19b388d97973"
+    }
   }
 }
