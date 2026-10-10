@@ -69,3 +69,12 @@ and publishes that artifact without a second installation, test suite, or build.
 and OS checks still verify their own environments. Offline contract plans add roughly 2.2 seconds
 for MAX, 3.0 seconds for Telegram, and 0.7 seconds for Zoom locally, only in full validation.
 See [the artifact handoff](RELEASES.md).
+
+## Stateful upgrade and leak checks
+
+The 2026-10-11 local runs used rebuilt CLIs and pinned published baselines, while other work was
+running on the same machine. Additional upgrade/legacy probes took about 21 seconds for MAX,
+30 seconds for Telegram, and 6 seconds for Zoom. Allow about 15–40 seconds for MAX/Telegram and
+5–15 seconds for Zoom on CI, with extra cold download time for the old package aliases. The
+selected-fixture no-leak scan itself is usually below one second. These are only full-validation
+costs; local commit/push hooks and ordinary PR checks do not run the new suites.

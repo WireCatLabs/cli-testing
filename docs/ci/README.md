@@ -39,3 +39,6 @@ Those remain owner-started operations under the [security runbook](../security/R
 
 This rollout takes effect after the corresponding project PR merges. Scheduled workflows run on
 the default branch; adding a schedule to a PR does not activate it.
+
+Stateful preservation, retired-schema rejection and leak-check scope are documented in
+[upgrade checks](UPGRADES.md).

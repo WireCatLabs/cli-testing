@@ -4,6 +4,16 @@ import { tmpdir } from "node:os"
 import { dirname, join, resolve } from "node:path"
 import { Client } from "@modelcontextprotocol/sdk/client/index.js"
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
+import {
+  assertJson,
+  type ContractFile,
+  type ContractFileCheck,
+  checkContractFiles,
+  jsonAt,
+  seedContractFiles,
+  substitute,
+} from "./contract-state.js"
+import { findLeaks, scanLeaks } from "./leaks.js"
 
 export interface ContractCase {
   id: string
@@ -14,12 +24,23 @@ export interface ContractCase {
   errorCode?: string
   contains?: string
   snapshot?: string
+  entry?: string
+  previous?: boolean
+  json?: unknown
+  capture?: Record<string, string>
+  files?: ContractFileCheck[]
+  allowSensitiveOutput?: boolean
+  diagnostic?: string
 }
 export interface ContractPlan {
   command: string
   args?: string[]
   cases: ContractCase[]
   mcp?: { args: string[]; snapshot: string }
+  fixtures?: ContractFile[]
+  previous?: { entry: string; version: string }
+  canaries?: string[]
+  artifacts?: string[]
 }
 export interface ContractProcess {
   command: string
@@ -187,6 +208,9 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
     env[`${app}_NO_UPDATE_CHECK`] = "1"
   }
   const invocation: ContractProcess = { command: plan.command, args: plan.args ?? [], cwd: root, env, timeout }
+  const values = new Map<string, string | number>([["root", root]])
+  if (plan.previous) values.set("previousEntry", plan.previous.entry)
+  let seeded = new Map<string, string>()
   const results: { id: string; passed: boolean; failure?: string }[] = []
   const check = async (id: string, action: () => unknown | Promise<unknown>) => {
     try {
@@ -194,25 +218,69 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
       if (existsSync(marker)) throw new Error("command attempted network, keyring or child-process access")
       results.push({ id, passed: true })
     } catch (error) {
-      results.push({ id, passed: false, failure: error instanceof Error ? error.message : String(error) })
+      const message = error instanceof Error ? error.message : String(error)
+      results.push({
+        id,
+        passed: false,
+        failure: findLeaks(message, plan.canaries).length ? "contract failed; sensitive detail withheld" : message,
+      })
     }
   }
   try {
+    if (plan.previous)
+      await check("previous-version", () => {
+        const previous = plan.previous as NonNullable<ContractPlan["previous"]>
+        if (!/^\d+\.\d+\.\d+$/.test(previous.version)) throw new Error("previous version must be exact")
+        const version = (deps.run ?? runContractProcess)({ ...invocation, args: [previous.entry, "--version"] })
+        if (version.exit !== 0 || version.stderr !== "" || version.stdout.trim() !== previous.version)
+          throw new Error("previous executable does not match its pinned version")
+      })
+    seeded = seedContractFiles(root, plan.fixtures ?? [], values)
     for (const item of plan.cases)
       await check(item.id, () => {
-        const result = (deps.run ?? runContractProcess)({ ...invocation, args: [...invocation.args, ...item.args] })
+        if (item.previous && !plan.previous) throw new Error("previous build is not configured")
+        const entry = item.entry ?? (item.previous ? plan.previous?.entry : undefined)
+        const result = (deps.run ?? runContractProcess)({
+          ...invocation,
+          args: [...(entry ? [entry] : invocation.args), ...item.args].map((arg) => substitute(arg, values)),
+        })
+        if (
+          findLeaks(result.stderr, plan.canaries).length ||
+          findLeaks(result.stdout, item.allowSensitiveOutput ? [] : plan.canaries).length
+        )
+          throw new Error("sensitive data detected in command output")
         if (result.exit !== item.exit) throw new Error(`expected exit ${item.exit}, received ${result.exit}`)
         const other = item.stream === "stdout" ? result.stderr : result.stdout
-        if (other !== "") throw new Error(`unexpected output on ${item.stream === "stdout" ? "stderr" : "stdout"}`)
+        const expectedOther = item.stream === "stdout" ? (item.diagnostic ?? "") : ""
+        if (other.replaceAll("\r\n", "\n") !== expectedOther)
+          throw new Error(`unexpected output on ${item.stream === "stdout" ? "stderr" : "stdout"}`)
         const output = result[item.stream].replaceAll("\r\n", "\n")
         if (item.kind === "json") {
-          const value: unknown = JSON.parse(output)
+          let value: unknown
+          try {
+            value = JSON.parse(output)
+          } catch {
+            throw new Error("machine output must contain exactly one JSON value")
+          }
           if (!value || typeof value !== "object") throw new Error("machine output must be a JSON object or array")
           if (item.errorCode && (value as { error?: { code?: unknown } }).error?.code !== item.errorCode)
             throw new Error("unexpected structured error code")
+          if (item.json !== undefined) assertJson(value, item.json, values)
+          for (const [name, pointer] of Object.entries(item.capture ?? {})) {
+            if (values.has(name) || !/^[A-Za-z0-9_-]+$/.test(name)) throw new Error("invalid or repeated capture name")
+            const captured = jsonAt(value, pointer)
+            if (typeof captured !== "string" && typeof captured !== "number")
+              throw new Error("captured JSON field must be a string or number")
+            values.set(name, captured)
+          }
         }
         if (item.contains && !output.includes(item.contains)) throw new Error("expected output fragment missing")
         if (item.snapshot) snapshot(resolve(deps.path ?? ".", item.snapshot), output, deps.update === true)
+        checkContractFiles(root, item.files ?? [], seeded, values)
+      })
+    if (plan.artifacts?.length)
+      await check("no-leak-artifacts", () => {
+        if (!scanLeaks(root, plan.artifacts ?? [], plan.canaries).passed) throw new Error("sensitive data in artifacts")
       })
     if (plan.mcp)
       await check("mcp-schema", async () => {

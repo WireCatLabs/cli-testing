@@ -6,7 +6,7 @@ repositories. The shared runner is also exported as `runContracts` from `@wireca
 
 ## Toolkit distribution
 
-Repositories pin `@wirecat/cli-testing` 0.2.0 from npm as a development dependency, with
+Repositories pin `@wirecat/cli-testing` from npm as a development dependency, with
 its SHA512 integrity recorded in each CLI lockfile. Trusted publishing was verified by
 [release run 38092344081](https://github.com/WireCatLabs/cli-testing/actions/runs/38092344081),
 which published the exact validated artifact and created tag `v0.2.0`. Repository installs
@@ -89,3 +89,20 @@ they do not copy CLI stdout/stderr into public logs.
 Relative executable arguments and snapshot paths resolve from the plan directory.
 Add `contains` for a required output fragment, `errorCode` for a structured error, and `snapshot`
 to freeze text such as help. MCP is optional for command-line tools without a server.
+
+## Stateful plans
+
+`fixtures` seeds `{path, text}` files inside the fresh profile before cases. `json` checks object
+subsets with exact array lengths; `capture` maps names to JSON pointers such as `/items/0/id`.
+Use `{{name}}` in later arguments and expectations. Whole-value JSON placeholders preserve the
+captured string/number type; `{{root}}` identifies the fresh root. Missing/repeated names fail.
+Per-case `files` check reviewed text, JSON subsets, original fixture bytes (`unchanged: true`) or
+SHA256. Paths cannot escape the root or pass through symlinks.
+
+`previous: {entry, version}` pins a previous installed Node CLI entry; a case with `previous: true`
+uses that binary. `entry` can name a reviewed local synthetic fixture generator. Entry paths resolve
+relative to the plan, while fixture and artifact paths stay relative to the temporary root.
+`diagnostic` permits one exact reviewed stderr string on a stdout case; leak checks still apply.
+`canaries` names synthetic sensitive values and `artifacts` selects generated logs to scan.
+`allowSensitiveOutput: true` permits only canaries in requested stdout data; credential and phone
+patterns are still checked. See [upgrade checks](UPGRADES.md) for the concrete CLI coverage.

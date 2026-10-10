@@ -86,3 +86,20 @@ npm already has the version, it commits the next free one and publishes that.
 ## Licence
 
 [Apache License 2.0](LICENSE).
+
+## Stateful offline checks
+
+`cli-contract` plans can seed synthetic files, check JSON object subsets and exact array lengths,
+reuse returned IDs, and verify file contents or SHA256. A pinned previous executable can create
+state for the candidate binary to reopen. The CLI repositories supply their own plans and old
+package aliases; the runner never installs a package or connects to a messenger.
+
+```sh
+cli-testing security no-leak ./artifacts ./no-leak-policy.json
+```
+
+The policy names `paths` relative to the artifact root and optional synthetic `canaries`. Results
+contain rule identifiers, relative file locations and line numbers, without matching values.
+Missing files, symlinks, binary artifacts and exceeded limits fail the scan. Pattern matching
+cannot identify arbitrary unknown message text; canaries cover known synthetic sensitive values.
+See the [offline contracts guide](docs/ci/CONTRACTS.md) and [upgrade checks](docs/ci/UPGRADES.md).
