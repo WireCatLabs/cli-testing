@@ -9,7 +9,8 @@ then [MODELS.md](MODELS.md) for the plain-language model explanation, then
 This area is an offline research harness, outside the published `src/` suites. It uses synthetic
 messages and an explicitly selected cli-messaging **build**, including the experimental internal
 service. It never imports that project's TypeScript source, opens an existing message store or
-contacts a messenger. The public CLI/MCP search defaults are unchanged.
+contacts a messenger. The public CLI/MCP search defaults are unchanged. Explicit discovery is now released; the
+[released-package contract check](released/README.md) verifies both published CLI binaries offline.
 
 The [tool review](TOOL-RESEARCH.md) examines QMD, Meilisearch and Typesense. The
 [lightweight matrix](matrix/README.md) records 23 tested approaches, fresh held-out results and
@@ -37,7 +38,7 @@ preserved and missing-fact partial hits explicitly retained.
 ## Run against the prototype
 
 The selected cli-messaging checkout must contain the combined-search prototype from
-[draft PR 803](https://github.com/leemour/cli-messaging/pull/803), installed dependencies and a fresh
+[merged PR 803](https://github.com/WireCatLabs/cli-messaging/pull/803), installed dependencies and a fresh
 `pnpm build`. Build it in its own checkout, then run these commands from the cli-testing root:
 
 ```sh
