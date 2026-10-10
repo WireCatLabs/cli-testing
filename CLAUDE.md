@@ -43,9 +43,17 @@ find the PID, confirm it is yours, kill that PID.
 Conventional commits. Before committing:
 
 ```sh
-pnpm lint && pnpm typecheck && pnpm test:coverage && pnpm docs:check
+pnpm standards:check && pnpm lint
 ```
 
 A branch off `main`, in a worktree, and a pull request. A change a caller can see gets a line under
 `## Unreleased` in [`CHANGELOG.md`](CHANGELOG.md). `bin/release` on `main` publishes —
 [README](README.md#releasing).
+
+## Development check budget
+
+Keep commit and push hooks fast. Ordinary development and PRs use standards
+verification, lint, Markdown, and secret detection. Full typechecking, tests,
+coverage, builds, parity, browser and platform suites run for releases or an
+explicit manual validation. See the
+[shared policy](https://github.com/WireCatLabs/community/blob/main/standards/README.md#ci-and-hooks).
