@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs"
+import { existsSync, readFileSync, realpathSync } from "node:fs"
 import { dirname, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import { type ContractPlan, runContracts } from "./contracts.js"
@@ -20,7 +20,11 @@ export const contractMain = async (args = process.argv.slice(2)) => {
   return report.passed ? 0 : 1
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (
+  process.argv[1] &&
+  existsSync(process.argv[1]) &&
+  realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)
+) {
   try {
     process.exitCode = await contractMain()
   } catch {
