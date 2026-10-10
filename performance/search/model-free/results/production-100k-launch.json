@@ -3,7 +3,7 @@
   "runner": "production",
   "coreScope": "@wirecat",
   "packageAliases": {
-    "@leemour/cli-messaging-onnx": "@wirecat/cli-messaging-onnx"
+    "@wirecat/cli-messaging-onnx": "@wirecat/cli-messaging-onnx"
   },
   "command": [
     "node",

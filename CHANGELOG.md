@@ -6,6 +6,12 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## 0.2.1 — 11.10.2026
+
+### Changed
+
+- Package references, documentation and fixtures use the WireCat namespace throughout.
+
 ## 0.2.0 — 11.10.2026
 
 ### Security
