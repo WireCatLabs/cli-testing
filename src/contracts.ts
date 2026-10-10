@@ -135,10 +135,13 @@ const load = Module._load;
 Module._load = function(name, ...args) { if (name.includes('keyring') || name === 'keytar') return deny(); return load.call(this, name, ...args); };
 for (const name of ['node:http', 'node:https']) { const transport = require(name); transport.request = transport.get = deny; }
 const net = require('node:net'); net.connect = net.createConnection = net.Socket.prototype.connect = deny;
+net.Server.prototype.listen = deny;
 require('node:tls').connect = deny;
 require('node:http2').connect = deny;
 const dns = require('node:dns'); dns.lookup = dns.resolve = deny;
-const dgram = require('node:dgram'); dgram.Socket.prototype.send = deny;
+for (const transport of [dns, dns.promises]) for (const key of Object.keys(transport)) if (key.startsWith('resolve') || key.startsWith('lookup')) transport[key] = deny;
+const dgram = require('node:dgram'); dgram.Socket.prototype.send = dgram.Socket.prototype.bind = deny;
+require('node:worker_threads').Worker = deny;
 const child = require('node:child_process'); child.spawn = child.exec = child.execFile = child.spawnSync = child.execSync = child.execFileSync = deny;
 Module.syncBuiltinESMExports();
 `
