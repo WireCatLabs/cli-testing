@@ -29,5 +29,9 @@ For a workflow check without publishing or tagging:
 gh workflow run release.yml --ref <review-branch> -f dry_run=true
 ```
 
+The separate dry-run job has no npm environment or OIDC permission. It uses `--force` only
+with literal `--dry-run`, allowing inspection of a version already present on npm. Real publication
+keeps its strict version check and never uses `--force`.
+
 Only that explicitly selected release validation runs; this command does not start a monthly
 validation round. A successful dry run verifies the artifact handoff and npm's package checks.
