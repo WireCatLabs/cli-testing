@@ -21,6 +21,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  validation:
+    if: github.ref == 'refs/heads/main' || inputs.dry_run
+    permissions:
+      contents: read
+    uses: ./.github/workflows/ci.yml
+
   checks:
     if: github.ref == 'refs/heads/main' || inputs.dry_run
     permissions:
@@ -32,7 +38,7 @@ jobs:
       languages: '["actions","javascript-typescript","python"]'
 
   build:
-    needs: checks
+    needs: [checks, validation]
     if: github.ref == 'refs/heads/main' || inputs.dry_run
     runs-on: ubuntu-latest
     permissions:

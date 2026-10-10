@@ -35,7 +35,7 @@
     "typecheck": "tsc --build --force --emitDeclarationOnly && tsc -p tsconfig.test.json && tsc -p tsconfig.scripts.json",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "docs:check": "cli-dev docs-check --rules scripts/docs-rules.ts && cspell --no-progress --no-summary README.md && rumdl check --config config/wirecat/rumdl.toml README.md CHANGELOG.md CLAUDE.md docs/dev/*.md docs/security/*.md",
+    "docs:check": "cli-dev docs-check --rules scripts/docs-rules.ts && cspell --no-progress --no-summary README.md && rumdl check --config config/wirecat/rumdl.toml README.md CHANGELOG.md CLAUDE.md docs/dev/*.md docs/security/*.md docs/ci/*.md",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -46,7 +46,8 @@
     "prepublishOnly": "pnpm build",
     "standards:check": "node config/wirecat/check.mjs",
     "docs:lint": "markdownlint-cli2",
-    "docs:spell": "cspell lint --config cspell.json --no-progress README.md"
+    "docs:spell": "cspell lint --config cspell.json --no-progress README.md",
+    "ci:quick": "pnpm typecheck"
   },
   "publishConfig": {
     "access": "public"
