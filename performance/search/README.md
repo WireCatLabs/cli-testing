@@ -19,6 +19,10 @@ The [robustness validation](validation/README.md) challenges negation, condition
 reply context. It shows why the first feature model is not ready for production and distinguishes
 cheap ranking from reliable answer-availability decisions.
 
+The [model-free path](model-free/README.md) now tests actual questions end to end without manual
+keyword anchors: bounded lexical planning, stemmed BM25 and eligible reply context. It records
+ranking failures, full-process RAM and the storage work needed before production integration.
+
 ## Layout
 
 | Path | Purpose |

@@ -26,6 +26,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   `--previous`; legacy scanner runs are read without edits. Transcript redactions support file snapshots.
 
 
+- A model-free search prototype that retrieves from actual questions, ranks with stemmed BM25
+  and adds eligible reply context. Synthetic results include paraphrase failures, strict-search
+  checks, latency and full-process memory; public search defaults remain unchanged.
 - Search robustness validation with frozen weights, calibration/holdout topics, eligible reply
   context, negation/conditional-approval cases and separate answer/evidence judgments.
 - A search comparison matrix with 23 ranking variants, a fresh synthetic holdout, QMD/Meilisearch/

@@ -98,7 +98,7 @@ controls justify that further work. Do not silently drop multilingual support to
 The 180 lexical configurations varied fusion constants, depth, coverage/proximity/phrase signals
 and chat caps. They produced identical dev top-ten quality. That is evidence against those tested
 signals and combinations, not proof that BM25, sparse features or learned feature ranking cannot
-help. We have not run the latter experiments.
+help. The subsequent matrix tested BM25, sparse features and learned feature ranking.
 
 The e5 experiment tested cosine similarity as the final reranker and failed dev quality. It did
 not establish a need for larger universal embeddings. The joint multilingual reranker showed
@@ -130,3 +130,9 @@ results, cold/warm latency, peak RAM and complete asset bytes. A small download 
 measurement. Resource limits should be explicit experiment constraints, with current quality gates
 retained rather than quietly weakened. The initial size inspection downloaded no weights. The subsequent [comparison matrix](matrix/README.md)
 explicitly prepared the two small models, compared all six categories and recorded CPU/RAM results.
+
+The [model-free path](model-free/README.md) tests the complete question-to-results pipeline without
+manual retrieval anchors. Eligible context lifts actual-answer Success@10 from 78.6% to 92.9% on
+its 56 answerable topic-holdout questions, with no neural weights. Four English paraphrases still
+rank poorly, conflict evidence is missed, and the full-memory snapshot needs a storage-backed
+replacement. This is synthetic prototype evidence, not qualification for a public default.

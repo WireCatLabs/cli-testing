@@ -143,3 +143,8 @@ The [report](results/report.json) retains category/language breakdowns, raw ids,
 score floors and decision failures. Candidate pools, worker scores, context inputs, launch metadata
 and source/model hashes are retained alongside it. Tests check hard eligibility, reply recovery,
 unresolved evidence labels and hash consistency. Historical matrices and weights were preserved.
+
+The next [model-free experiment](../model-free/README.md) removes manual keyword anchors from
+headline question retrieval, adds bounded question planning and measures the complete lexical/
+context path. It preserves paraphrase failures and distinguishes small scoring cost from the
+prototype's full-archive memory footprint.

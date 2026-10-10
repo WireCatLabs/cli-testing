@@ -9,10 +9,18 @@ import subprocess
 import sys
 import tempfile
 
+runners = {
+    "run": ("message-search", "run"), "combined": ("message-search", "combined"),
+    "semantic": ("message-search", "semantic"), "resources": ("message-search", "resources"),
+    "typecheck": ("message-search", "typecheck"), "candidates": ("matrix", "export"),
+    "matrix-typecheck": ("matrix", "typecheck"), "validation-candidates": ("validation", "export"),
+    "validation-typecheck": ("validation", "typecheck"), "path": ("model-free", "run"),
+    "path-typecheck": ("model-free", "typecheck"), "path-tests": ("model-free", "tests"),
+}
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--messaging-root", required=True, type=Path,
                     help="cli-messaging checkout with dist/ and installed dependencies")
-parser.add_argument("runner", choices=["run", "combined", "semantic", "resources", "typecheck", "candidates", "matrix-typecheck", "validation-candidates", "validation-typecheck"])
+parser.add_argument("runner", choices=runners)
 args, forwarded = parser.parse_known_args()
 root = args.messaging_root.resolve()
 for path in [root / "dist/services/messages.js", root / "dist/services/messages-combined.js",
@@ -24,19 +32,17 @@ if args.runner.endswith("typecheck") and forwarded:
 area = Path(__file__).resolve().parent
 stage = Path(tempfile.mkdtemp(prefix="cli-testing-search-"))
 (stage / "package.json").write_text(json.dumps({"type": "module"}) + "\n")
-harness = stage / "bench/message-search-quality"
-shutil.copytree(area / "message-search", harness)
-if (area / "matrix").exists():
-    shutil.copytree(area / "matrix", stage / "bench/matrix")
-if (area / "validation").exists():
-    shutil.copytree(area / "validation", stage / "bench/validation")
+folder, selected_script = runners[args.runner]
+stage_folder = "message-search-quality" if folder == "message-search" else folder
+selected_harness = stage / "bench" / stage_folder
+ignored = shutil.ignore_patterns("results", "__pycache__", "*-dev.json", "baseline.json", "augmented-baseline.json", "resources.json")
+shutil.copytree(area / folder, selected_harness, ignore=ignored)
+if folder == "matrix":
+    shutil.copytree(area / "message-search", stage / "bench/message-search-quality", ignore=ignored)
 (stage / "dist").symlink_to(root / "dist", target_is_directory=True)
 (stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
-selected_harness = (stage / "bench/validation" if args.runner.startswith("validation-")
-                    else stage / "bench/matrix" if args.runner in ["candidates", "matrix-typecheck"] else harness)
-selected_script = "export" if args.runner.endswith("candidates") else args.runner
 command = (["pnpm", "exec", "tsc", "-p", str(selected_harness / "tsconfig.json")]
-           if args.runner.endswith("typecheck")
+           if selected_script == "typecheck"
            else ["node", str(selected_harness / f"{selected_script}.ts"), *forwarded])
 metadata = {"messagingRoot": str(root), "runner": args.runner,
             "command": command, "node": subprocess.check_output(["node", "--version"], text=True).strip(),

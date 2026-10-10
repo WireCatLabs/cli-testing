@@ -57,7 +57,9 @@
         "performance/search/matrix/fresh.json",
         "performance/search/matrix/models/**",
         "performance/search/validation/results/**",
-        "performance/search/validation/fixture.json"
+        "performance/search/validation/fixture.json",
+        "performance/search/model-free/results/**",
+        "performance/search/model-free/fixture.json"
       ],
       "formatter": {
         "enabled": false
