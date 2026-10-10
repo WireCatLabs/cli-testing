@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   ci:
-    uses: WireCatLabs/cli-core/.github/workflows/node-ci.yml@7624c5c51d1b16a95b68c3a7c4d09e90ec1c37bb
+    uses: WireCatLabs/cli-core/.github/workflows/node-ci.yml@4c78a803c460317fd40a38be6d1fb53278087741
     with:
       pack: ${{ inputs.pack || false }}
       checks: |

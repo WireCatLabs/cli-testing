@@ -64,5 +64,8 @@ The first successful updated PR jobs, including `ci:quick`, took 18 s for core, 
 22 s for MAX, 29 s for Telegram, and 20 s for Zoom. Community took 14 s.
 These are job durations, excluding queue time and independently posted third-party checks.
 
-Some release checks currently repeat between full validation and the original release build.
-Keep that duplication visible when measuring; reducing it is a separate change.
+Release validation now packs its checked Linux build once. The handoff verifies its SHA-256
+and publishes that artifact without a second installation, test suite, or build. Separate Bun
+and OS checks still verify their own environments. Offline contract plans add roughly 2.2 seconds
+for MAX, 3.0 seconds for Telegram, and 0.7 seconds for Zoom locally, only in full validation.
+See [the artifact handoff](RELEASES.md).
