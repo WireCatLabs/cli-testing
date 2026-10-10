@@ -63,9 +63,9 @@ log-chart messages; it does not add 100,000 independently labeled realistic conv
 
 | Stored messages | Question p50 / p95 | First query after open | Repeated export p50 / p95 | RSS after open | Query process peak RSS |
 |---|---|---|---|---|---|
-| 341 | 3.2 / 6.8 ms | 28.4 ms | 4.4 / 8.3 ms | 99.1 MB | 120.7 MB |
-| 10,341 | 5.8 / 10.6 ms | 29.9 ms | 8.9 / 10.0 ms | 99.2 MB | 124.2 MB |
-| 100,341 | 48.5 / 98.7 ms | 143.6 ms | 70.2 / 108.3 ms | 99.1 MB | 125.2 MB |
+| 341 | 4.9 / 8.2 ms | 45.6 ms | 7.6 / 15.9 ms | 97.3 MB | 119.6 MB |
+| 10,341 | 9.0 / 22.6 ms | 87.7 ms | 20.4 / 24.4 ms | 99.4 MB | 122.6 MB |
+| 100,341 | 53.9 / 107.6 ms | 382.5 ms | 92.1 / 107.3 ms | 98.8 MB | 124.5 MB |
 
 Timings include planning, indexed retrieval, bounded reply/eligibility lookup and cheap scoring.
 The repeat probe is unscoped and runs ten times; the p50/p95 column covers all 24 fresh questions.
@@ -107,7 +107,7 @@ and fixture hash under its temporary directory; it never chooses the owner's sto
 The recorded query runs reuse those already generated synthetic stores with the final build;
 ingestion timings from older builds are not mixed into their query resource fields.
 
-[Initial frozen results](results/fresh-initial.json), [their source snapshot](results/fresh-initial-source/search.ts),
+[Initial frozen results](results/fresh-initial.json), [their source snapshot](results/fresh-initial-source/search.ts.txt),
 [partial prototype results](results/fresh-discovery.json), [built fresh results](results/production-fresh.json),
 [10k background](results/production-10k.json), [100k background](results/production-100k.json) and
 [older-template control](results/production-original.json) retain failures and raw result ids.

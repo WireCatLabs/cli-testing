@@ -7,7 +7,7 @@
   },
   "command": [
     "node",
-    "/tmp/cli-testing-search-sje3tn9i/bench/model-free/production.ts",
+    "/tmp/cli-testing-search-_2itid46/bench/model-free/production.ts",
     "--background",
     "100000",
     "--query-store",
@@ -15,6 +15,6 @@
   ],
   "node": "v24.19.0",
   "messagingPackage": "0.215.0",
-  "messagingCommit": "878a4afad80172c350eda378b2a9ca8d63404349",
-  "testingCommit": "c9931e41f0e76a6748a7039986fcebccaa1fdcca"
+  "messagingCommit": "95d9c2d9a2b15919ddb9af2aeaf48ff7780d6420",
+  "testingCommit": "74f913996b1de2598b0296ca8d182e7689cbd3f6"
 }
