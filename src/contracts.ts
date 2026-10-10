@@ -118,12 +118,15 @@ export const contractToolSnapshot = (tools: unknown[]): string => {
   return `${JSON.stringify(canonical(contracts), null, 2)}\n`
 }
 
-const snapshot = (path: string, actual: string, update: boolean) => {
+const snapshot = (path: string, actual: string, update: boolean, json = false) => {
   if (update) {
     mkdirSync(dirname(path), { recursive: true })
     writeFileSync(path, actual)
-  } else if (readFileSync(path, "utf8").replaceAll("\r\n", "\n") !== actual)
-    throw new Error("contract snapshot changed; review the diff before updating it")
+  } else {
+    const expected = readFileSync(path, "utf8").replaceAll("\r\n", "\n")
+    const normalized = json ? `${JSON.stringify(canonical(JSON.parse(expected)), null, 2)}\n` : expected
+    if (normalized !== actual) throw new Error("contract snapshot changed; review the diff before updating it")
+  }
 }
 
 const GUARD = `const fs = require('node:fs');
@@ -217,7 +220,12 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
           ...invocation,
           args: [...invocation.args, ...(plan.mcp?.args ?? [])],
         })
-        snapshot(resolve(deps.path ?? ".", plan.mcp?.snapshot ?? ""), contractToolSnapshot(tools), deps.update === true)
+        snapshot(
+          resolve(deps.path ?? ".", plan.mcp?.snapshot ?? ""),
+          contractToolSnapshot(tools),
+          deps.update === true,
+          true,
+        )
       })
     return { passed: results.every((item) => item.passed), results }
   } finally {
