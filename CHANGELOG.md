@@ -12,7 +12,6 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 - Fast secret checks remain on PRs; source, production dependency and workflow security checks run before publication. Automatic Socket checks are disabled.
 
-
 ### Added
 
 - On-demand offline search verification for exact published Telegram and MAX packages, with
