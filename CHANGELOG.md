@@ -6,13 +6,16 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
-## Unreleased
+## 0.2.0 — 11.10.2026
 
 ### Security
 
 - Fast secret checks remain on PRs; source, production dependency and workflow security checks run before publication. Automatic Socket checks are disabled.
 
 ### Added
+
+- Offline CLI contracts check JSON output, structured errors, exit codes, help, and MCP schemas
+  against reviewed snapshots. The `cli-contract` executable uses isolated synthetic profiles.
 
 - On-demand offline search verification for exact published Telegram and MAX packages, with
   isolated synthetic stores, network guards and shape-only reports.

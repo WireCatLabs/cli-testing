@@ -6,6 +6,8 @@ Published as `@wirecat/cli-testing`, a development dependency of max-cli and tg-
 |---|---|
 | [`src/index.ts`](../../src/index.ts) | suite groups and the public runner/comparison APIs |
 | [`src/main.ts`](../../src/main.ts) | command parsing and stdout/stderr routing |
+| [`src/contracts.ts`](../../src/contracts.ts) | offline process contracts and MCP schema snapshots |
+| [`src/contract-main.ts`](../../src/contract-main.ts) | the `cli-contract` executable |
 | [`src/runner.ts`](../../src/runner.ts) | pinned scanner stages and the explicitly live agent plan |
 | [`src/runs.ts`](../../src/runs.ts) | private run layout, immutable stage records and legacy reads |
 | [`src/observations.ts`](../../src/observations.ts) | scanner candidates reduced to stable identifiers |

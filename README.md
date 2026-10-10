@@ -70,6 +70,13 @@ in [`RUNBOOK.md`](docs/security/RUNBOOK.md), the agent injection test in
 checks across WireCat projects. See the [timing table](docs/ci/TIMINGS.md) for approximate costs
 and the [monthly runbook](docs/ci/MONTHLY.md) for schedules and failure handling.
 
+## Offline contracts
+
+`cli-contract <plan.json>` checks a built Node CLI's JSON output, structured errors, exit codes,
+help, and MCP tool schemas using isolated synthetic profiles. Reviewed plans and snapshots live
+with the CLI. See the [contract guide](docs/ci/CONTRACTS.md) for isolation, snapshot review, and
+which command paths the initial plans cover. No messenger tools are called.
+
 ## Releasing
 
 `bin/release` on a clean `main` publishes the version in `package.json` through GitHub Actions and

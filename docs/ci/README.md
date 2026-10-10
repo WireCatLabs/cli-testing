@@ -33,6 +33,8 @@ Those remain owner-started operations under the [security runbook](../security/R
 
 - [Timings by package and check](TIMINGS.md)
 - [Monthly schedule, manual runs, and failure handling](MONTHLY.md)
+- [Offline CLI output and MCP contracts](CONTRACTS.md)
+- [Release artifacts and checks that run once](RELEASES.md)
 - [Package test isolation and coverage](../dev/TESTING.md)
 
 This rollout takes effect after the corresponding project PR merges. Scheduled workflows run on
