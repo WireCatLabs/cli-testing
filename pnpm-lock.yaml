@@ -17,15 +17,15 @@ importers:
       '@cspell/dict-ru_ru':
         specifier: ^2.3.2
         version: 2.3.2
-      '@leemour/cli-core':
-        specifier: 0.17.0
-        version: 0.17.0(commander@15.0.0)(typescript@7.0.2)
       '@types/node':
         specifier: ^22.20.5
         version: 22.20.5
       '@vitest/coverage-v8':
         specifier: ^5.0.3
         version: 5.0.3(vitest@5.0.3)
+      '@wirecat/cli-core':
+        specifier: 0.19.0
+        version: 0.19.0(commander@15.0.0)(typescript@7.0.2)
       cspell:
         specifier: ^10.3.6
         version: 10.3.6
@@ -375,16 +375,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@leemour/cli-core@0.17.0':
-    resolution: {integrity: sha512-Z17n7CdNu9dGs4yV0Uvnve30nJ6lAUB2Vd2SlR5SgOIbaTss38Xa43BM9nsoPccSMy7bhPOrp/alItoUdCOCxQ==}
-    engines: {node: '>=22'}
-    hasBin: true
-    peerDependencies:
-      commander: '>=15'
-    peerDependenciesMeta:
-      commander:
-        optional: true
 
   '@napi-rs/keyring-darwin-arm64@2.1.0':
     resolution: {integrity: sha512-j6ATTOhmPW+N5EKwi8Yzn6P4Bz/uqnxzyYvqOL73/dgzDSYG5pS5eprqpVmOLse68WUTf79ZMqz97HnfvirJ9g==}
@@ -780,6 +770,16 @@ packages:
 
   '@vitest/spy@5.0.3':
     resolution: {integrity: sha512-XhFysQTB8AZ+P4gMi+Lpo99vg2AZi0qKpaB9yXQl37+CaMEAPO3iH/wGVnSyL5MPERiLezpqTVtrR6UZH5GCXg==}
+
+  '@wirecat/cli-core@0.19.0':
+    resolution: {integrity: sha512-pGtphpeXqS87eRu20CJoB28MRwKdqKuHQe7ORuyiFo+BgA/IZ1KMPfP4VYXye3/kSAWksDLojOLvfyeslhk4wA==}
+    engines: {node: '>=22'}
+    hasBin: true
+    peerDependencies:
+      commander: '>=15'
+    peerDependenciesMeta:
+      commander:
+        optional: true
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1629,20 +1629,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@leemour/cli-core@0.17.0(commander@15.0.0)(typescript@7.0.2)':
-    dependencies:
-      cli-table3: 0.6.5
-      cross-spawn: 7.0.6
-      env-paths: 4.0.0
-      picocolors: 1.1.1
-      pino: 10.4.0
-      valibot: 1.5.0(typescript@7.0.2)
-    optionalDependencies:
-      '@napi-rs/keyring': 2.1.0
-      commander: 15.0.0
-    transitivePeerDependencies:
-      - typescript
-
   '@napi-rs/keyring-darwin-arm64@2.1.0':
     optional: true
 
@@ -1868,6 +1854,20 @@ snapshots:
       vite: 8.3.2(@types/node@22.20.5)(yaml@2.9.1)
 
   '@vitest/spy@5.0.3': {}
+
+  '@wirecat/cli-core@0.19.0(commander@15.0.0)(typescript@7.0.2)':
+    dependencies:
+      cli-table3: 0.6.5
+      cross-spawn: 7.0.6
+      env-paths: 4.0.0
+      picocolors: 1.1.1
+      pino: 10.4.0
+      valibot: 1.5.0(typescript@7.0.2)
+    optionalDependencies:
+      '@napi-rs/keyring': 2.1.0
+      commander: 15.0.0
+    transitivePeerDependencies:
+      - typescript
 
   ansi-regex@5.0.1: {}
 
