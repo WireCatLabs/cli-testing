@@ -6,7 +6,7 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
-## Unreleased
+## 0.1.0 — 10.10.2026
 
 ### Fixed
 
@@ -28,3 +28,7 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
 - **The security audit, written down to repeat** — `docs/security/` (method, runbook, agent test,
   reviewer prompts, lessons) and the scripts it uses: `scripts/security/scan`,
   `scripts/security/socket`, `scripts/agent/run-agent`, `scripts/agent/run-payload`.
+
+### Changed — may break callers
+
+- **The project is now licensed under Apache License 2.0.** See `LICENSE` for the terms.
