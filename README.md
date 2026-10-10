@@ -64,6 +64,12 @@ How an audit is run and repeated: [`docs/security/METHOD.md`](docs/security/METH
 in [`RUNBOOK.md`](docs/security/RUNBOOK.md), the agent injection test in
 [`AGENT-TEST.md`](docs/security/AGENT-TEST.md). Results stay private.
 
+## CI and check budgets
+
+[The CI guide](docs/ci/README.md) describes local hooks, PR checks, release validation, and monthly
+checks across WireCat projects. See the [timing table](docs/ci/TIMINGS.md) for approximate costs
+and the [monthly runbook](docs/ci/MONTHLY.md) for schedules and failure handling.
+
 ## Releasing
 
 `bin/release` on a clean `main` publishes the version in `package.json` through GitHub Actions and
