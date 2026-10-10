@@ -27,7 +27,7 @@ export const openCrossEncoder = async (directory: string) => {
   assert.equal(Object.keys(config.id2label).length, 1)
   const [{ Tokenizer }, ort] = await Promise.all([
     import("@huggingface/tokenizers"),
-    import("@leemour/cli-messaging-onnx"),
+    import("@wirecat/cli-messaging-onnx"),
   ])
   const tokenizer = new Tokenizer(
     JSON.parse(readFileSync(join(directory, "tokenizer.json"), "utf8")),
