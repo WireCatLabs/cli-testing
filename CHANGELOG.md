@@ -10,6 +10,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Fixed
 
+- When pinned Semgrep cannot parse a complete TypeScript file, scan its runtime JavaScript with pinned esbuild, retaining original errors, source maps and explicit type-syntax coverage limits. Compilation or missing runtime coverage fails the run.
+- The scanner helper requires Node 22.16 or newer.
 - **Agent fixtures support private dialogs with different addresses and message IDs per account.**
   Set the sender's dialog and enable per-account IDs in the private cast; each case needs a unique
   synthetic label to prove receipt and cleanup on the owner's side.

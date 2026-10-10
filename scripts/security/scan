@@ -4,6 +4,7 @@
 #   scripts/security/scan ~/Projects/AI/cli-private/security/runs/2026-11-01 ~/Projects/AI/max-cli ~/Projects/AI/tg-cli
 # Writes <run-dir>/SCOPE.md and <run-dir>/raw/<repo>/{osv,semgrep,zizmor,codeql}.json.
 set -euo pipefail
+here="$(cd "$(dirname "$0")" && pwd)"
 
 run="$1"; shift
 [ "$#" -gt 0 ] || { echo "usage: scan <run-dir> <checkout>..." >&2; exit 2; }
@@ -40,6 +41,7 @@ done
   echo "- osv-scanner $(osv-scanner --version | head -1 | awk '{print $3}')"
   echo "- semgrep $(semgrep --version)"
   echo "- $(zizmor --version)"
+  echo "- esbuild 0.25.12 (runtime parse fallback only)"
   echo
   echo "## GitHub settings"
   echo
@@ -74,13 +76,8 @@ for checkout in "$@"; do
   if [ -f pnpm-lock.yaml ]; then
     run_tool osv-scanner "0 1" "$out/osv.json" osv-scanner scan source -r --format json .
   fi
-  run_tool semgrep "0" "$out/semgrep.json" semgrep scan --metrics=off --quiet --json \
-    --config p/javascript --config p/typescript --config p/nodejs --config p/secrets \
-    --config p/github-actions .
-  if jq -e '[.errors[] | select(.type[0]? != "PartialParsing")] | length > 0' "$out/semgrep.json" > /dev/null; then
-    echo "$name: semgrep reported errors other than PartialParsing" >&2
-    exit 1
-  fi
+  run_tool semgrep "0" /dev/null node --experimental-strip-types "$here/semgrep.ts" \
+    "$work/$name" "$out/semgrep.json" "$run/supplement/$name"
   if [ -d .github ]; then
     run_tool zizmor "0 11 12 13 14" "$out/zizmor.json" zizmor --offline --format json .github
   fi
