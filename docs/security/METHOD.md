@@ -27,10 +27,11 @@ hosted scanner.
    tool can produce it, so two runs can be diffed.
 5. Do the manual review (section "Checklist"). Every item gets a verdict in `runs/<date>/REPORT.md`:
    safe, finding, or not applicable — each with the evidence that supports it.
-6. Before a candidate finding gets an id, run the Trail of Bits `fp-check` skill on it, through its
-   helper agents (its deep route requires them). Keep the plugin disabled between audits: its Stop
-   hook fires on every session in every project ([`LESSONS.md`](LESSONS.md)). A confirmed finding is
-   journaled, then added to the private register.
+6. Before a candidate finding gets an id, verify it against the current source and a bounded
+   synthetic regression. Record the evidence and limitations in the private report. Run scanners
+   separately; keep plugin hooks disabled during continuation work so a Stop hook cannot interrupt
+   the session ([`LESSONS.md`](LESSONS.md)). A confirmed finding is journaled, then added to the
+   private register.
 7. Compare with the previous run: new findings, findings fixed, findings that came back. The
    comparison is the last section of `REPORT.md`.
 
@@ -59,6 +60,11 @@ Command-line scanners, each pinned to a version recorded in `SCOPE.md`:
 - `semgrep` CE, pinned to a release at least two weeks old (1.178.0 on 2026-10-09; run 1 used
   1.180.0, which was too new) — rule packs `p/javascript`, `p/typescript`, `p/nodejs`, `p/secrets`,
   `p/github-actions`.
+  When its pinned TypeScript parser fails on a whole file, the runner scans that file’s runtime
+  JavaScript compiled with `esbuild@0.25.12` targeting ES2019. It maps findings back to source and
+  keeps the original report, emitted code and source maps under `supplement/`. Compilation, runtime
+  parsing or missing coverage fails the run. Type-only syntax remains outside this fallback;
+  partial parsing warnings remain visible.
 - `zizmor` — GitHub Actions workflows.
 - CodeQL — through GitHub default setup; alerts read with `gh api`.
 
