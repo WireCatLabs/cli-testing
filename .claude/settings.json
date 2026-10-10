@@ -2,8 +2,7 @@
   "crossSessionInbound": "accept",
   "permissions": {
     "additionalDirectories": [
-      "/home/leemour/Projects/AI/cli-messaging",
-      "/home/leemour/Projects/AI/cli-core"
+      "/home/leemour/Projects/AI"
     ],
     "allow": [
       "Bash(pnpm typecheck)",
@@ -55,10 +54,7 @@
     "enabled": true,
     "filesystem": {
       "allowWrite": [
-        "/home/leemour/Projects/AI/cli-core/**",
-        "/home/leemour/Projects/AI/cli-messaging/**",
-        "/home/leemour/Projects/AI/cli-testing/**",
-        "/home/leemour/Projects/AI/max-cli/docs_ai/.git/**",
+        "/home/leemour/Projects/AI/**",
         "/tmp/**",
         "/var/tmp/claude/**",
         "~/.cache/**",
