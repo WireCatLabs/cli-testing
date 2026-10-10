@@ -6,7 +6,16 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
-## Unreleased
+## 0.1.0 — 10.10.2026
+
+### Fixed
+
+- Development tools use `@wirecat/cli-core` 0.19.0.
+- When pinned Semgrep cannot parse a complete TypeScript file, scan its runtime JavaScript with pinned esbuild, retaining original errors, source maps and explicit type-syntax coverage limits. Compilation or missing runtime coverage fails the run.
+- The scanner helper requires Node 22.16 or newer.
+- **Agent fixtures support private dialogs with different addresses and message IDs per account.**
+  Set the sender's dialog and enable per-account IDs in the private cast; each case needs a unique
+  synthetic label to prove receipt and cleanup on the owner's side.
 
 ### Added
 
@@ -24,28 +33,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
 - Offline search research under `performance/search/`: synthetic fixtures and historical ranking
   evidence moved from cli-messaging, a launcher against an explicit build, and a detailed model
   guide. The published suite API is unchanged.
-
-## 0.1.0 — 10.10.2026
-
-### Fixed
-
-- When pinned Semgrep cannot parse a complete TypeScript file, scan its runtime JavaScript with pinned esbuild, retaining original errors, source maps and explicit type-syntax coverage limits. Compilation or missing runtime coverage fails the run.
-- The scanner helper requires Node 22.16 or newer.
-- **Agent fixtures support private dialogs with different addresses and message IDs per account.**
-  Set the sender's dialog and enable per-account IDs in the private cast; each case needs a unique
-  synthetic label to prove receipt and cleanup on the owner's side.
-
-### Added
-
 - **Security and agent commands create private run folders.** `security scan`, `security socket` and
   `agent` wrap the existing scripts, record pins and exit codes, and leave crashes incomplete. Agent
   runs require an explicit live flag, caller-owned configuration, and a passing blocked-write canary.
-
 - **Run comparison distinguishes new, fixed and returning scanner observations.** Carry history with
   `--previous`; legacy scanner runs are read without edits. Transcript redactions support file snapshots.
-
 - **The suite groups** — `SUITE_GROUPS`: security, contract, performance, ux, analyzers, live, seed.
-
 - **The security audit, written down to repeat** — `docs/security/` (method, runbook, agent test,
   reviewer prompts, lessons) and the scripts it uses: `scripts/security/scan`,
   `scripts/security/socket`, `scripts/agent/run-agent`, `scripts/agent/run-payload`.
