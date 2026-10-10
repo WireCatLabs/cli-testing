@@ -20,7 +20,9 @@ the private `cli-private` repository, never here.
 ## Phase 0 — release verification
 
 - **OPS-2 · P1** Verify the trusted publisher for `@wirecat/cli-testing` on npmjs.com (GitHub Actions,
-  `WireCatLabs/cli-testing`, `release.yml`, environment `npm`) — the owner's step on npm.
+  `WireCatLabs/cli-testing`, `release.yml`, environment `npm`, with direct `npm publish` allowed).
+  Release run `38092344081` passed validation but npm rejected publication. The contract rollout
+  temporarily pins the validated GitHub toolkit preview; npm 0.2.0 is still pending.
 
 ## Phase 1 — remaining security work
 
