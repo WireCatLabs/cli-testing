@@ -1,8 +1,8 @@
 # Approximate check timings
 
 These figures are planning ranges, not CI deadlines. Baseline CI and local hooks were measured
-on 2026-10-10. The revised total CI allowances and release durations are estimates until the updated
-workflows have run. Local CLI typechecks measured about 1–6 seconds each, with several
+on 2026-10-10. The CI ranges include headroom above the first successful updated runs;
+release durations remain estimates for the revised profile. Local CLI typechecks measured about 1–6 seconds each, with several
 projects checked concurrently; allow 5–30 seconds on CI runners. Queues, cold dependency downloads, registry propagation, and deployment can
 add time. Parallel jobs overlap; their durations should not be summed.
 
@@ -43,7 +43,7 @@ separately scheduled native probes. It omits npm publishing and site deployment.
 | Markdown lint | PR/main | About 1–3 s |
 | New-commit Gitleaks | PR/main | About 1–3 s including scanner download |
 | CLI typecheck | PR/main, full validation | Allow about 5–30 s depending on package |
-| Docs synthetic unit tests | PR/main, full validation | Previously about 8 s locally |
+| Docs synthetic unit tests | PR/main, full validation | About 2 s locally for the PR subset; 5 s in the first updated CI run |
 | Full unit tests and coverage | Release/monthly/manual | Seconds for small packages; 1–3 min for large packages |
 | Build, docs/contracts, parity, Bun smoke | Release/monthly/manual | Seconds to a few minutes |
 | OS/install matrices | Release/monthly/manual | Several minutes |
@@ -58,6 +58,11 @@ Scanner failures must be fixed rather than treated as a clean result.
 Previously measured complete fast jobs, before `ci:quick`, took 16 s for core, 37 s for docs,
 16 s for meetings, 28 s for memo, 19 s for messaging, 15 s for tasks, 22 s for testing,
 26 s for MAX, 22 s for Telegram, and 16 s for Zoom. Typical complete commit hooks took 0.3–1.5 s.
+
+The first successful updated PR jobs, including `ci:quick`, took 18 s for core, 34 s for docs,
+19 s for meetings, 27 s for memo, 29 s for messaging, 21 s for tasks, 17 s for testing,
+22 s for MAX, 29 s for Telegram, and 20 s for Zoom. Community took 14 s.
+These are job durations, excluding queue time and independently posted third-party checks.
 
 Some release checks currently repeat between full validation and the original release build.
 Keep that duplication visible when measuring; reducing it is a separate change.
