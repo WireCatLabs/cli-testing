@@ -1,10 +1,10 @@
 # Conventions
 
 What is shared with the sibling CLIs is written once, in max-cli's
-[`CONVENTIONS.md`](https://github.com/leemour/max-cli/blob/main/docs/dev/CONVENTIONS.md): Biome decides
+[`CONVENTIONS.md`](https://github.com/WireCatLabs/max-cli/blob/main/docs/dev/CONVENTIONS.md): Biome decides
 formatting, strict TypeScript with no `any`, comments only for *why*, the environment as arguments,
 documents that state current facts. Command and MCP names follow cli-messaging's
-[`STANDARD.md`](https://github.com/leemour/cli-messaging/blob/main/docs/dev/STANDARD.md). This page
+[`STANDARD.md`](https://github.com/WireCatLabs/cli-messaging/blob/main/docs/dev/STANDARD.md). This page
 adds only what differs.
 
 ## Code

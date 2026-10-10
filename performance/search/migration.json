@@ -1,5 +1,5 @@
 {
-  "sourceRepository": "https://github.com/leemour/cli-messaging",
+  "sourceRepository": "https://github.com/WireCatLabs/cli-messaging",
   "sourceCommit": "13d352ad5735042e716cfb62a85262bac296f374",
   "files": {
     "bench/message-search-quality/README.md": "46b81cedde484052fd06d46177f56085a27411bd632c36e2eb1c559da9b01072",

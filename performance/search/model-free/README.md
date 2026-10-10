@@ -124,7 +124,7 @@ and reply lookup and test archive scaling before changing any public search defa
 ## Reproduce
 
 Build the selected cli-messaging prototype from
-[draft PR 803](https://github.com/leemour/cli-messaging/pull/803), then run from cli-testing:
+[draft PR 803](https://github.com/WireCatLabs/cli-messaging/pull/803), then run from cli-testing:
 
 ```sh
 export SEARCH_MESSAGING_ROOT=/absolute/path/to/cli-messaging-checkout
