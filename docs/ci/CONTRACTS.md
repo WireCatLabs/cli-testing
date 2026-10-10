@@ -6,13 +6,16 @@ repositories. The shared runner is also exported as `runContracts` from `@wireca
 
 ## Toolkit distribution
 
-The first rollout pins the validated
+Repositories pin `@wirecat/cli-testing` 0.2.0 from npm as a development dependency, with
+its SHA512 integrity recorded in each CLI lockfile. Trusted publishing was verified by
+[release run 38092344081](https://github.com/WireCatLabs/cli-testing/actions/runs/38092344081),
+which published the exact validated artifact and created tag `v0.2.0`. Repository installs
+and contract checks do not require a local npm login.
+
+The initial rollout used the
 [0.2.0 toolkit preview](https://github.com/WireCatLabs/cli-testing/releases/tag/toolkit-v0.2.0)
-tarball as a development dependency, with its SHA512 integrity recorded in each CLI lockfile.
-It is the exact artifact checked by release run `38092344081`; npm publication failed after
-validation and remains pending the package trusted-publisher configuration. The GitHub preview
-tag does not imply that npm version 0.2.0 was published. Repository installs resolve the pinned
-asset normally; no local npm login is required to run the contract checks.
+while publisher configuration was pending. That preview remains available for provenance;
+its package integrity matches the npm release.
 
 ## Checks
 
