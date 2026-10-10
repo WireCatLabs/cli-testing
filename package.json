@@ -1,8 +1,8 @@
 {
   "name": "@wirecat/cli-testing",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Test suites for the WireCat CLIs, run against the built binary and its MCP server: security, contract, performance, UX, analyzers, live checks and seed data",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": "Viacheslav Ptsarev",
   "repository": {
     "type": "git",
