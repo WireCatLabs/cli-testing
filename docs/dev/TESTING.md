@@ -11,7 +11,7 @@ pnpm test:slow       # the slowest tests and files
 ```
 
 Full validation runs all but the last, plus a secret scan over the whole history, through cli-core's
-reusable [`node-ci.yml`](https://github.com/WireCatLabs/cli-core/blob/main/.github/workflows/node-ci.yml).
+reusable [`node-ci.yml`](https://github.com/WireCatLabs/cli-base/blob/main/.github/workflows/node-ci.yml).
 It runs before release, monthly, or manually. Ordinary PR/main CI runs lint, Markdown,
 config integrity, secrets, and typechecking. See the [CI guide](../ci/README.md) for the
 cross-project timing table and monthly runbook.
