@@ -7,11 +7,11 @@ part of the published `src/` suite or the ranking benchmark.
 ## Prepare a runtime
 
 Package installation is the network step. Choose exact versions deliberately; this example
-records the releases used for the initial verification. Installation scripts are disabled.
+uses the releases verified after namespace normalization. Installation scripts are disabled.
 
 ```sh
 mkdir -p /tmp/released-search-runtime
-npm install --prefix /tmp/released-search-runtime --ignore-scripts --no-audit --no-fund --userconfig /dev/null @wirecat/tg-cli@0.44.0 @wirecat/max-cli@0.43.0
+npm install --prefix /tmp/released-search-runtime --ignore-scripts --no-audit --no-fund --userconfig /dev/null @wirecat/tg-cli@0.46.1 @wirecat/max-cli@0.45.1
 ```
 
 Keep the generated package lock with the run evidence: it records resolved artifacts and
@@ -22,8 +22,8 @@ integrity hashes. An existing runtime with those exact packages also works.
 From the cli-testing root:
 
 ```sh
-node --import ./performance/search/released/offline.mjs performance/search/released/verify.mjs /tmp/released-search-runtime tg 0.44.0 /tmp/released-search-tg.json
-node --import ./performance/search/released/offline.mjs performance/search/released/verify.mjs /tmp/released-search-runtime max 0.43.0 /tmp/released-search-max.json
+node --import ./performance/search/released/offline.mjs performance/search/released/verify.mjs /tmp/released-search-runtime tg 0.46.1 /tmp/released-search-tg.json
+node --import ./performance/search/released/offline.mjs performance/search/released/verify.mjs /tmp/released-search-runtime max 0.45.1 /tmp/released-search-max.json
 ```
 
 The published store API seeds three synthetic messages in a new temporary database. Published
@@ -46,3 +46,8 @@ Reports contain versions, verifier and guard hashes, and assertion outcomes. Thi
 contract, not general ranking quality, archive scaling, live provider behavior or vulnerability
 absence. Use the [evaluation guide](../combined-search-evaluation.md) and
 [research index](../README.md) for those separate questions.
+
+The 2026-10-11 verification passed for Telegram 0.46.1 and MAX 0.45.1, both using messaging
+0.225.0: discovery retrieved the eligible reply, excluded the other sender and preserved parent
+provenance; strict search remained empty. This is a three-message contract check, not a new
+ranking-quality or performance measurement.

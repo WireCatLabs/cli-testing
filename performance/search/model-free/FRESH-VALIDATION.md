@@ -117,3 +117,18 @@ normalization hashes are recorded separately from the original migration hashes.
 Next ranking work needs genuinely independent questions and judgments, answer/proposal/conflict
 comparisons and dense difficult distractors. These measurements justify a bounded, opt-in lexical
 evidence tool, not general semantic understanding or an automatic answer.
+
+## Next experiments
+
+1. Freeze a new set of independently phrased questions and relevance judgments before tuning.
+   Include actual answers, proposals, contradictory decisions and questions with no answer.
+2. Record evidence coverage inside the 300 candidates as well as Answer@1/3/10, MRR, evidence
+   recall and nDCG. Separate retrieval failures from poor ordering.
+3. Compare cheap lexical/context ranking changes first. Try a compact optional reranker on a
+   short list only if it improves the frozen questions within the measured latency and RAM budget.
+4. Measure cold/warm queries and archive scaling across messages, notes, files and meeting
+   transcripts, including joined context and account/date filters. Keep strict defaults unchanged.
+
+The last fresh fixture had 16/16 actual answers in the top ten but only 2/16 at rank one.
+Moving useful answers earlier is the next ranking target; these synthetic results do not establish
+real-world success rates or an answer-availability guarantee.
