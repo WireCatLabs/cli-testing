@@ -28,7 +28,8 @@ preserved and missing-fact partial hits explicitly retained. The
 [candidate/ranking follow-up](model-free/RANKING-VALIDATION.md) separates missing candidates from
 poor ordering and records unsuccessful cheap rerankers. The
 [compact-model comparison](compact/README.md) tests 5 MB and 24 MB models, evidence loss and a
-bounded supplement design.
+bounded supplement design. The [supplement validation](supplement/README.md) adds crowded cases,
+byte limits and a stable merge, while keeping production model-free.
 
 ## Layout
 

@@ -1,0 +1,918 @@
+{
+  "node": "v24.19.0",
+  "messages": 52,
+  "background": 0,
+  "fixtureSha256": "ce1170132d7d6295f2f940953eef68f5872b1985bcfddafe45cf522ef28a113b",
+  "runnerSha256": "5834cbe32f43487eb8613d8f51f70e8a70406fe1136a6a37b0a2887baa28b98a",
+  "rankerSha256": "8ea2344a3e445b36a9a23f433948addfb5b192972d572ec970a6e44826603962",
+  "productionSha256": {
+    "services/messages-discovery.js": "63a0c13cad9703f886d75381487b551d960b6eb13ef66019493be6c3e1861830",
+    "services/messages-combined.js": "7abf77eeafb8fd8bea4751bb3557743532b814c56f1831639c843f1e2b0904af",
+    "search/question-plan.js": "e3e27126fd5d7bd96878d0b32aedf01ac9694b52b44765267a10386458b06b98",
+    "store/sqlite/search.js": "2b3cf6f6ca6d2327fa5a6e5d8dc34009243bb621b54377c4f4af2ab31a5732d5",
+    "store/sqlite/lucene.js": "d819e7cc8b71dae40bd62b9792d9942bde1a9c632e7fe6b665f24fce5c389c67"
+  },
+  "setupMs": 7.592494999999985,
+  "baselineRss": 101167104,
+  "setupRss": 103981056,
+  "firstMs": 26.0471,
+  "firstRss": 112824320,
+  "warmP50Ms": 4.288847000000004,
+  "warmP95Ms": 5.670058000000012,
+  "peakRss": 120885248,
+  "databaseBytes": 1404928,
+  "storePath": "/tmp/discovery-production-vcELss/synthetic.db",
+  "summary": [
+    {
+      "mode": "strict",
+      "queries": 5,
+      "answerable": 5,
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "p50Ms": 1.3598010000000045,
+      "p95Ms": 2.4879779999999982
+    },
+    {
+      "mode": "discover",
+      "queries": 5,
+      "answerable": 5,
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "answerAt1": 0.2,
+      "answerAt3": 0.2,
+      "answerAt10": 0.4,
+      "mrrAt10": 0.22000000000000003,
+      "evidenceRecallAt10": 0.5333333333333333,
+      "ndcgAt10": 0.4356464413245302,
+      "falseHits": 0,
+      "p50Ms": 3.4541910000000087,
+      "p95Ms": 4.426124000000016
+    }
+  ],
+  "rows": [
+    {
+      "id": "boundary-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the log lifetime for Beacon?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.4879779999999982,
+      "candidateProbeMs": 1.442497000000003,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "boundary-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the log lifetime for Harbor?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4273880000000077,
+      "candidateProbeMs": 1.263019000000014,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "boundary-2",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the log lifetime for Meadow?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2926750000000027,
+      "candidateProbeMs": 1.850701999999984,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "boundary-3",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the log lifetime for Plover?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3598010000000045,
+      "candidateProbeMs": 1.305959999999999,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "boundary-probe",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "When is the Pipit invoice batch?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.18444199999999,
+      "candidateProbeMs": 1.371563000000009,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "boundary-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the log lifetime for Beacon?",
+      "ids": ["900000", "900008", "900007", "900006", "900005", "900004", "900003", "900002", "900001", "900009"],
+      "candidateIds": [
+        "900000",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900009",
+        "900010",
+        "900100",
+        "900200",
+        "900300",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900201",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900302",
+        "900301",
+        "900110",
+        "900211",
+        "900312",
+        "900111",
+        "900212",
+        "900313"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.4541910000000087,
+      "candidateProbeMs": 3.160640000000001,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.1,
+      "evidenceRecallAt10": 0.6666666666666666,
+      "ndcgAt10": 0.4520034448272455,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 50,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["log", "lifetime", "beacon", "retention"],
+        "queries": ["(log OR lifetime OR beacon OR retention)"]
+      },
+      "matches": [
+        {
+          "id": "900000",
+          "locator": "msg:synthetic/500/950/900000",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900008",
+          "locator": "msg:synthetic/500/950/900008",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900007",
+          "locator": "msg:synthetic/500/950/900007",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900006",
+          "locator": "msg:synthetic/500/950/900006",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900005",
+          "locator": "msg:synthetic/500/950/900005",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900004",
+          "locator": "msg:synthetic/500/950/900004",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900003",
+          "locator": "msg:synthetic/500/950/900003",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900002",
+          "locator": "msg:synthetic/500/950/900002",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900001",
+          "locator": "msg:synthetic/500/950/900001",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900009",
+          "locator": "msg:synthetic/500/950/900009",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "beacon", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "boundary-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the log lifetime for Harbor?",
+      "ids": ["900100", "900109", "900108", "900107", "900106", "900105", "900104", "900103", "900102", "900101"],
+      "candidateIds": [
+        "900100",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900110",
+        "900111",
+        "900000",
+        "900200",
+        "900300",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900201",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900302",
+        "900301",
+        "900009",
+        "900211",
+        "900312",
+        "900010",
+        "900212",
+        "900313"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.995537000000013,
+      "candidateProbeMs": 3.013994999999994,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 50,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["log", "lifetime", "harbor", "retention"],
+        "queries": ["(log OR lifetime OR harbor OR retention)"]
+      },
+      "matches": [
+        {
+          "id": "900100",
+          "locator": "msg:synthetic/500/951/900100",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900109",
+          "locator": "msg:synthetic/500/951/900109",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900108",
+          "locator": "msg:synthetic/500/951/900108",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900107",
+          "locator": "msg:synthetic/500/951/900107",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900106",
+          "locator": "msg:synthetic/500/951/900106",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900105",
+          "locator": "msg:synthetic/500/951/900105",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900104",
+          "locator": "msg:synthetic/500/951/900104",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900103",
+          "locator": "msg:synthetic/500/951/900103",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900102",
+          "locator": "msg:synthetic/500/951/900102",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900101",
+          "locator": "msg:synthetic/500/951/900101",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "harbor", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "boundary-2",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the log lifetime for Meadow?",
+      "ids": ["900200", "900210", "900209", "900208", "900207", "900206", "900205", "900204", "900203", "900202"],
+      "candidateIds": [
+        "900200",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900201",
+        "900211",
+        "900212",
+        "900000",
+        "900100",
+        "900300",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900302",
+        "900301",
+        "900009",
+        "900110",
+        "900312",
+        "900010",
+        "900111",
+        "900313"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 2.816404000000034,
+      "candidateProbeMs": 3.6090810000000033,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 50,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["log", "lifetime", "meadow", "retention"],
+        "queries": ["(log OR lifetime OR meadow OR retention)"]
+      },
+      "matches": [
+        {
+          "id": "900200",
+          "locator": "msg:synthetic/500/952/900200",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900210",
+          "locator": "msg:synthetic/500/952/900210",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900209",
+          "locator": "msg:synthetic/500/952/900209",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900208",
+          "locator": "msg:synthetic/500/952/900208",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900207",
+          "locator": "msg:synthetic/500/952/900207",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900206",
+          "locator": "msg:synthetic/500/952/900206",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900205",
+          "locator": "msg:synthetic/500/952/900205",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900204",
+          "locator": "msg:synthetic/500/952/900204",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900203",
+          "locator": "msg:synthetic/500/952/900203",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900202",
+          "locator": "msg:synthetic/500/952/900202",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "meadow", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "boundary-3",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the log lifetime for Plover?",
+      "ids": ["900300", "900311", "900310", "900309", "900308", "900307", "900306", "900305", "900304", "900303"],
+      "candidateIds": [
+        "900300",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900302",
+        "900301",
+        "900312",
+        "900313",
+        "900000",
+        "900100",
+        "900200",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900201",
+        "900009",
+        "900110",
+        "900211",
+        "900010",
+        "900111",
+        "900212"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.426124000000016,
+      "candidateProbeMs": 2.8821570000000065,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 50,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["log", "lifetime", "plover", "retention"],
+        "queries": ["(log OR lifetime OR plover OR retention)"]
+      },
+      "matches": [
+        {
+          "id": "900300",
+          "locator": "msg:synthetic/500/953/900300",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900311",
+          "locator": "msg:synthetic/500/953/900311",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900310",
+          "locator": "msg:synthetic/500/953/900310",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900309",
+          "locator": "msg:synthetic/500/953/900309",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900308",
+          "locator": "msg:synthetic/500/953/900308",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900307",
+          "locator": "msg:synthetic/500/953/900307",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900306",
+          "locator": "msg:synthetic/500/953/900306",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900305",
+          "locator": "msg:synthetic/500/953/900305",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900304",
+          "locator": "msg:synthetic/500/953/900304",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        },
+        {
+          "id": "900303",
+          "locator": "msg:synthetic/500/953/900303",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": ["log", "plover", "retention"],
+            "missingTerms": ["lifetime"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "boundary-probe",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "When is the Pipit invoice batch?",
+      "ids": ["909001", "909000"],
+      "candidateIds": ["909001", "909000"],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.3290470000000028,
+      "candidateProbeMs": 3.216233999999986,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 2,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": ["pipit", "invoice", "batch"],
+        "queries": ["(pipit OR invoice OR batch)"]
+      },
+      "matches": [
+        {
+          "id": "909001",
+          "locator": "msg:synthetic/500/959/909001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["pipit", "invoice", "batch"],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/959/909000"
+          }
+        },
+        {
+          "id": "909000",
+          "locator": "msg:synthetic/500/959/909000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["pipit", "invoice", "batch"],
+            "missingTerms": []
+          }
+        }
+      ]
+    }
+  ],
+  "ingestion": {
+    "setupMs": 84.227238,
+    "peakRss": 110575616
+  }
+}

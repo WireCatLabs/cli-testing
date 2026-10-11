@@ -1,0 +1,5208 @@
+{
+  "selectionOrder": "baseline",
+  "fixtureSha256": "c4649d96e8b7273cb7dbe8651791c7b5f85cdca4d5b177860117206960ffefc4",
+  "baselineSha256": "2238de365fead31f84029a6c78f42d69348ad2874dc3bef95afd392a4c10917b",
+  "scoresSha256": "0d19946273e3385c431f7775ea531e6834779ace18ab61f80dae52c009ce257c",
+  "evaluatorSha256": "cb6cfa0d0d15c8ba045efaa44df646c45d3c828dcdc39c3eccd2136a7272535b",
+  "workerSha256": "f41eb9b7e7bf3de6b377d8000ef579c67939b12d06f821ca85378e71bab5329a",
+  "inputSha256": "e1ad72497a676d716c272243b29f19951d693f021a461cfbfb767458bb96cd39",
+  "model": {
+    "repository": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "licence": "Apache-2.0",
+    "files": [
+      {
+        "name": "onnx/model_quint8_avx2.onnx",
+        "bytes": 23200716,
+        "sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx/model_quint8_avx2.onnx"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 711396,
+        "sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer.json"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1330,
+        "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer_config.json"
+      },
+      {
+        "name": "config.json",
+        "bytes": 794,
+        "sha256": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/config.json"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 132,
+        "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/special_tokens_map.json"
+      }
+    ],
+    "assetBytes": 23914368,
+    "preparationSeconds": 4.332281378003245,
+    "maxTokens": 512
+  },
+  "loadMs": 55.25779500021599,
+  "peakWorkerBytes": 110669824,
+  "scoringP50Ms": 161.9224319983914,
+  "scoringP95Ms": 232.0215330037172,
+  "passesMeasuredGates": true,
+  "readyForIntegration": false,
+  "regressions": [],
+  "summary": [
+    {
+      "budget": null,
+      "language": "all",
+      "queries": 24,
+      "baseline": {
+        "answer": 0.5714285714285714,
+        "evidenceRecall": 0.44166666666666665,
+        "ndcg": 0.5002460471257388,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1648.5833333333333
+      },
+      "supplement": {
+        "answer": 0.7142857142857143,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.5248097850753041,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1639.75
+      }
+    },
+    {
+      "budget": null,
+      "language": "en",
+      "queries": 16,
+      "baseline": {
+        "answer": 0.6,
+        "evidenceRecall": 0.4880952380952381,
+        "ndcg": 0.5221705117851545,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1503.5
+      },
+      "supplement": {
+        "answer": 0.8,
+        "evidenceRecall": 0.5714285714285714,
+        "ndcg": 0.5572615659988192,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1490.25
+      }
+    },
+    {
+      "budget": null,
+      "language": "ru",
+      "queries": 8,
+      "baseline": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      },
+      "supplement": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      }
+    },
+    {
+      "budget": 4096,
+      "language": "all",
+      "queries": 24,
+      "baseline": {
+        "answer": 0.5714285714285714,
+        "evidenceRecall": 0.44166666666666665,
+        "ndcg": 0.5002460471257388,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1648.5833333333333
+      },
+      "supplement": {
+        "answer": 0.7142857142857143,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.5248097850753041,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1639.75
+      }
+    },
+    {
+      "budget": 4096,
+      "language": "en",
+      "queries": 16,
+      "baseline": {
+        "answer": 0.6,
+        "evidenceRecall": 0.4880952380952381,
+        "ndcg": 0.5221705117851545,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1503.5
+      },
+      "supplement": {
+        "answer": 0.8,
+        "evidenceRecall": 0.5714285714285714,
+        "ndcg": 0.5572615659988192,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1490.25
+      }
+    },
+    {
+      "budget": 4096,
+      "language": "ru",
+      "queries": 8,
+      "baseline": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      },
+      "supplement": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      }
+    },
+    {
+      "budget": 8192,
+      "language": "all",
+      "queries": 24,
+      "baseline": {
+        "answer": 0.5714285714285714,
+        "evidenceRecall": 0.44166666666666665,
+        "ndcg": 0.5002460471257388,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1648.5833333333333
+      },
+      "supplement": {
+        "answer": 0.7142857142857143,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.5248097850753041,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1639.75
+      }
+    },
+    {
+      "budget": 8192,
+      "language": "en",
+      "queries": 16,
+      "baseline": {
+        "answer": 0.6,
+        "evidenceRecall": 0.4880952380952381,
+        "ndcg": 0.5221705117851545,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1503.5
+      },
+      "supplement": {
+        "answer": 0.8,
+        "evidenceRecall": 0.5714285714285714,
+        "ndcg": 0.5572615659988192,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1490.25
+      }
+    },
+    {
+      "budget": 8192,
+      "language": "ru",
+      "queries": 8,
+      "baseline": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      },
+      "supplement": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      }
+    },
+    {
+      "budget": 16384,
+      "language": "all",
+      "queries": 24,
+      "baseline": {
+        "answer": 0.5714285714285714,
+        "evidenceRecall": 0.44166666666666665,
+        "ndcg": 0.5002460471257388,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1648.5833333333333
+      },
+      "supplement": {
+        "answer": 0.7142857142857143,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.5248097850753041,
+        "partialHits": 120,
+        "meanDelivered": 12,
+        "meanBytes": 1639.75
+      }
+    },
+    {
+      "budget": 16384,
+      "language": "en",
+      "queries": 16,
+      "baseline": {
+        "answer": 0.6,
+        "evidenceRecall": 0.4880952380952381,
+        "ndcg": 0.5221705117851545,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1503.5
+      },
+      "supplement": {
+        "answer": 0.8,
+        "evidenceRecall": 0.5714285714285714,
+        "ndcg": 0.5572615659988192,
+        "partialHits": 72,
+        "meanDelivered": 12,
+        "meanBytes": 1490.25
+      }
+    },
+    {
+      "budget": 16384,
+      "language": "ru",
+      "queries": 8,
+      "baseline": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      },
+      "supplement": {
+        "answer": 0.5,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.44908896292043554,
+        "partialHits": 48,
+        "meanDelivered": 12,
+        "meanBytes": 1938.75
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "supplement-0-0",
+      "language": "en",
+      "category": "retention",
+      "budget": null,
+      "baselineIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800146",
+        "800144"
+      ],
+      "supplementIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800118",
+        "800102"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-0-1",
+      "language": "en",
+      "category": "retention",
+      "budget": null,
+      "baselineIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800145",
+        "800143"
+      ],
+      "supplementIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800123",
+        "800119"
+      ],
+      "baselineBytes": 1477,
+      "supplementBytes": 1477,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-0",
+      "language": "en",
+      "category": "conditional",
+      "budget": null,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801146",
+        "801144"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801124",
+        "801108"
+      ],
+      "baselineBytes": 1550,
+      "supplementBytes": 1549,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-1",
+      "language": "en",
+      "category": "conditional",
+      "budget": null,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801156",
+        "801155"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801155",
+        "801129"
+      ],
+      "baselineBytes": 1510,
+      "supplementBytes": 1502,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-0",
+      "language": "en",
+      "category": "superseded",
+      "budget": null,
+      "baselineIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802140",
+        "802138"
+      ],
+      "supplementIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802128",
+        "802000"
+      ],
+      "baselineBytes": 1621,
+      "supplementBytes": 1577,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.22328012886631135,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-1",
+      "language": "en",
+      "category": "superseded",
+      "budget": null,
+      "baselineIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145"
+      ],
+      "supplementIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802135",
+        "802103"
+      ],
+      "baselineBytes": 1448,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": null,
+      "baselineIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803140",
+        "803138"
+      ],
+      "supplementIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803001",
+        "803002"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.6666666666666666,
+        "ndcg": 0.2679946301249925,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": null,
+      "baselineIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803149",
+        "803147"
+      ],
+      "supplementIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803127",
+        "803123"
+      ],
+      "baselineBytes": 1393,
+      "supplementBytes": 1393,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804140",
+        "804138"
+      ],
+      "supplementIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804106",
+        "804102"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1559,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804149",
+        "804147"
+      ],
+      "supplementIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804145",
+        "804127"
+      ],
+      "baselineBytes": 1539,
+      "supplementBytes": 1539,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": null,
+      "baselineIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805140",
+        "805138"
+      ],
+      "supplementIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805108",
+        "805104"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1487,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": null,
+      "baselineIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805147",
+        "805145"
+      ],
+      "supplementIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805129",
+        "805002"
+      ],
+      "baselineBytes": 1438,
+      "supplementBytes": 1402,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-0",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": null,
+      "baselineIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806140",
+        "806138"
+      ],
+      "supplementIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806124",
+        "806102"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1524,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-1",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": null,
+      "baselineIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806143",
+        "806141"
+      ],
+      "supplementIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806117",
+        "806103"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1488,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-0",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": null,
+      "baselineIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807140",
+        "807138"
+      ],
+      "supplementIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807124",
+        "807108"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-1",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": null,
+      "baselineIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807143",
+        "807141"
+      ],
+      "supplementIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807127",
+        "807113"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1525,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-0",
+      "language": "ru",
+      "category": "retention",
+      "budget": null,
+      "baselineIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "supplementIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "baselineBytes": 2010,
+      "supplementBytes": 2010,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-1",
+      "language": "ru",
+      "category": "retention",
+      "budget": null,
+      "baselineIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "supplementIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-0",
+      "language": "ru",
+      "category": "conditional",
+      "budget": null,
+      "baselineIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "supplementIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "baselineBytes": 2145,
+      "supplementBytes": 2145,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-1",
+      "language": "ru",
+      "category": "conditional",
+      "budget": null,
+      "baselineIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "supplementIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "baselineBytes": 2078,
+      "supplementBytes": 2078,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "supplementIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "baselineBytes": 1825,
+      "supplementBytes": 1825,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "supplementIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "baselineBytes": 1881,
+      "supplementBytes": 1881,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": null,
+      "baselineIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "supplementIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "baselineBytes": 1873,
+      "supplementBytes": 1873,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": null,
+      "baselineIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "supplementIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-0-0",
+      "language": "en",
+      "category": "retention",
+      "budget": 4096,
+      "baselineIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800146",
+        "800144"
+      ],
+      "supplementIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800118",
+        "800102"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-0-1",
+      "language": "en",
+      "category": "retention",
+      "budget": 4096,
+      "baselineIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800145",
+        "800143"
+      ],
+      "supplementIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800123",
+        "800119"
+      ],
+      "baselineBytes": 1477,
+      "supplementBytes": 1477,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-0",
+      "language": "en",
+      "category": "conditional",
+      "budget": 4096,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801146",
+        "801144"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801124",
+        "801108"
+      ],
+      "baselineBytes": 1550,
+      "supplementBytes": 1549,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-1",
+      "language": "en",
+      "category": "conditional",
+      "budget": 4096,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801156",
+        "801155"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801155",
+        "801129"
+      ],
+      "baselineBytes": 1510,
+      "supplementBytes": 1502,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-0",
+      "language": "en",
+      "category": "superseded",
+      "budget": 4096,
+      "baselineIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802140",
+        "802138"
+      ],
+      "supplementIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802128",
+        "802000"
+      ],
+      "baselineBytes": 1621,
+      "supplementBytes": 1577,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.22328012886631135,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-1",
+      "language": "en",
+      "category": "superseded",
+      "budget": 4096,
+      "baselineIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145"
+      ],
+      "supplementIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802135",
+        "802103"
+      ],
+      "baselineBytes": 1448,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 4096,
+      "baselineIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803140",
+        "803138"
+      ],
+      "supplementIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803001",
+        "803002"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.6666666666666666,
+        "ndcg": 0.2679946301249925,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 4096,
+      "baselineIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803149",
+        "803147"
+      ],
+      "supplementIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803127",
+        "803123"
+      ],
+      "baselineBytes": 1393,
+      "supplementBytes": 1393,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804140",
+        "804138"
+      ],
+      "supplementIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804106",
+        "804102"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1559,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804149",
+        "804147"
+      ],
+      "supplementIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804145",
+        "804127"
+      ],
+      "baselineBytes": 1539,
+      "supplementBytes": 1539,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": 4096,
+      "baselineIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805140",
+        "805138"
+      ],
+      "supplementIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805108",
+        "805104"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1487,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": 4096,
+      "baselineIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805147",
+        "805145"
+      ],
+      "supplementIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805129",
+        "805002"
+      ],
+      "baselineBytes": 1438,
+      "supplementBytes": 1402,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-0",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": 4096,
+      "baselineIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806140",
+        "806138"
+      ],
+      "supplementIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806124",
+        "806102"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1524,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-1",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": 4096,
+      "baselineIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806143",
+        "806141"
+      ],
+      "supplementIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806117",
+        "806103"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1488,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-0",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": 4096,
+      "baselineIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807140",
+        "807138"
+      ],
+      "supplementIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807124",
+        "807108"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-1",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": 4096,
+      "baselineIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807143",
+        "807141"
+      ],
+      "supplementIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807127",
+        "807113"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1525,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-0",
+      "language": "ru",
+      "category": "retention",
+      "budget": 4096,
+      "baselineIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "supplementIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "baselineBytes": 2010,
+      "supplementBytes": 2010,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-1",
+      "language": "ru",
+      "category": "retention",
+      "budget": 4096,
+      "baselineIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "supplementIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-0",
+      "language": "ru",
+      "category": "conditional",
+      "budget": 4096,
+      "baselineIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "supplementIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "baselineBytes": 2145,
+      "supplementBytes": 2145,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-1",
+      "language": "ru",
+      "category": "conditional",
+      "budget": 4096,
+      "baselineIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "supplementIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "baselineBytes": 2078,
+      "supplementBytes": 2078,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "supplementIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "baselineBytes": 1825,
+      "supplementBytes": 1825,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "supplementIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "baselineBytes": 1881,
+      "supplementBytes": 1881,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": 4096,
+      "baselineIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "supplementIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "baselineBytes": 1873,
+      "supplementBytes": 1873,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": 4096,
+      "baselineIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "supplementIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-0-0",
+      "language": "en",
+      "category": "retention",
+      "budget": 8192,
+      "baselineIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800146",
+        "800144"
+      ],
+      "supplementIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800118",
+        "800102"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-0-1",
+      "language": "en",
+      "category": "retention",
+      "budget": 8192,
+      "baselineIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800145",
+        "800143"
+      ],
+      "supplementIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800123",
+        "800119"
+      ],
+      "baselineBytes": 1477,
+      "supplementBytes": 1477,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-0",
+      "language": "en",
+      "category": "conditional",
+      "budget": 8192,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801146",
+        "801144"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801124",
+        "801108"
+      ],
+      "baselineBytes": 1550,
+      "supplementBytes": 1549,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-1",
+      "language": "en",
+      "category": "conditional",
+      "budget": 8192,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801156",
+        "801155"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801155",
+        "801129"
+      ],
+      "baselineBytes": 1510,
+      "supplementBytes": 1502,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-0",
+      "language": "en",
+      "category": "superseded",
+      "budget": 8192,
+      "baselineIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802140",
+        "802138"
+      ],
+      "supplementIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802128",
+        "802000"
+      ],
+      "baselineBytes": 1621,
+      "supplementBytes": 1577,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.22328012886631135,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-1",
+      "language": "en",
+      "category": "superseded",
+      "budget": 8192,
+      "baselineIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145"
+      ],
+      "supplementIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802135",
+        "802103"
+      ],
+      "baselineBytes": 1448,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 8192,
+      "baselineIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803140",
+        "803138"
+      ],
+      "supplementIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803001",
+        "803002"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.6666666666666666,
+        "ndcg": 0.2679946301249925,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 8192,
+      "baselineIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803149",
+        "803147"
+      ],
+      "supplementIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803127",
+        "803123"
+      ],
+      "baselineBytes": 1393,
+      "supplementBytes": 1393,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 8192,
+      "baselineIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804140",
+        "804138"
+      ],
+      "supplementIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804106",
+        "804102"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1559,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 8192,
+      "baselineIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804149",
+        "804147"
+      ],
+      "supplementIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804145",
+        "804127"
+      ],
+      "baselineBytes": 1539,
+      "supplementBytes": 1539,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": 8192,
+      "baselineIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805140",
+        "805138"
+      ],
+      "supplementIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805108",
+        "805104"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1487,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": 8192,
+      "baselineIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805147",
+        "805145"
+      ],
+      "supplementIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805129",
+        "805002"
+      ],
+      "baselineBytes": 1438,
+      "supplementBytes": 1402,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-0",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": 8192,
+      "baselineIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806140",
+        "806138"
+      ],
+      "supplementIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806124",
+        "806102"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1524,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-1",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": 8192,
+      "baselineIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806143",
+        "806141"
+      ],
+      "supplementIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806117",
+        "806103"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1488,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-0",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": 8192,
+      "baselineIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807140",
+        "807138"
+      ],
+      "supplementIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807124",
+        "807108"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-1",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": 8192,
+      "baselineIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807143",
+        "807141"
+      ],
+      "supplementIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807127",
+        "807113"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1525,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-0",
+      "language": "ru",
+      "category": "retention",
+      "budget": 8192,
+      "baselineIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "supplementIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "baselineBytes": 2010,
+      "supplementBytes": 2010,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-1",
+      "language": "ru",
+      "category": "retention",
+      "budget": 8192,
+      "baselineIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "supplementIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-0",
+      "language": "ru",
+      "category": "conditional",
+      "budget": 8192,
+      "baselineIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "supplementIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "baselineBytes": 2145,
+      "supplementBytes": 2145,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-1",
+      "language": "ru",
+      "category": "conditional",
+      "budget": 8192,
+      "baselineIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "supplementIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "baselineBytes": 2078,
+      "supplementBytes": 2078,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": 8192,
+      "baselineIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "supplementIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "baselineBytes": 1825,
+      "supplementBytes": 1825,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": 8192,
+      "baselineIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "supplementIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "baselineBytes": 1881,
+      "supplementBytes": 1881,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": 8192,
+      "baselineIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "supplementIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "baselineBytes": 1873,
+      "supplementBytes": 1873,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": 8192,
+      "baselineIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "supplementIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-0-0",
+      "language": "en",
+      "category": "retention",
+      "budget": 16384,
+      "baselineIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800146",
+        "800144"
+      ],
+      "supplementIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800118",
+        "800102"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.7579237460681981,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-0-1",
+      "language": "en",
+      "category": "retention",
+      "budget": 16384,
+      "baselineIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800145",
+        "800143"
+      ],
+      "supplementIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800123",
+        "800119"
+      ],
+      "baselineBytes": 1477,
+      "supplementBytes": 1477,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-0",
+      "language": "en",
+      "category": "conditional",
+      "budget": 16384,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801146",
+        "801144"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801124",
+        "801108"
+      ],
+      "baselineBytes": 1550,
+      "supplementBytes": 1549,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-1-1",
+      "language": "en",
+      "category": "conditional",
+      "budget": 16384,
+      "baselineIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801156",
+        "801155"
+      ],
+      "supplementIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801155",
+        "801129"
+      ],
+      "baselineBytes": 1510,
+      "supplementBytes": 1502,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-0",
+      "language": "en",
+      "category": "superseded",
+      "budget": 16384,
+      "baselineIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802140",
+        "802138"
+      ],
+      "supplementIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802128",
+        "802000"
+      ],
+      "baselineBytes": 1621,
+      "supplementBytes": 1577,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.22328012886631135,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-2-1",
+      "language": "en",
+      "category": "superseded",
+      "budget": 16384,
+      "baselineIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145"
+      ],
+      "supplementIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802135",
+        "802103"
+      ],
+      "baselineBytes": 1448,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.5,
+        "ndcg": 0.8262346571285599,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 16384,
+      "baselineIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803140",
+        "803138"
+      ],
+      "supplementIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803001",
+        "803002"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1447,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.6666666666666666,
+        "ndcg": 0.2679946301249925,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 16384,
+      "baselineIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803149",
+        "803147"
+      ],
+      "supplementIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803127",
+        "803123"
+      ],
+      "baselineBytes": 1393,
+      "supplementBytes": 1393,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 16384,
+      "baselineIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804140",
+        "804138"
+      ],
+      "supplementIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804106",
+        "804102"
+      ],
+      "baselineBytes": 1561,
+      "supplementBytes": 1559,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 16384,
+      "baselineIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804149",
+        "804147"
+      ],
+      "supplementIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804145",
+        "804127"
+      ],
+      "baselineBytes": 1539,
+      "supplementBytes": 1539,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": 16384,
+      "baselineIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805140",
+        "805138"
+      ],
+      "supplementIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805108",
+        "805104"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1487,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "budget": 16384,
+      "baselineIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805147",
+        "805145"
+      ],
+      "supplementIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805129",
+        "805002"
+      ],
+      "baselineBytes": 1438,
+      "supplementBytes": 1402,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-0",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": 16384,
+      "baselineIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806140",
+        "806138"
+      ],
+      "supplementIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806124",
+        "806102"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1524,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-6-1",
+      "language": "en",
+      "category": "long-evidence",
+      "budget": 16384,
+      "baselineIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806143",
+        "806141"
+      ],
+      "supplementIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806117",
+        "806103"
+      ],
+      "baselineBytes": 1489,
+      "supplementBytes": 1488,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-0",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": 16384,
+      "baselineIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807140",
+        "807138"
+      ],
+      "supplementIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807124",
+        "807108"
+      ],
+      "baselineBytes": 1465,
+      "supplementBytes": 1464,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-7-1",
+      "language": "en",
+      "category": "no-evidence",
+      "budget": 16384,
+      "baselineIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807143",
+        "807141"
+      ],
+      "supplementIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807127",
+        "807113"
+      ],
+      "baselineBytes": 1525,
+      "supplementBytes": 1525,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-0",
+      "language": "ru",
+      "category": "retention",
+      "budget": 16384,
+      "baselineIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "supplementIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140"
+      ],
+      "baselineBytes": 2010,
+      "supplementBytes": 2010,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-8-1",
+      "language": "ru",
+      "category": "retention",
+      "budget": 16384,
+      "baselineIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "supplementIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-0",
+      "language": "ru",
+      "category": "conditional",
+      "budget": 16384,
+      "baselineIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "supplementIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140"
+      ],
+      "baselineBytes": 2145,
+      "supplementBytes": 2145,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-9-1",
+      "language": "ru",
+      "category": "conditional",
+      "budget": 16384,
+      "baselineIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "supplementIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143"
+      ],
+      "baselineBytes": 2078,
+      "supplementBytes": 2078,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.7262287617954056,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": 16384,
+      "baselineIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "supplementIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138"
+      ],
+      "baselineBytes": 1825,
+      "supplementBytes": 1825,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 0.0,
+        "ndcg": 0.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "budget": 16384,
+      "baselineIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "supplementIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145"
+      ],
+      "baselineBytes": 1881,
+      "supplementBytes": 1881,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": 16384,
+      "baselineIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "supplementIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138"
+      ],
+      "baselineBytes": 1873,
+      "supplementBytes": 1873,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "supplement-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "budget": 16384,
+      "baselineIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "supplementIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141"
+      ],
+      "baselineBytes": 1849,
+      "supplementBytes": 1849,
+      "baseline": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "supplement": {
+        "answer": null,
+        "evidenceRecall": null,
+        "ndcg": null,
+        "partialHits": 12
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    }
+  ]
+}

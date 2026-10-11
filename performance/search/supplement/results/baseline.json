@@ -1,0 +1,5364 @@
+{
+  "node": "v24.19.0",
+  "messages": 802,
+  "background": 0,
+  "fixtureSha256": "c4649d96e8b7273cb7dbe8651791c7b5f85cdca4d5b177860117206960ffefc4",
+  "runnerSha256": "5834cbe32f43487eb8613d8f51f70e8a70406fe1136a6a37b0a2887baa28b98a",
+  "rankerSha256": "8ea2344a3e445b36a9a23f433948addfb5b192972d572ec970a6e44826603962",
+  "productionSha256": {
+    "services/messages-discovery.js": "63a0c13cad9703f886d75381487b551d960b6eb13ef66019493be6c3e1861830",
+    "services/messages-combined.js": "7abf77eeafb8fd8bea4751bb3557743532b814c56f1831639c843f1e2b0904af",
+    "search/question-plan.js": "e3e27126fd5d7bd96878d0b32aedf01ac9694b52b44765267a10386458b06b98",
+    "store/sqlite/search.js": "2b3cf6f6ca6d2327fa5a6e5d8dc34009243bb621b54377c4f4af2ab31a5732d5",
+    "store/sqlite/lucene.js": "d819e7cc8b71dae40bd62b9792d9942bde1a9c632e7fe6b665f24fce5c389c67"
+  },
+  "setupMs": 6.224397999999994,
+  "baselineRss": 103182336,
+  "setupRss": 105263104,
+  "firstMs": 26.237326999999993,
+  "firstRss": 115810304,
+  "warmP50Ms": 6.119611999999989,
+  "warmP95Ms": 8.262692000000015,
+  "peakRss": 140582912,
+  "databaseBytes": 3178496,
+  "storePath": "/tmp/discovery-production-vqN19H/synthetic.db",
+  "summary": [
+    {
+      "mode": "strict",
+      "queries": 24,
+      "answerable": 14,
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "p50Ms": 1.3528680000000008,
+      "p95Ms": 2.7241319999999973
+    },
+    {
+      "mode": "discover",
+      "queries": 24,
+      "answerable": 14,
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "answerAt1": 0.5,
+      "answerAt3": 0.5714285714285714,
+      "answerAt10": 0.5714285714285714,
+      "mrrAt10": 0.5238095238095238,
+      "evidenceRecallAt10": 0.4416666666666666,
+      "ndcgAt10": 0.5002460471257388,
+      "falseHits": 40,
+      "p50Ms": 3.7826670000000036,
+      "p95Ms": 5.547909000000004
+    }
+  ],
+  "rows": [
+    {
+      "id": "supplement-0-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "What is the Alder backup retention?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 3.1035029999999892,
+      "candidateProbeMs": 1.5541259999999966,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-0-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "When are Alder backups removed?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4658799999999985,
+      "candidateProbeMs": 1.3626159999999743,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-1-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Can contractors access Quartz production?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.9283880000000124,
+      "candidateProbeMs": 1.305439000000007,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-1-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Who can access Quartz production?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3741280000000131,
+      "candidateProbeMs": 1.268979999999999,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-2-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "What is the current Finch package version?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3346540000000005,
+      "candidateProbeMs": 1.3428690000000074,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-2-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "Which Finch package is deployed?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3143060000000162,
+      "candidateProbeMs": 1.3340629999999862,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "When is the Sable invoice batch sent?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.367935999999986,
+      "candidateProbeMs": 1.4301030000000026,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "What time is the Sable invoice batch?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4215370000000007,
+      "candidateProbeMs": 1.3981429999999762,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Where is Spruce customer data stored?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.0277849999999944,
+      "candidateProbeMs": 1.3902279999999791,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the Spruce customer data region?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3528680000000008,
+      "candidateProbeMs": 1.4180299999999875,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "Who approved the Otter license?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.284339999999986,
+      "candidateProbeMs": 1.3270890000000009,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "What is the Otter license price?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2943190000000016,
+      "candidateProbeMs": 1.3601220000000183,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-6-0",
+      "language": "en",
+      "category": "long-evidence",
+      "mode": "strict",
+      "input": "How is the Acorn export encrypted?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4703980000000172,
+      "candidateProbeMs": 1.4249240000000043,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-6-1",
+      "language": "en",
+      "category": "long-evidence",
+      "mode": "strict",
+      "input": "What protects the Acorn export?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3347340000000258,
+      "candidateProbeMs": 1.3676260000000013,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-7-0",
+      "language": "en",
+      "category": "no-evidence",
+      "mode": "strict",
+      "input": "Who owns the Wren deployment?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 2.4552570000000173,
+      "candidateProbeMs": 1.351095000000015,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-7-1",
+      "language": "en",
+      "category": "no-evidence",
+      "mode": "strict",
+      "input": "What is the Wren deployment limit?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 1.342617999999959,
+      "candidateProbeMs": 1.29785499999997,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-8-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "Сколько дней хранятся копии Сосна?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.7241319999999973,
+      "candidateProbeMs": 1.397322000000031,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-8-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "Когда удаляют копии Сосна?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3478589999999713,
+      "candidateProbeMs": 1.2637209999999754,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-9-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Могут подрядчики подключиться к Рябина?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2563670000000116,
+      "candidateProbeMs": 1.2624789999999848,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-9-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Кому разрешено подключение к Рябина?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.265354000000002,
+      "candidateProbeMs": 1.2693520000000262,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Где хранятся данные Кедр?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.019759000000022,
+      "candidateProbeMs": 1.261166000000003,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Какой регион данных Кедр?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3040060000000153,
+      "candidateProbeMs": 1.2688200000000052,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "strict",
+      "input": "Кто владелец проекта Пихта?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 1.2872760000000198,
+      "candidateProbeMs": 1.1906440000000202,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "strict",
+      "input": "Какой лимит проекта Пихта?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 1.2354180000000383,
+      "candidateProbeMs": 1.3803499999999644,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "supplement-0-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "What is the Alder backup retention?",
+      "ids": ["800002", "800001", "800000", "800162", "800160", "800158", "800156", "800154", "800152", "800150"],
+      "candidateIds": [
+        "800002",
+        "800001",
+        "800000",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800146",
+        "800144",
+        "800142",
+        "800140",
+        "800138",
+        "800136",
+        "800134",
+        "800130",
+        "800128",
+        "800126",
+        "800124",
+        "800122",
+        "800120",
+        "800118",
+        "800114",
+        "800112",
+        "800110",
+        "800108",
+        "800106",
+        "800104",
+        "800102",
+        "800148",
+        "800132",
+        "800116",
+        "800100",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800145",
+        "800143",
+        "800141",
+        "800139",
+        "800137",
+        "800135",
+        "800133",
+        "800131",
+        "800129",
+        "800127",
+        "800125",
+        "800123",
+        "800121",
+        "800119",
+        "800117",
+        "800115",
+        "800113",
+        "800111",
+        "800109",
+        "800107",
+        "800105",
+        "800103",
+        "800101"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.5396409999999605,
+      "candidateProbeMs": 4.08191800000003,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.3333333333333333,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7579237460681981,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["alder", "backup", "retention"],
+        "queries": ["(alder OR backup OR retention)"]
+      },
+      "matches": [
+        {
+          "id": "800002",
+          "locator": "msg:synthetic/500/880/800002",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800001",
+          "locator": "msg:synthetic/500/880/800001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800000",
+          "locator": "msg:synthetic/500/880/800000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800162",
+          "locator": "msg:synthetic/500/880/800162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800160",
+          "locator": "msg:synthetic/500/880/800160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800158",
+          "locator": "msg:synthetic/500/880/800158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800156",
+          "locator": "msg:synthetic/500/880/800156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800154",
+          "locator": "msg:synthetic/500/880/800154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800152",
+          "locator": "msg:synthetic/500/880/800152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800150",
+          "locator": "msg:synthetic/500/880/800150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backup", "retention"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-0-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "When are Alder backups removed?",
+      "ids": ["800000", "800163", "800161", "800159", "800157", "800155", "800153", "800151", "800149", "800147"],
+      "candidateIds": [
+        "800000",
+        "800163",
+        "800161",
+        "800159",
+        "800157",
+        "800155",
+        "800153",
+        "800151",
+        "800149",
+        "800147",
+        "800145",
+        "800143",
+        "800141",
+        "800139",
+        "800137",
+        "800135",
+        "800133",
+        "800131",
+        "800129",
+        "800127",
+        "800125",
+        "800123",
+        "800121",
+        "800119",
+        "800117",
+        "800115",
+        "800113",
+        "800111",
+        "800109",
+        "800107",
+        "800105",
+        "800103",
+        "800101",
+        "800002",
+        "800001",
+        "800162",
+        "800160",
+        "800158",
+        "800156",
+        "800154",
+        "800152",
+        "800150",
+        "800146",
+        "800144",
+        "800142",
+        "800140",
+        "800138",
+        "800136",
+        "800134",
+        "800130",
+        "800128",
+        "800126",
+        "800124",
+        "800122",
+        "800120",
+        "800118",
+        "800114",
+        "800112",
+        "800110",
+        "800108",
+        "800106",
+        "800104",
+        "800102",
+        "800148",
+        "800132",
+        "800116",
+        "800100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.653816000000006,
+      "candidateProbeMs": 3.5566029999999955,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.7262287617954056,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["alder", "backups", "removed"],
+        "queries": ["(alder OR backups OR removed)"]
+      },
+      "matches": [
+        {
+          "id": "800000",
+          "locator": "msg:synthetic/500/880/800000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800163",
+          "locator": "msg:synthetic/500/880/800163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800161",
+          "locator": "msg:synthetic/500/880/800161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800159",
+          "locator": "msg:synthetic/500/880/800159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800157",
+          "locator": "msg:synthetic/500/880/800157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800155",
+          "locator": "msg:synthetic/500/880/800155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800153",
+          "locator": "msg:synthetic/500/880/800153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800151",
+          "locator": "msg:synthetic/500/880/800151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800149",
+          "locator": "msg:synthetic/500/880/800149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "800147",
+          "locator": "msg:synthetic/500/880/800147",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["alder", "backups", "removed"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-1-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Can contractors access Quartz production?",
+      "ids": ["801000", "801002", "801001", "801162", "801160", "801158", "801156", "801154", "801152", "801150"],
+      "candidateIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801162",
+        "801160",
+        "801158",
+        "801156",
+        "801154",
+        "801152",
+        "801150",
+        "801146",
+        "801144",
+        "801142",
+        "801140",
+        "801138",
+        "801136",
+        "801134",
+        "801130",
+        "801128",
+        "801126",
+        "801124",
+        "801122",
+        "801120",
+        "801118",
+        "801114",
+        "801112",
+        "801110",
+        "801108",
+        "801106",
+        "801104",
+        "801102",
+        "801148",
+        "801132",
+        "801116",
+        "801100",
+        "801163",
+        "801161",
+        "801159",
+        "801157",
+        "801155",
+        "801153",
+        "801151",
+        "801149",
+        "801147",
+        "801145",
+        "801143",
+        "801141",
+        "801139",
+        "801137",
+        "801135",
+        "801133",
+        "801131",
+        "801129",
+        "801127",
+        "801125",
+        "801123",
+        "801121",
+        "801119",
+        "801117",
+        "801115",
+        "801113",
+        "801111",
+        "801109",
+        "801107",
+        "801105",
+        "801103",
+        "801101"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.183840000000032,
+      "candidateProbeMs": 3.4492409999999722,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["contractors", "access", "quartz", "production"],
+        "queries": ["(contractors OR access OR quartz OR production)"]
+      },
+      "matches": [
+        {
+          "id": "801000",
+          "locator": "msg:synthetic/500/881/801000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801002",
+          "locator": "msg:synthetic/500/881/801002",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801001",
+          "locator": "msg:synthetic/500/881/801001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801162",
+          "locator": "msg:synthetic/500/881/801162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801160",
+          "locator": "msg:synthetic/500/881/801160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801158",
+          "locator": "msg:synthetic/500/881/801158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801156",
+          "locator": "msg:synthetic/500/881/801156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801154",
+          "locator": "msg:synthetic/500/881/801154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801152",
+          "locator": "msg:synthetic/500/881/801152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801150",
+          "locator": "msg:synthetic/500/881/801150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["contractors", "access", "quartz", "production"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-1-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Who can access Quartz production?",
+      "ids": ["801000", "801002", "801001", "801163", "801162", "801161", "801160", "801159", "801158", "801157"],
+      "candidateIds": [
+        "801000",
+        "801002",
+        "801001",
+        "801163",
+        "801162",
+        "801161",
+        "801160",
+        "801159",
+        "801158",
+        "801157",
+        "801156",
+        "801155",
+        "801154",
+        "801153",
+        "801152",
+        "801151",
+        "801150",
+        "801149",
+        "801147",
+        "801146",
+        "801145",
+        "801144",
+        "801143",
+        "801142",
+        "801141",
+        "801140",
+        "801139",
+        "801138",
+        "801137",
+        "801136",
+        "801135",
+        "801134",
+        "801133",
+        "801131",
+        "801130",
+        "801129",
+        "801128",
+        "801127",
+        "801126",
+        "801125",
+        "801124",
+        "801123",
+        "801122",
+        "801121",
+        "801120",
+        "801119",
+        "801118",
+        "801117",
+        "801115",
+        "801114",
+        "801113",
+        "801112",
+        "801111",
+        "801110",
+        "801109",
+        "801108",
+        "801107",
+        "801106",
+        "801105",
+        "801104",
+        "801103",
+        "801102",
+        "801101",
+        "801148",
+        "801132",
+        "801116",
+        "801100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.2276659999999993,
+      "candidateProbeMs": 3.5301840000000198,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["access", "quartz", "production"],
+        "queries": ["(access OR quartz OR production)"]
+      },
+      "matches": [
+        {
+          "id": "801000",
+          "locator": "msg:synthetic/500/881/801000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801002",
+          "locator": "msg:synthetic/500/881/801002",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801001",
+          "locator": "msg:synthetic/500/881/801001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801163",
+          "locator": "msg:synthetic/500/881/801163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801162",
+          "locator": "msg:synthetic/500/881/801162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801161",
+          "locator": "msg:synthetic/500/881/801161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801160",
+          "locator": "msg:synthetic/500/881/801160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801159",
+          "locator": "msg:synthetic/500/881/801159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801158",
+          "locator": "msg:synthetic/500/881/801158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "801157",
+          "locator": "msg:synthetic/500/881/801157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["access", "quartz", "production"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-2-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "What is the current Finch package version?",
+      "ids": ["802162", "802160", "802158", "802156", "802154", "802152", "802150", "802146", "802144", "802142"],
+      "candidateIds": [
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802140",
+        "802138",
+        "802136",
+        "802134",
+        "802130",
+        "802128",
+        "802126",
+        "802124",
+        "802122",
+        "802120",
+        "802118",
+        "802114",
+        "802112",
+        "802110",
+        "802108",
+        "802106",
+        "802104",
+        "802102",
+        "802148",
+        "802132",
+        "802116",
+        "802100",
+        "802000",
+        "802002",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145",
+        "802143",
+        "802141",
+        "802139",
+        "802137",
+        "802135",
+        "802133",
+        "802131",
+        "802129",
+        "802127",
+        "802125",
+        "802123",
+        "802121",
+        "802119",
+        "802117",
+        "802115",
+        "802113",
+        "802111",
+        "802109",
+        "802107",
+        "802105",
+        "802103",
+        "802101",
+        "804000",
+        "804002",
+        "800001",
+        "804001",
+        "801000"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.7482519999999795,
+      "candidateProbeMs": 3.763189999999952,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 72,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["current", "finch", "package", "version"],
+        "queries": ["(current OR finch OR package OR version)"]
+      },
+      "matches": [
+        {
+          "id": "802162",
+          "locator": "msg:synthetic/500/882/802162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802160",
+          "locator": "msg:synthetic/500/882/802160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802158",
+          "locator": "msg:synthetic/500/882/802158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802156",
+          "locator": "msg:synthetic/500/882/802156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802154",
+          "locator": "msg:synthetic/500/882/802154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802152",
+          "locator": "msg:synthetic/500/882/802152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802150",
+          "locator": "msg:synthetic/500/882/802150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802146",
+          "locator": "msg:synthetic/500/882/802146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802144",
+          "locator": "msg:synthetic/500/882/802144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802142",
+          "locator": "msg:synthetic/500/882/802142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["current", "finch", "package", "version"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-2-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "Which Finch package is deployed?",
+      "ids": ["802000", "802001", "802163", "802161", "802159", "802157", "802155", "802153", "802151", "802149"],
+      "candidateIds": [
+        "802000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145",
+        "802143",
+        "802141",
+        "802139",
+        "802137",
+        "802135",
+        "802133",
+        "802131",
+        "802129",
+        "802127",
+        "802125",
+        "802123",
+        "802121",
+        "802119",
+        "802117",
+        "802115",
+        "802113",
+        "802111",
+        "802109",
+        "802107",
+        "802105",
+        "802103",
+        "802101",
+        "802002",
+        "802162",
+        "802160",
+        "802158",
+        "802156",
+        "802154",
+        "802152",
+        "802150",
+        "802146",
+        "802144",
+        "802142",
+        "802140",
+        "802138",
+        "802136",
+        "802134",
+        "802130",
+        "802128",
+        "802126",
+        "802124",
+        "802122",
+        "802120",
+        "802118",
+        "802114",
+        "802112",
+        "802110",
+        "802108",
+        "802106",
+        "802104",
+        "802102",
+        "802148",
+        "802132",
+        "802116",
+        "802100",
+        "807001",
+        "807002",
+        "807000",
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807140",
+        "807138",
+        "807136",
+        "807134",
+        "807130",
+        "807128",
+        "807126",
+        "807124",
+        "807122",
+        "807120",
+        "807118",
+        "807114",
+        "807112",
+        "807110",
+        "807108",
+        "807106",
+        "807104",
+        "807102",
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807143",
+        "807141",
+        "807139",
+        "807137",
+        "807135",
+        "807133",
+        "807131",
+        "807129",
+        "807127",
+        "807125",
+        "807123",
+        "807121",
+        "807119",
+        "807117",
+        "807115",
+        "807113",
+        "807111",
+        "807109",
+        "807107",
+        "807105",
+        "807103",
+        "807101",
+        "807148",
+        "807132",
+        "807116",
+        "807100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.788294000000008,
+      "candidateProbeMs": 4.443206000000032,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 0.5,
+      "ndcgAt10": 0.8262346571285599,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 134,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["finch", "package", "deployed"],
+        "queries": ["(finch OR package OR deployed)"]
+      },
+      "matches": [
+        {
+          "id": "802000",
+          "locator": "msg:synthetic/500/882/802000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802001",
+          "locator": "msg:synthetic/500/882/802001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802163",
+          "locator": "msg:synthetic/500/882/802163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802161",
+          "locator": "msg:synthetic/500/882/802161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802159",
+          "locator": "msg:synthetic/500/882/802159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802157",
+          "locator": "msg:synthetic/500/882/802157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802155",
+          "locator": "msg:synthetic/500/882/802155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802153",
+          "locator": "msg:synthetic/500/882/802153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802151",
+          "locator": "msg:synthetic/500/882/802151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "802149",
+          "locator": "msg:synthetic/500/882/802149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["finch", "package", "deployed"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "When is the Sable invoice batch sent?",
+      "ids": ["803162", "803160", "803158", "803156", "803154", "803152", "803150", "803146", "803144", "803142"],
+      "candidateIds": [
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803140",
+        "803138",
+        "803136",
+        "803134",
+        "803130",
+        "803128",
+        "803126",
+        "803124",
+        "803122",
+        "803120",
+        "803118",
+        "803114",
+        "803112",
+        "803110",
+        "803108",
+        "803106",
+        "803104",
+        "803102",
+        "803148",
+        "803132",
+        "803116",
+        "803100",
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803149",
+        "803147",
+        "803145",
+        "803143",
+        "803141",
+        "803139",
+        "803137",
+        "803135",
+        "803133",
+        "803131",
+        "803129",
+        "803127",
+        "803125",
+        "803123",
+        "803121",
+        "803119",
+        "803117",
+        "803115",
+        "803113",
+        "803111",
+        "803109",
+        "803107",
+        "803105",
+        "803103",
+        "803101"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 6.129018999999971,
+      "candidateProbeMs": 6.180236000000036,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": ["sable", "invoice", "batch", "sent"],
+        "queries": ["(sable OR invoice OR batch OR sent)"]
+      },
+      "matches": [
+        {
+          "id": "803162",
+          "locator": "msg:synthetic/500/883/803162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803160",
+          "locator": "msg:synthetic/500/883/803160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803158",
+          "locator": "msg:synthetic/500/883/803158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803156",
+          "locator": "msg:synthetic/500/883/803156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803154",
+          "locator": "msg:synthetic/500/883/803154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803152",
+          "locator": "msg:synthetic/500/883/803152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803150",
+          "locator": "msg:synthetic/500/883/803150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803146",
+          "locator": "msg:synthetic/500/883/803146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803144",
+          "locator": "msg:synthetic/500/883/803144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803142",
+          "locator": "msg:synthetic/500/883/803142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["sable", "invoice", "batch", "sent"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "What time is the Sable invoice batch?",
+      "ids": ["803001", "803000", "803002", "803163", "803161", "803159", "803157", "803155", "803153", "803151"],
+      "candidateIds": [
+        "803001",
+        "803000",
+        "803002",
+        "803163",
+        "803161",
+        "803159",
+        "803157",
+        "803155",
+        "803153",
+        "803151",
+        "803149",
+        "803147",
+        "803145",
+        "803143",
+        "803141",
+        "803139",
+        "803137",
+        "803135",
+        "803133",
+        "803131",
+        "803129",
+        "803127",
+        "803125",
+        "803123",
+        "803121",
+        "803119",
+        "803117",
+        "803115",
+        "803113",
+        "803111",
+        "803109",
+        "803107",
+        "803105",
+        "803103",
+        "803101",
+        "803162",
+        "803160",
+        "803158",
+        "803156",
+        "803154",
+        "803152",
+        "803150",
+        "803146",
+        "803144",
+        "803142",
+        "803140",
+        "803138",
+        "803136",
+        "803134",
+        "803130",
+        "803128",
+        "803126",
+        "803124",
+        "803122",
+        "803120",
+        "803118",
+        "803114",
+        "803112",
+        "803110",
+        "803108",
+        "803106",
+        "803104",
+        "803102",
+        "803148",
+        "803132",
+        "803116",
+        "803100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 5.547909000000004,
+      "candidateProbeMs": 5.951066000000026,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": ["time", "sable", "invoice", "batch"],
+        "queries": ["(time OR sable OR invoice OR batch)"]
+      },
+      "matches": [
+        {
+          "id": "803001",
+          "locator": "msg:synthetic/500/883/803001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/883/803000"
+          }
+        },
+        {
+          "id": "803000",
+          "locator": "msg:synthetic/500/883/803000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803002",
+          "locator": "msg:synthetic/500/883/803002",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803163",
+          "locator": "msg:synthetic/500/883/803163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803161",
+          "locator": "msg:synthetic/500/883/803161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803159",
+          "locator": "msg:synthetic/500/883/803159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803157",
+          "locator": "msg:synthetic/500/883/803157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803155",
+          "locator": "msg:synthetic/500/883/803155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803153",
+          "locator": "msg:synthetic/500/883/803153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "803151",
+          "locator": "msg:synthetic/500/883/803151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["time", "sable", "invoice", "batch"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Where is Spruce customer data stored?",
+      "ids": ["804162", "804160", "804158", "804156", "804154", "804152", "804150", "804146", "804144", "804142"],
+      "candidateIds": [
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804140",
+        "804138",
+        "804136",
+        "804134",
+        "804130",
+        "804128",
+        "804126",
+        "804124",
+        "804122",
+        "804120",
+        "804118",
+        "804114",
+        "804112",
+        "804110",
+        "804108",
+        "804106",
+        "804104",
+        "804102",
+        "804148",
+        "804132",
+        "804116",
+        "804100",
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804149",
+        "804147",
+        "804145",
+        "804143",
+        "804141",
+        "804139",
+        "804137",
+        "804135",
+        "804133",
+        "804131",
+        "804129",
+        "804127",
+        "804125",
+        "804123",
+        "804121",
+        "804119",
+        "804117",
+        "804115",
+        "804113",
+        "804111",
+        "804109",
+        "804107",
+        "804105",
+        "804103",
+        "804101"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.4576869999999644,
+      "candidateProbeMs": 3.848491000000024,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["spruce", "customer", "data", "stored"],
+        "queries": ["(spruce OR customer OR data OR stored)"]
+      },
+      "matches": [
+        {
+          "id": "804162",
+          "locator": "msg:synthetic/500/884/804162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804160",
+          "locator": "msg:synthetic/500/884/804160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804158",
+          "locator": "msg:synthetic/500/884/804158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804156",
+          "locator": "msg:synthetic/500/884/804156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804154",
+          "locator": "msg:synthetic/500/884/804154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804152",
+          "locator": "msg:synthetic/500/884/804152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804150",
+          "locator": "msg:synthetic/500/884/804150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804146",
+          "locator": "msg:synthetic/500/884/804146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804144",
+          "locator": "msg:synthetic/500/884/804144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804142",
+          "locator": "msg:synthetic/500/884/804142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "stored"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the Spruce customer data region?",
+      "ids": ["804000", "804002", "804001", "804163", "804161", "804159", "804157", "804155", "804153", "804151"],
+      "candidateIds": [
+        "804000",
+        "804002",
+        "804001",
+        "804163",
+        "804161",
+        "804159",
+        "804157",
+        "804155",
+        "804153",
+        "804151",
+        "804149",
+        "804147",
+        "804145",
+        "804143",
+        "804141",
+        "804139",
+        "804137",
+        "804135",
+        "804133",
+        "804131",
+        "804129",
+        "804127",
+        "804125",
+        "804123",
+        "804121",
+        "804119",
+        "804117",
+        "804115",
+        "804113",
+        "804111",
+        "804109",
+        "804107",
+        "804105",
+        "804103",
+        "804101",
+        "804162",
+        "804160",
+        "804158",
+        "804156",
+        "804154",
+        "804152",
+        "804150",
+        "804146",
+        "804144",
+        "804142",
+        "804140",
+        "804138",
+        "804136",
+        "804134",
+        "804130",
+        "804128",
+        "804126",
+        "804124",
+        "804122",
+        "804120",
+        "804118",
+        "804114",
+        "804112",
+        "804110",
+        "804108",
+        "804106",
+        "804104",
+        "804102",
+        "804148",
+        "804132",
+        "804116",
+        "804100"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.7345060000000103,
+      "candidateProbeMs": 4.149023999999997,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["spruce", "customer", "data", "region"],
+        "queries": ["(spruce OR customer OR data OR region)"]
+      },
+      "matches": [
+        {
+          "id": "804000",
+          "locator": "msg:synthetic/500/884/804000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804002",
+          "locator": "msg:synthetic/500/884/804002",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804001",
+          "locator": "msg:synthetic/500/884/804001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804163",
+          "locator": "msg:synthetic/500/884/804163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804161",
+          "locator": "msg:synthetic/500/884/804161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804159",
+          "locator": "msg:synthetic/500/884/804159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804157",
+          "locator": "msg:synthetic/500/884/804157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804155",
+          "locator": "msg:synthetic/500/884/804155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804153",
+          "locator": "msg:synthetic/500/884/804153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "804151",
+          "locator": "msg:synthetic/500/884/804151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["spruce", "customer", "data", "region"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "Who approved the Otter license?",
+      "ids": ["805162", "805160", "805158", "805156", "805154", "805152", "805150", "805146", "805144", "805142"],
+      "candidateIds": [
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805140",
+        "805138",
+        "805136",
+        "805134",
+        "805130",
+        "805128",
+        "805126",
+        "805124",
+        "805122",
+        "805120",
+        "805118",
+        "805114",
+        "805112",
+        "805110",
+        "805108",
+        "805106",
+        "805104",
+        "805102",
+        "805001",
+        "805000",
+        "805148",
+        "805132",
+        "805116",
+        "805100",
+        "805002",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805147",
+        "805145",
+        "805143",
+        "805141",
+        "805139",
+        "805137",
+        "805135",
+        "805133",
+        "805131",
+        "805129",
+        "805127",
+        "805125",
+        "805123",
+        "805121",
+        "805119",
+        "805117",
+        "805115",
+        "805113",
+        "805111",
+        "805109",
+        "805107",
+        "805105",
+        "805103",
+        "805101",
+        "807002",
+        "801001",
+        "802002",
+        "801002"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.5844549999999913,
+      "candidateProbeMs": 3.540572999999995,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 71,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["approved", "otter", "license"],
+        "queries": ["(approved OR otter OR license)"]
+      },
+      "matches": [
+        {
+          "id": "805162",
+          "locator": "msg:synthetic/500/885/805162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805160",
+          "locator": "msg:synthetic/500/885/805160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805158",
+          "locator": "msg:synthetic/500/885/805158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805156",
+          "locator": "msg:synthetic/500/885/805156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805154",
+          "locator": "msg:synthetic/500/885/805154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805152",
+          "locator": "msg:synthetic/500/885/805152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805150",
+          "locator": "msg:synthetic/500/885/805150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805146",
+          "locator": "msg:synthetic/500/885/805146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805144",
+          "locator": "msg:synthetic/500/885/805144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805142",
+          "locator": "msg:synthetic/500/885/805142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["approved", "otter", "license"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "What is the Otter license price?",
+      "ids": ["805000", "805001", "805163", "805161", "805159", "805157", "805155", "805153", "805151", "805149"],
+      "candidateIds": [
+        "805000",
+        "805001",
+        "805163",
+        "805161",
+        "805159",
+        "805157",
+        "805155",
+        "805153",
+        "805151",
+        "805149",
+        "805147",
+        "805145",
+        "805143",
+        "805141",
+        "805139",
+        "805137",
+        "805135",
+        "805133",
+        "805131",
+        "805129",
+        "805127",
+        "805125",
+        "805123",
+        "805121",
+        "805119",
+        "805117",
+        "805115",
+        "805113",
+        "805111",
+        "805109",
+        "805107",
+        "805105",
+        "805103",
+        "805101",
+        "805002",
+        "805162",
+        "805160",
+        "805158",
+        "805156",
+        "805154",
+        "805152",
+        "805150",
+        "805146",
+        "805144",
+        "805142",
+        "805140",
+        "805138",
+        "805136",
+        "805134",
+        "805130",
+        "805128",
+        "805126",
+        "805124",
+        "805122",
+        "805120",
+        "805118",
+        "805114",
+        "805112",
+        "805110",
+        "805108",
+        "805106",
+        "805104",
+        "805102",
+        "805148",
+        "805132",
+        "805116",
+        "805100"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.656409999999994,
+      "candidateProbeMs": 3.13189600000004,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["otter", "license", "price"],
+        "queries": ["(otter OR license OR price)"]
+      },
+      "matches": [
+        {
+          "id": "805000",
+          "locator": "msg:synthetic/500/885/805000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805001",
+          "locator": "msg:synthetic/500/885/805001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805163",
+          "locator": "msg:synthetic/500/885/805163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805161",
+          "locator": "msg:synthetic/500/885/805161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805159",
+          "locator": "msg:synthetic/500/885/805159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805157",
+          "locator": "msg:synthetic/500/885/805157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805155",
+          "locator": "msg:synthetic/500/885/805155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805153",
+          "locator": "msg:synthetic/500/885/805153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805151",
+          "locator": "msg:synthetic/500/885/805151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "805149",
+          "locator": "msg:synthetic/500/885/805149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["otter", "license", "price"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-6-0",
+      "language": "en",
+      "category": "long-evidence",
+      "mode": "discover",
+      "input": "How is the Acorn export encrypted?",
+      "ids": ["806162", "806160", "806158", "806156", "806154", "806152", "806150", "806146", "806144", "806142"],
+      "candidateIds": [
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806140",
+        "806138",
+        "806136",
+        "806134",
+        "806130",
+        "806128",
+        "806126",
+        "806124",
+        "806122",
+        "806120",
+        "806118",
+        "806114",
+        "806112",
+        "806110",
+        "806108",
+        "806106",
+        "806104",
+        "806102",
+        "806002",
+        "806001",
+        "806148",
+        "806132",
+        "806116",
+        "806100",
+        "806000",
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806143",
+        "806141",
+        "806139",
+        "806137",
+        "806135",
+        "806133",
+        "806131",
+        "806129",
+        "806127",
+        "806125",
+        "806123",
+        "806121",
+        "806119",
+        "806117",
+        "806115",
+        "806113",
+        "806111",
+        "806109",
+        "806107",
+        "806105",
+        "806103",
+        "806101"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.0864910000000236,
+      "candidateProbeMs": 3.593952999999999,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["acorn", "export", "encrypted"],
+        "queries": ["(acorn OR export OR encrypted)"]
+      },
+      "matches": [
+        {
+          "id": "806162",
+          "locator": "msg:synthetic/500/886/806162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806160",
+          "locator": "msg:synthetic/500/886/806160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806158",
+          "locator": "msg:synthetic/500/886/806158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806156",
+          "locator": "msg:synthetic/500/886/806156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806154",
+          "locator": "msg:synthetic/500/886/806154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806152",
+          "locator": "msg:synthetic/500/886/806152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806150",
+          "locator": "msg:synthetic/500/886/806150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806146",
+          "locator": "msg:synthetic/500/886/806146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806144",
+          "locator": "msg:synthetic/500/886/806144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806142",
+          "locator": "msg:synthetic/500/886/806142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["acorn", "export", "encrypted"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-6-1",
+      "language": "en",
+      "category": "long-evidence",
+      "mode": "discover",
+      "input": "What protects the Acorn export?",
+      "ids": ["806163", "806161", "806159", "806157", "806155", "806153", "806151", "806149", "806147", "806145"],
+      "candidateIds": [
+        "806163",
+        "806161",
+        "806159",
+        "806157",
+        "806155",
+        "806153",
+        "806151",
+        "806149",
+        "806147",
+        "806145",
+        "806143",
+        "806141",
+        "806139",
+        "806137",
+        "806135",
+        "806133",
+        "806131",
+        "806129",
+        "806127",
+        "806125",
+        "806123",
+        "806121",
+        "806119",
+        "806117",
+        "806115",
+        "806113",
+        "806111",
+        "806109",
+        "806107",
+        "806105",
+        "806103",
+        "806101",
+        "806000",
+        "806002",
+        "806001",
+        "806162",
+        "806160",
+        "806158",
+        "806156",
+        "806154",
+        "806152",
+        "806150",
+        "806146",
+        "806144",
+        "806142",
+        "806140",
+        "806138",
+        "806136",
+        "806134",
+        "806130",
+        "806128",
+        "806126",
+        "806124",
+        "806122",
+        "806120",
+        "806118",
+        "806114",
+        "806112",
+        "806110",
+        "806108",
+        "806106",
+        "806104",
+        "806102",
+        "806148",
+        "806132",
+        "806116",
+        "806100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.1474550000000363,
+      "candidateProbeMs": 3.308036999999956,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["protects", "acorn", "export"],
+        "queries": ["(protects OR acorn OR export)"]
+      },
+      "matches": [
+        {
+          "id": "806163",
+          "locator": "msg:synthetic/500/886/806163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806161",
+          "locator": "msg:synthetic/500/886/806161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806159",
+          "locator": "msg:synthetic/500/886/806159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806157",
+          "locator": "msg:synthetic/500/886/806157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806155",
+          "locator": "msg:synthetic/500/886/806155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806153",
+          "locator": "msg:synthetic/500/886/806153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806151",
+          "locator": "msg:synthetic/500/886/806151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806149",
+          "locator": "msg:synthetic/500/886/806149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806147",
+          "locator": "msg:synthetic/500/886/806147",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "806145",
+          "locator": "msg:synthetic/500/886/806145",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["protects", "acorn", "export"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-7-0",
+      "language": "en",
+      "category": "no-evidence",
+      "mode": "discover",
+      "input": "Who owns the Wren deployment?",
+      "ids": ["807162", "807160", "807158", "807156", "807154", "807152", "807150", "807146", "807144", "807142"],
+      "candidateIds": [
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807140",
+        "807138",
+        "807136",
+        "807134",
+        "807130",
+        "807128",
+        "807126",
+        "807124",
+        "807122",
+        "807120",
+        "807118",
+        "807114",
+        "807112",
+        "807110",
+        "807108",
+        "807106",
+        "807104",
+        "807102",
+        "807148",
+        "807132",
+        "807116",
+        "807100",
+        "807001",
+        "807002",
+        "807000",
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807143",
+        "807141",
+        "807139",
+        "807137",
+        "807135",
+        "807133",
+        "807131",
+        "807129",
+        "807127",
+        "807125",
+        "807123",
+        "807121",
+        "807119",
+        "807117",
+        "807115",
+        "807113",
+        "807111",
+        "807109",
+        "807107",
+        "807105",
+        "807103",
+        "807101",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145",
+        "802143",
+        "802141",
+        "802139",
+        "802137",
+        "802135",
+        "802133",
+        "802131",
+        "802129",
+        "802127",
+        "802125",
+        "802123",
+        "802121",
+        "802119",
+        "802117",
+        "802115",
+        "802113",
+        "802111",
+        "802109",
+        "802107",
+        "802105",
+        "802103",
+        "802101",
+        "802000"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 5.129914999999983,
+      "candidateProbeMs": 4.318572999999958,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 10,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 101,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["owns", "wren", "deployment"],
+        "queries": ["(owns OR wren OR deployment)"]
+      },
+      "matches": [
+        {
+          "id": "807162",
+          "locator": "msg:synthetic/500/887/807162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807160",
+          "locator": "msg:synthetic/500/887/807160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807158",
+          "locator": "msg:synthetic/500/887/807158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807156",
+          "locator": "msg:synthetic/500/887/807156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807154",
+          "locator": "msg:synthetic/500/887/807154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807152",
+          "locator": "msg:synthetic/500/887/807152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807150",
+          "locator": "msg:synthetic/500/887/807150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807146",
+          "locator": "msg:synthetic/500/887/807146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807144",
+          "locator": "msg:synthetic/500/887/807144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807142",
+          "locator": "msg:synthetic/500/887/807142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["owns", "wren", "deployment"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-7-1",
+      "language": "en",
+      "category": "no-evidence",
+      "mode": "discover",
+      "input": "What is the Wren deployment limit?",
+      "ids": ["807163", "807161", "807159", "807157", "807155", "807153", "807151", "807149", "807147", "807145"],
+      "candidateIds": [
+        "807163",
+        "807161",
+        "807159",
+        "807157",
+        "807155",
+        "807153",
+        "807151",
+        "807149",
+        "807147",
+        "807145",
+        "807143",
+        "807141",
+        "807139",
+        "807137",
+        "807135",
+        "807133",
+        "807131",
+        "807129",
+        "807127",
+        "807125",
+        "807123",
+        "807121",
+        "807119",
+        "807117",
+        "807115",
+        "807113",
+        "807111",
+        "807109",
+        "807107",
+        "807105",
+        "807103",
+        "807101",
+        "807001",
+        "807002",
+        "807000",
+        "807162",
+        "807160",
+        "807158",
+        "807156",
+        "807154",
+        "807152",
+        "807150",
+        "807146",
+        "807144",
+        "807142",
+        "807140",
+        "807138",
+        "807136",
+        "807134",
+        "807130",
+        "807128",
+        "807126",
+        "807124",
+        "807122",
+        "807120",
+        "807118",
+        "807114",
+        "807112",
+        "807110",
+        "807108",
+        "807106",
+        "807104",
+        "807102",
+        "807148",
+        "807132",
+        "807116",
+        "807100",
+        "801000",
+        "802001",
+        "802163",
+        "802161",
+        "802159",
+        "802157",
+        "802155",
+        "802153",
+        "802151",
+        "802149",
+        "802147",
+        "802145",
+        "802143",
+        "802141",
+        "802139",
+        "802137",
+        "802135",
+        "802133",
+        "802131",
+        "802129",
+        "802127",
+        "802125",
+        "802123",
+        "802121",
+        "802119",
+        "802117",
+        "802115",
+        "802113",
+        "802111",
+        "802109",
+        "802107",
+        "802105",
+        "802103",
+        "802101",
+        "802000"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 3.85729699999996,
+      "candidateProbeMs": 4.384095000000002,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 10,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 102,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["wren", "deployment", "limit"],
+        "queries": ["(wren OR deployment OR limit)"]
+      },
+      "matches": [
+        {
+          "id": "807163",
+          "locator": "msg:synthetic/500/887/807163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807161",
+          "locator": "msg:synthetic/500/887/807161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807159",
+          "locator": "msg:synthetic/500/887/807159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807157",
+          "locator": "msg:synthetic/500/887/807157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807155",
+          "locator": "msg:synthetic/500/887/807155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807153",
+          "locator": "msg:synthetic/500/887/807153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807151",
+          "locator": "msg:synthetic/500/887/807151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807149",
+          "locator": "msg:synthetic/500/887/807149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807147",
+          "locator": "msg:synthetic/500/887/807147",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "807145",
+          "locator": "msg:synthetic/500/887/807145",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["wren", "deployment", "limit"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-8-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "Сколько дней хранятся копии Сосна?",
+      "ids": ["808000", "808162", "808160", "808158", "808156", "808154", "808152", "808150", "808146", "808144"],
+      "candidateIds": [
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140",
+        "808138",
+        "808136",
+        "808134",
+        "808130",
+        "808128",
+        "808126",
+        "808124",
+        "808122",
+        "808120",
+        "808118",
+        "808114",
+        "808112",
+        "808110",
+        "808108",
+        "808106",
+        "808104",
+        "808102",
+        "808002",
+        "808148",
+        "808132",
+        "808116",
+        "808100",
+        "808001",
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141",
+        "808139",
+        "808137",
+        "808135",
+        "808133",
+        "808131",
+        "808129",
+        "808127",
+        "808125",
+        "808123",
+        "808121",
+        "808119",
+        "808117",
+        "808115",
+        "808113",
+        "808111",
+        "808109",
+        "808107",
+        "808105",
+        "808103",
+        "808101",
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138",
+        "810136",
+        "810134",
+        "810130",
+        "810128",
+        "810126",
+        "810124",
+        "810122",
+        "810120",
+        "810118",
+        "810114",
+        "810112",
+        "810110",
+        "810108",
+        "810106",
+        "810104",
+        "810102",
+        "810148",
+        "810132",
+        "810116",
+        "810100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.939697999999964,
+      "candidateProbeMs": 5.019767999999999,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.7262287617954056,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 99,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["днеи", "хранятся", "копии", "сосна"],
+        "queries": ["(днеи OR хранятся OR копии OR сосна)"]
+      },
+      "matches": [
+        {
+          "id": "808000",
+          "locator": "msg:synthetic/500/888/808000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808162",
+          "locator": "msg:synthetic/500/888/808162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808160",
+          "locator": "msg:synthetic/500/888/808160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808158",
+          "locator": "msg:synthetic/500/888/808158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808156",
+          "locator": "msg:synthetic/500/888/808156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808154",
+          "locator": "msg:synthetic/500/888/808154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808152",
+          "locator": "msg:synthetic/500/888/808152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808150",
+          "locator": "msg:synthetic/500/888/808150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808146",
+          "locator": "msg:synthetic/500/888/808146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808144",
+          "locator": "msg:synthetic/500/888/808144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["днеи", "хранятся", "копии", "сосна"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-8-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "Когда удаляют копии Сосна?",
+      "ids": ["808163", "808161", "808159", "808157", "808155", "808153", "808151", "808149", "808147", "808145"],
+      "candidateIds": [
+        "808163",
+        "808161",
+        "808159",
+        "808157",
+        "808155",
+        "808153",
+        "808151",
+        "808149",
+        "808147",
+        "808145",
+        "808143",
+        "808141",
+        "808139",
+        "808137",
+        "808135",
+        "808133",
+        "808131",
+        "808129",
+        "808127",
+        "808125",
+        "808123",
+        "808121",
+        "808119",
+        "808117",
+        "808115",
+        "808113",
+        "808111",
+        "808109",
+        "808107",
+        "808105",
+        "808103",
+        "808101",
+        "808000",
+        "808002",
+        "808001",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140",
+        "808138",
+        "808136",
+        "808134",
+        "808130",
+        "808128",
+        "808126",
+        "808124",
+        "808122",
+        "808120",
+        "808118",
+        "808114",
+        "808112",
+        "808110",
+        "808108",
+        "808106",
+        "808104",
+        "808102",
+        "808148",
+        "808132",
+        "808116",
+        "808100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.7826670000000036,
+      "candidateProbeMs": 3.563726000000031,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["удаляют", "копии", "сосна"],
+        "queries": ["(удаляют OR копии OR сосна)"]
+      },
+      "matches": [
+        {
+          "id": "808163",
+          "locator": "msg:synthetic/500/888/808163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808161",
+          "locator": "msg:synthetic/500/888/808161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808159",
+          "locator": "msg:synthetic/500/888/808159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808157",
+          "locator": "msg:synthetic/500/888/808157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808155",
+          "locator": "msg:synthetic/500/888/808155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808153",
+          "locator": "msg:synthetic/500/888/808153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808151",
+          "locator": "msg:synthetic/500/888/808151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808149",
+          "locator": "msg:synthetic/500/888/808149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808147",
+          "locator": "msg:synthetic/500/888/808147",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "808145",
+          "locator": "msg:synthetic/500/888/808145",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["удаляют", "копии", "сосна"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-9-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Могут подрядчики подключиться к Рябина?",
+      "ids": ["809001", "809162", "809160", "809158", "809156", "809154", "809152", "809150", "809146", "809144"],
+      "candidateIds": [
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140",
+        "809138",
+        "809136",
+        "809134",
+        "809130",
+        "809128",
+        "809126",
+        "809124",
+        "809122",
+        "809120",
+        "809118",
+        "809114",
+        "809112",
+        "809110",
+        "809108",
+        "809106",
+        "809104",
+        "809102",
+        "809148",
+        "809132",
+        "809116",
+        "809100",
+        "809002",
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143",
+        "809141",
+        "809139",
+        "809137",
+        "809135",
+        "809133",
+        "809131",
+        "809129",
+        "809127",
+        "809125",
+        "809123",
+        "809121",
+        "809119",
+        "809117",
+        "809115",
+        "809113",
+        "809111",
+        "809109",
+        "809107",
+        "809105",
+        "809103",
+        "809101"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.107346000000007,
+      "candidateProbeMs": 3.93616499999996,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.24207625393180188,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["подрядчики", "подключиться", "рябина"],
+        "queries": ["(подрядчики OR подключиться OR рябина)"]
+      },
+      "matches": [
+        {
+          "id": "809001",
+          "locator": "msg:synthetic/500/889/809001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809162",
+          "locator": "msg:synthetic/500/889/809162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809160",
+          "locator": "msg:synthetic/500/889/809160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809158",
+          "locator": "msg:synthetic/500/889/809158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809156",
+          "locator": "msg:synthetic/500/889/809156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809154",
+          "locator": "msg:synthetic/500/889/809154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809152",
+          "locator": "msg:synthetic/500/889/809152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809150",
+          "locator": "msg:synthetic/500/889/809150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809146",
+          "locator": "msg:synthetic/500/889/809146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809144",
+          "locator": "msg:synthetic/500/889/809144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["подрядчики", "подключиться", "рябина"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-9-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Кому разрешено подключение к Рябина?",
+      "ids": ["809000", "809163", "809161", "809159", "809157", "809155", "809153", "809151", "809149", "809147"],
+      "candidateIds": [
+        "809000",
+        "809163",
+        "809161",
+        "809159",
+        "809157",
+        "809155",
+        "809153",
+        "809151",
+        "809149",
+        "809147",
+        "809145",
+        "809143",
+        "809141",
+        "809139",
+        "809137",
+        "809135",
+        "809133",
+        "809131",
+        "809129",
+        "809127",
+        "809125",
+        "809123",
+        "809121",
+        "809119",
+        "809117",
+        "809115",
+        "809113",
+        "809111",
+        "809109",
+        "809107",
+        "809105",
+        "809103",
+        "809101",
+        "810001",
+        "809002",
+        "809001",
+        "809162",
+        "809160",
+        "809158",
+        "809156",
+        "809154",
+        "809152",
+        "809150",
+        "809146",
+        "809144",
+        "809142",
+        "809140",
+        "809138",
+        "809136",
+        "809134",
+        "809130",
+        "809128",
+        "809126",
+        "809124",
+        "809122",
+        "809120",
+        "809118",
+        "809114",
+        "809112",
+        "809110",
+        "809108",
+        "809106",
+        "809104",
+        "809102",
+        "809148",
+        "809132",
+        "809116",
+        "809100"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.7610669999999686,
+      "candidateProbeMs": 4.200241000000005,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 0.3333333333333333,
+      "ndcgAt10": 0.7262287617954056,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 68,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["разрешено", "подключение", "рябина"],
+        "queries": ["(разрешено OR подключение OR рябина)"]
+      },
+      "matches": [
+        {
+          "id": "809000",
+          "locator": "msg:synthetic/500/889/809000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809163",
+          "locator": "msg:synthetic/500/889/809163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809161",
+          "locator": "msg:synthetic/500/889/809161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809159",
+          "locator": "msg:synthetic/500/889/809159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809157",
+          "locator": "msg:synthetic/500/889/809157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809155",
+          "locator": "msg:synthetic/500/889/809155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809153",
+          "locator": "msg:synthetic/500/889/809153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809151",
+          "locator": "msg:synthetic/500/889/809151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809149",
+          "locator": "msg:synthetic/500/889/809149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "809147",
+          "locator": "msg:synthetic/500/889/809147",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["разрешено", "подключение", "рябина"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Где хранятся данные Кедр?",
+      "ids": ["810162", "810160", "810158", "810156", "810154", "810152", "810150", "810146", "810144", "810142"],
+      "candidateIds": [
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138",
+        "810136",
+        "810134",
+        "810130",
+        "810128",
+        "810126",
+        "810124",
+        "810122",
+        "810120",
+        "810118",
+        "810114",
+        "810112",
+        "810110",
+        "810108",
+        "810106",
+        "810104",
+        "810102",
+        "810148",
+        "810132",
+        "810116",
+        "810100",
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145",
+        "810143",
+        "810141",
+        "810139",
+        "810137",
+        "810135",
+        "810133",
+        "810131",
+        "810129",
+        "810127",
+        "810125",
+        "810123",
+        "810121",
+        "810119",
+        "810117",
+        "810115",
+        "810113",
+        "810111",
+        "810109",
+        "810107",
+        "810105",
+        "810103",
+        "810101",
+        "808000",
+        "808162",
+        "808160",
+        "808158",
+        "808156",
+        "808154",
+        "808152",
+        "808150",
+        "808146",
+        "808144",
+        "808142",
+        "808140",
+        "808138",
+        "808136",
+        "808134",
+        "808130",
+        "808128",
+        "808126",
+        "808124",
+        "808122",
+        "808120",
+        "808118",
+        "808114",
+        "808112",
+        "808110",
+        "808108",
+        "808106",
+        "808104",
+        "808102",
+        "808148",
+        "808132",
+        "808116",
+        "808100",
+        "808002"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.574763000000019,
+      "candidateProbeMs": 5.419266999999991,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 100,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["хранятся", "данные", "кедр"],
+        "queries": ["(хранятся OR данные OR кедр)"]
+      },
+      "matches": [
+        {
+          "id": "810162",
+          "locator": "msg:synthetic/500/890/810162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810160",
+          "locator": "msg:synthetic/500/890/810160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810158",
+          "locator": "msg:synthetic/500/890/810158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810156",
+          "locator": "msg:synthetic/500/890/810156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810154",
+          "locator": "msg:synthetic/500/890/810154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810152",
+          "locator": "msg:synthetic/500/890/810152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810150",
+          "locator": "msg:synthetic/500/890/810150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810146",
+          "locator": "msg:synthetic/500/890/810146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810144",
+          "locator": "msg:synthetic/500/890/810144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810142",
+          "locator": "msg:synthetic/500/890/810142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["хранятся", "данные", "кедр"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Какой регион данных Кедр?",
+      "ids": ["810000", "810001", "810163", "810161", "810159", "810157", "810155", "810153", "810151", "810149"],
+      "candidateIds": [
+        "810000",
+        "810001",
+        "810163",
+        "810161",
+        "810159",
+        "810157",
+        "810155",
+        "810153",
+        "810151",
+        "810149",
+        "810147",
+        "810145",
+        "810143",
+        "810141",
+        "810139",
+        "810137",
+        "810135",
+        "810133",
+        "810131",
+        "810129",
+        "810127",
+        "810125",
+        "810123",
+        "810121",
+        "810119",
+        "810117",
+        "810115",
+        "810113",
+        "810111",
+        "810109",
+        "810107",
+        "810105",
+        "810103",
+        "810101",
+        "810162",
+        "810160",
+        "810158",
+        "810156",
+        "810154",
+        "810152",
+        "810150",
+        "810146",
+        "810144",
+        "810142",
+        "810140",
+        "810138",
+        "810136",
+        "810134",
+        "810130",
+        "810128",
+        "810126",
+        "810124",
+        "810122",
+        "810120",
+        "810118",
+        "810114",
+        "810112",
+        "810110",
+        "810108",
+        "810106",
+        "810104",
+        "810102",
+        "810148",
+        "810132",
+        "810116",
+        "810100"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.906289000000015,
+      "candidateProbeMs": 3.541343999999981,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 66,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["регион", "данных", "кедр"],
+        "queries": ["(регион OR данных OR кедр)"]
+      },
+      "matches": [
+        {
+          "id": "810000",
+          "locator": "msg:synthetic/500/890/810000",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810001",
+          "locator": "msg:synthetic/500/890/810001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810163",
+          "locator": "msg:synthetic/500/890/810163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810161",
+          "locator": "msg:synthetic/500/890/810161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810159",
+          "locator": "msg:synthetic/500/890/810159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810157",
+          "locator": "msg:synthetic/500/890/810157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810155",
+          "locator": "msg:synthetic/500/890/810155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810153",
+          "locator": "msg:synthetic/500/890/810153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810151",
+          "locator": "msg:synthetic/500/890/810151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "810149",
+          "locator": "msg:synthetic/500/890/810149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["регион", "данных", "кедр"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "discover",
+      "input": "Кто владелец проекта Пихта?",
+      "ids": ["811162", "811160", "811158", "811156", "811154", "811152", "811150", "811146", "811144", "811142"],
+      "candidateIds": [
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138",
+        "811136",
+        "811134",
+        "811130",
+        "811128",
+        "811126",
+        "811124",
+        "811122",
+        "811120",
+        "811118",
+        "811114",
+        "811112",
+        "811110",
+        "811108",
+        "811106",
+        "811104",
+        "811102",
+        "811148",
+        "811132",
+        "811116",
+        "811100",
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141",
+        "811139",
+        "811137",
+        "811135",
+        "811133",
+        "811131",
+        "811129",
+        "811127",
+        "811125",
+        "811123",
+        "811121",
+        "811119",
+        "811117",
+        "811115",
+        "811113",
+        "811111",
+        "811109",
+        "811107",
+        "811105",
+        "811103",
+        "811101",
+        "811001",
+        "811000",
+        "809002"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 3.7796020000000112,
+      "candidateProbeMs": 4.097748000000024,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 10,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["владелец", "проекта", "пихта"],
+        "queries": ["(владелец OR проекта OR пихта)"]
+      },
+      "matches": [
+        {
+          "id": "811162",
+          "locator": "msg:synthetic/500/891/811162",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811160",
+          "locator": "msg:synthetic/500/891/811160",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811158",
+          "locator": "msg:synthetic/500/891/811158",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811156",
+          "locator": "msg:synthetic/500/891/811156",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811154",
+          "locator": "msg:synthetic/500/891/811154",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811152",
+          "locator": "msg:synthetic/500/891/811152",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811150",
+          "locator": "msg:synthetic/500/891/811150",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811146",
+          "locator": "msg:synthetic/500/891/811146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811144",
+          "locator": "msg:synthetic/500/891/811144",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811142",
+          "locator": "msg:synthetic/500/891/811142",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["владелец", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplement-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "discover",
+      "input": "Какой лимит проекта Пихта?",
+      "ids": ["811163", "811161", "811159", "811157", "811155", "811153", "811151", "811149", "811147", "811145"],
+      "candidateIds": [
+        "811163",
+        "811161",
+        "811159",
+        "811157",
+        "811155",
+        "811153",
+        "811151",
+        "811149",
+        "811147",
+        "811145",
+        "811143",
+        "811141",
+        "811139",
+        "811137",
+        "811135",
+        "811133",
+        "811131",
+        "811129",
+        "811127",
+        "811125",
+        "811123",
+        "811121",
+        "811119",
+        "811117",
+        "811115",
+        "811113",
+        "811111",
+        "811109",
+        "811107",
+        "811105",
+        "811103",
+        "811101",
+        "811162",
+        "811160",
+        "811158",
+        "811156",
+        "811154",
+        "811152",
+        "811150",
+        "811146",
+        "811144",
+        "811142",
+        "811140",
+        "811138",
+        "811136",
+        "811134",
+        "811130",
+        "811128",
+        "811126",
+        "811124",
+        "811122",
+        "811120",
+        "811118",
+        "811114",
+        "811112",
+        "811110",
+        "811108",
+        "811106",
+        "811104",
+        "811102",
+        "811148",
+        "811132",
+        "811116",
+        "811100",
+        "811001",
+        "811000",
+        "809002"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 4.313361999999984,
+      "candidateProbeMs": 4.926383000000044,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 10,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 67,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": ["лимит", "проекта", "пихта"],
+        "queries": ["(лимит OR проекта OR пихта)"]
+      },
+      "matches": [
+        {
+          "id": "811163",
+          "locator": "msg:synthetic/500/891/811163",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811161",
+          "locator": "msg:synthetic/500/891/811161",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811159",
+          "locator": "msg:synthetic/500/891/811159",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811157",
+          "locator": "msg:synthetic/500/891/811157",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811155",
+          "locator": "msg:synthetic/500/891/811155",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811153",
+          "locator": "msg:synthetic/500/891/811153",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811151",
+          "locator": "msg:synthetic/500/891/811151",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811149",
+          "locator": "msg:synthetic/500/891/811149",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811147",
+          "locator": "msg:synthetic/500/891/811147",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "811145",
+          "locator": "msg:synthetic/500/891/811145",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": ["лимит", "проекта", "пихта"],
+            "missingTerms": []
+          }
+        }
+      ]
+    }
+  ],
+  "ingestion": {
+    "setupMs": 320.09600000000006,
+    "peakRss": 130027520
+  }
+}

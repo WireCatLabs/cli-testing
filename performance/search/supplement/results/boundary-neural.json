@@ -1,0 +1,949 @@
+{
+  "selectionOrder": "neural",
+  "fixtureSha256": "ce1170132d7d6295f2f940953eef68f5872b1985bcfddafe45cf522ef28a113b",
+  "baselineSha256": "ea3afa26f09316d6562786e995c342588b5d77f11214854b8e35157fe5af3a53",
+  "scoresSha256": "d4275773e76713e68c640a7e7634377c33e8194eb11deabce667fabcea5969af",
+  "evaluatorSha256": "cb6cfa0d0d15c8ba045efaa44df646c45d3c828dcdc39c3eccd2136a7272535b",
+  "workerSha256": "f41eb9b7e7bf3de6b377d8000ef579c67939b12d06f821ca85378e71bab5329a",
+  "inputSha256": "3c0997732af9b2e62479edee2bef5918e5279b5b883ef3b48eefbf2837f1b9db",
+  "model": {
+    "repository": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "licence": "Apache-2.0",
+    "files": [
+      {
+        "name": "onnx/model_quint8_avx2.onnx",
+        "bytes": 23200716,
+        "sha256": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx/model_quint8_avx2.onnx"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 711396,
+        "sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer.json"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1330,
+        "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/tokenizer_config.json"
+      },
+      {
+        "name": "config.json",
+        "bytes": 794,
+        "sha256": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/config.json"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 132,
+        "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+        "url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/233902d25c440f23af6f7d6e94d2946bac0bee0a/special_tokens_map.json"
+      }
+    ],
+    "assetBytes": 23914368,
+    "preparationSeconds": 4.332281378003245,
+    "maxTokens": 512
+  },
+  "loadMs": 59.07612000009976,
+  "peakWorkerBytes": 107876352,
+  "scoringP50Ms": 77.35067600151524,
+  "scoringP95Ms": 108.60094799863873,
+  "passesMeasuredGates": false,
+  "readyForIntegration": false,
+  "regressions": [
+    {
+      "id": "boundary-1",
+      "budget": null,
+      "losses": ["ndcg"],
+      "lostEvidence": []
+    },
+    {
+      "id": "boundary-1",
+      "budget": 4096,
+      "losses": ["ndcg"],
+      "lostEvidence": []
+    }
+  ],
+  "summary": [
+    {
+      "budget": null,
+      "language": "all",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.8,
+        "evidenceRecall": 0.8,
+        "ndcg": 0.5420014040742399,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1207.4
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.6074196441674492,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1238.2
+      }
+    },
+    {
+      "budget": null,
+      "language": "en",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.8,
+        "evidenceRecall": 0.8,
+        "ndcg": 0.5420014040742399,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1207.4
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.6074196441674492,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1238.2
+      }
+    },
+    {
+      "budget": 512,
+      "language": "all",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 3.6,
+        "meanBytes": 388.8
+      },
+      "supplement": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 3.6,
+        "meanBytes": 388.8
+      }
+    },
+    {
+      "budget": 512,
+      "language": "en",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 3.6,
+        "meanBytes": 388.8
+      },
+      "supplement": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 3.6,
+        "meanBytes": 388.8
+      }
+    },
+    {
+      "budget": 1024,
+      "language": "all",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 6.8,
+        "meanBytes": 798.4
+      },
+      "supplement": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 6.8,
+        "meanBytes": 798.4
+      }
+    },
+    {
+      "budget": 1024,
+      "language": "en",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 6.8,
+        "meanBytes": 798.4
+      },
+      "supplement": {
+        "answer": 0.2,
+        "evidenceRecall": 0.4666666666666667,
+        "ndcg": 0.3936610031454415,
+        "partialHits": 0,
+        "meanDelivered": 6.8,
+        "meanBytes": 798.4
+      }
+    },
+    {
+      "budget": 4096,
+      "language": "all",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.8,
+        "evidenceRecall": 0.8,
+        "ndcg": 0.5420014040742399,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1207.4
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.6074196441674492,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1238.2
+      }
+    },
+    {
+      "budget": 4096,
+      "language": "en",
+      "queries": 5,
+      "baseline": {
+        "answer": 0.8,
+        "evidenceRecall": 0.8,
+        "ndcg": 0.5420014040742399,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1207.4
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.6074196441674492,
+        "partialHits": 0,
+        "meanDelivered": 10,
+        "meanBytes": 1238.2
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "boundary-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "900000",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900009",
+        "900010",
+        "900100"
+      ],
+      "supplementIds": [
+        "900000",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900009",
+        "900010",
+        "900111"
+      ],
+      "baselineBytes": 1456,
+      "supplementBytes": 1546,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5195289081711734,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5195289081711734,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900010"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "900100",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900110",
+        "900111"
+      ],
+      "supplementIds": [
+        "900100",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900111",
+        "900110"
+      ],
+      "baselineBytes": 1511,
+      "supplementBytes": 1511,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5100708840567943,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5058564375553576,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900110", "900111"],
+      "lostEvidence": [],
+      "losses": ["ndcg"]
+    },
+    {
+      "id": "boundary-2",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "900200",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900201",
+        "900211"
+      ],
+      "supplementIds": [
+        "900200",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900212",
+        "900211"
+      ],
+      "baselineBytes": 1476,
+      "supplementBytes": 1511,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.6666666666666666,
+        "ndcg": 0.4383309742114299,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5058564375553576,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900211"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-3",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": null,
+      "baselineIds": [
+        "900300",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900302",
+        "900301"
+      ],
+      "supplementIds": [
+        "900300",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900313",
+        "900312"
+      ],
+      "baselineBytes": 1483,
+      "supplementBytes": 1512,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5058564375553576,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-probe",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": null,
+      "baselineIds": ["909001", "909000"],
+      "supplementIds": ["909001", "909000"],
+      "baselineBytes": 111,
+      "supplementBytes": 111,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 512,
+      "baselineIds": ["900000", "900008", "900007", "900006"],
+      "supplementIds": ["900000", "900008", "900007", "900006"],
+      "baselineBytes": 458,
+      "supplementBytes": 458,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900010"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 512,
+      "baselineIds": ["900100", "900109", "900108", "900107"],
+      "supplementIds": ["900100", "900109", "900108", "900107"],
+      "baselineBytes": 458,
+      "supplementBytes": 458,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900110", "900111"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-2",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 512,
+      "baselineIds": ["900200", "900210", "900209", "900208"],
+      "supplementIds": ["900200", "900210", "900209", "900208"],
+      "baselineBytes": 458,
+      "supplementBytes": 458,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900211"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-3",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 512,
+      "baselineIds": ["900300", "900311", "900310", "900309"],
+      "supplementIds": ["900300", "900311", "900310", "900309"],
+      "baselineBytes": 459,
+      "supplementBytes": 459,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-probe",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 512,
+      "baselineIds": ["909001", "909000"],
+      "supplementIds": ["909001", "909000"],
+      "baselineBytes": 111,
+      "supplementBytes": 111,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 1024,
+      "baselineIds": ["900000", "900008", "900007", "900006", "900005", "900004", "900003", "900002"],
+      "supplementIds": ["900000", "900008", "900007", "900006", "900005", "900004", "900003", "900002"],
+      "baselineBytes": 970,
+      "supplementBytes": 970,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900010"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 1024,
+      "baselineIds": ["900100", "900109", "900108", "900107", "900106", "900105", "900104", "900103"],
+      "supplementIds": ["900100", "900109", "900108", "900107", "900106", "900105", "900104", "900103"],
+      "baselineBytes": 970,
+      "supplementBytes": 970,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900110", "900111"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-2",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 1024,
+      "baselineIds": ["900200", "900210", "900209", "900208", "900207", "900206", "900205", "900204"],
+      "supplementIds": ["900200", "900210", "900209", "900208", "900207", "900206", "900205", "900204"],
+      "baselineBytes": 970,
+      "supplementBytes": 970,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900211"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-3",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 1024,
+      "baselineIds": ["900300", "900311", "900310", "900309", "900308", "900307", "900306", "900305"],
+      "supplementIds": ["900300", "900311", "900310", "900309", "900308", "900307", "900306", "900305"],
+      "baselineBytes": 971,
+      "supplementBytes": 971,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-probe",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 1024,
+      "baselineIds": ["909001", "909000"],
+      "supplementIds": ["909001", "909000"],
+      "baselineBytes": 111,
+      "supplementBytes": 111,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "900000",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900009",
+        "900010",
+        "900100"
+      ],
+      "supplementIds": [
+        "900000",
+        "900008",
+        "900007",
+        "900006",
+        "900005",
+        "900004",
+        "900003",
+        "900002",
+        "900001",
+        "900009",
+        "900010",
+        "900111"
+      ],
+      "baselineBytes": 1456,
+      "supplementBytes": 1546,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5195289081711734,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5195289081711734,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900010"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "900100",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900110",
+        "900111"
+      ],
+      "supplementIds": [
+        "900100",
+        "900109",
+        "900108",
+        "900107",
+        "900106",
+        "900105",
+        "900104",
+        "900103",
+        "900102",
+        "900101",
+        "900111",
+        "900110"
+      ],
+      "baselineBytes": 1511,
+      "supplementBytes": 1511,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5100708840567943,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5058564375553576,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900110", "900111"],
+      "lostEvidence": [],
+      "losses": ["ndcg"]
+    },
+    {
+      "id": "boundary-2",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "900200",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900201",
+        "900211"
+      ],
+      "supplementIds": [
+        "900200",
+        "900210",
+        "900209",
+        "900208",
+        "900207",
+        "900206",
+        "900205",
+        "900204",
+        "900203",
+        "900202",
+        "900212",
+        "900211"
+      ],
+      "baselineBytes": 1476,
+      "supplementBytes": 1511,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 0.6666666666666666,
+        "ndcg": 0.4383309742114299,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5058564375553576,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": ["900211"],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-3",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "budget": 4096,
+      "baselineIds": [
+        "900300",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900302",
+        "900301"
+      ],
+      "supplementIds": [
+        "900300",
+        "900311",
+        "900310",
+        "900309",
+        "900308",
+        "900307",
+        "900306",
+        "900305",
+        "900304",
+        "900303",
+        "900313",
+        "900312"
+      ],
+      "baselineBytes": 1483,
+      "supplementBytes": 1512,
+      "baseline": {
+        "answer": 0.0,
+        "evidenceRecall": 0.3333333333333333,
+        "ndcg": 0.24207625393180188,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 0.5058564375553576,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    },
+    {
+      "id": "boundary-probe",
+      "language": "en",
+      "category": "terse-reply",
+      "budget": 4096,
+      "baselineIds": ["909001", "909000"],
+      "supplementIds": ["909001", "909000"],
+      "baselineBytes": 111,
+      "supplementBytes": 111,
+      "baseline": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "supplement": {
+        "answer": 1.0,
+        "evidenceRecall": 1.0,
+        "ndcg": 1.0,
+        "partialHits": 0
+      },
+      "baselineEvidenceAt11Or12": [],
+      "lostEvidence": [],
+      "losses": []
+    }
+  ]
+}
