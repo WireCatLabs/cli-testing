@@ -24,7 +24,9 @@ The [model-free path](model-free/README.md) now tests actual questions end to en
 keyword anchors: bounded lexical planning, stemmed BM25 and eligible reply context. It records
 ranking failures and full-process RAM. The [fresh validation](model-free/FRESH-VALIDATION.md)
 now measures the built storage-backed discovery option and archive scaling, with strict defaults
-preserved and missing-fact partial hits explicitly retained.
+preserved and missing-fact partial hits explicitly retained. The
+[candidate/ranking follow-up](model-free/RANKING-VALIDATION.md) separates missing candidates from
+poor ordering and records unsuccessful cheap rerankers.
 
 ## Layout
 

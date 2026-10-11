@@ -10,11 +10,13 @@ import type { FoundMessage } from "../../dist/services/messages.js"
 import { searchStore } from "../../dist/services/messages.js"
 import type { QueryMetadata } from "../../dist/services/messages-search.js"
 import { openStore } from "../../dist/store/store.js"
+import { createCandidateRanker } from "./rank.ts"
 
 const flag = (key: string) => {
   const i = process.argv.indexOf(key)
   return i < 0 ? undefined : process.argv[i + 1]
 }
+const compareRanking = process.argv.includes("--compare-ranking")
 const fixture = flag("--fixture") ?? new URL("./fresh.json", import.meta.url)
 const bytes = readFileSync(fixture)
 const corpus = JSON.parse(bytes.toString()) as {
@@ -32,6 +34,12 @@ const corpus = JSON.parse(bytes.toString()) as {
   }[]
 }
 assert.ok(corpus.queries.every((q) => !("retrieval" in q)))
+const messageIds = new Set(corpus.messages.map((m) => m.id))
+assert.equal(messageIds.size, corpus.messages.length, "this evaluator requires globally unique synthetic message ids")
+for (const q of corpus.queries) {
+  assert.equal(q.answerExpected, Object.values(q.relevant).includes(2))
+  assert.ok(Object.entries(q.relevant).every(([id, grade]) => messageIds.has(id) && (grade === 1 || grade === 2)))
+}
 const background = Number(flag("--background") ?? 0)
 assert.ok(Number.isInteger(background) && background >= 0 && background <= 1_000_000)
 const reuse = flag("--query-store")
@@ -110,6 +118,7 @@ try {
         String(background),
         "--query-store",
         path,
+        ...(compareRanking ? ["--compare-ranking"] : []),
       ],
       { encoding: "utf8", maxBuffer: 16 * 1024 * 1024, env: process.env },
     )
@@ -122,10 +131,15 @@ try {
       id: string
       language: string
       category: string
-      mode: "strict" | "discover"
+      mode: string
       input: string
       ids: string[]
+      candidateIds: string[]
+      answerInCandidates: number | null
+      evidenceRecallAt300: number | null
       elapsedMs: number
+      candidateProbeMs: number
+      rankingComparisonMs: number | null
       answerAt1: number | null
       answerAt3: number | null
       answerAt10: number | null
@@ -136,6 +150,7 @@ try {
       discovery?: QueryMetadata["discovery"]
       matches: { id: string; locator: string; discovery?: FoundMessage["discovery"] }[]
     }[] = []
+    const rank = compareRanking ? await createCandidateRanker() : undefined
     const question = corpus.queries.find((q) => q.group === "question" && q.category === "terse-reply")
     assert.ok(question)
     const firstStarted = performance.now()
@@ -171,43 +186,84 @@ try {
           limit: 10,
         })
         const elapsedMs = performance.now() - t
-        const ids = found.items.map((m) => m.id)
-        const answers = Object.entries(q.relevant)
-          .filter(([, g]) => g === 2)
-          .map(([id]) => id)
-        const evidence = Object.keys(q.relevant)
-        const position = ids.findIndex((id) => answers.includes(id))
-        const dcg = (grades: number[]) => grades.reduce((s, g, i) => s + (2 ** g - 1) / Math.log2(i + 2), 0)
-        rows.push({
-          id: q.id,
-          language: q.language,
-          category: q.category,
-          mode,
-          input: q.text,
-          ids,
-          elapsedMs,
-          answerAt1: answers.length ? Number(position === 0) : null,
-          answerAt3: answers.length ? Number(position >= 0 && position < 3) : null,
-          answerAt10: answers.length ? Number(position >= 0) : null,
-          mrrAt10: answers.length ? (position < 0 ? 0 : 1 / (position + 1)) : null,
-          evidenceRecallAt10: evidence.length
-            ? ids.filter((id) => evidence.includes(id)).length / evidence.length
-            : null,
-          ndcgAt10: evidence.length
-            ? dcg(ids.map((id) => q.relevant[id] ?? 0)) / dcg(Object.values(q.relevant).sort((a, b) => b - a))
-            : null,
-          falseHits: evidence.length ? 0 : ids.length,
-          discovery: found.query?.discovery,
-          matches: found.items.map((m) => ({ id: m.id, locator: m.locator, discovery: m.discovery })),
+        const probeStarted = performance.now()
+        const pool = await searchStore(store, account, {
+          text: q.text,
+          discover: mode === "discover",
+          language: "lucene",
+          timezone: "UTC",
+          limit: 300,
         })
+        const candidateProbeMs = performance.now() - probeStarted
+        assert.deepEqual(
+          pool.items.slice(0, 10).map((m) => m.locator),
+          found.items.map((m) => m.locator),
+          "candidate probe must preserve top-ten ordering",
+        )
+        assert.ok(pool.items.length <= 300)
+        assert.equal(new Set(pool.items.map((m) => m.locator)).size, pool.items.length)
+        if (pool.query?.discovery) assert.equal(pool.items.length, pool.query.discovery.candidates)
+        const candidateIds = pool.items.map((m) => m.id)
+        const ranked = mode === "discover" && rank ? rank(pool.items, pool.query?.discovery?.terms ?? []) : undefined
+        for (const variant of [{ mode, items: found.items }, ...(ranked?.variants ?? [])]) {
+          const ids = variant.items.slice(0, 10).map((m) => m.id)
+          const answers = Object.entries(q.relevant)
+            .filter(([, g]) => g === 2)
+            .map(([id]) => id)
+          const evidence = Object.keys(q.relevant)
+          const position = ids.findIndex((id) => answers.includes(id))
+          const dcg = (grades: number[]) => grades.reduce((s, g, i) => s + (2 ** g - 1) / Math.log2(i + 2), 0)
+          rows.push({
+            id: q.id,
+            language: q.language,
+            category: q.category,
+            mode: variant.mode,
+            input: q.text,
+            ids,
+            candidateIds,
+            answerInCandidates: answers.length ? Number(candidateIds.some((id) => answers.includes(id))) : null,
+            evidenceRecallAt300: evidence.length
+              ? candidateIds.filter((id) => evidence.includes(id)).length / evidence.length
+              : null,
+            elapsedMs: variant.mode === mode ? elapsedMs : candidateProbeMs + (ranked?.elapsedMs ?? 0),
+            candidateProbeMs,
+            rankingComparisonMs: ranked?.elapsedMs ?? null,
+            answerAt1: answers.length ? Number(position === 0) : null,
+            answerAt3: answers.length ? Number(position >= 0 && position < 3) : null,
+            answerAt10: answers.length ? Number(position >= 0) : null,
+            mrrAt10: answers.length ? (position < 0 ? 0 : 1 / (position + 1)) : null,
+            evidenceRecallAt10: evidence.length
+              ? ids.filter((id) => evidence.includes(id)).length / evidence.length
+              : null,
+            ndcgAt10: evidence.length
+              ? dcg(ids.map((id) => q.relevant[id] ?? 0)) /
+                dcg(
+                  Object.values(q.relevant)
+                    .sort((a, b) => b - a)
+                    .slice(0, 10),
+                )
+              : null,
+            falseHits: evidence.length ? 0 : ids.length,
+            discovery: found.query?.discovery,
+            matches: variant.items.slice(0, 10).map((m) => ({ id: m.id, locator: m.locator, discovery: m.discovery })),
+          })
+        }
       }
     }
     const p = (xs: number[], n: number) =>
       [...xs].sort((a, b) => a - b)[Math.min(xs.length - 1, Math.floor(xs.length * n))]
-    const summary = ["strict", "discover"].map((mode) => {
+    const summary = [...new Set(rows.map((r) => r.mode))].map((mode) => {
       const rs = rows.filter((r) => r.mode === mode)
       const average = (
-        key: "answerAt1" | "answerAt3" | "answerAt10" | "mrrAt10" | "evidenceRecallAt10" | "ndcgAt10",
+        key:
+          | "answerInCandidates"
+          | "evidenceRecallAt300"
+          | "answerAt1"
+          | "answerAt3"
+          | "answerAt10"
+          | "mrrAt10"
+          | "evidenceRecallAt10"
+          | "ndcgAt10",
       ) => {
         const xs = rs.flatMap((r) => (r[key] === null ? [] : [r[key]]))
         return xs.reduce((s, x) => s + x, 0) / xs.length
@@ -216,6 +272,8 @@ try {
         mode,
         queries: rs.length,
         answerable: rs.filter((r) => r.answerAt10 !== null).length,
+        answerInCandidates: average("answerInCandidates"),
+        evidenceRecallAt300: average("evidenceRecallAt300"),
         answerAt1: average("answerAt1"),
         answerAt3: average("answerAt3"),
         answerAt10: average("answerAt10"),
@@ -235,7 +293,7 @@ try {
     })
     const hash = (file: string | URL) => createHash("sha256").update(readFileSync(file)).digest("hex")
     process.stdout.write(
-      `${JSON.stringify({ node: process.version, messages: corpus.messages.length + background, background, fixtureSha256: createHash("sha256").update(bytes).digest("hex"), runnerSha256: hash(new URL("./production.ts", import.meta.url)), productionSha256: Object.fromEntries(["services/messages-discovery.js", "services/messages-combined.js", "search/question-plan.js", "store/sqlite/search.js", "store/sqlite/lucene.js"].map((file) => [file, hash(new URL(`../../dist/${file}`, import.meta.url))])), setupMs, baselineRss, setupRss, firstMs, firstRss, warmP50Ms: p(repeatMs, 0.5), warmP95Ms: p(repeatMs, 0.95), peakRss: process.resourceUsage().maxRSS * 1024, databaseBytes: statSync(path).size, storePath: path, summary, rows }, null, 2)}\n`,
+      `${JSON.stringify({ node: process.version, messages: corpus.messages.length + background, background, fixtureSha256: createHash("sha256").update(bytes).digest("hex"), runnerSha256: hash(new URL("./production.ts", import.meta.url)), rankerSha256: hash(new URL("./rank.ts", import.meta.url)), productionSha256: Object.fromEntries(["services/messages-discovery.js", "services/messages-combined.js", "search/question-plan.js", "store/sqlite/search.js", "store/sqlite/lucene.js"].map((file) => [file, hash(new URL(`../../dist/${file}`, import.meta.url))])), setupMs, baselineRss, setupRss, firstMs, firstRss, warmP50Ms: p(repeatMs, 0.5), warmP95Ms: p(repeatMs, 0.95), peakRss: process.resourceUsage().maxRSS * 1024, databaseBytes: statSync(path).size, storePath: path, summary, rows }, null, 2)}\n`,
     )
   }
 } finally {

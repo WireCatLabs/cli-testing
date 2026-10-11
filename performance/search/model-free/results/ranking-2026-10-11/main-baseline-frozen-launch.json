@@ -1,0 +1,19 @@
+{
+  "messagingRoot": "/home/leemour/Projects/AI/cli-testing-wt-search-ranking-next/.worktrees/messaging-baseline",
+  "runner": "production",
+  "coreScope": "@wirecat",
+  "packageAliases": {},
+  "command": [
+    "node",
+    "/tmp/cli-testing-search-3yundgix/bench/model-free/production.ts",
+    "--fixture",
+    "/home/leemour/Projects/AI/cli-testing-wt-search-ranking-next/performance/search/model-free/ranking-frozen.json"
+  ],
+  "node": "v24.19.0",
+  "messagingPackage": "0.228.0",
+  "messagingCommit": "5f935a5d2f16da013114aaa7fb165bc316a69867",
+  "testingCommit": "53048abfd132277a9fddcfe81dccc970501a2286",
+  "dependencyRoot": "/home/leemour/Projects/AI/cli-testing-wt-search-ranking-next/.worktrees/messaging-baseline/node_modules",
+  "artifactKind": "checkout-build",
+  "packageSha256": "ecba0204b66a270c6caa2f56100dc0a8ff089970f735cd2afe97853d32cc72f1"
+}

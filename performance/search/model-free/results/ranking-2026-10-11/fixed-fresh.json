@@ -1,0 +1,3617 @@
+{
+  "node": "v24.19.0",
+  "messages": 341,
+  "background": 0,
+  "fixtureSha256": "c3a2550ed19de21bc09aca51f232d9678b94636013253751d63d01f9fab9f8ad",
+  "runnerSha256": "5834cbe32f43487eb8613d8f51f70e8a70406fe1136a6a37b0a2887baa28b98a",
+  "rankerSha256": "8ea2344a3e445b36a9a23f433948addfb5b192972d572ec970a6e44826603962",
+  "productionSha256": {
+    "services/messages-discovery.js": "63a0c13cad9703f886d75381487b551d960b6eb13ef66019493be6c3e1861830",
+    "services/messages-combined.js": "7abf77eeafb8fd8bea4751bb3557743532b814c56f1831639c843f1e2b0904af",
+    "search/question-plan.js": "e3e27126fd5d7bd96878d0b32aedf01ac9694b52b44765267a10386458b06b98",
+    "store/sqlite/search.js": "2b3cf6f6ca6d2327fa5a6e5d8dc34009243bb621b54377c4f4af2ab31a5732d5",
+    "store/sqlite/lucene.js": "d819e7cc8b71dae40bd62b9792d9942bde1a9c632e7fe6b665f24fce5c389c67"
+  },
+  "setupMs": 5.779843,
+  "baselineRss": 101732352,
+  "setupRss": 104341504,
+  "firstMs": 26.928718000000003,
+  "firstRss": 113348608,
+  "warmP50Ms": 6.430503999999985,
+  "warmP95Ms": 7.457991000000021,
+  "peakRss": 130650112,
+  "databaseBytes": 1687552,
+  "storePath": "/tmp/discovery-production-PyMIXu/synthetic.db",
+  "summary": [
+    {
+      "mode": "strict",
+      "queries": 24,
+      "answerable": 16,
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "p50Ms": 1.4404329999999845,
+      "p95Ms": 3.4494609999999852
+    },
+    {
+      "mode": "discover",
+      "queries": 24,
+      "answerable": 16,
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "answerAt1": 0.125,
+      "answerAt3": 0.875,
+      "answerAt10": 1,
+      "mrrAt10": 0.5208333333333333,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7480529461975234,
+      "falseHits": 0,
+      "p50Ms": 4.3403619999999705,
+      "p95Ms": 7.46828099999999
+    }
+  ],
+  "rows": [
+    {
+      "id": "fresh-helix-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "How long are Helix logs kept?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 4.786599999999993,
+      "candidateProbeMs": 1.9959440000000086,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-helix-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "What is the log lifetime for Helix?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.7801490000000229,
+      "candidateProbeMs": 1.5476429999999937,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-quartz-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Who has Quartz production access?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3946360000000197,
+      "candidateProbeMs": 1.555737999999991,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-quartz-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Who can enter Quartz production?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4404329999999845,
+      "candidateProbeMs": 1.4399820000000432,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-rivet-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "Which Rivet service build is current?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4345909999999549,
+      "candidateProbeMs": 1.5171059999999557,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-rivet-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "What version does Rivet run now?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.7339430000000107,
+      "candidateProbeMs": 1.899091999999996,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-atlas-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "What time does Atlas export run?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.7079200000000014,
+      "candidateProbeMs": 1.501827999999989,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-atlas-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "When is the Atlas daily export?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.404956000000027,
+      "candidateProbeMs": 1.3210390000000416,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-beacon-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Where is Beacon storage located?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3656019999999671,
+      "candidateProbeMs": 1.4397009999999568,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-beacon-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the final Beacon storage region?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4950549999999794,
+      "candidateProbeMs": 1.5531540000000064,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-finch-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "Who is the external auditor for Finch?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.4009580000000028,
+      "candidateProbeMs": 1.3766029999999887,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-finch-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "What is the Finch audit fee?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2980349999999703,
+      "candidateProbeMs": 1.312342000000001,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u043a\u0435\u0434\u0440-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0434\u043d\u0435\u0439 \u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f \u043b\u043e\u0433\u0438 \u041a\u0435\u0434\u0440?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 3.4494609999999852,
+      "candidateProbeMs": 1.3484900000000266,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u043a\u0435\u0434\u0440-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u0441\u0440\u043e\u043a \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u043b\u043e\u0433\u043e\u0432 \u041a\u0435\u0434\u0440?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2901099999999701,
+      "candidateProbeMs": 1.3137049999999704,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u0441\u043e\u043a\u043e\u043b-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "\u041a\u043e\u043c\u0443 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d \u0434\u043e\u0441\u0442\u0443\u043f \u043d\u0430 \u0441\u0435\u0440\u0432\u0435\u0440 \u0421\u043e\u043a\u043e\u043b?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3001390000000015,
+      "candidateProbeMs": 1.2898400000000265,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u0441\u043e\u043a\u043e\u043b-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "\u041a\u0442\u043e \u043c\u043e\u0436\u0435\u0442 \u0432\u043e\u0439\u0442\u0438 \u043d\u0430 \u0441\u0435\u0440\u0432\u0435\u0440 \u0421\u043e\u043a\u043e\u043b?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.3933040000000005,
+      "candidateProbeMs": 1.2598540000000185,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u043f\u0430\u0440\u0443\u0441-0",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u0430\u044f \u0441\u0431\u043e\u0440\u043a\u0430 \u0441\u0435\u0440\u0432\u0438\u0441\u0430 \u041f\u0430\u0440\u0443\u0441 \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0441\u0435\u0439\u0447\u0430\u0441?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.553404999999998,
+      "candidateProbeMs": 1.4951849999999922,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u043f\u0430\u0440\u0443\u0441-1",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u041f\u0430\u0440\u0443\u0441 \u0441\u0435\u0439\u0447\u0430\u0441 \u0432 \u0440\u0430\u0431\u043e\u0442\u0435?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2515880000000266,
+      "candidateProbeMs": 1.2509370000000217,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u043c\u0430\u044f\u043a-0",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "\u0412\u043e \u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0438\u0434\u0451\u0442 \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u041c\u0430\u044f\u043a?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.002597000000037,
+      "candidateProbeMs": 1.2204489999999737,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u043c\u0430\u044f\u043a-1",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "\u041a\u043e\u0433\u0434\u0430 \u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u041c\u0430\u044f\u043a?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2501050000000191,
+      "candidateProbeMs": 1.1807249999999954,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u0433\u0440\u0430\u043d\u0438\u0442-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "\u0413\u0434\u0435 \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435 \u0434\u0430\u043d\u043d\u044b\u0445 \u0413\u0440\u0430\u043d\u0438\u0442?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.2171730000000025,
+      "candidateProbeMs": 2.0321720000000028,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u0433\u0440\u0430\u043d\u0438\u0442-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0440\u0435\u0433\u0438\u043e\u043d \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u0413\u0440\u0430\u043d\u0438\u0442?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.352373,
+      "candidateProbeMs": 1.9659079999999562,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u0440\u0443\u0447\u0435\u0439-0",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "\u041a\u0442\u043e \u0432\u043d\u0435\u0448\u043d\u0438\u0439 \u0430\u0443\u0434\u0438\u0442\u043e\u0440 \u0420\u0443\u0447\u0435\u0439?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 1.9484350000000177,
+      "candidateProbeMs": 2.1591809999999896,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-\u0440\u0443\u0447\u0435\u0439-1",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0441\u0442\u043e\u0438\u0442 \u0430\u0443\u0434\u0438\u0442 \u0420\u0443\u0447\u0435\u0439?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 2.4305989999999724,
+      "candidateProbeMs": 2.2466739999999845,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "fresh-helix-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "How long are Helix logs kept?",
+      "ids": [
+        "200004",
+        "200005",
+        "200003",
+        "200001",
+        "200002"
+      ],
+      "candidateIds": [
+        "200004",
+        "200005",
+        "200003",
+        "200001",
+        "200002"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 6.869236999999998,
+      "candidateProbeMs": 4.196642999999995,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.25,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5865409417085417,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "long",
+          "helix",
+          "logs",
+          "kept",
+          "retention"
+        ],
+        "queries": [
+          "(long OR helix OR logs OR kept OR retention)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200004",
+          "locator": "msg:synthetic/500/501/200004",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "kept"
+            ],
+            "missingTerms": [
+              "long",
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "200005",
+          "locator": "msg:synthetic/500/501/200005",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "retention"
+            ],
+            "missingTerms": [
+              "long",
+              "kept"
+            ]
+          }
+        },
+        {
+          "id": "200003",
+          "locator": "msg:synthetic/500/501/200003",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "retention"
+            ],
+            "missingTerms": [
+              "long",
+              "kept"
+            ]
+          }
+        },
+        {
+          "id": "200001",
+          "locator": "msg:synthetic/500/501/200001",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "helix",
+              "logs",
+              "retention"
+            ],
+            "missingTerms": [
+              "long",
+              "kept"
+            ]
+          }
+        },
+        {
+          "id": "200002",
+          "locator": "msg:synthetic/500/501/200002",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "helix",
+              "logs"
+            ],
+            "missingTerms": [
+              "long",
+              "kept",
+              "retention"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-helix-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "What is the log lifetime for Helix?",
+      "ids": [
+        "200005",
+        "200002",
+        "200003",
+        "200001",
+        "200004"
+      ],
+      "candidateIds": [
+        "200005",
+        "200002",
+        "200003",
+        "200001",
+        "200004"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.256816000000015,
+      "candidateProbeMs": 4.035069000000021,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.25,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6758840844016503,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "log",
+          "lifetime",
+          "helix",
+          "retention"
+        ],
+        "queries": [
+          "(log OR lifetime OR helix OR retention)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200005",
+          "locator": "msg:synthetic/500/501/200005",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "helix",
+              "retention"
+            ],
+            "missingTerms": [
+              "lifetime"
+            ]
+          }
+        },
+        {
+          "id": "200002",
+          "locator": "msg:synthetic/500/501/200002",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "lifetime",
+              "helix"
+            ],
+            "missingTerms": [
+              "retention"
+            ]
+          }
+        },
+        {
+          "id": "200003",
+          "locator": "msg:synthetic/500/501/200003",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "helix",
+              "retention"
+            ],
+            "missingTerms": [
+              "lifetime"
+            ]
+          }
+        },
+        {
+          "id": "200001",
+          "locator": "msg:synthetic/500/501/200001",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "log",
+              "helix",
+              "retention"
+            ],
+            "missingTerms": [
+              "lifetime"
+            ]
+          }
+        },
+        {
+          "id": "200004",
+          "locator": "msg:synthetic/500/501/200004",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "log",
+              "helix"
+            ],
+            "missingTerms": [
+              "lifetime",
+              "retention"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-quartz-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Who has Quartz production access?",
+      "ids": [
+        "200033",
+        "200030",
+        "200032",
+        "200031",
+        "200034",
+        "200004"
+      ],
+      "candidateIds": [
+        "200033",
+        "200030",
+        "200032",
+        "200031",
+        "200034",
+        "200004"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.399193000000025,
+      "candidateProbeMs": 3.9168379999999843,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6561037799490683,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "quartz",
+          "production",
+          "access"
+        ],
+        "queries": [
+          "(quartz OR production OR access)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200033",
+          "locator": "msg:synthetic/500/502/200033",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200030",
+          "locator": "msg:synthetic/500/502/200030",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200032",
+          "locator": "msg:synthetic/500/502/200032",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200031",
+          "locator": "msg:synthetic/500/502/200031",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "quartz",
+              "production",
+              "access"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200034",
+          "locator": "msg:synthetic/500/502/200034",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "access"
+            ]
+          }
+        },
+        {
+          "id": "200004",
+          "locator": "msg:synthetic/500/501/200004",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "production"
+            ],
+            "missingTerms": [
+              "quartz",
+              "access"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-quartz-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Who can enter Quartz production?",
+      "ids": [
+        "200033",
+        "200030",
+        "200034",
+        "200032",
+        "200031",
+        "200004"
+      ],
+      "candidateIds": [
+        "200033",
+        "200030",
+        "200034",
+        "200032",
+        "200031",
+        "200004"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.060500999999988,
+      "candidateProbeMs": 4.040809999999965,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6728853390803202,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "enter",
+          "quartz",
+          "production"
+        ],
+        "queries": [
+          "(enter OR quartz OR production)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200033",
+          "locator": "msg:synthetic/500/502/200033",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200030",
+          "locator": "msg:synthetic/500/502/200030",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200034",
+          "locator": "msg:synthetic/500/502/200034",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200032",
+          "locator": "msg:synthetic/500/502/200032",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200031",
+          "locator": "msg:synthetic/500/502/200031",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "quartz",
+              "production"
+            ],
+            "missingTerms": [
+              "enter"
+            ]
+          }
+        },
+        {
+          "id": "200004",
+          "locator": "msg:synthetic/500/501/200004",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "production"
+            ],
+            "missingTerms": [
+              "enter",
+              "quartz"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-rivet-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "Which Rivet service build is current?",
+      "ids": [
+        "200061",
+        "200059",
+        "200060",
+        "200062",
+        "200063"
+      ],
+      "candidateIds": [
+        "200061",
+        "200059",
+        "200060",
+        "200062",
+        "200063"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.2338659999999777,
+      "candidateProbeMs": 2.6879430000000184,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6561037799490683,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "rivet",
+          "service",
+          "build",
+          "current"
+        ],
+        "queries": [
+          "(rivet OR service OR build OR current)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200061",
+          "locator": "msg:synthetic/500/503/200061",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "rivet",
+              "service",
+              "build",
+              "current"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200059",
+          "locator": "msg:synthetic/500/503/200059",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "rivet",
+              "service",
+              "build"
+            ],
+            "missingTerms": [
+              "current"
+            ]
+          }
+        },
+        {
+          "id": "200060",
+          "locator": "msg:synthetic/500/503/200060",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "rivet",
+              "service",
+              "build"
+            ],
+            "missingTerms": [
+              "current"
+            ]
+          }
+        },
+        {
+          "id": "200062",
+          "locator": "msg:synthetic/500/503/200062",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "rivet",
+              "build"
+            ],
+            "missingTerms": [
+              "service",
+              "current"
+            ]
+          }
+        },
+        {
+          "id": "200063",
+          "locator": "msg:synthetic/500/503/200063",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "service",
+              "build",
+              "current"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-rivet-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "What version does Rivet run now?",
+      "ids": [
+        "200063",
+        "200059",
+        "200092",
+        "200089",
+        "200088",
+        "200062",
+        "200061",
+        "200060"
+      ],
+      "candidateIds": [
+        "200063",
+        "200059",
+        "200092",
+        "200089",
+        "200088",
+        "200062",
+        "200061",
+        "200060"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 7.46828099999999,
+      "candidateProbeMs": 7.7364129999999705,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7865048891265763,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 8,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "version",
+          "rivet",
+          "run",
+          "now"
+        ],
+        "queries": [
+          "(version OR rivet OR run OR now)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200063",
+          "locator": "msg:synthetic/500/503/200063",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "version",
+              "rivet"
+            ],
+            "missingTerms": [
+              "run",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200059",
+          "locator": "msg:synthetic/500/503/200059",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "rivet",
+              "now"
+            ],
+            "missingTerms": [
+              "version",
+              "run"
+            ]
+          }
+        },
+        {
+          "id": "200092",
+          "locator": "msg:synthetic/500/504/200092",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "run"
+            ],
+            "missingTerms": [
+              "version",
+              "rivet",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200089",
+          "locator": "msg:synthetic/500/504/200089",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "run"
+            ],
+            "missingTerms": [
+              "version",
+              "rivet",
+              "now"
+            ],
+            "parent": "msg:synthetic/500/504/200088"
+          }
+        },
+        {
+          "id": "200088",
+          "locator": "msg:synthetic/500/504/200088",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "run"
+            ],
+            "missingTerms": [
+              "version",
+              "rivet",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200062",
+          "locator": "msg:synthetic/500/503/200062",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "version",
+              "run",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200061",
+          "locator": "msg:synthetic/500/503/200061",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "version",
+              "run",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "200060",
+          "locator": "msg:synthetic/500/503/200060",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "rivet"
+            ],
+            "missingTerms": [
+              "version",
+              "run",
+              "now"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-atlas-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "What time does Atlas export run?",
+      "ids": [
+        "200089",
+        "200088",
+        "200092",
+        "200090",
+        "200091"
+      ],
+      "candidateIds": [
+        "200089",
+        "200088",
+        "200092",
+        "200090",
+        "200091"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 7.618702999999982,
+      "candidateProbeMs": 6.420524999999998,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9726097514324383,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "time",
+          "atlas",
+          "export",
+          "run"
+        ],
+        "queries": [
+          "(time OR atlas OR export OR run)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200089",
+          "locator": "msg:synthetic/500/504/200089",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "time",
+              "atlas",
+              "export",
+              "run"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/504/200088"
+          }
+        },
+        {
+          "id": "200088",
+          "locator": "msg:synthetic/500/504/200088",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "time",
+              "atlas",
+              "export",
+              "run"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200092",
+          "locator": "msg:synthetic/500/504/200092",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "atlas",
+              "export",
+              "run"
+            ],
+            "missingTerms": [
+              "time"
+            ]
+          }
+        },
+        {
+          "id": "200090",
+          "locator": "msg:synthetic/500/504/200090",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "time",
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "run"
+            ]
+          }
+        },
+        {
+          "id": "200091",
+          "locator": "msg:synthetic/500/504/200091",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "time",
+              "run"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-atlas-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "When is the Atlas daily export?",
+      "ids": [
+        "200089",
+        "200088",
+        "200091",
+        "200092",
+        "200090",
+        "200005"
+      ],
+      "candidateIds": [
+        "200089",
+        "200088",
+        "200091",
+        "200092",
+        "200090",
+        "200005"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 6.288006000000053,
+      "candidateProbeMs": 7.915389000000005,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "atlas",
+          "daily",
+          "export"
+        ],
+        "queries": [
+          "(atlas OR daily OR export)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200089",
+          "locator": "msg:synthetic/500/504/200089",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "atlas",
+              "daily",
+              "export"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/504/200088"
+          }
+        },
+        {
+          "id": "200088",
+          "locator": "msg:synthetic/500/504/200088",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "atlas",
+              "daily",
+              "export"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200091",
+          "locator": "msg:synthetic/500/504/200091",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "atlas",
+              "daily",
+              "export"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200092",
+          "locator": "msg:synthetic/500/504/200092",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "daily"
+            ]
+          }
+        },
+        {
+          "id": "200090",
+          "locator": "msg:synthetic/500/504/200090",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "atlas",
+              "export"
+            ],
+            "missingTerms": [
+              "daily"
+            ]
+          }
+        },
+        {
+          "id": "200005",
+          "locator": "msg:synthetic/500/501/200005",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "daily"
+            ],
+            "missingTerms": [
+              "atlas",
+              "export"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-beacon-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Where is Beacon storage located?",
+      "ids": [
+        "200120",
+        "200119",
+        "200117",
+        "200118"
+      ],
+      "candidateIds": [
+        "200120",
+        "200119",
+        "200117",
+        "200118"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.169953000000021,
+      "candidateProbeMs": 3.9771109999999794,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5706417189553201,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "beacon",
+          "storage",
+          "located"
+        ],
+        "queries": [
+          "(beacon OR storage OR located)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200120",
+          "locator": "msg:synthetic/500/505/200120",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "beacon",
+              "storage",
+              "located"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200119",
+          "locator": "msg:synthetic/500/505/200119",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "located"
+            ]
+          }
+        },
+        {
+          "id": "200117",
+          "locator": "msg:synthetic/500/505/200117",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "located"
+            ]
+          }
+        },
+        {
+          "id": "200118",
+          "locator": "msg:synthetic/500/505/200118",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "located"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-beacon-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the final Beacon storage region?",
+      "ids": [
+        "200119",
+        "200117",
+        "200118",
+        "200120"
+      ],
+      "candidateIds": [
+        "200119",
+        "200117",
+        "200118",
+        "200120"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.0484239999999545,
+      "candidateProbeMs": 4.051220000000001,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6934264036172708,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "final",
+          "beacon",
+          "storage",
+          "region"
+        ],
+        "queries": [
+          "(final OR beacon OR storage OR region)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200119",
+          "locator": "msg:synthetic/500/505/200119",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "final",
+              "beacon",
+              "storage",
+              "region"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200117",
+          "locator": "msg:synthetic/500/505/200117",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "beacon",
+              "storage",
+              "region"
+            ],
+            "missingTerms": [
+              "final"
+            ]
+          }
+        },
+        {
+          "id": "200118",
+          "locator": "msg:synthetic/500/505/200118",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "beacon",
+              "storage",
+              "region"
+            ],
+            "missingTerms": [
+              "final"
+            ]
+          }
+        },
+        {
+          "id": "200120",
+          "locator": "msg:synthetic/500/505/200120",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "beacon",
+              "storage"
+            ],
+            "missingTerms": [
+              "final",
+              "region"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-finch-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "Who is the external auditor for Finch?",
+      "ids": [
+        "200145",
+        "200148",
+        "200147",
+        "200146"
+      ],
+      "candidateIds": [
+        "200145",
+        "200148",
+        "200147",
+        "200146"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.305066000000011,
+      "candidateProbeMs": 5.041947999999991,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9674679834891693,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "external",
+          "auditor",
+          "finch"
+        ],
+        "queries": [
+          "(external OR auditor OR finch)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200145",
+          "locator": "msg:synthetic/500/506/200145",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "external",
+              "auditor",
+              "finch"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200148",
+          "locator": "msg:synthetic/500/506/200148",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "auditor",
+              "finch"
+            ],
+            "missingTerms": [
+              "external"
+            ]
+          }
+        },
+        {
+          "id": "200147",
+          "locator": "msg:synthetic/500/506/200147",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "finch"
+            ],
+            "missingTerms": [
+              "external",
+              "auditor"
+            ]
+          }
+        },
+        {
+          "id": "200146",
+          "locator": "msg:synthetic/500/506/200146",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "finch"
+            ],
+            "missingTerms": [
+              "external",
+              "auditor"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-finch-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "What is the Finch audit fee?",
+      "ids": [
+        "200148",
+        "200146",
+        "200145",
+        "200147"
+      ],
+      "candidateIds": [
+        "200148",
+        "200146",
+        "200145",
+        "200147"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.692927999999995,
+      "candidateProbeMs": 3.8140339999999924,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "finch",
+          "audit",
+          "fee"
+        ],
+        "queries": [
+          "(finch OR audit OR fee)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200148",
+          "locator": "msg:synthetic/500/506/200148",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "finch",
+              "audit",
+              "fee"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200146",
+          "locator": "msg:synthetic/500/506/200146",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "finch",
+              "audit",
+              "fee"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200145",
+          "locator": "msg:synthetic/500/506/200145",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "finch",
+              "audit"
+            ],
+            "missingTerms": [
+              "fee"
+            ]
+          }
+        },
+        {
+          "id": "200147",
+          "locator": "msg:synthetic/500/506/200147",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "finch"
+            ],
+            "missingTerms": [
+              "audit",
+              "fee"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u043a\u0435\u0434\u0440-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0434\u043d\u0435\u0439 \u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f \u043b\u043e\u0433\u0438 \u041a\u0435\u0434\u0440?",
+      "ids": [
+        "200175",
+        "200173",
+        "200174",
+        "200177",
+        "200176",
+        "200289",
+        "200288",
+        "200286"
+      ],
+      "candidateIds": [
+        "200175",
+        "200173",
+        "200174",
+        "200177",
+        "200176",
+        "200289",
+        "200288",
+        "200286"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 5.453300000000013,
+      "candidateProbeMs": 5.150522000000024,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7939234660462212,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 8,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0434\u043d\u0435\u0438",
+          "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f",
+          "\u043b\u043e\u0433\u0438",
+          "\u043a\u0435\u0434\u0440",
+          "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+        ],
+        "queries": [
+          "(\u0434\u043d\u0435\u0438 OR \u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f OR \u043b\u043e\u0433\u0438 OR \u043a\u0435\u0434\u0440 OR \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200175",
+          "locator": "msg:synthetic/500/507/200175",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f",
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440"
+            ],
+            "missingTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "200177",
+          "locator": "msg:synthetic/500/507/200177",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200176",
+          "locator": "msg:synthetic/500/507/200176",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f",
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440"
+            ]
+          }
+        },
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f",
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440"
+            ]
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0445\u0440\u0430\u043d\u044f\u0442\u0441\u044f",
+              "\u043b\u043e\u0433\u0438",
+              "\u043a\u0435\u0434\u0440"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u043a\u0435\u0434\u0440-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u0441\u0440\u043e\u043a \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u043b\u043e\u0433\u043e\u0432 \u041a\u0435\u0434\u0440?",
+      "ids": [
+        "200174",
+        "200173",
+        "200176",
+        "200289",
+        "200288",
+        "200286",
+        "200177",
+        "200175"
+      ],
+      "candidateIds": [
+        "200174",
+        "200173",
+        "200176",
+        "200289",
+        "200288",
+        "200286",
+        "200177",
+        "200175"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.466318999999999,
+      "candidateProbeMs": 4.114067999999975,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6556040163013276,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 8,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0441\u0440\u043e\u043a",
+          "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+          "\u043b\u043e\u0433\u043e\u0432",
+          "\u043a\u0435\u0434\u0440",
+          "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+        ],
+        "queries": [
+          "(\u0441\u0440\u043e\u043a OR \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f OR \u043b\u043e\u0433\u043e\u0432 OR \u043a\u0435\u0434\u0440 OR \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0441\u0440\u043e\u043a",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0441\u0440\u043e\u043a"
+            ]
+          }
+        },
+        {
+          "id": "200176",
+          "locator": "msg:synthetic/500/507/200176",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440"
+            ],
+            "missingTerms": [
+              "\u0441\u0440\u043e\u043a",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0441\u0440\u043e\u043a",
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440"
+            ]
+          }
+        },
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0441\u0440\u043e\u043a",
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440"
+            ]
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0441\u0440\u043e\u043a",
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440"
+            ]
+          }
+        },
+        {
+          "id": "200177",
+          "locator": "msg:synthetic/500/507/200177",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440"
+            ],
+            "missingTerms": [
+              "\u0441\u0440\u043e\u043a",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200175",
+          "locator": "msg:synthetic/500/507/200175",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043b\u043e\u0433\u043e\u0432",
+              "\u043a\u0435\u0434\u0440"
+            ],
+            "missingTerms": [
+              "\u0441\u0440\u043e\u043a",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u0441\u043e\u043a\u043e\u043b-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "\u041a\u043e\u043c\u0443 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d \u0434\u043e\u0441\u0442\u0443\u043f \u043d\u0430 \u0441\u0435\u0440\u0432\u0435\u0440 \u0421\u043e\u043a\u043e\u043b?",
+      "ids": [
+        "200204",
+        "200202",
+        "200203",
+        "200205"
+      ],
+      "candidateIds": [
+        "200204",
+        "200202",
+        "200203",
+        "200205"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 5.534302000000025,
+      "candidateProbeMs": 4.091295000000002,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.68349402851663,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d",
+          "\u0434\u043e\u0441\u0442\u0443\u043f",
+          "\u0441\u0435\u0440\u0432\u0435\u0440",
+          "\u0441\u043e\u043a\u043e\u043b"
+        ],
+        "queries": [
+          "(\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d OR \u0434\u043e\u0441\u0442\u0443\u043f OR \u0441\u0435\u0440\u0432\u0435\u0440 OR \u0441\u043e\u043a\u043e\u043b)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200204",
+          "locator": "msg:synthetic/500/508/200204",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d",
+              "\u0434\u043e\u0441\u0442\u0443\u043f",
+              "\u0441\u0435\u0440\u0432\u0435\u0440",
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0434\u043e\u0441\u0442\u0443\u043f",
+              "\u0441\u0435\u0440\u0432\u0435\u0440",
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": [
+              "\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d"
+            ]
+          }
+        },
+        {
+          "id": "200203",
+          "locator": "msg:synthetic/500/508/200203",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0434\u043e\u0441\u0442\u0443\u043f",
+              "\u0441\u0435\u0440\u0432\u0435\u0440",
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": [
+              "\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d"
+            ]
+          }
+        },
+        {
+          "id": "200205",
+          "locator": "msg:synthetic/500/508/200205",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": [
+              "\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043d",
+              "\u0434\u043e\u0441\u0442\u0443\u043f",
+              "\u0441\u0435\u0440\u0432\u0435\u0440"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u0441\u043e\u043a\u043e\u043b-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "\u041a\u0442\u043e \u043c\u043e\u0436\u0435\u0442 \u0432\u043e\u0439\u0442\u0438 \u043d\u0430 \u0441\u0435\u0440\u0432\u0435\u0440 \u0421\u043e\u043a\u043e\u043b?",
+      "ids": [
+        "200204",
+        "200202",
+        "200203",
+        "200205"
+      ],
+      "candidateIds": [
+        "200204",
+        "200202",
+        "200203",
+        "200205"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.9101360000000227,
+      "candidateProbeMs": 3.9829819999999927,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.68349402851663,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0432\u043e\u0438\u0442\u0438",
+          "\u0441\u0435\u0440\u0432\u0435\u0440",
+          "\u0441\u043e\u043a\u043e\u043b"
+        ],
+        "queries": [
+          "(\u0432\u043e\u0438\u0442\u0438 OR \u0441\u0435\u0440\u0432\u0435\u0440 OR \u0441\u043e\u043a\u043e\u043b)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200204",
+          "locator": "msg:synthetic/500/508/200204",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0441\u0435\u0440\u0432\u0435\u0440",
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": [
+              "\u0432\u043e\u0438\u0442\u0438"
+            ]
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0441\u0435\u0440\u0432\u0435\u0440",
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": [
+              "\u0432\u043e\u0438\u0442\u0438"
+            ]
+          }
+        },
+        {
+          "id": "200203",
+          "locator": "msg:synthetic/500/508/200203",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0441\u0435\u0440\u0432\u0435\u0440",
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": [
+              "\u0432\u043e\u0438\u0442\u0438"
+            ]
+          }
+        },
+        {
+          "id": "200205",
+          "locator": "msg:synthetic/500/508/200205",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0441\u043e\u043a\u043e\u043b"
+            ],
+            "missingTerms": [
+              "\u0432\u043e\u0438\u0442\u0438",
+              "\u0441\u0435\u0440\u0432\u0435\u0440"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u043f\u0430\u0440\u0443\u0441-0",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u0430\u044f \u0441\u0431\u043e\u0440\u043a\u0430 \u0441\u0435\u0440\u0432\u0438\u0441\u0430 \u041f\u0430\u0440\u0443\u0441 \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0441\u0435\u0439\u0447\u0430\u0441?",
+      "ids": [
+        "200232",
+        "200230",
+        "200231",
+        "200233",
+        "200202"
+      ],
+      "candidateIds": [
+        "200232",
+        "200230",
+        "200231",
+        "200233",
+        "200202"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.3403619999999705,
+      "candidateProbeMs": 4.702461000000028,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.639909328045346,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0441\u0431\u043e\u0440\u043a\u0430",
+          "\u0441\u0435\u0440\u0432\u0438\u0441\u0430",
+          "\u043f\u0430\u0440\u0443\u0441",
+          "\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442",
+          "\u0441\u0435\u0438\u0447\u0430\u0441"
+        ],
+        "queries": [
+          "(\u0441\u0431\u043e\u0440\u043a\u0430 OR \u0441\u0435\u0440\u0432\u0438\u0441\u0430 OR \u043f\u0430\u0440\u0443\u0441 OR \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 OR \u0441\u0435\u0438\u0447\u0430\u0441)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200232",
+          "locator": "msg:synthetic/500/509/200232",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0441\u0431\u043e\u0440\u043a\u0430",
+              "\u0441\u0435\u0440\u0432\u0438\u0441\u0430",
+              "\u043f\u0430\u0440\u0443\u0441",
+              "\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200230",
+          "locator": "msg:synthetic/500/509/200230",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0441\u0431\u043e\u0440\u043a\u0430",
+              "\u0441\u0435\u0440\u0432\u0438\u0441\u0430",
+              "\u043f\u0430\u0440\u0443\u0441",
+              "\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200231",
+          "locator": "msg:synthetic/500/509/200231",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "\u0441\u0431\u043e\u0440\u043a\u0430",
+              "\u0441\u0435\u0440\u0432\u0438\u0441\u0430",
+              "\u043f\u0430\u0440\u0443\u0441",
+              "\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "200233",
+          "locator": "msg:synthetic/500/509/200233",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u043f\u0430\u0440\u0443\u0441"
+            ],
+            "missingTerms": [
+              "\u0441\u0431\u043e\u0440\u043a\u0430",
+              "\u0441\u0435\u0440\u0432\u0438\u0441\u0430",
+              "\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u0441\u0431\u043e\u0440\u043a\u0430",
+              "\u0441\u0435\u0440\u0432\u0438\u0441\u0430",
+              "\u043f\u0430\u0440\u0443\u0441",
+              "\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u043f\u0430\u0440\u0443\u0441-1",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u041f\u0430\u0440\u0443\u0441 \u0441\u0435\u0439\u0447\u0430\u0441 \u0432 \u0440\u0430\u0431\u043e\u0442\u0435?",
+      "ids": [
+        "200233",
+        "200232",
+        "200230",
+        "200202",
+        "200231"
+      ],
+      "candidateIds": [
+        "200233",
+        "200232",
+        "200230",
+        "200202",
+        "200231"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.572558000000015,
+      "candidateProbeMs": 6.0180500000000166,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.3333333333333333,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6885288809404666,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0432\u0435\u0440\u0441\u0438\u044f",
+          "\u043f\u0430\u0440\u0443\u0441",
+          "\u0441\u0435\u0438\u0447\u0430\u0441",
+          "\u0440\u0430\u0431\u043e\u0442\u0435"
+        ],
+        "queries": [
+          "(\u0432\u0435\u0440\u0441\u0438\u044f OR \u043f\u0430\u0440\u0443\u0441 OR \u0441\u0435\u0438\u0447\u0430\u0441 OR \u0440\u0430\u0431\u043e\u0442\u0435)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200233",
+          "locator": "msg:synthetic/500/509/200233",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043f\u0430\u0440\u0443\u0441"
+            ],
+            "missingTerms": [
+              "\u0441\u0435\u0438\u0447\u0430\u0441",
+              "\u0440\u0430\u0431\u043e\u0442\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200232",
+          "locator": "msg:synthetic/500/509/200232",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "\u043f\u0430\u0440\u0443\u0441",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u0440\u0430\u0431\u043e\u0442\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200230",
+          "locator": "msg:synthetic/500/509/200230",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "\u043f\u0430\u0440\u0443\u0441",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u0440\u0430\u0431\u043e\u0442\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200202",
+          "locator": "msg:synthetic/500/508/200202",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043f\u0430\u0440\u0443\u0441",
+              "\u0440\u0430\u0431\u043e\u0442\u0435"
+            ]
+          }
+        },
+        {
+          "id": "200231",
+          "locator": "msg:synthetic/500/509/200231",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u0440\u0443\u0441"
+            ],
+            "missingTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u0441\u0435\u0438\u0447\u0430\u0441",
+              "\u0440\u0430\u0431\u043e\u0442\u0435"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u043c\u0430\u044f\u043a-0",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "\u0412\u043e \u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0438\u0434\u0451\u0442 \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u041c\u0430\u044f\u043a?",
+      "ids": [
+        "200261",
+        "200259",
+        "200258",
+        "200260"
+      ],
+      "candidateIds": [
+        "200261",
+        "200259",
+        "200258",
+        "200260"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 6.679299999999955,
+      "candidateProbeMs": 5.862948999999958,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8213137146137828,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+          "\u043c\u0430\u044f\u043a"
+        ],
+        "queries": [
+          "(\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 OR \u043c\u0430\u044f\u043a)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200261",
+          "locator": "msg:synthetic/500/510/200261",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200259",
+          "locator": "msg:synthetic/500/510/200259",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/510/200258"
+          }
+        },
+        {
+          "id": "200258",
+          "locator": "msg:synthetic/500/510/200258",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200260",
+          "locator": "msg:synthetic/500/510/200260",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u043c\u0430\u044f\u043a-1",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "\u041a\u043e\u0433\u0434\u0430 \u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 \u041c\u0430\u044f\u043a?",
+      "ids": [
+        "200261",
+        "200259",
+        "200258",
+        "200260"
+      ],
+      "candidateIds": [
+        "200261",
+        "200259",
+        "200258",
+        "200260"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 5.719529999999963,
+      "candidateProbeMs": 7.260910999999965,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8213137146137828,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "\u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f",
+          "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+          "\u043c\u0430\u044f\u043a"
+        ],
+        "queries": [
+          "(\u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f OR \u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430 OR \u043c\u0430\u044f\u043a)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200261",
+          "locator": "msg:synthetic/500/510/200261",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f",
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200259",
+          "locator": "msg:synthetic/500/510/200259",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f",
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/510/200258"
+          }
+        },
+        {
+          "id": "200258",
+          "locator": "msg:synthetic/500/510/200258",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f",
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200260",
+          "locator": "msg:synthetic/500/510/200260",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0432\u044b\u0433\u0440\u0443\u0437\u043a\u0430",
+              "\u043c\u0430\u044f\u043a"
+            ],
+            "missingTerms": [
+              "\u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0430\u044f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u0433\u0440\u0430\u043d\u0438\u0442-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "\u0413\u0434\u0435 \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435 \u0434\u0430\u043d\u043d\u044b\u0445 \u0413\u0440\u0430\u043d\u0438\u0442?",
+      "ids": [
+        "200289",
+        "200288",
+        "200286",
+        "200173",
+        "200287",
+        "200174"
+      ],
+      "candidateIds": [
+        "200289",
+        "200288",
+        "200286",
+        "200173",
+        "200287",
+        "200174"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.069544000000064,
+      "candidateProbeMs": 3.95980899999995,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5437713091520254,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+          "\u0434\u0430\u043d\u043d\u044b\u0445",
+          "\u0433\u0440\u0430\u043d\u0438\u0442"
+        ],
+        "queries": [
+          "(\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435 OR \u0434\u0430\u043d\u043d\u044b\u0445 OR \u0433\u0440\u0430\u043d\u0438\u0442)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+              "\u0434\u0430\u043d\u043d\u044b\u0445",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": [
+              "\u0434\u0430\u043d\u043d\u044b\u0445"
+            ]
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": [
+              "\u0434\u0430\u043d\u043d\u044b\u0445"
+            ]
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0434\u0430\u043d\u043d\u044b\u0445",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ]
+          }
+        },
+        {
+          "id": "200287",
+          "locator": "msg:synthetic/500/511/200287",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+              "\u0434\u0430\u043d\u043d\u044b\u0445"
+            ]
+          }
+        },
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435"
+            ],
+            "missingTerms": [
+              "\u0434\u0430\u043d\u043d\u044b\u0445",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u0433\u0440\u0430\u043d\u0438\u0442-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0440\u0435\u0433\u0438\u043e\u043d \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u0413\u0440\u0430\u043d\u0438\u0442?",
+      "ids": [
+        "200288",
+        "200286",
+        "200289",
+        "200287",
+        "200174",
+        "200173"
+      ],
+      "candidateIds": [
+        "200288",
+        "200286",
+        "200289",
+        "200287",
+        "200174",
+        "200173"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 4.314684000000057,
+      "candidateProbeMs": 4.168450000000007,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6509209298071326,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 6,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438",
+          "\u0440\u0435\u0433\u0438\u043e\u043d",
+          "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+          "\u0433\u0440\u0430\u043d\u0438\u0442"
+        ],
+        "queries": [
+          "(\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438 OR \u0440\u0435\u0433\u0438\u043e\u043d OR \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f OR \u0433\u0440\u0430\u043d\u0438\u0442)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200288",
+          "locator": "msg:synthetic/500/511/200288",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438",
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200286",
+          "locator": "msg:synthetic/500/511/200286",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": [
+              "\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438"
+            ]
+          }
+        },
+        {
+          "id": "200289",
+          "locator": "msg:synthetic/500/511/200289",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": [
+              "\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438",
+              "\u0440\u0435\u0433\u0438\u043e\u043d"
+            ]
+          }
+        },
+        {
+          "id": "200287",
+          "locator": "msg:synthetic/500/511/200287",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ],
+            "missingTerms": [
+              "\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438",
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f"
+            ]
+          }
+        },
+        {
+          "id": "200174",
+          "locator": "msg:synthetic/500/507/200174",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f"
+            ],
+            "missingTerms": [
+              "\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438",
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ]
+          }
+        },
+        {
+          "id": "200173",
+          "locator": "msg:synthetic/500/507/200173",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f"
+            ],
+            "missingTerms": [
+              "\u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0438",
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0433\u0440\u0430\u043d\u0438\u0442"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u0440\u0443\u0447\u0435\u0439-0",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "\u041a\u0442\u043e \u0432\u043d\u0435\u0448\u043d\u0438\u0439 \u0430\u0443\u0434\u0438\u0442\u043e\u0440 \u0420\u0443\u0447\u0435\u0439?",
+      "ids": [
+        "200314",
+        "200317",
+        "200315",
+        "200316"
+      ],
+      "candidateIds": [
+        "200314",
+        "200317",
+        "200315",
+        "200316"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.6098120000000335,
+      "candidateProbeMs": 4.934476999999902,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0432\u043d\u0435\u0448\u043d\u0438\u0438",
+          "\u0430\u0443\u0434\u0438\u0442\u043e\u0440",
+          "\u0440\u0443\u0447\u0435\u0438"
+        ],
+        "queries": [
+          "(\u0432\u043d\u0435\u0448\u043d\u0438\u0438 OR \u0430\u0443\u0434\u0438\u0442\u043e\u0440 OR \u0440\u0443\u0447\u0435\u0438)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200314",
+          "locator": "msg:synthetic/500/512/200314",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0432\u043d\u0435\u0448\u043d\u0438\u0438",
+              "\u0430\u0443\u0434\u0438\u0442\u043e\u0440",
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200317",
+          "locator": "msg:synthetic/500/512/200317",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": [
+              "\u0432\u043d\u0435\u0448\u043d\u0438\u0438",
+              "\u0430\u0443\u0434\u0438\u0442\u043e\u0440"
+            ]
+          }
+        },
+        {
+          "id": "200315",
+          "locator": "msg:synthetic/500/512/200315",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": [
+              "\u0432\u043d\u0435\u0448\u043d\u0438\u0438",
+              "\u0430\u0443\u0434\u0438\u0442\u043e\u0440"
+            ]
+          }
+        },
+        {
+          "id": "200316",
+          "locator": "msg:synthetic/500/512/200316",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": [
+              "\u0432\u043d\u0435\u0448\u043d\u0438\u0438",
+              "\u0430\u0443\u0434\u0438\u0442\u043e\u0440"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fresh-\u0440\u0443\u0447\u0435\u0439-1",
+      "language": "ru",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0441\u0442\u043e\u0438\u0442 \u0430\u0443\u0434\u0438\u0442 \u0420\u0443\u0447\u0435\u0439?",
+      "ids": [
+        "200316",
+        "200317",
+        "200314",
+        "200315"
+      ],
+      "candidateIds": [
+        "200316",
+        "200317",
+        "200314",
+        "200315"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 3.9312249999999267,
+      "candidateProbeMs": 4.026644000000033,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.7328286204777911,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0441\u0442\u043e\u0438\u0442",
+          "\u0430\u0443\u0434\u0438\u0442",
+          "\u0440\u0443\u0447\u0435\u0438"
+        ],
+        "queries": [
+          "(\u0441\u0442\u043e\u0438\u0442 OR \u0430\u0443\u0434\u0438\u0442 OR \u0440\u0443\u0447\u0435\u0438)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "200316",
+          "locator": "msg:synthetic/500/512/200316",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0441\u0442\u043e\u0438\u0442",
+              "\u0430\u0443\u0434\u0438\u0442",
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "200317",
+          "locator": "msg:synthetic/500/512/200317",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0430\u0443\u0434\u0438\u0442",
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": [
+              "\u0441\u0442\u043e\u0438\u0442"
+            ]
+          }
+        },
+        {
+          "id": "200314",
+          "locator": "msg:synthetic/500/512/200314",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": [
+              "\u0441\u0442\u043e\u0438\u0442",
+              "\u0430\u0443\u0434\u0438\u0442"
+            ]
+          }
+        },
+        {
+          "id": "200315",
+          "locator": "msg:synthetic/500/512/200315",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u0440\u0443\u0447\u0435\u0438"
+            ],
+            "missingTerms": [
+              "\u0441\u0442\u043e\u0438\u0442",
+              "\u0430\u0443\u0434\u0438\u0442"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "ingestion": {
+    "setupMs": 174.15939699999998,
+    "peakRss": 124325888
+  }
+}

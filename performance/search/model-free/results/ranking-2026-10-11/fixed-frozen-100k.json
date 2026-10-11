@@ -1,0 +1,3343 @@
+{
+  "node": "v24.19.0",
+  "messages": 100284,
+  "background": 100000,
+  "fixtureSha256": "f8e4c261ae640f9a9b4d6fc1fbe4df00187ec43c3522ac1624568e4a9ee9f8b4",
+  "runnerSha256": "5834cbe32f43487eb8613d8f51f70e8a70406fe1136a6a37b0a2887baa28b98a",
+  "rankerSha256": "8ea2344a3e445b36a9a23f433948addfb5b192972d572ec970a6e44826603962",
+  "productionSha256": {
+    "services/messages-discovery.js": "63a0c13cad9703f886d75381487b551d960b6eb13ef66019493be6c3e1861830",
+    "services/messages-combined.js": "7abf77eeafb8fd8bea4751bb3557743532b814c56f1831639c843f1e2b0904af",
+    "search/question-plan.js": "e3e27126fd5d7bd96878d0b32aedf01ac9694b52b44765267a10386458b06b98",
+    "store/sqlite/search.js": "2b3cf6f6ca6d2327fa5a6e5d8dc34009243bb621b54377c4f4af2ab31a5732d5",
+    "store/sqlite/lucene.js": "d819e7cc8b71dae40bd62b9792d9942bde1a9c632e7fe6b665f24fce5c389c67"
+  },
+  "setupMs": 6.388904999999994,
+  "baselineRss": 100233216,
+  "setupRss": 102731776,
+  "firstMs": 111.963109,
+  "firstRss": 115650560,
+  "warmP50Ms": 74.34578999999997,
+  "warmP95Ms": 84.69843100000003,
+  "peakRss": 134524928,
+  "databaseBytes": 83632128,
+  "storePath": "/tmp/discovery-production-zHifaY/synthetic.db",
+  "summary": [
+    {
+      "mode": "strict",
+      "queries": 24,
+      "answerable": 16,
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "p50Ms": 35.09408499999995,
+      "p95Ms": 43.192137
+    },
+    {
+      "mode": "discover",
+      "queries": 24,
+      "answerable": 16,
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "answerAt1": 0.3125,
+      "answerAt3": 0.8125,
+      "answerAt10": 1,
+      "mrrAt10": 0.5989583333333333,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8073146792276568,
+      "falseHits": 6,
+      "p50Ms": 36.92181399999981,
+      "p95Ms": 77.90480700000035
+    }
+  ],
+  "rows": [
+    {
+      "id": "frozen-0-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "When do Juniper backups disappear?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 38.145590000000084,
+      "candidateProbeMs": 41.214958000000024,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-0-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "strict",
+      "input": "How many days do we retain Juniper backups?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 33.25164900000004,
+      "candidateProbeMs": 35.18022699999983,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-1-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Can vendors connect to Nimbus now?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 34.591661999999815,
+      "candidateProbeMs": 35.17676000000006,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-1-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "Who may connect to Nimbus production?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 37.26644999999985,
+      "candidateProbeMs": 33.54337600000008,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-2-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "Which package does Tern currently deploy?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 31.284609000000046,
+      "candidateProbeMs": 30.626845000000003,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-2-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "What is the active Tern package version?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 33.05638200000021,
+      "candidateProbeMs": 31.7812100000001,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "When is the Kestrel invoice batch sent?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 33.993641000000025,
+      "candidateProbeMs": 34.55366100000015,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "What time is the Kestrel invoice batch?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 34.0698339999999,
+      "candidateProbeMs": 33.781192000000146,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "What is the agreed Linden data region?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 36.2901589999999,
+      "candidateProbeMs": 36.04428800000005,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "Where is Linden data stored?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 34.646285000000034,
+      "candidateProbeMs": 35.4822529999999,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "Who approved the Osprey license?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 35.40311500000007,
+      "candidateProbeMs": 36.076638999999886,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "strict",
+      "input": "What is the Osprey license price?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 35.09408499999995,
+      "candidateProbeMs": 34.17878800000017,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-6-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "\u041a\u043e\u0433\u0434\u0430 \u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435 \u043a\u043e\u043f\u0438\u0438 \u0418\u0432\u0430?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 38.003543000000036,
+      "candidateProbeMs": 32.2426660000001,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-6-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "strict",
+      "input": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0434\u043d\u0435\u0439 \u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435 \u043a\u043e\u043f\u0438\u0438 \u0418\u0432\u0430?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 37.16623299999992,
+      "candidateProbeMs": 35.44252899999992,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-7-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "\u041f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438 \u043c\u043e\u0433\u0443\u0442 \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a \u041b\u043e\u0442\u043e\u0441 \u0441\u0435\u0439\u0447\u0430\u0441?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 34.602804000000106,
+      "candidateProbeMs": 40.839864000000034,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-7-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "strict",
+      "input": "\u041a\u043e\u043c\u0443 \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u043a \u041b\u043e\u0442\u043e\u0441?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 43.192137,
+      "candidateProbeMs": 42.13295999999991,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-8-0",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u043f\u0430\u043a\u0435\u0442 \u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f \u0434\u043b\u044f \u041e\u0441\u0438\u043d\u0430 \u0441\u0435\u0439\u0447\u0430\u0441?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 44.84188200000017,
+      "candidateProbeMs": 35.04907099999991,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-8-1",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u043f\u0430\u043a\u0435\u0442\u0430 \u041e\u0441\u0438\u043d\u0430 \u0430\u043a\u0442\u0438\u0432\u043d\u0430?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 33.805447000000186,
+      "candidateProbeMs": 33.01609699999972,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-9-0",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "\u041a\u043e\u0433\u0434\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043f\u0430\u043a\u0435\u0442 \u0441\u0447\u0435\u0442\u043e\u0432 \u0411\u0435\u0440\u0451\u0437\u0430?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 31.671123999999963,
+      "candidateProbeMs": 34.3204139999998,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-9-1",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "strict",
+      "input": "\u0412\u043e \u0441\u043a\u043e\u043b\u044c\u043a\u043e \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0441\u0447\u0435\u0442\u0430 \u0411\u0435\u0440\u0451\u0437\u0430?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": 0,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 35.10147899999993,
+      "candidateProbeMs": 34.46851199999992,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 0,
+      "mrrAt10": 0,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "\u0413\u0434\u0435 \u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u044b \u0434\u0430\u043d\u043d\u044b\u0435 \u0412\u0435\u0440\u0431\u0430?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 33.787353999999596,
+      "candidateProbeMs": 34.579159000000345,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u0440\u0435\u0433\u0438\u043e\u043d \u0434\u0430\u043d\u043d\u044b\u0445 \u0412\u0435\u0440\u0431\u0430 \u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 0,
+      "elapsedMs": 34.30012500000021,
+      "candidateProbeMs": 32.8808939999999,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 0,
+      "ndcgAt10": 0,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "strict",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u043b\u0438\u043c\u0438\u0442 \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u041a\u043b\u0451\u043d?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 37.445336000000225,
+      "candidateProbeMs": 39.107904999999846,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "strict",
+      "input": "\u041a\u0442\u043e \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u041a\u043b\u0451\u043d?",
+      "ids": [],
+      "candidateIds": [],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 36.82995200000005,
+      "candidateProbeMs": 35.98241199999984,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 0,
+      "matches": []
+    },
+    {
+      "id": "frozen-0-0",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "When do Juniper backups disappear?",
+      "ids": [
+        "400001",
+        "400002",
+        "400003",
+        "400000"
+      ],
+      "candidateIds": [
+        "400001",
+        "400002",
+        "400003",
+        "400000"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 35.69608500000004,
+      "candidateProbeMs": 36.65248900000006,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.25,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5865409417085417,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "juniper",
+          "backups",
+          "disappear"
+        ],
+        "queries": [
+          "(juniper OR backups OR disappear)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400001",
+          "locator": "msg:synthetic/500/650/400001",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "juniper",
+              "backups",
+              "disappear"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400002",
+          "locator": "msg:synthetic/500/650/400002",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "juniper",
+              "backups"
+            ],
+            "missingTerms": [
+              "disappear"
+            ]
+          }
+        },
+        {
+          "id": "400003",
+          "locator": "msg:synthetic/500/650/400003",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "juniper",
+              "backups"
+            ],
+            "missingTerms": [
+              "disappear"
+            ]
+          }
+        },
+        {
+          "id": "400000",
+          "locator": "msg:synthetic/500/650/400000",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "juniper",
+              "backups"
+            ],
+            "missingTerms": [
+              "disappear"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-0-1",
+      "language": "en",
+      "category": "retention",
+      "mode": "discover",
+      "input": "How many days do we retain Juniper backups?",
+      "ids": [
+        "400002",
+        "400000",
+        "400001",
+        "400003"
+      ],
+      "candidateIds": [
+        "400002",
+        "400000",
+        "400001",
+        "400003"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 39.22288099999969,
+      "candidateProbeMs": 36.7040750000001,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.804532155482531,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "days",
+          "retain",
+          "juniper",
+          "backups"
+        ],
+        "queries": [
+          "(days OR retain OR juniper OR backups)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400002",
+          "locator": "msg:synthetic/500/650/400002",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "days",
+              "juniper",
+              "backups"
+            ],
+            "missingTerms": [
+              "retain"
+            ]
+          }
+        },
+        {
+          "id": "400000",
+          "locator": "msg:synthetic/500/650/400000",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "days",
+              "juniper",
+              "backups"
+            ],
+            "missingTerms": [
+              "retain"
+            ]
+          }
+        },
+        {
+          "id": "400001",
+          "locator": "msg:synthetic/500/650/400001",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "juniper",
+              "backups"
+            ],
+            "missingTerms": [
+              "days",
+              "retain"
+            ]
+          }
+        },
+        {
+          "id": "400003",
+          "locator": "msg:synthetic/500/650/400003",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "juniper",
+              "backups"
+            ],
+            "missingTerms": [
+              "days",
+              "retain"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-1-0",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Can vendors connect to Nimbus now?",
+      "ids": [
+        "400102",
+        "400101",
+        "400103",
+        "400100",
+        "400200"
+      ],
+      "candidateIds": [
+        "400102",
+        "400101",
+        "400103",
+        "400100",
+        "400200"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 38.97493600000007,
+      "candidateProbeMs": 42.9736069999999,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.25,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5296052411645183,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "vendors",
+          "connect",
+          "nimbus",
+          "now"
+        ],
+        "queries": [
+          "(vendors OR connect OR nimbus OR now)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400102",
+          "locator": "msg:synthetic/500/651/400102",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "vendors",
+              "connect",
+              "nimbus",
+              "now"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400101",
+          "locator": "msg:synthetic/500/651/400101",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "vendors",
+              "connect",
+              "nimbus"
+            ],
+            "missingTerms": [
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "400103",
+          "locator": "msg:synthetic/500/651/400103",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "connect",
+              "nimbus"
+            ],
+            "missingTerms": [
+              "vendors",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "400100",
+          "locator": "msg:synthetic/500/651/400100",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "connect",
+              "nimbus"
+            ],
+            "missingTerms": [
+              "vendors",
+              "now"
+            ]
+          }
+        },
+        {
+          "id": "400200",
+          "locator": "msg:synthetic/500/652/400200",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "now"
+            ],
+            "missingTerms": [
+              "vendors",
+              "connect",
+              "nimbus"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-1-1",
+      "language": "en",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "Who may connect to Nimbus production?",
+      "ids": [
+        "400101",
+        "400103",
+        "400100",
+        "400102"
+      ],
+      "candidateIds": [
+        "400101",
+        "400103",
+        "400100",
+        "400102"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 36.065818000000036,
+      "candidateProbeMs": 34.3732329999998,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.3333333333333333,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6885288809404666,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "may",
+          "connect",
+          "nimbus",
+          "production"
+        ],
+        "queries": [
+          "(may OR connect OR nimbus OR production)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400101",
+          "locator": "msg:synthetic/500/651/400101",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "may",
+              "connect",
+              "nimbus"
+            ],
+            "missingTerms": [
+              "production"
+            ]
+          }
+        },
+        {
+          "id": "400103",
+          "locator": "msg:synthetic/500/651/400103",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "connect",
+              "nimbus",
+              "production"
+            ],
+            "missingTerms": [
+              "may"
+            ]
+          }
+        },
+        {
+          "id": "400100",
+          "locator": "msg:synthetic/500/651/400100",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "connect",
+              "nimbus",
+              "production"
+            ],
+            "missingTerms": [
+              "may"
+            ]
+          }
+        },
+        {
+          "id": "400102",
+          "locator": "msg:synthetic/500/651/400102",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "connect",
+              "nimbus"
+            ],
+            "missingTerms": [
+              "may",
+              "production"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-2-0",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "Which package does Tern currently deploy?",
+      "ids": [
+        "400200",
+        "400201",
+        "400202",
+        "400203",
+        "400100",
+        "400400",
+        "400401"
+      ],
+      "candidateIds": [
+        "400200",
+        "400201",
+        "400202",
+        "400203",
+        "400100",
+        "400400",
+        "400401"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 35.67820100000017,
+      "candidateProbeMs": 35.45735599999989,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9639404333166532,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 7,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "package",
+          "tern",
+          "currently",
+          "deploy"
+        ],
+        "queries": [
+          "(package OR tern OR currently OR deploy)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400200",
+          "locator": "msg:synthetic/500/652/400200",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "package",
+              "tern",
+              "deploy"
+            ],
+            "missingTerms": [
+              "currently"
+            ]
+          }
+        },
+        {
+          "id": "400201",
+          "locator": "msg:synthetic/500/652/400201",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "package",
+              "tern",
+              "deploy"
+            ],
+            "missingTerms": [
+              "currently"
+            ]
+          }
+        },
+        {
+          "id": "400202",
+          "locator": "msg:synthetic/500/652/400202",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "package",
+              "tern"
+            ],
+            "missingTerms": [
+              "currently",
+              "deploy"
+            ]
+          }
+        },
+        {
+          "id": "400203",
+          "locator": "msg:synthetic/500/652/400203",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "package",
+              "tern"
+            ],
+            "missingTerms": [
+              "currently",
+              "deploy"
+            ]
+          }
+        },
+        {
+          "id": "400100",
+          "locator": "msg:synthetic/500/651/400100",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "currently"
+            ],
+            "missingTerms": [
+              "package",
+              "tern",
+              "deploy"
+            ]
+          }
+        },
+        {
+          "id": "400400",
+          "locator": "msg:synthetic/500/654/400400",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "currently"
+            ],
+            "missingTerms": [
+              "package",
+              "tern",
+              "deploy"
+            ]
+          }
+        },
+        {
+          "id": "400401",
+          "locator": "msg:synthetic/500/654/400401",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "currently"
+            ],
+            "missingTerms": [
+              "package",
+              "tern",
+              "deploy"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-2-1",
+      "language": "en",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "What is the active Tern package version?",
+      "ids": [
+        "400203",
+        "400200",
+        "400202",
+        "400201"
+      ],
+      "candidateIds": [
+        "400203",
+        "400200",
+        "400202",
+        "400201"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 37.12028599999985,
+      "candidateProbeMs": 37.233850000000075,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6590018048024133,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "active",
+          "tern",
+          "package",
+          "version"
+        ],
+        "queries": [
+          "(active OR tern OR package OR version)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400203",
+          "locator": "msg:synthetic/500/652/400203",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "active",
+              "tern",
+              "package",
+              "version"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400200",
+          "locator": "msg:synthetic/500/652/400200",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "tern",
+              "package",
+              "version"
+            ],
+            "missingTerms": [
+              "active"
+            ]
+          }
+        },
+        {
+          "id": "400202",
+          "locator": "msg:synthetic/500/652/400202",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "tern",
+              "package",
+              "version"
+            ],
+            "missingTerms": [
+              "active"
+            ]
+          }
+        },
+        {
+          "id": "400201",
+          "locator": "msg:synthetic/500/652/400201",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "tern",
+              "package",
+              "version"
+            ],
+            "missingTerms": [
+              "active"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-3-0",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "When is the Kestrel invoice batch sent?",
+      "ids": [
+        "400303",
+        "400301",
+        "400300",
+        "400302"
+      ],
+      "candidateIds": [
+        "400303",
+        "400301",
+        "400300",
+        "400302"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 72.8632990000001,
+      "candidateProbeMs": 74.255901,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8213137146137828,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "kestrel",
+          "invoice",
+          "batch",
+          "sent"
+        ],
+        "queries": [
+          "(kestrel OR invoice OR batch OR sent)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400303",
+          "locator": "msg:synthetic/500/653/400303",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": [
+              "sent"
+            ]
+          }
+        },
+        {
+          "id": "400301",
+          "locator": "msg:synthetic/500/653/400301",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": [
+              "sent"
+            ],
+            "parent": "msg:synthetic/500/653/400300"
+          }
+        },
+        {
+          "id": "400300",
+          "locator": "msg:synthetic/500/653/400300",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": [
+              "sent"
+            ]
+          }
+        },
+        {
+          "id": "400302",
+          "locator": "msg:synthetic/500/653/400302",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": [
+              "sent"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-3-1",
+      "language": "en",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "What time is the Kestrel invoice batch?",
+      "ids": [
+        "400301",
+        "400300",
+        "400302",
+        "400303"
+      ],
+      "candidateIds": [
+        "400301",
+        "400300",
+        "400302",
+        "400303"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 77.90480700000035,
+      "candidateProbeMs": 72.04093599999987,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9832184408687481,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "time",
+          "kestrel",
+          "invoice",
+          "batch"
+        ],
+        "queries": [
+          "(time OR kestrel OR invoice OR batch)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400301",
+          "locator": "msg:synthetic/500/653/400301",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "time",
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": [],
+            "parent": "msg:synthetic/500/653/400300"
+          }
+        },
+        {
+          "id": "400300",
+          "locator": "msg:synthetic/500/653/400300",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "time",
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400302",
+          "locator": "msg:synthetic/500/653/400302",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "time",
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400303",
+          "locator": "msg:synthetic/500/653/400303",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "kestrel",
+              "invoice",
+              "batch"
+            ],
+            "missingTerms": [
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-4-0",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "What is the agreed Linden data region?",
+      "ids": [
+        "400402",
+        "400400",
+        "400401"
+      ],
+      "candidateIds": [
+        "400402",
+        "400400",
+        "400401"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 37.91217199999983,
+      "candidateProbeMs": 36.89731800000027,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6934264036172708,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 3,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "agreed",
+          "linden",
+          "data",
+          "region"
+        ],
+        "queries": [
+          "(agreed OR linden OR data OR region)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400402",
+          "locator": "msg:synthetic/500/654/400402",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "agreed",
+              "linden",
+              "data",
+              "region"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400400",
+          "locator": "msg:synthetic/500/654/400400",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "linden",
+              "data"
+            ],
+            "missingTerms": [
+              "agreed",
+              "region"
+            ]
+          }
+        },
+        {
+          "id": "400401",
+          "locator": "msg:synthetic/500/654/400401",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "linden",
+              "data"
+            ],
+            "missingTerms": [
+              "agreed",
+              "region"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-4-1",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "Where is Linden data stored?",
+      "ids": [
+        "400400",
+        "400402",
+        "400401"
+      ],
+      "candidateIds": [
+        "400400",
+        "400402",
+        "400401"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 37.10558899999978,
+      "candidateProbeMs": 41.540088000000196,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9197207891481876,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 3,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "linden",
+          "data",
+          "stored"
+        ],
+        "queries": [
+          "(linden OR data OR stored)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400400",
+          "locator": "msg:synthetic/500/654/400400",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "linden",
+              "data",
+              "stored"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400402",
+          "locator": "msg:synthetic/500/654/400402",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "linden",
+              "data"
+            ],
+            "missingTerms": [
+              "stored"
+            ]
+          }
+        },
+        {
+          "id": "400401",
+          "locator": "msg:synthetic/500/654/400401",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "linden",
+              "data"
+            ],
+            "missingTerms": [
+              "stored"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-5-0",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "Who approved the Osprey license?",
+      "ids": [
+        "400501",
+        "400500",
+        "400502",
+        "400202"
+      ],
+      "candidateIds": [
+        "400501",
+        "400500",
+        "400502",
+        "400202"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 35.72261400000025,
+      "candidateProbeMs": 35.3044789999999,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "approved",
+          "osprey",
+          "license"
+        ],
+        "queries": [
+          "(approved OR osprey OR license)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400501",
+          "locator": "msg:synthetic/500/655/400501",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "approved",
+              "osprey",
+              "license"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400500",
+          "locator": "msg:synthetic/500/655/400500",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "approved",
+              "osprey",
+              "license"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400502",
+          "locator": "msg:synthetic/500/655/400502",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "osprey"
+            ],
+            "missingTerms": [
+              "approved",
+              "license"
+            ]
+          }
+        },
+        {
+          "id": "400202",
+          "locator": "msg:synthetic/500/652/400202",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "approved"
+            ],
+            "missingTerms": [
+              "osprey",
+              "license"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-5-1",
+      "language": "en",
+      "category": "missing-fact",
+      "mode": "discover",
+      "input": "What is the Osprey license price?",
+      "ids": [
+        "400501",
+        "400500",
+        "400502"
+      ],
+      "candidateIds": [
+        "400501",
+        "400500",
+        "400502"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 36.24471300000005,
+      "candidateProbeMs": 41.821404999999686,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 3,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "osprey",
+          "license",
+          "price"
+        ],
+        "queries": [
+          "(osprey OR license OR price)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400501",
+          "locator": "msg:synthetic/500/655/400501",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "osprey",
+              "license",
+              "price"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400500",
+          "locator": "msg:synthetic/500/655/400500",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "osprey",
+              "license",
+              "price"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400502",
+          "locator": "msg:synthetic/500/655/400502",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "osprey"
+            ],
+            "missingTerms": [
+              "license",
+              "price"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-6-0",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "\u041a\u043e\u0433\u0434\u0430 \u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435 \u043a\u043e\u043f\u0438\u0438 \u0418\u0432\u0430?",
+      "ids": [
+        "400601",
+        "400600",
+        "400602",
+        "400603"
+      ],
+      "candidateIds": [
+        "400601",
+        "400600",
+        "400602",
+        "400603"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 36.74683499999992,
+      "candidateProbeMs": 35.828081999999995,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.68349402851663,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f",
+          "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+          "\u043a\u043e\u043f\u0438\u0438",
+          "\u0438\u0432\u0430"
+        ],
+        "queries": [
+          "(\u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f OR \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435 OR \u043a\u043e\u043f\u0438\u0438 OR \u0438\u0432\u0430)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400601",
+          "locator": "msg:synthetic/500/656/400601",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f",
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400600",
+          "locator": "msg:synthetic/500/656/400600",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f",
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400602",
+          "locator": "msg:synthetic/500/656/400602",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": [
+              "\u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400603",
+          "locator": "msg:synthetic/500/656/400603",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": [
+              "\u0443\u0434\u0430\u043b\u044f\u044e\u0442\u0441\u044f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-6-1",
+      "language": "ru",
+      "category": "retention",
+      "mode": "discover",
+      "input": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0434\u043d\u0435\u0439 \u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435 \u043a\u043e\u043f\u0438\u0438 \u0418\u0432\u0430?",
+      "ids": [
+        "400602",
+        "400600",
+        "400601",
+        "400603"
+      ],
+      "candidateIds": [
+        "400602",
+        "400600",
+        "400601",
+        "400603"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 35.410127999999986,
+      "candidateProbeMs": 36.864496000000145,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.804532155482531,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0434\u043d\u0435\u0438",
+          "\u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f",
+          "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+          "\u043a\u043e\u043f\u0438\u0438",
+          "\u0438\u0432\u0430"
+        ],
+        "queries": [
+          "(\u0434\u043d\u0435\u0438 OR \u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f OR \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435 OR \u043a\u043e\u043f\u0438\u0438 OR \u0438\u0432\u0430)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400602",
+          "locator": "msg:synthetic/500/656/400602",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400600",
+          "locator": "msg:synthetic/500/656/400600",
+          "discovery": {
+            "coverage": 0.8,
+            "matchedTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400601",
+          "locator": "msg:synthetic/500/656/400601",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400603",
+          "locator": "msg:synthetic/500/656/400603",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "\u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0435",
+              "\u043a\u043e\u043f\u0438\u0438",
+              "\u0438\u0432\u0430"
+            ],
+            "missingTerms": [
+              "\u0434\u043d\u0435\u0438",
+              "\u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-7-0",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "\u041f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438 \u043c\u043e\u0433\u0443\u0442 \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a \u041b\u043e\u0442\u043e\u0441 \u0441\u0435\u0439\u0447\u0430\u0441?",
+      "ids": [
+        "400702",
+        "400700",
+        "400701",
+        "400703",
+        "400800"
+      ],
+      "candidateIds": [
+        "400702",
+        "400700",
+        "400701",
+        "400703",
+        "400800"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 36.92181399999981,
+      "candidateProbeMs": 38.96541699999989,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6590018048024133,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 5,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u043f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438",
+          "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f",
+          "\u043b\u043e\u0442\u043e\u0441",
+          "\u0441\u0435\u0438\u0447\u0430\u0441"
+        ],
+        "queries": [
+          "(\u043f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438 OR \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f OR \u043b\u043e\u0442\u043e\u0441 OR \u0441\u0435\u0438\u0447\u0430\u0441)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400702",
+          "locator": "msg:synthetic/500/657/400702",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u043f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438",
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f",
+              "\u043b\u043e\u0442\u043e\u0441",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400700",
+          "locator": "msg:synthetic/500/657/400700",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "\u043b\u043e\u0442\u043e\u0441",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u043f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438",
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400701",
+          "locator": "msg:synthetic/500/657/400701",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "\u043f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438",
+              "\u043b\u043e\u0442\u043e\u0441"
+            ],
+            "missingTerms": [
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "400703",
+          "locator": "msg:synthetic/500/657/400703",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043b\u043e\u0442\u043e\u0441"
+            ],
+            "missingTerms": [
+              "\u043f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438",
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "400800",
+          "locator": "msg:synthetic/500/658/400800",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u043f\u043e\u0434\u0440\u044f\u0434\u0447\u0438\u043a\u0438",
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f",
+              "\u043b\u043e\u0442\u043e\u0441"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-7-1",
+      "language": "ru",
+      "category": "conditional",
+      "mode": "discover",
+      "input": "\u041a\u043e\u043c\u0443 \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u043a \u041b\u043e\u0442\u043e\u0441?",
+      "ids": [
+        "400700",
+        "400701",
+        "400703",
+        "400702"
+      ],
+      "candidateIds": [
+        "400700",
+        "400701",
+        "400703",
+        "400702"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 35.24245400000018,
+      "candidateProbeMs": 34.305827000000136,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e",
+          "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435",
+          "\u043b\u043e\u0442\u043e\u0441"
+        ],
+        "queries": [
+          "(\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e OR \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 OR \u043b\u043e\u0442\u043e\u0441)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400700",
+          "locator": "msg:synthetic/500/657/400700",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435",
+              "\u043b\u043e\u0442\u043e\u0441"
+            ],
+            "missingTerms": [
+              "\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e"
+            ]
+          }
+        },
+        {
+          "id": "400701",
+          "locator": "msg:synthetic/500/657/400701",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435",
+              "\u043b\u043e\u0442\u043e\u0441"
+            ],
+            "missingTerms": [
+              "\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e"
+            ]
+          }
+        },
+        {
+          "id": "400703",
+          "locator": "msg:synthetic/500/657/400703",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435",
+              "\u043b\u043e\u0442\u043e\u0441"
+            ],
+            "missingTerms": [
+              "\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e"
+            ]
+          }
+        },
+        {
+          "id": "400702",
+          "locator": "msg:synthetic/500/657/400702",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u043b\u043e\u0442\u043e\u0441"
+            ],
+            "missingTerms": [
+              "\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e",
+              "\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-8-0",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u043f\u0430\u043a\u0435\u0442 \u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f \u0434\u043b\u044f \u041e\u0441\u0438\u043d\u0430 \u0441\u0435\u0439\u0447\u0430\u0441?",
+      "ids": [
+        "400800",
+        "400802",
+        "400801",
+        "400803",
+        "400700",
+        "400903",
+        "400702",
+        "400901",
+        "400900"
+      ],
+      "candidateIds": [
+        "400800",
+        "400802",
+        "400801",
+        "400803",
+        "400700",
+        "400903",
+        "400702",
+        "400901",
+        "400900"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 76.22108800000024,
+      "candidateProbeMs": 74.71796799999993,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 9,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "\u043f\u0430\u043a\u0435\u0442",
+          "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+          "\u0434\u043b\u044f",
+          "\u043e\u0441\u0438\u043d\u0430",
+          "\u0441\u0435\u0438\u0447\u0430\u0441"
+        ],
+        "queries": [
+          "(\u043f\u0430\u043a\u0435\u0442 OR \u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f OR \u0434\u043b\u044f OR \u043e\u0441\u0438\u043d\u0430 OR \u0441\u0435\u0438\u0447\u0430\u0441)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400800",
+          "locator": "msg:synthetic/500/658/400800",
+          "discovery": {
+            "coverage": 0.6,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400802",
+          "locator": "msg:synthetic/500/658/400802",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ],
+            "missingTerms": [
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "400801",
+          "locator": "msg:synthetic/500/658/400801",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ],
+            "missingTerms": [
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "400803",
+          "locator": "msg:synthetic/500/658/400803",
+          "discovery": {
+            "coverage": 0.4,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ],
+            "missingTerms": [
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "400700",
+          "locator": "msg:synthetic/500/657/400700",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400903",
+          "locator": "msg:synthetic/500/659/400903",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        },
+        {
+          "id": "400702",
+          "locator": "msg:synthetic/500/657/400702",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "missingTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400901",
+          "locator": "msg:synthetic/500/659/400901",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ],
+            "parent": "msg:synthetic/500/659/400900"
+          }
+        },
+        {
+          "id": "400900",
+          "locator": "msg:synthetic/500/659/400900",
+          "discovery": {
+            "coverage": 0.2,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f",
+              "\u0434\u043b\u044f",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0441\u0435\u0438\u0447\u0430\u0441"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-8-1",
+      "language": "ru",
+      "category": "superseded",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u043f\u0430\u043a\u0435\u0442\u0430 \u041e\u0441\u0438\u043d\u0430 \u0430\u043a\u0442\u0438\u0432\u043d\u0430?",
+      "ids": [
+        "400803",
+        "400802",
+        "400801",
+        "400800",
+        "400901",
+        "400900",
+        "400903"
+      ],
+      "candidateIds": [
+        "400803",
+        "400802",
+        "400801",
+        "400800",
+        "400901",
+        "400900",
+        "400903"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 80.21079199999986,
+      "candidateProbeMs": 72.12135699999999,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 0,
+      "answerAt10": 1,
+      "mrrAt10": 0.25,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.5296052411645183,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 7,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "\u0432\u0435\u0440\u0441\u0438\u044f",
+          "\u043f\u0430\u043a\u0435\u0442\u0430",
+          "\u043e\u0441\u0438\u043d\u0430",
+          "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+        ],
+        "queries": [
+          "(\u0432\u0435\u0440\u0441\u0438\u044f OR \u043f\u0430\u043a\u0435\u0442\u0430 OR \u043e\u0441\u0438\u043d\u0430 OR \u0430\u043a\u0442\u0438\u0432\u043d\u0430)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400803",
+          "locator": "msg:synthetic/500/658/400803",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043f\u0430\u043a\u0435\u0442\u0430",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "400802",
+          "locator": "msg:synthetic/500/658/400802",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043f\u0430\u043a\u0435\u0442\u0430",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ],
+            "missingTerms": [
+              "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400801",
+          "locator": "msg:synthetic/500/658/400801",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043f\u0430\u043a\u0435\u0442\u0430",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ],
+            "missingTerms": [
+              "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400800",
+          "locator": "msg:synthetic/500/658/400800",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043f\u0430\u043a\u0435\u0442\u0430",
+              "\u043e\u0441\u0438\u043d\u0430"
+            ],
+            "missingTerms": [
+              "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400901",
+          "locator": "msg:synthetic/500/659/400901",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442\u0430"
+            ],
+            "missingTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+            ],
+            "parent": "msg:synthetic/500/659/400900"
+          }
+        },
+        {
+          "id": "400900",
+          "locator": "msg:synthetic/500/659/400900",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442\u0430"
+            ],
+            "missingTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400903",
+          "locator": "msg:synthetic/500/659/400903",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442\u0430"
+            ],
+            "missingTerms": [
+              "\u0432\u0435\u0440\u0441\u0438\u044f",
+              "\u043e\u0441\u0438\u043d\u0430",
+              "\u0430\u043a\u0442\u0438\u0432\u043d\u0430"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-9-0",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "\u041a\u043e\u0433\u0434\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043f\u0430\u043a\u0435\u0442 \u0441\u0447\u0435\u0442\u043e\u0432 \u0411\u0435\u0440\u0451\u0437\u0430?",
+      "ids": [
+        "400903",
+        "400901",
+        "400900",
+        "400902",
+        "400802",
+        "400801",
+        "400800",
+        "400803"
+      ],
+      "candidateIds": [
+        "400903",
+        "400901",
+        "400900",
+        "400902",
+        "400802",
+        "400801",
+        "400800",
+        "400803"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 77.69886000000042,
+      "candidateProbeMs": 85.7515570000005,
+      "rankingComparisonMs": null,
+      "answerAt1": 0,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 0.5,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.8213137146137828,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 8,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
+          "\u043f\u0430\u043a\u0435\u0442",
+          "\u0441\u0447\u0435\u0442\u043e\u0432",
+          "\u0431\u0435\u0440\u0435\u0437\u0430"
+        ],
+        "queries": [
+          "(\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f OR \u043f\u0430\u043a\u0435\u0442 OR \u0441\u0447\u0435\u0442\u043e\u0432 OR \u0431\u0435\u0440\u0435\u0437\u0430)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400903",
+          "locator": "msg:synthetic/500/659/400903",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400901",
+          "locator": "msg:synthetic/500/659/400901",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f"
+            ],
+            "parent": "msg:synthetic/500/659/400900"
+          }
+        },
+        {
+          "id": "400900",
+          "locator": "msg:synthetic/500/659/400900",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442",
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f"
+            ]
+          }
+        },
+        {
+          "id": "400902",
+          "locator": "msg:synthetic/500/659/400902",
+          "discovery": {
+            "coverage": 0.5,
+            "matchedTerms": [
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
+              "\u043f\u0430\u043a\u0435\u0442"
+            ]
+          }
+        },
+        {
+          "id": "400802",
+          "locator": "msg:synthetic/500/658/400802",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400801",
+          "locator": "msg:synthetic/500/658/400801",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400800",
+          "locator": "msg:synthetic/500/658/400800",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ]
+          }
+        },
+        {
+          "id": "400803",
+          "locator": "msg:synthetic/500/658/400803",
+          "discovery": {
+            "coverage": 0.25,
+            "matchedTerms": [
+              "\u043f\u0430\u043a\u0435\u0442"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
+              "\u0441\u0447\u0435\u0442\u043e\u0432",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-9-1",
+      "language": "ru",
+      "category": "terse-reply",
+      "mode": "discover",
+      "input": "\u0412\u043e \u0441\u043a\u043e\u043b\u044c\u043a\u043e \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0441\u0447\u0435\u0442\u0430 \u0411\u0435\u0440\u0451\u0437\u0430?",
+      "ids": [
+        "400901",
+        "400900",
+        "400903",
+        "400902"
+      ],
+      "candidateIds": [
+        "400901",
+        "400900",
+        "400903",
+        "400902"
+      ],
+      "answerInCandidates": 1,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 77.50029799999993,
+      "candidateProbeMs": 74.92659000000003,
+      "rankingComparisonMs": null,
+      "answerAt1": 1,
+      "answerAt3": 1,
+      "answerAt10": 1,
+      "mrrAt10": 1,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 1,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 4,
+        "repliesAdded": 1,
+        "truncated": false,
+        "terms": [
+          "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442",
+          "\u0441\u0447\u0435\u0442\u0430",
+          "\u0431\u0435\u0440\u0435\u0437\u0430"
+        ],
+        "queries": [
+          "(\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 OR \u0441\u0447\u0435\u0442\u0430 OR \u0431\u0435\u0440\u0435\u0437\u0430)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "400901",
+          "locator": "msg:synthetic/500/659/400901",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0441\u0447\u0435\u0442\u0430",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442"
+            ],
+            "parent": "msg:synthetic/500/659/400900"
+          }
+        },
+        {
+          "id": "400900",
+          "locator": "msg:synthetic/500/659/400900",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0441\u0447\u0435\u0442\u0430",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442"
+            ]
+          }
+        },
+        {
+          "id": "400903",
+          "locator": "msg:synthetic/500/659/400903",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0441\u0447\u0435\u0442\u0430",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442"
+            ]
+          }
+        },
+        {
+          "id": "400902",
+          "locator": "msg:synthetic/500/659/400902",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0441\u0447\u0435\u0442\u0430",
+              "\u0431\u0435\u0440\u0435\u0437\u0430"
+            ],
+            "missingTerms": [
+              "\u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-10-0",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "\u0413\u0434\u0435 \u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u044b \u0434\u0430\u043d\u043d\u044b\u0435 \u0412\u0435\u0440\u0431\u0430?",
+      "ids": [
+        "401000",
+        "401002",
+        "401001"
+      ],
+      "candidateIds": [
+        "401000",
+        "401002",
+        "401001"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 36.78926499999943,
+      "candidateProbeMs": 36.48132700000042,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.9197207891481876,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 3,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u044b",
+          "\u0434\u0430\u043d\u043d\u044b\u0435",
+          "\u0432\u0435\u0440\u0431\u0430"
+        ],
+        "queries": [
+          "(\u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u044b OR \u0434\u0430\u043d\u043d\u044b\u0435 OR \u0432\u0435\u0440\u0431\u0430)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "401000",
+          "locator": "msg:synthetic/500/660/401000",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0434\u0430\u043d\u043d\u044b\u0435",
+              "\u0432\u0435\u0440\u0431\u0430"
+            ],
+            "missingTerms": [
+              "\u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u044b"
+            ]
+          }
+        },
+        {
+          "id": "401002",
+          "locator": "msg:synthetic/500/660/401002",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0434\u0430\u043d\u043d\u044b\u0435",
+              "\u0432\u0435\u0440\u0431\u0430"
+            ],
+            "missingTerms": [
+              "\u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u044b"
+            ]
+          }
+        },
+        {
+          "id": "401001",
+          "locator": "msg:synthetic/500/660/401001",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u0434\u0430\u043d\u043d\u044b\u0435",
+              "\u0432\u0435\u0440\u0431\u0430"
+            ],
+            "missingTerms": [
+              "\u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u044b"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-10-1",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u0440\u0435\u0433\u0438\u043e\u043d \u0434\u0430\u043d\u043d\u044b\u0445 \u0412\u0435\u0440\u0431\u0430 \u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d?",
+      "ids": [
+        "401002",
+        "401000",
+        "401001"
+      ],
+      "candidateIds": [
+        "401002",
+        "401000",
+        "401001"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": 1,
+      "elapsedMs": 35.156192000000374,
+      "candidateProbeMs": 36.2025050000002,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": 1,
+      "ndcgAt10": 0.6934264036172708,
+      "falseHits": 0,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 3,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0440\u0435\u0433\u0438\u043e\u043d",
+          "\u0434\u0430\u043d\u043d\u044b\u0445",
+          "\u0432\u0435\u0440\u0431\u0430",
+          "\u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d"
+        ],
+        "queries": [
+          "(\u0440\u0435\u0433\u0438\u043e\u043d OR \u0434\u0430\u043d\u043d\u044b\u0445 OR \u0432\u0435\u0440\u0431\u0430 OR \u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "401002",
+          "locator": "msg:synthetic/500/660/401002",
+          "discovery": {
+            "coverage": 1,
+            "matchedTerms": [
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0434\u0430\u043d\u043d\u044b\u0445",
+              "\u0432\u0435\u0440\u0431\u0430",
+              "\u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d"
+            ],
+            "missingTerms": []
+          }
+        },
+        {
+          "id": "401000",
+          "locator": "msg:synthetic/500/660/401000",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0434\u0430\u043d\u043d\u044b\u0445",
+              "\u0432\u0435\u0440\u0431\u0430"
+            ],
+            "missingTerms": [
+              "\u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d"
+            ]
+          }
+        },
+        {
+          "id": "401001",
+          "locator": "msg:synthetic/500/660/401001",
+          "discovery": {
+            "coverage": 0.75,
+            "matchedTerms": [
+              "\u0440\u0435\u0433\u0438\u043e\u043d",
+              "\u0434\u0430\u043d\u043d\u044b\u0445",
+              "\u0432\u0435\u0440\u0431\u0430"
+            ],
+            "missingTerms": [
+              "\u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-11-0",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "discover",
+      "input": "\u041a\u0430\u043a\u043e\u0439 \u043b\u0438\u043c\u0438\u0442 \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u041a\u043b\u0451\u043d?",
+      "ids": [
+        "401100",
+        "401102",
+        "401101"
+      ],
+      "candidateIds": [
+        "401100",
+        "401102",
+        "401101"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 35.592749999999796,
+      "candidateProbeMs": 36.060427999999774,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 3,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 3,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u043b\u0438\u043c\u0438\u0442",
+          "\u043f\u0440\u043e\u0435\u043a\u0442\u0430",
+          "\u043a\u043b\u0435\u043d"
+        ],
+        "queries": [
+          "(\u043b\u0438\u043c\u0438\u0442 OR \u043f\u0440\u043e\u0435\u043a\u0442\u0430 OR \u043a\u043b\u0435\u043d)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "401100",
+          "locator": "msg:synthetic/500/661/401100",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u043f\u0440\u043e\u0435\u043a\u0442\u0430",
+              "\u043a\u043b\u0435\u043d"
+            ],
+            "missingTerms": [
+              "\u043b\u0438\u043c\u0438\u0442"
+            ]
+          }
+        },
+        {
+          "id": "401102",
+          "locator": "msg:synthetic/500/661/401102",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u043a\u043b\u0435\u043d"
+            ],
+            "missingTerms": [
+              "\u043b\u0438\u043c\u0438\u0442",
+              "\u043f\u0440\u043e\u0435\u043a\u0442\u0430"
+            ]
+          }
+        },
+        {
+          "id": "401101",
+          "locator": "msg:synthetic/500/661/401101",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u043a\u043b\u0435\u043d"
+            ],
+            "missingTerms": [
+              "\u043b\u0438\u043c\u0438\u0442",
+              "\u043f\u0440\u043e\u0435\u043a\u0442\u0430"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "frozen-11-1",
+      "language": "ru",
+      "category": "no-evidence",
+      "mode": "discover",
+      "input": "\u041a\u0442\u043e \u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u041a\u043b\u0451\u043d?",
+      "ids": [
+        "401100",
+        "401102",
+        "401101"
+      ],
+      "candidateIds": [
+        "401100",
+        "401102",
+        "401101"
+      ],
+      "answerInCandidates": null,
+      "evidenceRecallAt300": null,
+      "elapsedMs": 35.27848100000028,
+      "candidateProbeMs": 37.02844399999958,
+      "rankingComparisonMs": null,
+      "answerAt1": null,
+      "answerAt3": null,
+      "answerAt10": null,
+      "mrrAt10": null,
+      "evidenceRecallAt10": null,
+      "ndcgAt10": null,
+      "falseHits": 3,
+      "discovery": {
+        "method": "lexical-partial",
+        "candidateDepth": 300,
+        "candidates": 3,
+        "repliesAdded": 0,
+        "truncated": false,
+        "terms": [
+          "\u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446",
+          "\u043f\u0440\u043e\u0435\u043a\u0442\u0430",
+          "\u043a\u043b\u0435\u043d"
+        ],
+        "queries": [
+          "(\u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446 OR \u043f\u0440\u043e\u0435\u043a\u0442\u0430 OR \u043a\u043b\u0435\u043d)"
+        ]
+      },
+      "matches": [
+        {
+          "id": "401100",
+          "locator": "msg:synthetic/500/661/401100",
+          "discovery": {
+            "coverage": 0.6666666666666666,
+            "matchedTerms": [
+              "\u043f\u0440\u043e\u0435\u043a\u0442\u0430",
+              "\u043a\u043b\u0435\u043d"
+            ],
+            "missingTerms": [
+              "\u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446"
+            ]
+          }
+        },
+        {
+          "id": "401102",
+          "locator": "msg:synthetic/500/661/401102",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u043a\u043b\u0435\u043d"
+            ],
+            "missingTerms": [
+              "\u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446",
+              "\u043f\u0440\u043e\u0435\u043a\u0442\u0430"
+            ]
+          }
+        },
+        {
+          "id": "401101",
+          "locator": "msg:synthetic/500/661/401101",
+          "discovery": {
+            "coverage": 0.3333333333333333,
+            "matchedTerms": [
+              "\u043a\u043b\u0435\u043d"
+            ],
+            "missingTerms": [
+              "\u0432\u043b\u0430\u0434\u0435\u043b\u0435\u0446",
+              "\u043f\u0440\u043e\u0435\u043a\u0442\u0430"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "ingestion": {
+    "setupMs": 363510.003006,
+    "peakRss": 379195392
+  }
+}

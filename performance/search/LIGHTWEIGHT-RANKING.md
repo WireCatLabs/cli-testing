@@ -15,7 +15,8 @@ The approximately 1.19 GB Qwen/Jina weights and 1.75 GB Kev base in the broader 
 belong to different models. They are not downloads required by the current experiment. We have
 not installed them. Weight-file size and process RAM must be reported separately for each model.
 The present process-memory result does not establish that every 136 MB reranker needs 1.33 GB;
-a runtime allocation breakdown and native-runtime comparison remain unmeasured.
+the [native comparison](matrix/README.md) measured 587.9 MB for its worker.
+A runtime allocation breakdown remains unmeasured.
 
 ## A reranker is a task, not necessarily a large neural model
 
@@ -56,7 +57,8 @@ provides ranking objectives including LambdaRank and rank_xendcg. Training happe
 query groups; evaluation labels are not inputs during inference. A shipped linear scorer could
 be a small set of numbers, while a tree scorer's size depends on its number and depth of trees.
 The training library need not dictate the shipped inference runtime; export/runtime support still
-needs checking. No such model has been trained or sized here yet.
+needs checking. The [matrix](matrix/README.md) subsequently trained and sized small feature scorers;
+[broader validation](validation/README.md) did not qualify the first scorer for production.
 
 [fastText](https://fasttext.cc/docs/en/supervised-tutorial.html) illustrates lightweight text
 classification. A generic question/decision classifier could provide a feature, but it is not
@@ -79,7 +81,7 @@ Publisher file listings:
 [TinyBERT](https://huggingface.co/cross-encoder/ms-marco-TinyBERT-L2-v2/tree/81d1926f67cb8eee2c2be17ca9f793c7c3bd20cc/onnx),
 [MiniLM-L6](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/tree/233902d25c440f23af6f7d6e94d2946bac0bee0a/onnx).
 These models are older, established task-specific rankers; a modern release date is not a
-requirement for this comparison. RAM and CPU timings here are unknown until measured.
+requirement for this comparison. The [matrix](matrix/README.md) records native CPU timings and RAM for these exact assets.
 The [publisher performance table](https://www.sbert.net/docs/pretrained-models/ce-msmarco.html)
 uses GPU timings, which must not be presented as laptop CPU predictions.
 

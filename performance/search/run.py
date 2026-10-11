@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Run the offline research harness against an explicitly selected cli-messaging build."""
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -22,10 +23,11 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--messaging-root", required=True, type=Path,
                     help="cli-messaging checkout with dist/ and installed dependencies")
 parser.add_argument("runner", choices=runners)
+parser.add_argument("--dependency-root", type=Path, help="node_modules for an installed published package")
 args, forwarded = parser.parse_known_args()
 root = args.messaging_root.resolve()
 for path in [root / "dist/services/messages.js", root / "dist/services/messages-combined.js",
-             root / "node_modules"]:
+             (args.dependency_root.resolve() if args.dependency_root else root / "node_modules")]:
     if not path.exists():
         parser.error(f"missing {path}; build the selected cli-messaging checkout first")
 if args.runner.endswith("typecheck") and forwarded:
@@ -48,15 +50,24 @@ config["extends"] = f"{core_scope}/cli-core/tsconfig.base.json"
 config_path.write_text(json.dumps(config, indent=2) + "\n")
 (stage / "dist").symlink_to(root / "dist", target_is_directory=True)
 aliases = {}
-(stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
-command = (["pnpm", "exec", "tsc", "-p", str(selected_harness / "tsconfig.json")]
+dependencies = args.dependency_root.resolve() if args.dependency_root else root / "node_modules"
+(stage / "node_modules").symlink_to(dependencies, target_is_directory=True)
+if selected_script == "typecheck" and not (dependencies / ".bin/tsc").is_file():
+    parser.error("typecheck needs an installed TypeScript compiler in the dependency root")
+command = ([str(dependencies / ".bin/tsc"), "-p", str(selected_harness / "tsconfig.json")]
            if selected_script == "typecheck"
            else ["node", str(selected_harness / f"{selected_script}.ts"), *forwarded])
 metadata = {"messagingRoot": str(root), "runner": args.runner, "coreScope": core_scope, "packageAliases": aliases,
             "command": command, "node": subprocess.check_output(["node", "--version"], text=True).strip(),
             "messagingPackage": json.loads((root / "package.json").read_text())["version"]}
 for label, path in [("messagingCommit", root), ("testingCommit", area)]:
-    metadata[label] = subprocess.check_output(["git", "-C", str(path), "rev-parse", "HEAD"], text=True).strip()
+    result = subprocess.run(["git", "-C", str(path), "rev-parse", "HEAD"], text=True, capture_output=True)
+    metadata[label] = result.stdout.strip() if result.returncode == 0 else None
+if args.dependency_root:
+    metadata["messagingCommit"] = None
+metadata["dependencyRoot"] = str(dependencies)
+metadata["artifactKind"] = "installed-package" if args.dependency_root else "checkout-build"
+metadata["packageSha256"] = hashlib.sha256((root / "package.json").read_bytes()).hexdigest()
 (stage / "launch.json").write_text(json.dumps(metadata, indent=2) + "\n")
 print(f"Search harness and launch metadata retained at {stage}", file=sys.stderr)
 sys.exit(subprocess.run(command, cwd=root, env=os.environ.copy()).returncode)
