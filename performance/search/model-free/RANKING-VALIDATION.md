@@ -114,6 +114,7 @@ the launcher never asks the package manager to install one implicitly.
 
 [Recorded reports](results/ranking-2026-10-11/) retain candidate ids, top-ten ordering, per-question
 metrics, build hashes and launch metadata. The unchanged main baseline is commit `5f935a5d`;
-the fix is commit `7bb378c9`. Re-run these cases after any ranking change. The next useful ranking
+the fix is commit `7bb378c9`. It is released in messaging 0.229.0; the published tarball
+exactly matches all five measured search-module hashes and the validated release artifact. Re-run these cases after any ranking change. The next useful ranking
 experiment should address answers versus echoed questions and proposals, and keep both ordering
 quality and useful conflict evidence visible.
