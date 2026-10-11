@@ -59,7 +59,9 @@ English supplements; Russian queries keep the baseline twelve.
 
 The original ten remain unchanged, so Answer@10 is still 48/56. The additional English answers
 reach positions 11 or 12; this is richer evidence, not improved first-place or top-ten ordering.
-The other two controls preserve their quality metrics. TinyBERT's two supplements do not recover
+The other two controls preserve their quality metrics. At twelve results, the older questions
+without labeled evidence still return 192 partial hits, as does the baseline twelve; the newer
+missing-evidence cases still return six. Supplements do not establish that an answer exists. TinyBERT's two supplements do not recover
 the older missing answers in this design.
 
 This is exploratory: it was devised after inspecting results and has not passed a new untouched

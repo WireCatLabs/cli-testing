@@ -30,7 +30,7 @@ def metrics(ids, q):
     answers = {mid for mid, grade in relevant.items() if grade == 2}
     position = next((i for i, mid in enumerate(ids[:10]) if mid in answers), None)
     dcg = lambda grades: sum(((2 ** g - 1) / math.log2(i + 2) for i, g in enumerate(grades[:10])))
-    return dict(answerAt1=float(position == 0) if answers else None, answerAt3=float(position is not None and position < 3) if answers else None, answerAt10=float(position is not None) if answers else None, mrrAt10=(1 / (position + 1) if position is not None else 0) if answers else None, evidenceRecallAt10=sum((mid in relevant for mid in ids[:10])) / len(relevant) if relevant else None, ndcgAt10=dcg([relevant.get(mid, 0) for mid in ids[:10]]) / dcg(sorted(relevant.values(), reverse=True)) if relevant else None, falseHits=len(ids[:10]) if not relevant else 0, answerAt12=float(any((mid in answers for mid in ids[:12]))) if answers else None, evidenceRecallAt12=sum((mid in relevant for mid in ids[:12])) / len(relevant) if relevant else None)
+    return dict(answerAt1=float(position == 0) if answers else None, answerAt3=float(position is not None and position < 3) if answers else None, answerAt10=float(position is not None) if answers else None, mrrAt10=(1 / (position + 1) if position is not None else 0) if answers else None, evidenceRecallAt10=sum((mid in relevant for mid in ids[:10])) / len(relevant) if relevant else None, ndcgAt10=dcg([relevant.get(mid, 0) for mid in ids[:10]]) / dcg(sorted(relevant.values(), reverse=True)) if relevant else None, falseHits=len(ids[:10]) if not relevant else 0, falseHitsAt12=len(ids[:12]) if not relevant else 0, answerAt12=float(any((mid in answers for mid in ids[:12]))) if answers else None, evidenceRecallAt12=sum((mid in relevant for mid in ids[:12])) / len(relevant) if relevant else None)
 
 def aggregate(rows):
     result = dict(queries=len(rows), answerable=sum((r['metrics']['answerAt10'] is not None for r in rows)))
@@ -38,6 +38,7 @@ def aggregate(rows):
         xs = [r['metrics'][key] for r in rows if r['metrics'][key] is not None]
         result[key] = statistics.mean(xs) if xs else None
     result['falseHits'] = sum((r['metrics']['falseHits'] for r in rows))
+    result['falseHitsAt12'] = sum((r['metrics']['falseHitsAt12'] for r in rows))
     measured = [r['elapsedMs'] for r in rows if r['elapsedMs'] is not None]
     if measured:
         measured.sort()
