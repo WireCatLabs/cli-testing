@@ -1,5 +1,7 @@
 # Search quality and performance experiments
 
+For the full sequence of ideas, experiments and conclusions, read [PROCESS.md](PROCESS.md).
+
 Start with [LIGHTWEIGHT-RANKING.md](LIGHTWEIGHT-RANKING.md) for the small-footprint options,
 then [MODELS.md](MODELS.md) for the plain-language model explanation, then
 [the evaluation guide](combined-search-evaluation.md) for the metrics. The
