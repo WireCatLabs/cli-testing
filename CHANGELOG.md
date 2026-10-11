@@ -24,7 +24,7 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
 
 ## 0.2.1 — 11.10.2026
 
-### Changed — may break callers
+### Fixed
 
 - Package references, documentation and fixtures use the WireCat namespace throughout.
 
