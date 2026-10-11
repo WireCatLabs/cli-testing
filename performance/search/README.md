@@ -26,7 +26,9 @@ ranking failures and full-process RAM. The [fresh validation](model-free/FRESH-V
 now measures the built storage-backed discovery option and archive scaling, with strict defaults
 preserved and missing-fact partial hits explicitly retained. The
 [candidate/ranking follow-up](model-free/RANKING-VALIDATION.md) separates missing candidates from
-poor ordering and records unsuccessful cheap rerankers.
+poor ordering and records unsuccessful cheap rerankers. The
+[compact-model comparison](compact/README.md) tests 5 MB and 24 MB models, evidence loss and a
+bounded supplement design.
 
 ## Layout
 
