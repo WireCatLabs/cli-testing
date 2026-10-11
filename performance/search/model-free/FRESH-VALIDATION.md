@@ -111,8 +111,8 @@ ingestion timings from older builds are not mixed into their query resource fiel
 [partial prototype results](results/fresh-discovery.json), [built fresh results](results/production-fresh.json),
 [10k background](results/production-10k.json), [100k background](results/production-100k.json) and
 [older-template control](results/production-original.json) retain failures and raw result ids.
-Launch metadata accompanies each report. The launcher adapts only staged TypeScript core scope
-and an explicit legacy native-package alias for renamed builds; archived scripts remain unchanged.
+Launch metadata accompanies each report. The launcher uses WireCat imports directly. Namespace
+normalization hashes are recorded separately from the original migration hashes.
 
 Next ranking work needs genuinely independent questions and judgments, answer/proposal/conflict
 comparisons and dense difficult distractors. These measurements justify a bounded, opt-in lexical
