@@ -8,7 +8,7 @@ folder the caller names — for the owner's CLIs, `security/runs/<YYYY-MM-DD>/` 
 us: [`LESSONS.md`](LESSONS.md).
 
 Repositories: `max-cli`, `tg-cli`, `cli-messaging` (with `packages/sqlite`, `packages/onnx`),
-`cli-core`, `cli-tasks`, `cli-testing`. All public. The private repository is never given to a
+`cli-base`, `cli-tasks`, `cli-testing`. All public. The private repository is never given to a
 hosted scanner.
 
 ## A run, step by step
@@ -68,7 +68,7 @@ Command-line scanners, each pinned to a version recorded in `SCOPE.md`:
 - `zizmor` — GitHub Actions workflows.
 - CodeQL — through GitHub default setup; alerts read with `gh api`.
 
-Release gates in the shared `release-checks.yml` (cli-core), required before each release build: `pnpm audit --prod --audit-level high` and
+Release gates in the shared `release-checks.yml` (cli-base), required before each release build: `pnpm audit --prod --audit-level high` and
 zizmor `--min-severity high`. A high advisory with no fix yet is let through per repository with
 `audit.ignore` in `pnpm-workspace.yaml` (GHSA ids only — [pnpm audit docs](https://pnpm.io/cli/audit)).
 pnpm has no field for a reason or an expiry, so every entry carries a comment with both:

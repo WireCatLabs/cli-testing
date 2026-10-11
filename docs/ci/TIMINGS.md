@@ -10,7 +10,7 @@ add time. Parallel jobs overlap; their durations should not be summed.
 
 | Project/package | Local commit | GitHub push with an open PR | Main after PR merge | Full release |
 | --- | --- | --- | --- | --- |
-| cli-core | About 1 s | 20–40 s | 20–40 s | 3–5 min |
+| cli-base | About 1 s | 20–40 s | 20–40 s | 3–5 min |
 | cli-meetings | About 1 s | 20–40 s | 20–40 s | 3–6 min |
 | cli-memo | About 1 s | 30–50 s | 30–50 s | 3–5 min |
 | cli-messaging | About 1 s | 30–60 s | 30–60 s | 10–15 min |
