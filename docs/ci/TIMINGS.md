@@ -11,10 +11,8 @@ add time. Parallel jobs overlap; their durations should not be summed.
 | Project/package | Local commit | GitHub push with an open PR | Main after PR merge | Full release |
 | --- | --- | --- | --- | --- |
 | cli-base | About 1 s | 20–40 s | 20–40 s | 3–5 min |
-| cli-meetings | About 1 s | 20–40 s | 20–40 s | 3–6 min |
 | cli-memo | About 1 s | 30–50 s | 30–50 s | 3–5 min |
 | cli-messaging | About 1 s | 30–60 s | 30–60 s | 10–15 min |
-| cli-tasks | About 1 s | 20–40 s | 20–40 s | 3–5 min |
 | cli-testing | About 1 s | 20–40 s | 20–40 s | 3–7 min |
 | max-cli | About 1 s | 40–70 s | 40–70 s | 8–15 min |
 | tg-cli | About 1 s | 30–60 s | 30–60 s | 6–12 min |
