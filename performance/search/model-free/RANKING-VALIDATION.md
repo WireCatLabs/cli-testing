@@ -118,3 +118,7 @@ the fix is commit `7bb378c9`. It is released in messaging 0.229.0; the published
 exactly matches all five measured search-module hashes and the validated release artifact. Re-run these cases after any ranking change. The next useful ranking
 experiment should address answers versus echoed questions and proposals, and keep both ordering
 quality and useful conflict evidence visible.
+
+The [compact-model follow-up](../compact/README.md) now tests 100/300 candidates with two small
+models. Replacement ranking loses support; adding two model-selected messages to the existing ten
+improves twelve-result evidence coverage on the older control, and remains an exploratory design.

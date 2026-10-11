@@ -111,7 +111,7 @@ else:
     config = json.loads((args.cache/'config.json').read_text())
     assert config.get('sbert_ce_default_activation_function') == 'torch.nn.modules.linear.Identity'
     assert len(config['id2label']) == 1
-    example = next(row for row in data['rows'] if row['rerankable'] and len(row['candidates']) >= 8)
+    example = max((row for row in data['rows'] if row['rerankable'] and row['candidates']), key=lambda row:len(row['candidates']))
     pairs = [(example['text'], messages[c['id']]) for c in example['candidates'][:8]]
     single = np.array([infer([pair])[0] for pair in pairs])
     batched = infer(pairs)
@@ -119,7 +119,7 @@ else:
     # Dynamic int8 scales can differ when padding/batching changes the activations.
     equivalence = dict(maxAbsoluteLogitDifference=max_error,
                        sameOrdering=bool(np.array_equal(np.argsort(-single, kind='stable'), np.argsort(-batched, kind='stable'))),
-                       pairs=8, singleScores=single.tolist(), batchedScores=batched.tolist())
+                       pairs=len(pairs), singleScores=single.tolist(), batchedScores=batched.tolist())
     for i, row in enumerate(data['rows']):
         if not row['rerankable'] or not row['candidates']:
             continue

@@ -1,0 +1,82 @@
+{
+  "tinybert-context-batch16-top300.json": {
+    "sha256": "105dfd57aa34724897d16c0652cda64844a1fb8ef05f8a86b856631a2ae0fb13",
+    "bytes": 2782421,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-context-batch16-top300.json"
+  },
+  "minilm-l6-body-batch16-top100.json": {
+    "sha256": "3a8d04498eeded368628c66ccde9c62e05a82a6069f2253f8f94e2ab360742da",
+    "bytes": 951377,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-body-batch16-top100.json"
+  },
+  "minilm-l6-context-batch16-top100.json": {
+    "sha256": "2b41026bb62d90b216bc53343464dab14676179ea9080a41a570ddd4ba15a7aa",
+    "bytes": 951318,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-context-batch16-top100.json"
+  },
+  "minilm-l6-context-batch1-top100.json": {
+    "sha256": "2fde80bf1a23a041d27f0365f1b76f59e04a2205a4d407721f2b0ea5085f279f",
+    "bytes": 951291,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-context-batch1-top100.json"
+  },
+  "tinybert-context-batch1-top300.json": {
+    "sha256": "38bcf41efdba99cc84fbb4e6a5b5b6536b4c39812779d3d0dbec01bf02ed443b",
+    "bytes": 2782326,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-context-batch1-top300.json"
+  },
+  "tinybert-body-batch16-top100.json": {
+    "sha256": "3270e6361a56e8e95d6c589ee35f413ef6b920ce3d0a322d1ee78ec15d0dd5ac",
+    "bytes": 953157,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-body-batch16-top100.json"
+  },
+  "minilm-l6-context-batch1-top300.json": {
+    "sha256": "395a9bbab4f558fe8acc73b9b3219386b4bf8964a847bcc3a2a26c5c7333a449",
+    "bytes": 2774695,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-context-batch1-top300.json"
+  },
+  "minilm-l6-body-batch16-top300.json": {
+    "sha256": "453c57a87c788e121bce23e2b8b14ba5f35687a1bc573b6b77fa357c230f1e82",
+    "bytes": 2774818,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-body-batch16-top300.json"
+  },
+  "tinybert-body-batch16-top300.json": {
+    "sha256": "203257739b10abda991044f352faf904f7defb10fad6315f90ba7ef5b776e2a6",
+    "bytes": 2782469,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-body-batch16-top300.json"
+  },
+  "tinybert-context-batch1-top100.json": {
+    "sha256": "dc0c0916c4822f9d7bbfb75802acdc3ca65bdbdbe6541770d42da505f8fd09e7",
+    "bytes": 953180,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-context-batch1-top100.json"
+  },
+  "minilm-l6-body-batch1-top300.json": {
+    "sha256": "25a9d911fa8c7b8d5249a39445ceebeba403463c31875ff64822ec900b2c9609",
+    "bytes": 2774774,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-body-batch1-top300.json"
+  },
+  "tinybert-body-batch1-top100.json": {
+    "sha256": "7f7688a06fd237f9408d87ea68348644393a89b4ad65aca4a17a9c9be62dc6fb",
+    "bytes": 953200,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-body-batch1-top100.json"
+  },
+  "minilm-l6-body-batch1-top100.json": {
+    "sha256": "4a49cdfcb21138b8b6dcc9f357d6c714cdfd1c8e2a899f077248dc53dc54adb2",
+    "bytes": 951363,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-body-batch1-top100.json"
+  },
+  "tinybert-body-batch1-top300.json": {
+    "sha256": "48dd52e35503010ee12046f3eb8995ba3f2fe96afaf05a443b97569b6b9fe56e",
+    "bytes": 2782369,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-body-batch1-top300.json"
+  },
+  "tinybert-context-batch16-top100.json": {
+    "sha256": "fa82e20ff9c389ccab029b238f364aebbc4ddd1a037489d4901690a855e3f57f",
+    "bytes": 953106,
+    "retainedPath": "/tmp/search-ranking-compact-scores/tinybert-context-batch16-top100.json"
+  },
+  "minilm-l6-context-batch16-top300.json": {
+    "sha256": "21027939115d8348cd6b45a1b0134910b73424324dec8c4a71523b35250745cb",
+    "bytes": 2774755,
+    "retainedPath": "/tmp/search-ranking-compact-scores/minilm-l6-context-batch16-top300.json"
+  }
+}
