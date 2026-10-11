@@ -1,0 +1,16 @@
+{
+  "tool": "tg",
+  "version": "0.46.2",
+  "messaging": "0.229.0",
+  "discoveryItems": 2,
+  "strictItems": 0,
+  "replyRetrieved": true,
+  "otherSenderExcluded": true,
+  "parentVerified": true,
+  "publishedBinaryVerified": true,
+  "permissionQuestionsVerified": true,
+  "syntheticOnly": true,
+  "node": "v24.19.0",
+  "verifierSha256": "7de04a8b78cd36cca9b8084effe7087b7ce9285cf6c1ce535dd785a46ac44817",
+  "offlineGuardSha256": "42a1b5384c27361ea15ddd3101f640e8cee0b5f342eb165c5fd7572c2dc17e7e"
+}

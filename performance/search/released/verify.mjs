@@ -63,7 +63,7 @@ await store.fillSearchIndex({})
 await store.fillStems({})
 await store.close()
 const query = "What time does Helix export run? chat:990 from:700 date:2026-10-08"
-const invoke = (extra) =>
+const invoke = (extra, text = query) =>
   JSON.parse(
     execFileSync(
       process.execPath,
@@ -73,7 +73,7 @@ const invoke = (extra) =>
         join(directory, `dist/bin/${tool}.js`),
         "search",
         "messages",
-        query,
+        text,
         ...extra,
         "--timezone",
         "UTC",
@@ -90,6 +90,17 @@ assert.equal(discovery.query.discovery.method, "lexical-partial")
 assert.ok(discovery.items.some((m) => m.id === "9902" && m.discovery.parent === `msg:${account.provider}/500/990/9901`))
 assert.ok(!discovery.items.some((m) => m.id === "9903"))
 assert.deepEqual(strict.items, [])
+const permissionQuestions = process.argv.includes("--permission-questions")
+if (permissionQuestions) {
+  for (const text of ["Can operators run Helix export?", "Могут операторы выполнить Helix export?"]) {
+    const scoped = `${text} chat:990 from:700 date:2026-10-08`
+    const found = invoke(["--discover"], scoped)
+    assert.equal(found.query.discovery.method, "lexical-partial")
+    assert.ok(found.items.some((m) => m.id === "9902" && m.discovery.parent === `msg:${account.provider}/500/990/9901`))
+    assert.ok(!found.items.some((m) => m.id === "9903"))
+    assert.deepEqual(invoke([], scoped).items, [])
+  }
+}
 const evidence = {
   tool,
   version,
@@ -100,6 +111,7 @@ const evidence = {
   otherSenderExcluded: true,
   parentVerified: true,
   publishedBinaryVerified: true,
+  permissionQuestionsVerified: permissionQuestions,
   syntheticOnly: true,
   node: process.version,
   verifierSha256: createHash("sha256")
