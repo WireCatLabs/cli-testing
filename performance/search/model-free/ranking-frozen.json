@@ -1,0 +1,2361 @@
+{
+  "provenance": "Same agent authored questions and judgments; frozen before experiment results, not independently reviewed.",
+  "chats": [
+    {
+      "id": "650",
+      "title": "Synthetic frozen scenario 0"
+    },
+    {
+      "id": "651",
+      "title": "Synthetic frozen scenario 1"
+    },
+    {
+      "id": "652",
+      "title": "Synthetic frozen scenario 2"
+    },
+    {
+      "id": "653",
+      "title": "Synthetic frozen scenario 3"
+    },
+    {
+      "id": "654",
+      "title": "Synthetic frozen scenario 4"
+    },
+    {
+      "id": "655",
+      "title": "Synthetic frozen scenario 5"
+    },
+    {
+      "id": "656",
+      "title": "Synthetic frozen scenario 6"
+    },
+    {
+      "id": "657",
+      "title": "Synthetic frozen scenario 7"
+    },
+    {
+      "id": "658",
+      "title": "Synthetic frozen scenario 8"
+    },
+    {
+      "id": "659",
+      "title": "Synthetic frozen scenario 9"
+    },
+    {
+      "id": "660",
+      "title": "Synthetic frozen scenario 10"
+    },
+    {
+      "id": "661",
+      "title": "Synthetic frozen scenario 11"
+    }
+  ],
+  "messages": [
+    {
+      "id": "400000",
+      "chatId": "650",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Juniper backup policy in force: snapshots are deleted on day 18."
+    },
+    {
+      "id": "400001",
+      "chatId": "650",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "When do Juniper backups disappear? This unanswered question was copied into the onboarding checklist."
+    },
+    {
+      "id": "400002",
+      "chatId": "650",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Juniper backups: keeping snapshots for 180 days was suggested but rejected."
+    },
+    {
+      "id": "400003",
+      "chatId": "650",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Juniper backup deletion finished successfully this morning."
+    },
+    {
+      "id": "400030",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 0: paper and pens delivered."
+    },
+    {
+      "id": "400031",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 1: paper and pens delivered."
+    },
+    {
+      "id": "400032",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 2: paper and pens delivered."
+    },
+    {
+      "id": "400033",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 3: paper and pens delivered."
+    },
+    {
+      "id": "400034",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 4: paper and pens delivered."
+    },
+    {
+      "id": "400035",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 5: paper and pens delivered."
+    },
+    {
+      "id": "400036",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 6: paper and pens delivered."
+    },
+    {
+      "id": "400037",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 7: paper and pens delivered."
+    },
+    {
+      "id": "400038",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 8: paper and pens delivered."
+    },
+    {
+      "id": "400039",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 9: paper and pens delivered."
+    },
+    {
+      "id": "400040",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 10: paper and pens delivered."
+    },
+    {
+      "id": "400041",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 11: paper and pens delivered."
+    },
+    {
+      "id": "400042",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 12: paper and pens delivered."
+    },
+    {
+      "id": "400043",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 13: paper and pens delivered."
+    },
+    {
+      "id": "400044",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 14: paper and pens delivered."
+    },
+    {
+      "id": "400045",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 15: paper and pens delivered."
+    },
+    {
+      "id": "400046",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 16: paper and pens delivered."
+    },
+    {
+      "id": "400047",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 17: paper and pens delivered."
+    },
+    {
+      "id": "400048",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 18: paper and pens delivered."
+    },
+    {
+      "id": "400049",
+      "chatId": "650",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 19: paper and pens delivered."
+    },
+    {
+      "id": "400100",
+      "chatId": "651",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Nimbus production connections are currently allowed for employees only."
+    },
+    {
+      "id": "400101",
+      "chatId": "651",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Nimbus vendors may connect after their contract is signed; none have signed yet."
+    },
+    {
+      "id": "400102",
+      "chatId": "651",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Can vendors connect to Nimbus now? Please put this question on the agenda."
+    },
+    {
+      "id": "400103",
+      "chatId": "651",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Nimbus production connection troubleshooting guide has no permissions information."
+    },
+    {
+      "id": "400130",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 20: paper and pens delivered."
+    },
+    {
+      "id": "400131",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 21: paper and pens delivered."
+    },
+    {
+      "id": "400132",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 22: paper and pens delivered."
+    },
+    {
+      "id": "400133",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 23: paper and pens delivered."
+    },
+    {
+      "id": "400134",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 24: paper and pens delivered."
+    },
+    {
+      "id": "400135",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 25: paper and pens delivered."
+    },
+    {
+      "id": "400136",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 26: paper and pens delivered."
+    },
+    {
+      "id": "400137",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 27: paper and pens delivered."
+    },
+    {
+      "id": "400138",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 28: paper and pens delivered."
+    },
+    {
+      "id": "400139",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 29: paper and pens delivered."
+    },
+    {
+      "id": "400140",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 30: paper and pens delivered."
+    },
+    {
+      "id": "400141",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 31: paper and pens delivered."
+    },
+    {
+      "id": "400142",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 32: paper and pens delivered."
+    },
+    {
+      "id": "400143",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 33: paper and pens delivered."
+    },
+    {
+      "id": "400144",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 34: paper and pens delivered."
+    },
+    {
+      "id": "400145",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 35: paper and pens delivered."
+    },
+    {
+      "id": "400146",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 36: paper and pens delivered."
+    },
+    {
+      "id": "400147",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 37: paper and pens delivered."
+    },
+    {
+      "id": "400148",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 38: paper and pens delivered."
+    },
+    {
+      "id": "400149",
+      "chatId": "651",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 39: paper and pens delivered."
+    },
+    {
+      "id": "400200",
+      "chatId": "652",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Tern package version 31 is deployed now. It replaces version 28."
+    },
+    {
+      "id": "400201",
+      "chatId": "652",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Tern package version 28 is deployed: this old announcement has been superseded."
+    },
+    {
+      "id": "400202",
+      "chatId": "652",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Tern package version 32 is a candidate awaiting approval."
+    },
+    {
+      "id": "400203",
+      "chatId": "652",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "What is the active Tern package version? The release form leaves this field blank."
+    },
+    {
+      "id": "400230",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 40: paper and pens delivered."
+    },
+    {
+      "id": "400231",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 41: paper and pens delivered."
+    },
+    {
+      "id": "400232",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 42: paper and pens delivered."
+    },
+    {
+      "id": "400233",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 43: paper and pens delivered."
+    },
+    {
+      "id": "400234",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 44: paper and pens delivered."
+    },
+    {
+      "id": "400235",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 45: paper and pens delivered."
+    },
+    {
+      "id": "400236",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 46: paper and pens delivered."
+    },
+    {
+      "id": "400237",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 47: paper and pens delivered."
+    },
+    {
+      "id": "400238",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 48: paper and pens delivered."
+    },
+    {
+      "id": "400239",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 49: paper and pens delivered."
+    },
+    {
+      "id": "400240",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 50: paper and pens delivered."
+    },
+    {
+      "id": "400241",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 51: paper and pens delivered."
+    },
+    {
+      "id": "400242",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 52: paper and pens delivered."
+    },
+    {
+      "id": "400243",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 53: paper and pens delivered."
+    },
+    {
+      "id": "400244",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 54: paper and pens delivered."
+    },
+    {
+      "id": "400245",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 55: paper and pens delivered."
+    },
+    {
+      "id": "400246",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 56: paper and pens delivered."
+    },
+    {
+      "id": "400247",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 57: paper and pens delivered."
+    },
+    {
+      "id": "400248",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 58: paper and pens delivered."
+    },
+    {
+      "id": "400249",
+      "chatId": "652",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 59: paper and pens delivered."
+    },
+    {
+      "id": "400300",
+      "chatId": "653",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Kestrel invoice batch: can you confirm the send time?"
+    },
+    {
+      "id": "400301",
+      "chatId": "653",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "At 02:15 UTC, every weekday.",
+      "replyToId": "400300"
+    },
+    {
+      "id": "400302",
+      "chatId": "653",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Kestrel invoice batch time is missing from the help page."
+    },
+    {
+      "id": "400303",
+      "chatId": "653",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Kestrel invoice batch was delayed yesterday by an outage."
+    },
+    {
+      "id": "400330",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 60: paper and pens delivered."
+    },
+    {
+      "id": "400331",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 61: paper and pens delivered."
+    },
+    {
+      "id": "400332",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 62: paper and pens delivered."
+    },
+    {
+      "id": "400333",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 63: paper and pens delivered."
+    },
+    {
+      "id": "400334",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 64: paper and pens delivered."
+    },
+    {
+      "id": "400335",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 65: paper and pens delivered."
+    },
+    {
+      "id": "400336",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 66: paper and pens delivered."
+    },
+    {
+      "id": "400337",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 67: paper and pens delivered."
+    },
+    {
+      "id": "400338",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 68: paper and pens delivered."
+    },
+    {
+      "id": "400339",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 69: paper and pens delivered."
+    },
+    {
+      "id": "400340",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 70: paper and pens delivered."
+    },
+    {
+      "id": "400341",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 71: paper and pens delivered."
+    },
+    {
+      "id": "400342",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 72: paper and pens delivered."
+    },
+    {
+      "id": "400343",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 73: paper and pens delivered."
+    },
+    {
+      "id": "400344",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 74: paper and pens delivered."
+    },
+    {
+      "id": "400345",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 75: paper and pens delivered."
+    },
+    {
+      "id": "400346",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 76: paper and pens delivered."
+    },
+    {
+      "id": "400347",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 77: paper and pens delivered."
+    },
+    {
+      "id": "400348",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 78: paper and pens delivered."
+    },
+    {
+      "id": "400349",
+      "chatId": "653",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 79: paper and pens delivered."
+    },
+    {
+      "id": "400400",
+      "chatId": "654",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Linden data is stored in Dublin according to the current operations record."
+    },
+    {
+      "id": "400401",
+      "chatId": "654",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "The current legal record places Linden data in Oslo. We have not resolved this disagreement."
+    },
+    {
+      "id": "400402",
+      "chatId": "654",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "What is the agreed Linden data region? A heading without an answer."
+    },
+    {
+      "id": "400430",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 80: paper and pens delivered."
+    },
+    {
+      "id": "400431",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 81: paper and pens delivered."
+    },
+    {
+      "id": "400432",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 82: paper and pens delivered."
+    },
+    {
+      "id": "400433",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 83: paper and pens delivered."
+    },
+    {
+      "id": "400434",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 84: paper and pens delivered."
+    },
+    {
+      "id": "400435",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 85: paper and pens delivered."
+    },
+    {
+      "id": "400436",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 86: paper and pens delivered."
+    },
+    {
+      "id": "400437",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 87: paper and pens delivered."
+    },
+    {
+      "id": "400438",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 88: paper and pens delivered."
+    },
+    {
+      "id": "400439",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 89: paper and pens delivered."
+    },
+    {
+      "id": "400440",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 90: paper and pens delivered."
+    },
+    {
+      "id": "400441",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 91: paper and pens delivered."
+    },
+    {
+      "id": "400442",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 92: paper and pens delivered."
+    },
+    {
+      "id": "400443",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 93: paper and pens delivered."
+    },
+    {
+      "id": "400444",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 94: paper and pens delivered."
+    },
+    {
+      "id": "400445",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 95: paper and pens delivered."
+    },
+    {
+      "id": "400446",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 96: paper and pens delivered."
+    },
+    {
+      "id": "400447",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 97: paper and pens delivered."
+    },
+    {
+      "id": "400448",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 98: paper and pens delivered."
+    },
+    {
+      "id": "400449",
+      "chatId": "654",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 99: paper and pens delivered."
+    },
+    {
+      "id": "400500",
+      "chatId": "655",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Osprey license application is open; approver and price remain undecided."
+    },
+    {
+      "id": "400501",
+      "chatId": "655",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Osprey license: approval and price fields are blank."
+    },
+    {
+      "id": "400502",
+      "chatId": "655",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Osprey stationery cost 20 dollars. This expense is unrelated to software."
+    },
+    {
+      "id": "400530",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 100: paper and pens delivered."
+    },
+    {
+      "id": "400531",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 101: paper and pens delivered."
+    },
+    {
+      "id": "400532",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 102: paper and pens delivered."
+    },
+    {
+      "id": "400533",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 103: paper and pens delivered."
+    },
+    {
+      "id": "400534",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 104: paper and pens delivered."
+    },
+    {
+      "id": "400535",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 105: paper and pens delivered."
+    },
+    {
+      "id": "400536",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 106: paper and pens delivered."
+    },
+    {
+      "id": "400537",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 107: paper and pens delivered."
+    },
+    {
+      "id": "400538",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 108: paper and pens delivered."
+    },
+    {
+      "id": "400539",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 109: paper and pens delivered."
+    },
+    {
+      "id": "400540",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 110: paper and pens delivered."
+    },
+    {
+      "id": "400541",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 111: paper and pens delivered."
+    },
+    {
+      "id": "400542",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 112: paper and pens delivered."
+    },
+    {
+      "id": "400543",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 113: paper and pens delivered."
+    },
+    {
+      "id": "400544",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 114: paper and pens delivered."
+    },
+    {
+      "id": "400545",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 115: paper and pens delivered."
+    },
+    {
+      "id": "400546",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 116: paper and pens delivered."
+    },
+    {
+      "id": "400547",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 117: paper and pens delivered."
+    },
+    {
+      "id": "400548",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 118: paper and pens delivered."
+    },
+    {
+      "id": "400549",
+      "chatId": "655",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 119: paper and pens delivered."
+    },
+    {
+      "id": "400600",
+      "chatId": "656",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Ива: резервные копии автоматически удаляются через 16 дней. Правило действует."
+    },
+    {
+      "id": "400601",
+      "chatId": "656",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Когда удаляются резервные копии Ива? Вопрос из анкеты без ответа."
+    },
+    {
+      "id": "400602",
+      "chatId": "656",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Ива: предлагали оставлять резервные копии на 120 дней, но отказались."
+    },
+    {
+      "id": "400603",
+      "chatId": "656",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Ива: проверка удаления резервных копий прошла успешно."
+    },
+    {
+      "id": "400630",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 120: paper and pens delivered."
+    },
+    {
+      "id": "400631",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 121: paper and pens delivered."
+    },
+    {
+      "id": "400632",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 122: paper and pens delivered."
+    },
+    {
+      "id": "400633",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 123: paper and pens delivered."
+    },
+    {
+      "id": "400634",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 124: paper and pens delivered."
+    },
+    {
+      "id": "400635",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 125: paper and pens delivered."
+    },
+    {
+      "id": "400636",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 126: paper and pens delivered."
+    },
+    {
+      "id": "400637",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 127: paper and pens delivered."
+    },
+    {
+      "id": "400638",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 128: paper and pens delivered."
+    },
+    {
+      "id": "400639",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 129: paper and pens delivered."
+    },
+    {
+      "id": "400640",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 130: paper and pens delivered."
+    },
+    {
+      "id": "400641",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 131: paper and pens delivered."
+    },
+    {
+      "id": "400642",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 132: paper and pens delivered."
+    },
+    {
+      "id": "400643",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 133: paper and pens delivered."
+    },
+    {
+      "id": "400644",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 134: paper and pens delivered."
+    },
+    {
+      "id": "400645",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 135: paper and pens delivered."
+    },
+    {
+      "id": "400646",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 136: paper and pens delivered."
+    },
+    {
+      "id": "400647",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 137: paper and pens delivered."
+    },
+    {
+      "id": "400648",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 138: paper and pens delivered."
+    },
+    {
+      "id": "400649",
+      "chatId": "656",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 139: paper and pens delivered."
+    },
+    {
+      "id": "400700",
+      "chatId": "657",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Лотос: подключение сейчас разрешено только сотрудникам."
+    },
+    {
+      "id": "400701",
+      "chatId": "657",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Лотос: подрядчики получат подключение после согласования договора. Согласование ещё не состоялось."
+    },
+    {
+      "id": "400702",
+      "chatId": "657",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Подрядчики могут подключиться к Лотос сейчас? Добавьте вопрос в повестку."
+    },
+    {
+      "id": "400703",
+      "chatId": "657",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Лотос: инструкция по подключению не содержит списка разрешений."
+    },
+    {
+      "id": "400730",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 140: paper and pens delivered."
+    },
+    {
+      "id": "400731",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 141: paper and pens delivered."
+    },
+    {
+      "id": "400732",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 142: paper and pens delivered."
+    },
+    {
+      "id": "400733",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 143: paper and pens delivered."
+    },
+    {
+      "id": "400734",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 144: paper and pens delivered."
+    },
+    {
+      "id": "400735",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 145: paper and pens delivered."
+    },
+    {
+      "id": "400736",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 146: paper and pens delivered."
+    },
+    {
+      "id": "400737",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 147: paper and pens delivered."
+    },
+    {
+      "id": "400738",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 148: paper and pens delivered."
+    },
+    {
+      "id": "400739",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 149: paper and pens delivered."
+    },
+    {
+      "id": "400740",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 150: paper and pens delivered."
+    },
+    {
+      "id": "400741",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 151: paper and pens delivered."
+    },
+    {
+      "id": "400742",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 152: paper and pens delivered."
+    },
+    {
+      "id": "400743",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 153: paper and pens delivered."
+    },
+    {
+      "id": "400744",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 154: paper and pens delivered."
+    },
+    {
+      "id": "400745",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 155: paper and pens delivered."
+    },
+    {
+      "id": "400746",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 156: paper and pens delivered."
+    },
+    {
+      "id": "400747",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 157: paper and pens delivered."
+    },
+    {
+      "id": "400748",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 158: paper and pens delivered."
+    },
+    {
+      "id": "400749",
+      "chatId": "657",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 159: paper and pens delivered."
+    },
+    {
+      "id": "400800",
+      "chatId": "658",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Осина: пакет версии 46 установлен сейчас, он заменил версию 41."
+    },
+    {
+      "id": "400801",
+      "chatId": "658",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Осина: пакет версии 41 установлен — устаревшая запись, больше не действует."
+    },
+    {
+      "id": "400802",
+      "chatId": "658",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Осина: пакет версии 47 пока ожидает согласования."
+    },
+    {
+      "id": "400803",
+      "chatId": "658",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Какая версия пакета Осина активна? В форме оставлено пустое поле."
+    },
+    {
+      "id": "400830",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 160: paper and pens delivered."
+    },
+    {
+      "id": "400831",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 161: paper and pens delivered."
+    },
+    {
+      "id": "400832",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 162: paper and pens delivered."
+    },
+    {
+      "id": "400833",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 163: paper and pens delivered."
+    },
+    {
+      "id": "400834",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 164: paper and pens delivered."
+    },
+    {
+      "id": "400835",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 165: paper and pens delivered."
+    },
+    {
+      "id": "400836",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 166: paper and pens delivered."
+    },
+    {
+      "id": "400837",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 167: paper and pens delivered."
+    },
+    {
+      "id": "400838",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 168: paper and pens delivered."
+    },
+    {
+      "id": "400839",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 169: paper and pens delivered."
+    },
+    {
+      "id": "400840",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 170: paper and pens delivered."
+    },
+    {
+      "id": "400841",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 171: paper and pens delivered."
+    },
+    {
+      "id": "400842",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 172: paper and pens delivered."
+    },
+    {
+      "id": "400843",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 173: paper and pens delivered."
+    },
+    {
+      "id": "400844",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 174: paper and pens delivered."
+    },
+    {
+      "id": "400845",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 175: paper and pens delivered."
+    },
+    {
+      "id": "400846",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 176: paper and pens delivered."
+    },
+    {
+      "id": "400847",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 177: paper and pens delivered."
+    },
+    {
+      "id": "400848",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 178: paper and pens delivered."
+    },
+    {
+      "id": "400849",
+      "chatId": "658",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 179: paper and pens delivered."
+    },
+    {
+      "id": "400900",
+      "chatId": "659",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Берёза: подтвердите время отправки пакета счетов."
+    },
+    {
+      "id": "400901",
+      "chatId": "659",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "В 09:40 по Москве, каждый рабочий день.",
+      "replyToId": "400900"
+    },
+    {
+      "id": "400902",
+      "chatId": "659",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Берёза: время отправки счетов в справке отсутствует."
+    },
+    {
+      "id": "400903",
+      "chatId": "659",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Берёза: вчера пакет счетов отправили с задержкой."
+    },
+    {
+      "id": "400930",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 180: paper and pens delivered."
+    },
+    {
+      "id": "400931",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 181: paper and pens delivered."
+    },
+    {
+      "id": "400932",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 182: paper and pens delivered."
+    },
+    {
+      "id": "400933",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 183: paper and pens delivered."
+    },
+    {
+      "id": "400934",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 184: paper and pens delivered."
+    },
+    {
+      "id": "400935",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 185: paper and pens delivered."
+    },
+    {
+      "id": "400936",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 186: paper and pens delivered."
+    },
+    {
+      "id": "400937",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 187: paper and pens delivered."
+    },
+    {
+      "id": "400938",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 188: paper and pens delivered."
+    },
+    {
+      "id": "400939",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 189: paper and pens delivered."
+    },
+    {
+      "id": "400940",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 190: paper and pens delivered."
+    },
+    {
+      "id": "400941",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 191: paper and pens delivered."
+    },
+    {
+      "id": "400942",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 192: paper and pens delivered."
+    },
+    {
+      "id": "400943",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 193: paper and pens delivered."
+    },
+    {
+      "id": "400944",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 194: paper and pens delivered."
+    },
+    {
+      "id": "400945",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 195: paper and pens delivered."
+    },
+    {
+      "id": "400946",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 196: paper and pens delivered."
+    },
+    {
+      "id": "400947",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 197: paper and pens delivered."
+    },
+    {
+      "id": "400948",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 198: paper and pens delivered."
+    },
+    {
+      "id": "400949",
+      "chatId": "659",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 199: paper and pens delivered."
+    },
+    {
+      "id": "401000",
+      "chatId": "660",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Верба: действующая карточка эксплуатации указывает регион данных Милан."
+    },
+    {
+      "id": "401001",
+      "chatId": "660",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Верба: в действующем юридическом документе регион данных Мадрид. Противоречие пока не разрешено."
+    },
+    {
+      "id": "401002",
+      "chatId": "660",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Какой регион данных Верба согласован? Заголовок анкеты без ответа."
+    },
+    {
+      "id": "401030",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 200: paper and pens delivered."
+    },
+    {
+      "id": "401031",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 201: paper and pens delivered."
+    },
+    {
+      "id": "401032",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 202: paper and pens delivered."
+    },
+    {
+      "id": "401033",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 203: paper and pens delivered."
+    },
+    {
+      "id": "401034",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 204: paper and pens delivered."
+    },
+    {
+      "id": "401035",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 205: paper and pens delivered."
+    },
+    {
+      "id": "401036",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 206: paper and pens delivered."
+    },
+    {
+      "id": "401037",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 207: paper and pens delivered."
+    },
+    {
+      "id": "401038",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 208: paper and pens delivered."
+    },
+    {
+      "id": "401039",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 209: paper and pens delivered."
+    },
+    {
+      "id": "401040",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 210: paper and pens delivered."
+    },
+    {
+      "id": "401041",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 211: paper and pens delivered."
+    },
+    {
+      "id": "401042",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 212: paper and pens delivered."
+    },
+    {
+      "id": "401043",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 213: paper and pens delivered."
+    },
+    {
+      "id": "401044",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 214: paper and pens delivered."
+    },
+    {
+      "id": "401045",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 215: paper and pens delivered."
+    },
+    {
+      "id": "401046",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 216: paper and pens delivered."
+    },
+    {
+      "id": "401047",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 217: paper and pens delivered."
+    },
+    {
+      "id": "401048",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 218: paper and pens delivered."
+    },
+    {
+      "id": "401049",
+      "chatId": "660",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 219: paper and pens delivered."
+    },
+    {
+      "id": "401100",
+      "chatId": "661",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Клён: проект создан, первый тест выполнен."
+    },
+    {
+      "id": "401101",
+      "chatId": "661",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Клён: расписание встречи опубликовано."
+    },
+    {
+      "id": "401102",
+      "chatId": "661",
+      "senderId": "700",
+      "timestamp": "2026-10-09T12:00:00.000Z",
+      "text": "Клён: приветственное сообщение команды."
+    },
+    {
+      "id": "401130",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 220: paper and pens delivered."
+    },
+    {
+      "id": "401131",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 221: paper and pens delivered."
+    },
+    {
+      "id": "401132",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 222: paper and pens delivered."
+    },
+    {
+      "id": "401133",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 223: paper and pens delivered."
+    },
+    {
+      "id": "401134",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 224: paper and pens delivered."
+    },
+    {
+      "id": "401135",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 225: paper and pens delivered."
+    },
+    {
+      "id": "401136",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 226: paper and pens delivered."
+    },
+    {
+      "id": "401137",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 227: paper and pens delivered."
+    },
+    {
+      "id": "401138",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 228: paper and pens delivered."
+    },
+    {
+      "id": "401139",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 229: paper and pens delivered."
+    },
+    {
+      "id": "401140",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 230: paper and pens delivered."
+    },
+    {
+      "id": "401141",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 231: paper and pens delivered."
+    },
+    {
+      "id": "401142",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 232: paper and pens delivered."
+    },
+    {
+      "id": "401143",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 233: paper and pens delivered."
+    },
+    {
+      "id": "401144",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 234: paper and pens delivered."
+    },
+    {
+      "id": "401145",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 235: paper and pens delivered."
+    },
+    {
+      "id": "401146",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 236: paper and pens delivered."
+    },
+    {
+      "id": "401147",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 237: paper and pens delivered."
+    },
+    {
+      "id": "401148",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 238: paper and pens delivered."
+    },
+    {
+      "id": "401149",
+      "chatId": "661",
+      "senderId": "702",
+      "timestamp": "2026-10-07T12:00:00.000Z",
+      "text": "Synthetic office receipt 239: paper and pens delivered."
+    }
+  ],
+  "queries": [
+    {
+      "id": "frozen-0-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "text": "When do Juniper backups disappear?",
+      "relevant": {
+        "400000": 2,
+        "400002": 1,
+        "400003": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-0-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "retention",
+      "text": "How many days do we retain Juniper backups?",
+      "relevant": {
+        "400000": 2,
+        "400002": 1,
+        "400003": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-1-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "text": "Can vendors connect to Nimbus now?",
+      "relevant": {
+        "400100": 2,
+        "400101": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-1-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "conditional",
+      "text": "Who may connect to Nimbus production?",
+      "relevant": {
+        "400100": 2,
+        "400101": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-2-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "text": "Which package does Tern currently deploy?",
+      "relevant": {
+        "400200": 2,
+        "400202": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-2-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "superseded",
+      "text": "What is the active Tern package version?",
+      "relevant": {
+        "400200": 2,
+        "400202": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-3-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "text": "When is the Kestrel invoice batch sent?",
+      "relevant": {
+        "400300": 1,
+        "400301": 2,
+        "400303": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-3-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "terse-reply",
+      "text": "What time is the Kestrel invoice batch?",
+      "relevant": {
+        "400300": 1,
+        "400301": 2,
+        "400303": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-4-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "What is the agreed Linden data region?",
+      "relevant": {
+        "400400": 1,
+        "400401": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "frozen-4-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "Where is Linden data stored?",
+      "relevant": {
+        "400400": 1,
+        "400401": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "frozen-5-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "text": "Who approved the Osprey license?",
+      "relevant": {
+        "400500": 1,
+        "400501": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "frozen-5-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "en",
+      "category": "missing-fact",
+      "text": "What is the Osprey license price?",
+      "relevant": {
+        "400500": 1,
+        "400501": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "frozen-6-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "text": "Когда удаляются резервные копии Ива?",
+      "relevant": {
+        "400600": 2,
+        "400602": 1,
+        "400603": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-6-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "retention",
+      "text": "Сколько дней остаются резервные копии Ива?",
+      "relevant": {
+        "400600": 2,
+        "400602": 1,
+        "400603": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-7-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "text": "Подрядчики могут подключиться к Лотос сейчас?",
+      "relevant": {
+        "400700": 2,
+        "400701": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-7-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "conditional",
+      "text": "Кому доступно подключение к Лотос?",
+      "relevant": {
+        "400700": 2,
+        "400701": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-8-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "text": "Какой пакет выпускается для Осина сейчас?",
+      "relevant": {
+        "400800": 2,
+        "400802": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-8-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "superseded",
+      "text": "Какая версия пакета Осина активна?",
+      "relevant": {
+        "400800": 2,
+        "400802": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-9-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "text": "Когда отправляется пакет счетов Берёза?",
+      "relevant": {
+        "400900": 1,
+        "400901": 2,
+        "400903": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-9-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "terse-reply",
+      "text": "Во сколько отправляют счета Берёза?",
+      "relevant": {
+        "400900": 1,
+        "400901": 2,
+        "400903": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "frozen-10-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "text": "Где размещены данные Верба?",
+      "relevant": {
+        "401000": 1,
+        "401001": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "frozen-10-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "unresolved-conflict",
+      "text": "Какой регион данных Верба согласован?",
+      "relevant": {
+        "401000": 1,
+        "401001": 1
+      },
+      "answerExpected": false
+    },
+    {
+      "id": "frozen-11-0",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "no-evidence",
+      "text": "Какой лимит проекта Клён?",
+      "relevant": {},
+      "answerExpected": false
+    },
+    {
+      "id": "frozen-11-1",
+      "split": "holdout",
+      "group": "question",
+      "language": "ru",
+      "category": "no-evidence",
+      "text": "Кто владелец проекта Клён?",
+      "relevant": {},
+      "answerExpected": false
+    }
+  ]
+}

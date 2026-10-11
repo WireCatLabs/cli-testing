@@ -118,6 +118,13 @@ Next ranking work needs genuinely independent questions and judgments, answer/pr
 comparisons and dense difficult distractors. These measurements justify a bounded, opt-in lexical
 evidence tool, not general semantic understanding or an automatic answer.
 
+## Candidate and ranking follow-up
+
+[Candidate coverage and ranking](RANKING-VALIDATION.md) now measures the returned 300-candidate
+pool, compares three cheap rerankers and records a permission-question retrieval fix. All 56
+answers in the older template control reach that pool; eight still fall outside the top ten.
+The rerankers lower ordering quality and are not shipped.
+
 ## Next experiments
 
 1. Freeze a new set of independently phrased questions and relevance judgments before tuning.

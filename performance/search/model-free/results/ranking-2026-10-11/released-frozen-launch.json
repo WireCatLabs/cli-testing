@@ -1,0 +1,20 @@
+{
+  "messagingRoot": "/tmp/wirecat-search-namespace-runtime/node_modules/@wirecat/cli-messaging",
+  "runner": "production",
+  "coreScope": "@wirecat",
+  "packageAliases": {},
+  "command": [
+    "node",
+    "/tmp/cli-testing-search-15w4u0at/bench/model-free/production.ts",
+    "--fixture",
+    "/home/leemour/Projects/AI/cli-testing-wt-search-ranking-next/performance/search/model-free/ranking-frozen.json",
+    "--compare-ranking"
+  ],
+  "node": "v24.19.0",
+  "messagingPackage": "0.225.0",
+  "messagingCommit": null,
+  "testingCommit": "53048abfd132277a9fddcfe81dccc970501a2286",
+  "dependencyRoot": "/tmp/wirecat-search-namespace-runtime/node_modules",
+  "artifactKind": "installed-package",
+  "packageSha256": "a520154c9542d02f481b9f61447827db429646dfadfda687fddb7d0ba82626d0"
+}
