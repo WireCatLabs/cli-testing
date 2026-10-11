@@ -15,6 +15,8 @@ export const contractMain = async (args = process.argv.slice(2)) => {
     plan.args = plan.args.map((arg) =>
       arg.startsWith("./") || arg.startsWith("../") ? resolve(dirname(path), arg) : arg,
     )
+  for (const item of plan.cases) if (item.entry) item.entry = resolve(dirname(path), item.entry)
+  if (plan.previous) plan.previous.entry = resolve(dirname(path), plan.previous.entry)
   const report = await runContracts(plan, { path: dirname(path), update: option === "--update" })
   process.stdout.write(`${JSON.stringify(report)}\n`)
   return report.passed ? 0 : 1

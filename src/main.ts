@@ -1,13 +1,16 @@
 #!/usr/bin/env node
+import { existsSync, readFileSync, realpathSync } from "node:fs"
 import { resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
 import { compareRuns } from "./compare.js"
+import { scanLeaks } from "./leaks.js"
 import { type ProcessRunner, runAgent, runSecurity } from "./runner.js"
 import { readRun } from "./runs.js"
 
 export const HELP = `cli-testing security scan <output> <checkout>... [--previous <run>]
 cli-testing security socket <output> <checkout>...
+cli-testing security no-leak <root> <policy.json>
 cli-testing agent <output> <plan.json> --live [--previous <run>]
 cli-testing compare <suite> <run-a> <run-b>
 
@@ -21,6 +24,18 @@ export const runCli = (argv: string[], deps: { run?: ProcessRunner; now?: () => 
     options: { help: { type: "boolean", short: "h" }, live: { type: "boolean" }, previous: { type: "string" } },
   })
   if (values.help || args.length === 0) return { exit: 0, output: HELP }
+  if (args[0] === "security" && args[1] === "no-leak" && args.length === 4) {
+    try {
+      const policy = JSON.parse(readFileSync(resolve(args[3] as string), "utf8")) as {
+        paths: string[]
+        canaries?: string[]
+      }
+      const report = scanLeaks(resolve(args[2] as string), policy.paths, policy.canaries)
+      return { exit: report.passed ? 0 : 1, output: `${JSON.stringify(report)}\n` }
+    } catch {
+      throw new Error("no-leak setup failed")
+    }
+  }
   if (args[0] === "compare" && args.length === 4) {
     const [, suite, before, after] = args as [string, string, string, string]
     return { exit: 0, output: `${JSON.stringify(compareRuns(suite, readRun(before), readRun(after)))}\n` }
@@ -64,4 +79,5 @@ export const main = (
   }
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = main()
+if (process.argv[1] && existsSync(process.argv[1]) && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url))
+  process.exitCode = main()

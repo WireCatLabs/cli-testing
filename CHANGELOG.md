@@ -6,6 +6,22 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## 0.3.0 — 11.10.2026
+
+### Added
+
+- Stateful offline contracts verify JSON fields, captured IDs, fixture files and store checksums,
+  with pinned previous CLI builds sharing the isolated profile. Upgrade plans can test preservation
+  and safe rejection of incompatible stores without opening a real account.
+- `cli-testing security no-leak` scans selected text artifacts for credential and phone patterns,
+  plus configured synthetic canaries. Contract diagnostics and recorded artifacts use the same
+  rules; findings contain locations and rule identifiers, never matching values.
+
+### Fixed
+
+- Installed `cli-testing` bin symlinks execute normally. Malformed contract JSON and no-leak setup
+  errors no longer echo raw input in diagnostics.
+
 ## 0.2.1 — 11.10.2026
 
 ### Fixed

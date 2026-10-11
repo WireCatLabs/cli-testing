@@ -19,17 +19,14 @@ the private `cli-private` repository, never here.
 
 ## Phase 1 — remaining security work
 
-- **SEC-4 · P2** `cli-testing security no-leak`: logs, `--trace` output, fixtures, docs and crash
-  output scanned for phone numbers, tokens and message text. `gitleaks dir` with custom rules for
-  MAX tokens, phone numbers and chat ids.
 - **SEC-5 · P2** A second audit run of max-cli and tg-cli after the first audit's fixes ship,
   compared with the first; the agent suite on tg-cli for the first time.
 
 ## Phase 2 — contract
 
-- **CON-1 · P2 🟡** Expand the shipped offline output/error/help/MCP contracts beyond metadata
-  commands to synthetic store-backed cases covering each CLI's documented command table. The
-  shared runner and reviewed MAX/Telegram/Zoom metadata plans are already implemented.
+- **CON-1 · P2 🟡** Expand offline contracts to the remaining documented command paths. Metadata,
+  cached messages/tasks, config migration and meeting import/search/export already have binary
+  checks and pinned-version preservation probes. Broader contacts, notes, tags and HTTP paths remain.
 - **CON-4 · P2** MCP Inspector in CLI mode (`--cli --method tools/list --strict`) as a schema
   portability gate; MCP conformance against the HTTP server path with an expected-failures baseline.
 - **CON-3 · P3** Protocol drift: live answers compared with the captured frames, on a schedule.
@@ -44,8 +41,6 @@ the private `cli-private` repository, never here.
 - **UX-1 · P2** Install from the packed tarball with npm, pnpm and bun, on the supported Node
   versions, Linux, macOS and Windows; one command runs after install. With publint on the packed
   tarball.
-- **UX-2 · P2** Upgrade from the previous published version: config and store migrate, nothing is
-  lost.
 - **UX-4 · P3** A local Verdaccio registry for unreleased combinations of the shared packages and
   for upgrade tests.
 - **UX-3 · P3** Agent usability: does an agent pick the right tool and finish ordinary tasks —

@@ -2,6 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { describe, expect, it } from "vitest"
+import { seedContractFiles } from "./contract-state.js"
 import {
   type ContractCase,
   type ContractPlan,
@@ -225,4 +226,134 @@ rl.on('line', line => {
     await expect(readContractTools({ ...invocation, args: [server, "cycle"] })).rejects.toThrow("repeated a cursor")
     await expect(readContractTools({ ...invocation, args: ["-e", "process.exit(2)"] })).rejects.toThrow()
   })
+})
+
+it("runs pinned previous and candidate builds against the same state, captures IDs and checks migration files", async () => {
+  const directory = tmpdir()
+  const entry = join(directory, "previous-contract.mjs")
+  writeFileSync(
+    entry,
+    `if(process.argv.includes('--version')) process.stdout.write('1.2.3'); else process.stdout.write(JSON.stringify({id:'stored-id',items:[{text:'synthetic value'}]}));`,
+  )
+  const report = await runContracts({
+    command: process.execPath,
+    args: [entry],
+    previous: { entry, version: "1.2.3" },
+    fixtures: [{ path: "config.json", text: '{"limit":7}' }],
+    cases: [
+      {
+        ...good,
+        id: "previous-data",
+        previous: true,
+        capture: { item: "/id" },
+        json: { items: [{ text: "synthetic value" }] },
+        files: [{ path: "config.json", unchanged: true }],
+      },
+      {
+        ...good,
+        id: "candidate-data",
+        entry,
+        args: ["{{item}}", "{{root}}"],
+        json: { id: "{{item}}" },
+        files: [{ path: "config.json", json: { limit: 7 } }],
+      },
+    ],
+  })
+  expect(report.passed).toBe(true)
+  expect(report.results.map(({ id }) => id)).toEqual(["previous-version", "previous-data", "candidate-data"])
+})
+
+it("fails upgrade verification for missing/mismatched versions and undefined captures", async () => {
+  const previous = { entry: "previous.js", version: "1.2.3" }
+  for (const bad of [{ ...previous, version: "latest" }, previous]) {
+    const report = await runContracts({ ...plan(), previous: bad }, { run: success })
+    expect(report.results[0]?.passed).toBe(false)
+  }
+  expect((await runContracts(plan([{ ...good, previous: true }]), { run: success })).passed).toBe(false)
+  expect((await runContracts(plan([{ ...good, args: ["{{absent}}"] }]), { run: success })).passed).toBe(false)
+  for (const [name, value] of [
+    ["root", "existing"],
+    ["bad name", "text"],
+    ["nested", {}],
+    ["nested", true],
+  ]) {
+    const report = await runContracts(plan([{ ...good, capture: { [String(name)]: "/value" } }]), {
+      run: () => ({ exit: 0, stderr: "", stdout: JSON.stringify({ value }) }),
+    })
+    expect(report.passed).toBe(false)
+  }
+  expect(
+    (
+      await runContracts(plan([{ ...good, capture: { count: "/count" } }]), {
+        run: () => ({ exit: 0, stderr: "", stdout: '{"count":7}' }),
+      })
+    ).passed,
+  ).toBe(true)
+})
+
+it("detects canaries in diagnostics, failed JSON and recorded artifacts while allowing requested data output", async () => {
+  const marker = "wirecat-synthetic-message-canary"
+  const one = { ...plan(), canaries: [marker] }
+  const run = () => ({ exit: 0, stderr: "", stdout: JSON.stringify({ text: marker }) })
+  expect((await runContracts(one, { run })).passed).toBe(false)
+  expect((await runContracts({ ...one, cases: [{ ...good, allowSensitiveOutput: true }] }, { run })).passed).toBe(true)
+  const stderr = await runContracts(
+    { ...one, cases: [{ ...good, allowSensitiveOutput: true }] },
+    { run: () => ({ exit: 2, stdout: "", stderr: marker }) },
+  )
+  expect(stderr.passed).toBe(false)
+  expect(JSON.stringify(stderr)).not.toContain(marker)
+  const failed = await runContracts(one, {
+    run: () => {
+      throw new Error(marker)
+    },
+  })
+  expect(failed.results[0]?.failure).toContain("withheld")
+  const artifacts = { ...one, artifacts: ["logs/diagnostic.log"] }
+  for (const content of ["ordinary diagnostic", marker]) {
+    const report = await runContracts(artifacts, {
+      run: (p) => {
+        seedContractFiles(p.cwd, [{ path: "logs/diagnostic.log", text: content }], new Map())
+        return success()
+      },
+    })
+    expect(report.passed).toBe(content !== marker)
+    expect(JSON.stringify(report)).not.toContain(marker)
+  }
+})
+
+it("permits only explicitly reviewed diagnostics and preserves numeric capture types", async () => {
+  const one = { ...good, diagnostic: "4 terms\n", capture: { id: "/id" }, json: { id: 7 } }
+  const report = await runContracts(plan([one, { ...good, id: "after", args: ["after"], json: { id: "{{id}}" } }]), {
+    run: (p) => ({ exit: 0, stdout: '{"id":7}', stderr: p.args.includes("after") ? "" : "4 terms\n" }),
+  })
+  expect(report.passed).toBe(true)
+  const changed = await runContracts(plan([one]), { run: () => ({ exit: 0, stdout: '{"id":7}', stderr: "5 terms\n" }) })
+  expect(changed.passed).toBe(false)
+})
+
+it("checks MCP stderr for synthetic leaks and bounds diagnostics before returning schemas", async () => {
+  const server = join(tmpdir(), "diagnostic-mcp.mjs")
+  writeFileSync(
+    server,
+    `import {createInterface} from 'node:readline';
+const mode=process.argv[2];
+createInterface({input:process.stdin}).on('line',line=>{
+ const m=JSON.parse(line);if(!('id' in m))return;
+ const result=m.method==='initialize'?{protocolVersion:m.params.protocolVersion,capabilities:{tools:{}},serverInfo:{name:'synthetic',version:'1'}}:{tools:[]};
+ const respond=()=>process.stdout.write(JSON.stringify({jsonrpc:'2.0',id:m.id,result})+'\\n');
+ if(m.method==='initialize')process.stderr.write(mode==='leak'?'wirecat-synthetic-diagnostic-canary':mode==='large'?'x'.repeat(65537):'ordinary diagnostic',respond);else respond();
+});`,
+  )
+  const invocation = {
+    command: process.execPath,
+    args: [server, "clean"],
+    cwd: tmpdir(),
+    env: {},
+    timeout: 2000,
+    canaries: ["wirecat-synthetic-diagnostic-canary"],
+  }
+  expect(await readContractTools(invocation)).toEqual([])
+  await expect(readContractTools({ ...invocation, args: [server, "leak"] })).rejects.toThrow("sensitive data")
+  await expect(readContractTools({ ...invocation, args: [server, "large"] })).rejects.toThrow("exceeded")
 })
