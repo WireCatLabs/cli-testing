@@ -1,5 +1,8 @@
 # Combined message search: evidence, pipeline and measurement
 
+This is the initial experiment snapshot. [The process account](PROCESS.md) follows the later
+model-free releases and compact-model experiments; the original measurements below are retained.
+
 The public search is unchanged. The internal lexical service and local reranking experiments are
 in draft PR [803](https://github.com/WireCatLabs/cli-messaging/pull/803). The
 [design](https://github.com/WireCatLabs/cli-messaging/blob/feat/combined-search/docs/dev/combined-search.md) describes the pending transition; the
