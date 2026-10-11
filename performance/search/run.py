@@ -41,30 +41,14 @@ shutil.copytree(area / folder, selected_harness, ignore=ignored)
 if folder == "matrix":
     shutil.copytree(area / "message-search", stage / "bench/message-search-quality", ignore=ignored)
 selected_package = json.loads((root / "package.json").read_text())
-core_scope = "@wirecat" if any("@wirecat/cli-core" in selected_package.get(group, {}) for group in ("dependencies", "devDependencies", "peerDependencies")) else "@wirecat"
+core_scope = "@wirecat"
 config_path = selected_harness / "tsconfig.json"
 config = json.loads(config_path.read_text())
 config["extends"] = f"{core_scope}/cli-core/tsconfig.base.json"
 config_path.write_text(json.dumps(config, indent=2) + "\n")
 (stage / "dist").symlink_to(root / "dist", target_is_directory=True)
 aliases = {}
-if core_scope == "@wirecat":
-    dependencies = stage / "node_modules"
-    dependencies.mkdir()
-    for entry in (root / "node_modules").iterdir():
-        if entry.name != "@wirecat":
-            (dependencies / entry.name).symlink_to(entry, target_is_directory=entry.is_dir())
-    legacy = dependencies / "@wirecat"
-    legacy.mkdir()
-    if (root / "node_modules/@wirecat").exists():
-        for entry in (root / "node_modules/@wirecat").iterdir():
-            (legacy / entry.name).symlink_to(entry, target_is_directory=entry.is_dir())
-    native = root / "node_modules/@wirecat/cli-messaging-onnx"
-    if native.exists() and not (legacy / "cli-messaging-onnx").exists():
-        (legacy / "cli-messaging-onnx").symlink_to(native, target_is_directory=True)
-        aliases["@wirecat/cli-messaging-onnx"] = "@wirecat/cli-messaging-onnx"
-else:
-    (stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
+(stage / "node_modules").symlink_to(root / "node_modules", target_is_directory=True)
 command = (["pnpm", "exec", "tsc", "-p", str(selected_harness / "tsconfig.json")]
            if selected_script == "typecheck"
            else ["node", str(selected_harness / f"{selected_script}.ts"), *forwarded])

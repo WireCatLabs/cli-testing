@@ -48,11 +48,10 @@ python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" run 
 python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" combined > /tmp/search-combined-new.json
 ```
 
-The launcher stages the unchanged benchmark scripts in a new temporary directory and links only
+The launcher stages the benchmark scripts in a new temporary directory and links only
 `dist/` and installed dependencies from the selected checkout. This preserves their relative
-imports and the historical runner hashes without committing a machine-specific path or installing
-another copy of the runtime. It adapts the staged TypeScript base to the selected package scope and, for renamed native
-packages, records a temporary legacy import alias without editing archived scripts. It records
+imports without committing a machine-specific path or installing another copy of the runtime.
+The selected build must use WireCat packages; no retired-scope import aliases are needed. It records
 both repository commits, package version, Node version
 and command in `launch.json`; existing reports also record input and relevant build-file hashes.
 The temporary harness, launch metadata and benchmark stores are retained for inspection.
@@ -72,10 +71,11 @@ e5-small cache expected by the selected build. No runner downloads weights autom
 
 ## Historical evidence and new results
 
-The transferred JSON reports and fixtures are byte-for-byte copies from cli-messaging commit
-`13d352ad5735042e716cfb62a85262bac296f374`. Their hashes describe the original runs; moving them does
-not create a new measurement. Documentation paths were updated; experiment scripts were preserved. Formatting and import sorting are disabled for
-the transferred harness to preserve those hashes. Its JSON report output is allowed on stdout;
+The original reports and fixtures came from cli-messaging commit
+`13d352ad5735042e716cfb62a85262bac296f374`. Package names in the historical copies now use WireCat.
+`migration.json` keeps the original import hashes and records normalized copies separately.
+Changing a package name does not create a new measurement. Formatting and import sorting remain disabled for
+the transferred harness. Its JSON report output is allowed on stdout;
 other lint checks and the explicit benchmark typecheck still apply.
 The archived reports are synthetic research evidence, explicitly kept here at the owner's request.
 Operational audit results and any private-account results retain the repository's private-results policy.
