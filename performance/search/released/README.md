@@ -15,7 +15,8 @@ npm install --prefix /tmp/released-search-runtime --ignore-scripts --no-audit --
 ```
 
 Keep the generated package lock with the run evidence: it records resolved artifacts and
-integrity hashes. An existing runtime with those exact packages also works.
+integrity hashes. An existing runtime with those exact packages also works. The verifier resolves
+package-directory links before loading dependencies, including pnpm installation layouts.
 
 ## Run offline
 
@@ -55,3 +56,6 @@ The 2026-10-11 verification passed for Telegram 0.46.2 and MAX 0.45.3, both usin
 provenance; strict search remained empty. This is a three-message contract check, not a new
 ranking-quality or performance measurement. The [synthetic reports](results/) retain the exact
 package versions and verifier/guard hashes.
+
+The installed pnpm Telegram/MAX packages also passed through a symlinked synthetic fixture runtime.
+[Installed-package proofs](results/) retain the same version, filter and permission-question assertions.

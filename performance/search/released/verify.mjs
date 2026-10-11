@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { execFileSync } from "node:child_process"
 import { createHash } from "node:crypto"
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs"
+import { mkdtempSync, readFileSync, realpathSync, writeFileSync } from "node:fs"
 import { createRequire } from "node:module"
 import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
@@ -23,7 +23,7 @@ for (const kind of ["CONFIG", "DATA", "CACHE"]) process.env[`XDG_${kind}_HOME`] 
 process.env.MESSAGING_STORE = join(sandbox, "synthetic.db")
 process.env.NODE_ENV = "test"
 process.env.CI = "true"
-const directory = resolve(runtime, "node_modules/@wirecat", `${tool}-cli`)
+const directory = realpathSync(resolve(runtime, "node_modules/@wirecat", `${tool}-cli`))
 const manifest = JSON.parse(readFileSync(join(directory, "package.json"), "utf8"))
 assert.equal(manifest.version, version)
 const require = createRequire(join(directory, "package.json"))
