@@ -48,6 +48,9 @@ cannot stand in for a batched production implementation.
 
 ## An alternative: supplement the evidence
 
+[Follow-up validation](../supplement/README.md) tests new crowded cases and delivery boundaries.
+It records an ordering regression and the stable merge that fixes it on the measured controls.
+
 After seeing the support loss, we tried a separate output design: keep the existing ten unchanged
 and add two distinct model-selected messages within a **12-result** budget. MiniLM-L6 supplies
 English supplements; Russian queries keep the baseline twelve.

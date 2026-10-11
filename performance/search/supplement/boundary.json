@@ -1,0 +1,463 @@
+{
+  "provenance": "Targeted adversarial wording based on an exposed prior ranking failure; labels frozen before this run, not independent certification.",
+  "chats": [
+    {
+      "id": "950",
+      "title": "Synthetic boundary scenario 0"
+    },
+    {
+      "id": "951",
+      "title": "Synthetic boundary scenario 1"
+    },
+    {
+      "id": "952",
+      "title": "Synthetic boundary scenario 2"
+    },
+    {
+      "id": "953",
+      "title": "Synthetic boundary scenario 3"
+    },
+    {
+      "id": "959",
+      "title": "Synthetic boundary reply probe"
+    }
+  ],
+  "messages": [
+    {
+      "id": "900000",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: daily cleanup was tested."
+    },
+    {
+      "id": "900001",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [0]"
+    },
+    {
+      "id": "900002",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [1]"
+    },
+    {
+      "id": "900003",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [2]"
+    },
+    {
+      "id": "900004",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [3]"
+    },
+    {
+      "id": "900005",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [4]"
+    },
+    {
+      "id": "900006",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [5]"
+    },
+    {
+      "id": "900007",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [6]"
+    },
+    {
+      "id": "900008",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: decision approved for the discussion heading; its content awaits completion. [7]"
+    },
+    {
+      "id": "900009",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: we will not keep raw logs beyond twenty-three days; they are deleted then."
+    },
+    {
+      "id": "900010",
+      "chatId": "950",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Beacon log retention: the current legal record requires sixty days, contradicting the operations policy. The conflict remains unresolved."
+    },
+    {
+      "id": "900100",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: daily cleanup was tested."
+    },
+    {
+      "id": "900101",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [0]"
+    },
+    {
+      "id": "900102",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [1]"
+    },
+    {
+      "id": "900103",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [2]"
+    },
+    {
+      "id": "900104",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [3]"
+    },
+    {
+      "id": "900105",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [4]"
+    },
+    {
+      "id": "900106",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [5]"
+    },
+    {
+      "id": "900107",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [6]"
+    },
+    {
+      "id": "900108",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [7]"
+    },
+    {
+      "id": "900109",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: decision approved for the discussion heading; its content awaits completion. [8]"
+    },
+    {
+      "id": "900110",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: we will not keep raw logs beyond twenty-three days; they are deleted then."
+    },
+    {
+      "id": "900111",
+      "chatId": "951",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Harbor log retention: the current legal record requires sixty days, contradicting the operations policy. The conflict remains unresolved."
+    },
+    {
+      "id": "900200",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: daily cleanup was tested."
+    },
+    {
+      "id": "900201",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [0]"
+    },
+    {
+      "id": "900202",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [1]"
+    },
+    {
+      "id": "900203",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [2]"
+    },
+    {
+      "id": "900204",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [3]"
+    },
+    {
+      "id": "900205",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [4]"
+    },
+    {
+      "id": "900206",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [5]"
+    },
+    {
+      "id": "900207",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [6]"
+    },
+    {
+      "id": "900208",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [7]"
+    },
+    {
+      "id": "900209",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [8]"
+    },
+    {
+      "id": "900210",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: decision approved for the discussion heading; its content awaits completion. [9]"
+    },
+    {
+      "id": "900211",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: we will not keep raw logs beyond twenty-three days; they are deleted then."
+    },
+    {
+      "id": "900212",
+      "chatId": "952",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Meadow log retention: the current legal record requires sixty days, contradicting the operations policy. The conflict remains unresolved."
+    },
+    {
+      "id": "900300",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: daily cleanup was tested."
+    },
+    {
+      "id": "900301",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [0]"
+    },
+    {
+      "id": "900302",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [1]"
+    },
+    {
+      "id": "900303",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [2]"
+    },
+    {
+      "id": "900304",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [3]"
+    },
+    {
+      "id": "900305",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [4]"
+    },
+    {
+      "id": "900306",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [5]"
+    },
+    {
+      "id": "900307",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [6]"
+    },
+    {
+      "id": "900308",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [7]"
+    },
+    {
+      "id": "900309",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [8]"
+    },
+    {
+      "id": "900310",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [9]"
+    },
+    {
+      "id": "900311",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: decision approved for the discussion heading; its content awaits completion. [10]"
+    },
+    {
+      "id": "900312",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: we will not keep raw logs beyond twenty-three days; they are deleted then."
+    },
+    {
+      "id": "900313",
+      "chatId": "953",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Plover log retention: the current legal record requires sixty days, contradicting the operations policy. The conflict remains unresolved."
+    },
+    {
+      "id": "909000",
+      "chatId": "959",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:00:00.000Z",
+      "text": "Pipit invoice batch: please confirm the time."
+    },
+    {
+      "id": "909001",
+      "chatId": "959",
+      "senderId": "950",
+      "timestamp": "2026-10-10T12:01:00.000Z",
+      "text": "At 05:20 UTC.",
+      "replyToId": "909000"
+    }
+  ],
+  "queries": [
+    {
+      "id": "boundary-0",
+      "group": "question",
+      "split": "holdout",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "What is the log lifetime for Beacon?",
+      "relevant": {
+        "900000": 1,
+        "900009": 2,
+        "900010": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "boundary-1",
+      "group": "question",
+      "split": "holdout",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "What is the log lifetime for Harbor?",
+      "relevant": {
+        "900100": 1,
+        "900110": 2,
+        "900111": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "boundary-2",
+      "group": "question",
+      "split": "holdout",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "What is the log lifetime for Meadow?",
+      "relevant": {
+        "900200": 1,
+        "900211": 2,
+        "900212": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "boundary-3",
+      "group": "question",
+      "split": "holdout",
+      "language": "en",
+      "category": "unresolved-conflict",
+      "text": "What is the log lifetime for Plover?",
+      "relevant": {
+        "900300": 1,
+        "900312": 2,
+        "900313": 1
+      },
+      "answerExpected": true
+    },
+    {
+      "id": "boundary-probe",
+      "group": "question",
+      "split": "holdout",
+      "language": "en",
+      "category": "terse-reply",
+      "text": "When is the Pipit invoice batch?",
+      "relevant": {
+        "909000": 1,
+        "909001": 2
+      },
+      "answerExpected": true
+    }
+  ]
+}

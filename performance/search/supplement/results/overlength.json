@@ -1,0 +1,161 @@
+{
+  "maxTokens": 512,
+  "excluded": {
+    "supplement-0-0": [
+      "supplement-0-0/800148",
+      "supplement-0-0/800132",
+      "supplement-0-0/800116",
+      "supplement-0-0/800100"
+    ],
+    "supplement-0-1": [
+      "supplement-0-1/800148",
+      "supplement-0-1/800132",
+      "supplement-0-1/800116",
+      "supplement-0-1/800100"
+    ],
+    "supplement-1-0": [
+      "supplement-1-0/801148",
+      "supplement-1-0/801132",
+      "supplement-1-0/801116",
+      "supplement-1-0/801100"
+    ],
+    "supplement-1-1": [
+      "supplement-1-1/801148",
+      "supplement-1-1/801132",
+      "supplement-1-1/801116",
+      "supplement-1-1/801100"
+    ],
+    "supplement-2-0": [
+      "supplement-2-0/802148",
+      "supplement-2-0/802132",
+      "supplement-2-0/802116",
+      "supplement-2-0/802100"
+    ],
+    "supplement-2-1": [
+      "supplement-2-1/802148",
+      "supplement-2-1/802132",
+      "supplement-2-1/802116",
+      "supplement-2-1/802100"
+    ],
+    "supplement-3-0": [
+      "supplement-3-0/803148",
+      "supplement-3-0/803132",
+      "supplement-3-0/803116",
+      "supplement-3-0/803100"
+    ],
+    "supplement-3-1": [
+      "supplement-3-1/803148",
+      "supplement-3-1/803132",
+      "supplement-3-1/803116",
+      "supplement-3-1/803100"
+    ],
+    "supplement-4-0": [
+      "supplement-4-0/804148",
+      "supplement-4-0/804132",
+      "supplement-4-0/804116",
+      "supplement-4-0/804100"
+    ],
+    "supplement-4-1": [
+      "supplement-4-1/804148",
+      "supplement-4-1/804132",
+      "supplement-4-1/804116",
+      "supplement-4-1/804100"
+    ],
+    "supplement-5-0": [
+      "supplement-5-0/805148",
+      "supplement-5-0/805132",
+      "supplement-5-0/805116",
+      "supplement-5-0/805100"
+    ],
+    "supplement-5-1": [
+      "supplement-5-1/805148",
+      "supplement-5-1/805132",
+      "supplement-5-1/805116",
+      "supplement-5-1/805100"
+    ],
+    "supplement-6-0": [
+      "supplement-6-0/806148",
+      "supplement-6-0/806132",
+      "supplement-6-0/806116",
+      "supplement-6-0/806100",
+      "supplement-6-0/806000"
+    ],
+    "supplement-6-1": [
+      "supplement-6-1/806000",
+      "supplement-6-1/806148",
+      "supplement-6-1/806132",
+      "supplement-6-1/806116",
+      "supplement-6-1/806100"
+    ],
+    "supplement-7-0": [
+      "supplement-7-0/807148",
+      "supplement-7-0/807132",
+      "supplement-7-0/807116",
+      "supplement-7-0/807100"
+    ],
+    "supplement-7-1": [
+      "supplement-7-1/807148",
+      "supplement-7-1/807132",
+      "supplement-7-1/807116",
+      "supplement-7-1/807100"
+    ],
+    "supplement-8-0": [
+      "supplement-8-0/808148",
+      "supplement-8-0/808132",
+      "supplement-8-0/808116",
+      "supplement-8-0/808100",
+      "supplement-8-0/810148",
+      "supplement-8-0/810132",
+      "supplement-8-0/810116",
+      "supplement-8-0/810100"
+    ],
+    "supplement-8-1": [
+      "supplement-8-1/808148",
+      "supplement-8-1/808132",
+      "supplement-8-1/808116",
+      "supplement-8-1/808100"
+    ],
+    "supplement-9-0": [
+      "supplement-9-0/809148",
+      "supplement-9-0/809132",
+      "supplement-9-0/809116",
+      "supplement-9-0/809100"
+    ],
+    "supplement-9-1": [
+      "supplement-9-1/809148",
+      "supplement-9-1/809132",
+      "supplement-9-1/809116",
+      "supplement-9-1/809100"
+    ],
+    "supplement-10-0": [
+      "supplement-10-0/810148",
+      "supplement-10-0/810132",
+      "supplement-10-0/810116",
+      "supplement-10-0/810100",
+      "supplement-10-0/808148",
+      "supplement-10-0/808132",
+      "supplement-10-0/808116",
+      "supplement-10-0/808100"
+    ],
+    "supplement-10-1": [
+      "supplement-10-1/810148",
+      "supplement-10-1/810132",
+      "supplement-10-1/810116",
+      "supplement-10-1/810100"
+    ],
+    "supplement-11-0": [
+      "supplement-11-0/811148",
+      "supplement-11-0/811132",
+      "supplement-11-0/811116",
+      "supplement-11-0/811100"
+    ],
+    "supplement-11-1": [
+      "supplement-11-1/811148",
+      "supplement-11-1/811132",
+      "supplement-11-1/811116",
+      "supplement-11-1/811100"
+    ]
+  },
+  "tokenizerFile": "tokenizer.json",
+  "checksumSha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66"
+}

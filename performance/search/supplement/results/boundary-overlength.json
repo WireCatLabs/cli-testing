@@ -1,0 +1,12 @@
+{
+  "maxTokens": 512,
+  "excluded": {
+    "boundary-0": [],
+    "boundary-1": [],
+    "boundary-2": [],
+    "boundary-3": [],
+    "boundary-probe": []
+  },
+  "tokenizerFile": "tokenizer.json",
+  "checksumSha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66"
+}

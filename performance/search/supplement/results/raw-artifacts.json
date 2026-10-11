@@ -1,0 +1,87 @@
+{
+  "artifacts": [
+    {
+      "path": "/tmp/search-supplement-scores.json",
+      "bytes": 107528,
+      "sha256": "0d19946273e3385c431f7775ea531e6834779ace18ab61f80dae52c009ce257c"
+    },
+    {
+      "path": "/tmp/search-supplement-boundary-scores.json",
+      "bytes": 15455,
+      "sha256": "d4275773e76713e68c640a7e7634377c33e8194eb11deabce667fabcea5969af"
+    },
+    {
+      "path": "/tmp/search-ranking-compact-scores/minilm-l6-context-batch1-top100.json",
+      "bytes": 951291,
+      "sha256": "2fde80bf1a23a041d27f0365f1b76f59e04a2205a4d407721f2b0ea5085f279f"
+    },
+    {
+      "path": "/tmp/search-supplement-inputs/context.json",
+      "bytes": 903671,
+      "sha256": "e1ad72497a676d716c272243b29f19951d693f021a461cfbfb767458bb96cd39"
+    },
+    {
+      "path": "/tmp/search-supplement-inputs/context-top100.json",
+      "bytes": 42640,
+      "sha256": "b7ccf4ff04db20bb1252ac99b946e19fa7d57cd2e679a11be56d14e035449d4a"
+    },
+    {
+      "path": "/tmp/search-supplement-boundary-inputs/context.json",
+      "bytes": 34804,
+      "sha256": "3c0997732af9b2e62479edee2bef5918e5279b5b883ef3b48eefbf2837f1b9db"
+    },
+    {
+      "path": "/tmp/search-supplement-boundary-inputs/context-top100.json",
+      "bytes": 4335,
+      "sha256": "f8ecc52019225ab50fd251033255d8d418d46a5b6c596af7e134628722db779e"
+    }
+  ],
+  "initialFailure": "Unmodified neural worker rejected a pair longer than 512 tokens; no scores produced; explicit overlength exclusion added before viewing successful neural scores.",
+  "archiveFormatting": [
+    {
+      "file": "baseline.json",
+      "rawSha256": "2238de365fead31f84029a6c78f42d69348ad2874dc3bef95afd392a4c10917b",
+      "committedSha256": "9a32903e048177210d9e70f7d32ef0ae4264e339d554b1cfad510ef201530f03"
+    },
+    {
+      "file": "boundary-baseline.json",
+      "rawSha256": "ea3afa26f09316d6562786e995c342588b5d77f11214854b8e35157fe5af3a53",
+      "committedSha256": "84beea90a475f82470a359f694d81ddb76de0f2f003d018ac5f22876f219ff14"
+    },
+    {
+      "file": "neural.json",
+      "rawSha256": "e12d190eaa5efbb4793066f7baa4eabc0f572be1bd01b6d878ca55d04360b465",
+      "committedSha256": "e12d190eaa5efbb4793066f7baa4eabc0f572be1bd01b6d878ca55d04360b465"
+    },
+    {
+      "file": "stable.json",
+      "rawSha256": "16e425aafc8a3c77d51f4f80078f18ee66d12303e3baef988a29ad5f0feac95a",
+      "committedSha256": "16e425aafc8a3c77d51f4f80078f18ee66d12303e3baef988a29ad5f0feac95a"
+    },
+    {
+      "file": "boundary-neural.json",
+      "rawSha256": "70483525def90b4cdc846058e6f26c4184ef58556016894928828ab7bb4aaf5f",
+      "committedSha256": "e8adf9d112566c282bae700d83935d6d3666d8d8cf50bb2e82bf3e078e1b4f19"
+    },
+    {
+      "file": "boundary-stable.json",
+      "rawSha256": "d3348ecbb2dc43959f3aa0602dae6e0a05e24f9c5c08d77eac39fc302cd7ab1e",
+      "committedSha256": "c6e285e8cf77344abbccab2e87091aaa0522df76d887057caa693d0239b26a71"
+    },
+    {
+      "file": "controls.json",
+      "rawSha256": "ec4b7724911155f416b2261a48ed17acfa9bcb548e675e56614e4fb8ab927c5d",
+      "committedSha256": "9f91b629fa9ce691e3f70bdbea6f9376bdf2590bd1e469091f69622a894f13e0"
+    },
+    {
+      "file": "overlength.json",
+      "rawSha256": "3bd4916d5a61eed4f8aead17cd34ee1c591571f128452fb82d374ed83b1faa55",
+      "committedSha256": "3bd4916d5a61eed4f8aead17cd34ee1c591571f128452fb82d374ed83b1faa55"
+    },
+    {
+      "file": "boundary-overlength.json",
+      "rawSha256": "1c2d7882224385fb7739abcde901297d6d2a1f1394cc0122d66b505c291fbeff",
+      "committedSha256": "1c2d7882224385fb7739abcde901297d6d2a1f1394cc0122d66b505c291fbeff"
+    }
+  ]
+}
