@@ -105,6 +105,13 @@ measured multilingual reranker had **118.6 MB** quantized weights and **135.7 MB
 the original Node/WASM process peaked near **1.33 GB**. Model bytes and resident RAM were not
 interchangeable. Larger researched alternatives were not installed.
 
+We also reviewed Jev/System One and open-source shared-state, listwise and late-interaction
+approaches. Their appeal was avoiding repeated work or generation for relevance decisions. Our
+cross-encoder already returned a scalar without generating text; adopting a new architecture
+would still require footprint, language and runtime evidence. We made no hosted Jev call and
+did not benchmark a late-interaction index. The [architecture research](combined-search-model-research.md)
+and [model explanation](MODELS.md) distinguish researched alternatives from tested models.
+
 This motivated a comparison from simplest to most expensive: lexical formulas, matching
 features, small learned feature rankers, role classifiers, compact cross-encoders and dense
 representation scoring. We also inspected QMD, Meilisearch and Typesense for bounded inference,
