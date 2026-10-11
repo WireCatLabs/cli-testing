@@ -6,6 +6,15 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## 0.4.0 — 11.10.2026
+
+### Changed — may break callers
+
+- **Built on `@wirecat/cli-base` 0.21.0 instead of `@wirecat/cli-core` 0.19.0.** The framework was renamed;
+  0.21.0 is cli-core 0.20.0's code. A project that imports both cli-testing and the framework switches its own
+  imports to `@wirecat/cli-base` too, or it installs two framework copies and `instanceof CliError` fails
+  between them.
+
 ## 0.3.0 — 11.10.2026
 
 ### Added

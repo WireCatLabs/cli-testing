@@ -11,7 +11,7 @@ and CodeQL. Messaging includes C/C++ analysis as well as JavaScript/TypeScript a
 
 | Repository/workflow | First day of each month, UTC |
 | --- | --- |
-| cli-core / monthly.yml | 02:17 |
+| cli-base / monthly.yml | 02:17 |
 | cli-meetings / monthly.yml | 02:24 |
 | cli-memo / monthly.yml | 02:31 |
 | cli-messaging / monthly.yml | 02:38 |
