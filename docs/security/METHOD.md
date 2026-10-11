@@ -8,7 +8,7 @@ folder the caller names — for the owner's CLIs, `security/runs/<YYYY-MM-DD>/` 
 us: [`LESSONS.md`](LESSONS.md).
 
 Repositories: `max-cli`, `tg-cli`, `cli-messaging` (with `packages/sqlite`, `packages/onnx`),
-`cli-base`, `cli-tasks`, `cli-testing`. All public. The private repository is never given to a
+`cli-base`, `cli-testing`. All public. The private repository is never given to a
 hosted scanner.
 
 ## A run, step by step
