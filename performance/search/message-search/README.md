@@ -207,3 +207,24 @@ The [model research](../combined-search-model-research.md) records alternative m
 architectures and selected checkpoint sizes. [resources.ts](resources.ts) and [resources.json](resources.json)
 measure the current model's isolated process RAM and scoring time; checkpoint bytes and RAM are
 separate quantities. No real store is opened by that probe.
+
+## Typo forgiveness only when strict finds nothing
+
+[typo.ts](typo.ts) measures a narrower first step than the combined default: strict search runs
+first, and only when it returns nothing does each plain word that is not a whole archive word get
+help. A known word beginning becomes `word*`; an unknown word becomes its nearest archive words.
+It also reruns strict, legacy, the internal combined matcher and `--discover` on the same store.
+
+```sh
+python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typecheck
+python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typo > /tmp/typo-dev.json
+python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typo --held-out \
+  '--frozen={"edits":"one","minDocs":1,"prefix":3}' > /tmp/typo-heldout.json
+```
+
+[typo-dev.json](typo-dev.json) sweeps 33 guards on dev; [typo-heldout.json](typo-heldout.json) is the
+single held-out run of the frozen guard. The held-out split was already read by the reranker cycle,
+so it is informational, not qualifying. Six unlabelled `absent-near-word` queries (a real word
+missing from the archive, one or two edits from an archive word) were added after the first sweep;
+they show how often a correction fires on a word that was not a typo. The interpretation and the
+plan are in cli-messaging `docs/dev/typo-search-default-plan.md`.

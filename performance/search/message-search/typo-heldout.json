@@ -1,0 +1,2350 @@
+{
+  "split": "test",
+  "frozen": {
+    "edits": "one",
+    "minDocs": 1,
+    "prefix": 3
+  },
+  "corpusSha256": "31ffb8689e06d315a9be7d2ba0094a859b05cb67fc17eb68e4b5b4f5744a0b20",
+  "runnerSha256": "be08e94b6d7199d8b633dfcdd0821330cb8a1dcacb33b896704fc4fe2f5f03c3",
+  "productionSha256": {
+    "services/messages.js": "e49d12343dc8a94c5d2c9c911f5b6b3a4e598957557515f1990d3afe768af012",
+    "services/messages-combined.js": "cb8f4c25293a4fed5735e080b04cc197d69da7a62674121286f536cca875f0e6",
+    "services/messages-discovery.js": "02bf0f6640a1e8e7d1d03284ed4860d400f76992bd5ec62dcd116daa34cabb16",
+    "services/messages-search.js": "7b24695f741aa9a5244600d8dedc36efca6177b8f6533e73a1c5405de102ee97",
+    "search/correct.js": "54e5089f217840dd9e27e6e89c29486c2d8704850af16dafd1b8410998066270",
+    "search/lucene/parser.js": "b35691f97d2c874955208f5a4948bce1831890d66405bfedb96669b9f7e42506",
+    "store/sqlite/lucene.js": "822516eef993b45e7d731ca7c5ee8992363aeedd962a16767caa21afabbfaebc",
+    "store/sqlite/words.js": "5c87d6d26dc980a060ffa10d8c01e93839f8e889cd28d30364a473dbe8cfd7c4"
+  },
+  "results": [
+    {
+      "mode": "strict",
+      "metrics": {
+        "recallAt10": 0.2625,
+        "mrr": 0.325,
+        "ndcgAt10": 0.21917951262131133,
+        "noAnswerFalseHits": 0,
+        "p50Ms": 9.049156000000039,
+        "p95Ms": 13.411816000000272,
+        "categories": {
+          "words": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "typo": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "beginnings": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "phrase": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "from": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 1,
+            "noAnswerFalseHits": 0
+          },
+          "chat": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "date": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 0.8475306857428799,
+            "noAnswerFalseHits": 0
+          },
+          "and": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "or": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "paraphrase": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-absent": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-near-miss": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          }
+        }
+      },
+      "absentNearWordHits": 0,
+      "absentNearWordQueriesHit": [],
+      "strictControlsDiffer": [],
+      "sameTopTenAsCorrectlySpelled": {
+        "matched": [
+          "harbor-beginnings"
+        ],
+        "differs": [
+          "harbor-typo",
+          "maple-typo",
+          "maple-beginnings",
+          "вектор-typo",
+          "вектор-beginnings",
+          "prism-typo",
+          "prism-beginnings"
+        ]
+      },
+      "rows": [
+        {
+          "id": "harbor-typo",
+          "category": "typo",
+          "ids": [],
+          "ms": 8.407683000000361,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 11.04176200000029,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 6.872023999999783,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 9.049156000000039,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-typo",
+          "category": "typo",
+          "ids": [],
+          "ms": 7.045889999999872,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-beginnings",
+          "category": "beginnings",
+          "ids": [],
+          "ms": 7.065086000000065,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 7.070976999999857,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 8.396802000000207,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-typo",
+          "category": "typo",
+          "ids": [
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070",
+            "12065"
+          ],
+          "ms": 12.102350999999999,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-beginnings",
+          "category": "beginnings",
+          "ids": [],
+          "ms": 7.34523100000024,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 6.257010999999693,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 7.483279999999922,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-typo",
+          "category": "typo",
+          "ids": [],
+          "ms": 11.290859000000182,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-beginnings",
+          "category": "beginnings",
+          "ids": [],
+          "ms": 13.411816000000272,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 6.949789999999666,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 7.198646000000281,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        }
+      ]
+    },
+    {
+      "mode": "legacy",
+      "metrics": {
+        "recallAt10": 0.3375,
+        "mrr": 0.45,
+        "ndcgAt10": 0.2992618230965487,
+        "noAnswerFalseHits": 80,
+        "p50Ms": 4.284703000000263,
+        "p95Ms": 7.20526800000016,
+        "categories": {
+          "words": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "typo": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "beginnings": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "phrase": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "from": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 1,
+            "noAnswerFalseHits": 0
+          },
+          "chat": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "date": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 0.8475306857428799,
+            "noAnswerFalseHits": 0
+          },
+          "and": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "or": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "paraphrase": {
+            "recallAt10": 0.5,
+            "mrr": 0.75,
+            "ndcgAt10": 0.66311732856428,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-absent": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 40
+          },
+          "no-answer-near-miss": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 40
+          }
+        }
+      },
+      "absentNearWordHits": 41,
+      "absentNearWordQueriesHit": [
+        "cedar-detention",
+        "lumen-refuse",
+        "aurora-callback",
+        "aurora-restart",
+        "cedar-attention"
+      ],
+      "strictControlsDiffer": [
+        "harbor-phrase",
+        "harbor-and",
+        "harbor-or",
+        "maple-phrase",
+        "maple-and",
+        "maple-or",
+        "вектор-phrase",
+        "вектор-and",
+        "вектор-or",
+        "prism-phrase",
+        "prism-and",
+        "prism-or"
+      ],
+      "sameTopTenAsCorrectlySpelled": {
+        "matched": [],
+        "differs": [
+          "harbor-typo",
+          "harbor-beginnings",
+          "maple-typo",
+          "maple-beginnings",
+          "вектор-typo",
+          "вектор-beginnings",
+          "prism-typo",
+          "prism-beginnings"
+        ]
+      },
+      "rows": [
+        {
+          "id": "harbor-typo",
+          "category": "typo",
+          "ids": [
+            "11381",
+            "11376",
+            "11371",
+            "11366",
+            "11361",
+            "11356",
+            "11351",
+            "11346",
+            "11341",
+            "11336"
+          ],
+          "ms": 5.8061460000003535,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11381",
+            "11376",
+            "11371",
+            "11366",
+            "11361",
+            "11356",
+            "11351",
+            "11346",
+            "11341",
+            "11336"
+          ],
+          "ms": 3.4035109999999804,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11381",
+            "11376",
+            "11371",
+            "11366",
+            "11361",
+            "11356",
+            "11351",
+            "11346",
+            "11341",
+            "11336"
+          ],
+          "ms": 4.095808999999917,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "harbor-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11381",
+            "11376",
+            "11371",
+            "11366",
+            "11361",
+            "11356",
+            "11351",
+            "11346",
+            "11341",
+            "11336"
+          ],
+          "ms": 7.20526800000016,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "maple-typo",
+          "category": "typo",
+          "ids": [
+            "11683",
+            "11678",
+            "11673",
+            "11668",
+            "11663",
+            "11658",
+            "11653",
+            "11648",
+            "11643",
+            "11638"
+          ],
+          "ms": 6.127266999999847,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11683",
+            "11678",
+            "11673",
+            "11668",
+            "11663",
+            "11658",
+            "11653",
+            "11648",
+            "11643",
+            "11638"
+          ],
+          "ms": 4.479377999999997,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11683",
+            "11678",
+            "11673",
+            "11668",
+            "11663",
+            "11658",
+            "11653",
+            "11648",
+            "11643",
+            "11638"
+          ],
+          "ms": 4.284713000000011,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "maple-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11683",
+            "11678",
+            "11673",
+            "11668",
+            "11663",
+            "11658",
+            "11653",
+            "11648",
+            "11643",
+            "11638"
+          ],
+          "ms": 4.27656799999977,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "вектор-typo",
+          "category": "typo",
+          "ids": [
+            "11814",
+            "11975",
+            "11970",
+            "11965",
+            "11960",
+            "11955",
+            "11950",
+            "11945",
+            "11940",
+            "11935"
+          ],
+          "ms": 3.9656749999999192,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11814",
+            "11975",
+            "11970",
+            "11965",
+            "11960",
+            "11955",
+            "11950",
+            "11945",
+            "11940",
+            "11935"
+          ],
+          "ms": 3.039328000000296,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11814",
+            "11975",
+            "11970",
+            "11965",
+            "11960",
+            "11955",
+            "11950",
+            "11945",
+            "11940",
+            "11935"
+          ],
+          "ms": 4.846255999999812,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "вектор-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11814",
+            "11975",
+            "11970",
+            "11965",
+            "11960",
+            "11955",
+            "11950",
+            "11945",
+            "11940",
+            "11935"
+          ],
+          "ms": 4.27804100000003,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "prism-typo",
+          "category": "typo",
+          "ids": [
+            "12287",
+            "12282",
+            "12277",
+            "12272",
+            "12267",
+            "12262",
+            "12257",
+            "12252",
+            "12247",
+            "12242"
+          ],
+          "ms": 6.449282000000039,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "12287",
+            "12282",
+            "12277",
+            "12272",
+            "12267",
+            "12262",
+            "12257",
+            "12252",
+            "12247",
+            "12242"
+          ],
+          "ms": 4.284703000000263,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "12287",
+            "12282",
+            "12277",
+            "12272",
+            "12267",
+            "12262",
+            "12257",
+            "12252",
+            "12247",
+            "12242"
+          ],
+          "ms": 5.002569000000221,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "prism-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "12287",
+            "12282",
+            "12277",
+            "12272",
+            "12267",
+            "12262",
+            "12257",
+            "12252",
+            "12247",
+            "12242"
+          ],
+          "ms": 4.536575999999968,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        }
+      ]
+    },
+    {
+      "mode": "combined",
+      "metrics": {
+        "recallAt10": 0.275,
+        "mrr": 0.35,
+        "ndcgAt10": 0.226064801430716,
+        "noAnswerFalseHits": 0,
+        "p50Ms": 12.144148999999743,
+        "p95Ms": 39.80429699999968,
+        "categories": {
+          "words": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "typo": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "beginnings": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "phrase": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "from": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 1,
+            "noAnswerFalseHits": 0
+          },
+          "chat": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "date": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 0.8475306857428799,
+            "noAnswerFalseHits": 0
+          },
+          "and": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "or": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "paraphrase": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-absent": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-near-miss": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          }
+        }
+      },
+      "absentNearWordHits": 41,
+      "absentNearWordQueriesHit": [
+        "cedar-detention",
+        "lumen-refuse",
+        "aurora-callback",
+        "aurora-restart",
+        "cedar-attention"
+      ],
+      "strictControlsDiffer": [],
+      "sameTopTenAsCorrectlySpelled": {
+        "matched": [
+          "harbor-typo",
+          "harbor-beginnings",
+          "maple-typo",
+          "maple-beginnings",
+          "вектор-beginnings",
+          "prism-typo",
+          "prism-beginnings"
+        ],
+        "differs": [
+          "вектор-typo"
+        ]
+      },
+      "rows": [
+        {
+          "id": "harbor-typo",
+          "category": "typo",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 34.33221800000001,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 32.47959499999979,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 8.153917999999976,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 9.245895000000019,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-typo",
+          "category": "typo",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 29.023255000000063,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 25.367150000000038,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 8.33161999999993,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 10.548797999999806,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-typo",
+          "category": "typo",
+          "ids": [
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070",
+            "12065"
+          ],
+          "ms": 40.655283000000054,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "ms": 22.923768999999993,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 6.800580000000082,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 7.10990000000038,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-typo",
+          "category": "typo",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 31.96192500000052,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 22.37924800000019,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 8.871702999999798,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 9.471999000000324,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        }
+      ]
+    },
+    {
+      "mode": "discover",
+      "metrics": {
+        "recallAt10": 0.325,
+        "mrr": 0.4025,
+        "ndcgAt10": 0.27371096267276906,
+        "noAnswerFalseHits": 80,
+        "p50Ms": 25.181633000000147,
+        "p95Ms": 50.50160400000004,
+        "categories": {
+          "words": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "typo": {
+            "recallAt10": 0.125,
+            "mrr": 0.025,
+            "ndcgAt10": 0.01990294813839057,
+            "noAnswerFalseHits": 0
+          },
+          "beginnings": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "phrase": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "from": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 1,
+            "noAnswerFalseHits": 0
+          },
+          "chat": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "date": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 0.8475306857428799,
+            "noAnswerFalseHits": 0
+          },
+          "and": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "or": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "paraphrase": {
+            "recallAt10": 0.375,
+            "mrr": 0.5,
+            "ndcgAt10": 0.45655866428214,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-absent": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 40
+          },
+          "no-answer-near-miss": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 40
+          }
+        }
+      },
+      "absentNearWordHits": 50,
+      "absentNearWordQueriesHit": [
+        "cedar-detention",
+        "lumen-refuse",
+        "aurora-callback",
+        "aurora-restart",
+        "cedar-attention"
+      ],
+      "strictControlsDiffer": [],
+      "sameTopTenAsCorrectlySpelled": {
+        "matched": [
+          "harbor-typo",
+          "harbor-beginnings",
+          "maple-typo",
+          "maple-beginnings",
+          "вектор-beginnings",
+          "prism-typo",
+          "prism-beginnings"
+        ],
+        "differs": [
+          "вектор-typo"
+        ]
+      },
+      "rows": [
+        {
+          "id": "harbor-typo",
+          "category": "typo",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 48.45391500000005,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 43.70139399999971,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 25.97545100000025,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "harbor-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 25.65035099999932,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "maple-typo",
+          "category": "typo",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 38.97791899999993,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 27.995858000000226,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 21.12465599999996,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "maple-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 27.11475700000028,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "вектор-typo",
+          "category": "typo",
+          "ids": [
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070",
+            "11814"
+          ],
+          "ms": 52.18766500000038,
+          "recallAt10": 0.5,
+          "mrr": 0.1,
+          "ndcgAt10": 0.07961179255356228,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "ms": 31.766208000000006,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "ms": 28.49750899999981,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "вектор-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "ms": 28.7373690000004,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "prism-typo",
+          "category": "typo",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 40.961818000000676,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 35.559619999999995,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 24.883273000000372,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "prism-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 24.73291100000006,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        }
+      ]
+    },
+    {
+      "mode": "combined-when-strict-empty",
+      "metrics": {
+        "recallAt10": 0.275,
+        "mrr": 0.35,
+        "ndcgAt10": 0.226064801430716,
+        "noAnswerFalseHits": 0,
+        "p50Ms": 8.918802000000142,
+        "p95Ms": 37.68947300000036,
+        "categories": {
+          "words": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "typo": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "beginnings": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "phrase": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "from": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 1,
+            "noAnswerFalseHits": 0
+          },
+          "chat": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "date": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 0.8475306857428799,
+            "noAnswerFalseHits": 0
+          },
+          "and": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "or": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "paraphrase": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-absent": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-near-miss": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          }
+        }
+      },
+      "absentNearWordHits": 41,
+      "absentNearWordQueriesHit": [
+        "cedar-detention",
+        "lumen-refuse",
+        "aurora-callback",
+        "aurora-restart",
+        "cedar-attention"
+      ],
+      "strictControlsDiffer": [],
+      "sameTopTenAsCorrectlySpelled": {
+        "matched": [
+          "harbor-typo",
+          "harbor-beginnings",
+          "maple-typo",
+          "maple-beginnings",
+          "вектор-beginnings",
+          "prism-typo",
+          "prism-beginnings"
+        ],
+        "differs": [
+          "вектор-typo"
+        ]
+      },
+      "rows": [
+        {
+          "id": "harbor-typo",
+          "category": "typo",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 38.860397999999805,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 9.166326000000481,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 13.337555999999495,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 14.731310000000121,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-typo",
+          "category": "typo",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 37.68947300000036,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "ms": 27.879330000000664,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 13.93883299999925,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 16.07133200000044,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-typo",
+          "category": "typo",
+          "ids": [
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070",
+            "12065"
+          ],
+          "ms": 9.334520999999768,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "ms": 39.78841799999918,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 13.06904300000042,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 12.60111599999982,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-typo",
+          "category": "typo",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 32.14980699999978,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 25.11185099999966,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 11.728869999999915,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 12.27169800000047,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        }
+      ]
+    },
+    {
+      "mode": "narrow {\"edits\":\"one\",\"minDocs\":1,\"prefix\":3}",
+      "metrics": {
+        "recallAt10": 0.275,
+        "mrr": 0.35,
+        "ndcgAt10": 0.226064801430716,
+        "noAnswerFalseHits": 0,
+        "p50Ms": 6.964637999999468,
+        "p95Ms": 14.858357000000069,
+        "categories": {
+          "words": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "typo": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "beginnings": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "phrase": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "from": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 1,
+            "noAnswerFalseHits": 0
+          },
+          "chat": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "date": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 0.8475306857428799,
+            "noAnswerFalseHits": 0
+          },
+          "and": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "or": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "paraphrase": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-absent": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-near-miss": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 0
+          }
+        }
+      },
+      "absentNearWordHits": 10,
+      "absentNearWordQueriesHit": [
+        "cedar-detention"
+      ],
+      "strictControlsDiffer": [],
+      "sameTopTenAsCorrectlySpelled": {
+        "matched": [
+          "harbor-typo",
+          "harbor-beginnings",
+          "maple-typo",
+          "maple-beginnings",
+          "вектор-beginnings",
+          "prism-typo",
+          "prism-beginnings"
+        ],
+        "differs": [
+          "вектор-typo"
+        ]
+      },
+      "rows": [
+        {
+          "id": "harbor-typo",
+          "category": "typo",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "rewritten": "harbor (release) freeze",
+          "corrections": {
+            "relesae": [
+              "release"
+            ]
+          },
+          "ms": 13.148001000000477,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 7.023638000000574,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 8.227765999999974,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 8.669494000000668,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-typo",
+          "category": "typo",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "rewritten": "maple (archive) restore",
+          "corrections": {
+            "arhcive": [
+              "archive"
+            ]
+          },
+          "ms": 13.224733999999444,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "rewritten": "maple (arch*) restore",
+          "corrections": {
+            "arch": [
+              "arch*"
+            ]
+          },
+          "ms": 12.897361000000274,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "rewritten": "maple recover saved (data*)",
+          "corrections": {
+            "data": [
+              "data*"
+            ]
+          },
+          "ms": 14.858357000000069,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 6.006792000000132,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 6.964637999999468,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-typo",
+          "category": "typo",
+          "ids": [
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070",
+            "12065"
+          ],
+          "ms": 7.152509999999893,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "rewritten": "вектор (мигр*) отмена",
+          "corrections": {
+            "мигр": [
+              "мигр*"
+            ]
+          },
+          "ms": 13.089249999999993,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "rewritten": "вектор возврат прежней (схему)",
+          "corrections": {
+            "схемы": [
+              "схему"
+            ]
+          },
+          "ms": 14.472764000000097,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 7.868883000000096,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 16.95945700000084,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-typo",
+          "category": "typo",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "rewritten": "prism (renewal) discount",
+          "corrections": {
+            "renweal": [
+              "renewal"
+            ]
+          },
+          "ms": 19.052531000000272,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "rewritten": "prism (rene*) discount",
+          "corrections": {
+            "rene": [
+              "rene*"
+            ]
+          },
+          "ms": 12.330298000000766,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-absent",
+          "category": "no-answer-absent",
+          "ids": [],
+          "ms": 5.708523000000241,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [],
+          "ms": 7.548071000000164,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 0
+        }
+      ]
+    }
+  ]
+}
