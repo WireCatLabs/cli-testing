@@ -207,3 +207,45 @@ The [model research](../combined-search-model-research.md) records alternative m
 architectures and selected checkpoint sizes. [resources.ts](resources.ts) and [resources.json](resources.json)
 measure the current model's isolated process RAM and scoring time; checkpoint bytes and RAM are
 separate quantities. No real store is opened by that probe.
+
+## Typo forgiveness only when strict finds nothing
+
+[typo.ts](typo.ts) measures a narrower first step than the combined default. Strict search runs
+first. Only when it returns nothing does each plain word that is not a whole archive word get help:
+a known word beginning becomes `word*`; an unknown word becomes its nearest archive words. The
+words are rewritten into the query and strict runs again (variant **B**). Variant **C** adds a
+partial-word fallback only when B still finds nothing: `any` (any query word), `allButOne`, or
+`discover` (the production `--discover` path). Each C hit lists its missing words.
+
+One `typo` run measures every variant on the same temporary store: strict, legacy, the internal
+combined matcher (`combined`), `--discover`, combined only when strict is empty, 33 B guards
+(edits none/one/auto × minimum documents 1/2/3/5/10 × beginnings off/3/4) and the three C
+fallbacks. Six unlabelled `absent-near-word` queries (a real word missing from the archive, one or
+two edits from an archive word) and a top-ten parity check against the correctly spelled query are
+reported beside the labelled metrics.
+
+Reproduce, after building the selected cli-messaging checkout (measured at `0cc88b1f`):
+
+```sh
+export SEARCH_MESSAGING_ROOT=/absolute/path/to/cli-messaging-checkout
+python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typecheck
+# Dev: every variant, every B guard, every C fallback.
+python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typo > /tmp/typo-c-dev.json
+# Held-out, once, on the frozen B guard and one frozen C fallback (any, allButOne or discover).
+python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typo --held-out \
+  '--frozen={"edits":"one","minDocs":1,"prefix":3}' --partial=discover > /tmp/typo-c-heldout.json
+```
+
+The results were produced in two runs:
+
+- First run, before C existed (runner sha256 `be08e94b…`, the `typo.ts` of commit `06e23a1`):
+  [typo-dev.json](typo-dev.json) and [typo-heldout.json](typo-heldout.json). The held-out file
+  holds strict, legacy, combined, discover and the frozen B. The current runner reproduces the same
+  numbers for those variants.
+- Second run, with C (runner sha256 `a7ab3a2b…`): [typo-c-dev.json](typo-c-dev.json) and
+  [typo-c-heldout.json](typo-c-heldout.json), the latter with the frozen `discover` fallback.
+
+The held-out split was already read by the reranker cycle, so both held-out files are
+informational, not qualifying. The `absent-near-word` queries were added after the first dev sweep.
+Timings are from a small corpus on a shared laptop. The interpretation and the approved plan are in
+[cli-messaging `docs/dev/typo-search-default-plan.md`](https://github.com/WireCatLabs/cli-messaging/blob/main/docs/dev/typo-search-default-plan.md).
