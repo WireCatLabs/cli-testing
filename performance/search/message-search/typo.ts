@@ -27,8 +27,14 @@ type Corpus = {
   queries: Query[]
 }
 type Guard = { edits: "none" | "one" | "auto"; minDocs: number; prefix: 0 | 3 | 4 }
-type Hit = { id: string }
-type Outcome = { ids: string[]; rewritten?: string; corrections?: Record<string, string[]>; ms: number }
+type Hit = { id: string; text: string }
+type Outcome = {
+  ids: string[]
+  rewritten?: string
+  corrections?: Record<string, string[]>
+  partial?: { id: string; missing: string[] }[]
+  ms: number
+}
 
 const bytes = readFileSync(new URL("./corpus.json", import.meta.url))
 const corpus = JSON.parse(bytes.toString()) as Corpus
@@ -40,6 +46,11 @@ const store = await openStore({ path: process.env.MESSAGING_STORE })
 const account = { provider: "synthetic", account: "500" }
 const heldOut = process.argv.includes("--held-out")
 const frozenArg = process.argv.find((a) => a.startsWith("--frozen="))
+const frozenPartial = process.argv.find((a) => a.startsWith("--partial="))?.slice("--partial=".length) as
+  | "any"
+  | "allButOne"
+  | "discover"
+  | undefined
 
 const strict = async (text: string): Promise<Hit[]> =>
   (await searchStore(store, account, { text, language: "lucene", timezone: "UTC", limit: 10 })).items
@@ -94,6 +105,48 @@ const narrow = async (text: string, guard: Guard): Promise<Omit<Outcome, "ms">> 
   }
   if (rewritten === text) return { ids: [] }
   return { ids: (await strict(rewritten)).map((h) => h.id), rewritten, corrections }
+}
+
+// The relaxed OR query mirrors --discover's partial step (messages-discovery.ts), scope words kept.
+const partial = async (text: string, guard: Guard, need: "any" | "allButOne"): Promise<Omit<Outcome, "ms">> => {
+  const forgiven = await narrow(text, guard)
+  if (forgiven.ids.length) return forgiven
+  const plain = plainWords(text)
+  const words = plain.map(({ word }) => word)
+  if (words.length < 2) return forgiven
+  const scope = [...plain]
+    .sort((a, b) => b.start - a.start)
+    .reduce((rest, { start, word }) => `${rest.slice(0, start)}${rest.slice(start + word.length)}`, text)
+    .trim()
+  const alternatives = (word: string) => forgiven.corrections?.[word] ?? [word]
+  const group = (w: string) => `(${alternatives(w).join(" OR ")})`
+  const relaxed =
+    need === "any"
+      ? `(${words.map(group).join(" OR ")})`
+      : `(${words.map((_, skip) => `(${words.filter((__, at) => at !== skip).map(group).join(" AND ")})`).join(" OR ")})`
+  const query = scope ? `${relaxed} ${scope}` : relaxed
+  const hits = await strict(query)
+  const stem = (w: string) => normalize(w).slice(0, Math.max(3, normalize(w).length - 2))
+  return {
+    ids: hits.map((h) => h.id),
+    rewritten: query,
+    corrections: forgiven.corrections,
+    partial: hits.map((h) => ({
+      id: h.id,
+      missing: words.filter((w) => !alternatives(w).some((a) => normalize(h.text).includes(stem(a.replace(/\*$/, ""))))),
+    })),
+  }
+}
+
+const discoverAfter = async (text: string, guard: Guard): Promise<Omit<Outcome, "ms">> => {
+  const forgiven = await narrow(text, guard)
+  if (forgiven.ids.length) return forgiven
+  const found = await searchStore(store, account, { text, language: "lucene", discover: true, timezone: "UTC", limit: 10 })
+  return {
+    ids: found.items.map((h) => h.id),
+    rewritten: "discover",
+    partial: found.items.map((h) => ({ id: h.id, missing: h.discovery?.missingTerms ?? [] })),
+  }
 }
 
 const score = (q: Query, ids: string[]) => {
@@ -251,6 +304,14 @@ try {
     name: `narrow ${JSON.stringify(guard)}`,
     search: (q) => narrow(q.lucene, guard),
   }))
+  const cGuard: Guard = frozen ?? { edits: "one", minDocs: 1, prefix: 3 }
+  const partialNeeds = frozenPartial ? [frozenPartial] : (["any", "allButOne", "discover"] as const)
+  narrowModes.push(
+    ...partialNeeds.map((need) => ({
+      name: `C partial ${need} ${JSON.stringify(cGuard)}`,
+      search: (q: Query) => (need === "discover" ? discoverAfter(q.lucene, cGuard) : partial(q.lucene, cGuard, need)),
+    })),
+  )
   const results = []
   for (const mode of [...baseModes, ...narrowModes]) {
     const rows = await evaluate(mode, queries)
@@ -262,7 +323,7 @@ try {
       absentNearWordQueriesHit: absentNearWords.filter((r) => r.ids.length).map((r) => r.id),
       strictControlsDiffer: await sameAsStrict(rows, queries),
       sameTopTenAsCorrectlySpelled: await parity(rows),
-      rows: rows.filter((r) => r.rewritten || r.category.startsWith("no-answer") || ["typo", "beginnings"].includes(r.category)),
+      rows: rows.filter((r) => r.rewritten || r.category === "paraphrase" || r.category.startsWith("no-answer") || ["typo", "beginnings"].includes(r.category)),
     })
   }
   console.log(

@@ -6,7 +6,7 @@
     "prefix": 3
   },
   "corpusSha256": "31ffb8689e06d315a9be7d2ba0094a859b05cb67fc17eb68e4b5b4f5744a0b20",
-  "runnerSha256": "be08e94b6d7199d8b633dfcdd0821330cb8a1dcacb33b896704fc4fe2f5f03c3",
+  "runnerSha256": "a7ab3a2b84a29d0b80df0f160ee9368ae138016a2821990dd6a9c7230cbd0fd7",
   "productionSha256": {
     "services/messages.js": "e49d12343dc8a94c5d2c9c911f5b6b3a4e598957557515f1990d3afe768af012",
     "services/messages-combined.js": "cb8f4c25293a4fed5735e080b04cc197d69da7a62674121286f536cca875f0e6",
@@ -25,8 +25,8 @@
         "mrr": 0.325,
         "ndcgAt10": 0.21917951262131133,
         "noAnswerFalseHits": 0,
-        "p50Ms": 9.049156000000039,
-        "p95Ms": 13.411816000000272,
+        "p50Ms": 9.489986999999928,
+        "p95Ms": 19.37104700000009,
         "categories": {
           "words": {
             "recallAt10": 0.125,
@@ -124,7 +124,7 @@
           "id": "harbor-typo",
           "category": "typo",
           "ids": [],
-          "ms": 8.407683000000361,
+          "ms": 11.21432999999979,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -145,7 +145,17 @@
             "11466",
             "11461"
           ],
-          "ms": 11.04176200000029,
+          "ms": 10.028176000000258,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 8.578868000000057,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -155,7 +165,7 @@
           "id": "harbor-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 6.872023999999783,
+          "ms": 8.198515000000043,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -165,7 +175,7 @@
           "id": "harbor-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 9.049156000000039,
+          "ms": 9.031586999999945,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -175,7 +185,7 @@
           "id": "maple-typo",
           "category": "typo",
           "ids": [],
-          "ms": 7.045889999999872,
+          "ms": 8.545064999999795,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -185,7 +195,17 @@
           "id": "maple-beginnings",
           "category": "beginnings",
           "ids": [],
-          "ms": 7.065086000000065,
+          "ms": 8.63181700000041,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 10.308943,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -195,7 +215,7 @@
           "id": "maple-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 7.070976999999857,
+          "ms": 8.666712999999618,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -205,7 +225,7 @@
           "id": "maple-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 8.396802000000207,
+          "ms": 9.106718,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -226,7 +246,7 @@
             "12070",
             "12065"
           ],
-          "ms": 12.102350999999999,
+          "ms": 12.22238200000038,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -236,7 +256,17 @@
           "id": "вектор-beginnings",
           "category": "beginnings",
           "ids": [],
-          "ms": 7.34523100000024,
+          "ms": 7.768908999999894,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 11.556943000000047,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -246,7 +276,7 @@
           "id": "вектор-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 6.257010999999693,
+          "ms": 8.057289999999739,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -256,7 +286,7 @@
           "id": "вектор-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 7.483279999999922,
+          "ms": 8.583326000000397,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -266,7 +296,7 @@
           "id": "prism-typo",
           "category": "typo",
           "ids": [],
-          "ms": 11.290859000000182,
+          "ms": 9.489986999999928,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -276,7 +306,17 @@
           "id": "prism-beginnings",
           "category": "beginnings",
           "ids": [],
-          "ms": 13.411816000000272,
+          "ms": 8.325173000000177,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 10.696439999999711,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -286,7 +326,7 @@
           "id": "prism-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 6.949789999999666,
+          "ms": 8.329510999999911,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -296,7 +336,7 @@
           "id": "prism-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 7.198646000000281,
+          "ms": 9.163524000000052,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -311,8 +351,8 @@
         "mrr": 0.45,
         "ndcgAt10": 0.2992618230965487,
         "noAnswerFalseHits": 80,
-        "p50Ms": 4.284703000000263,
-        "p95Ms": 7.20526800000016,
+        "p50Ms": 3.9927379999999175,
+        "p95Ms": 12.305256999999983,
         "categories": {
           "words": {
             "recallAt10": 0.125,
@@ -439,7 +479,7 @@
             "11341",
             "11336"
           ],
-          "ms": 5.8061460000003535,
+          "ms": 9.117317999999614,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -460,10 +500,31 @@
             "11341",
             "11336"
           ],
-          "ms": 3.4035109999999804,
+          "ms": 8.546047000000272,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11209",
+            "11376",
+            "11371",
+            "11366",
+            "11361",
+            "11356",
+            "11351",
+            "11346",
+            "11341",
+            "11336"
+          ],
+          "ms": 17.470062000000325,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.8262346571285599,
           "falseHits": 0
         },
         {
@@ -481,7 +542,7 @@
             "11341",
             "11336"
           ],
-          "ms": 4.095808999999917,
+          "ms": 12.305256999999983,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -502,7 +563,7 @@
             "11341",
             "11336"
           ],
-          "ms": 7.20526800000016,
+          "ms": 9.57122900000013,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -523,7 +584,7 @@
             "11643",
             "11638"
           ],
-          "ms": 6.127266999999847,
+          "ms": 7.0846260000002985,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -544,10 +605,31 @@
             "11643",
             "11638"
           ],
-          "ms": 4.479377999999997,
+          "ms": 5.055890999999974,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11511",
+            "11209",
+            "11673",
+            "11668",
+            "11663",
+            "11658",
+            "11653",
+            "11648",
+            "11643",
+            "11638"
+          ],
+          "ms": 3.933806999999888,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.8262346571285599,
           "falseHits": 0
         },
         {
@@ -565,7 +647,7 @@
             "11643",
             "11638"
           ],
-          "ms": 4.284713000000011,
+          "ms": 3.7902979999998934,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -586,7 +668,7 @@
             "11643",
             "11638"
           ],
-          "ms": 4.27656799999977,
+          "ms": 3.9927379999999175,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -607,7 +689,7 @@
             "11940",
             "11935"
           ],
-          "ms": 3.9656749999999192,
+          "ms": 3.8260559999998804,
           "recallAt10": 0.5,
           "mrr": 1,
           "ndcgAt10": 0.27541155237618664,
@@ -628,10 +710,31 @@
             "11940",
             "11935"
           ],
-          "ms": 3.039328000000296,
+          "ms": 2.946686000000227,
           "recallAt10": 0.5,
           "mrr": 1,
           "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11813",
+            "11814",
+            "11975",
+            "11970",
+            "11965",
+            "11960",
+            "11955",
+            "11950",
+            "11945",
+            "11940"
+          ],
+          "ms": 4.442511999999624,
+          "recallAt10": 1,
+          "mrr": 1,
+          "ndcgAt10": 1,
           "falseHits": 0
         },
         {
@@ -649,7 +752,7 @@
             "11940",
             "11935"
           ],
-          "ms": 4.846255999999812,
+          "ms": 3.7072620000003553,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -670,7 +773,7 @@
             "11940",
             "11935"
           ],
-          "ms": 4.27804100000003,
+          "ms": 6.877217000000201,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -691,7 +794,7 @@
             "12247",
             "12242"
           ],
-          "ms": 6.449282000000039,
+          "ms": 4.160391999999774,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -712,7 +815,28 @@
             "12247",
             "12242"
           ],
-          "ms": 4.284703000000263,
+          "ms": 3.39732099999992,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "12287",
+            "12282",
+            "12277",
+            "12272",
+            "12267",
+            "12262",
+            "12257",
+            "12252",
+            "12247",
+            "12242"
+          ],
+          "ms": 4.947548000000097,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -733,7 +857,7 @@
             "12247",
             "12242"
           ],
-          "ms": 5.002569000000221,
+          "ms": 3.2895699999999124,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -754,7 +878,7 @@
             "12247",
             "12242"
           ],
-          "ms": 4.536575999999968,
+          "ms": 3.8748069999996915,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -769,8 +893,8 @@
         "mrr": 0.35,
         "ndcgAt10": 0.226064801430716,
         "noAnswerFalseHits": 0,
-        "p50Ms": 12.144148999999743,
-        "p95Ms": 39.80429699999968,
+        "p50Ms": 9.184544000000187,
+        "p95Ms": 30.799509999999827,
         "categories": {
           "words": {
             "recallAt10": 0.125,
@@ -885,7 +1009,7 @@
             "11466",
             "11461"
           ],
-          "ms": 34.33221800000001,
+          "ms": 28.79615300000023,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -906,7 +1030,17 @@
             "11466",
             "11461"
           ],
-          "ms": 32.47959499999979,
+          "ms": 23.996893,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 8.110611000000063,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -916,7 +1050,7 @@
           "id": "harbor-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 8.153917999999976,
+          "ms": 5.845812999999907,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -926,7 +1060,7 @@
           "id": "harbor-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 9.245895000000019,
+          "ms": 6.367490999999973,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -947,7 +1081,7 @@
             "11768",
             "11763"
           ],
-          "ms": 29.023255000000063,
+          "ms": 24.80850499999997,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -968,7 +1102,17 @@
             "11768",
             "11763"
           ],
-          "ms": 25.367150000000038,
+          "ms": 18.035433000000012,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 6.116190000000188,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -978,7 +1122,7 @@
           "id": "maple-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 8.33161999999993,
+          "ms": 5.717431999999917,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -988,7 +1132,7 @@
           "id": "maple-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 10.548797999999806,
+          "ms": 6.466415999999754,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1009,7 +1153,7 @@
             "12070",
             "12065"
           ],
-          "ms": 40.655283000000054,
+          "ms": 32.706826999999976,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1030,17 +1174,27 @@
             "12075",
             "12070"
           ],
-          "ms": 22.923768999999993,
+          "ms": 19.017143999999917,
           "recallAt10": 0.5,
           "mrr": 1,
           "ndcgAt10": 0.27541155237618664,
           "falseHits": 0
         },
         {
+          "id": "вектор-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 8.689916999999696,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
           "id": "вектор-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 6.800580000000082,
+          "ms": 5.956830999999511,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1050,7 +1204,7 @@
           "id": "вектор-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 7.10990000000038,
+          "ms": 6.432283000000098,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1071,7 +1225,7 @@
             "12372",
             "12367"
           ],
-          "ms": 31.96192500000052,
+          "ms": 25.970964000000095,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1092,7 +1246,17 @@
             "12372",
             "12367"
           ],
-          "ms": 22.37924800000019,
+          "ms": 16.959264999999505,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 8.637378000000353,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1102,7 +1266,7 @@
           "id": "prism-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 8.871702999999798,
+          "ms": 6.557336999999279,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1112,7 +1276,7 @@
           "id": "prism-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 9.471999000000324,
+          "ms": 6.439706999999544,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1127,8 +1291,8 @@
         "mrr": 0.4025,
         "ndcgAt10": 0.27371096267276906,
         "noAnswerFalseHits": 80,
-        "p50Ms": 25.181633000000147,
-        "p95Ms": 50.50160400000004,
+        "p50Ms": 22.433922000000166,
+        "p95Ms": 46.384877000000415,
         "categories": {
           "words": {
             "recallAt10": 0.125,
@@ -1243,7 +1407,7 @@
             "11466",
             "11461"
           ],
-          "ms": 48.45391500000005,
+          "ms": 38.636437000000114,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1264,7 +1428,28 @@
             "11466",
             "11461"
           ],
-          "ms": 43.70139399999971,
+          "ms": 38.0434350000005,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 22.786693000000014,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1285,7 +1470,7 @@
             "11466",
             "11461"
           ],
-          "ms": 25.97545100000025,
+          "ms": 22.329435999999987,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1306,7 +1491,7 @@
             "11466",
             "11461"
           ],
-          "ms": 25.65035099999932,
+          "ms": 21.715203000000656,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1327,7 +1512,7 @@
             "11768",
             "11763"
           ],
-          "ms": 38.97791899999993,
+          "ms": 49.756421000000046,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1348,10 +1533,31 @@
             "11768",
             "11763"
           ],
-          "ms": 27.995858000000226,
+          "ms": 28.200504999999794,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11511",
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768"
+          ],
+          "ms": 23.36091000000033,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.8262346571285599,
           "falseHits": 0
         },
         {
@@ -1369,7 +1575,7 @@
             "11768",
             "11763"
           ],
-          "ms": 21.12465599999996,
+          "ms": 27.922153000000435,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1390,7 +1596,7 @@
             "11768",
             "11763"
           ],
-          "ms": 27.11475700000028,
+          "ms": 28.88269500000024,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1411,7 +1617,7 @@
             "12070",
             "11814"
           ],
-          "ms": 52.18766500000038,
+          "ms": 45.74318399999993,
           "recallAt10": 0.5,
           "mrr": 0.1,
           "ndcgAt10": 0.07961179255356228,
@@ -1432,10 +1638,31 @@
             "12075",
             "12070"
           ],
-          "ms": 31.766208000000006,
+          "ms": 29.43308800000068,
           "recallAt10": 0.5,
           "mrr": 1,
           "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11813",
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075"
+          ],
+          "ms": 27.93521899999996,
+          "recallAt10": 1,
+          "mrr": 1,
+          "ndcgAt10": 1,
           "falseHits": 0
         },
         {
@@ -1453,7 +1680,7 @@
             "12075",
             "12070"
           ],
-          "ms": 28.49750899999981,
+          "ms": 24.432920000000195,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1474,7 +1701,7 @@
             "12075",
             "12070"
           ],
-          "ms": 28.7373690000004,
+          "ms": 25.682754000000386,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1495,7 +1722,7 @@
             "12372",
             "12367"
           ],
-          "ms": 40.961818000000676,
+          "ms": 44.439149000000725,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1516,7 +1743,28 @@
             "12372",
             "12367"
           ],
-          "ms": 35.559619999999995,
+          "ms": 25.439006999999947,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "ms": 26.737882999999783,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1537,7 +1785,7 @@
             "12372",
             "12367"
           ],
-          "ms": 24.883273000000372,
+          "ms": 19.466005000000223,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1558,7 +1806,7 @@
             "12372",
             "12367"
           ],
-          "ms": 24.73291100000006,
+          "ms": 21.70464400000037,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1573,8 +1821,8 @@
         "mrr": 0.35,
         "ndcgAt10": 0.226064801430716,
         "noAnswerFalseHits": 0,
-        "p50Ms": 8.918802000000142,
-        "p95Ms": 37.68947300000036,
+        "p50Ms": 7.682528000000275,
+        "p95Ms": 27.296190000000024,
         "categories": {
           "words": {
             "recallAt10": 0.125,
@@ -1689,7 +1937,7 @@
             "11466",
             "11461"
           ],
-          "ms": 38.860397999999805,
+          "ms": 34.1609840000001,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1710,7 +1958,17 @@
             "11466",
             "11461"
           ],
-          "ms": 9.166326000000481,
+          "ms": 7.470049000000472,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 11.643095000000358,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1720,7 +1978,7 @@
           "id": "harbor-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 13.337555999999495,
+          "ms": 9.613879999999881,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1730,7 +1988,7 @@
           "id": "harbor-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 14.731310000000121,
+          "ms": 11.793566999999712,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1751,7 +2009,7 @@
             "11768",
             "11763"
           ],
-          "ms": 37.68947300000036,
+          "ms": 27.296190000000024,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1772,7 +2030,17 @@
             "11768",
             "11763"
           ],
-          "ms": 27.879330000000664,
+          "ms": 20.777595999999903,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 10.911112000000685,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1782,7 +2050,7 @@
           "id": "maple-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 13.93883299999925,
+          "ms": 9.547233999999662,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1792,7 +2060,7 @@
           "id": "maple-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 16.07133200000044,
+          "ms": 11.675655999999435,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1813,7 +2081,7 @@
             "12070",
             "12065"
           ],
-          "ms": 9.334520999999768,
+          "ms": 6.598264000000199,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1834,17 +2102,27 @@
             "12075",
             "12070"
           ],
-          "ms": 39.78841799999918,
+          "ms": 27.29490700000042,
           "recallAt10": 0.5,
           "mrr": 1,
           "ndcgAt10": 0.27541155237618664,
           "falseHits": 0
         },
         {
+          "id": "вектор-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 13.683952999999747,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
           "id": "вектор-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 13.06904300000042,
+          "ms": 15.955031999999846,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1854,7 +2132,7 @@
           "id": "вектор-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 12.60111599999982,
+          "ms": 12.86688999999933,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1875,7 +2153,7 @@
             "12372",
             "12367"
           ],
-          "ms": 32.14980699999978,
+          "ms": 28.25784300000032,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1896,7 +2174,17 @@
             "12372",
             "12367"
           ],
-          "ms": 25.11185099999966,
+          "ms": 20.609268999999586,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 20.382093999999597,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -1906,7 +2194,7 @@
           "id": "prism-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 11.728869999999915,
+          "ms": 14.73421099999996,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1916,7 +2204,7 @@
           "id": "prism-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 12.27169800000047,
+          "ms": 16.653861999999208,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -1931,8 +2219,8 @@
         "mrr": 0.35,
         "ndcgAt10": 0.226064801430716,
         "noAnswerFalseHits": 0,
-        "p50Ms": 6.964637999999468,
-        "p95Ms": 14.858357000000069,
+        "p50Ms": 7.459620000000541,
+        "p95Ms": 15.920777000000271,
         "categories": {
           "words": {
             "recallAt10": 0.125,
@@ -2049,7 +2337,7 @@
               "release"
             ]
           },
-          "ms": 13.148001000000477,
+          "ms": 12.625868000000082,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2070,7 +2358,17 @@
             "11466",
             "11461"
           ],
-          "ms": 7.023638000000574,
+          "ms": 6.787138000000596,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 9.396400999999969,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2080,7 +2378,7 @@
           "id": "harbor-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 8.227765999999974,
+          "ms": 7.759270999999899,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -2090,7 +2388,7 @@
           "id": "harbor-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 8.669494000000668,
+          "ms": 9.45775699999922,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -2117,7 +2415,7 @@
               "archive"
             ]
           },
-          "ms": 13.224733999999444,
+          "ms": 16.107146999999713,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2144,7 +2442,7 @@
               "arch*"
             ]
           },
-          "ms": 12.897361000000274,
+          "ms": 15.920777000000271,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2160,7 +2458,7 @@
               "data*"
             ]
           },
-          "ms": 14.858357000000069,
+          "ms": 13.58042900000055,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2170,7 +2468,7 @@
           "id": "maple-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 6.006792000000132,
+          "ms": 5.151601000000483,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -2180,7 +2478,7 @@
           "id": "maple-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 6.964637999999468,
+          "ms": 6.498136000000159,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -2201,7 +2499,7 @@
             "12070",
             "12065"
           ],
-          "ms": 7.152509999999893,
+          "ms": 8.822064999999384,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2228,7 +2526,7 @@
               "мигр*"
             ]
           },
-          "ms": 13.089249999999993,
+          "ms": 16.271193999999923,
           "recallAt10": 0.5,
           "mrr": 1,
           "ndcgAt10": 0.27541155237618664,
@@ -2244,7 +2542,7 @@
               "схему"
             ]
           },
-          "ms": 14.472764000000097,
+          "ms": 11.456315000000359,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2254,7 +2552,7 @@
           "id": "вектор-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 7.868883000000096,
+          "ms": 5.713054000000739,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -2264,7 +2562,7 @@
           "id": "вектор-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 16.95945700000084,
+          "ms": 12.548883000000387,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -2291,7 +2589,7 @@
               "renewal"
             ]
           },
-          "ms": 19.052531000000272,
+          "ms": 12.408521000000292,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2318,7 +2616,17 @@
               "rene*"
             ]
           },
-          "ms": 12.330298000000766,
+          "ms": 11.3884079999998,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-paraphrase",
+          "category": "paraphrase",
+          "ids": [],
+          "ms": 7.017409999999472,
           "recallAt10": 0,
           "mrr": 0,
           "ndcgAt10": 0,
@@ -2328,7 +2636,7 @@
           "id": "prism-absent",
           "category": "no-answer-absent",
           "ids": [],
-          "ms": 5.708523000000241,
+          "ms": 5.098772000000281,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
@@ -2338,11 +2646,1441 @@
           "id": "prism-near-miss",
           "category": "no-answer-near-miss",
           "ids": [],
-          "ms": 7.548071000000164,
+          "ms": 6.680258000000322,
           "recallAt10": null,
           "mrr": null,
           "ndcgAt10": null,
           "falseHits": 0
+        }
+      ]
+    },
+    {
+      "mode": "C partial discover {\"edits\":\"one\",\"minDocs\":1,\"prefix\":3}",
+      "metrics": {
+        "recallAt10": 0.3125,
+        "mrr": 0.4,
+        "ndcgAt10": 0.27172066785893,
+        "noAnswerFalseHits": 80,
+        "p50Ms": 8.513355999999476,
+        "p95Ms": 43.45598500000051,
+        "categories": {
+          "words": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "typo": {
+            "recallAt10": 0,
+            "mrr": 0,
+            "ndcgAt10": 0,
+            "noAnswerFalseHits": 0
+          },
+          "beginnings": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "phrase": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "from": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 1,
+            "noAnswerFalseHits": 0
+          },
+          "chat": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "date": {
+            "recallAt10": 1,
+            "mrr": 1,
+            "ndcgAt10": 0.8475306857428799,
+            "noAnswerFalseHits": 0
+          },
+          "and": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "or": {
+            "recallAt10": 0.125,
+            "mrr": 0.25,
+            "ndcgAt10": 0.06885288809404666,
+            "noAnswerFalseHits": 0
+          },
+          "paraphrase": {
+            "recallAt10": 0.375,
+            "mrr": 0.5,
+            "ndcgAt10": 0.45655866428214,
+            "noAnswerFalseHits": 0
+          },
+          "no-answer-absent": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 40
+          },
+          "no-answer-near-miss": {
+            "recallAt10": null,
+            "mrr": null,
+            "ndcgAt10": null,
+            "noAnswerFalseHits": 40
+          }
+        }
+      },
+      "absentNearWordHits": 50,
+      "absentNearWordQueriesHit": [
+        "cedar-detention",
+        "lumen-refuse",
+        "aurora-callback",
+        "aurora-restart",
+        "cedar-attention"
+      ],
+      "strictControlsDiffer": [],
+      "sameTopTenAsCorrectlySpelled": {
+        "matched": [
+          "harbor-typo",
+          "harbor-beginnings",
+          "maple-typo",
+          "maple-beginnings",
+          "вектор-beginnings",
+          "prism-typo",
+          "prism-beginnings"
+        ],
+        "differs": [
+          "вектор-typo"
+        ]
+      },
+      "rows": [
+        {
+          "id": "harbor-typo",
+          "category": "typo",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "rewritten": "harbor (release) freeze",
+          "corrections": {
+            "relesae": [
+              "release"
+            ]
+          },
+          "ms": 10.591523000000052,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "ms": 6.649851000000126,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11506",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11501",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11496",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11491",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11486",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11481",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11476",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11471",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11466",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            },
+            {
+              "id": "11461",
+              "missing": [
+                "shipping",
+                "pause"
+              ]
+            }
+          ],
+          "ms": 39.86238599999979,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "harbor-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11506",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11501",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11496",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11491",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11486",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11481",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11476",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11471",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11466",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11461",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            }
+          ],
+          "ms": 43.45598500000051,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "harbor-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11506",
+            "11501",
+            "11496",
+            "11491",
+            "11486",
+            "11481",
+            "11476",
+            "11471",
+            "11466",
+            "11461"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11506",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11501",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11496",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11491",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11486",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11481",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11476",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11471",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11466",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11461",
+              "missing": [
+                "purple"
+              ]
+            }
+          ],
+          "ms": 35.05805600000076,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "maple-typo",
+          "category": "typo",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "rewritten": "maple (archive) restore",
+          "corrections": {
+            "arhcive": [
+              "archive"
+            ]
+          },
+          "ms": 11.437619999999697,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "rewritten": "maple (arch*) restore",
+          "corrections": {
+            "arch": [
+              "arch*"
+            ]
+          },
+          "ms": 11.985858000000007,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11511",
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11511",
+              "missing": [
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11808",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11803",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11798",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11793",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11788",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11783",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11778",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11773",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            },
+            {
+              "id": "11768",
+              "missing": [
+                "recover",
+                "saved",
+                "data"
+              ]
+            }
+          ],
+          "ms": 45.71685600000001,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.8262346571285599,
+          "falseHits": 0
+        },
+        {
+          "id": "maple-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11808",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11803",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11798",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11793",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11788",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11783",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11778",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11773",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11768",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "11763",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            }
+          ],
+          "ms": 42.95476500000041,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "maple-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11808",
+            "11803",
+            "11798",
+            "11793",
+            "11788",
+            "11783",
+            "11778",
+            "11773",
+            "11768",
+            "11763"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11808",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11803",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11798",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11793",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11788",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11783",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11778",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11773",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11768",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "11763",
+              "missing": [
+                "purple"
+              ]
+            }
+          ],
+          "ms": 41.12731799999983,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "вектор-typo",
+          "category": "typo",
+          "ids": [
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070",
+            "12065"
+          ],
+          "ms": 9.993993000000046,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "rewritten": "вектор (мигр*) отмена",
+          "corrections": {
+            "мигр": [
+              "мигр*"
+            ]
+          },
+          "ms": 16.56286100000034,
+          "recallAt10": 0.5,
+          "mrr": 1,
+          "ndcgAt10": 0.27541155237618664,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "11813",
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11813",
+              "missing": [
+                "возврат",
+                "прежнеи"
+              ]
+            },
+            {
+              "id": "11814",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12110",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12105",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12100",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12095",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12090",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12085",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12080",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            },
+            {
+              "id": "12075",
+              "missing": [
+                "возврат",
+                "прежнеи",
+                "схемы"
+              ]
+            }
+          ],
+          "ms": 49.75352500000008,
+          "recallAt10": 1,
+          "mrr": 1,
+          "ndcgAt10": 1,
+          "falseHits": 0
+        },
+        {
+          "id": "вектор-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11814",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12110",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12105",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12100",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12095",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12090",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12085",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12080",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12075",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12070",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            }
+          ],
+          "ms": 32.06844999999976,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "вектор-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "11814",
+            "12110",
+            "12105",
+            "12100",
+            "12095",
+            "12090",
+            "12085",
+            "12080",
+            "12075",
+            "12070"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "11814",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12110",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12105",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12100",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12095",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12090",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12085",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12080",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12075",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12070",
+              "missing": [
+                "purple"
+              ]
+            }
+          ],
+          "ms": 28.13477200000034,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "prism-typo",
+          "category": "typo",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "rewritten": "prism (renewal) discount",
+          "corrections": {
+            "renweal": [
+              "renewal"
+            ]
+          },
+          "ms": 10.953913000000284,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-beginnings",
+          "category": "beginnings",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "rewritten": "prism (rene*) discount",
+          "corrections": {
+            "rene": [
+              "rene*"
+            ]
+          },
+          "ms": 10.247196999999687,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-paraphrase",
+          "category": "paraphrase",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "12412",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12407",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12402",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12397",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12392",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12387",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12382",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12377",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12372",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            },
+            {
+              "id": "12367",
+              "missing": [
+                "subscription",
+                "price",
+                "reduction"
+              ]
+            }
+          ],
+          "ms": 42.95802100000037,
+          "recallAt10": 0,
+          "mrr": 0,
+          "ndcgAt10": 0,
+          "falseHits": 0
+        },
+        {
+          "id": "prism-absent",
+          "category": "no-answer-absent",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "12412",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12407",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12402",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12397",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12392",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12387",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12382",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12377",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12372",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            },
+            {
+              "id": "12367",
+              "missing": [
+                "quantum",
+                "unicorn"
+              ]
+            }
+          ],
+          "ms": 41.22199499999988,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
+        },
+        {
+          "id": "prism-near-miss",
+          "category": "no-answer-near-miss",
+          "ids": [
+            "12412",
+            "12407",
+            "12402",
+            "12397",
+            "12392",
+            "12387",
+            "12382",
+            "12377",
+            "12372",
+            "12367"
+          ],
+          "rewritten": "discover",
+          "partial": [
+            {
+              "id": "12412",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12407",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12402",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12397",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12392",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12387",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12382",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12377",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12372",
+              "missing": [
+                "purple"
+              ]
+            },
+            {
+              "id": "12367",
+              "missing": [
+                "purple"
+              ]
+            }
+          ],
+          "ms": 36.48355900000024,
+          "recallAt10": null,
+          "mrr": null,
+          "ndcgAt10": null,
+          "falseHits": 10
         }
       ]
     }

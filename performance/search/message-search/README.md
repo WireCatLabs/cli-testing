@@ -219,11 +219,13 @@ It also reruns strict, legacy, the internal combined matcher and `--discover` on
 python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typecheck
 python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typo > /tmp/typo-dev.json
 python3 performance/search/run.py --messaging-root "$SEARCH_MESSAGING_ROOT" typo --held-out \
-  '--frozen={"edits":"one","minDocs":1,"prefix":3}' > /tmp/typo-heldout.json
+  '--frozen={"edits":"one","minDocs":1,"prefix":3}' --partial=discover > /tmp/typo-heldout.json
 ```
 
-[typo-dev.json](typo-dev.json) sweeps 33 guards on dev; [typo-heldout.json](typo-heldout.json) is the
-single held-out run of the frozen guard. The held-out split was already read by the reranker cycle,
+Variant C adds a partial-word fallback only when that step still finds nothing: an any-word or
+all-but-one-word OR query, or the production `--discover` path. Each such hit lists its missing
+words. [typo-dev.json](typo-dev.json) sweeps 33 guards and the three fallbacks on dev; [typo-heldout.json](typo-heldout.json) is the
+single held-out run of the frozen guard and the frozen fallback (`discover`). The held-out split was already read by the reranker cycle,
 so it is informational, not qualifying. Six unlabelled `absent-near-word` queries (a real word
 missing from the archive, one or two edits from an archive word) were added after the first sweep;
 they show how often a correction fires on a word that was not a typo. The interpretation and the
