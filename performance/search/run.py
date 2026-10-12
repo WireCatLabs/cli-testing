@@ -38,7 +38,7 @@ stage = Path(tempfile.mkdtemp(prefix="cli-testing-search-"))
 folder, selected_script = runners[args.runner]
 stage_folder = "message-search-quality" if folder == "message-search" else folder
 selected_harness = stage / "bench" / stage_folder
-ignored = shutil.ignore_patterns("results", "__pycache__", "*-dev.json", "baseline.json", "augmented-baseline.json", "resources.json", "typo-heldout.json")
+ignored = shutil.ignore_patterns("results", "__pycache__", "*-dev.json", "baseline.json", "augmented-baseline.json", "resources.json", "typo-heldout.json", "typo-c-heldout.json")
 shutil.copytree(area / folder, selected_harness, ignore=ignored)
 if folder == "matrix":
     shutil.copytree(area / "message-search", stage / "bench/message-search-quality", ignore=ignored)
