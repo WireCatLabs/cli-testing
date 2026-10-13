@@ -40,6 +40,7 @@ byte limits and a stable merge, while keeping production model-free.
 | [message-search/](message-search/README.md) | Synthetic corpus, question supplement, benchmark runners, pinned model manifest and historical JSON reports |
 | [everywhere/](everywhere/README.md) | Latency of a bare word that also looks in transcripts, file names and file text (2026-10-13) |
 | [local-documents/](local-documents/README.md) | qmd compared with memo and drive search on the owner's notes and Drive documents (2026-10-13) |
+| [vector-scan/](vector-scan/README.md) | Vector search time as the number of vectors grows: 10,000 to 300,000 (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |
 | [migration.json](migration.json) | Original file hashes and source commit before the transfer |
 | [MODELS.md](MODELS.md) | Worked example, model architectures, download/RAM explanation and experiment plan |
