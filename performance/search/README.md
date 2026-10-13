@@ -36,6 +36,9 @@ byte limits and a stable merge, while keeping production model-free.
 The [image search levels](images/README.md) compare caption, context and picture models (CLIP, SigLIP2) on one
 person's images, totals only.
 
+[Mentions](mentions/README.md): how long finding phones, e-mail, links and documents by rules takes on one person's
+messages, and how many of each it finds, totals only.
+
 ## Layout
 
 | Path | Purpose |

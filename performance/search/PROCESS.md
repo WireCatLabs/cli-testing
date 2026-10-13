@@ -250,6 +250,13 @@ vectors, which its sync does not compute by default, drive matched qmd's top 3 i
 
 Evidence: [search everywhere](everywhere/README.md), [qmd on local documents](local-documents/README.md).
 
+## 10. Rules find what a text mentions, cheaply
+
+The owner wanted phones, e-mail addresses, links and documents found in messages, grouped by site, and chose
+rules over a 10 MB phone library: "looks like a phone" is enough. On one person's 4,436 messages a full pass took
+0.66 s and found 861 mentions in 256 kB; every phone found was a phone. Links written without `http` first caught
+method calls in pasted program code; one rule fixed it. [mentions/](mentions/README.md).
+
 ## What we concluded
 
 The most useful shipped gains came from retrieving the right evidence: question planning,
