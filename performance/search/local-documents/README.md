@@ -186,7 +186,9 @@ Time is the reranking of one query's 30 passages in the warm process. Loading to
 
 Paraphrases, top 3: notes memo 2/5 → 5/5 with mmarco, 5/5 with Qwen3; drive 2/5 → 3/5 with mmarco, 4/5 with Qwen3.
 
-**What it showed.**
+**What it showed** — one run of 25 queries per corpus, no held-out set. The message cross-encoder also looked
+good on its dev queries and then missed the held-out gates; these numbers justify a second, frozen run on fresh
+queries, not a release.
 
 - **On the notes a reranker closes the paraphrase gap.** mmarco alone puts the right note first in 21 of 25 (memo
   18, qmd 12) and finds every paraphrase in the top 3. It beats qmd's whole pipeline here at a fifth of its
@@ -197,11 +199,26 @@ Paraphrases, top 3: notes memo 2/5 → 5/5 with mmarco, 5/5 with Qwen3; drive 2/
 - **Score alone or blend.** Score alone wins first place on the notes; the blend never loses an exact or
   word-form hit. Which to ship depends on what the owner values more; the sample is too small to tell
   0.84 from 0.72 with confidence (three queries).
+- **Qwen3 got our 1,200-character passages**; qmd feeds it ~900-token chunks. "No better" holds for these
+  passages only.
 - **mmarco is the cheaper choice:** 130 MB and ~2 s per query warm against 639 MB and ~6 s for Qwen3, with
   results as good or better. It must not run per CLI process: loading alone is 0.6 s, and a search warm takes
   milliseconds (vector search over all passages, 7 ms a query here).
-- **Most of memo's and drive's 1.2–2.4 s a search is start-up and model loading.** Searching the vectors in the
-  warm process took 7 ms. The CLI time is the cost of a new process per query, not of the search.
+- **Most of memo's and drive's 1.2–2.4 s a search is probably start-up and model loading.** Searching the vectors
+  in the warm process took 7–11 ms; the CLI phases were not timed apart.
+
+### EmbeddingGemma against e5-small, vectors only
+
+Each model embeds every 1,200-character passage; a document's score is its best passage's cosine; no words, no
+fusion. Notes only: the Drive passages are still embedding with EmbeddingGemma (~1.6 a second, about 63 min).
+
+| corpus | vectors | hit@1 | hit@3 | hit@10 | MRR@10 | query embedding, warm | passages a second |
+|---|---|---|---|---|---|---|---|
+| notes | e5-small (default) | 0.48 | 0.84 | 0.96 | 0.67 | ~10 ms | 14.9 |
+| notes | EmbeddingGemma | **0.68** | **0.88** | **1.00** | **0.79** | ~95 ms | 1.6 |
+
+EmbeddingGemma puts the right note first in 17 of 25 against 12, better in every kind but typos, at 9 times the
+embedding time. Whether that survives fusion with the word list was not measured.
 
 ## Limits
 
