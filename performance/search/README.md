@@ -33,6 +33,9 @@ poor ordering and records unsuccessful cheap rerankers. The
 bounded supplement design. The [supplement validation](supplement/README.md) adds crowded cases,
 byte limits and a stable merge, while keeping production model-free.
 
+The [image search levels](images/README.md) compare caption, context and picture models (CLIP, SigLIP2) on one
+person's images, totals only.
+
 ## Layout
 
 | Path | Purpose |
