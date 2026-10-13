@@ -1,6 +1,6 @@
 // Reranks memo's and drive's top 30 and compares vector models, in one long-lived process, as an MCP server would.
 // Env: CM (an installed @wirecat/cli-messaging), QMD_MODULES (qmd's node_modules, for node-llama-cpp), NOTES_ROOT.
-// node rerank.mjs <BENCH_DIR> <RERANK_DIR> count | embed <e5-small|embeddinggemma> | rerank [mmarco|qwen3]
+// node rerank.mjs <BENCH_DIR> <RERANK_DIR> count | embed <e5-small|embeddinggemma> | rerank [mmarco|qwen3|none]
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { createRequire } from "node:module"
@@ -94,9 +94,10 @@ const rows = []
 const push = (row) => rows.push(row)
 
 for (const modelId of ["e5-small", "embeddinggemma"]) {
-  if (!["notes", "drive"].every((corpus) => existsSync(vectorsFile(modelId, corpus)))) continue
+  const ready = ["notes", "drive"].filter((corpus) => existsSync(vectorsFile(modelId, corpus)))
+  if (!ready.length) continue
   const embedder = await openEmbedder(textModel(modelId), textModelsDirectory())
-  for (const corpus of ["notes", "drive"]) {
+  for (const corpus of ready) {
     const { vectors } = JSON.parse(readFileSync(vectorsFile(modelId, corpus), "utf8"))
     for (const q of queries[corpus]) {
       const started = performance.now()
@@ -199,7 +200,7 @@ const rerankers = {
   },
 }
 
-for (const name of only ? [only] : Object.keys(rerankers)) {
+for (const name of only === "none" ? [] : only ? [only] : Object.keys(rerankers)) {
   const loadStarted = performance.now()
   const reranker = await rerankers[name]()
   const loadMs = performance.now() - loadStarted
