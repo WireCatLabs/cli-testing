@@ -1,6 +1,7 @@
 # Ideas from established search tools
 
-This review inspected publisher documentation and QMD source; it did not install or benchmark the
+This review inspected publisher documentation and QMD source. QMD was later run on real documents —
+[qmd on local documents](local-documents/README.md); this review did not install or benchmark the
 complete QMD, Typesense or Meilisearch applications. The [matrix](matrix/README.md) benchmarks
 our own bounded message-ranking variants inspired by some of their ideas.
 
