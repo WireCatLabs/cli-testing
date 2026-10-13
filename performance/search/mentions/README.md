@@ -3,7 +3,7 @@
 ## Why we ran it
 
 cli-messaging now finds phones, e-mail addresses, links and Google documents in stored message text and keeps
-each one where it was written ([mentions plan](https://github.com/WireCatLabs/cli-messaging/blob/docs/backlog-search-followups/docs/dev/mentions-plan.md)).
+each one where it was written ([mentions plan](https://github.com/WireCatLabs/cli-core/blob/main/docs/dev/mentions-plan.md)).
 The owner chose rules over libraries: phones are found by "looks like a phone", not checked against a numbering
 plan, because `libphonenumber-js` installs 10 MB. The questions: how long a full `mentions rebuild` takes on a
 real store, how much it adds to the file, and whether the rules find mostly real values. It decided whether the
