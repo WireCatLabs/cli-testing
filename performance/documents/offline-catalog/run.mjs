@@ -113,7 +113,7 @@ assert.equal(invoke(["notes", "list", "nested"]).items.length, 1)
 assert.equal(invoke(["documents", "context", "nested"]).notes.items.length, 1)
 assert.equal(invoke(["catalog", "list"], "other").items.length, 0)
 invoke(["catalog", "show", "doc"], "other", false)
-assert.equal(invoke(["catalog", "import", "--dry-run"]).dryRun, true)
+assert.equal(invoke(["catalog", "import", "--dry-run"]).dry_run, true)
 invoke(["catalog", "tags", "add", "nested", "blocked", "--read-only"], "synthetic", false)
 invoke(["catalog", "list"], "", false)
 config.profiles.synthetic.roots = []
