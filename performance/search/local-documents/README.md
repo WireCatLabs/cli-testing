@@ -82,9 +82,98 @@ download for this; their index lives in the shared store.
 - **memo's and drive's time per search** was 2.4 s in the first run and 1.3 s for drive in the rerun, with less
   other work on the machine. Most of it is probably start-up; not measured apart.
 
-## Not measured
+## How each engine works
 
-- qmd as a resident server (MCP), where model loading happens once.
-- Other languages: all queries and documents are Russian.
-- More than one labeller: the owner's agent wrote the queries and answers; 25 per corpus is small.
-- memo against qmd on the Drive documents, and drive against qmd on the notes.
+memo and drive share one search, `searchNotes` in
+[cli-messaging](https://github.com/WireCatLabs/cli-messaging/blob/main/src/services/notes-search.ts); drive passes it
+its own folder. qmd is described from the README in the npm package `@tobilu/qmd` 2.8.3, the version measured, and
+from our [source review](../TOOL-RESEARCH.md#qmd).
+
+| | memo and drive | qmd |
+|---|---|---|
+| Index | One SQLite store shared with chats, mail, meetings and notes; a document is a note with its source URL | Its own SQLite index over Markdown folders (collections) |
+| Keywords | SQLite FTS5 with Snowball stemming, by default Russian for Cyrillic and English and Spanish for Latin: `редиректами` finds `редиректы` | SQLite FTS5 BM25 without Russian stemming: other word forms miss (0.16 on the notes) |
+| Vectors | multilingual-e5-small, 8-bit ONNX, 118 MB, 384 dimensions, 512-token input; passages of ~1,200 characters (~300 tokens) with 150 overlapping | EmbeddingGemma 300M, Q8 GGUF, 334 MB, 768 dimensions; passages of 900 tokens with 15% overlap |
+| Weak vector hits | Dropped below cosine 0.8 (`meaningFloor`, measured for e5-small) | Kept; `minScore` optional |
+| Fusion | Reciprocal rank fusion (RRF, k = 60) of the keyword list and the vector list | RRF (k = 60) of every list from every query variant; the original query counts twice; +0.05 for a first place, +0.02 for second or third |
+| Query expansion | None | A fine-tuned 1.7B model (1.28 GB) writes variants of the query: `lex` (keywords), `vec` (meaning), `hyde` (an imagined answer) |
+| Reranking | None for notes and documents | Qwen3-Reranker 0.6B (639 MB) reads the query with each of the top 30–40 candidates and answers yes/no; its score is blended with the fusion rank: 25% for places 1–3, 40% for 4–10, 60% below |
+| Each hit says why | `foundBy: words`, `meaning` or both; the answer says when meaning was skipped | A score; `--explain` breaks it into stages |
+| Models to download | 118 MB, once, shared with chats and meetings | 2.2 GB |
+| One search, a new process each time | 1.3–2.4 s | 0.25 s keywords, 10–25 s with models |
+| Kept running | tg's and memo's MCP servers keep the vector model loaded | `qmd mcp` keeps all three models loaded |
+
+The vector model is not the difference that matters here. EmbeddingGemma is also one of our models
+(`tg models text download embeddinggemma`, 4-bit ONNX, ~200 MB); on chat it ranked better than e5-small but embeds
+7–15 times slower (1.5–2 passages a second against 10–31, by thread count), so e5-small is the default. In this run qmd's vectors were
+EmbeddingGemma and ours e5-small, so the run does not say which model is better on documents.
+
+## Why ours ranks first more often, and where qmd is ahead
+
+- **Exact words and word forms: ours.** Stemming finds every form of a Russian word; qmd's keywords do not, and
+  its vectors drop some exact names (3–4 of 5 exact queries on the Drive documents in qmd's top 3, 5 of 5 for drive).
+  The fusion keeps an exact keyword hit at the top, so memo and drive put the right document first more often
+  (0.72 and 0.68 against 0.48 for qmd's hybrid).
+- **Paraphrases: qmd.** 4 of 5 in the top 3 for qmd's hybrid on each corpus, 2 of 5 for memo and for drive. A
+  paraphrase shares no words with the answer, so only the vector list can find it, and one vector list is a thin
+  vote in the fusion. qmd adds query variants and a reranker that reads query and text together.
+- **Typos and questions: even.** On the Drive documents, drive and qmd both reach 3–4 of 4 typos and 4 of 6
+  questions in the top 3. On the notes, memo has every question and 3 of 4 typos.
+- **Speed and cost: ours.** 1.3–2.4 s against 10–25 s a search, 118 MB against 2.2 GB of models, and one store for
+  everything instead of a second index per folder.
+
+## Query expansion and reranking: what we have
+
+- **Query expansion: not needed as a model.** qmd runs a local 1.7B model to rephrase the query because a plain
+  CLI user types one query. Our callers are agents, and an agent is a language model already: it can search again
+  with other words, or with the words an answer would contain. qmd's own MCP tool takes the variants from the
+  agent (`searches` of type `lex`, `vec`, `hyde`) and skips its expansion model. The cheap equivalent for us is a
+  skill rule — "nothing relevant: search again with other words" — not a 1.28 GB download.
+- **Reranking: we have two, neither runs on notes or documents.**
+  - A rule reranker in message search
+    ([`messages-combined.ts`](https://github.com/WireCatLabs/cli-messaging/blob/main/src/services/messages-combined.ts)):
+    how many query words a message covers, how close together and in what order, with exact words above stems,
+    beginnings and typo corrections. No model. Its only caller today, `--discover`, runs it with `rerank: "none"`.
+  - A model reranker, measured only: the cross-encoder
+    [mmarco-mMiniLMv2-L12-H384](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1) on messages
+    ([combined-search.md, "Semantic experiment"](https://github.com/WireCatLabs/cli-messaging/blob/main/docs/dev/combined-search.md)).
+    It improved recall and MRR over strict and legacy search with no false hits, missed the held-out gates
+    (recall 0.438 against 0.45, MRR 0.488 against 0.50) and cost 3–4 s a query. Not shipped.
+  - Note search (memo, drive) only fuses its two lists. A reranker there is the one qmd idea with a measured
+    reason behind it: the paraphrase gap. It would have to run in a long-lived process (the MCP server), as qmd's
+    does, or every search pays the model load.
+
+## Limits
+
+| | memo and drive | qmd |
+|---|---|---|
+| Paraphrases | 2 of 5 in the top 3 | 4 of 5 |
+| Russian word forms | Stemmed | Not stemmed; vectors only |
+| Vectors present | memo's import embeds unless `--no-embed`; drive's sync embeds only with `--embed`, and the first run here searched without vectors while saying `words and meaning` | Built by `qmd embed`; a search without them is keyword-only |
+| Large documents | Up to 200,000 characters of text per file today; 2,000,000 in an open change | No stated cap; 900-token passages |
+| File types | Google Docs, Markdown, text; Sheets, PDF, Office in an open drive-cli change | Markdown and text files on disk; anything else must be exported first |
+| Cost of one search | Process start-up, probably most of the 1.3–2.4 s; not measured apart | Model load per process: 10–25 s; a resident server not measured |
+| Disk and memory | 118 MB model; the store is shared | 2.2 GB of models; 1.1 GB peak while embedding; a 58 MB index for 122 documents |
+| Scope | Notes, documents, chats, mail, meetings in one search | Files in its collections only |
+
+## What to take from qmd
+
+1. **A reranker for note and document search, in the MCP server only.** Measure first on these 50 queries: the
+   cross-encoder we already pinned for messages, and qmd's Qwen3 0.6B.
+2. **EmbeddingGemma for documents.** Re-embed the Drive folder with it and rerun the 25 Drive queries. Documents are
+   few, so its slower embedding may be worth it.
+3. **Variants from the agent, not a model.** A rule in the tg and memo skills.
+4. **Position-aware blending** if a reranker ships: keep the top keyword hits protected from it, as qmd does.
+5. **Vectors by default.** drive's sync embeds unless told not to, and a search without vectors says so.
+
+## Limits of this test
+
+- **Small.** 25 queries per corpus; one query is 0.04 of a share, so a difference under about 0.10 is noise.
+- **One labeller.** The owner's agent wrote the queries and answers before any engine ran; the owner did not
+  check them.
+- **One project, one language.** Russian notes and documents of one rental website project; no English, no code.
+- **Documents only.** Chat messages, the main corpus of tg, were not tested.
+- **Not crossed.** memo against qmd on the Drive documents, and drive against qmd on the notes.
+- **Not equal models.** qmd's vectors are EmbeddingGemma, ours e5-small (see above).
+- **Process per query.** qmd as a resident server (MCP), where models load once, was not measured; nor our MCP
+  servers.
