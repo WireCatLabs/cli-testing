@@ -6,7 +6,7 @@ The owner asked whether keeping every kind of vector (messages, mail, notes, doc
 `embeddings` table makes search slow at large volume, and when a vector belongs in a column of a main table
 instead. cli-messaging searches vectors by reading the ones in scope from SQLite in pages of 5,000 and comparing
 each with the query (`nearestChunks`, `src/store/sqlite/vectors.ts`). The question: how long that takes as the
-number of vectors in scope grows. It fed the [embedding registry plan](https://github.com/WireCatLabs/cli-messaging/blob/docs/backlog-search-followups/docs/dev/embedding-registry-plan.md).
+number of vectors in scope grows. It fed the [embedding registry plan](https://github.com/WireCatLabs/cli-core/blob/main/docs/dev/embedding-registry-plan.md).
 
 ## Setup
 
