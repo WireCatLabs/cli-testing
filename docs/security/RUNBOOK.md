@@ -50,7 +50,7 @@ Read back with the four commands in [`METHOD.md`](METHOD.md#github-settings). A 
 
 ```sh
 RUN=~/Projects/AI/cli-private/security/runs/$(date +%F)
-C=(~/Projects/AI/max-cli ~/Projects/AI/tg-cli ~/Projects/AI/cli-messaging ~/Projects/AI/cli-core)
+C=(~/Projects/AI/max-cli ~/Projects/AI/tg-cli ~/Projects/AI/cli-messaging ~/Projects/AI/cli-base)
 scripts/security/scan "$RUN" "${C[@]}"
 scripts/security/socket "$RUN" "${C[@]}"
 ```
