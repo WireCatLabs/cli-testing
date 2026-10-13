@@ -24,7 +24,7 @@ its temporary fixture available for inspection. No publisher or Google credentia
 
 ## Result
 
-The candidate completed 18 CLI invocations with all assertions passing:
+The candidate completed 19 CLI invocations with all assertions passing:
 
 | Behavior | Result |
 | --- | --- |
@@ -36,7 +36,7 @@ The candidate completed 18 CLI invocations with all assertions passing:
 | Save and read a folder memo/context | ✅ Shared notes |
 | Keep another profile's catalog isolated | ✅ Empty/not-found response |
 | Preview local writes; refuse read-only writes and missing profile | ✅ Guards applied |
-| Retire metadata when selected roots are removed | ✅ Active catalog emptied; existing indexed text retained |
+| Retire metadata when selected roots are removed | ✅ Active catalog and ordinary search emptied; indexed text retained |
 
 The producer's store tests separately cover metadata/content updates, renames/reparenting,
 re-entry, unreadable entries, batch validation, SQL query logic and reader metadata coexistence.

@@ -120,6 +120,7 @@ config.profiles.synthetic.roots = []
 writeFileSync(join(env.DRIVE_CONFIG_DIR, "config.json"), JSON.stringify(config))
 assert.equal(invoke(["catalog", "import"]).retired, 3)
 assert.equal(invoke(["catalog", "list"]).items.length, 0)
+assert.equal(invoke(["search", "budget", "--exact"]).hits.length, 0)
 const kept = await openStore({ path: env.DRIVE_STORE, env })
 assert.equal((await kept.notes.note(note.ref)).text, "Synthetic source body")
 assert.equal((await kept.notes.note(note.ref)).contentHash, "fixture-hash")
