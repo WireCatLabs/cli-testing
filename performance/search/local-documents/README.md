@@ -106,7 +106,8 @@ from our [source review](../TOOL-RESEARCH.md#qmd).
 The vector model is not the difference that matters here. EmbeddingGemma is also one of our models
 (`tg models text download embeddinggemma`, 4-bit ONNX, ~200 MB); on chat it ranked better than e5-small but embeds
 7–15 times slower (1.5–2 passages a second against 10–31, by thread count), so e5-small is the default. In this run qmd's vectors were
-EmbeddingGemma and ours e5-small, so the run does not say which model is better on documents.
+EmbeddingGemma and ours e5-small; [EmbeddingGemma against e5-small](#embeddinggemma-against-e5-small-vectors-only)
+compares the two models on the same passages.
 
 ## Why ours ranks first more often, and where qmd is ahead
 
@@ -210,15 +211,30 @@ queries, not a release.
 ### EmbeddingGemma against e5-small, vectors only
 
 Each model embeds every 1,200-character passage; a document's score is its best passage's cosine; no words, no
-fusion. Notes only: the Drive passages are still embedding with EmbeddingGemma (~1.6 a second, about 63 min).
+fusion. The same 25 queries per corpus as above, the same passages for both models.
 
 | corpus | vectors | hit@1 | hit@3 | hit@10 | MRR@10 | query embedding, warm | passages a second |
 |---|---|---|---|---|---|---|---|
 | notes | e5-small (default) | 0.48 | 0.84 | 0.96 | 0.67 | ~10 ms | 14.9 |
 | notes | EmbeddingGemma | **0.68** | **0.88** | **1.00** | **0.79** | ~95 ms | 1.6 |
+| drive | e5-small (default) | 0.48 | 0.76 | 0.76 | 0.60 | ~10 ms | 11.0 |
+| drive | EmbeddingGemma | **0.80** | **0.84** | **0.96** | **0.85** | ~70 ms | 0.7 |
+| drive | for comparison: drive, words and meaning (e5-small fused with words) | 0.68 | 0.80 | 0.92 | 0.76 | 1.3 s a process | — |
 
-EmbeddingGemma puts the right note first in 17 of 25 against 12, better in every kind but typos, at 9 times the
-embedding time. Whether that survives fusion with the word list was not measured.
+Top 3 by kind on Drive (5 exact, 5 word forms, 4 typos, 5 paraphrases, 6 questions): e5-small 4/5, 4/5, 3/4, 3/5,
+5/6; EmbeddingGemma 4/5, 4/5, 4/4, 4/5, 5/6.
+
+EmbeddingGemma puts the right note first in 17 of 25 against 12, and the right Drive document in 20 of 25 against
+12. On Drive its vectors alone rank better than drive's own search, which fuses e5-small with the word list (0.80
+first against 0.68). Paraphrases in the top 3: 4 of 5 on both corpora, against e5-small's 3 of 5 on Drive.
+
+The price is embedding time: the 6,065 Drive passages took 2 h 28 min with EmbeddingGemma (0.7 a second, with
+other work on the machine; 1.6 a second on the notes alone) against 9 min with e5-small. A query costs ~70–95 ms
+against ~10 ms, warm. Whether the gain survives fusion with the word list was not measured.
+
+Two Drive documents were edited between the embedding and this ranking. Both models embedded the same earlier
+text, so they are compared fairly; the passage count of the edited one is pinned with `PASSAGES_OVERRIDE` in
+`rerank.mjs`. One of the 25 Drive queries names an edited document.
 
 ## Limits
 
@@ -238,8 +254,9 @@ embedding time. Whether that survives fusion with the word list was not measured
 1. **A reranker for note and document search, in the MCP server only, opt-in.** Measured: mmarco lifts notes
    from 0.72 to 0.84 first place and every paraphrase into the top 3, at ~2 s warm; on Drive documents the gain is
    within noise.
-2. **EmbeddingGemma for documents.** Re-embed the Drive folder with it and rerun the 25 Drive queries. Documents are
-   few, so its slower embedding may be worth it.
+2. **EmbeddingGemma for documents.** Measured: on Drive its vectors alone put the right document first in 0.80
+   against e5-small's 0.48, and above drive's fused search (0.68). Embedding is 7–15 times slower — hours, not
+   minutes, for a large folder, once, then only changed documents. Next: the same run fused with the word list.
 3. **Variants from the agent, not a model.** A rule in the tg and memo skills.
 4. **Position-aware blending** if a reranker ships: keep the top keyword hits protected from it, as qmd does.
 5. **Vectors by default.** drive's sync embeds unless told not to, and a search without vectors says so.
@@ -252,6 +269,7 @@ embedding time. Whether that survives fusion with the word list was not measured
 - **One project, one language.** Russian notes and documents of one rental website project; no English, no code.
 - **Documents only.** Chat messages, the main corpus of tg, were not tested.
 - **Not crossed.** memo against qmd on the Drive documents, and drive against qmd on the notes.
-- **Not equal models.** qmd's vectors are EmbeddingGemma, ours e5-small (see above).
+- **Not equal models.** qmd's vectors are EmbeddingGemma, ours e5-small in the main table; the two models are
+  compared on the same passages in their own section.
 - **Process per query.** qmd as a resident server (MCP), where models load once, was not measured; nor our MCP
   servers.
