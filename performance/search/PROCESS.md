@@ -238,6 +238,18 @@ actual response schema or a model-token budget.
 Evidence: [supplement design and results](supplement/README.md),
 [frozen protocol and follow-up decisions](supplement/PROTOCOL.md).
 
+## 9. A field test moved search past message text
+
+On 2026-10-12 the owner used tg, memo and drive on a real project. A word said only in a voice note, and words
+only in a file's name or text, were not found by a plain search. The owner ruled that a plain word looks in
+message text, voice transcripts, file names and file text, ranked in that order. The first build cost ~270 ms per
+search at 100k messages because it read every file name; a word index of file names (store version 5) brought it
+back to 15–40 ms over text alone. The same day we compared our document search with qmd on the owner's notes and
+Drive documents, to see whether a local hybrid engine finds documents we miss. It did not: once drive's documents had
+vectors, which its sync does not compute by default, drive matched qmd's top 3 in 1.3 s against 11–25 s.
+
+Evidence: [search everywhere](everywhere/README.md), [qmd on local documents](local-documents/README.md).
+
 ## What we concluded
 
 The most useful shipped gains came from retrieving the right evidence: question planning,

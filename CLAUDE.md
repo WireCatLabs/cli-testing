@@ -28,6 +28,15 @@ as a development dependency. Start with the one page that covers what you are ab
 6. **Every external tool is pinned** — a version, and a checksum where it is a downloaded binary —
    and each run records the versions it used.
 
+## Where results live
+
+Every measurement of a WireCat CLI — benchmarks, comparisons, quality runs — lives here, under
+`performance/<area>/<topic>/` with the script that produced it, even when the code measured is in another
+repository. Its README opens with **why it was run** (what someone hit, the question, the decision it fed), then
+setup with the exact command, results, what it showed, and what was not measured. Link it from the area's
+README, and from `PROCESS.md` where the area keeps one. A run on the owner's real data publishes totals only;
+queries, names and per-item rows go to `cli-private` (rule 3).
+
 ## Comments
 
 Sparse, and only *why*. No comment restating the line, no banners, no narrating the change.

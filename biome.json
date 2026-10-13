@@ -44,7 +44,7 @@
       }
     },
     {
-      "includes": ["performance/search/message-search/**"],
+      "includes": ["performance/search/message-search/**", "performance/search/everywhere/**"],
       "formatter": {
         "enabled": false
       },
