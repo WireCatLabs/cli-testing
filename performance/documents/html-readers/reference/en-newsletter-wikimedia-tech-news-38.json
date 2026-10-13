@@ -1,0 +1,14 @@
+{
+  "title": "Tech/News/2026/38",
+  "mustAppear": [
+    "The Future Audiences team has started a discussion on English Wikipedia about a proposed new experiment",
+    "The chat platform Discord is releasing a new self-service framework that websites can use to specify how their links should look",
+    "All wikis will be read-only for a few minutes on September 23",
+    "This is planned at 14:00 UTC"
+  ],
+  "mustNotAppear": [
+    "Wikimedia Forum",
+    "Special pages",
+    "Random page"
+  ]
+}

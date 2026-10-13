@@ -1,0 +1,14 @@
+{
+  "title": "Markdown",
+  "mustAppear": [
+    "Markdown was inspired by pre-existing conventions for marking up plain text in email and usenet posts",
+    "causing implementations to both intentionally and accidentally diverge from the original version",
+    "The initial description of Markdown",
+    "contained ambiguities and raised unanswered questions"
+  ],
+  "mustNotAppear": [
+    "Learn to edit",
+    "Community portal",
+    "Random article"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Tech/News/2026/36",
+  "mustAppear": [
+    "A new format for the Community Wishlist is open for feedback",
+    "This consultation is open for two weeks",
+    "removes the default “Saved” reading list, renames reading lists to “Collections,”",
+    "The ISBN lookup tools for generating citations were recently not working because of external service problems",
+    "The domain of URLs for thumbnails is changing from upload.wikimedia.org to thumb.wikimedia.org"
+  ],
+  "mustNotAppear": [
+    "Wikimedia Forum",
+    "Special pages",
+    "Random page"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Go Slices: usage and internals",
+  "mustAppear": [
+    "A slice is a descriptor of an array segment",
+    "It consists of a pointer to the array, the length of the segment, and its capacity",
+    "The length is the number of elements referred to by the slice",
+    "as long as the slice is kept around the garbage collector can’t release the array"
+  ],
+  "mustNotAppear": [
+    "Skip to Main Content",
+    "Opens in new window",
+    "go.dev uses cookies from Google"
+  ]
+}

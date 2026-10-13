@@ -8,5 +8,6 @@
 [extend]
 useDefault = true
 
+# Saved public pages: Wikipedia inline config hashes look like keys to generic-api-key.
 [allowlist]
-paths = ['''pnpm-lock\.yaml''']
+paths = ['''pnpm-lock\.yaml''', '''performance/documents/html-readers/fixtures/''']

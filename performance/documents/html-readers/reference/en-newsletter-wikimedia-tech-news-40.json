@@ -1,0 +1,14 @@
+{
+  "title": "Tech/News/2026/40",
+  "mustAppear": [
+    "Users of default skins on desktop and mobile web (Vector 2022 and Minerva respectively) will now be informed",
+    "Logged-out Wikipedia users on mobile web will begin to see a bookmark button for saving articles to their reading lists",
+    "New magic words {{CATEGORYSORT:TIMESTAMP}} and {{CATEGORYSORT:RTIMESTAMP}} are now available for use",
+    "On September 23, a power loss briefly affected all wikis"
+  ],
+  "mustNotAppear": [
+    "Wikimedia Forum",
+    "Special pages",
+    "Random page"
+  ]
+}

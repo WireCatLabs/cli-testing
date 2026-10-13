@@ -1,0 +1,14 @@
+{
+  "title": "What is Ownership?",
+  "mustAppear": [
+    "Because ownership is a new concept for many programmers, it does take some time to get used to",
+    "you’ll have a solid foundation for understanding the features that make Rust unique",
+    "Returning values can also transfer ownership",
+    "A String is made up of three parts"
+  ],
+  "mustNotAppear": [
+    "Press S or / to search in the book",
+    "Press Esc to hide this help",
+    "Auto Light Rust Coal Navy Ayu"
+  ]
+}
