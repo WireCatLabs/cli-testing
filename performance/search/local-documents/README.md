@@ -42,10 +42,11 @@ first place, 1/2 for second, …); time per query, one process each. One query i
 | notes | qmd search (keywords) | 0.16 | 0.16 | 0.16 | 0.16 | 0.26 s | 0.30 s |
 | notes | qmd vsearch (vectors) | 0.56 | 0.64 | 0.76 | 0.63 | 9.9 s | 19 s |
 | notes | qmd query (hybrid) | 0.48 | **0.96** | **0.96** | 0.70 | 25 s | 28 s |
-| drive | **drive** | 0.36 | 0.48 | 0.48 | 0.41 | 2.4 s | 2.5 s |
+| drive | drive, words only (no vectors) | 0.36 | 0.48 | 0.48 | 0.41 | 2.4 s | 2.5 s |
+| drive | **drive, words and meaning** | **0.68** | **0.80** | **0.92** | **0.76** | 1.3 s | 1.5 s |
 | drive | qmd search (keywords) | 0.28 | 0.32 | 0.32 | 0.30 | 0.25 s | 0.27 s |
-| drive | qmd vsearch (vectors) | **0.56** | 0.76 | 0.80 | **0.66** | 11 s | 24 s |
-| drive | qmd query (hybrid) | 0.48 | **0.80** | **0.88** | 0.65 | 25 s | 27 s |
+| drive | qmd vsearch (vectors) | 0.56 | 0.76 | 0.80 | 0.66 | 11 s | 24 s |
+| drive | qmd query (hybrid) | 0.48 | **0.80** | 0.88 | 0.65 | 25 s | 27 s |
 
 Top 3, by kind of query (5 exact, 5 word forms, 4 typos, 5 paraphrases, 6 questions):
 
@@ -53,7 +54,8 @@ Top 3, by kind of query (5 exact, 5 word forms, 4 typos, 5 paraphrases, 6 questi
 |---|---|---|---|---|---|---|
 | notes | memo | 5/5 | 5/5 | 3/4 | 2/5 | 6/6 |
 | notes | qmd query | 5/5 | 5/5 | 4/4 | 4/5 | 6/6 |
-| drive | drive | 5/5 | 5/5 | 1/4 | 0/5 | 1/6 |
+| drive | drive, words only | 5/5 | 5/5 | 1/4 | 0/5 | 1/6 |
+| drive | drive, words and meaning | 5/5 | 5/5 | 4/4 | 2/5 | 4/6 |
 | drive | qmd vsearch | 3/5 | 5/5 | 3/4 | 4/5 | 4/6 |
 | drive | qmd query | 4/5 | 5/5 | 3/4 | 4/5 | 4/6 |
 
@@ -63,19 +65,22 @@ download for this; their index lives in the shared store.
 
 ## What it showed
 
-- **drive is the weak one.** It finds a document by its exact words and word forms, and almost never by a
-  paraphrase, a typo or a question (2 of 15 in the top 3). qmd's vectors find 11 of those 15. memo, on the same
-  kind of documents, already finds 11 of 15. memo reports its hits as found by `words` and `meaning`; drive's only
-  by `words`.
-  The cheapest gain is to give drive's documents memo's search, not to adopt qmd.
+- **drive was first measured without its vectors.** Its documents had been synced without `--embed`, so it searched
+  by words alone while answering `by: "words and meaning"`. After `drive <profile> sync --embed` (2,684 passages,
+  3 min 22 s with e5-small on this machine) it is the best engine on these documents: right document first 0.68
+  against qmd's 0.56, top 3 0.80, the same as qmd's hybrid, in 1.3 s against 11–25 s. On paraphrases, typos and
+  questions it reaches 10 of 15 in the top 3; qmd's vectors 11 of 15.
 - **memo puts the right note first more often than qmd** (0.72 against 0.48), and qmd's hybrid more often has it
-  somewhere in the top 3 (0.96 against 0.84). The gap is paraphrases: 2 of 5 for memo, 4 of 5 for qmd.
+  somewhere in the top 3 (0.96 against 0.84). The gap is paraphrases: 2 of 5 for memo, 4 of 5 for qmd. drive shows
+  the same weak spot (2 of 5).
 - **qmd's keyword search alone is poor on Russian** (0.16 on notes): word forms, typos and questions miss,
   probably because it does not stem Russian. Its quality comes from the vectors and the reranker.
 - **qmd is too slow to run once per query:** 10–25 s a search, because each process loads its models. An agent
   calls a CLI once per question. A resident qmd (its MCP server keeps models loaded) was not measured.
-- **memo and drive take 2.4 s a search.** Probably most of it is start-up; not measured apart. For a one-line
-  query this is worth a look.
+- **Conclusion:** keep memo and drive; do not adopt qmd. Make sure documents get vectors (drive's sync does not
+  embed by default) and say so when a search ran without them.
+- **memo's and drive's time per search** was 2.4 s in the first run and 1.3 s for drive in the rerun, with less
+  other work on the machine. Most of it is probably start-up; not measured apart.
 
 ## Not measured
 
