@@ -1,0 +1,13 @@
+{
+  "title": "Kubernetes v1.30: Uwubernetes",
+  "mustAppear": [
+    "Pod scheduling readiness graduates to stable this release, after being promoted to beta in Kubernetes v1.27",
+    "This now-stable feature lets Kubernetes avoid trying to schedule a Pod that has been defined",
+    "The simplest way to get involved with Kubernetes is by joining one of the many Special Interest Groups"
+  ],
+  "mustNotAppear": [
+    "Release Information",
+    "Documentation Distributed under CC BY 4.0",
+    "Join us for four days of incredible opportunities"
+  ]
+}

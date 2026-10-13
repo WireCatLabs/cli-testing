@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="9. Классы" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/classes.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Классы предоставляют средства для объединения данных с функциональностью. При создании нового класса создается новый тип объекта, что позволяет создавать новые экземпляры этого типа. Каждый экземпл..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.python.org/3.15/ru/_images/social_previews/summary_tutorial_classes_56d1019f.png" />
+<meta property="og:image:alt" content="Классы предоставляют средства для объединения данных с функциональностью. При создании нового класса создается новый тип объекта, что позволяет создавать новые экземпляры этого типа. Каждый экземпл..." />
+<meta name="description" content="Классы предоставляют средства для объединения данных с функциональностью. При создании нового класса создается новый тип объекта, что позволяет создавать новые экземпляры этого типа. Каждый экземпл..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#3776ab">
+
+    <title>9. Классы &#8212; документация Python 3.15.0</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    
+    <script src="../_static/documentation_options.js?v=0452f1b2"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=cd1d70c9"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Поиск в документе «документация Python 3.15.0»"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Об этих документах" href="../about.html" />
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="copyright" title="Авторское право" href="../copyright.html" />
+    <link rel="next" title="10. Краткий обзор стандартной библиотеки" href="stdlib.html" />
+    <link rel="prev" title="8. Ошибки и исключения" href="errors.html" />
+    
+      
+      <script defer file-types="bz2,epub,zip" data-domain="docs.python.org" src="https://analytics.python.org/js/script.file-downloads.outbound-links.js"></script>
+      
+      <link rel="canonical" href="https://docs.python.org/3/tutorial/classes.html">
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Меню">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Быстрый поиск" aria-label="Быстрый поиск" type="search" name="q">
+                <input type="submit" value="Поиск">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Тема
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Авто</option>
+        <option value="light">Свет</option>
+        <option value="dark">Темный</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">Оглавление</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">9. Классы</a><ul>
+<li><a class="reference internal" href="#a-word-about-names-and-objects">9.1. Несколько слов об именах и объектах</a></li>
+<li><a class="reference internal" href="#python-scopes-and-namespaces">9.2. Области видимости и пространства имён в Python</a><ul>
+<li><a class="reference internal" href="#scopes-and-namespaces-example">9.2.1. Пример областей видимости и пространств имён</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#a-first-look-at-classes">9.3. Первый взгляд на классы</a><ul>
+<li><a class="reference internal" href="#class-definition-syntax">9.3.1. Синтаксис определения класса</a></li>
+<li><a class="reference internal" href="#class-objects">9.3.2. Объекты классов</a></li>
+<li><a class="reference internal" href="#instance-objects">9.3.3. Объекты экземпляров</a></li>
+<li><a class="reference internal" href="#method-objects">9.3.4. Объекта методов</a></li>
+<li><a class="reference internal" href="#class-and-instance-variables">9.3.5. Переменные класса и экземпляра</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#random-remarks">9.4. Полезные замечания</a></li>
+<li><a class="reference internal" href="#inheritance">9.5. Наследование</a><ul>
+<li><a class="reference internal" href="#multiple-inheritance">9.5.1. Множественное наследование</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#private-variables">9.6. Закрытые переменные</a></li>
+<li><a class="reference internal" href="#odds-and-ends">9.7. Разное и полезное</a></li>
+<li><a class="reference internal" href="#iterators">9.8. Итераторы</a></li>
+<li><a class="reference internal" href="#generators">9.9. Генераторы</a></li>
+<li><a class="reference internal" href="#generator-expressions">9.10. Генераторные выражения</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Предыдущий раздел</h4>
+    <p class="topless"><a href="errors.html"
+                          title="предыдущая глава"><span class="section-number">8. </span>Ошибки и исключения</a></p>
+  </div>
+  <div>
+    <h4>Следующий раздел</h4>
+    <p class="topless"><a href="stdlib.html"
+                          title="следующая глава"><span class="section-number">10. </span>Краткий обзор стандартной библиотеки</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/classes.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Эта страница</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Сообщить об ошибке</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Улучшить эту страницу</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.15/Doc/tutorial/classes.rst?plain=1"
+            rel="nofollow">Показать исходный код
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-ru/blob/3.15/tutorial/classes.po?plain=1"
+           rel="nofollow">Показать исходный код перевода</a>
+      </li>
+      
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Навигация</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Алфавитный указатель"
+             accesskey="I">указатель</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Содержание модулей Python"
+             >модули</a> |</li>
+        <li class="right" >
+          <a href="stdlib.html" title="10. Краткий обзор стандартной библиотеки"
+             accesskey="N">вперёд</a> |</li>
+        <li class="right" >
+          <a href="errors.html" title="8. Ошибки и исключения"
+             accesskey="P">назад</a> |</li>
+
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.15.0 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Руководство по Python</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">9. </span>Классы</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Быстрый поиск" aria-label="Быстрый поиск" type="search" name="q" id="search-box">
+          <input type="submit" value="Поиск">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Тема
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Авто</option>
+        <option value="light">Свет</option>
+        <option value="dark">Темный</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="classes">
+<span id="tut-classes"></span><h1 class="translated"><span class="section-number">9. </span>Классы<a class="headerlink" href="#classes" title="Ссылка на этот заголовок">¶</a></h1>
+<p class="translated">Классы предоставляют средства для объединения данных с функциональностью. При создании нового класса создается новый <em>тип</em> объекта, что позволяет создавать новые <em>экземпляры</em> этого типа. Каждый экземпляр класса может иметь связанные с ним атрибуты, сохраняющие его состояние. Экземпляры класса также могут иметь методы (объявленные в классе), изменяющие его состояние.</p>
+<p class="translated">По сравнению с другими языками программирования, механизм классов в Python добавляет классы с минимумом нового синтаксиса и семантики. Это смесь механизмов классов из C++ и Modula-3. Классы в Python предоставляют полный набор стандартных возможностей Объектно-Ориентированного Программирования: механизм наследования  поддерживает множественные базовые классы, производные классы могут переопределять любые методы своего базового класса или классов, и методы могут вызывать методы базовых классов с такими же именами. Объекты могут содержать данные произвольного объема и вида. Как и модули, классы обладают динамической природой Python: они создаются во время выполнения и могут быть изменены позже после создания.</p>
+<p class="translated">В терминологии C++, обычно члены класса (включая данные) являются <em>публичными</em> (об исключениях читайте ниже <a class="reference internal" href="#tut-private"><span class="std std-ref">Закрытые переменные</span></a>), а все функции-члены — <em>виртуальными</em>. Как и в Modula-3, здесь нет сокращений для доступа к элементам объекта из его методов: функция-метод объявляется с явным первым аргументом, представляющим объект, который неявно подставляется при вызове. Как и в Smalltalk, сами классы являются объектами. Это обеспечивает семантику импорта и переименования. В отличие от C++ и Modula-3, встроенные типы могут использоваться как базовые классы для расширения пользователем. Так же, как и в C++, большинство встроенных операторов со специальным синтаксисом (арифметические операторы, индексирование и т. д.) могут быть переопределены для экземпляров класса.</p>
+<p class="translated">(Не имея общепринятой терминологии, чтобы говорить о классах, я буду время от времени использовать термины Smalltalk и C++. Я бы использовал терминологию Modula-3, поскольку его объектно-ориентированная семантика ближе к Python, чем C++, но я думаю, что мало читателей знакомы с этим языком.)</p>
+<section id="a-word-about-names-and-objects">
+<span id="tut-object"></span><h2 class="translated"><span class="section-number">9.1. </span>Несколько слов об именах и объектах<a class="headerlink" href="#a-word-about-names-and-objects" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">Объекты имеют индивидуальность, и множество имен (в разных областях видимости) могут быть связаны с одним объектом. В других языках это называется псевдонимами. Обычно это не принимается во внимание при первом знакомстве с Python, и это можно спокойно игнорировать при работе с неизменяемыми основными типами (числами, строками, кортежами). Однако псевдонимы могут иметь неожиданный эффект на семантику кода Python, включающего изменяемые объекты, такие как списки, словари и большинство других типов. Обычно это используется на пользу программы, поскольку псевдонимы в некоторых отношениях ведут себя как указатели. Например, передача объекта в функцию дешёвая, поскольку реализация передаёт только указатель на него. Если функция изменяет объект, переданный ей в качестве аргумента, вызывающий код увидит это изменение — это устраняет необходимость в двух различных механизмах передачи аргументов, как в Pascal.</p>
+</section>
+<section id="python-scopes-and-namespaces">
+<span id="tut-scopes"></span><h2 class="translated"><span class="section-number">9.2. </span>Области видимости и пространства имён в Python<a class="headerlink" href="#python-scopes-and-namespaces" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">Прежде чем представить классы, я должен сначала рассказать кое-что о правилах области видимости в Python. Определения классов проделывают некоторые хитрые трюки с пространством имён, и вы должны знать, как работают области видимости и пространства имён, чтобы полностью понимать, что происходит. Кстати, эти знания полезны для любого продвинутого программиста на Python.</p>
+<p class="translated">Давайте начнём с некоторых определений.</p>
+<p class="translated"><em>Пространство имен</em> — это отображение имён на объекты. Большинство пространств имён в настоящее время реализованы как словари Python, но обычно это незаметно (за исключением производительности) и может измениться в будущем. Примерами пространств имён являются: набор встроенных имён (включая функции, такие как <a class="reference internal" href="../builtins/functions.html#abs" title="abs"><code class="xref py py-func docutils literal notranslate"><span class="pre">abs()</span></code></a>, и встроенные имена исключений); глобальные имена в модуле; локальные имена в вызове функции. В некотором смысле, набор атрибутов объекта тоже образует пространство имён. Важная деталь, которую нужно знать о пространствах имён — это то, что нет совершенно никакой связи между именами из разных пространств имён; например, в двух разных модулях может быть определена функция <code class="docutils literal notranslate"><span class="pre">maximize</span></code> без какой-либо путаницы — пользователи модуля должны использовать  имя модуля в качестве префикса при вызове функции.</p>
+<p class="translated">Кстати, я использую слово <em>атрибут</em> для любого имени, следующего после точки — например, в выражении <code class="docutils literal notranslate"><span class="pre">z.real</span></code>, <code class="docutils literal notranslate"><span class="pre">real</span></code> — это атрибут объекта <code class="docutils literal notranslate"><span class="pre">z</span></code>. Строго говоря, обращения к именам в модулях являются обращением к атрибутам: в выражении <code class="docutils literal notranslate"><span class="pre">modname.funcname</span></code>, <code class="docutils literal notranslate"><span class="pre">modname</span></code> является объектом модуля, и <code class="docutils literal notranslate"><span class="pre">funcname</span></code> является его атрибутом. В этом случае есть прямое соответствие между атрибутами модуля и глобальными именами, объявленными в модуле: они используют одно и то же пространство имён! <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p class="translated">Атрибуты могут быть доступными только для чтения или изменяемыми. В последнем случае возможно присваивание атрибутам. Атрибуты модуля изменяемы: вы можете записать <code class="docutils literal notranslate"><span class="pre">modname.the_answer</span> <span class="pre">=</span> <span class="pre">42</span></code>. Изменяемые атрибуты также могут быть удалены с помощью инструкции <a class="reference internal" href="../reference/simple_stmts.html#del"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">del</span></code></a>. Например, <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">modname.the_answer</span></code> удалит атрибут <code class="xref py py-attr docutils literal notranslate"><span class="pre">the_answer</span></code> у объекта, названного <code class="docutils literal notranslate"><span class="pre">modname</span></code>.</p>
+<p class="translated">Пространства имён создаются в разное время и имеют разные времена жизни. Пространство имён, содержащее встроенные имена, создаётся при запуске интерпретатора Python и никогда не удаляется. Глобальное пространство имён модуля создаётся при чтении определения модуля; обычно оно существует до завершения работы интерпретатора. Инструкции, исполняемые на верхнем уровне работы интерпретатора, считываемые из файла скрипта или интерактивно, считаются частью модуля <a class="reference internal" href="../library/__main__.html#module-__main__" title="__main__: The environment where top-level code is run. Covers command-line interfaces, import-time behavior, and ``__name__ == '__main__'``."><code class="xref py py-mod docutils literal notranslate"><span class="pre">__main__</span></code></a>, поэтому относятся к собственному глобальному пространству имён. (Встроенные имена также существуют в модуле; он называется <a class="reference internal" href="../library/builtins.html#module-builtins" title="builtins: The module that provides the built-in namespace."><code class="xref py py-mod docutils literal notranslate"><span class="pre">builtins</span></code></a>.)</p>
+<p class="translated">Локальное пространство имён функции создаётся в момент вызова функции и удаляется, когда функция возвращает значение или выбрасывает не обрабатываемое внутри неё исключение. (На самом деле, забывание было бы лучшим способом описать то, что происходит.) Разумеется, каждый рекурсивный вызов имеет своё собственное пространство имён.</p>
+<p class="translated"><em>Область видимости</em> — это текстовая область программы Python, в которой пространство имён доступно напрямую. «Доступно напрямую» здесь означает, что обращение к имени без префикса пытается найти его в этом пространстве имён.</p>
+<p class="translated">Хотя области видимости определяются статически, но используются они динамически. В любой момент исполнения программы у неё есть 3 или 4 вложенные области видимости, чьи пространства имён доступны напрямую:</p>
+<ul class="simple">
+<li><p class="translated">самая внутренняя область видимости, которая просматривается в первую очередь, содержит локальные имена</p></li>
+<li><p class="translated">области видимости любых внешних функций, которые просматриваются, начиная с ближайшей, содержат не локальные, но и не глобальные имена</p></li>
+<li><p class="translated">предпоследняя область видимости включает глобальные имена текущего модуля</p></li>
+<li><p class="translated">самая внешняя областью видимости (просматривается последней) является пространством имён, содержащим встроенные имена</p></li>
+</ul>
+<p class="translated">Если имя объявлено глобальным, то все обращения и присваивания к нему передаются непосредственно в предпоследнюю область видимости, содержащую глобальные имена модуля. Для переназначения переменных из внешних областей видимости, можно использовать инструкцию <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a>. Без такого объявления, эти переменные доступны только для чтения (попытка записи в такую ​​переменную просто создаст <em>новую</em> локальную переменную во внутренней области видимости, оставив внешнюю переменную с таким же именем неизменной).</p>
+<p class="translated">Как правило, локальная область видимости ссылается на локальные имена (буквально) текущей функции. За пределами функции локальная область видимости ссылается на то же пространство имён, что и глобальная область видимости: пространство имён модуля. Определение класса помещает ещё одно пространство имён в локальную область видимости.</p>
+<p class="translated">Важно понимать, что области видимости определяются буквально: глобальная область видимости функции определяется модулем, в котором эта функция определена, независимо от того, откуда или под каким именем она вызывается. С другой стороны, фактический поиск имён выполняется динамически, во время выполнения кода. Однако язык постепенно движется в сторону статического разрешения имён на «этапе компиляции», поэтому не стоит полагаться на динамическое разрешение! (На самом деле локальные переменные уже определяются статически.)</p>
+<p class="translated">Особой причудой Python является то, что если не задействованы инструкции <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> или <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a>, то присваивание имён направлены в самую глубокую область видимости. Присваивание не копирует данные — оно лишь связывает имена с объектами. То же верно и для удаления: инструкция <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">x</span></code> удаляет привязку <code class="docutils literal notranslate"><span class="pre">x</span></code> из пространства имён локальной области видимости. Фактически, все операции, которые вводят новые имена, используют локальную область видимости: в частности, инструкция <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> и определение функций связывают имя модуля или функции в локальной области видимости.</p>
+<p class="translated">Инструкция <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> указывает, что конкретные переменные находятся в глобальной области видимости и должны переназначаться там. Аналогично, инструкция <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> объявляет, что конкретные переменные находятся во внешней области видимости и должны переназначаться в ней.</p>
+<section id="scopes-and-namespaces-example">
+<span id="tut-scopeexample"></span><h3 class="translated"><span class="section-number">9.2.1. </span>Пример областей видимости и пространств имён<a class="headerlink" href="#scopes-and-namespaces-example" title="Ссылка на этот заголовок">¶</a></h3>
+<p class="translated">Вот демонстрация того, как обращаться к разным областям видимости и пространствам имён, и как <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> и <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> влияют на привязку переменных:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scope_test</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_local</span><span class="p">():</span>
+        <span class="n">spam</span> <span class="o">=</span> <span class="s2">"локальный спам"</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_nonlocal</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">spam</span>
+        <span class="n">spam</span> <span class="o">=</span> <span class="s2">"нелокальный спам"</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_global</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">spam</span>
+        <span class="n">spam</span> <span class="o">=</span> <span class="s2">"глобальный спам"</span>
+
+    <span class="n">spam</span> <span class="o">=</span> <span class="s2">"тестовый спам"</span>
+    <span class="n">do_local</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"После локального присваивания:"</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+    <span class="n">do_nonlocal</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"После нелокального присваивания:"</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+    <span class="n">do_global</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"После глобального присваивания:"</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+
+<span class="n">scope_test</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"В глобальной области видимости:"</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="translated">При выполнении кода будет выведено следующее:</p>
+<div class="translated highlight-none notranslate"><div class="highlight"><pre><span></span>После локального присваивания: тестовый спам
+После нелокального присваивания: нелокальный спам
+После глобального присваивания: нелокальный спам
+В глобальной области видимости: глобальный спам
+</pre></div>
+</div>
+<p class="translated">Заметьте, как <em>локальное</em> присваивание (используемое по умолчанию) не изменяет значение переменной <em>spam</em> в <em>scope_test</em>. С другой стороны, присваивание с использованием ключевого слова <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> изменило значение <em>spam</em> в <em>scope test</em>, и присваивание с использованием <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> изменяет переменные на уровне модуля.</p>
+<p class="translated">Также можно увидеть, что до присваивания <em>spam</em> с использованием <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> не существовало привязки этого имени в области видимости модуля.</p>
+</section>
+</section>
+<section id="a-first-look-at-classes">
+<span id="tut-firstclasses"></span><h2 class="translated"><span class="section-number">9.3. </span>Первый взгляд на классы<a class="headerlink" href="#a-first-look-at-classes" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">Классы привносят немного нового синтаксиса, три новых типа объектов и новую семантику.</p>
+<section id="class-definition-syntax">
+<span id="tut-classdefinition"></span><h3 class="translated"><span class="section-number">9.3.1. </span>Синтаксис определения класса<a class="headerlink" href="#class-definition-syntax" title="Ссылка на этот заголовок">¶</a></h3>
+<p class="translated">Самая простая форма определения класса выглядит так:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ClassName</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p class="translated">Определение класса, как и определение функции (инструкция <a class="reference internal" href="../reference/compound_stmts.html#def"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">def</span></code></a>), должно быть выполнено перед тем, как оно будет иметь эффект. (Можно поместить определение класса в ветку инструкции <a class="reference internal" href="../reference/compound_stmts.html#if"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code></a> или внутри функции.)</p>
+<p class="translated">На практике, чаще всего, инструкции внутри определения класса — это определения функций, но другие инструкции там тоже возможны и бывают полезны — мы вернёмся к этому позже. Определения функций внутри класса имеют своеобразную форму списка аргументов, продиктованную соглашениями о вызовах методов — опять же, это будет объяснено позже.</p>
+<p class="translated">При входе в определение класса создаётся новое пространство имён, и оно используется в качестве локальной области видимости. Поэтому все операции присваивания к локальным переменнам будут направлены в это новое пространство имён. В частности, определения функций привяжут функции к их именам именно в этом пространстве имён.</p>
+<p class="translated">Когда определение класса заканчивается (обычным завершением блока), создается <em>объект класса</em>. По сути, это обёртка вокруг содержимого пространства имён, созданного определением класса. Мы узнаем больше об объектах классов в следующем разделе. Исходная локальная область видимости (которая действовала непосредственно перед входом в определение класса) восстанавливается, и объект класса привязывается здесь к имени, указанному в заголовке определения класса (<code class="xref py py-class docutils literal notranslate"><span class="pre">ClassName</span></code> в примере).</p>
+</section>
+<section id="class-objects">
+<span id="tut-classobjects"></span><h3 class="translated"><span class="section-number">9.3.2. </span>Объекты классов<a class="headerlink" href="#class-objects" title="Ссылка на этот заголовок">¶</a></h3>
+<p class="translated">Объекты классов поддерживают два вида операций: обращение к атрибутам и создание экземпляров.</p>
+<p class="translated"><em>Обращение к атрибуту</em> использует стандартный в Python синтаксис для получения доступа к любым атрибутам: <code class="docutils literal notranslate"><span class="pre">obj.name</span></code>. Допустимыми именами атрибутов считаются те имена, которые находились в пространстве имён класса во время его создания. Таким образом, если определение класса выглядит так:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A simple example class"""</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">12345</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'hello world'</span>
+</pre></div>
+</div>
+<p class="translated">то <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> и <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> являются корректными обращениями к атрибутам, возвращающими соответственно целое число и объект функции. Атрибутам класса также можно присваивать, поэтому вы можете изменить значение <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code>. Также существует атрибут <a class="reference internal" href="../reference/datamodel.html#type.__doc__" title="type.__doc__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__doc__</span></code></a>, возвращающий строку документации, принадлежащую классу: <code class="docutils literal notranslate"><span class="pre">&quot;A</span> <span class="pre">simple</span> <span class="pre">example</span> <span class="pre">class&quot;</span></code>.</p>
+<p class="translated"><em>Создание экземпляра</em> класса использует синтаксис вызова функции. Достаточно представить, что объект класса — это функция без параметров, которая возвращает новый экземпляр этого класса. Например (используя определённый выше класс):</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="translated">создаёт новый <em>экземпляр</em> класса и сохраняет этот объект в локальную переменную <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p class="translated">Операция создания экземпляра («вызов» объекта класса) создаёт пустой объект. Многим классам нравится создавать объекты, инициализированные определённым начальным состоянием. Поэтому класс может определить специальный метод с именем <a class="reference internal" href="../reference/datamodel.html#object.__init__" title="object.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>, например:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p class="translated">Когда класс определяет метод <a class="reference internal" href="../reference/datamodel.html#object.__init__" title="object.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>, создание экземпляра класса автоматически вызывает <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> для вновь созданного экземпляра класса. Итак, в этом примере новый инициализированный экземпляр можно получить следующим образом:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="translated">Конечно, метод <a class="reference internal" href="../reference/datamodel.html#object.__init__" title="object.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a> может иметь аргументы для большей гибкости. В этом случае аргументы, переданные оператору создания экземпляра класса, передаются в <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code>. Например,</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">Complex</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">realpart</span><span class="p">,</span> <span class="n">imagpart</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">realpart</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="n">imagpart</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Complex</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">i</span>
+<span class="go">(3.0, -4.5)</span>
+</pre></div>
+</div>
+</section>
+<section id="instance-objects">
+<span id="tut-instanceobjects"></span><h3 class="translated"><span class="section-number">9.3.3. </span>Объекты экземпляров<a class="headerlink" href="#instance-objects" title="Ссылка на этот заголовок">¶</a></h3>
+<p class="translated">Что мы можем делать с объектами-экземплярами? Единственная операция, которую понимают экземпляры — обращение к атрибутам. Есть два вида допустимых имён атрибутов: данные и методы.</p>
+<p class="translated"><em>Атрибуты-данные</em> соответствуют «переменным экземпляра» в Smalltalk и «членам данных» в C++. Атрибуты данных не нужно объявлять; как и локальные переменные, они возникают, когда им впервые присваиваются значения. Например, если <code class="docutils literal notranslate"><span class="pre">x</span></code> является экземпляром <code class="xref py py-class docutils literal notranslate"><span class="pre">MyClass</span></code>, созданным выше, следующий фрагмент кода напечатает значение <code class="docutils literal notranslate"><span class="pre">16</span></code>, не оставив после себя никаких следов:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">counter</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">x</span><span class="o">.</span><span class="n">counter</span>
+</pre></div>
+</div>
+<p class="translated">Другой вид атрибута экземпляра — <em>метод</em>. Метод — это функция, которая «принадлежит» объекту.</p>
+<p class="translated" id="index-0">Методы, доступные у объекту-экземпляру, зависят от его класса. По определению, все атрибуты класса, которые являются функциями, создают соответствующие методы у его экземпляров. В нашем примере <code class="docutils literal notranslate"><span class="pre">x.f</span></code> — ссылка на метод, потому что <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> — это функция; в отличие от <code class="docutils literal notranslate"><span class="pre">x.i</span></code>, потому что <code class="docutils literal notranslate"><span class="pre">MyClass.i</span></code> не является функцией. Но <code class="docutils literal notranslate"><span class="pre">x.f</span></code> — не то же самое, что <code class="docutils literal notranslate"><span class="pre">MyClass.f</span></code> — это <em>объект метода</em>, а не объект функции.</p>
+</section>
+<section id="method-objects">
+<span id="tut-methodobjects"></span><h3 class="translated"><span class="section-number">9.3.4. </span>Объекта методов<a class="headerlink" href="#method-objects" title="Ссылка на этот заголовок">¶</a></h3>
+<p class="translated">Обычно метод вызывается сразу после обращения к нему:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">f</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="translated">Если <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">MyClass()</span></code>, как указано выше, этот вызов вернёт строку <code class="docutils literal notranslate"><span class="pre">'hello</span> <span class="pre">world'</span></code>. Однако вызывать метод сразу необязательно: <code class="docutils literal notranslate"><span class="pre">x.f</span></code> — это объект-метод, его можно сохранить и вызвать позже. Например:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">xf</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">f</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">xf</span><span class="p">())</span>
+</pre></div>
+</div>
+<p class="translated">будет продолжать печатать <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code> до конца времён.</p>
+<p class="translated">Что же именно происходит при вызове метода? Вы могли заметить, что <code class="docutils literal notranslate"><span class="pre">x.f()</span></code> был вызван без аргумента, хотя в определении функции <code class="xref py py-meth docutils literal notranslate"><span class="pre">f()</span></code> указан аргумент. Куда же он подевался? Разумеется, Python должен выбросить исключение, если вызвать функцию, которой нужен аргумент, без него — даже если аргумент на самом деле не используется…</p>
+<p class="translated">На самом деле, вы, вероятно, уже догадались: особенность методов в том, что объект-экземпляр передаётся в функцию как первый аргумент. В нашем примере вызов <code class="docutils literal notranslate"><span class="pre">x.f()</span></code> полностью совпадает с <code class="docutils literal notranslate"><span class="pre">MyClass.f(x)</span></code>. Вообще, вызов метода со списком из <em>n</em> аргументов эквивалентен вызову соответствующей функции со списком аргументов, полученным вставкой объекта-экземпляра метода перед первым аргументом.</p>
+<p class="translated">В целом методы работают следующим образом. Когда у экземпляра запрашивается атрибут, который не является данными, происходит поиск в классе экземпляра. Если найденный атрибут является функцией, то ссылка на объект-экземпляр и функция упаковываются в объект-метод. Когда объект-метод вызывается с некоторым списком аргументов, создаётся новый список из объекта-экземпляра и этих аргументов, и затем функция вызывается с этим новым списком аргументов.</p>
+</section>
+<section id="class-and-instance-variables">
+<span id="tut-class-and-instance-variables"></span><h3 class="translated"><span class="section-number">9.3.5. </span>Переменные класса и экземпляра<a class="headerlink" href="#class-and-instance-variables" title="Ссылка на этот заголовок">¶</a></h3>
+<p class="translated">Вообще говоря, переменные экземпляра предназначены для данных, уникальных для каждого экземпляра, а переменные класса — для атрибутов и методов, общих для всех экземпляров класса:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">:</span>
+
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">'собачий'</span>         <span class="c1"># переменная класса, общая для всех экземпляров</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>    <span class="c1"># переменная экземпляра, уникальная для каждого объекта</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">'Фидо'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">'Бадди'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">kind</span>                  <span class="c1"># общее для всех собак</span>
+<span class="s1">'собачий'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">kind</span>                  <span class="c1"># общее для всех собак</span>
+<span class="s1">'собачий'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">name</span>                  <span class="c1"># уникально для d</span>
+<span class="s1">'Фидо'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">name</span>                  <span class="c1"># уникально для e</span>
+<span class="s1">'Бадди'</span>
+</pre></div>
+</div>
+<p class="translated">Как обсуждалось в <a class="reference internal" href="#tut-object"><span class="std std-ref">Несколько слов об именах и объектах</span></a>, разделяемые данные могут привести к неожиданным последствиям, если они являются <a class="reference internal" href="../glossary.html#term-mutable"><span class="xref std std-term">изменяемыми</span></a> объектами, как списки и словари. Например, список <em>tricks</em> в следующем коде не следует использовать как переменную класса, так как в противном случае один и тот же список будет разделяться всеми экземплярами <em>Dog</em>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">:</span>
+
+    <span class="n">tricks</span> <span class="o">=</span> <span class="p">[]</span>             <span class="c1"># ошибочное использование переменной класса</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_trick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trick</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tricks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trick</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">'Фидо'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">'Бадди'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">add_trick</span><span class="p">(</span><span class="s1">'сделать переворот'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">add_trick</span><span class="p">(</span><span class="s1">'прикинуться мёртвым'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">tricks</span>                <span class="c1"># неожиданно общие данные для всех собак</span>
+<span class="p">[</span><span class="s1">'сделать переворот'</span><span class="p">,</span> <span class="s1">'прикинуться мёртвым'</span><span class="p">]</span>
+</pre></div>
+</div>
+<p class="translated">Правильно спроектированный класс должен использовать вместо этого переменную экземпляра:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tricks</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># создаётся новый пустой список для каждой собаки</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_trick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trick</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tricks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trick</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">'Фидо'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">'Бадди'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">add_trick</span><span class="p">(</span><span class="s1">'сделать переворот'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">add_trick</span><span class="p">(</span><span class="s1">'прикинуться мёртвым'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">tricks</span>
+<span class="p">[</span><span class="s1">'сделать переворот'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">tricks</span>
+<span class="p">[</span><span class="s1">'прикинуться мёртвым'</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="random-remarks">
+<span id="tut-remarks"></span><h2 class="translated"><span class="section-number">9.4. </span>Полезные замечания<a class="headerlink" href="#random-remarks" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">Если в классе и в экземпляре встречаются атрибуты с одинаковыми именем, используется атрибут экземпляра:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">Warehouse</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="n">purpose</span> <span class="o">=</span> <span class="s1">'хранение'</span>
+<span class="gp">... </span>   <span class="n">region</span> <span class="o">=</span> <span class="s1">'запад'</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w1</span> <span class="o">=</span> <span class="n">Warehouse</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">w1</span><span class="o">.</span><span class="n">purpose</span><span class="p">,</span> <span class="n">w1</span><span class="o">.</span><span class="n">region</span><span class="p">)</span>
+<span class="go">хранение запад</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w2</span> <span class="o">=</span> <span class="n">Warehouse</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w2</span><span class="o">.</span><span class="n">region</span> <span class="o">=</span> <span class="s1">'восток'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">w2</span><span class="o">.</span><span class="n">purpose</span><span class="p">,</span> <span class="n">w2</span><span class="o">.</span><span class="n">region</span><span class="p">)</span>
+<span class="go">хранение восток</span>
+</pre></div>
+</div>
+<p class="translated">К атрибутам данных можно обращаться как через методы, так и через обычных пользователей («клиентов») объекта. Другими словами, классы не позволяют реализовать чисто абстрактные типы данных. На практике, ничего в Python не позволяет полностью скрыть данные — всё основано на соглашениях. (С другой стороны, реализация Python на C может полностью скрыть детали реализации и контролировать доступ к объекту, если это необходимо; это может использоваться расширениями на C.)</p>
+<p class="translated">Клиенты должны использовать атрибуты данных осторожно — они могут нарушить инварианты, поддерживаемые методами, изменяя их напрямую. Обратите внимание, что клиенты могут добавлять свои собственные атрибуты к экземпляру объекта, не нарушая работу методов, если избегают конфликтов имён — опять же, соглашения об именах могут уберечь от множества проблем.</p>
+<p class="translated">Внутри методов нет никакой сокращённой формы для обращения к атрибутам данных (или другим методам!). На самом деле, это повышает читаемость кода: нет риска перепутать локальные переменные и переменные экземпляра при беглом просмотре метода.</p>
+<p class="translated">Первый аргумент метода часто называют <code class="docutils literal notranslate"><span class="pre">self</span></code>. Это всего лишь общепринятая договорённость: имя <code class="docutils literal notranslate"><span class="pre">self</span></code> не имеет никакого особого значения в Python. Однако если не придерживаться этой практики, ваш код может стать менее читабельным для других программистов, а некоторые инструменты анализа кода, вроде <em>обозревателей классов</em>, могут полагаться на такое соглашение.</p>
+<p class="translated">Любой объект функции, являющийся атрибутом класса, определяет метод для экземпляров этого класса. Не обязательно, чтобы определение функции явно находилось внутри определения класса: можно присвоить объект функции локальной переменной в классе. Например:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция определена вне класса</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">f1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'привет мир'</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="n">g</span>
+</pre></div>
+</div>
+<p class="translated">Теперь <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code> и <code class="docutils literal notranslate"><span class="pre">h</span></code> являются атрибутами класса <code class="xref py py-class docutils literal notranslate"><span class="pre">C</span></code>, которые ссылаются на объекты функций, и, следовательно, все они являются методами экземпляров класса <code class="xref py py-class docutils literal notranslate"><span class="pre">C</span></code> — <code class="docutils literal notranslate"><span class="pre">h</span></code> в точности эквивалентен <code class="docutils literal notranslate"><span class="pre">g</span></code>. Обратите внимание, что такая практика обычно только сбивает с толку читателя программы.</p>
+<p class="translated">Методы могут вызывать другие методы с помощью аргумента <code class="docutils literal notranslate"><span class="pre">self</span></code>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Bag</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">addtwice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="translated">Методы могут ссылаться на глобальные имена так же, как обычные функции. Глобальная область видимости метода — это модуль, в котором он определён. (Класс никогда не используется как глобальная область видимости.) Хотя поводы использовать глобальные данные внутри метода встречаются редко, сама глобальная область видимости нередко бывает полезна. Например, методы могут обращаться к функциям и модулям, импортированным на уровне модуля, а также к функциям и классам, определённым в нём. Обычно класс, содержащий метод, сам определяется в глобальной области видимости, и в следующем разделе мы рассмотрим причины, по которым метод может захотеть ссылаться на свой класс.</p>
+<p class="translated">Любое значение в Python — это объект, а значит относится к какому-то <em>классу</em> (который также называется его <em>типом</em>). Он хранится как <code class="docutils literal notranslate"><span class="pre">object.__class__</span></code>.</p>
+</section>
+<section id="inheritance">
+<span id="tut-inheritance"></span><h2 class="translated"><span class="section-number">9.5. </span>Наследование<a class="headerlink" href="#inheritance" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">Разумеется, механизм языка программирования не достоин называться «классами», без поддержки наследования. Синтаксис определения производного класса выглядит так:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">BaseClassName</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p class="translated">Имя <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseClassName</span></code> должно быть определено в пространстве имён, доступном из области, содержащей определение производного класса. Вместо имени базового класса допускаются также другие произвольные выражения. Это может быть полезно, например, когда базовый класс определён в другом модуле:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">modname</span><span class="o">.</span><span class="n">BaseClassName</span><span class="p">):</span>
+</pre></div>
+</div>
+<p class="translated">Определение дочернего класса выполняется так же, как и определение класса без родителей. Когда объект класса создаётся, он запоминает своего родителя. Это будет использоваться для разрешения ссылок на атрибуты: если запрашиваемый атрибут не найден в классе, его поиск продолжится у родителя. Это правило применяется рекурсивно, если базовый класс сам является производным.</p>
+<p class="translated">В создании экземпляров производных классов нет ничего особенного: <code class="docutils literal notranslate"><span class="pre">DerivedClassName()</span></code> создаёт новый экземпляр класса. Ссылки на методы разрешаются следующим образом: выполняется поиск соответствующего атрибута класса, при необходимости спускаясь вниз по цепочке базовых классов. Ссылка считается корректной, если найденный атрибут оказывается функцией.</p>
+<p class="translated">Производные классы могут переопределять методы своих базовых классов. Поскольку методы не имеют специальных привилегий при вызове других методов того же объекта, метод базового класса, который вызывает другой метод, определённый в том же базовом классе, может в конечном итоге вызвать метод производного класса, который переопределяет его. (Для программистов C++: все методы Python фактически являются <code class="docutils literal notranslate"><span class="pre">virtual</span></code>.)</p>
+<p class="translated">На самом деле переопределённый метод в производном классе может расширять, а не просто заменять одноименный метод базового класса. Есть простой способ вызвать метод базового класса напрямую: просто вызовите <code class="docutils literal notranslate"><span class="pre">BaseClassName.methodname(self,</span> <span class="pre">arguments)</span></code>. Иногда это бывает полезно и для клиентов. (Обратите внимание, что это работает только в том случае, если базовый класс доступен как <code class="docutils literal notranslate"><span class="pre">BaseClassName</span></code> в глобальной области видимости.)</p>
+<p class="translated">Python имеет две встроенные функции, которые работают с наследованием:</p>
+<ul class="simple">
+<li><p class="translated">Используйте <a class="reference internal" href="../builtins/functions.html#isinstance" title="isinstance"><code class="xref py py-func docutils literal notranslate"><span class="pre">isinstance()</span></code></a> для проверки типа экземпляра: <code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">int)</span></code> будет <code class="docutils literal notranslate"><span class="pre">True</span></code>, только если <code class="docutils literal notranslate"><span class="pre">obj.__class__</span></code> имеет значение <a class="reference internal" href="../builtins/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> или какой-либо производный от <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> класс.</p></li>
+<li><p class="translated">Используйте <a class="reference internal" href="../builtins/functions.html#issubclass" title="issubclass"><code class="xref py py-func docutils literal notranslate"><span class="pre">issubclass()</span></code></a> для проверки наследования классов: <code class="docutils literal notranslate"><span class="pre">issubclass(bool,</span> <span class="pre">int)</span></code> имеет значение <code class="docutils literal notranslate"><span class="pre">True</span></code>, поскольку <a class="reference internal" href="../builtins/functions.html#bool" title="bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a> является подклассом <a class="reference internal" href="../builtins/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>. Однако <code class="docutils literal notranslate"><span class="pre">issubclass(float,</span> <span class="pre">int)</span></code> имеет значение <code class="docutils literal notranslate"><span class="pre">False</span></code>, поскольку <a class="reference internal" href="../builtins/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> не является подклассом <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>.</p></li>
+</ul>
+<section id="multiple-inheritance">
+<span id="tut-multiple"></span><h3 class="translated"><span class="section-number">9.5.1. </span>Множественное наследование<a class="headerlink" href="#multiple-inheritance" title="Ссылка на этот заголовок">¶</a></h3>
+<p class="translated">Python также поддерживает форму множественного наследования. Определение класса с несколькими базовыми классами выглядит следующим образом:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">Base1</span><span class="p">,</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p class="translated">В большинстве случаев, в простых примерах, можно считать, что поиск атрибутов, унаследованных от родительских классов, выполняется в глубину слева направо, при этом один и тот же класс не проверяется дважды, если есть перекрытие в иерархии. Таким образом, если атрибут не найден в <code class="xref py py-class docutils literal notranslate"><span class="pre">DerivedClassName</span></code>, он ищется в <code class="xref py py-class docutils literal notranslate"><span class="pre">Base1</span></code>, затем (рекурсивно) в базовых классах <code class="xref py py-class docutils literal notranslate"><span class="pre">Base1</span></code>, и если он там не был найден, поиск продолжается в <code class="xref py py-class docutils literal notranslate"><span class="pre">Base2</span></code> и так далее.</p>
+<p class="translated">На самом деле всё немного сложнее; порядок разрешения методов изменяется динамически для поддержки совместных вызовов <a class="reference internal" href="../builtins/functions.html#super" title="super"><code class="xref py py-func docutils literal notranslate"><span class="pre">super()</span></code></a>. Этот подход известен в некоторых других языках с множественным наследованием как вызов следующего метода и является более мощным, чем вызов метода базового класса, встречающийся в языках с одиночным наследованием.</p>
+<p class="translated">Динамическое упорядочивание необходимо, поскольку во всех случаях множественного наследования присутствует одно или несколько ромбовидных отношений (где хотя бы к одному из родительских классов можно получить доступ через несколько путей из самого нижнего класса). Например, все классы наследуются от <a class="reference internal" href="../builtins/functions.html#object" title="object"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>, поэтому в любом случае множественного наследования существует более одного пути для достижения <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>. Чтобы предотвратить многократное обращение к базовым классам, динамический алгоритм линеаризует порядок поиска таким образом, чтобы сохранить порядок слева направо, указанный в каждом классе, посетить каждого родителя только один раз и обеспечить монотонность (это означает, что класс может быть подклассом, не затрагивая порядок обхода его родителей). В совокупности эти свойства позволяют проектировать надежные и расширяемые классы с множественным наследованием. Более подробную информацию см. в <a class="reference internal" href="../howto/mro.html#python-2-3-mro"><span class="std std-ref">The Python 2.3 Method Resolution Order</span></a>.</p>
+<p class="translated">В некоторых случаях множественное наследование не допускается; подробности см. в <a class="reference internal" href="../reference/compound_stmts.html#multiple-inheritance"><span class="std std-ref">Multiple inheritance</span></a>.</p>
+</section>
+</section>
+<section id="private-variables">
+<span id="tut-private"></span><h2 class="translated"><span class="section-number">9.6. </span>Закрытые переменные<a class="headerlink" href="#private-variables" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">В Python не существует «закрытых» переменные экземпляра, доступ к которым был бы возможен только изнутри объекта. Однако существует соглашение, которому следует большая часть кода Python: начинающееся с подчеркивания имя (например, <code class="docutils literal notranslate"><span class="pre">_spam</span></code>) должно рассматриваться как непубличная часть API (будь то функция, метод или элемент данных). Такое имя следует рассматривать как деталь реализации, которая может измениться без уведомления.</p>
+<p class="translated" id="index-1">Поскольку существует допустимый вариант использования закрытых членов класса (а именно, чтобы избежать конфликтов имён с именами, определенными подклассами), существует ограниченная поддержка такого механизма, называемого <em class="dfn">искажением имён</em>. Любой идентификатор вида <code class="docutils literal notranslate"><span class="pre">__spam</span></code> (как минимум два ведущих подчёркивания и не более одного завершающего) заменяется на уровне исходного текста на <code class="docutils literal notranslate"><span class="pre">_classname__spam</span></code>, где <code class="docutils literal notranslate"><span class="pre">classname</span></code>—  это имя текущего класса без ведущих подчёркиваний. Это искажение выполняется без учета синтаксической позиции идентификатора, если только он встречается внутри определения класса.</p>
+<div class="admonition seealso">
+<p class="admonition-title">См. также</p>
+<p class="translated"><a class="reference internal" href="../reference/expressions.html#private-name-mangling"><span class="std std-ref">Спецификации искажения закрытых имён</span></a> для получения подробной информации и особых случаев.</p>
+</div>
+<p class="translated">Изменение имён полезно для того, чтобы позволить подклассам переопределять методы, не нарушая вызовы методов внутри самого класса. Например:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Mapping</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__update</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">__update</span> <span class="o">=</span> <span class="n">update</span>   <span class="c1"># закрытая копия исходного метода update()</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MappingSubclass</span><span class="p">(</span><span class="n">Mapping</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="c1"># новая сигнатура метода update()</span>
+        <span class="c1"># но __init__() при этом остаётся работоспособным</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="translated">Приведённый выше пример будет работать, даже если <code class="docutils literal notranslate"><span class="pre">MappingSubclass</span></code> введёт идентификатор <code class="docutils literal notranslate"><span class="pre">__update</span></code>, поскольку он заменяется на <code class="docutils literal notranslate"><span class="pre">_Mapping__update</span></code> в классе <code class="docutils literal notranslate"><span class="pre">Mapping</span></code> и на <code class="docutils literal notranslate"><span class="pre">_MappingSubclass__update</span></code> в классе <code class="docutils literal notranslate"><span class="pre">MappingSubclass</span></code> соответственно.</p>
+<p class="translated">Обратите внимание, что правила искажения имён созданы главным образом для предотвращения случайных ошибок. При желании всё ещё можно получить доступ к переменной, которая считается закрытой, или изменить её. Это может быть даже полезно в особых случаях, например, при отладке.</p>
+<p class="translated">Обратите внимание, что код, переданный в <code class="docutils literal notranslate"><span class="pre">exec()</span></code> или <code class="docutils literal notranslate"><span class="pre">eval()</span></code>, не считает имя класса вызывающего кода текущим классом. Это похоже на эффект инструкции <code class="docutils literal notranslate"><span class="pre">global</span></code>, действие которой также ограничено кодом, скомпилированным вместе. Такое же ограничение применяется к функциям <code class="docutils literal notranslate"><span class="pre">getattr()</span></code>, <code class="docutils literal notranslate"><span class="pre">setattr()</span></code> и <code class="docutils literal notranslate"><span class="pre">delattr()</span></code>, а также при прямом обращении к <code class="docutils literal notranslate"><span class="pre">__dict__</span></code>.</p>
+</section>
+<section id="odds-and-ends">
+<span id="tut-odds"></span><h2 class="translated"><span class="section-number">9.7. </span>Разное и полезное<a class="headerlink" href="#odds-and-ends" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">Иногда бывает полезно иметь тип данных, похожий на «запись» в Pascal или «структуру» в C, объединяющий несколько именованных элементов данных. Идиоматический подход заключается в использовании для этой цели <a class="reference internal" href="../library/dataclasses.html#module-dataclasses" title="dataclasses: Generate special methods on user-defined classes."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dataclasses</span></code></a>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Employee</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">dept</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">salary</span><span class="p">:</span> <span class="nb">int</span>
+</pre></div>
+</div>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">john</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s1">'Джон'</span><span class="p">,</span> <span class="s1">'компьютерная лаборатория'</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">john</span><span class="o">.</span><span class="n">dept</span>
+<span class="go">'компьютерная лаборатория'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">john</span><span class="o">.</span><span class="n">salary</span>
+<span class="go">1000</span>
+</pre></div>
+</div>
+<p class="translated">Фрагмент кода Python, который ожидает определённый абстрактный тип данных, часто может вместо этого принимать класс, который эмулирует методы этого типа данных. Например, если у вас есть функция, которая форматирует некоторые данные из файлового объекта, вы можете определить класс с методами <a class="reference internal" href="../library/io.html#io.TextIOBase.read" title="io.TextIOBase.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> и <a class="reference internal" href="../library/io.html#io.TextIOBase.readline" title="io.TextIOBase.readline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code></a>, которые получают вместо этого данные из строкового буфера и передать его в качестве аргумента.</p>
+<p class="translated"><a class="reference internal" href="../reference/datamodel.html#instance-methods"><span class="std std-ref">Объекты метода экземпляра</span></a> также имеют атрибуты: <a class="reference internal" href="../reference/datamodel.html#method.__self__" title="method.__self__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">m.__self__</span></code></a> — это объект экземпляра с методом <code class="xref py py-meth docutils literal notranslate"><span class="pre">m()</span></code>, а <a class="reference internal" href="../reference/datamodel.html#method.__func__" title="method.__func__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">m.__func__</span></code></a> — это <a class="reference internal" href="../reference/datamodel.html#user-defined-funcs"><span class="std std-ref">объект функции</span></a>, соответствующий методу.</p>
+</section>
+<section id="iterators">
+<span id="tut-iterators"></span><h2 class="translated"><span class="section-number">9.8. </span>Итераторы<a class="headerlink" href="#iterators" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">К этому моменту вы, вероятно, заметили, что большинство объектов-контейнеров можно перебрать с помощью инструкции <a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">'один'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'два'</span><span class="p">:</span><span class="mi">2</span><span class="p">}:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s2">"123"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"myfile.txt"</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="translated">Этот стиль доступа ясен, краток и удобен. Использование итераторов пронизывает и унифицирует Python. За кулисами инструкция <a class="reference internal" href="../reference/compound_stmts.html#for"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code></a> вызывает <a class="reference internal" href="../builtins/functions.html#iter" title="iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a> для объекта-контейнера. Функция возвращает объект итератора, который определяет метод <a class="reference internal" href="../builtins/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a>, получающий элементы контейнера по одному за раз. Когда элементов больше нет, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code> вызывает исключение <a class="reference internal" href="../builtins/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a>, которое сообщает циклу <code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code> завершить выполнение. Вы можете вызвать метод <code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code>, используя встроенную функцию <a class="reference internal" href="../builtins/functions.html#next" title="next"><code class="xref py py-func docutils literal notranslate"><span class="pre">next()</span></code></a>. Этот пример показывает, как всё это работает:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s1">'абв'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">it</span>
+<span class="go">&lt;str_iterator object at 0x10c90e650&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="go">'а'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="go">'б'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="go">'в'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;stdin&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="w">    </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="gr">StopIteration</span>
+</pre></div>
+</div>
+<p class="translated">Познакомившись с механизмом протокола итерации, легко добавить поведение итератора в свои классы. Определите метод <a class="reference internal" href="../builtins/stdtypes.html#container.__iter__" title="container.__iter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code></a>, который возвращает объект с методом <a class="reference internal" href="../builtins/stdtypes.html#iterator.__next__" title="iterator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a>. Если класс определяет <code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code>, то <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> может просто вернуть <code class="docutils literal notranslate"><span class="pre">self</span></code>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Reverse</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Итератор для прохода по последовательности в обратном порядке."""</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rev</span> <span class="o">=</span> <span class="n">Reverse</span><span class="p">(</span><span class="s1">'спам'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">iter</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span>
+<span class="go">&lt;__main__.Reverse object at 0x00A1DB50&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">rev</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">м</span>
+<span class="go">а</span>
+<span class="go">п</span>
+<span class="go">с</span>
+</pre></div>
+</div>
+</section>
+<section id="generators">
+<span id="tut-generators"></span><h2 class="translated"><span class="section-number">9.9. </span>Генераторы<a class="headerlink" href="#generators" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated"><a class="reference internal" href="../glossary.html#term-generator"><span class="xref std std-term">Генераторы</span></a> — это простой и мощный инструмент для создания итераторов. Они пишутся как обычные функции, но используют инструкцию <a class="reference internal" href="../reference/simple_stmts.html#yield"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">yield</span></code></a> всякий раз, когда хотят вернуть данные. Каждый раз, когда на нём вызывается <a class="reference internal" href="../builtins/functions.html#next" title="next"><code class="xref py py-func docutils literal notranslate"><span class="pre">next()</span></code></a>, генератор возобновляет работу с того места, где остановился (он запоминает все значения данных и последнюю выполненную инструкцию). Пример показывает, что генераторы можно создать очень легко:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">reverse</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">'гольф'</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">ф</span>
+<span class="go">ь</span>
+<span class="go">л</span>
+<span class="go">о</span>
+<span class="go">г</span>
+</pre></div>
+</div>
+<p class="translated">Всё, что можно сделать с помощью генераторов, можно сделать и с помощью итераторов на основе классов, как описано в предыдущем разделе. Что делает генераторы такими компактными, так это то, что методы <a class="reference internal" href="../builtins/stdtypes.html#iterator.__iter__" title="iterator.__iter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code></a> и <a class="reference internal" href="../builtins/stdtypes.html#generator.__next__" title="generator.__next__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__next__()</span></code></a> создаются автоматически.</p>
+<p class="translated">Ещё одной ключевой особенностью является то, что локальные переменные и состояние выполнения автоматически сохраняются между вызовами. Это сделало функцию более простой в написании и более понятной, чем подход с использованием переменных экземпляра, таких как <code class="docutils literal notranslate"><span class="pre">self.index</span></code> и <code class="docutils literal notranslate"><span class="pre">self.data</span></code>.</p>
+<p class="translated">В дополнение к автоматическому созданию методов и сохранению состояния программы, когда генераторы завершают работу, они автоматически выбрасывают <a class="reference internal" href="../builtins/exceptions.html#StopIteration" title="StopIteration"><code class="xref py py-exc docutils literal notranslate"><span class="pre">StopIteration</span></code></a>. В совокупности эти возможности позволяют легко создавать итераторы, не прилагая больше усилий, чем при написании обычной функции.</p>
+</section>
+<section id="generator-expressions">
+<span id="tut-genexps"></span><h2 class="translated"><span class="section-number">9.10. </span>Генераторные выражения<a class="headerlink" href="#generator-expressions" title="Ссылка на этот заголовок">¶</a></h2>
+<p class="translated">Некоторые простые генераторы можно лаконично закодировать как выражения, используя синтаксис, аналогичный списковым включениям, но с круглыми скобками вместо квадратных. Эти выражения предназначены для ситуаций, когда генератор сразу же используется внешней функцией. Выражения-генераторы более компактны, но менее универсальны, чем полноценные определения генераторов, и, как правило, расходуют память более экономно, чем эквивалентные списковые включения.</p>
+<p class="translated">Примеры:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>                 <span class="c1"># сумма квадратов</span>
+<span class="go">285</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xvec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">yvec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xvec</span><span class="p">,</span> <span class="n">yvec</span><span class="p">))</span>         <span class="c1"># скалярное произведение</span>
+<span class="go">260</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unique_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">word</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">page</span>  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">valedictorian</span> <span class="o">=</span> <span class="nb">max</span><span class="p">((</span><span class="n">student</span><span class="o">.</span><span class="n">gpa</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">graduates</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="s1">'гольф'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">['ф', 'ь', 'л', 'о', 'г']</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+<p class="translated">В большинстве случаев генераторные выражения необходимо заключать в скобки. Однако в особом случае, когда генераторное выражение передаётся в качестве единственного аргумента функции (как в приведённых выше примерах с <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code> и <code class="docutils literal notranslate"><span class="pre">list</span></code>), его не нужно заключать в дополнительную пару скобок. Иными словами, следующие два фрагмента кода семантически эквивалентны:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">((</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="translated">то же самое верно и для следующих:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">((</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="translated rubric">Примечания</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p class="translated">За исключением одного момента. Объекты модуля имеют секретный атрибут только для чтения, называемый <a class="reference internal" href="../reference/datamodel.html#object.__dict__" title="object.__dict__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__dict__</span></code></a>, который возвращает словарь, используемый для реализации пространства имён модуля; имя <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> является атрибутом, а не глобальным именем. Очевидно, что использование этого нарушает абстракцию реализации пространства имён и должно ограничиваться такими случаями, как отладка после сбоя программы.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Оглавление</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">9. Классы</a><ul>
+<li><a class="reference internal" href="#a-word-about-names-and-objects">9.1. Несколько слов об именах и объектах</a></li>
+<li><a class="reference internal" href="#python-scopes-and-namespaces">9.2. Области видимости и пространства имён в Python</a><ul>
+<li><a class="reference internal" href="#scopes-and-namespaces-example">9.2.1. Пример областей видимости и пространств имён</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#a-first-look-at-classes">9.3. Первый взгляд на классы</a><ul>
+<li><a class="reference internal" href="#class-definition-syntax">9.3.1. Синтаксис определения класса</a></li>
+<li><a class="reference internal" href="#class-objects">9.3.2. Объекты классов</a></li>
+<li><a class="reference internal" href="#instance-objects">9.3.3. Объекты экземпляров</a></li>
+<li><a class="reference internal" href="#method-objects">9.3.4. Объекта методов</a></li>
+<li><a class="reference internal" href="#class-and-instance-variables">9.3.5. Переменные класса и экземпляра</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#random-remarks">9.4. Полезные замечания</a></li>
+<li><a class="reference internal" href="#inheritance">9.5. Наследование</a><ul>
+<li><a class="reference internal" href="#multiple-inheritance">9.5.1. Множественное наследование</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#private-variables">9.6. Закрытые переменные</a></li>
+<li><a class="reference internal" href="#odds-and-ends">9.7. Разное и полезное</a></li>
+<li><a class="reference internal" href="#iterators">9.8. Итераторы</a></li>
+<li><a class="reference internal" href="#generators">9.9. Генераторы</a></li>
+<li><a class="reference internal" href="#generator-expressions">9.10. Генераторные выражения</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Предыдущий раздел</h4>
+    <p class="topless"><a href="errors.html"
+                          title="предыдущая глава"><span class="section-number">8. </span>Ошибки и исключения</a></p>
+  </div>
+  <div>
+    <h4>Следующий раздел</h4>
+    <p class="topless"><a href="stdlib.html"
+                          title="следующая глава"><span class="section-number">10. </span>Краткий обзор стандартной библиотеки</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/classes.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Эта страница</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Сообщить об ошибке</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Улучшить эту страницу</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.15/Doc/tutorial/classes.rst?plain=1"
+            rel="nofollow">Показать исходный код
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-ru/blob/3.15/tutorial/classes.po?plain=1"
+           rel="nofollow">Показать исходный код перевода</a>
+      </li>
+      
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Свернуть боковую панель">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Навигация</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Алфавитный указатель"
+             >указатель</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Содержание модулей Python"
+             >модули</a> |</li>
+        <li class="right" >
+          <a href="stdlib.html" title="10. Краткий обзор стандартной библиотеки"
+             >вперёд</a> |</li>
+        <li class="right" >
+          <a href="errors.html" title="8. Ошибки и исключения"
+             >назад</a> |</li>
+
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.15.0 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Руководство по Python</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">9. </span>Классы</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Быстрый поиск" aria-label="Быстрый поиск" type="search" name="q" id="search-box">
+          <input type="submit" value="Поиск">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Тема
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Авто</option>
+        <option value="light">Свет</option>
+        <option value="dark">Темный</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Авторское право</a> 2001 Python Software Foundation.
+    <br>
+    Эта страница лицензирована в соответствии с лицензией Python Software Foundation версии 2.
+    <br>
+    Примеры, рецепты и другой код в документации дополнительно лицензируются по лицензии Zero Clause BSD.
+    <br>
+    
+      Подробнее см. в разделе <a href="/license.html">История и лицензия</a>.<br>
+    
+    
+    <br>
+
+    Python Software Foundation — некоммерческая организация.
+<a href="https://www.python.org/psf/donations/">Пожалуйста, сделайте пожертвование.</a>
+<br>
+    <br>
+      Последнее обновление окт. 13, 2026 (09:05 UTC).
+    
+      <a href="/bugs.html">Нашли ошибку</a>?
+    
+    <br>
+
+    Создано с помощью <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+
+    <script type="text/javascript" src="../_static/switchers.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "html-readers-bench",
+  "private": true,
+  "type": "module",
+  "description": "Benchmark of HTML reader engines on 30 public pages",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@mozilla/readability": "0.6.0",
+    "defuddle": "0.19.5",
+    "linkedom": "0.18.13",
+    "turndown": "7.2.4"
+  }
+}

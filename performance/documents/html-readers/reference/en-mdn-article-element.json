@@ -1,0 +1,14 @@
+{
+  "title": "HTML article contents element",
+  "mustAppear": [
+    "The <article> HTML element represents a self-contained composition in a document, page, application, or site",
+    "A given document can have multiple articles in it",
+    "the inner element represents an article related to the outer element",
+    "The publication date and time of an <article> element can be described using the datetime attribute of a <time> element"
+  ],
+  "mustNotAppear": [
+    "Advertise with us",
+    "Writing guidelines",
+    "Telemetry Settings"
+  ]
+}

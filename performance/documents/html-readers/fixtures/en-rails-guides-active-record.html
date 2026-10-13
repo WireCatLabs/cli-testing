@@ -1,0 +1,1156 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Active Record Basics — Ruby on Rails Guides</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style-22ee28c7627b66992166ddf161af9268.css" data-turbo-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/print-a87ee66d50ce96bb83ac082f1249fe3e.css" media="print">
+  <link rel="stylesheet" type="text/css" href="stylesheets/highlight-c6e5503bd10e2b52cc1cdf0c28e9bd78.css" data-turbo-track="reload">
+
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+
+  <link rel="apple-touch-icon" href="images/icon.png">
+
+  <link rel="canonical" href="https://guides.rubyonrails.org/active_record_basics.html">
+
+  <script src="javascripts/@hotwired--turbo-764f59c7edbeb902a9068c0340dd274e.js" data-turbo-track="reload"></script>
+  <script src="javascripts/clipboard-8b7aed6f069f0cf58eeae353cd2f898b.js" data-turbo-track="reload"></script>
+  <script src="javascripts/guides-d7960e00fba238e39f4950ded4f77035.js" data-turbo-track="reload"></script>
+
+  <meta property="og:title" content="Active Record Basics — Ruby on Rails Guides">
+  <meta name="description" content="This guide is an introduction to Active Record.After reading this guide, you will know: How Active Record fits into the Model-View-Controller (MVC) paradigm. What Object Relational Mapping and Active Record patterns are and how they are used in Rails. How to use Active Record models to manipulate data stored in a relational database. Active Record schema naming conventions. The concepts of database migrations, validations, callbacks, and associations.">
+  <meta property="og:description" content="This guide is an introduction to Active Record.After reading this guide, you will know: How Active Record fits into the Model-View-Controller (MVC) paradigm. What Object Relational Mapping and Active Record patterns are and how they are used in Rails. How to use Active Record models to manipulate data stored in a relational database. Active Record schema naming conventions. The concepts of database migrations, validations, callbacks, and associations.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Ruby on Rails Guides">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
+  <meta name="theme-color" content="#C81418">
+</head>
+
+<body dir="ltr" class="guide no-js">
+  <script>
+    document.body.classList.remove('no-js')
+  </script>
+
+  <a id="main-skip-link" href="#main" class="skip-link" data-turbo="false">
+    Skip to main content
+  </a>
+
+  <div id="mobile-navigation-bar">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="https://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <button type="button" class="js-only red-button more-info-button" id="more-info" aria-controls="more-info-links" aria-expanded="false">
+        More Ruby on Rails
+      </button>
+      <ul id="more-info-links" class="more-info-links hidden">
+        <li class="more-info"><a href="https://rubyonrails.org/blog">Blog</a></li>
+        <li class="more-info"><a href="https://guides.rubyonrails.org/">Guides</a></li>
+        <li class="more-info"><a href="https://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="https://discuss.rubyonrails.org/">Forum</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">Contribute on GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <header id="page-header">
+    <div class="wrapper clearfix">
+      <nav id="feature-nav">
+        <div class="header-logo">
+          <a href="index.html" title="Guides home for v8.1.4 Guides">Guides</a>
+          <span id="version-switcher" class="js-only">
+            <label for="version-switcher-select">Version: <span class="visibly-hidden">pick from the list to go to that Rails version's guides</span></label>
+            <select id="version-switcher-select" class="guides-version">
+              <option value="https://edgeguides.rubyonrails.org/">Edge</option>
+                <option value="https://guides.rubyonrails.org/v8.0/active_record_basics.html">8.0</option>
+                <option value="https://guides.rubyonrails.org/v7.2/active_record_basics.html">7.2</option>
+                <option value="https://guides.rubyonrails.org/v7.1/active_record_basics.html">7.1</option>
+                <option value="https://guides.rubyonrails.org/v7.0/active_record_basics.html">7.0</option>
+                <option value="https://guides.rubyonrails.org/v6.1/active_record_basics.html">6.1</option>
+                <option value="https://guides.rubyonrails.org/v6.0/active_record_basics.html">6.0</option>
+                <option value="https://guides.rubyonrails.org/v5.2/active_record_basics.html">5.2</option>
+                <option value="https://guides.rubyonrails.org/v5.1/active_record_basics.html">5.1</option>
+                <option value="https://guides.rubyonrails.org/v5.0/active_record_basics.html">5.0</option>
+                <option value="https://guides.rubyonrails.org/v4.2/active_record_basics.html">4.2</option>
+                <option value="https://guides.rubyonrails.org/v4.1/active_record_basics.html">4.1</option>
+                <option value="https://guides.rubyonrails.org/v4.0/active_record_basics.html">4.0</option>
+                <option value="https://guides.rubyonrails.org/v3.2/active_record_basics.html">3.2</option>
+                <option value="https://guides.rubyonrails.org/v3.1/active_record_basics.html">3.1</option>
+                <option value="https://guides.rubyonrails.org/v3.0/active_record_basics.html">3.0</option>
+                <option value="https://guides.rubyonrails.org/v2.3/active_record_basics.html">2.3</option>
+            </select>
+          </span>
+        </div>
+        <ul class="nav">
+          <li><a class="nav-item" id="home_nav" href="https://rubyonrails.org/">Home</a></li>
+          <li class="guides-index guides-index-large">
+            <a href="index.html" id="guides-menu-button" role="button" aria-controls="guides" aria-expanded="false" class="guides-index-item nav-item">Guides Index</a>
+            <div id="guides" class="clearfix" style="display: none;">
+              <hr>
+              <dl class="guides-section-container">
+                  <div class="guides-section">
+                    <dt>Start Here</dt>
+                    <dd><a href="getting_started.html">Getting Started with Rails</a></dd>
+                    <dd><a href="install_ruby_on_rails.html">Install Ruby on Rails</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Models</dt>
+                    <dd><a href="active_record_basics.html">Active Record Basics</a></dd>
+                    <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                    <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                    <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                    <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                    <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                    <dd><a href="active_model_basics.html">Active Model Basics</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Views</dt>
+                    <dd><a href="action_view_overview.html">Action View Overview</a></dd>
+                    <dd><a href="layouts_and_rendering.html">Layouts and Rendering in Rails</a></dd>
+                    <dd><a href="action_view_helpers.html">Action View Helpers</a></dd>
+                    <dd><a href="form_helpers.html">Action View Form Helpers</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Controllers</dt>
+                    <dd><a href="action_controller_overview.html">Action Controller Overview</a></dd>
+                    <dd><a href="action_controller_advanced_topics.html">Action Controller Advanced Topics</a></dd>
+                    <dd><a href="routing.html">Rails Routing from the Outside In</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Other Components</dt>
+                    <dd><a href="active_support_core_extensions.html">Active Support Core Extensions</a></dd>
+                    <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                    <dd><a href="action_mailbox_basics.html">Action Mailbox Basics</a></dd>
+                    <dd><a href="action_text_overview.html">Action Text Overview</a></dd>
+                    <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                    <dd><a href="active_storage_overview.html">Active Storage Overview</a></dd>
+                    <dd><a href="action_cable_overview.html">Action Cable Overview</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Digging Deeper</dt>
+                    <dd><a href="testing.html">Testing Rails Applications</a></dd>
+                    <dd><a href="debugging_rails_applications.html">Debugging Rails Applications</a></dd>
+                    <dd><a href="configuring.html">Configuring Rails Applications</a></dd>
+                    <dd><a href="command_line.html">The Rails Command Line</a></dd>
+                    <dd><a href="asset_pipeline.html">The Asset Pipeline</a></dd>
+                    <dd><a href="working_with_javascript_in_rails.html">Working with JavaScript in Rails</a></dd>
+                    <dd><a href="i18n.html">Internationalization (I18n)</a></dd>
+                    <dd><a href="autoloading_and_reloading_constants.html">Autoloading and Reloading</a></dd>
+                    <dd><a href="api_app.html">Using Rails for API-only Applications</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Going to Production</dt>
+                    <dd><a href="tuning_performance_for_deployment.html">Tuning Performance for Deployment</a></dd>
+                    <dd><a href="caching_with_rails.html">Caching with Rails</a></dd>
+                    <dd><a href="security.html">Securing Rails Applications</a></dd>
+                    <dd><a href="error_reporting.html">Error Reporting in Rails Applications</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Advanced Active Record</dt>
+                    <dd><a href="active_record_multiple_databases.html">Multiple Databases</a></dd>
+                    <dd><a href="active_record_encryption.html">Active Record Encryption</a></dd>
+                    <dd><a href="active_record_composite_primary_keys.html">Composite Primary Keys</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Extending Rails</dt>
+                    <dd><a href="plugins.html">The Basics of Creating Rails Plugins</a></dd>
+                    <dd><a href="rails_on_rack.html">Rails on Rack</a></dd>
+                    <dd><a href="generators.html">Creating and Customizing Rails Generators &amp; Templates</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Contributing</dt>
+                    <dd><a href="contributing_to_ruby_on_rails.html">Contributing to Ruby on Rails</a></dd>
+                    <dd><a href="api_documentation_guidelines.html">API Documentation Guidelines</a></dd>
+                    <dd><a href="ruby_on_rails_guides_guidelines.html">Guides Guidelines</a></dd>
+                    <dd><a href="development_dependencies_install.html">Installing Rails Core Development Dependencies</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Policies</dt>
+                    <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                  </div>
+                  <div class="guides-section">
+                    <dt>Release Notes</dt>
+                    <dd><a href="upgrading_ruby_on_rails.html">Upgrading Ruby on Rails</a></dd>
+                    <dd><a href="8_1_release_notes.html">Version 8.1 - October 2025</a></dd>
+                    <dd><a href="8_0_release_notes.html">Version 8.0 - November 2024</a></dd>
+                    <dd><a href="7_2_release_notes.html">Version 7.2 - August 2024</a></dd>
+                    <dd><a href="7_1_release_notes.html">Version 7.1 - October 2023</a></dd>
+                    <dd><a href="7_0_release_notes.html">Version 7.0 - December 2021</a></dd>
+                    <dd><a href="6_1_release_notes.html">Version 6.1 - December 2020</a></dd>
+                    <dd><a href="6_0_release_notes.html">Version 6.0 - August 2019</a></dd>
+                    <dd><a href="5_2_release_notes.html">Version 5.2 - April 2018</a></dd>
+                    <dd><a href="5_1_release_notes.html">Version 5.1 - April 2017</a></dd>
+                    <dd><a href="5_0_release_notes.html">Version 5.0 - June 2016</a></dd>
+                    <dd><a href="4_2_release_notes.html">Version 4.2 - December 2014</a></dd>
+                    <dd><a href="4_1_release_notes.html">Version 4.1 - April 2014</a></dd>
+                    <dd><a href="4_0_release_notes.html">Version 4.0 - June 2013</a></dd>
+                    <dd><a href="3_2_release_notes.html">Version 3.2 - January 2012</a></dd>
+                    <dd><a href="3_1_release_notes.html">Version 3.1 - August 2011</a></dd>
+                    <dd><a href="3_0_release_notes.html">Version 3.0 - August 2010</a></dd>
+                    <dd><a href="2_3_release_notes.html">Version 2.3 - March 2009</a></dd>
+                    <dd><a href="2_2_release_notes.html">Version 2.2 - November 2008</a></dd>
+                  </div>
+              </dl>
+            </div>
+          </li>
+          <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">Contribute</a></li>
+          <li class="guides-index guides-index-small js-only">
+            <label for="guides-selector">
+              Navigate to a guide:
+            </label>
+            <select id="guides-selector" class="guides-index-item nav-item">
+              <option value="index.html">Guides Index</option>
+                <optgroup label="Start Here">
+                    <option value="getting_started.html">Getting Started with Rails</option>
+                    <option value="install_ruby_on_rails.html">Install Ruby on Rails</option>
+                </optgroup>
+                <optgroup label="Models">
+                    <option value="active_record_basics.html">Active Record Basics</option>
+                    <option value="active_record_migrations.html">Active Record Migrations</option>
+                    <option value="active_record_validations.html">Active Record Validations</option>
+                    <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                    <option value="association_basics.html">Active Record Associations</option>
+                    <option value="active_record_querying.html">Active Record Query Interface</option>
+                    <option value="active_model_basics.html">Active Model Basics</option>
+                </optgroup>
+                <optgroup label="Views">
+                    <option value="action_view_overview.html">Action View Overview</option>
+                    <option value="layouts_and_rendering.html">Layouts and Rendering in Rails</option>
+                    <option value="action_view_helpers.html">Action View Helpers</option>
+                    <option value="form_helpers.html">Action View Form Helpers</option>
+                </optgroup>
+                <optgroup label="Controllers">
+                    <option value="action_controller_overview.html">Action Controller Overview</option>
+                    <option value="action_controller_advanced_topics.html">Action Controller Advanced Topics</option>
+                    <option value="routing.html">Rails Routing from the Outside In</option>
+                </optgroup>
+                <optgroup label="Other Components">
+                    <option value="active_support_core_extensions.html">Active Support Core Extensions</option>
+                    <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                    <option value="action_mailbox_basics.html">Action Mailbox Basics</option>
+                    <option value="action_text_overview.html">Action Text Overview</option>
+                    <option value="active_job_basics.html">Active Job Basics</option>
+                    <option value="active_storage_overview.html">Active Storage Overview</option>
+                    <option value="action_cable_overview.html">Action Cable Overview</option>
+                </optgroup>
+                <optgroup label="Digging Deeper">
+                    <option value="testing.html">Testing Rails Applications</option>
+                    <option value="debugging_rails_applications.html">Debugging Rails Applications</option>
+                    <option value="configuring.html">Configuring Rails Applications</option>
+                    <option value="command_line.html">The Rails Command Line</option>
+                    <option value="asset_pipeline.html">The Asset Pipeline</option>
+                    <option value="working_with_javascript_in_rails.html">Working with JavaScript in Rails</option>
+                    <option value="i18n.html">Internationalization (I18n)</option>
+                    <option value="autoloading_and_reloading_constants.html">Autoloading and Reloading</option>
+                    <option value="api_app.html">Using Rails for API-only Applications</option>
+                </optgroup>
+                <optgroup label="Going to Production">
+                    <option value="tuning_performance_for_deployment.html">Tuning Performance for Deployment</option>
+                    <option value="caching_with_rails.html">Caching with Rails</option>
+                    <option value="security.html">Securing Rails Applications</option>
+                    <option value="error_reporting.html">Error Reporting in Rails Applications</option>
+                </optgroup>
+                <optgroup label="Advanced Active Record">
+                    <option value="active_record_multiple_databases.html">Multiple Databases</option>
+                    <option value="active_record_encryption.html">Active Record Encryption</option>
+                    <option value="active_record_composite_primary_keys.html">Composite Primary Keys</option>
+                </optgroup>
+                <optgroup label="Extending Rails">
+                    <option value="plugins.html">The Basics of Creating Rails Plugins</option>
+                    <option value="rails_on_rack.html">Rails on Rack</option>
+                    <option value="generators.html">Creating and Customizing Rails Generators &amp; Templates</option>
+                </optgroup>
+                <optgroup label="Contributing">
+                    <option value="contributing_to_ruby_on_rails.html">Contributing to Ruby on Rails</option>
+                    <option value="api_documentation_guidelines.html">API Documentation Guidelines</option>
+                    <option value="ruby_on_rails_guides_guidelines.html">Guides Guidelines</option>
+                    <option value="development_dependencies_install.html">Installing Rails Core Development Dependencies</option>
+                </optgroup>
+                <optgroup label="Policies">
+                    <option value="maintenance_policy.html">Maintenance Policy</option>
+                </optgroup>
+                <optgroup label="Release Notes">
+                    <option value="upgrading_ruby_on_rails.html">Upgrading Ruby on Rails</option>
+                    <option value="8_1_release_notes.html">Version 8.1 - October 2025</option>
+                    <option value="8_0_release_notes.html">Version 8.0 - November 2024</option>
+                    <option value="7_2_release_notes.html">Version 7.2 - August 2024</option>
+                    <option value="7_1_release_notes.html">Version 7.1 - October 2023</option>
+                    <option value="7_0_release_notes.html">Version 7.0 - December 2021</option>
+                    <option value="6_1_release_notes.html">Version 6.1 - December 2020</option>
+                    <option value="6_0_release_notes.html">Version 6.0 - August 2019</option>
+                    <option value="5_2_release_notes.html">Version 5.2 - April 2018</option>
+                    <option value="5_1_release_notes.html">Version 5.1 - April 2017</option>
+                    <option value="5_0_release_notes.html">Version 5.0 - June 2016</option>
+                    <option value="4_2_release_notes.html">Version 4.2 - December 2014</option>
+                    <option value="4_1_release_notes.html">Version 4.1 - April 2014</option>
+                    <option value="4_0_release_notes.html">Version 4.0 - June 2013</option>
+                    <option value="3_2_release_notes.html">Version 3.2 - January 2012</option>
+                    <option value="3_1_release_notes.html">Version 3.1 - August 2011</option>
+                    <option value="3_0_release_notes.html">Version 3.0 - August 2010</option>
+                    <option value="2_3_release_notes.html">Version 2.3 - March 2009</option>
+                    <option value="2_2_release_notes.html">Version 2.2 - November 2008</option>
+                </optgroup>
+            </select>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <hr class="hide">
+
+  <main id="main">
+    <article>
+      <header id="feature">
+        <div class="wrapper">
+          <h1>Active Record Basics</h1><p>This guide is an introduction to Active Record.</p><p>After reading this guide, you will know:</p>
+<ul>
+<li>How Active Record fits into the Model-View-Controller (MVC) paradigm.</li>
+<li>What Object Relational Mapping and Active Record patterns are and how
+they are used in Rails.</li>
+<li>How to use Active Record models to manipulate data stored in a relational
+database.</li>
+<li>Active Record schema naming conventions.</li>
+<li>The concepts of database migrations, validations, callbacks, and associations.</li>
+</ul>
+
+
+                    <nav id="column-side" aria-label="Chapter" class="guide-index" data-turbo="false">
+            <a id="chapter-nav-skip-link" href="#article-body" class="skip-link">
+              Skip to article body
+            </a>
+
+            <h2 class="chapter">
+              <picture aria-hidden="true">
+                <!-- Using the `source`  HTML tag to set the dark theme image -->
+                <source
+                  srcset="images/icon_book-close-bookmark-1-wht.svg"
+                  media="(prefers-color-scheme: dark)"
+                />
+                <img src="images/icon_book-close-bookmark-1.svg" alt="Chapter Icon" />
+              </picture>
+              Chapters
+            </h2>
+            <ol class="chapters">
+<li><a href="#what-is-active-record-questionmark">What is Active Record?</a>
+
+<ul>
+<li><a href="#the-active-record-pattern">The Active Record Pattern</a></li>
+<li><a href="#object-relational-mapping">Object Relational Mapping</a></li>
+<li><a href="#active-record-as-an-orm-framework">Active Record as an ORM Framework</a></li>
+</ul></li>
+<li><a href="#convention-over-configuration-in-active-record">Convention over Configuration in Active Record</a>
+
+<ul>
+<li><a href="#naming-conventions">Naming Conventions</a></li>
+<li><a href="#schema-conventions">Schema Conventions</a></li>
+</ul></li>
+<li><a href="#creating-active-record-models">Creating Active Record Models</a>
+
+<ul>
+<li><a href="#creating-namespaced-models">Creating Namespaced Models</a></li>
+</ul></li>
+<li><a href="#overriding-the-naming-conventions">Overriding the Naming Conventions</a></li>
+<li><a href="#crud-reading-and-writing-data">CRUD: Reading and Writing Data</a>
+
+<ul>
+<li><a href="#create">Create</a></li>
+<li><a href="#read">Read</a></li>
+<li><a href="#update">Update</a></li>
+<li><a href="#delete">Delete</a></li>
+</ul></li>
+<li><a href="#validations">Validations</a></li>
+<li><a href="#callbacks">Callbacks</a></li>
+<li><a href="#migrations">Migrations</a></li>
+<li><a href="#associations">Associations</a></li>
+</ol>
+
+          </nav>
+
+        </div>
+      </header>
+
+      <div class="wrapper">
+        <div id="column-main">
+          <section id="article-body">
+            <h2 id="what-is-active-record-questionmark"><a class="anchorlink" href="#what-is-active-record-questionmark" data-turbo="false"><span>1.</span> What is Active Record?</a></h2><p>Active Record is part of the M in <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> - the model - which is the layer of
+the system responsible for representing data and business logic. Active Record
+helps you create and use Ruby objects whose attributes require persistent
+storage to a database.</p><div class="interstitial note"><p>What is the difference between Active Record and Active Model? It's
+possible to model data with Ruby objects that do <em>not</em> need to be backed by a
+database. <a href="active_model_basics.html">Active Model</a> is commonly used for that in
+Rails, making Active Record and Active Model both part of the M in MVC, as well
+as your own plain Ruby objects.</p></div><p>The term "Active Record" also refers to a software architecture pattern. Active
+Record in Rails is an implementation of that pattern. It's also a description of
+something called an <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object Relational Mapping</a> system. The below sections
+explain these terms.</p><h3 id="the-active-record-pattern"><a class="anchorlink" href="#the-active-record-pattern" data-turbo="false"><span>1.1.</span> The Active Record Pattern</a></h3><p>The <a href="https://www.martinfowler.com/eaaCatalog/activeRecord.html">Active Record pattern is described by Martin Fowler</a> in the book
+<em>Patterns of Enterprise Application Architecture</em> as "an object that wraps a row
+in a database table, encapsulates the database access, and adds domain logic to
+that data." Active Record objects carry both data and behavior. Active Record
+classes match very closely to the record structure of the underlying database.
+This way users can easily read from and write to the database, as you will see
+in the examples below.</p><h3 id="object-relational-mapping"><a class="anchorlink" href="#object-relational-mapping" data-turbo="false"><span>1.2.</span> Object Relational Mapping</a></h3><p>Object Relational Mapping, commonly referred to as ORM, is a technique that
+connects the rich objects of a programming language to tables in a relational
+database management system (RDBMS). In the case of a Rails application, these
+are Ruby objects. Using an ORM, the attributes of Ruby objects, as well as the
+relationship between objects, can be easily stored and retrieved from a database
+without writing SQL statements directly. Overall, ORMs minimize the amount of
+database access code you have to write.</p><div class="interstitial note"><p>Basic knowledge of relational database management systems (RDBMS) and
+structured query language (SQL) is helpful in order to fully understand Active
+Record. Please refer to <a href="https://www.khanacademy.org/computing/computer-programming/sql">this SQL tutorial</a> (or <a href="https://www.devart.com/what-is-rdbms/">this RDBMS
+tutorial</a>) or study them by other means if you would like to learn
+more.</p></div><h3 id="active-record-as-an-orm-framework"><a class="anchorlink" href="#active-record-as-an-orm-framework" data-turbo="false"><span>1.3.</span> Active Record as an ORM Framework</a></h3><p>Active Record gives us the ability to do the following using Ruby objects:</p>
+<ul>
+<li>Represent models and their data.</li>
+<li>Represent associations between models.</li>
+<li>Represent inheritance hierarchies through related models.</li>
+<li>Validate models before they get persisted to the database.</li>
+<li>Perform database operations in an object-oriented fashion.</li>
+</ul>
+<h2 id="convention-over-configuration-in-active-record"><a class="anchorlink" href="#convention-over-configuration-in-active-record" data-turbo="false"><span>2.</span> Convention over Configuration in Active Record</a></h2><p>When writing applications using other programming languages or frameworks, it
+may be necessary to write a lot of configuration code. This is particularly true
+for ORM frameworks in general. However, if you follow the conventions adopted by
+Rails, you'll write very little to no configuration code when creating Active
+Record models.</p><p>Rails adopts the idea that if you configure your applications in the same way
+most of the time, then that way should be the default. Explicit configuration
+should be needed only in those cases where you can't follow the convention.</p><p>To take advantage of convention over configuration in Active Record, there are
+some naming and schema conventions to follow. And in case you need to, it is
+possible to <a href="#overriding-the-naming-conventions">override naming conventions</a>.</p><h3 id="naming-conventions"><a class="anchorlink" href="#naming-conventions" data-turbo="false"><span>2.1.</span> Naming Conventions</a></h3><p>Active Record uses this naming convention to map between models (represented by
+Ruby objects) and database tables:</p><p>Rails will pluralize your model's class names to find the respective database
+table. For example, a class named <code>Book</code> maps to a database table named <code>books</code>.
+The Rails pluralization mechanisms are very powerful and capable of pluralizing
+(and singularizing) both regular and irregular words in the English language.
+This uses the <a href="active_support_core_extensions.html#pluralize">Active Support</a>
+<a href="https://api.rubyonrails.org/v8.1.4/classes/ActiveSupport/Inflector.html#method-i-pluralize">pluralize</a> method.</p><p>For class names composed of two or more words, the model class name will follow
+the Ruby conventions of using an UpperCamelCase name. The database table name, in
+that case, will be a snake_case name. For example:</p>
+<ul>
+<li><code>BookClub</code> is the model class, singular with the first letter of each word
+capitalized.</li>
+<li><code>book_clubs</code> is the matching database table, plural with underscores
+separating words.</li>
+</ul>
+<p>Here are some more examples of model class names and corresponding table names:</p>
+<div class="table-wrapper"><table><thead>
+<tr>
+<th>Model / Class</th>
+<th>Table / Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Article</code></td>
+<td><code>articles</code></td>
+</tr>
+<tr>
+<td><code>LineItem</code></td>
+<td><code>line_items</code></td>
+</tr>
+<tr>
+<td><code>Product</code></td>
+<td><code>products</code></td>
+</tr>
+<tr>
+<td><code>Person</code></td>
+<td><code>people</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="schema-conventions"><a class="anchorlink" href="#schema-conventions" data-turbo="false"><span>2.2.</span> Schema Conventions</a></h3><p>Active Record uses conventions for column names in the database tables as well,
+depending on the purpose of these columns.</p>
+<ul>
+<li><strong>Primary keys</strong> - By default, Active Record will use an integer column named
+<code>id</code> as the table's primary key (<code>bigint</code> for PostgreSQL, MySQL, and MariaDB,
+<code>integer</code> for SQLite). When using <a href="#migrations">Active Record Migrations</a> to
+create your tables, this column will be automatically created.</li>
+<li><strong>Foreign keys</strong> - These fields should be named following the pattern
+<code>singularized_table_name_id</code> (e.g., <code>order_id</code>, <code>line_item_id</code>). These are the
+fields that Active Record will look for when you create associations between
+your models.</li>
+</ul>
+<p>There are also some optional column names that will add additional features to
+Active Record instances:</p>
+<ul>
+<li><code>created_at</code> - Automatically gets set to the current date and time when the
+record is first created.</li>
+<li><code>updated_at</code> - Automatically gets set to the current date and time whenever
+the record is created or updated.</li>
+<li><code>lock_version</code> - Adds <a href="https://api.rubyonrails.org/v8.1.4/classes/ActiveRecord/Locking.html">optimistic
+locking</a> to a
+model.</li>
+<li><code>type</code> - Specifies that the model uses <a href="https://api.rubyonrails.org/v8.1.4/classes/ActiveRecord/Base.html#class-ActiveRecord::Base-label-Single+table+inheritance">Single Table
+Inheritance</a>.</li>
+<li><code>(association_name)_type</code> - Stores the type for <a href="association_basics.html#polymorphic-associations">polymorphic
+associations</a>.</li>
+<li><code>(table_name)_count</code> - Used to cache the number of belonging objects on
+associations. For example, if <code>Article</code>s have many <code>Comment</code>s, a
+<code>comments_count</code> column in the <code>articles</code> table will cache the number of
+existing comments for each article.</li>
+</ul>
+<div class="interstitial note"><p>While these column names are optional, they are reserved by Active Record.
+Steer clear of reserved keywords when naming your table's columns. For example,
+<code>type</code> is a reserved keyword used to designate a table using Single Table
+Inheritance (STI). If you are not using STI, use a different word to accurately
+describe the data you are modeling.</p></div><h2 id="creating-active-record-models"><a class="anchorlink" href="#creating-active-record-models" data-turbo="false"><span>3.</span> Creating Active Record Models</a></h2><p>When generating a Rails application, an abstract <code>ApplicationRecord</code> class will
+be created in <code>app/models/application_record.rb</code>. The <code>ApplicationRecord</code> class
+inherits from
+<a href="https://api.rubyonrails.org/v8.1.4/classes/ActiveRecord/Base.html"><code>ActiveRecord::Base</code></a>
+and it's what turns a regular Ruby class into an Active Record model.</p><p><code>ApplicationRecord</code> is the base class for all Active Record models in your app.
+To create a new model, subclass the <code>ApplicationRecord</code> class and you're good to
+go:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class Book < ApplicationRecord
+end
+">Copy</button>
+</div>
+<p>This will create a <code>Book</code> model, mapped to a <code>books</code> table in the database,
+where each column in the table is mapped to attributes of the <code>Book</code> class. An
+instance of <code>Book</code> can represent a row in the <code>books</code> table. The <code>books</code> table
+with columns <code>id</code>, <code>title</code>, and <code>author</code>, can be created using an SQL statement
+like this:</p><div class="interstitial code">
+<pre><code class="highlight sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">books</span> <span class="p">(</span>
+  <span class="n">id</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">auto_increment</span><span class="p">,</span>
+  <span class="n">title</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+  <span class="n">author</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span>  <span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="CREATE TABLE books (
+  id int(11) NOT NULL auto_increment,
+  title varchar(255),
+  author varchar(255),
+  PRIMARY KEY  (id)
+);
+">Copy</button>
+</div>
+<p>However, that is not how you do it normally in Rails. Database tables in Rails
+are typically created using <a href="#migrations">Active Record Migrations</a> and not raw
+SQL. A migration for the <code>books</code> table above can be generated like this:</p><div class="interstitial code">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate migration CreateBooks title:string author:string
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="bin/rails generate migration CreateBooks title:string author:string
+">Copy</button>
+</div>
+<div class="interstitial note"><p>If you don't specify a type for a field (e.g., <code>title</code> instead of <code>title:string</code>), Rails will default to type <code>string</code>.</p></div><p>and results in this:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># Note:</span>
+<span class="c1"># The `id` column, as the primary key, is automatically created by convention.</span>
+<span class="c1"># Columns `created_at` and `updated_at` are added by `t.timestamps`.</span>
+
+<span class="c1"># db/migrate/20240220143807_create_books.rb</span>
+<span class="k">class</span> <span class="nc">CreateBooks</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">8.1</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:books</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:author</span>
+
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="# Note:
+# The `id` column, as the primary key, is automatically created by convention.
+# Columns `created_at` and `updated_at` are added by `t.timestamps`.
+
+class CreateBooks < ActiveRecord::Migration[8.1]
+  def change
+    create_table :books do |t|
+      t.string :title
+      t.string :author
+
+      t.timestamps
+    end
+  end
+end
+">Copy</button>
+</div>
+<p>That migration creates columns <code>id</code>, <code>title</code>, <code>author</code>, <code>created_at</code> and
+<code>updated_at</code>. Each row of this table can be represented by an instance of the
+<code>Book</code> class with the same attributes: <code>id</code>, <code>title</code>, <code>author</code>, <code>created_at</code>,
+and <code>updated_at</code>. You can access a book's attributes like this:</p><div class="interstitial code">
+<pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">new</span>
+<span class="p">=&gt;</span> <span class="kt">#&lt;</span><span class="no">Book</span><span class="p">:</span><span class="mh">0x00007fbdf5e9a038</span> <span class="ss">id: </span><span class="kp">nil</span><span class="p">,</span> <span class="ss">title: </span><span class="kp">nil</span><span class="p">,</span> <span class="ss">author: </span><span class="kp">nil</span><span class="p">,</span> <span class="ss">created_at: </span><span class="kp">nil</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="kp">nil</span><span class="kt">&gt;</span>
+
+<span class="gp">irb&gt;</span><span class="w"> </span><span class="n">book</span><span class="p">.</span><span class="nf">title</span> <span class="o">=</span> <span class="s2">"The Hobbit"</span>
+<span class="p">=&gt;</span> <span class="s2">"The Hobbit"</span>
+<span class="gp">irb&gt;</span><span class="w"> </span><span class="n">book</span><span class="p">.</span><span class="nf">title</span>
+<span class="p">=&gt;</span> <span class="s2">"The Hobbit"</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="book = Book.new
+book.title = &quot;The Hobbit&quot;
+book.title
+">Copy</button>
+</div>
+<div class="interstitial note"><p>You can generate the Active Record model class as well as a matching
+migration with the command <code>bin/rails generate model Book title:string
+author:string</code>. This creates the files <code>app/models/book.rb</code>,
+<code>db/migrate/20240220143807_create_books.rb</code>, and a couple others for testing
+purposes.</p></div><h3 id="creating-namespaced-models"><a class="anchorlink" href="#creating-namespaced-models" data-turbo="false"><span>3.1.</span> Creating Namespaced Models</a></h3><p>Active Record models are placed under the <code>app/models</code> directory by default. But
+you may want to organize your models by placing similar models under their own
+folder and namespace. For example, <code>order.rb</code> and <code>review.rb</code> under
+<code>app/models/book</code> with <code>Book::Order</code> and <code>Book::Review</code> class names,
+respectively. You can create namespaced models with Active Record.</p><p>In the case where the <code>Book</code> module does not already exist, the <code>generate</code>
+command will create everything like this:</p><div class="interstitial code">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate model Book::Order
+<span class="go">      invoke  active_record</span>
+<span class="go">      create    db/migrate/20240306194227_create_book_orders.rb</span>
+<span class="go">      create    app/models/book/order.rb</span>
+<span class="go">      create    app/models/book.rb</span>
+<span class="go">      invoke    test_unit</span>
+<span class="go">      create      test/models/book/order_test.rb</span>
+<span class="go">      create      test/fixtures/book/orders.yml</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="bin/rails generate model Book::Order
+">Copy</button>
+</div>
+<p>If the <code>Book</code> module already exists, you will be asked to resolve
+the conflict:</p><div class="interstitial code">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate model Book::Order
+<span class="go">      invoke  active_record</span>
+<span class="go">      create    db/migrate/20240305140356_create_book_orders.rb</span>
+<span class="go">      create    app/models/book/order.rb</span>
+<span class="go">    conflict    app/models/book.rb</span>
+<span class="go">  Overwrite /Users/bhumi/Code/rails_guides/app/models/book.rb? (enter "h" for help) [Ynaqdhm]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="bin/rails generate model Book::Order
+">Copy</button>
+</div>
+<p>Once the namespaced model generation is successful, the <code>Book</code> and <code>Order</code>
+classes look like this:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># app/models/book.rb</span>
+<span class="k">module</span> <span class="nn">Book</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">table_name_prefix</span>
+    <span class="s2">"book_"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># app/models/book/order.rb</span>
+<span class="k">class</span> <span class="nc">Book::Order</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="module Book
+  def self.table_name_prefix
+    &quot;book_&quot;
+  end
+end
+
+class Book::Order < ApplicationRecord
+end
+">Copy</button>
+</div>
+<p>Setting the
+<a href="https://api.rubyonrails.org/v8.1.4/classes/ActiveRecord/ModelSchema.html#method-c-table_name_prefix-3D">table_name_prefix</a>
+in <code>Book</code> will allow <code>Order</code> model's database table to be named
+<code>book_orders</code>, instead of plain <code>orders</code>.</p><p>The other possibility is that you already have a <code>Book</code> model that you want
+to keep in <code>app/models</code>. In that case, you can choose <code>n</code> to not overwrite
+<code>book.rb</code> during the <code>generate</code> command.</p><p>This will still allow for a namespaced table name for <code>Book::Order</code> class,
+without needing the <code>table_name_prefix</code>:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># app/models/book.rb</span>
+<span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="c1"># existing code</span>
+<span class="k">end</span>
+
+<span class="no">Book</span><span class="o">::</span><span class="no">Order</span><span class="p">.</span><span class="nf">table_name</span>
+<span class="c1"># =&gt; "book_orders"</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class Book < ApplicationRecord
+  # existing code
+end
+
+Book::Order.table_name
+# => &quot;book_orders&quot;
+">Copy</button>
+</div>
+<h2 id="overriding-the-naming-conventions"><a class="anchorlink" href="#overriding-the-naming-conventions" data-turbo="false"><span>4.</span> Overriding the Naming Conventions</a></h2><p>What if you need to follow a different naming convention or need to use your
+Rails application with a legacy database? No problem, you can easily override
+the default conventions.</p><p>Since <code>ApplicationRecord</code> inherits from <code>ActiveRecord::Base</code>, your application's
+models will have a number of helpful methods available to them. For example, you
+can use the <code>ActiveRecord::Base.table_name=</code> method to customize the table name
+that should be used:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">table_name</span> <span class="o">=</span> <span class="s2">"my_books"</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class Book < ApplicationRecord
+  self.table_name = &quot;my_books&quot;
+end
+">Copy</button>
+</div>
+<p>If you do so, you will have to manually define the class name that is hosting
+<a href="testing.html#fixtures">the fixtures</a> (<code>my_books.yml</code>) using the
+<code>set_fixture_class</code> method in your test definition:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># test/models/book_test.rb</span>
+<span class="k">class</span> <span class="nc">BookTest</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="n">set_fixture_class</span> <span class="ss">my_books: </span><span class="no">Book</span>
+  <span class="n">fixtures</span> <span class="ss">:my_books</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class BookTest < ActiveSupport::TestCase
+  set_fixture_class my_books: Book
+  fixtures :my_books
+  # ...
+end
+">Copy</button>
+</div>
+<p>It's also possible to override the column that should be used as the table's
+primary key using the <code>ActiveRecord::Base.primary_key=</code> method:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">primary_key</span> <span class="o">=</span> <span class="s2">"book_id"</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class Book < ApplicationRecord
+  self.primary_key = &quot;book_id&quot;
+end
+">Copy</button>
+</div>
+<div class="interstitial note"><p><strong>Active Record does not recommend using non-primary key columns named
+<code>id</code>.</strong> Using a column named <code>id</code> which is not a single-column primary key
+complicates the access to the column value. The application will have to use the
+<a href="https://api.rubyonrails.org/v8.1.4/classes/ActiveRecord/ModelSchema.html#method-i-id_value"><code>id_value</code></a> alias attribute to access the value of the non-PK <code>id</code> column.</p></div><div class="interstitial note"><p>If you try to create a column named <code>id</code> which is not the primary key,
+Rails will throw an error during migrations such as: <code>you can't redefine the
+primary key column 'id' on 'my_books'.</code> <code>To define a custom primary key, pass {
+id: false } to create_table.</code></p></div><h2 id="crud-reading-and-writing-data"><a class="anchorlink" href="#crud-reading-and-writing-data" data-turbo="false"><span>5.</span> CRUD: Reading and Writing Data</a></h2><p>CRUD is an acronym for the four verbs we use to operate on data: <strong>C</strong>reate,
+<strong>R</strong>ead, <strong>U</strong>pdate, and <strong>D</strong>elete. Active Record automatically creates methods
+to allow you to read and manipulate data stored in your application's database
+tables.</p><p>Active Record makes it seamless to perform CRUD operations by using these
+high-level methods that abstract away database access details. Note that all of
+these convenient methods result in SQL statement(s) that are executed against
+the underlying database.</p><p>The examples below show a few of the CRUD methods as well as the resulting SQL
+statements.</p><h3 id="create"><a class="anchorlink" href="#create" data-turbo="false"><span>5.1.</span> Create</a></h3><p>Active Record objects can be created from a hash, a block, or have their
+attributes manually set after creation. The <code>new</code> method will return a new,
+non-persisted object, while <code>create</code> will save the object to the database and
+return it.</p><p>For example, given a <code>Book</code> model with attributes of <code>title</code> and <code>author</code>, the
+<code>create</code> method call will create an object and save a new record to the
+database:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"The Lord of the Rings"</span><span class="p">,</span> <span class="ss">author: </span><span class="s2">"J.R.R. Tolkien"</span><span class="p">)</span>
+
+<span class="c1"># Note that the `id` is assigned as this record is committed to the database.</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># =&gt; "#&lt;Book id: 106, title: \"The Lord of the Rings\", author: \"J.R.R. Tolkien\", created_at: \"2024-03-04 19:15:58.033967000 +0000\", updated_at: \"2024-03-04 19:15:58.033967000 +0000\"&gt;"</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="book = Book.create(title: &quot;The Lord of the Rings&quot;, author: &quot;J.R.R. Tolkien&quot;)
+
+# Note that the `id` is assigned as this record is committed to the database.
+book.inspect
+# => &quot;#<Book id: 106, title: \&quot;The Lord of the Rings\&quot;, author: \&quot;J.R.R. Tolkien\&quot;, created_at: \&quot;2024-03-04 19:15:58.033967000 +0000\&quot;, updated_at: \&quot;2024-03-04 19:15:58.033967000 +0000\&quot;>&quot;
+">Copy</button>
+</div>
+<p>While the <code>new</code> method will instantiate an object <em>without</em> saving it to the
+database:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">title</span> <span class="o">=</span> <span class="s2">"The Hobbit"</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">author</span> <span class="o">=</span> <span class="s2">"J.R.R. Tolkien"</span>
+
+<span class="c1"># Note that the `id` is not set for this object.</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># =&gt; "#&lt;Book id: nil, title: \"The Hobbit\", author: \"J.R.R. Tolkien\", created_at: nil, updated_at: nil&gt;"</span>
+
+<span class="c1"># The above `book` is not yet saved to the database.</span>
+
+<span class="n">book</span><span class="p">.</span><span class="nf">save</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">id</span> <span class="c1"># =&gt; 107</span>
+
+<span class="c1"># Now the `book` record is committed to the database and has an `id`.</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="book = Book.new
+book.title = &quot;The Hobbit&quot;
+book.author = &quot;J.R.R. Tolkien&quot;
+
+# Note that the `id` is not set for this object.
+book.inspect
+# => &quot;#<Book id: nil, title: \&quot;The Hobbit\&quot;, author: \&quot;J.R.R. Tolkien\&quot;, created_at: nil, updated_at: nil>&quot;
+
+# The above `book` is not yet saved to the database.
+
+book.save
+book.id # => 107
+
+# Now the `book` record is committed to the database and has an `id`.
+">Copy</button>
+</div>
+<p>If a block is provided, both <code>create</code> and <code>new</code> will yield the new object to that block for initialization, while only <code>create</code> will persist the resulting object to the database:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span>
+  <span class="n">b</span><span class="p">.</span><span class="nf">title</span> <span class="o">=</span> <span class="s2">"Metaprogramming Ruby 2"</span>
+  <span class="n">b</span><span class="p">.</span><span class="nf">author</span> <span class="o">=</span> <span class="s2">"Paolo Perrotta"</span>
+<span class="k">end</span>
+
+<span class="n">book</span><span class="p">.</span><span class="nf">save</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="book = Book.new do |b|
+  b.title = &quot;Metaprogramming Ruby 2&quot;
+  b.author = &quot;Paolo Perrotta&quot;
+end
+
+book.save
+">Copy</button>
+</div>
+<p>The resulting SQL statement from both <code>book.save</code> and <code>Book.create</code> look
+something like this:</p><div class="interstitial code">
+<pre><code class="highlight sql"><span class="cm">/* Note that `created_at` and `updated_at` are automatically set. */</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nv">"books"</span> <span class="p">(</span><span class="nv">"title"</span><span class="p">,</span> <span class="nv">"author"</span><span class="p">,</span> <span class="nv">"created_at"</span><span class="p">,</span> <span class="nv">"updated_at"</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="o">?</span><span class="p">,</span> <span class="o">?</span><span class="p">,</span> <span class="o">?</span><span class="p">,</span> <span class="o">?</span><span class="p">)</span> <span class="n">RETURNING</span> <span class="nv">"id"</span>  <span class="p">[[</span><span class="nv">"title"</span><span class="p">,</span> <span class="nv">"Metaprogramming Ruby 2"</span><span class="p">],</span> <span class="p">[</span><span class="nv">"author"</span><span class="p">,</span> <span class="nv">"Paolo Perrotta"</span><span class="p">],</span> <span class="p">[</span><span class="nv">"created_at"</span><span class="p">,</span> <span class="nv">"2024-02-22 20:01:18.469952"</span><span class="p">],</span> <span class="p">[</span><span class="nv">"updated_at"</span><span class="p">,</span> <span class="nv">"2024-02-22 20:01:18.469952"</span><span class="p">]]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="/* Note that `created_at` and `updated_at` are automatically set. */
+
+INSERT INTO &quot;books&quot; (&quot;title&quot;, &quot;author&quot;, &quot;created_at&quot;, &quot;updated_at&quot;) VALUES (?, ?, ?, ?) RETURNING &quot;id&quot;  [[&quot;title&quot;, &quot;Metaprogramming Ruby 2&quot;], [&quot;author&quot;, &quot;Paolo Perrotta&quot;], [&quot;created_at&quot;, &quot;2024-02-22 20:01:18.469952&quot;], [&quot;updated_at&quot;, &quot;2024-02-22 20:01:18.469952&quot;]]
+">Copy</button>
+</div>
+<p>Finally, if you'd like to insert several records <strong>without callbacks or
+validations</strong>, you can directly insert records into the database using <code>insert</code> or <code>insert_all</code> methods:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="no">Book</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"The Lord of the Rings"</span><span class="p">,</span> <span class="ss">author: </span><span class="s2">"J.R.R. Tolkien"</span><span class="p">)</span>
+<span class="no">Book</span><span class="p">.</span><span class="nf">insert_all</span><span class="p">([{</span> <span class="ss">title: </span><span class="s2">"The Lord of the Rings"</span><span class="p">,</span> <span class="ss">author: </span><span class="s2">"J.R.R. Tolkien"</span> <span class="p">}])</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="Book.insert(title: &quot;The Lord of the Rings&quot;, author: &quot;J.R.R. Tolkien&quot;)
+Book.insert_all([{ title: &quot;The Lord of the Rings&quot;, author: &quot;J.R.R. Tolkien&quot; }])
+">Copy</button>
+</div>
+<h3 id="read"><a class="anchorlink" href="#read" data-turbo="false"><span>5.2.</span> Read</a></h3><p>Active Record provides a rich API for accessing data within a database. You can
+query a single record or multiple records, filter them by any attribute, order
+them, group them, select specific fields, and do anything you can do with SQL.</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># Return a collection with all books.</span>
+<span class="n">books</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">all</span>
+
+<span class="c1"># Return a single book.</span>
+<span class="n">first_book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">first</span>
+<span class="n">last_book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">last</span>
+<span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">take</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="# Return a collection with all books.
+books = Book.all
+
+# Return a single book.
+first_book = Book.first
+last_book = Book.last
+book = Book.take
+">Copy</button>
+</div>
+<p>The above results in the following SQL:</p><div class="interstitial code">
+<pre><code class="highlight sql"><span class="c1">-- Book.all</span>
+<span class="k">SELECT</span> <span class="nv">"books"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"books"</span>
+
+<span class="c1">-- Book.first</span>
+<span class="k">SELECT</span> <span class="nv">"books"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"books"</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"id"</span> <span class="k">ASC</span> <span class="k">LIMIT</span> <span class="o">?</span>  <span class="p">[[</span><span class="nv">"LIMIT"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+
+<span class="c1">-- Book.last</span>
+<span class="k">SELECT</span> <span class="nv">"books"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"books"</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"id"</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="o">?</span>  <span class="p">[[</span><span class="nv">"LIMIT"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+
+<span class="c1">-- Book.take</span>
+<span class="k">SELECT</span> <span class="nv">"books"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"books"</span> <span class="k">LIMIT</span> <span class="o">?</span>  <span class="p">[[</span><span class="nv">"LIMIT"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="-- Book.all
+SELECT &quot;books&quot;.* FROM &quot;books&quot;
+
+-- Book.first
+SELECT &quot;books&quot;.* FROM &quot;books&quot; ORDER BY &quot;books&quot;.&quot;id&quot; ASC LIMIT ?  [[&quot;LIMIT&quot;, 1]]
+
+-- Book.last
+SELECT &quot;books&quot;.* FROM &quot;books&quot; ORDER BY &quot;books&quot;.&quot;id&quot; DESC LIMIT ?  [[&quot;LIMIT&quot;, 1]]
+
+-- Book.take
+SELECT &quot;books&quot;.* FROM &quot;books&quot; LIMIT ?  [[&quot;LIMIT&quot;, 1]]
+">Copy</button>
+</div>
+<p>We can also find specific books with <code>find_by</code> and <code>where</code>. While <code>find_by</code>
+returns a single record, <code>where</code> returns a list of records:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># Returns the first book with a given title or `nil` if no book is found.</span>
+<span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"Metaprogramming Ruby 2"</span><span class="p">)</span>
+
+<span class="c1"># Alternative to Book.find_by(id: 42). Will throw an exception if no matching book is found.</span>
+<span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="# Returns the first book with a given title or `nil` if no book is found.
+book = Book.find_by(title: &quot;Metaprogramming Ruby 2&quot;)
+
+# Alternative to Book.find_by(id: 42). Will throw an exception if no matching book is found.
+book = Book.find(42)
+">Copy</button>
+</div>
+<p>The above resulting in this SQL:</p><div class="interstitial code">
+<pre><code class="highlight sql"><span class="c1">-- Book.find_by(title: "Metaprogramming Ruby 2")</span>
+<span class="k">SELECT</span> <span class="nv">"books"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"books"</span> <span class="k">WHERE</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"title"</span> <span class="o">=</span> <span class="o">?</span> <span class="k">LIMIT</span> <span class="o">?</span>  <span class="p">[[</span><span class="nv">"title"</span><span class="p">,</span> <span class="nv">"Metaprogramming Ruby 2"</span><span class="p">],</span> <span class="p">[</span><span class="nv">"LIMIT"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+
+<span class="c1">-- Book.find(42)</span>
+<span class="k">SELECT</span> <span class="nv">"books"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"books"</span> <span class="k">WHERE</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"id"</span> <span class="o">=</span> <span class="o">?</span> <span class="k">LIMIT</span> <span class="o">?</span>  <span class="p">[[</span><span class="nv">"id"</span><span class="p">,</span> <span class="mi">42</span><span class="p">],</span> <span class="p">[</span><span class="nv">"LIMIT"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="-- Book.find_by(title: &quot;Metaprogramming Ruby 2&quot;)
+SELECT &quot;books&quot;.* FROM &quot;books&quot; WHERE &quot;books&quot;.&quot;title&quot; = ? LIMIT ?  [[&quot;title&quot;, &quot;Metaprogramming Ruby 2&quot;], [&quot;LIMIT&quot;, 1]]
+
+-- Book.find(42)
+SELECT &quot;books&quot;.* FROM &quot;books&quot; WHERE &quot;books&quot;.&quot;id&quot; = ? LIMIT ?  [[&quot;id&quot;, 42], [&quot;LIMIT&quot;, 1]]
+">Copy</button>
+</div>
+<div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># Find all books by a given author, sort by created_at in reverse chronological order.</span>
+<span class="no">Book</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">author: </span><span class="s2">"Douglas Adams"</span><span class="p">).</span><span class="nf">order</span><span class="p">(</span><span class="ss">created_at: :desc</span><span class="p">)</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="# Find all books by a given author, sort by created_at in reverse chronological order.
+Book.where(author: &quot;Douglas Adams&quot;).order(created_at: :desc)
+">Copy</button>
+</div>
+<p>resulting in this SQL:</p><div class="interstitial code">
+<pre><code class="highlight sql"><span class="k">SELECT</span> <span class="nv">"books"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"books"</span> <span class="k">WHERE</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"author"</span> <span class="o">=</span> <span class="o">?</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"created_at"</span> <span class="k">DESC</span> <span class="p">[[</span><span class="nv">"author"</span><span class="p">,</span> <span class="nv">"Douglas Adams"</span><span class="p">]]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="SELECT &quot;books&quot;.* FROM &quot;books&quot; WHERE &quot;books&quot;.&quot;author&quot; = ? ORDER BY &quot;books&quot;.&quot;created_at&quot; DESC [[&quot;author&quot;, &quot;Douglas Adams&quot;]]
+">Copy</button>
+</div>
+<p>There are many more Active Record methods to read and query records. You can
+learn more about them in the <a href="active_record_querying.html">Active Record Query</a> guide.</p><h3 id="update"><a class="anchorlink" href="#update" data-turbo="false"><span>5.3.</span> Update</a></h3><p>Once an Active Record object has been retrieved, its attributes can be modified
+and it can be saved to the database.</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"The Lord of the Rings"</span><span class="p">)</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">title</span> <span class="o">=</span> <span class="s2">"The Lord of the Rings: The Fellowship of the Ring"</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">save</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="book = Book.find_by(title: &quot;The Lord of the Rings&quot;)
+book.title = &quot;The Lord of the Rings: The Fellowship of the Ring&quot;
+book.save
+">Copy</button>
+</div>
+<p>A shorthand for this is to use a hash mapping attribute names to the desired
+value, like so:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"The Lord of the Rings"</span><span class="p">)</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"The Lord of the Rings: The Fellowship of the Ring"</span><span class="p">)</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="book = Book.find_by(title: &quot;The Lord of the Rings&quot;)
+book.update(title: &quot;The Lord of the Rings: The Fellowship of the Ring&quot;)
+">Copy</button>
+</div>
+<p>the <code>update</code> results in the following SQL:</p><div class="interstitial code">
+<pre><code class="highlight sql"><span class="cm">/* Note that `updated_at` is automatically set. */</span>
+
+ <span class="k">UPDATE</span> <span class="nv">"books"</span> <span class="k">SET</span> <span class="nv">"title"</span> <span class="o">=</span> <span class="o">?</span><span class="p">,</span> <span class="nv">"updated_at"</span> <span class="o">=</span> <span class="o">?</span> <span class="k">WHERE</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"id"</span> <span class="o">=</span> <span class="o">?</span>  <span class="p">[[</span><span class="nv">"title"</span><span class="p">,</span> <span class="nv">"The Lord of the Rings: The Fellowship of the Ring"</span><span class="p">],</span> <span class="p">[</span><span class="nv">"updated_at"</span><span class="p">,</span> <span class="nv">"2024-02-22 20:51:13.487064"</span><span class="p">],</span> <span class="p">[</span><span class="nv">"id"</span><span class="p">,</span> <span class="mi">104</span><span class="p">]]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="/* Note that `updated_at` is automatically set. */
+
+ UPDATE &quot;books&quot; SET &quot;title&quot; = ?, &quot;updated_at&quot; = ? WHERE &quot;books&quot;.&quot;id&quot; = ?  [[&quot;title&quot;, &quot;The Lord of the Rings: The Fellowship of the Ring&quot;], [&quot;updated_at&quot;, &quot;2024-02-22 20:51:13.487064&quot;], [&quot;id&quot;, 104]]
+">Copy</button>
+</div>
+<p>This is useful when updating several attributes at once. Similar to <code>create</code>,
+using <code>update</code> will commit the updated records to the database.</p><p>If you'd like to update several records in bulk <strong>without callbacks or
+validations</strong>, you can update the database directly using <code>update_all</code>:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="no">Book</span><span class="p">.</span><span class="nf">update_all</span><span class="p">(</span><span class="ss">status: </span><span class="s2">"already own"</span><span class="p">)</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="Book.update_all(status: &quot;already own&quot;)
+">Copy</button>
+</div>
+<h3 id="delete"><a class="anchorlink" href="#delete" data-turbo="false"><span>5.4.</span> Delete</a></h3><p>Likewise, once retrieved, an Active Record object can be destroyed, which
+removes it from the database.</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="n">book</span> <span class="o">=</span> <span class="no">Book</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"The Lord of the Rings"</span><span class="p">)</span>
+<span class="n">book</span><span class="p">.</span><span class="nf">destroy</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="book = Book.find_by(title: &quot;The Lord of the Rings&quot;)
+book.destroy
+">Copy</button>
+</div>
+<p>The <code>destroy</code> results in this SQL:</p><div class="interstitial code">
+<pre><code class="highlight sql"><span class="k">DELETE</span> <span class="k">FROM</span> <span class="nv">"books"</span> <span class="k">WHERE</span> <span class="nv">"books"</span><span class="p">.</span><span class="nv">"id"</span> <span class="o">=</span> <span class="o">?</span>  <span class="p">[[</span><span class="nv">"id"</span><span class="p">,</span> <span class="mi">104</span><span class="p">]]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="DELETE FROM &quot;books&quot; WHERE &quot;books&quot;.&quot;id&quot; = ?  [[&quot;id&quot;, 104]]
+">Copy</button>
+</div>
+<p>If you'd like to delete several records in bulk, you may use <code>destroy_by</code>
+or <code>destroy_all</code> method:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="c1"># Find and delete all books by Douglas Adams.</span>
+<span class="no">Book</span><span class="p">.</span><span class="nf">destroy_by</span><span class="p">(</span><span class="ss">author: </span><span class="s2">"Douglas Adams"</span><span class="p">)</span>
+
+<span class="c1"># Delete all books.</span>
+<span class="no">Book</span><span class="p">.</span><span class="nf">destroy_all</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="# Find and delete all books by Douglas Adams.
+Book.destroy_by(author: &quot;Douglas Adams&quot;)
+
+# Delete all books.
+Book.destroy_all
+">Copy</button>
+</div>
+<p>Additionally, if you'd like to delete several records <strong>without callbacks or
+validations</strong>, you can delete records directly from the database using <code>delete</code> and <code>delete_all</code> methods:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="no">Book</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"The Lord of the Rings"</span><span class="p">).</span><span class="nf">delete</span>
+<span class="no">Book</span><span class="p">.</span><span class="nf">delete_all</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="Book.find_by(title: &quot;The Lord of the Rings&quot;).delete
+Book.delete_all
+">Copy</button>
+</div>
+<h2 id="validations"><a class="anchorlink" href="#validations" data-turbo="false"><span>6.</span> Validations</a></h2><p>Active Record allows you to validate the state of a model before it gets written
+into the database. There are several methods that allow for different types of
+validations. For example, validate that an attribute value is not empty, is
+unique, is not already in the database, follows a specific format, and many
+more.</p><p>Methods like <code>save</code>, <code>create</code> and <code>update</code> validate a model before persisting it
+to the database. If the model is invalid, no database operations are performed. In
+this case the <code>save</code> and <code>update</code> methods return <code>false</code>. The <code>create</code> method still
+returns the object, which can be checked for errors. All of these
+methods have a bang counterpart (that is, <code>save!</code>, <code>create!</code> and <code>update!</code>),
+which are stricter in that they raise an <code>ActiveRecord::RecordInvalid</code> exception
+when validation fails. A quick example to illustrate:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class User < ApplicationRecord
+  validates :name, presence: true
+end
+">Copy</button>
+</div>
+<div class="interstitial code">
+<pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span>
+<span class="gp">irb&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="nf">save</span>
+<span class="p">=&gt;</span> <span class="kp">false</span>
+<span class="gp">irb&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="nf">save!</span>
+<span class="go">ActiveRecord::RecordInvalid: Validation failed: Name can't be blank</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="user = User.new
+user.save
+user.save!
+">Copy</button>
+</div>
+<p>The <code>create</code> method always returns the model, regardless of
+its validity. You can then inspect this model for any errors.</p><div class="interstitial code">
+<pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span>
+<span class="p">=&gt;</span> <span class="kt">#&lt;</span><span class="no">User</span><span class="p">:</span><span class="mh">0x000000013e8b5008</span> <span class="ss">id: </span><span class="kp">nil</span><span class="p">,</span> <span class="ss">name: </span><span class="kp">nil</span><span class="kt">&gt;</span>
+<span class="gp">irb&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span>
+<span class="p">=&gt;</span> <span class="p">[</span><span class="s2">"Name can't be blank"</span><span class="p">]</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="user = User.create
+user.errors.full_messages
+">Copy</button>
+</div>
+<p>You can learn more about validations in the <a href="active_record_validations.html">Active Record Validations
+guide</a>.</p><h2 id="callbacks"><a class="anchorlink" href="#callbacks" data-turbo="false"><span>7.</span> Callbacks</a></h2><p>Active Record callbacks allow you to attach code to certain events in the
+lifecycle of your models. This enables you to add behavior to your models by
+executing code when those events occur, like when you create a new record,
+update it, destroy it, and so on.</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">after_create</span> <span class="ss">:log_new_user</span>
+
+  <span class="kp">private</span>
+    <span class="k">def</span> <span class="nf">log_new_user</span>
+      <span class="nb">puts</span> <span class="s2">"A new user was registered"</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class User < ApplicationRecord
+  after_create :log_new_user
+
+  private
+    def log_new_user
+      puts &quot;A new user was registered&quot;
+    end
+end
+">Copy</button>
+</div>
+<div class="interstitial code">
+<pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span>
+<span class="go">A new user was registered</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="@user = User.create
+">Copy</button>
+</div>
+<p>You can learn more about callbacks in the <a href="active_record_callbacks.html">Active Record Callbacks
+guide</a>.</p><h2 id="migrations"><a class="anchorlink" href="#migrations" data-turbo="false"><span>8.</span> Migrations</a></h2><p>Rails provides a convenient way to manage changes to a database schema via
+migrations. Migrations are written in a domain-specific language and stored in
+files which are executed against any database that Active Record supports.</p><p>Here's a migration that creates a new table called <code>publications</code>:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">CreatePublications</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">8.1</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:publications</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:description</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">references</span> <span class="ss">:publication_type</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">references</span> <span class="ss">:publisher</span><span class="p">,</span> <span class="ss">polymorphic: </span><span class="kp">true</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:single_issue</span>
+
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class CreatePublications < ActiveRecord::Migration[8.1]
+  def change
+    create_table :publications do |t|
+      t.string :title
+      t.text :description
+      t.references :publication_type
+      t.references :publisher, polymorphic: true
+      t.boolean :single_issue
+
+      t.timestamps
+    end
+  end
+end
+">Copy</button>
+</div>
+<p>Note that the above code is database-agnostic: it will run in MySQL, MariaDB,
+PostgreSQL, SQLite, and others.</p><p>Rails keeps track of which migrations have been committed to the database and
+stores them in a neighboring table in that same database called
+<code>schema_migrations</code>.</p><p>To run the migration and create the table, you'd run <code>bin/rails db:migrate</code>, and
+to roll it back and delete the table, <code>bin/rails db:rollback</code>.</p><p>You can learn more about migrations in the <a href="active_record_migrations.html">Active Record Migrations
+guide</a>.</p><h2 id="associations"><a class="anchorlink" href="#associations" data-turbo="false"><span>9.</span> Associations</a></h2><p>Active Record associations allow you to define relationships between models.
+Associations can be used to describe one-to-one, one-to-many, and many-to-many
+relationships. For example, a relationship like “Author has many Books” can be
+defined as follows:</p><div class="interstitial code">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">Author</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_many</span> <span class="ss">:books</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class Author < ApplicationRecord
+  has_many :books
+end
+">Copy</button>
+</div>
+<p>The <code>Author</code> class now has methods to add and remove books to an author, and
+much more.</p><p>You can learn more about associations in the <a href="association_basics.html">Active Record Associations
+guide</a>.</p>
+          </section>
+
+          <hr>
+
+          <footer aria-labelledby="heading-feedback" role="region">
+            <h2 id="heading-feedback">Feedback</h2>
+            <p>
+              You're encouraged to help improve the quality of this guide.
+            </p>
+            <p>
+              Please contribute if you see any typos or factual errors.
+              To get started, you can read our <a href="https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">documentation contributions</a> section.
+            </p>
+            <p>
+              You may also find incomplete content or stuff that is not up to date.
+              Please do add any missing documentation for main. Make sure to check
+              <a href="https://edgeguides.rubyonrails.org">Edge Guides</a> first to verify
+              if the issues are already fixed or not on the main branch.
+              Check the <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>
+              for style and conventions.
+            </p>
+            <p>
+              If for whatever reason you spot something to fix but cannot patch it yourself, please
+              <a href="https://github.com/rails/rails/issues">open an issue</a>.
+            </p>
+            <p>And last but not least, any kind of discussion regarding Ruby on Rails
+              documentation is very welcome on the <a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">official Ruby on Rails Forum</a>.
+            </p>
+          </footer>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <hr class="hide">
+
+  <footer id="complementary">
+    <div class="wrapper">
+      <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> License</p>
+<p>"Rails", "Ruby on Rails", and the Rails logo are trademarks of David Heinemeier Hansson. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <a href="#main-skip-link" class="back-to-top" data-turbo="false"><span class="visibly-hidden">Back to top</span></a>
+</body>
+</html>

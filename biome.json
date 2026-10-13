@@ -9,7 +9,12 @@
       "!pnpm-lock.yaml",
       "!.claude/settings.json",
       "!**/.worktrees",
-      "!config/wirecat"
+      "!config/wirecat",
+      "!performance/documents/html-readers/fixtures",
+      "!performance/documents/html-readers/reference",
+      "!performance/documents/html-readers/results.json",
+      "!performance/documents/html-readers/sizes.json",
+      "!performance/documents/html-readers/manifest.json"
     ],
     "maxSize": 16777216
   },
@@ -44,7 +49,11 @@
       }
     },
     {
-      "includes": ["performance/search/message-search/**", "performance/search/everywhere/**"],
+      "includes": [
+        "performance/search/message-search/**",
+        "performance/search/everywhere/**",
+        "performance/documents/html-readers/**"
+      ],
       "formatter": {
         "enabled": false
       },
