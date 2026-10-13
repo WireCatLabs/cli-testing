@@ -129,19 +129,26 @@ EmbeddingGemma and ours e5-small, so the run does not say which model is better 
   with other words, or with the words an answer would contain. qmd's own MCP tool takes the variants from the
   agent (`searches` of type `lex`, `vec`, `hyde`) and skips its expansion model. The cheap equivalent for us is a
   skill rule — "nothing relevant: search again with other words" — not a 1.28 GB download.
-- **Reranking: we have two, neither runs on notes or documents.**
-  - A rule reranker in message search
+- **Reranking: we tried three on message search; none ships, and note search has none.**
+  - **Rules, no model**
     ([`messages-combined.ts`](https://github.com/WireCatLabs/cli-messaging/blob/main/src/services/messages-combined.ts)):
-    how many query words a message covers, how close together and in what order, with exact words above stems,
-    beginnings and typo corrections. No model. Its only caller today, `--discover`, runs it with `rerank: "none"`.
-  - A model reranker, measured only: the cross-encoder
-    [mmarco-mMiniLMv2-L12-H384](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1) on messages
-    ([combined-search.md, "Semantic experiment"](https://github.com/WireCatLabs/cli-messaging/blob/main/docs/dev/combined-search.md)).
-    It improved recall and MRR over strict and legacy search with no false hits, missed the held-out gates
-    (recall 0.438 against 0.45, MRR 0.488 against 0.50) and cost 3–4 s a query. Not shipped.
-  - Note search (memo, drive) only fuses its two lists. A reranker there is the one qmd idea with a measured
-    reason behind it: the paraphrase gap. It would have to run in a long-lived process (the MCP server), as qmd's
-    does, or every search pays the model load.
+    how many query words a message covers, how close together and in what order; an exact word counts more than
+    a stem, a stem more than a beginning or a typo correction. In the dev sweep of 180 settings (candidate depth,
+    RRF k, each rule alone and all together, chat caps) every setting gave the same recall, MRR and nDCG: the
+    rules moved no answer into or out of the top ten
+    ([combined-search.md, "Measured lexical experiment"](https://github.com/WireCatLabs/cli-messaging/blob/main/docs/dev/combined-search.md)).
+    The code stays, default `rerank: "all"`, but its only caller, `--discover`, passes `rerank: "none"`.
+  - **e5-small cosine as a reranker**: recall@10 on the dev keyword queries fell to 0.275, below strict search's
+    0.313; no cosine floor kept the answers while dropping hits for questions with no answer. Rejected.
+  - **A cross-encoder**,
+    [mmarco-mMiniLMv2-L12-H384](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1), 8-bit ONNX,
+    ~130 MB: reads the query and the message together. Dev recall/MRR/nDCG 0.525/0.553/0.477 with no false hits,
+    better than strict and legacy; on the held-out queries 0.438/0.488, under the 0.45/0.50 gates, and 3–4 s a
+    query. Not shipped; it is not retuned on held-out results by the plan's rule.
+  - **Note and document search (memo, drive) only fuses its word and meaning lists.** A reranker there is the
+    one qmd idea with a measured reason behind it, the paraphrase gap. It would run in a long-lived process (the
+    MCP server), as qmd's does, or every search pays the model load. The owner's ruling: an opt-in download,
+    never on by default (NEED-1002). It is being measured on these queries.
 
 ## Limits
 
