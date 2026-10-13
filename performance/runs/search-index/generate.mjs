@@ -63,4 +63,4 @@ for (let d = 29; d >= 0; d--) {
     await run.finish(failed ? "failed" : "success", { requests: events, ...(failed ? { errorCode: pick(CODES) } : {}) })
   }
 }
-process.stdout.write(`generated ${30 * perDay} runs in ${runsDir}` + "\n")
+process.stdout.write(`generated ${30 * perDay} runs in ${runsDir}\n`)

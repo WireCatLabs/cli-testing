@@ -27,5 +27,5 @@ for (const [name, body] of Object.entries(cases)) {
     times.push(performance.now() - start)
   }
   times.sort((a, b) => a - b)
-  process.stdout.write(`${label}\t${name}\t${times[Math.floor(rounds / 2)].toFixed(1)} ms` + "\n")
+  process.stdout.write(`${label}\t${name}\t${times[Math.floor(rounds / 2)].toFixed(1)} ms\n`)
 }
