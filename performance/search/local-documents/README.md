@@ -148,7 +148,60 @@ EmbeddingGemma and ours e5-small, so the run does not say which model is better 
   - **Note and document search (memo, drive) only fuses its word and meaning lists.** A reranker there is the
     one qmd idea with a measured reason behind it, the paraphrase gap. It would run in a long-lived process (the
     MCP server), as qmd's does, or every search pays the model load. The owner's ruling: an opt-in download,
-    never on by default (NEED-1002). It is being measured on these queries.
+    never on by default (NEED-1002). Measured below: [Rerankers on these queries](#rerankers-on-these-queries).
+
+## Rerankers on these queries
+
+Run 2026-10-13 evening, owner's decision NEED-1002 (A): would a reranker close the paraphrase gap, and which one.
+
+**Setup.** [`collect.py`](collect.py) takes memo's and drive's top 40 per query from the CLIs, read-only (memo
+0.20.0, drive 0.1.0 with its vectors). [`rerank.mjs`](rerank.mjs) runs in one long-lived process, as the MCP
+server would: for each query it takes the top 30, picks one passage per document as qmd does (the 1,200-character
+passage holding most query words, matched on their first five letters), scores query and passage with the
+reranker, and orders by the score alone or by qmd's blend (place 1–3: 75% the original place, 4–10: 60%, below:
+40%). The right document was among the 40 candidates for all 50 queries.
+
+- **mmarco**: [mmarco-mMiniLMv2-L12-H384](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1),
+  8-bit ONNX, 130 MB, pinned in `message-search/reranker.json`; our WebAssembly runtime, 8 threads; score through a
+  sigmoid.
+- **Qwen3**: Qwen3-Reranker-0.6B Q8 (639 MB), qmd's model, through qmd's node-llama-cpp 3.20.0, context 4,096.
+
+Time is the reranking of one query's 30 passages in the warm process. Loading took 0.6 s (mmarco) and 2.2 s
+(Qwen3), once.
+
+| corpus | engine | hit@1 | hit@3 | hit@10 | MRR@10 | added per query |
+|---|---|---|---|---|---|---|
+| notes | memo | 0.72 | 0.84 | 0.88 | 0.78 | — |
+| notes | **memo + mmarco** | **0.84** | 0.96 | 0.96 | **0.89** | 2.1 s |
+| notes | memo + mmarco, blend | 0.72 | 0.92 | 1.00 | 0.82 | 2.1 s |
+| notes | memo + Qwen3 | 0.80 | 0.92 | 1.00 | 0.88 | 6.5 s |
+| notes | memo + Qwen3, blend | 0.72 | **1.00** | 1.00 | 0.85 | 6.5 s |
+| notes | qmd query (for reference) | 0.48 | 0.96 | 0.96 | 0.70 | 25 s a search |
+| drive | drive | 0.68 | 0.80 | 0.92 | 0.76 | — |
+| drive | drive + mmarco | 0.68 | 0.80 | 0.96 | 0.76 | 2.0 s |
+| drive | drive + mmarco, blend | 0.68 | 0.88 | 0.92 | 0.78 | 2.0 s |
+| drive | drive + Qwen3 | 0.72 | 0.80 | 0.92 | 0.78 | 6.1 s |
+| drive | drive + Qwen3, blend | 0.68 | **0.92** | 0.92 | 0.78 | 6.1 s |
+| drive | qmd query (for reference) | 0.48 | 0.80 | 0.88 | 0.65 | 25 s a search |
+
+Paraphrases, top 3: notes memo 2/5 → 5/5 with mmarco, 5/5 with Qwen3; drive 2/5 → 3/5 with mmarco, 4/5 with Qwen3.
+
+**What it showed.**
+
+- **On the notes a reranker closes the paraphrase gap.** mmarco alone puts the right note first in 21 of 25 (memo
+  18, qmd 12) and finds every paraphrase in the top 3. It beats qmd's whole pipeline here at a fifth of its
+  model size, and needs no query-expansion model.
+- **On the Drive documents the gain is within noise.** At most two more queries in the top 3 (blend), and the score
+  alone pushes exact and word-form hits down: drive + mmarco puts the exact-word answer first in 3 of 5, against
+  5 of 5 without it. The blend keeps them.
+- **Score alone or blend.** Score alone wins first place on the notes; the blend never loses an exact or
+  word-form hit. Which to ship depends on what the owner values more; the sample is too small to tell
+  0.84 from 0.72 with confidence (three queries).
+- **mmarco is the cheaper choice:** 130 MB and ~2 s per query warm against 639 MB and ~6 s for Qwen3, with
+  results as good or better. It must not run per CLI process: loading alone is 0.6 s, and a search warm takes
+  milliseconds (vector search over all passages, 7 ms a query here).
+- **Most of memo's and drive's 1.2–2.4 s a search is start-up and model loading.** Searching the vectors in the
+  warm process took 7 ms. The CLI time is the cost of a new process per query, not of the search.
 
 ## Limits
 
@@ -165,8 +218,9 @@ EmbeddingGemma and ours e5-small, so the run does not say which model is better 
 
 ## What to take from qmd
 
-1. **A reranker for note and document search, in the MCP server only.** Measure first on these 50 queries: the
-   cross-encoder we already pinned for messages, and qmd's Qwen3 0.6B.
+1. **A reranker for note and document search, in the MCP server only, opt-in.** Measured: mmarco lifts notes
+   from 0.72 to 0.84 first place and every paraphrase into the top 3, at ~2 s warm; on Drive documents the gain is
+   within noise.
 2. **EmbeddingGemma for documents.** Re-embed the Drive folder with it and rerun the 25 Drive queries. Documents are
    few, so its slower embedding may be worth it.
 3. **Variants from the agent, not a model.** A rule in the tg and memo skills.
