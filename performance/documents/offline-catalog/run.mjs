@@ -102,7 +102,7 @@ const invoke = (words, profile = "synthetic", ok = true) => {
 }
 assert.equal(invoke(["catalog", "import"]).entries, 3)
 assert.equal(invoke(["catalog", "show", "doc"]).ref, note.ref)
-assert.equal(invoke(["catalog", "show", "doc"]).metadata.starred, true)
+assert.equal(invoke(["catalog", "show", "doc"]).provider_metadata.starred, true)
 assert.equal(invoke(["catalog", "tree"]).items[0].children[0].children[0].item.id, "doc")
 assert.equal(invoke(["catalog", "list", "parent:nested AND person:Rin*"]).items.length, 1)
 assert.equal(invoke(["catalog", "search", "budget AND kind:file"]).items.length, 1)
