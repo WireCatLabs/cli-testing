@@ -68,10 +68,28 @@ NPM_CONFIG_USERCONFIG=/dev/null pnpm test:coverage
 The producer's tests run from its own package test script; the compiled-consumer check runs
 through [run.mjs](run.mjs). Later merges and release artifacts need their own validation.
 
+## Released-package acceptance
+
+Drive 0.4.0 is published on npm with exact dependencies `@wirecat/cli-core` 0.265.0 and
+`@wirecat/cli-base` 0.27.1. A fresh isolated npm installation completed all 19 operations
+with the same network/browser/keyring guards. This establishes package installation and
+offline catalog behavior, separately from the earlier compiled-candidate checks.
+
+```sh
+NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix /tmp/drive-check --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.4.0
+node performance/documents/offline-catalog/run.mjs /tmp/drive-check/node_modules/@wirecat/drive-cli /tmp/drive-check/node_modules/@wirecat/cli-core
+```
+
+The combined release candidate passed 158 unit tests (89.76% line coverage), eight CLI/MCP
+contracts, five prior-store upgrades, leak checks and Node/Bun installed-tarball smoke.
+[Release validation](https://github.com/WireCatLabs/drive-cli/actions/runs/38498940380) passed
+before publication. Optional image search is included in that release, but this catalog runner
+does not measure real image inference or Google conversion fidelity.
+
 ## Limits
 
 This is a functional contract check, not a latency benchmark or Google API integration test.
 It does not establish extraction fidelity, live metadata completeness, Google verification or
-npm installation readiness. Metadata-only backfill never refreshes old Google responses, and
+live user sign-in. Metadata-only backfill never refreshes old Google responses, and
 catalog retirement differs from regular sync's indexed-content removal. No owner account data
 is used or published.
