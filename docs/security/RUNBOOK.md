@@ -6,10 +6,12 @@ first run was 2026-10-09; its results are private (`cli-private/security/runs/20
 ## 0. Tools, pinned
 
 A version at least two weeks old on the day of the run, recorded in `SCOPE.md` by the scripts.
+`cli-testing security scan` refuses any other version.
 
 ```sh
 uv tool install semgrep==1.178.0
 uv tool install zizmor==1.30.1
+# gitleaks: the release binary, checked against its checksums file the same way as osv-scanner
 # osv-scanner: the release binary, checked against the release's own SHA256SUMS
 V=2.6.0; D=$(mktemp -d); cd "$D"
 gh release download v$V -R google/osv-scanner -p osv-scanner_linux_amd64 -p osv-scanner_SHA256SUMS
@@ -26,7 +28,9 @@ Disable `fp-check` again after the run — its Stop hook fires on every session.
 
 ## 1. GitHub settings — apply, then read back
 
-Per repository `<owner>/<repo>`:
+New public repositories get their settings from the organisation configuration `WireCat public`;
+check that it is still the default with the command in [`METHOD.md`](METHOD.md#github-settings).
+For a repository whose read-back shows a setting off, per repository `<owner>/<repo>`:
 
 ```sh
 r=<owner>/<repo>
@@ -35,25 +39,45 @@ gh api -X PATCH repos/$r --input - <<'EOF'
 EOF
 gh api -X PUT repos/$r/vulnerability-alerts
 gh api -X PUT repos/$r/automated-security-fixes
-gh api -X PATCH repos/$r/code-scanning/default-setup -f state=configured -f query_suite=extended
+gh api -X PUT repos/$r/private-vulnerability-reporting
+```
+
+A repository that publishes to npm also gets the `npm` environment, limited to `main`:
+
+```sh
 gh api -X PUT repos/$r/environments/npm --input - <<'EOF'
 {"deployment_branch_policy":{"protected_branches":false,"custom_branch_policies":true}}
 EOF
 gh api -X POST repos/$r/environments/npm/deployment-branch-policies -f name=main -f type=branch
 ```
 
-Read back with the four commands in [`METHOD.md`](METHOD.md#github-settings). A repository whose
+CodeQL default setup stays off: CodeQL runs in `release-checks.yml`, and default setup would take
+over the alerts that workflow uploads. Read back with the commands in
+[`METHOD.md`](METHOD.md#github-settings); default setup reads `not-configured`. A repository whose
 `dependabot.yml` limits npm updates with `allow` needs `target-branch: main` on that entry, or the
 `allow` list also filters security updates ([`LESSONS.md`](LESSONS.md)).
 
-## 2. Scanners and Socket
+## 2. Scanners, Socket and gitleaks
+
+Every public repository, each checkout in a folder named after its repository (the runner refuses
+two checkouts with the same folder name):
 
 ```sh
 RUN=~/Projects/AI/cli-private/security/runs/$(date +%F)
-C=(~/Projects/AI/max-cli ~/Projects/AI/tg-cli ~/Projects/AI/cli-messaging ~/Projects/AI/cli-base)
-scripts/security/scan "$RUN" "${C[@]}"
-scripts/security/socket "$RUN" "${C[@]}"
+P=~/Projects/AI
+C=($P/max-cli $P/tg-cli $P/cli-core $P/cli-base $P/cli-memo $P/drive-cli $P/zoom-cli $P/cli-docs
+  $P/cli-testing $P/community $P/.github)
+cli-testing security scan "$RUN" "${C[@]}" --previous <previous-run>
+cli-testing security socket "$RUN" "${C[@]}"
+for c in "${C[@]}" $P/cli-private; do
+  (cd "$c" && gitleaks git --no-banner --redact .; echo "$(basename "$c") gitleaks exit=$?")
+done
 ```
+
+A failed repository does not stop the others: `scan` names it on stderr and exits 1 after the last
+one. Rerun that repository into a new run folder once the cause is fixed. gitleaks runs from each
+repository's root, where it finds that repository's `.gitleaksignore`; record each exit code and
+hit count in `SCOPE.md`.
 
 ## 3. CodeQL triage
 

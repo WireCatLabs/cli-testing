@@ -47,15 +47,17 @@ done
   echo
   for checkout in "$@"; do
     s="$(slug "$checkout")"
-    a="$(gh api "repos/$s" --jq '.security_and_analysis | "secret_scanning=\(.secret_scanning.status) push_protection=\(.secret_scanning_push_protection.status) security_updates=\(.dependabot_security_updates.status)"')"
-    c="$(gh api "repos/$s/code-scanning/default-setup" --jq .state)"
+    a="$(gh api "repos/$s" --jq '.security_and_analysis | "secret_scanning=\(.secret_scanning.status) push_protection=\(.secret_scanning_push_protection.status) security_updates=\(.dependabot_security_updates.status)"')" || a="unreadable"
+    c="$(gh api "repos/$s/code-scanning/default-setup" --jq .state)" || c="unreadable"
     echo "- $s: $a codeql=$c"
   done
 } >> "$scope"
 
-# Fails the run on any exit code the tool's docs do not list as a result, so a crash never reads as
-# "no findings": osv-scanner 0/1, semgrep 0 (no --error), zizmor 0 or 11-14.
+# A tool exit code its docs do not list as a result marks that repository failed, so a crash never
+# reads as "no findings": osv-scanner 0/1, semgrep 0 (no --error), zizmor 0 or 11-14. The other
+# repositories are still scanned, and the run exits 1 at the end.
 status=()
+failed=()
 run_tool() {
   local tool="$1" ok="$2" file="$3"; shift 3
   local code=0
@@ -63,9 +65,17 @@ run_tool() {
   status+=("$name $tool exit=$code")
   if [[ " $ok " != *" $code "* ]]; then
     echo "$name: $tool failed with exit $code" >&2
-    exit 1
+    failed+=("$name $tool")
+    return 1
   fi
 }
+
+# A checkout runs the source; the published package has only the compiled file, because Node does
+# not strip types under node_modules.
+semgrep_runner=(node "$here/../../dist/semgrep.js")
+if [ -f "$here/../../src/semgrep.ts" ]; then
+  semgrep_runner=(node --experimental-strip-types "$here/../../src/semgrep.ts")
+fi
 
 i=0
 for checkout in "$@"; do
@@ -74,15 +84,27 @@ for checkout in "$@"; do
   mkdir -p "$out"
   cd "$work/$name"
   if [ -f pnpm-lock.yaml ]; then
-    run_tool osv-scanner "0 1" "$out/osv.json" osv-scanner scan source -r --format json .
+    run_tool osv-scanner "0 1" "$out/osv.json" osv-scanner scan source -r --format json . || true
   fi
-  run_tool semgrep "0" /dev/null node --experimental-strip-types "$here/semgrep.ts" \
-    "$work/$name" "$out/semgrep.json" "$run/supplement/$name"
+  if [ -f .semgrepignore ]; then
+    status+=("$name semgrep ignores $(sed -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' .semgrepignore | paste -sd ' ' -)")
+  fi
+  if run_tool semgrep "0" /dev/null "${semgrep_runner[@]}" "$work/$name" "$out/semgrep.json" "$run/supplement/$name"; then
+    while IFS= read -r gap; do
+      status+=("$name semgrep gap $gap")
+    done < <(jq -r '.coverageGaps // [] | .[] | "\(.rule) \(.path)"' "$out/semgrep.json")
+  fi
   if [ -d .github ]; then
-    run_tool zizmor "0 11 12 13 14" "$out/zizmor.json" zizmor --offline --format json .github
+    run_tool zizmor "0 11 12 13 14" "$out/zizmor.json" zizmor --offline --format json .github || true
   fi
-  gh api --paginate --slurp "repos/$(slug "$checkout")/code-scanning/alerts?state=open&per_page=100" > "$out/codeql.json"
-  status+=("$name codeql open_alerts=$(jq 'flatten | length' "$out/codeql.json")")
+  if gh api --paginate --slurp "repos/$(slug "$checkout")/code-scanning/alerts?state=open&per_page=100" > "$out/codeql.json"; then
+    alerts="$(jq 'flatten | length' "$out/codeql.json")" || alerts="unreadable"
+    status+=("$name codeql open_alerts=$alerts")
+  else
+    echo "$name: reading CodeQL alerts failed" >&2
+    rm -f "$out/codeql.json"
+    failed+=("$name codeql")
+  fi
   echo "$name done" >&2
 done
 
@@ -96,4 +118,8 @@ find "$run/raw" -name '*.json' -exec sed -i "s|$work/[^/\"]*/||g" {} +
   for s in "${status[@]}"; do echo "- $s"; done
 } >> "$scope"
 
+if [ "${#failed[@]}" -gt 0 ]; then
+  printf 'failed: %s\n' "${failed[@]}" >&2
+  exit 1
+fi
 echo "$run" >&2

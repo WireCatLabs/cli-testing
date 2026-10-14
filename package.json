@@ -18,7 +18,6 @@
     "README.md",
     "LICENSE",
     "scripts/security/scan",
-    "scripts/security/semgrep.ts",
     "scripts/security/socket",
     "scripts/agent/run-agent",
     "scripts/agent/run-payload",

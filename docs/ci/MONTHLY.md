@@ -13,15 +13,15 @@ and CodeQL. Messaging includes C/C++ analysis as well as JavaScript/TypeScript a
 | --- | --- |
 | cli-base / monthly.yml | 02:17 |
 | cli-memo / monthly.yml | 02:31 |
-| cli-messaging / monthly.yml | 02:38 |
+| cli-core / monthly.yml | 02:38 |
 | drive-cli / monthly.yml | 02:45 |
 | cli-testing / monthly.yml | 02:52 |
 | max-cli / monthly.yml | 02:59 |
 | tg-cli / monthly.yml | 03:06 |
 | zoom-cli / monthly.yml | 03:13 |
 | cli-docs / monthly.yml | 03:20 |
-| cli-messaging / onnx.yml | 03:27 |
-| cli-messaging / sqlite.yml | 03:37 |
+| cli-core / onnx.yml | 03:27 |
+| cli-core / sqlite.yml | 03:37 |
 | community / security-release.yml | 03:47 |
 
 GitHub runs schedules on the latest default-branch commit. Times are staggered away from the
@@ -49,8 +49,8 @@ gh run list --repo WireCatLabs/cli-testing --workflow monthly.yml --limit 5
 Native probes use their individual workflows with publication disabled:
 
 ```sh
-gh workflow run onnx.yml --repo WireCatLabs/cli-messaging --ref main -f publish=false
-gh workflow run sqlite.yml --repo WireCatLabs/cli-messaging --ref main -f publish=false
+gh workflow run onnx.yml --repo WireCatLabs/cli-core --ref main -f publish=false
+gh workflow run sqlite.yml --repo WireCatLabs/cli-core --ref main -f publish=false
 ```
 
 Community security can be started from its **Security release** workflow without publishing.
