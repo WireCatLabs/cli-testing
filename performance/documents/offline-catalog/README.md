@@ -98,6 +98,7 @@ On 2026-10-14, fresh npm installations passed the updated runner:
 | Drive 0.4.0 | 0.265.0 / 0.27.1 | Contract 1 | 22 passed | Not tested |
 | Drive 0.5.0 | 0.268.0 / 0.27.2 | Contract 2 | 23 passed | 3 validation failures checked |
 | Drive 0.6.0 | 0.275.0 / 0.28.2 | Contract 3 | 35 passed | 3 validation failures checked |
+| Drive 0.7.0, precise expectations | 0.278.0 / 0.28.2 | Contract 3 | 41 passed | 3 validation failures checked |
 
 The old 19-operation result above remains the original check. The updated totals add discovery,
 provider dictionary preservation, a non-empty search and, for 0.5.0, a read after config migration.
@@ -154,9 +155,11 @@ The released handwritten Google reads conservatively claimed local data access, 
 generated methods claimed none. This check supports making the two surfaces agree without
 renaming commands or changing which operations are permitted.
 
-Candidate `38623cd15fdfe76a35881c36bdcb945aba2e56a2` passed 35 CLI invocations and three MCP
-calls with the explicit `--precise-effects` expectation. Its package version still says 0.6.0,
-but it uses Core 0.277.0 and is an unreleased source candidate, not the npm 0.6.0 artifact.
+The initial metadata-only run at runner commit `990a041` checked candidate
+`38623cd15fdfe76a35881c36bdcb945aba2e56a2`: 35 CLI invocations and three MCP calls passed.
+That candidate carried version 0.6.0/Core 0.277.0 but was not npm 0.6.0. The current precise
+profile additionally checks JSON field selection; that older candidate is not certified against
+the stronger profile.
 Node 24.19.0 on Linux; the same synthetic fixture and HTTP/browser/keyring guards apply.
 
 ```sh
@@ -175,6 +178,35 @@ both answers. The candidate's native suite passed 172 tests (90.73% line coverag
 generation freshness and eight CLI/MCP contracts. Node and Bun installed-tarball smoke checks
 also passed. Command lint retained 67 inherited findings,
 zero new, zero overrides and the unchanged budget. No baseline was expanded.
+
+### Released 0.7.0 field selection
+
+A fresh npm installation of Drive 0.7.0 passed all 41 CLI invocations and three MCP calls on
+2026-10-14, using exact Core 0.278.0/framework 0.28.2. Release commit
+`dbaf2176e48d69f6b9cef74d47f5ad8dffe8972f` passed
+[publication validation](https://github.com/WireCatLabs/drive-cli/actions/runs/38634638678).
+This is a registry artifact result, separate from the earlier source candidates.
+
+The stronger profile adds item/list JSON selection, JSONL selection with a complete end record,
+a mixed-case provider metadata path, unknown-field refusal and refusal of undeclared write
+selection before provider access. Catalog names survive projection as `name`; `title` belongs
+to the generic document entity and is not silently substituted into the provider view.
+
+Non-empty real-store fixtures exposed the selector bug while preparing this release: valid
+catalog names were rejected against the generic entity, and an accepted missing field could
+produce an empty object. [Core PR1221](https://github.com/WireCatLabs/cli-core/pull/1221) adds an
+optional provider-field resolver to the public parser/validator; [Drive PR44](https://github.com/WireCatLabs/drive-cli/pull/44)
+uses it, declares the catalog view, validates read responses before printing and refuses
+undeclared write selection before execution. Core's original candidate suite passed 4,274 tests
+with four existing skips and 95.02% line coverage; its
+[0.278.0 release validation](https://github.com/WireCatLabs/cli-core/actions/runs/38632226817)
+then passed against the merged current main. The Drive candidate passed 174 tests and 90.8%
+line coverage, five previous-store upgrade cases and installed Node/Bun package smoke.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix /var/tmp/drive-check-070 --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.7.0
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/offline-catalog/run.mjs /var/tmp/drive-check-070/node_modules/@wirecat/drive-cli /var/tmp/drive-check-070/node_modules/@wirecat/cli-core --precise-effects
+```
 
 This check describes source-data effects. Common configuration/credential loading and MCP's
 framework audit records are separate from a command reading or modifying cached documents.

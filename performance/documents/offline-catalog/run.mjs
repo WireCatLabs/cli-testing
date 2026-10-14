@@ -107,7 +107,7 @@ const invoke = (words, profile = "synthetic", ok = true, shape = "item") => {
       join(driveRoot, "dist/bin/drive.js"),
       ...(profile ? [profile] : []),
       "--offline",
-      "--json",
+      ...(words.some((word) => word.startsWith("--json=")) ? [] : ["--json"]),
       ...words,
     ],
     { env, encoding: "utf8", timeout: 30000 },
@@ -199,6 +199,27 @@ if (contract >= 2) {
 assert.equal(invoke(["catalog", "show", "doc"]).ref, note.ref)
 assert.equal(invoke(["catalog", "show", "doc"]).provider_metadata.starred, true)
 assert.equal(invoke(["catalog", "show", "doc"]).provider_metadata.customMixedKey, "synthetic-value")
+if (preciseEffects) {
+  assert.deepEqual(invoke(["catalog", "show", "doc", "--json=id,name"]), { id: "doc", name: "Budget outline" })
+  assert.deepEqual(invoke(["catalog", "show", "doc", "--json=provider_metadata.customMixedKey"]), {
+    provider_metadata: { customMixedKey: "synthetic-value" },
+  })
+  const projected = invoke(["catalog", "list", "--limit", "2", "--json=id,name"], "synthetic", true, "items")
+  assert.equal(projected.items.length, 2)
+  assert.ok(projected.items.every((item) => Object.keys(item).sort().join(",") === "id,name"))
+  const lines = invoke(["catalog", "list", "--limit", "2", "--json=id,name", "--jsonl"], "synthetic", true, "jsonl")
+  assert.deepEqual(
+    lines.map((line) => line.type),
+    ["item", "item", "end"],
+  )
+  assert.ok(lines.slice(0, -1).every((line) => Object.keys(line.data).sort().join(",") === "id,name"))
+  assert.equal(lines.at(-1).complete, true)
+  assert.equal(
+    invoke(["catalog", "show", "doc", "--json=synthetic_missing"], "synthetic", false).code,
+    "validation_error",
+  )
+  assert.equal(invoke(["files", "copy", "doc", "--json=id"], "synthetic", false).code, "validation_error")
+}
 assert.equal(invoke(["catalog", "tree"], "synthetic", true, "items").items[0].children[0].children[0].item.id, "doc")
 assert.equal(invoke(["catalog", "list", "parent:nested AND person:Rin*"], "synthetic", true, "items").items.length, 1)
 assert.equal(invoke(["catalog", "search", "budget AND kind:file"], "synthetic", true, "items").items.length, 1)
