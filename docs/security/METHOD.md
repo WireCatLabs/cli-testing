@@ -131,11 +131,13 @@ gitleaks is its only secret check.
 
 New repositories take their settings from the organisation's code security configuration
 `WireCat public`, set as the default for new public repositories; settings applied repository by
-repository are not inherited. Check that it is the default:
+repository are not inherited. Check that it is the default and that it keeps CodeQL default setup
+off:
 
 ```sh
-gh api orgs/WireCatLabs/code-security/configurations/defaults \
-  --jq '.[] | "\(.default_for_new_repos) \(.configuration.name)"'   # public WireCat public
+gh api orgs/WireCatLabs/code-security/configurations/defaults --jq '.[] |
+  "\(.default_for_new_repos) \(.configuration.name) \(.configuration.code_scanning_default_setup)"'
+# public WireCat public disabled
 ```
 
 ## Checklist
