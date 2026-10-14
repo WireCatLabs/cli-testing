@@ -5,6 +5,7 @@ import { createRequire } from "node:module"
 import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
+import { verifyKnowledge } from "./knowledge-installed.mjs"
 import { initialize, workspaceEnvironment } from "./live-input.mjs"
 
 const [input, ...rest] = process.argv.slice(2)
@@ -147,6 +148,20 @@ const run = (output, extra) => {
 const first = join(root, "first.json")
 const annotated = run(first, ["--annotate"])
 const repeated = run(join(root, "repeat.json"), ["--baseline", first])
+const invoke = (words, { offline = true, failure = false } = {}) => {
+  assert.ok(offline || words.join(" ") === "sync")
+  const result = spawnSync(
+    process.execPath,
+    [join(wrapper, "dist/bin/drive.js"), "synthetic", ...(offline ? ["--offline"] : []), "--json", ...words],
+    { env, encoding: "utf8", timeout: 30000 },
+  )
+  assert.equal(result.error, undefined)
+  assert.equal(result.status === 0, !failure, "synthetic lifecycle command failed")
+  const answer = JSON.parse(result.stdout.trim() || result.stderr.trim())
+  if (!failure) assert.equal(answer.meta.complete, true)
+  return answer
+}
+const knowledge = await verifyKnowledge({ invoke, openStore, env, workspace, reference: note.ref })
 process.stdout.write(
-  `${JSON.stringify({ passed: true, data: "synthetic", live_google: false, drive: metadata.version, core: metadata.dependencies["@wirecat/cli-core"], first_checks: annotated.checks.length, repeat_checks: repeated.checks.length })}\n`,
+  `${JSON.stringify({ passed: true, data: "synthetic", live_google: false, drive: metadata.version, core: metadata.dependencies["@wirecat/cli-core"], first_checks: annotated.checks.length, repeat_checks: repeated.checks.length, knowledge_checks: knowledge })}\n`,
 )

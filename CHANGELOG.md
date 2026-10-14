@@ -17,6 +17,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- The installed Drive research check now verifies person links, stale-note revision refusal,
+  scoped source-backed memories and local source retirement through the released CLI. It
+  checks persisted memory staleness and owner-note preservation with synthetic data only.
 - Controlled Drive acceptance: an explicit-profile, isolated-workspace checker for cached text,
   hierarchy, source identity, exact search, Markdown, local annotations and optional syncs.
   A private fixture manifest and owner-started test-account login are required for live use;
