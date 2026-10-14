@@ -14,7 +14,8 @@
       "!performance/documents/html-readers/reference",
       "!performance/documents/html-readers/results.json",
       "!performance/documents/html-readers/sizes.json",
-      "!performance/documents/html-readers/manifest.json"
+      "!performance/documents/html-readers/manifest.json",
+      "!performance/tasks/duplicates/results-*.json"
     ],
     "maxSize": 16777216
   },
