@@ -82,3 +82,21 @@ What it showed:
 
 Not measured: whether the found names are right (precision) or how many are missed (recall) — both need a
 labelled sample, planned for phase 3.
+
+## Third run: names with the released tg 0.55.0 (2026-10-14)
+
+Why: the names rule shipped in cli-core 0.272.0 and reached the owner in tg 0.55.0. This checks that the released
+build gives the same totals as the branch run above, on the real store this time.
+
+Setup: same machine; installed `@wirecat/tg-cli` 0.55.0 (cli-core 0.275.0); command
+`tg <profile> mentions rebuild person-name --json`, timed with `time`. Totals only.
+
+| | |
+|---|---|
+| texts read | 5,435 messages, 80 file or voice-note texts |
+| names found | 572, the same as the branch run |
+| wall time | 3.4 s for the whole command, including start-up and opening the store |
+
+What it showed: the released rule finds the same names as the branch. The 3.4 s is the whole process, not the
+rebuild alone as in the 0.7 s row above, so the two are not comparable. A name search by person
+(`mentions:"person:<id>"`) answered on the real store. Not measured: the time names add to `messages sync`.
