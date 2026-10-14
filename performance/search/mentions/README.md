@@ -51,3 +51,34 @@ rules ship as they are and whether finding mentions on every store write is chea
 - Recall: how many phones or links the rules miss. That needs a labelled sample.
 - Stores much larger than this one; time is expected to grow in a straight line with the number of messages.
 - Transcripts, file texts, notes, documents and mail: phase 1 reads message text only.
+
+## Second run: files, voice notes and known people's names (2026-10-14)
+
+Why: phase 1e reads the text of files and voice notes, and phase 2 finds names of people the store knows. The
+questions: what the extra texts add, how many names the rules link without a person deciding, and whether the
+rebuild stays cheap.
+
+Setup: same machine; cli-core 0.269.0 (released) on the real store for files and voice notes, then cli-core
+branch `feat/mentions-people` ([cli-core#1182](https://github.com/WireCatLabs/cli-core/pull/1182)) on a backup
+copy for names. 5,435 messages and 80 file or voice-note texts. Totals only.
+
+| | |
+|---|---|
+| full rebuild with 0.269.0, real store | 1.1 s, 1,055 mentions (96 from files and voice notes) |
+| full rebuild with names, copy | 0.7 s, 1,627 mentions |
+| names found | 572 |
+| names linked by rule | 70 |
+| people whose names are looked for | 88 (of 3,870 persons; the rest are known only from e-mail) |
+
+What it showed:
+
+- **Latin profile names matter.** Of 41 name stems seen in the text, 13 matched only through the transliterated
+  spelling (`Valery` → «Валерий»).
+- **Short stems are ordinary words.** One three-letter stem matched 138 capitalized words, mostly «Или» at the
+  start of a sentence; words under four letters are now skipped.
+- **Few names link by rule.** A name links only to the one fitting person who wrote in that chat. One human is
+  often a person row per messenger, so a first name fits two to five rows; 357 single-candidate names are in
+  chats where that person never wrote.
+
+Not measured: whether the found names are right (precision) or how many are missed (recall) — both need a
+labelled sample, planned for phase 3.
