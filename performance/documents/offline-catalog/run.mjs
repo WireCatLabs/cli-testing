@@ -8,8 +8,12 @@ import { pathToFileURL } from "node:url"
 import { Client } from "@modelcontextprotocol/sdk/client/index.js"
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 
-const [driveRoot, coreRoot] = process.argv.slice(2).map((path) => resolve(path))
-assert.ok(driveRoot && coreRoot, "usage: node run.mjs <built-drive-package> <built-core-package>")
+const [drivePath, corePath, effectsMode] = process.argv.slice(2)
+assert.ok(drivePath && corePath, "usage: node run.mjs <built-drive-package> <built-core-package> [--precise-effects]")
+assert.ok(effectsMode === undefined || effectsMode === "--precise-effects", "unknown effects expectation")
+const preciseEffects = effectsMode === "--precise-effects"
+const driveRoot = resolve(drivePath)
+const coreRoot = resolve(corePath)
 const require = createRequire(join(coreRoot, "package.json"))
 const { openStore } = await import(pathToFileURL(require.resolve("@wirecat/cli-core/store")))
 const { itemEnvelopeSchema, listEnvelopeSchema, errorObjectSchema } = await import(
@@ -103,7 +107,7 @@ const invoke = (words, profile = "synthetic", ok = true, shape = "item") => {
       join(driveRoot, "dist/bin/drive.js"),
       ...(profile ? [profile] : []),
       "--offline",
-      "--json",
+      ...(words.some((word) => word.startsWith("--json=")) ? [] : ["--json"]),
       ...words,
     ],
     { env, encoding: "utf8", timeout: 30000 },
@@ -131,6 +135,7 @@ const invoke = (words, profile = "synthetic", ok = true, shape = "item") => {
 const discovery = invoke(["commands"], "", true, "discovery")
 contract = discovery.contract
 assert.ok([1, 2, 3].includes(contract), "unreviewed command contract")
+if (preciseEffects) assert.equal(contract, 3)
 assert.equal(discovery.version, packageVersion(driveRoot))
 if (contract === 3) {
   const flatten = (commands) => commands.flatMap((command) => [command, ...flatten(command.commands)])
@@ -143,7 +148,7 @@ if (contract === 3) {
   for (const [path, effects] of [
     ["documents show", { remote: "none", local: "read" }],
     ["catalog import", { remote: "none", local: "write" }],
-    ["documents get", { remote: "read", local: "read" }],
+    ["documents get", { remote: "read", local: preciseEffects ? "none" : "read" }],
     ["files copy", { remote: "write", local: "none" }],
     ["sync", { remote: "read", local: "write" }],
   ]) {
@@ -152,6 +157,24 @@ if (contract === 3) {
   const generatedRead = commands.find((command) => command.path.join(" ") === "api drive-files-get")
   assert.equal(generatedRead.api_operation, "drive.files.get")
   assert.deepEqual(generatedRead.effects, { remote: "read", local: "none" })
+  if (preciseEffects) {
+    for (const path of ["commands", "complete", "api list", "api show"]) {
+      assert.deepEqual(commands.find((command) => command.path.join(" ") === path)?.effects, {
+        remote: "none",
+        local: "none",
+      })
+    }
+    for (const path of [
+      "files get",
+      "files list",
+      "documents history",
+      "comments get",
+      "permissions get",
+      "revisions get",
+    ]) {
+      assert.deepEqual(commands.find((command) => command.path.join(" ") === path)?.effects, generatedRead.effects)
+    }
+  }
   assert.equal(
     discovery.global_options.some((option) => option.flags.startsWith("--agent-json")),
     false,
@@ -176,6 +199,27 @@ if (contract >= 2) {
 assert.equal(invoke(["catalog", "show", "doc"]).ref, note.ref)
 assert.equal(invoke(["catalog", "show", "doc"]).provider_metadata.starred, true)
 assert.equal(invoke(["catalog", "show", "doc"]).provider_metadata.customMixedKey, "synthetic-value")
+if (preciseEffects) {
+  assert.deepEqual(invoke(["catalog", "show", "doc", "--json=id,name"]), { id: "doc", name: "Budget outline" })
+  assert.deepEqual(invoke(["catalog", "show", "doc", "--json=provider_metadata.customMixedKey"]), {
+    provider_metadata: { customMixedKey: "synthetic-value" },
+  })
+  const projected = invoke(["catalog", "list", "--limit", "2", "--json=id,name"], "synthetic", true, "items")
+  assert.equal(projected.items.length, 2)
+  assert.ok(projected.items.every((item) => Object.keys(item).sort().join(",") === "id,name"))
+  const lines = invoke(["catalog", "list", "--limit", "2", "--json=id,name", "--jsonl"], "synthetic", true, "jsonl")
+  assert.deepEqual(
+    lines.map((line) => line.type),
+    ["item", "item", "end"],
+  )
+  assert.ok(lines.slice(0, -1).every((line) => Object.keys(line.data).sort().join(",") === "id,name"))
+  assert.equal(lines.at(-1).complete, true)
+  assert.equal(
+    invoke(["catalog", "show", "doc", "--json=synthetic_missing"], "synthetic", false).code,
+    "validation_error",
+  )
+  assert.equal(invoke(["files", "copy", "doc", "--json=id"], "synthetic", false).code, "validation_error")
+}
 assert.equal(invoke(["catalog", "tree"], "synthetic", true, "items").items[0].children[0].children[0].item.id, "doc")
 assert.equal(invoke(["catalog", "list", "parent:nested AND person:Rin*"], "synthetic", true, "items").items.length, 1)
 assert.equal(invoke(["catalog", "search", "budget AND kind:file"], "synthetic", true, "items").items.length, 1)
@@ -305,5 +349,6 @@ process.stdout.write(
     core: packageVersion(coreRoot),
     framework: packageVersion(resolve(require.resolve("@wirecat/cli-base"), "../..")),
     contract,
+    effects_expectation: preciseEffects ? "precise" : "legacy",
   })}\n`,
 )
