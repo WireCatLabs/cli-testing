@@ -65,9 +65,10 @@ For a tests/build-only investigation, run **Full validation** (`ci.yml`) directl
    vulnerability details out of public logs and documentation.
 5. Do not publish a release while its required validation or critical security checks fail.
 
-The cli-testing run also measures each CLI's architecture: its `architecture` job writes a table to the
-run summary. Copy that table into the [architecture checks record](../../performance/engineering/architecture-checks/README.md#trend)
-and give any new file over 500 lines a verdict there.
+The cli-testing run also measures each CLI's architecture: its `architecture` job writes a table to
+the run summary and opens an issue "Architecture checks YYYY-MM" with it. Copy that table into the
+[architecture checks record](../../performance/engineering/architecture-checks/README.md#trend), give
+any new file over 500 lines a verdict there, and close the issue.
 
 Review the Actions results each month. Scheduling does not itself create an issue, send a message,
 or guarantee that someone reviewed the results; notifications follow existing GitHub settings.

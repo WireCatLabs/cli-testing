@@ -34,9 +34,10 @@ the list of files over 500 lines. It builds nothing and needs no account. The sa
 the same output.
 
 Monthly: the `architecture` job in [monthly.yml](../../../.github/workflows/monthly.yml) clones each
-CLI's `main` on the first of the month and writes the table to the run summary. Copy its table
-under [Trend](#trend), and give every new file over 500 lines a verdict under
-[Files over 500 lines](#files-over-500-lines).
+CLI's `main` on the first of the month, writes the table to the run summary and opens an issue
+titled "Architecture checks YYYY-MM" with it. Copy the table under [Trend](#trend), give every new
+file over 500 lines a verdict under [Files over 500 lines](#files-over-500-lines), and close the
+issue in the same PR.
 
 Columns: *Loop rule* and *Size limit* say whether the rule is on at the top level. *Boundary rules*
 counts distinct `noRestrictedImports` messages, that is, distinct reasons. *Contracts check* says
@@ -44,6 +45,24 @@ whether the tool has `contracts:check` or `lint:commands`; it does not apply to 
 *Over 1000* and *501–1000* count source files, without tests or generated code.
 
 ## Trend
+
+### 2026-10-14, adoption of the October refactor
+
+Measured by building each tool and reading its `commands --json` with a throwaway home folder, and
+counting loops with the [cycle script](../code-quality/runtime-cycles.mjs). Later rows leave these
+columns to the tools' own checks: the contracts check fails on a command without declared effects,
+and the loop rule fails lint.
+
+| Repo | cli-core pin | Contract | Commands with declared effects | Runtime import loops | Loop rule in lint |
+| --- | --- | --- | --- | --- | --- |
+| cli-core | — | 3 | — | 0 | yes |
+| max-cli | 0.273.0 | 3 | 328/328 | 0 | no |
+| tg-cli | 0.273.0 | 3 | 478/478 | 0 | no |
+| cli-memo | 0.273.0 | 3 | 87/87 | 0 | no |
+| drive-cli | 0.273.0 | 3 | 141/141 | 0 | no |
+| zoom-cli | 0.273.0 | 3 | 52/52 | 0 | no |
+
+The loop counts missed one loop each in max, tg and drive (see [What it showed](#what-it-showed)).
 
 ### 2026-10-14, before the lint guards
 
