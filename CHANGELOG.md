@@ -6,6 +6,15 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- The offline Drive catalog runner checks published contract-1/contract-2 responses, one-time
+  settings migration, provider metadata keys and field-specific MCP validation/auditing. Unknown
+  discovery contracts are refused. The research report distinguishes released behavior from
+  newer source changes and includes a separately authorized live Google checklist.
+
 ## 0.4.0 — 11.10.2026
 
 ### Changed — may break callers
