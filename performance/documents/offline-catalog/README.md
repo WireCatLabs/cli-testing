@@ -97,12 +97,13 @@ On 2026-10-14, fresh npm installations passed the updated runner:
 | --- | --- | --- | --- | --- |
 | Drive 0.4.0 | 0.265.0 / 0.27.1 | Contract 1 | 22 passed | Not tested |
 | Drive 0.5.0 | 0.268.0 / 0.27.2 | Contract 2 | 23 passed | 3 validation failures checked |
+| Drive 0.6.0 | 0.275.0 / 0.28.2 | Contract 3 | 35 passed | 3 validation failures checked |
 
 The old 19-operation result above remains the original check. The updated totals add discovery,
 provider dictionary preservation, a non-empty search and, for 0.5.0, a read after config migration.
 They are not performance measurements or claims that the older release supports contract 2.
 
-For contract 2, every successful command response is validated against the installed framework's
+For contracts 2 and 3, every successful command response in this runner is validated against the installed framework's
 public strict item/list envelope schemas. Each invocation explicitly names the expected shape:
 rich results such as search/context use `item`; catalog lists/trees, tags and note lists use
 `items`/`page`. Error responses are validated against the framework's error schema in both releases.
@@ -113,12 +114,26 @@ The legacy camelCase config migrates on the first successful read. The check ver
 settings, unchanged file permissions, and unchanged bytes/inode/mtime after another read. Search
 returns `found_by`, while a deliberately mixed-case provider metadata key remains unchanged.
 
-For 0.5.0, a real MCP client starts the installed server over stdio under the same network,
+For 0.5.0 and 0.6.0, a real MCP client starts the installed server over stdio under the same network,
 browser and keyring guards. Bad argument types, an unknown argument and a missing required field
 must each produce a field-specific `validation_error`. All three failures must appear in the
 shared audit store; a synthetic argument canary must appear in neither replies nor audit rows.
 No provider request is permitted. The caller is cli-testing's pinned MCP SDK 1.32.1; Drive uses
 server SDK 2.1.0, so this also exercises their actual protocol boundary.
+
+Contract 3 adds checks over every discovered command's effects and removal of old metadata keys.
+Representative local reads/writes and Google reads/writes are checked explicitly, including the
+generated API operation name. Successful responses require `meta.complete`; paginated catalog
+and note lists must produce distinct rows and correct `next_page`/`has_more` values. Search page
+two is empty for the one matching document. Removed `--offset`/`--agent-json` flags and an unknown
+flag must be refused. JSONL must contain exactly two item records followed by one end record with
+`complete` and continuation metadata. MCP local-read tools must not claim open-world access.
+Expected validation/permission/not-found failures require `retry.safe: false`. Transient-provider
+retry safety is covered by the release's unit tests, not injected through a live provider here.
+
+Handwritten `documents get` declares local read plus remote read, while its generated API
+counterpart declares remote read only. Both are read-only. The runner records that conservative
+distinction rather than pretending the published metadata is identical.
 
 ```sh
 T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix /var/tmp/drive-check-050 --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.5.0
@@ -128,6 +143,10 @@ T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR
 The runner emits shape-only JSON containing package/runtime versions, contract and invocation
 counts. It never opens the owner's home, account, Google credentials or store. A run uses a new
 temporary fixture, which remains available until explicitly cleaned up.
+
+To reproduce contract-3 acceptance, use the same two commands with exact package
+`@wirecat/drive-cli@0.6.0` and a separate prefix such as `/var/tmp/drive-check-060`. The runner
+uses that package's installed public schemas; it does not validate contract 3 against older schemas.
 
 See the [standards gap review](standards.md) for the release/source distinction and next work,
 and the [controlled live checklist](live-checklist.md) for the separately authorized Google test.

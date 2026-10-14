@@ -111,14 +111,18 @@ const invoke = (words, profile = "synthetic", ok = true, shape = "item") => {
   assert.equal(result.error, undefined)
   assert.equal(result.status === 0, ok, result.stderr)
   checks++
-  const answer = JSON.parse(result.stdout.trim() || result.stderr.trim())
+  const raw = result.stdout.trim() || result.stderr.trim()
+  if (shape === "jsonl") return raw.split("\n").map((line) => JSON.parse(line))
+  const answer = JSON.parse(raw)
   if (shape === "discovery") return answer
   if (!ok) {
     v.parse(errorObjectSchema, answer)
+    if (contract === 3) assert.equal(answer.error.retry.safe, false)
     return answer.error
   }
   if (contract >= 2) {
     v.parse(successSchema, answer)
+    if (contract === 3) assert.equal(answer.meta.complete, true)
     assert.ok(Object.hasOwn(answer, shape), `expected ${shape} envelope for ${words.join(" ")}`)
     return shape === "item" ? answer.item : answer
   }
@@ -126,8 +130,33 @@ const invoke = (words, profile = "synthetic", ok = true, shape = "item") => {
 }
 const discovery = invoke(["commands"], "", true, "discovery")
 contract = discovery.contract
-assert.ok([1, 2].includes(contract), "unreviewed command contract")
+assert.ok([1, 2, 3].includes(contract), "unreviewed command contract")
 assert.equal(discovery.version, packageVersion(driveRoot))
+if (contract === 3) {
+  const flatten = (commands) => commands.flatMap((command) => [command, ...flatten(command.commands)])
+  const commands = flatten(discovery.commands)
+  for (const command of commands) {
+    assert.ok(["none", "read", "write"].includes(command.effects.remote))
+    assert.ok(["none", "read", "write"].includes(command.effects.local))
+    for (const old of ["mutates", "local", "operation_id"]) assert.equal(Object.hasOwn(command, old), false)
+  }
+  for (const [path, effects] of [
+    ["documents show", { remote: "none", local: "read" }],
+    ["catalog import", { remote: "none", local: "write" }],
+    ["documents get", { remote: "read", local: "read" }],
+    ["files copy", { remote: "write", local: "none" }],
+    ["sync", { remote: "read", local: "write" }],
+  ]) {
+    assert.deepEqual(commands.find((command) => command.path.join(" ") === path)?.effects, effects)
+  }
+  const generatedRead = commands.find((command) => command.path.join(" ") === "api drive-files-get")
+  assert.equal(generatedRead.api_operation, "drive.files.get")
+  assert.deepEqual(generatedRead.effects, { remote: "read", local: "none" })
+  assert.equal(
+    discovery.global_options.some((option) => option.flags.startsWith("--agent-json")),
+    false,
+  )
+}
 assert.equal(invoke(["catalog", "import"]).entries, 3)
 if (contract >= 2) {
   const migrated = JSON.parse(readFileSync(configPath, "utf8"))
@@ -158,7 +187,9 @@ assert.equal(invoke(["notes", "list", "nested"], "synthetic", true, "items").ite
 assert.equal(invoke(["documents", "context", "nested"]).notes.items.length, 1)
 assert.equal(invoke(["catalog", "list"], "other", true, "items").items.length, 0)
 assert.equal(invoke(["catalog", "show", "doc"], "other", false).code, "not_found")
-assert.equal(invoke(["catalog", "import", "--dry-run"]).dry_run, true)
+const preview = invoke(["catalog", "import", "--dry-run"])
+assert.equal(preview.dry_run, true)
+if (contract === 3) assert.deepEqual(preview.effects, { remote: "none", local: "write" })
 assert.equal(
   invoke(["catalog", "tags", "add", "nested", "blocked", "--read-only"], "synthetic", false).code,
   "permission_error",
@@ -169,6 +200,44 @@ assert.equal(hits.hits.length, 1)
 if (contract >= 2) {
   assert.ok(Object.hasOwn(hits.hits[0], "found_by"))
   assert.equal(Object.hasOwn(hits.hits[0], "foundBy"), false)
+}
+if (contract === 3) {
+  const ids = []
+  for (const page of [1, 2, 3]) {
+    const answer = invoke(["catalog", "list", "--limit", "1", "--page", String(page)], "synthetic", true, "items")
+    assert.equal(answer.page.mode, "page")
+    assert.equal(answer.page.limit, 1)
+    assert.equal(answer.page.has_more, page < 3)
+    assert.equal(answer.page.next_page, page < 3 ? page + 1 : undefined)
+    assert.equal(Object.hasOwn(answer.page, "cursor"), false)
+    ids.push(answer.items[0].id)
+  }
+  assert.equal(new Set(ids).size, 3)
+  invoke(["notes", "add", "nested", "Second synthetic folder memo"])
+  const firstNotes = invoke(["notes", "list", "nested", "--limit", "1", "--page", "1"], "synthetic", true, "items")
+  const lastNotes = invoke(["notes", "list", "nested", "--limit", "1", "--page", "2"], "synthetic", true, "items")
+  assert.equal(firstNotes.page.next_page, 2)
+  assert.equal(firstNotes.page.has_more, true)
+  assert.equal(lastNotes.page.has_more, false)
+  assert.notEqual(firstNotes.items[0].id, lastNotes.items[0].id)
+  assert.equal(invoke(["search", "Synthetic", "--exact", "--limit", "1", "--page", "2"]).hits.length, 0)
+  for (const words of [
+    ["search", "Synthetic", "--exact", "--offset", "0"],
+    ["notes", "list", "nested", "--offset", "0"],
+    ["catalog", "list", "--agent-json"],
+    ["catalog", "list", "--unknown-synthetic-flag"],
+  ]) {
+    assert.equal(invoke(words, "synthetic", false).code, "validation_error")
+  }
+  const records = invoke(["catalog", "list", "--limit", "2", "--jsonl"], "synthetic", true, "jsonl")
+  assert.deepEqual(
+    records.map((record) => record.type),
+    ["item", "item", "end"],
+  )
+  assert.ok(records[0].data.id)
+  assert.equal(records.at(-1).complete, true)
+  assert.equal(records.at(-1).page.mode, "page")
+  assert.equal(records.at(-1).page.next_page, 2)
 }
 const currentConfig = JSON.parse(readFileSync(configPath, "utf8"))
 currentConfig.profiles.synthetic.roots = []
@@ -181,7 +250,7 @@ assert.equal((await kept.notes.note(note.ref)).text, "Synthetic source body")
 assert.equal((await kept.notes.note(note.ref)).contentHash, "fixture-hash")
 await kept.close()
 let mcpCalls = 0
-if (contract === 2) {
+if (contract >= 2) {
   const transport = new StdioClientTransport({
     command: process.execPath,
     args: ["--import", guard, join(driveRoot, "dist/bin/drive.js"), "synthetic", "--offline", "--read-only", "mcp"],
@@ -194,6 +263,10 @@ if (contract === 2) {
     await client.connect(transport)
     const tools = await client.listTools()
     assert.ok(tools.tools.some((entry) => entry.name === tool))
+    if (contract === 3) {
+      assert.equal(tools.tools.find((entry) => entry.name === "drive_documents_show").annotations.openWorldHint, false)
+      assert.equal(tools.tools.find((entry) => entry.name === tool).annotations.openWorldHint, true)
+    }
     for (const [field, args] of [
       ["file-id", { "file-id": 42 }],
       ["unknown-field", { "file-id": "synthetic-file", "unknown-field": "SYNTHETIC_NO_ARGUMENT_LOG" }],
