@@ -14,6 +14,7 @@ and CodeQL. Messaging includes C/C++ analysis as well as JavaScript/TypeScript a
 | cli-base / monthly.yml | 02:17 |
 | cli-memo / monthly.yml | 02:31 |
 | cli-messaging / monthly.yml | 02:38 |
+| drive-cli / monthly.yml | 02:45 |
 | cli-testing / monthly.yml | 02:52 |
 | max-cli / monthly.yml | 02:59 |
 | tg-cli / monthly.yml | 03:06 |
