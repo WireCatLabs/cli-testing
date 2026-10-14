@@ -121,37 +121,46 @@ const amountOf = (text) => {
 
 const RU_WEEKDAYS = ["воскресен", "понедельник", "вторник", "сред", "четверг", "пятниц", "суббот"]
 const EN_WEEKDAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
-const RU_MONTHS = [
-  "январ",
-  "феврал",
-  "март",
-  "апрел",
-  "ма",
-  "июн",
-  "июл",
-  "август",
-  "сентябр",
-  "октябр",
-  "ноябр",
-  "декабр",
+const WEEKDAY_WORDS =
+  "понедельник[аеу]?|вторник[аеу]?|сред[аеуы]|четверг[аеу]?|пятниц[аеуы]|суббот[аеуы]|воскресень[еяю]|" +
+  EN_WEEKDAYS.join("|")
+// Whole month words only: a prefix test read `decide 3` as December 3 and `maybe 2` as May 2.
+const MONTHS = [
+  /^(январ[ьяею]|jan(uary)?)$/u,
+  /^(феврал[ьяею]|feb(ruary)?)$/u,
+  /^(март[ауе]?|mar(ch)?)$/u,
+  /^(апрел[ьяею]|apr(il)?)$/u,
+  /^(ма[яеию]|may)$/u,
+  /^(июн[ьяею]|june?)$/u,
+  /^(июл[ьяею]|july?)$/u,
+  /^(август[ауе]?|aug(ust)?)$/u,
+  /^(сентябр[ьяею]|sept?(ember)?)$/u,
+  /^(октябр[ьяею]|oct(ober)?)$/u,
+  /^(ноябр[ьяею]|nov(ember)?)$/u,
+  /^(декабр[ьяею]|dec(ember)?)$/u,
 ]
-const EN_MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-const monthIndex = (word) => {
-  const ru = RU_MONTHS.findIndex((stem) => word.startsWith(stem) && (stem !== "ма" || /^ма[яи]$/u.test(word)))
-  return ru >= 0 ? ru : EN_MONTHS.findIndex((stem) => word.startsWith(stem))
+const monthIndex = (word) => MONTHS.findIndex((month) => month.test(word))
+// A due date is a calendar date where the owner is: the machine's time zone, not UTC.
+const dayOf = (ms) => {
+  const date = new Date(ms)
+  return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / DAY)
 }
-const dayOf = (ms) => Math.floor(ms / DAY)
-const dateDay = (year, month, day) => dayOf(Date.UTC(year, month, day))
+const dateDay = (year, month, day) => Math.floor(Date.UTC(year, month, day) / DAY)
+// JavaScript's \b knows only ASCII letters: without these edges `средства` read as Wednesday, `завтрак` as tomorrow.
+const words = (source) => new RegExp(`(?<![\\p{L}\\p{N}])(?:${source})(?![\\p{L}\\p{N}])`, "u")
 const DUE_PATTERNS = [
-  [/послезавтра/u, (_, now) => now + 2],
-  [/завтра|tomorrow/u, (_, now) => now + 1],
-  [/сегодня|today/u, (_, now) => now],
-  [/\b(\d{1,2})\.(\d{2})\b/u, (m, _, year) => dateDay(year, Number(m[2]) - 1, Number(m[1]))],
-  [/\b(\d{1,2})(?:st|nd|rd|th)?\s+(\p{L}+)/u, (m, _, year) => monthDate(year, m[2], m[1])],
-  [/\b(\p{L}+)\.?\s+(\d{1,2})\b/u, (m, _, year) => monthDate(year, m[1], m[2])],
-  [/(?:до|к|by|until|before|on|deadline)\s+(?:the\s+)?(\d{1,2})(?:-?(?:го|е|числа)|\s+числа|st|nd|rd|th)/u, nthDay],
-  [/конца месяца|end of (?:the )?month/u, (_, now) => monthEnd(now)],
-  [new RegExp(`(${[...RU_WEEKDAYS, ...EN_WEEKDAYS].join("|")})`, "u"), nextWeekday],
+  [words("послезавтра"), (_, now) => now + 2],
+  [words("завтра|tomorrow"), (_, now) => now + 1],
+  [words("сегодня|today"), (_, now) => now],
+  [words("(\\d{1,2})\\.(\\d{2})"), (m, _, year) => dateDay(year, Number(m[2]) - 1, Number(m[1]))],
+  [words("(\\d{1,2})(?:st|nd|rd|th)?\\s+(\\p{L}+)"), (m, _, year) => monthDate(year, m[2], m[1])],
+  [words("(\\p{L}+)\\.?\\s+(\\d{1,2})"), (m, _, year) => monthDate(year, m[1], m[2])],
+  [
+    words("(?:до|к|by|until|before|on|deadline)\\s+(?:the\\s+)?(\\d{1,2})(?:-?(?:го|е|числа)|\\s+числа|st|nd|rd|th)"),
+    nthDay,
+  ],
+  [words("конца месяца|end of (?:the )?month"), (_, now) => monthEnd(now)],
+  [words(`(${WEEKDAY_WORDS})`), nextWeekday],
 ]
 function monthDate(year, word, day) {
   const month = monthIndex(word)
@@ -177,7 +186,7 @@ function nextWeekday(m, now) {
 }
 const dueOf = (text, createdMs) => {
   const now = dayOf(createdMs)
-  const year = new Date(createdMs).getUTCFullYear()
+  const year = new Date(createdMs).getFullYear()
   let best
   for (const [pattern, resolve] of DUE_PATTERNS)
     for (const match of text.matchAll(new RegExp(pattern.source, `${pattern.flags}g`))) {
@@ -295,7 +304,7 @@ for (const task of tasks) {
     messages: new Set([task.source_message]),
   }
   parentOf.set(task.source_message, task.reply_to)
-  const wantDue = task.due ? dayOf(Date.parse(task.due)) : null
+  const wantDue = task.due ? Math.floor(Date.parse(task.due) / DAY) : null
   countExtraction(
     extraction.amount,
     item.amount,
@@ -568,6 +577,7 @@ const results = {
     cliCore: CORE_VERSION,
     cliCoreIntegrity: CORE_INTEGRITY,
     snowball: "3.1.1 (vendored in cli-core dist/search/snowball)",
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     splitSeed: SPLIT_SEED,
   },
   data: {

@@ -20,7 +20,8 @@ This run is step 1 of the plan's build order. Its answers go into the scoring mo
 
 ## Setup
 
-- Machine: AMD Ryzen AI 9 HX 470, 30 GB RAM, Linux 7.0, Node 24.19.0, SQLite 3.53.3 (the one in `node:sqlite`).
+- Machine: AMD Ryzen AI 9 HX 470, 30 GB RAM, Linux 7.0, Node 24.19.0, SQLite 3.53.3 (the one in `node:sqlite`),
+  time zone Europe/Madrid (recorded in the results as `environment.timeZone`).
 - Data: [`tasks.jsonl`](tasks.jsonl). It holds 251 synthetic tasks in Russian and English, from 9 invented people
   (Иван Пример, Alice Example, …) and one unknown sender, in 4 group chats and 9 private chats, over 50 days. The
   data comes from [`generate.mjs`](generate.mjs), and the run checks that the committed file matches the generator's
@@ -47,7 +48,8 @@ This run is step 1 of the plan's build order. Its answers go into the scoring mo
     (`15 000` → `15000`, only before exactly three digits, so `20.10` stays a date) and stop words removed
     (Russian and English).
   - **Signature.** Amount, currency and due date come from patterns in the text, as a rule would find them. They
-    never come from the labelled fields.
+    never come from the labelled fields. A date phrase must be a whole word, and a month a whole month name or its
+    English abbreviation; due days are calendar dates in the machine's time zone.
   - **Candidates.** A real FTS5 table with `bm25()` gives the top 20 matches on any stem. The same person gives up
     to 10 newest tasks, the same category gives up to 10 newest tasks, and the reply chain adds its tasks. A
     candidate is open, or was closed in the last 14 days. There is no "same chat" lookup.
@@ -155,6 +157,16 @@ Signature extraction against the labels, on all 251 tasks: amount and currency 6
 number with no currency next to it, such as `верни 3000 за бензин`, which the plan's pattern does not count);
 due date 96 right, 0 wrong, 0 missed. The patterns and the messages were written together, so this shows only that
 the patterns work on these phrasings, not on real chats.
+
+The first run matched date words by prefix and counted days in UTC: `средства` read as Wednesday, `завтрак` as
+tomorrow, `decide 3` as December 3 and `maybe 2` as May 2. JavaScript's `\b` knows only ASCII letters, so a
+Cyrillic word had no edge. cli-core's port of this scorer
+([WireCatLabs/cli-core#1235](https://github.com/WireCatLabs/cli-core/pull/1235)) fixed both, and this script took
+the same fixes. On this set nothing moved: every count, weight and band above is the same in Europe/Madrid, in UTC
+and in America/New_York. In Asia/Tokyo 5 due dates come out a day later than their labels, because tasks created
+late in the UTC evening fall on the next local day; the labels were written as dates in a European zone. The
+runtime in the committed results comes from that rerun, at a load average near 50: the median is the same, the
+maximum per task is 37 ms.
 
 Candidates per new task: median 20, 95th percentile 32, maximum 36. 77 of the 80 duplicate pairs were found by
 words, person and category together. None was found by one lookup alone, except 1 found by words only and 2 by

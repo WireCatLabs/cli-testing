@@ -6,6 +6,7 @@
     "cliCore": "0.277.0",
     "cliCoreIntegrity": "sha512-X0IBZ2waGP3EV4R5mbUnpT+nUFjXvPXvkwAS2lK3yeUfWVbazIVp1kJz1G2fKwsN7ZQH5dvW7zroeGWhyTk+Vg==",
     "snowball": "3.1.1 (vendored in cli-core dist/search/snowball)",
+    "timeZone": "Europe/Madrid",
     "splitSeed": "tasks-duplicates-1"
   },
   "data": {
@@ -67,10 +68,10 @@
     }
   },
   "runtime": {
-    "totalMs": 156.5,
-    "perTaskMedianMs": 0.487,
-    "perTaskP95Ms": 1.155,
-    "perTaskMaxMs": 11.876
+    "totalMs": 238.8,
+    "perTaskMedianMs": 0.646,
+    "perTaskP95Ms": 1.427,
+    "perTaskMaxMs": 36.586
   },
   "certainRules": [],
   "tuning": {
