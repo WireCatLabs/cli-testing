@@ -8,6 +8,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+### Changed â€” may break callers
+
+- The offline catalog research runner accepts an optional `--precise-effects` expectation for
+  the corrected provider-only metadata, while retaining exact historical release expectations.
+  Its JSON summary records the selected effects expectation.
+
 ### Added
 
 - Architecture checks: `performance/engineering/architecture-checks/` measures each CLI's lint guards

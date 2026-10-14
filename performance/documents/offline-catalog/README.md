@@ -148,6 +148,39 @@ To reproduce contract-3 acceptance, use the same two commands with exact package
 `@wirecat/drive-cli@0.6.0` and a separate prefix such as `/var/tmp/drive-check-060`. The runner
 uses that package's installed public schemas; it does not validate contract 3 against older schemas.
 
+## Precise provider-only effects
+
+The released handwritten Google reads conservatively claimed local data access, while equivalent
+generated methods claimed none. This check supports making the two surfaces agree without
+renaming commands or changing which operations are permitted.
+
+Candidate `38623cd15fdfe76a35881c36bdcb945aba2e56a2` passed 35 CLI invocations and three MCP
+calls with the explicit `--precise-effects` expectation. Its package version still says 0.6.0,
+but it uses Core 0.277.0 and is an unreleased source candidate, not the npm 0.6.0 artifact.
+Node 24.19.0 on Linux; the same synthetic fixture and HTTP/browser/keyring guards apply.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/offline-catalog/run.mjs /path/to/built-drive /path/to/its/core --precise-effects
+```
+
+The mode requires contract 3, provider-only effects for handwritten reads, and no data access
+for account-free discovery/completion. It retains the exact local-write/cached-read assertions,
+page/JSONL checks and MCP validation/audit cases. Without the flag, historical release
+expectations remain unchanged; the runner does not guess the new behavior from a reused version.
+The JSON result records `effects_expectation` alongside runtime/dependency versions.
+
+As a negative control, npm 0.6.0 fails the new expectation on `documents get`'s local effect.
+That confirms this mode detects the actual metadata difference instead of merely accepting
+both answers. The candidate's native suite passed 172 tests (90.73% line coverage), lint/types,
+generation freshness and eight CLI/MCP contracts. Node and Bun installed-tarball smoke checks
+also passed. Command lint retained 67 inherited findings,
+zero new, zero overrides and the unchanged budget. No baseline was expanded.
+
+This check describes source-data effects. Common configuration/credential loading and MCP's
+framework audit records are separate from a command reading or modifying cached documents.
+Native tests also verify that a provider read does not open the content store and is refused
+offline. No live provider response, real account or remote write is part of this result.
+
 See the [standards gap review](standards.md) for the release/source distinction and next work,
 and the [controlled live checklist](live-checklist.md) for the separately authorized Google test.
 

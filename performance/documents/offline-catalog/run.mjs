@@ -8,8 +8,12 @@ import { pathToFileURL } from "node:url"
 import { Client } from "@modelcontextprotocol/sdk/client/index.js"
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 
-const [driveRoot, coreRoot] = process.argv.slice(2).map((path) => resolve(path))
-assert.ok(driveRoot && coreRoot, "usage: node run.mjs <built-drive-package> <built-core-package>")
+const [drivePath, corePath, effectsMode] = process.argv.slice(2)
+assert.ok(drivePath && corePath, "usage: node run.mjs <built-drive-package> <built-core-package> [--precise-effects]")
+assert.ok(effectsMode === undefined || effectsMode === "--precise-effects", "unknown effects expectation")
+const preciseEffects = effectsMode === "--precise-effects"
+const driveRoot = resolve(drivePath)
+const coreRoot = resolve(corePath)
 const require = createRequire(join(coreRoot, "package.json"))
 const { openStore } = await import(pathToFileURL(require.resolve("@wirecat/cli-core/store")))
 const { itemEnvelopeSchema, listEnvelopeSchema, errorObjectSchema } = await import(
@@ -131,6 +135,7 @@ const invoke = (words, profile = "synthetic", ok = true, shape = "item") => {
 const discovery = invoke(["commands"], "", true, "discovery")
 contract = discovery.contract
 assert.ok([1, 2, 3].includes(contract), "unreviewed command contract")
+if (preciseEffects) assert.equal(contract, 3)
 assert.equal(discovery.version, packageVersion(driveRoot))
 if (contract === 3) {
   const flatten = (commands) => commands.flatMap((command) => [command, ...flatten(command.commands)])
@@ -143,7 +148,7 @@ if (contract === 3) {
   for (const [path, effects] of [
     ["documents show", { remote: "none", local: "read" }],
     ["catalog import", { remote: "none", local: "write" }],
-    ["documents get", { remote: "read", local: "read" }],
+    ["documents get", { remote: "read", local: preciseEffects ? "none" : "read" }],
     ["files copy", { remote: "write", local: "none" }],
     ["sync", { remote: "read", local: "write" }],
   ]) {
@@ -152,6 +157,24 @@ if (contract === 3) {
   const generatedRead = commands.find((command) => command.path.join(" ") === "api drive-files-get")
   assert.equal(generatedRead.api_operation, "drive.files.get")
   assert.deepEqual(generatedRead.effects, { remote: "read", local: "none" })
+  if (preciseEffects) {
+    for (const path of ["commands", "complete", "api list", "api show"]) {
+      assert.deepEqual(commands.find((command) => command.path.join(" ") === path)?.effects, {
+        remote: "none",
+        local: "none",
+      })
+    }
+    for (const path of [
+      "files get",
+      "files list",
+      "documents history",
+      "comments get",
+      "permissions get",
+      "revisions get",
+    ]) {
+      assert.deepEqual(commands.find((command) => command.path.join(" ") === path)?.effects, generatedRead.effects)
+    }
+  }
   assert.equal(
     discovery.global_options.some((option) => option.flags.startsWith("--agent-json")),
     false,
@@ -305,5 +328,6 @@ process.stdout.write(
     core: packageVersion(coreRoot),
     framework: packageVersion(resolve(require.resolve("@wirecat/cli-base"), "../..")),
     contract,
+    effects_expectation: preciseEffects ? "precise" : "legacy",
   })}\n`,
 )
