@@ -1,12 +1,14 @@
 import { spawnSync } from "node:child_process"
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs"
 import { SourceMap } from "node:module"
-import { dirname, extname, isAbsolute, relative, resolve } from "node:path"
+import { dirname, isAbsolute, relative, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
 const PACKS = ["p/javascript", "p/typescript", "p/nodejs", "p/secrets", "p/github-actions"]
 const ESBUILD = "0.25.12"
-type Failure = { type: string | unknown[]; path?: string }
+const SOURCES = /\.(?:[cm]?[jt]s|[jt]sx)$/
+type Failure = { type: string | unknown[]; path?: string; level?: string; rule_id?: string }
+type Gap = { type: string; rule: string; path: string }
 type Match = {
   check_id: string
   path: string
@@ -26,6 +28,12 @@ const run: Run = (command, args, cwd) => {
   return { code: result.status ?? 2, stdout: result.stdout ?? "" }
 }
 const partial = (error: Failure) => Array.isArray(error.type) && error.type[0] === "PartialParsing"
+// One rule failing on one file is recorded as a gap; any other engine error still fails the scan.
+const gap = (error: Failure) =>
+  error.type === "Internal matching error" &&
+  error.level === "warn" &&
+  typeof error.rule_id === "string" &&
+  typeof error.path === "string"
 const within = (path: string, root: string) => {
   const candidate = relative(root, resolve(root, path))
   if (!candidate || candidate.startsWith("..") || isAbsolute(candidate))
@@ -56,19 +64,24 @@ export const scanSemgrep = (root: string, output: string, supplement: string, in
     return value
   }
   const source = scan(root)
-  const failures = source.errors.filter((error) => !partial(error))
+  const gaps: Gap[] = source.errors.filter(gap).map((error) => ({
+    type: error.type as string,
+    rule: error.rule_id as string,
+    path: within(error.path as string, root),
+  }))
+  const failures = source.errors.filter((error) => !partial(error) && !gap(error))
   mkdirSync(supplement, { recursive: true, mode: 0o700 })
   writeFileSync(resolve(supplement, "source.json"), `${JSON.stringify(source)}\n`, { mode: 0o600 })
   if (failures.length) {
-    if (
-      failures.some(
-        (error) => error.type !== "Syntax error" || !error.path || ![".ts", ".tsx"].includes(extname(error.path)),
-      )
-    )
+    if (failures.some((error) => error.type !== "Syntax error" || !error.path || !SOURCES.test(error.path)))
       throw new Error("Semgrep reported an unrecoverable error")
     const files = [...new Set(failures.map((error) => within(error.path as string, root)))]
+    const expected = files.map((file) => file.replace(SOURCES, ".js"))
+    if (new Set(expected).size !== expected.length)
+      throw new Error("two failed sources compile to the same runtime file")
     const compiled = resolve(supplement, "runtime")
     // ES2019 lowers the syntax rejected by the pinned parser; imports are never bundled or executed.
+    // Top-level await cannot be lowered, and the parser accepts it.
     const build = invoke(
       "pnpm",
       [
@@ -79,6 +92,7 @@ export const scanSemgrep = (root: string, output: string, supplement: string, in
         "--outbase=.",
         "--platform=node",
         "--target=es2019",
+        "--supported:top-level-await=true",
         "--format=esm",
         "--charset=ascii",
         "--sourcemap=external",
@@ -88,7 +102,6 @@ export const scanSemgrep = (root: string, output: string, supplement: string, in
       root,
     )
     if (build.code !== 0) throw new Error(`runtime coverage compilation failed with exit ${build.code}`)
-    const expected = files.map((file) => file.replace(/\.(?:tsx|ts)$/, ".js"))
     const fallback = scan(
       compiled,
       expected.map((file) => `./${file}`),
@@ -117,7 +130,7 @@ export const scanSemgrep = (root: string, output: string, supplement: string, in
       }
       source.results.push({ ...match, path: sourcePath, start: mapped(match.start), end: mapped(match.end) })
     }
-    source.errors = source.errors.filter(partial)
+    source.errors = source.errors.filter((error) => partial(error) || gap(error))
     source.runtimeCoverage = {
       compiler: `esbuild ${ESBUILD}`,
       target: "es2019",
@@ -127,6 +140,7 @@ export const scanSemgrep = (root: string, output: string, supplement: string, in
       runtimeResults: relative(dirname(output), resolve(supplement, "runtime.json")),
     }
   }
+  if (gaps.length) source.coverageGaps = gaps
   source.results = [
     ...new Map(
       source.results.map((match) => [
@@ -140,7 +154,11 @@ export const scanSemgrep = (root: string, output: string, supplement: string, in
   return source
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (
+  process.argv[1] &&
+  existsSync(process.argv[1]) &&
+  realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)
+) {
   try {
     scanSemgrep(
       resolve(process.argv[2] as string),

@@ -1,0 +1,26 @@
+# A .semgrepignore replaces Semgrep's built-in list, so that list (1.178.0) is repeated here.
+.git
+.svn
+.hg
+_darcs
+CVS
+build/
+vendor/
+dist/
+*.min.js
+.env/
+.tox/
+node_modules/
+.npm/
+.yarn/
+.venv/
+_opam/
+_build/
+_cargo/
+test/
+tests/
+testsuite/
+*_test.go
+
+# Saved third-party web pages for the reader benchmarks; not code, and they time the scanner out.
+performance/**/fixtures/

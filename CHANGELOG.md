@@ -31,6 +31,21 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
   discovery contracts are refused. The research report distinguishes released behavior from
   newer source changes and includes a separately authorized live Google checklist.
 
+### Fixed
+
+- `cli-testing security scan` runs its Semgrep stage from an installed package: the stage ships as
+  compiled `dist/semgrep.js`, because Node refuses to strip types under `node_modules`. Before, every
+  scan from an install failed at Semgrep; it worked only from a checkout.
+- A repository whose scanner fails no longer stops the run: `scan` records the failure, scans the
+  remaining repositories and exits 1 at the end, naming the failed ones on stderr. Watch for a
+  non-zero exit with most raw files present — the failed repository has none for that tool.
+- The Semgrep fallback covers JavaScript files the parser rejects (`.js`, `.jsx`, `.mjs`, `.cjs`,
+  plus `.mts`, `.cts`), and keeps top-level await. One rule failing on one file is recorded as a
+  coverage gap in `semgrep.json` and `SCOPE.md` instead of failing the repository; every other
+  scanner error still does.
+- This repository's saved third-party web pages under `performance/**/fixtures/` are excluded from
+  Semgrep in `.semgrepignore`, so they no longer time the scan out.
+
 ## 0.4.0 — 11.10.2026
 
 ### Changed — may break callers
