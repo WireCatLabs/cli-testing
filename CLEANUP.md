@@ -19,3 +19,5 @@ one batch after the owner confirms.
 - `.worktrees/security-format/cli-messaging` — development or publication checkout; remove only after this task and its releases finish — 2026-10-09.
 - `.worktrees/private-security-fixes` — keep until the journal and handoff land in private main and the task finishes — 2026-10-09.
 - `/tmp/cli-core-security-unicode.tgz`, `/tmp/cli-messaging-security-candidate.tgz` — temporary local dependency builds; keep until published pins replace them — 2026-10-09.
+- `~/Projects/AI/cli-testing-wt-tasks-duplicates` — worktree of branch `perf/tasks-duplicates` (PR for the duplicate-tasks test set); remove after the PR merges — 2026-10-14.
+- `performance/tasks/duplicates/.cache/` — downloaded `@wirecat/cli-core@0.277.0` tarball, ignored by git; remove with the worktree — 2026-10-14.

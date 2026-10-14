@@ -1,0 +1,211 @@
+# Duplicate tasks from chat messages
+
+## Why it was run
+
+The owner wants an agent to record a task for everything in his chats that needs him, with no second task for the
+same thing. He also does not want a limit such as one task per chat or per person: a busy chat holds many real tasks.
+cli-core's tasks plan (WireCatLabs/cli-core#1216, `docs/dev/tasks-plan.md`, "Duplicates — the comparison chain")
+answers this with a check that runs when a task is created. The check has three steps. Two "certain" rules attach a
+message to a task without scoring. A union of cheap lookups finds candidates. A Fellegi–Sunter score then compares
+fields. The weights were set by hand. The plan says they must be tuned on a synthetic set before they decide
+anything.
+
+The questions:
+
+1. Do the plan's starting weights separate real duplicates from look-alikes?
+2. Which weights and bands should cli-core ship?
+3. Can a "same" band have zero wrong merges, and what recall is left at that point?
+
+This run is step 1 of the plan's build order. Its answers go into the scoring module in step 4.
+
+## Setup
+
+- Machine: AMD Ryzen AI 9 HX 470, 30 GB RAM, Linux 7.0, Node 24.19.0, SQLite 3.53.3 (the one in `node:sqlite`).
+- Data: [`tasks.jsonl`](tasks.jsonl). It holds 251 synthetic tasks in Russian and English, from 9 invented people
+  (Иван Пример, Alice Example, …) and one unknown sender, in 4 group chats and 9 private chats, over 50 days. The
+  data comes from [`generate.mjs`](generate.mjs), and the run checks that the committed file matches the generator's
+  output. Each task has a title, a description (the message), a person, a chat, a category from the plan's default
+  list, an amount and currency, a due date, `created_at`, `closed_at`, a source message id and `reply_to`. Each task
+  also carries the ground truth: `group` (tasks in one group are one task), `scenario` and `subtype`.
+
+  | Kind | Tasks | What it holds |
+  |---|---|---|
+  | `dup` (`a.*`) | 112 | One task written two or three times: word forms, typos, `15 000` / `15000` / `15к` / `1,500`, synonyms (`оплатить счёт` / `переведи за счёт`), the other language, reminders days later, a reminder after more than 14 days. |
+  | `lookalike` (`b.*`) | 50 | Not one task: the same person with another job, the same words with another amount, the same category with another date (monthly rent, with the earlier task closed), the same title with another amount. |
+  | `busy` (`c.busy`) | 58 | Separate real tasks in busy group and private chats. They share words, people and categories. |
+  | `cross` (`c.cross`) | 12 | One request that arrives in a group chat and in a private chat. |
+  | `reply` (`d.*`) | 19 | Replies that repeat the task, a reply that adds a new request, another person's "+1" in a group, a reply to a closed task. |
+
+  The set has 80 duplicate pairs, counted as each task paired with every earlier task of its group.
+- Chain: [`evaluate.mjs`](evaluate.mjs) follows the plan's chain:
+  - **Stems.** The Snowball 3.1.1 stemmers and `normalize()` come from the published `@wirecat/cli-core@0.277.0`
+    tarball. The script downloads it with `npm pack`, checks its sha512 and keeps it in `.cache/`. The stemmer
+    factory `createStemmer` (`src/search/stem.ts`) is not a public export, so the script copies its token logic:
+    the same token pattern and script test, Snowball on the lower-cased word, `normalize()` after it. A Latin word
+    gets both default stemmers (English and Spanish).
+  - **Two steps the plan names but cli-core does not have yet.** The script adds them on top: digit groups joined
+    (`15 000` → `15000`, only before exactly three digits, so `20.10` stays a date) and stop words removed
+    (Russian and English).
+  - **Signature.** Amount, currency and due date come from patterns in the text, as a rule would find them. They
+    never come from the labelled fields.
+  - **Candidates.** A real FTS5 table with `bm25()` gives the top 20 matches on any stem. The same person gives up
+    to 10 newest tasks, the same category gives up to 10 newest tasks, and the reply chain adds its tasks. A
+    candidate is open, or was closed in the last 14 days. There is no "same chat" lookup.
+  - **Scoring.** The plan's field levels and weights, then its bands.
+  - **Order.** Tasks arrive in `created_at` order and are compared only with earlier tasks. A task that a certain
+    rule attaches is not stored as a separate task: its message is linked to the target task, as in the plan.
+- Tuning: m and u for each level are counted over the candidate pairs. A small constant (0.5) is added to each
+  count, so a count of zero does not give an infinite weight. Each weight is `log2(m/u)`, rounded to an integer.
+  The bands are picked by two rules. The "same" threshold is the lowest score with no wrong merge on the tuning
+  data. The "maybe" threshold is the highest score that still keeps 90% of the duplicates found as candidates.
+  Scenarios are split into halves A and B with a seeded hash, so a duplicate group never sits in both halves.
+  Weights are estimated on A and tested on B, then estimated on B and tested on A. The proposed weights are
+  estimated on all pairs.
+- The run checks the chain twice: with the plan's certain rules (`results-plan.json`), and with no certain rules
+  (`results-none.json`). In the second run, a reply counts only through its +6 weight.
+
+```sh
+performance/tasks/duplicates/run.sh
+```
+
+## Results
+
+A pair is one new task and one earlier candidate. "true/false" counts pairs that are, or are not, the same task.
+Precision is true ÷ all pairs in the band. Recall is true ÷ all 80 duplicate pairs, including pairs that never
+became candidates. In this set, no duplicate was ever missed as a candidate.
+
+### Certain rules (plan § 2)
+
+| Rule | Right | Wrong | The wrong ones |
+|---|---|---|---|
+| Reply to a message linked to an open task | 5 | 4 | A reply that adds a new request ("thanks! also, can you book a table…", "и хлеба купи", "и ещё — лампочку"), and another person's "+1, I need staging access too" |
+| The same normalized title for the same person | 0 | 2 | `Оплатить счёт` for the internet, then for water. `Pay Carol's design invoice` for 250 EUR, then a new 400 EUR invoice |
+
+The plan's third certain rule, the same rule on the same message, was not tested: each message in the set has
+one task.
+
+### Bands, with the plan's certain rules
+
+| Weights and bands | Half | same ≥ | maybe ≥ | same true/false | maybe true/false | P same | R same | P same+maybe | R same+maybe |
+|---|---|---|---|---|---|---|---|---|---|
+| start, plan bands | A | 8 | 3 | 18/5 | 22/60 | 78% | 45% | 38% | 100% |
+| start, plan bands | B | 8 | 3 | 17/4 | 17/46 | 81% | 50% | 40% | 100% |
+| start, bands picked on A | B | 13 | 4 | 0/0 | 33/33 | — | 0% | 50% | 97% |
+| estimated on A | B (held out) | 9 | 3 | 18/9 | 15/29 | 67% | 53% | 46% | 97% |
+| estimated on B | A (held out) | 18 | 5 | 2/0 | 30/31 | 100% | 5% | 51% | 80% |
+
+### Bands, with no certain rules
+
+| Weights and bands | Half | same ≥ | maybe ≥ | same true/false | maybe true/false | P same | R same | P same+maybe | R same+maybe |
+|---|---|---|---|---|---|---|---|---|---|
+| start, plan bands | A | 8 | 3 | 24/7 | 22/68 | 77% | 52% | 38% | 100% |
+| start, plan bands | B | 8 | 3 | 17/4 | 17/52 | 81% | 50% | 38% | 100% |
+| start, bands picked on A | B | 14 | 4 | 0/0 | 33/35 | — | 0% | 49% | 97% |
+| estimated on A | B (held out) | 18 | 3 | 11/3 | 22/35 | 79% | 32% | 46% | 97% |
+| estimated on B | A (held out) | 18 | 5 | 2/0 | 36/36 | 100% | 4% | 51% | 83% |
+| estimated on all (in-sample) | all | 19 | 5 | 3/0 | 69/45 | 100% | 4% | 62% | 90% |
+
+### What the agent sees, for each new task (no certain rules, all 251 tasks)
+
+The table counts each new task once, by its best-scoring candidate. 71 tasks have an earlier duplicate. 180 do
+not.
+
+| Weights | Duplicate: top in "same" | top in "maybe" | scored "different" | top is the wrong task | New task: flagged "same" | refused as "maybe" |
+|---|---|---|---|---|---|---|
+| start, plan bands | 38 | 31 | 0 | 2 | 11 | 56 (31%) |
+| estimated on all, same ≥ 19, maybe ≥ 5 | 3 | 61 | 6 | 1 | 0 | 31 (17%) |
+
+### Threshold sweep (no certain rules, all pairs, a pair counts when its score ≥ the threshold)
+
+| ≥ | start true/false | P | R | new tasks flagged | estimated true/false | P | R | new tasks flagged |
+|---|---|---|---|---|---|---|---|---|
+| 3 | 80/131 | 38% | 100% | 67/180 | 75/75 | 50% | 94% | 43/180 |
+| 5 | 69/67 | 51% | 86% | 39/180 | 72/45 | 62% | 90% | 31/180 |
+| 6 | 67/41 | 62% | 84% | 29/180 | 70/27 | 72% | 88% | 19/180 |
+| 8 | 41/11 | 79% | 51% | 11/180 | 64/19 | 77% | 80% | 14/180 |
+| 10 | 24/5 | 83% | 30% | 5/180 | 34/5 | 87% | 43% | 5/180 |
+| 12 | 5/2 | 71% | 6% | 2/180 | 33/4 | 89% | 41% | 4/180 |
+| 14 | 0/0 | — | 0% | 0/180 | 21/4 | 84% | 26% | 4/180 |
+| 16 | 0/0 | — | 0% | 0/180 | 3/0 | 100% | 4% | 0/180 |
+
+### Weights
+
+| Level | Plan's start | Estimated on A | Estimated on B | Estimated on all (proposed) | Duplicates / other candidate pairs (all) |
+|---|---|---|---|---|---|
+| Text ≥ 0.6 / 0.3–0.6 / < 0.3 | +4 / +2 / −2 | +5 / +5 / −2 | +5 / +5 / −3 | **+5 / +5 / −2** | 11/18 · 54/102 · 15/4493 |
+| Person same / different / unknown | +3 / −3 / 0 | +1 / −6 / −2 | +1 / −5 / −1 | **+1 / −6 / −3** | 80/2149 · 0/2293 · 0/171 |
+| Amount equal / different / missing | +3 / −4 / 0 | +10 / −4 / 0 | +6 / −4 / 0 | **+6 / −5 / 0** | 20/13 · 0/849 · 60/3751 |
+| Category same / different | +1 / −1 | +1 / −5 | +1 / −5 | **+1 / −6** | 80/2667 · 0/1946 |
+| Due ≤ 2 days / more / missing | +1 / −1 / 0 | +4 / −1 / −1 | +3 / −2 / 0 | **+4 / −1 / 0** | 26/126 · 4/707 · 50/3780 |
+| Reply chain yes / no | +6 / 0 | +6 / 0 | +4 / 0 | **+6 / 0** | 6/5 · 74/4608 |
+| Time ≤ 3 / 4–14 / > 14 days | +1 / 0 / −1 | +2 / −3 / −3 | +2 / −2 / −2 | **+2 / −2 / −3** | 69/888 · 8/2456 · 3/1269 |
+
+Signature extraction against the labels, on all 251 tasks: amount and currency 65 right, 0 wrong, 4 missed (a
+number with no currency next to it, such as `верни 3000 за бензин`, which the plan's pattern does not count);
+due date 96 right, 0 wrong, 0 missed. The patterns and the messages were written together, so this shows only that
+the patterns work on these phrasings, not on real chats.
+
+Candidates per new task: median 20, 95th percentile 32, maximum 36. 77 of the 80 duplicate pairs were found by
+words, person and category together. None was found by one lookup alone, except 1 found by words only and 2 by
+person and words. Runtime, in memory: about 0.7 ms per task (median), 1.5 ms at the 95th percentile, 13 ms
+maximum, and 0.2 s for all 251 tasks.
+
+## What it showed
+
+- **The plan's two certain rules make wrong merges, and a wrong merge here is silent.** The reply rule was right 5
+  times and wrong 4 times. In a chat, a reply often asks for something new, or comes from another person. The
+  same-title rule was wrong both times it fired: an agent's short title (`Оплатить счёт`) is not a task's
+  identity. Without the two rules, the start weights put the 5 real follow-up replies in "same". With the
+  estimated weights, they go to "maybe", and the agent decides. The replies that add a new task go to "maybe" or
+  "different".
+- **The starting weights find every duplicate, but they flag many new tasks.** With the plan's bands, every
+  duplicate scored "same" or "maybe". "Same" was right 77–81% of the time on both halves. But 31% of new tasks
+  were refused as "maybe", and 6% were flagged "same". Each of those costs the agent a second call.
+- **No weights on these fields give a "same" band that is both safe and useful.** Zero wrong merges in "same"
+  needs a threshold of 14 with the start weights, and then "same" is empty. With the estimated weights it needs
+  16–19, and then "same" catches 3 of 80 duplicates (4%). On the held-out half, weights tuned on A still made 3
+  wrong merges in "same" (79% precision, 32% recall). Weights tuned on B made none, but caught 4%. The wrong
+  merges are look-alikes that no field can tell apart: the same parent, the same amount and category, two days
+  apart, and a different object (`экскурсия в театр` / `в зоопарк`, `подарок папе` / `маме`, the hotel / the
+  flights). Only the meaning of one word differs. "Same" can rank candidates for the agent. It cannot merge on
+  its own, as the plan already says.
+- **"Maybe" is where this chain is useful.** With the estimated weights and maybe ≥ 5, 90% of duplicate pairs are
+  "same" or "maybe", at 62% precision, and 17% of new tasks are refused (start weights: 31%).
+- **Tuning moves the weights the same way in both halves:**
+  - Text 0.3–0.6 is worth as much as ≥ 0.6. Reminders are short, so their overlap with the first message is
+    rarely high.
+  - "Same person" drops to +1. The candidates come mostly from the same-person lookup, so most other candidates
+    share the person too. m/u is measured over candidates, not over random pairs.
+  - A different category and a time of 4–14 days both become strong signals against a match.
+  - "Equal amount" is the least stable weight: +10 on A, +6 on B. It is also the field behind most of the
+    held-out wrong merges.
+- **cli-core needs two additions in step 3 before this chain works as planned.** `normalize()` (cli-core 0.277.0)
+  does not join digit groups. Search has no stop-word list.
+
+### Proposed for cli-core's scoring module
+
+1. Drop the "same title for the same person" certain rule. Make "reply to a linked message" a scored field (+6), not
+   an attach without scoring.
+2. Weights: the "Estimated on all" column. There is one exception. "Person different" and "category different"
+   never occur among this set's duplicates, so their −6 rests on a count of zero plus the added constant. The set
+   was written that way, so this is not evidence. Keep the plan's −3 and −1 for them until real labelled pairs
+   exist.
+3. Bands: **maybe ≥ 5**. **Same ≥ 16** is the lowest threshold with zero wrong merges here, with 4% recall. If
+   "same" stays a label that orders the list and never merges, same ≥ 10 gives 87% precision and 43% recall.
+4. Re-estimate from the owner's labelled answers (merge, reject, `--attach`, `--new`; plan § 7) before "same" may
+   merge anything.
+
+## Not measured
+
+- **How the set was written, which matters more than how it was split.** One author wrote the data and the
+  scorer. In this set, every duplicate shares its person and category, and every look-alike was built to be hard
+  in a known way. Real chats will differ. The held-out half guards against fitting one half, not against fitting
+  the author. The dataset was written before any score was seen. It changed twice afterwards, to fix an amount
+  label and a due-date label that the scoring does not read.
+- The owner's real store. A run there reports totals here and per-pair rows in cli-private.
+- An LLM or the agent as the judge of "maybe" pairs, and local embeddings for the text field (the plan's next step
+  if text proves too weak). Cross-language duplicates show that weakness: 2 of the 5 `a.lang` pairs scored
+  "different".
+- The same rule firing twice on one message (plan § 2.2), reopening a closed task, and how a merge in the store
+  changes later candidates.
+- Speed on a large store: the FTS5 table here holds at most 251 rows.
