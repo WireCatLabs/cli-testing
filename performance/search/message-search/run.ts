@@ -118,7 +118,7 @@ try {
   }
   const digest = (bytes: Buffer) => createHash("sha256").update(bytes).digest("hex")
   const productionFiles = ["services/messages.js", "services/messages-search.js", "search/search.js", "search/query.js",
-    "search/correct.js", "search/stem.js", "search/lucene/parser.js", "store/sqlite/lucene.js", "store/sqlite/words.js"]
+    "search/correct.js", "search/stem.js", "store/sqlite/lucene.js", "store/sqlite/words.js"]
   console.log(JSON.stringify({
     schemaVersion: 1, k: 10, node: process.version, timezone: "UTC", storePath: path,
     archiveSupplementSha256: supplementBytes ? digest(supplementBytes) : null,
