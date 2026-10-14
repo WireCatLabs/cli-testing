@@ -70,5 +70,5 @@ the run summary and opens an issue "Architecture checks YYYY-MM" with it. Copy t
 [architecture checks record](../../performance/engineering/architecture-checks/README.md#trend), give
 any new file over 500 lines a verdict there, and close the issue.
 
-Review the Actions results each month. Apart from that issue, scheduling does not create an issue, send a message,
-or guarantee that someone reviewed the results; notifications follow existing GitHub settings.
+Review the Actions results each month. Apart from the architecture issue, scheduling does not send a
+message or guarantee that someone reviewed the results; notifications follow existing GitHub settings.
