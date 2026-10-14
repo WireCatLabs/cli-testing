@@ -10,6 +10,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- Architecture checks: `performance/engineering/architecture-checks/` measures each CLI's lint guards
+  (import loops, file size, import boundaries), cli-core pins and files over 500 lines, and keeps a
+  dated table for the trend. The monthly workflow writes a fresh table to its run summary; copy it
+  into the record. Nothing is published or built.
 - The offline Drive catalog runner checks published contract-1/contract-2 responses, one-time
   settings migration, provider metadata keys and field-specific MCP validation/auditing. Contract 3
   adds effects, page continuation, completeness, JSONL termination and removed-flag checks. Unknown
