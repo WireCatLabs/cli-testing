@@ -58,6 +58,11 @@ Offline synthetic search-quality benchmarks, model explanations and resource pro
 [`performance/search/`](performance/search/README.md). They run on demand against an explicitly
 selected cli-messaging build; they are separate from the published suite package.
 
+## Engineering reviews
+
+[Code structure reviews](performance/engineering/README.md) assess responsibility, dependency
+direction and the changes needed to make feature development easier.
+
 ## Security audits
 
 How an audit is run and repeated: [`docs/security/METHOD.md`](docs/security/METHOD.md), the commands

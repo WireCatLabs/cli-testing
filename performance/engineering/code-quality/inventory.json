@@ -1,0 +1,104 @@
+{
+  "max": {
+    "package": "@wirecat/max-cli",
+    "version": "0.49.0",
+    "commit": "3f908c8f5ac55403d576da8ee703f14930868a6f",
+    "source_files": 129,
+    "source_lines": 19694,
+    "source_test_files": 126,
+    "files_over_400_lines": 7,
+    "files_over_800_lines": 1,
+    "largest": [
+      ["src/client.ts", 3456],
+      ["src/server/server.ts", 702],
+      ["src/config.ts", 581],
+      ["src/domain/map.ts", 529],
+      ["src/adapter/max-adapter.ts", 520],
+      ["src/bot/adapter.ts", 495],
+      ["src/spec/operations/messages.ts", 402],
+      ["src/session/browser.ts", 382],
+      ["src/protocol/connection.ts", 378],
+      ["src/moderation/check.ts", 378]
+    ],
+    "most_imported_including_types": [
+      ["src/app.ts", 22],
+      ["src/commands/context.ts", 19],
+      ["src/config.ts", 18],
+      ["src/spec/define.ts", 16],
+      ["src/client.ts", 15],
+      ["src/session/store.ts", 15],
+      ["src/messenger.ts", 14],
+      ["src/profile.ts", 12],
+      ["src/domain/models.ts", 12],
+      ["src/permissions.ts", 11]
+    ]
+  },
+  "messaging": {
+    "package": "@wirecat/cli-messaging",
+    "version": "0.261.0",
+    "commit": "b00ae58c9dac168a6eb57acff10ca19e3e337e5c",
+    "source_files": 557,
+    "source_lines": 88028,
+    "source_test_files": 335,
+    "files_over_400_lines": 39,
+    "files_over_800_lines": 10,
+    "largest": [
+      ["src/store/store.ts", 1791],
+      ["src/store/sqlite/schema.ts", 1625],
+      ["src/services/messages.ts", 1161],
+      ["src/store/sqlite/emails.ts", 1115],
+      ["src/store/sqlite/lucene.ts", 1018],
+      ["src/cli/messenger/conversations-command.ts", 866],
+      ["src/store/sqlite/knowledge.ts", 856],
+      ["src/services/embeddings.ts", 851],
+      ["src/domain/models.ts", 815],
+      ["src/cli/messenger/store-maintenance-command.ts", 805]
+    ],
+    "most_imported_including_types": [
+      ["src/domain/models.ts", 121],
+      ["src/cli/messenger/context.ts", 120],
+      ["src/store/store.ts", 101],
+      ["src/cli/paging.ts", 55],
+      ["src/store/sqlite/open.ts", 54],
+      ["src/cli/messenger/port.ts", 53],
+      ["src/cli/app.ts", 50],
+      ["src/store/driver.ts", 43],
+      ["src/mcp/tool.ts", 38],
+      ["src/domain/locator.ts", 36]
+    ]
+  },
+  "base": {
+    "package": "@wirecat/cli-base",
+    "version": "0.26.0",
+    "commit": "c75a1f5956ff6e4a022733baf63ec6f2e81b1b68",
+    "source_files": 64,
+    "source_lines": 7726,
+    "source_test_files": 36,
+    "files_over_400_lines": 2,
+    "files_over_800_lines": 1,
+    "largest": [
+      ["src/standards/vocabulary.ts", 838],
+      ["src/dev/lint.ts", 474],
+      ["src/dev/main.ts", 322],
+      ["src/query/parser.ts", 307],
+      ["src/skill/index.ts", 253],
+      ["src/update/index.ts", 221],
+      ["src/failure.ts", 217],
+      ["src/commands/index.ts", 215],
+      ["src/codegen/pipeline.ts", 193],
+      ["src/release/markdown.ts", 176]
+    ],
+    "most_imported_including_types": [
+      ["src/errors.ts", 16],
+      ["src/standards/registry.ts", 11],
+      ["src/query/types.ts", 8],
+      ["src/standards/output.ts", 7],
+      ["src/query/fields.ts", 7],
+      ["src/codegen/model.ts", 6],
+      ["src/codegen/names.ts", 6],
+      ["src/sanitize.ts", 4],
+      ["src/standards/log.ts", 4],
+      ["src/standards/errors.ts", 4]
+    ]
+  }
+}
