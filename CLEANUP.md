@@ -21,3 +21,4 @@ one batch after the owner confirms.
 - `/tmp/cli-core-security-unicode.tgz`, `/tmp/cli-messaging-security-candidate.tgz` — temporary local dependency builds; keep until published pins replace them — 2026-10-09.
 - `~/Projects/AI/cli-testing-wt-tasks-duplicates` — worktree of branch `perf/tasks-duplicates` (PR for the duplicate-tasks test set); remove after the PR merges — 2026-10-14.
 - `performance/tasks/duplicates/.cache/` — downloaded `@wirecat/cli-core@0.277.0` tarball, ignored by git; remove with the worktree — 2026-10-14.
+- `~/Projects/AI/cli-private-wt-blog-duplicates` — detached cli-private worktree used to push POST-61 (`efff825f`); remove any time — 2026-10-14.

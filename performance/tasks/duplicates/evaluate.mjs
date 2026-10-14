@@ -476,6 +476,18 @@ const pickBands = (half, weights) => {
 
 const tuned = { A: estimate("A"), B: estimate("B"), all: estimate("all") }
 const proposed = rounded(tuned.all.weights)
+// A level no duplicate showed gets its weight from a zero count plus smoothing — the set's authoring, not evidence.
+const recommended = Object.fromEntries(
+  FIELDS.map((field) => [
+    field,
+    Object.fromEntries(
+      Object.entries(proposed[field]).map(([level, w]) => [
+        level,
+        tuned.all.counts[field][level].duplicates === 0 ? START_WEIGHTS[field][level] : w,
+      ]),
+    ),
+  ]),
+)
 const fromA = rounded(tuned.A.weights)
 const fromB = rounded(tuned.B.weights)
 const configs = {
@@ -486,6 +498,8 @@ const configs = {
   "estimated on all, bands picked on all (in-sample)": { weights: proposed, bands: pickBands("all", proposed) },
 }
 const PROPOSED = "estimated on all, bands picked on all (in-sample)"
+const RECOMMENDED = "recommended: estimated on all, plan weights where no duplicate showed the level"
+configs[RECOMMENDED] = { weights: recommended, bands: pickBands("all", recommended) }
 
 const bySubtype = (weights, bands) => {
   const scored = pairs.map((p) => ({
@@ -608,7 +622,7 @@ const results = {
       { duplicatePairs: t.duplicates, otherPairs: t.others, counts: t.counts, weights: t.weights },
     ]),
   ),
-  weights: { start: START_WEIGHTS, fromA, fromB, proposed },
+  weights: { start: START_WEIGHTS, fromA, fromB, proposed, recommended },
   configs: Object.fromEntries(
     Object.entries(configs).map(([name, { weights, bands }]) => {
       const strip = ({ scored, ...rest }) => rest
@@ -626,8 +640,9 @@ const results = {
   subtypes: {
     "start weights, plan bands": bySubtype(START_WEIGHTS, START_BANDS),
     [PROPOSED]: bySubtype(proposed, configs[PROPOSED].bands),
+    [RECOMMENDED]: bySubtype(recommended, configs[RECOMMENDED].bands),
   },
-  sweep: { start: sweep(START_WEIGHTS), proposed: sweep(proposed) },
+  sweep: { start: sweep(START_WEIGHTS), proposed: sweep(proposed), recommended: sweep(recommended) },
   falseSame: Object.fromEntries(
     Object.entries(configs).map(([name, { weights, bands }]) => [
       name,
@@ -663,7 +678,7 @@ lines.push(
 )
 lines.push("|---|---|---|---|---|---|---|---|---|---|---|---|")
 for (const [name, config] of Object.entries(results.configs))
-  for (const half of name === PROPOSED ? ["A", "B", "all"] : ["A", "B"]) {
+  for (const half of name === PROPOSED || name === RECOMMENDED ? ["A", "B", "all"] : ["A", "B"]) {
     const r = config[half]
     const fmt = (n) => (Number.isInteger(n) ? n : n.toFixed(1))
     lines.push(
@@ -672,13 +687,15 @@ for (const [name, config] of Object.entries(results.configs))
   }
 lines.push("")
 lines.push("")
-lines.push("| ≥ | start true/false | P | R | new tasks flagged | proposed true/false | P | R | new tasks flagged |")
-lines.push("|---|---|---|---|---|---|---|---|---|")
-results.sweep.start.forEach((a, i) => {
-  const b = results.sweep.proposed[i]
-  lines.push(
-    `| ${a.threshold} | ${a.true}/${a.false} | ${pct(a.precision)} | ${pct(a.recall)} | ${a.newTasksFlagged}/${a.newTasks} | ${b.true}/${b.false} | ${pct(b.precision)} | ${pct(b.recall)} | ${b.newTasksFlagged}/${b.newTasks} |`,
-  )
+const SWEPT = ["start", "proposed", "recommended"]
+lines.push(`| ≥ | ${SWEPT.map((name) => `${name} true/false | P | R | new tasks flagged`).join(" | ")} |`)
+lines.push(`|---|${SWEPT.map(() => "---|---|---|---|").join("")}`)
+results.sweep.start.forEach((row, i) => {
+  const cells = SWEPT.map((name) => {
+    const r = results.sweep[name][i]
+    return `${r.true}/${r.false} | ${pct(r.precision)} | ${pct(r.recall)} | ${r.newTasksFlagged}/${r.newTasks}`
+  })
+  lines.push(`| ${row.threshold} | ${cells.join(" | ")} |`)
 })
 lines.push("")
 for (const [name, weights] of Object.entries(results.weights)) lines.push(`${name}: ${JSON.stringify(weights)}`)

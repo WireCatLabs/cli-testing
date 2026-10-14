@@ -5,7 +5,7 @@
 The owner wants an agent to record a task for everything in his chats that needs him, with no second task for the
 same thing. He also does not want a limit such as one task per chat or per person: a busy chat holds many real tasks.
 cli-core's tasks plan (WireCatLabs/cli-core#1216, `docs/dev/tasks-plan.md`, "Duplicates — the comparison chain")
-answers this with a check that runs when a task is created. The check has three steps. Two "certain" rules attach a
+answers this with a check that runs when a task is created. The check has three steps. Three "certain" rules attach a
 message to a task without scoring. A union of cheap lookups finds candidates. A Fellegi–Sunter score then compares
 fields. The weights were set by hand. The plan says they must be tuned on a synthetic set before they decide
 anything.
@@ -71,8 +71,10 @@ performance/tasks/duplicates/run.sh
 ## Results
 
 A pair is one new task and one earlier candidate. "true/false" counts pairs that are, or are not, the same task.
-Precision is true ÷ all pairs in the band. Recall is true ÷ all 80 duplicate pairs, including pairs that never
-became candidates. In this set, no duplicate was ever missed as a candidate.
+Precision is true ÷ all pairs in the band. Recall is true ÷ all duplicate pairs of the tasks that were scored,
+including pairs that never became candidates. With no certain rules, that is all 80 pairs. With the plan's rules, a
+task a certain rule attached is not scored, so it is counted in the certain-rules table instead. In this set, no
+duplicate was ever missed as a candidate.
 
 ### Certain rules (plan § 2)
 
@@ -113,32 +115,41 @@ not.
 | Weights | Duplicate: top in "same" | top in "maybe" | scored "different" | top is the wrong task | New task: flagged "same" | refused as "maybe" |
 |---|---|---|---|---|---|---|
 | start, plan bands | 38 | 31 | 0 | 2 | 11 | 56 (31%) |
-| estimated on all, same ≥ 19, maybe ≥ 5 | 3 | 61 | 6 | 1 | 0 | 31 (17%) |
+| estimated on all, same ≥ 16, maybe ≥ 5 | 3 | 61 | 6 | 1 | 0 | 31 (17%) |
+| recommended, same ≥ 16, maybe ≥ 5 | 3 | 61 | 6 | 1 | 0 | 38 (21%) |
+
+Any "same" threshold from 16 to 19 gives the same result on this set.
 
 ### Threshold sweep (no certain rules, all pairs, a pair counts when its score ≥ the threshold)
 
-| ≥ | start true/false | P | R | new tasks flagged | estimated true/false | P | R | new tasks flagged |
+| ≥ | start true/false | P | R | new tasks flagged | recommended true/false | P | R | new tasks flagged |
 |---|---|---|---|---|---|---|---|---|
-| 3 | 80/131 | 38% | 100% | 67/180 | 75/75 | 50% | 94% | 43/180 |
-| 5 | 69/67 | 51% | 86% | 39/180 | 72/45 | 62% | 90% | 31/180 |
-| 6 | 67/41 | 62% | 84% | 29/180 | 70/27 | 72% | 88% | 19/180 |
-| 8 | 41/11 | 79% | 51% | 11/180 | 64/19 | 77% | 80% | 14/180 |
-| 10 | 24/5 | 83% | 30% | 5/180 | 34/5 | 87% | 43% | 5/180 |
+| 3 | 80/131 | 38% | 100% | 67/180 | 75/102 | 42% | 94% | 56/180 |
+| 5 | 69/67 | 51% | 86% | 39/180 | 72/53 | 58% | 90% | 38/180 |
+| 6 | 67/41 | 62% | 84% | 29/180 | 70/28 | 71% | 88% | 20/180 |
+| 8 | 41/11 | 79% | 51% | 11/180 | 64/22 | 74% | 80% | 16/180 |
+| 10 | 24/5 | 83% | 30% | 5/180 | 34/6 | 85% | 43% | 6/180 |
 | 12 | 5/2 | 71% | 6% | 2/180 | 33/4 | 89% | 41% | 4/180 |
 | 14 | 0/0 | — | 0% | 0/180 | 21/4 | 84% | 26% | 4/180 |
 | 16 | 0/0 | — | 0% | 0/180 | 3/0 | 100% | 4% | 0/180 |
 
-### Weights
+The estimated weights, before the plan's values were put back, are in `results-none.json` (`sweep.proposed`).
 
-| Level | Plan's start | Estimated on A | Estimated on B | Estimated on all (proposed) | Duplicates / other candidate pairs (all) |
-|---|---|---|---|---|---|
-| Text ≥ 0.6 / 0.3–0.6 / < 0.3 | +4 / +2 / −2 | +5 / +5 / −2 | +5 / +5 / −3 | **+5 / +5 / −2** | 11/18 · 54/102 · 15/4493 |
-| Person same / different / unknown | +3 / −3 / 0 | +1 / −6 / −2 | +1 / −5 / −1 | **+1 / −6 / −3** | 80/2149 · 0/2293 · 0/171 |
-| Amount equal / different / missing | +3 / −4 / 0 | +10 / −4 / 0 | +6 / −4 / 0 | **+6 / −5 / 0** | 20/13 · 0/849 · 60/3751 |
-| Category same / different | +1 / −1 | +1 / −5 | +1 / −5 | **+1 / −6** | 80/2667 · 0/1946 |
-| Due ≤ 2 days / more / missing | +1 / −1 / 0 | +4 / −1 / −1 | +3 / −2 / 0 | **+4 / −1 / 0** | 26/126 · 4/707 · 50/3780 |
-| Reply chain yes / no | +6 / 0 | +6 / 0 | +4 / 0 | **+6 / 0** | 6/5 · 74/4608 |
-| Time ≤ 3 / 4–14 / > 14 days | +1 / 0 / −1 | +2 / −3 / −3 | +2 / −2 / −2 | **+2 / −2 / −3** | 69/888 · 8/2456 · 3/1269 |
+### Weights (run with no certain rules)
+
+"Recommended" is the estimate on all pairs, except for the levels no duplicate in the set showed (a count of 0 in
+the last column). Those keep the plan's start weight, because their estimate comes only from the zero count and the
+added constant.
+
+| Level | Plan's start | Estimated on A | Estimated on B | Estimated on all | Recommended | Duplicates / other candidate pairs (all) |
+|---|---|---|---|---|---|---|
+| Text ≥ 0.6 / 0.3–0.6 / < 0.3 | +4 / +2 / −2 | +5 / +5 / −2 | +5 / +5 / −3 | +5 / +5 / −2 | **+5 / +5 / −2** | 11/18 · 54/102 · 15/4493 |
+| Person same / different / unknown | +3 / −3 / 0 | +1 / −6 / −2 | +1 / −5 / −1 | +1 / −6 / −3 | **+1 / −3 / 0** | 80/2149 · 0/2293 · 0/171 |
+| Amount equal / different / missing | +3 / −4 / 0 | +10 / −4 / 0 | +6 / −4 / 0 | +6 / −5 / 0 | **+6 / −4 / 0** | 20/13 · 0/849 · 60/3751 |
+| Category same / different | +1 / −1 | +1 / −5 | +1 / −5 | +1 / −6 | **+1 / −1** | 80/2667 · 0/1946 |
+| Due ≤ 2 days / more / missing | +1 / −1 / 0 | +4 / −1 / −1 | +3 / −2 / 0 | +4 / −1 / 0 | **+4 / −1 / 0** | 26/126 · 4/707 · 50/3780 |
+| Reply chain yes / no | +6 / 0 | +6 / 0 | +4 / 0 | +6 / 0 | **+6 / 0** | 6/5 · 74/4608 |
+| Time ≤ 3 / 4–14 / > 14 days | +1 / 0 / −1 | +2 / −3 / −3 | +2 / −2 / −2 | +2 / −2 / −3 | **+2 / −2 / −3** | 69/888 · 8/2456 · 3/1269 |
 
 Signature extraction against the labels, on all 251 tasks: amount and currency 65 right, 0 wrong, 4 missed (a
 number with no currency next to it, such as `верни 3000 за бензин`, which the plan's pattern does not count);
@@ -169,8 +180,8 @@ maximum, and 0.2 s for all 251 tasks.
   apart, and a different object (`экскурсия в театр` / `в зоопарк`, `подарок папе` / `маме`, the hotel / the
   flights). Only the meaning of one word differs. "Same" can rank candidates for the agent. It cannot merge on
   its own, as the plan already says.
-- **"Maybe" is where this chain is useful.** With the estimated weights and maybe ≥ 5, 90% of duplicate pairs are
-  "same" or "maybe", at 62% precision, and 17% of new tasks are refused (start weights: 31%).
+- **"Maybe" is where this chain is useful.** With the recommended weights and maybe ≥ 5, 90% of duplicate pairs
+  are "same" or "maybe", at 58% precision, and 21% of new tasks are refused (start weights: 31%).
 - **Tuning moves the weights the same way in both halves:**
   - Text 0.3–0.6 is worth as much as ≥ 0.6. Reminders are short, so their overlap with the first message is
     rarely high.
@@ -186,12 +197,12 @@ maximum, and 0.2 s for all 251 tasks.
 
 1. Drop the "same title for the same person" certain rule. Make "reply to a linked message" a scored field (+6), not
    an attach without scoring.
-2. Weights: the "Estimated on all" column. There is one exception. "Person different" and "category different"
-   never occur among this set's duplicates, so their −6 rests on a count of zero plus the added constant. The set
-   was written that way, so this is not evidence. Keep the plan's −3 and −1 for them until real labelled pairs
-   exist.
-3. Bands: **maybe ≥ 5**. **Same ≥ 16** is the lowest threshold with zero wrong merges here, with 4% recall. If
-   "same" stays a label that orders the list and never merges, same ≥ 10 gives 87% precision and 43% recall.
+2. Weights: the "Recommended" column. Its levels with no duplicate keep the plan's values. The set was written so
+   that every duplicate shares its person and category, so a stronger penalty there would rest on how the set was
+   written, not on evidence.
+3. Bands, measured with these weights on all pairs: **maybe ≥ 5** (90% recall, 58% precision, 21% of new tasks
+   refused). **Same ≥ 16** is the lowest threshold with zero wrong merges here, with 4% recall. If "same" stays a
+   label that orders the list and never merges, same ≥ 10 gives 85% precision and 43% recall (6 wrong pairs).
 4. Re-estimate from the owner's labelled answers (merge, reject, `--attach`, `--new`; plan § 7) before "same" may
    merge anything.
 
