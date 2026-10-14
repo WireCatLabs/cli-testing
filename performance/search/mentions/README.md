@@ -68,14 +68,14 @@ copy for names. 5,435 messages and 80 file or voice-note texts. Totals only.
 | full rebuild with names, copy | 0.7 s, 1,627 mentions |
 | names found | 572 |
 | names linked by rule | 70 |
-| people whose names are looked for | 88 (of 3,870 persons; the rest are known only from e-mail) |
+| people whose names are looked for | 88 (of 3,870 persons; the rest are known only from e-mail, by the look of them mostly companies and mailing lists — not counted) |
 
 What it showed:
 
 - **Latin profile names matter.** Of 41 name stems seen in the text, 13 matched only through the transliterated
   spelling (`Valery` → «Валерий»).
-- **Short stems are ordinary words.** One three-letter stem matched 138 capitalized words, mostly «Или» at the
-  start of a sentence; words under four letters are now skipped.
+- **Short stems are ordinary words.** One two-letter stem matched 138 capitalized words, 135 of them the word «Или»;
+  words under four letters are now skipped.
 - **Few names link by rule.** A name links only to the one fitting person who wrote in that chat. One human is
   often a person row per messenger, so a first name fits two to five rows; 357 single-candidate names are in
   chats where that person never wrote.
