@@ -43,6 +43,31 @@ re-entry, unreadable entries, batch validation, SQL query logic and reader metad
 Drive's synthetic tests cover partial content batches, failed catalog persistence, retries and
 ordinary sync removal. Test totals and coverage belong to those exact builds, not this runner.
 
+## Framework compatibility
+
+The first Core release attempt still required framework 0.26, so it could not serve a Drive
+consumer using framework 0.27. The compatibility check used published
+`@wirecat/cli-base` 0.27.1, Drive candidate `7f250e9` and Core candidate `b08a6e49`
+([integration PR](https://github.com/WireCatLabs/cli-core/pull/1102)). The same runner passed
+all 19 operations against their compiled artifacts. These are local candidates, not registry
+installation results.
+
+Core's isolated suite at `b08a6e49` passed 3,896 tests with four existing skips and 94.84%
+line coverage. Its image CLI and embedding runtime had previously failed the release's
+per-file coverage gate; five new tests brought each file to 100% line coverage. They check
+write guards, lazy sessions, tensors and attention masks, normalization and resource release
+with synthetic runtime inputs. They do not validate real CLIP inference or model quality.
+
+Reproduce the producer checks in a clean checkout of that commit:
+
+```sh
+NPM_CONFIG_USERCONFIG=/dev/null pnpm install --frozen-lockfile
+NPM_CONFIG_USERCONFIG=/dev/null pnpm test:coverage
+```
+
+The producer's tests run from its own package test script; the compiled-consumer check runs
+through [run.mjs](run.mjs). Later merges and release artifacts need their own validation.
+
 ## Limits
 
 This is a functional contract check, not a latency benchmark or Google API integration test.
