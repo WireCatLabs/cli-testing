@@ -103,7 +103,7 @@ Over 1000 lines, capped in lint:
 
 - cli-core `src/store/store.ts` 2042 — several: the `MessageStore` interface and shared types, the
   wiring of every SQLite module, re-exports. Seam: move the interface and types to their own module;
-  25 SQLite modules import types back from `store.ts`.
+  23 SQLite modules import types back from `store.ts`.
 - cli-core `src/store/sqlite/schema.ts` 1714 — one: the table definitions.
 - cli-core `scripts/schema/spec.mjs` 1440 — one: tables of column changes and the spec builder.
 - cli-core `src/store/sqlite/emails.ts` 1139 — several: mail storage and reads, plus chunking threads
@@ -169,8 +169,9 @@ Tests over 1000 lines (exempt from the lint rule, listed to keep them visible): 
   between 500 and 1000; 13 of those hold several jobs.
 - The tools pin four different cli-core versions (0.273.0 to 0.276.0) while cli-core is at 0.277.0.
   cli-memo's own rule is to pin what tg and max pin; tg and max differ from each other today.
-- `services/messages.ts` in cli-core imports helpers from `cli/messenger/`, so a service depends on
-  the command layer. No lint rule stops that yet.
+- 20 of cli-core's service files import from `cli/`, about a dozen of those imports at run time (error and
+  recovery helpers, thread parsing, settings, run records). A lint rule "services do not import `cli/`"
+  needs those helpers moved below both layers first; until then it would only list exceptions.
 
 ## Not measured
 
