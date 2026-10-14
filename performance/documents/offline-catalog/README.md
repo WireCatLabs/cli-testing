@@ -45,6 +45,38 @@ Negative cases cover wrong scope, wrong-source search hits, pending sync, change
 lost notes, unknown input, existing output and error-output canary exclusion. No Google login,
 conversion fidelity, remote mutations, real embeddings or OAuth verification were measured.
 
+### Installed knowledge lifecycle
+
+On 2026-10-15, the same exact npm package and synthetic fixture passed seven further behavior
+groups. The question was whether the document knowledge features work together through the
+released CLI, including source retirement, rather than only through individual service tests.
+Reproduce with the `live-installed.mjs` command above; it now also runs
+[`knowledge-installed.mjs`](knowledge-installed.mjs).
+
+| Behavior | Result |
+| --- | --- |
+| Explicitly link an imported document to a seeded person and filter by that person | Passed |
+| Edit a local note, then try its old revision | Stale edit refused; updated text preserved |
+| Create and confirm a memory | Proposed first; source subject/evidence and explicit work scope retained |
+| List/search that memory within its scope and source | Work result found; personal scope empty |
+| Remove the selected root and reconcile | Catalog, imported list, keyword search and source snapshot emptied |
+| Inspect persisted knowledge after source retirement | Confirmed memory stale; owner-written note preserved |
+| Reconcile again | No further removals |
+
+The existing eight initial and eight baseline checks still passed before the lifecycle cases.
+Setup: Linux, Node 24.19.0, Drive 0.7.0, Core 0.278.0 and framework 0.28.2. The person is seeded
+through the shared store's public API; links, notes, memories and reconciliation use the actual
+compiled Drive CLI. Persisted memory/note outcomes are inspected through the public store API.
+No SQL or Drive source imports are used.
+
+All processes use isolated state and the HTTP/browser/keyring denial wrapper. Reconciliation
+calls `sync` without `--offline` only after `folders remove` leaves no selected roots: there is
+no Google source to read, and the denial wrapper would fail an unexpected request. This is a
+local source-retirement test, not a live Google move, trash or permission-change test. Automatic
+editor identity association, project links, AI extraction and provider conversion fidelity remain
+outside these results. Source removal intentionally exercises snapshot deletion; all other test
+artifacts and reports remain available for inspection.
+
 ## Setup and reproduction
 
 Synthetic data only: one root, one nested folder, one indexed PDF fixture and a second explicit
