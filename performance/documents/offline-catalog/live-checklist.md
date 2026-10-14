@@ -4,7 +4,8 @@ The offline acceptance tests establish package and store compatibility. This che
 the separate question: do real Google changes preserve document identity and local context, and
 does native Docs extraction keep the content we claim to search?
 
-This is an unrun test plan. Nothing in this directory starts a live account test automatically.
+The live Google portion remains unrun. The checker below has synthetic tests and installed-package
+acceptance; neither establishes Google conversion or public OAuth approval. Nothing starts a live account test automatically.
 The owner must explicitly start it with a dedicated test profile/account recorded in the private
 cast. A previously connected personal profile is not a test profile. No credential file, token,
 document ID, title or passage belongs in the public result.
@@ -30,6 +31,79 @@ select that root and import. Do not select the whole account. Text search uses t
 model downloads, embeddings and AI memory extraction are outside this first fidelity check.
 
 ## Run and record
+
+### Use the prepared checker
+
+[`live.mjs`](live.mjs) checks a private fixture manifest against the installed Drive **0.7.0**
+package. It uses only CLI processes. It never starts login, selects an account, changes a Google
+file or downloads a model. Its default is cached/offline verification; `--refresh` permits two
+read-only Google syncs, with an idempotency check. `--annotate` adds synthetic local tags/notes.
+Unknown options/manifest fields, another selected root, pending work, incomplete answers,
+changed references and an existing report path are refused. A failure records its command stage,
+without raw CLI output, Google errors or document bodies.
+
+Choose a dedicated account and explicit profile before these steps. `PROFILE` below is the name
+the owner chooses; it has no default. `DRIVE` is the installed package directory, not a source tree.
+Keep the manifest and result files in a private directory outside this public repository.
+
+```sh
+DRIVE=/absolute/path/to/node_modules/@wirecat/drive-cli
+PROFILE=OWNER_CHOSEN_TEST_PROFILE
+P=$(mktemp -d -p /var/tmp)
+W="$P/google-test"
+node performance/documents/offline-catalog/live.mjs init --workspace "$W" --profile "$PROFILE"
+```
+
+The initializer requires a new directory and creates it with mode 0700. Every connection and
+fixture command must use that workspace. For this isolated run, explicitly choosing private-file
+credentials avoids using the owner's keyring. Normal CLI installations still default to the keyring.
+
+```sh
+drive_test() {
+  env -u NODE_OPTIONS -u GOOGLE_APPLICATION_CREDENTIALS -u DRIVE_GOOGLE_CLIENT_ID \
+    -u DRIVE_GOOGLE_CLIENT_SECRET HOME="$W" NPM_CONFIG_USERCONFIG=/dev/null TMPDIR="$W" \
+    XDG_CONFIG_HOME="$W/xdg-config" XDG_DATA_HOME="$W/xdg-data" \
+    XDG_STATE_HOME="$W/xdg-state" XDG_CACHE_HOME="$W/xdg-cache" \
+    DRIVE_CONFIG_DIR="$W/config" DRIVE_STATE_DIR="$W/state" DRIVE_CACHE_DIR="$W/cache" \
+    DRIVE_STORE="$W/drive.db" MESSAGING_STORE="$W/drive.db" WIRECAT_STATE_DIR="$W/wirecat" \
+    node "$DRIVE/dist/bin/drive.js" "$PROFILE" "$@"
+}
+drive_test session start --credential-storage file
+drive_test folders add GOOGLE_TEST_FOLDER_ID
+```
+
+Choose the test Google account yourself in the browser. The first login uses WireCat's shared
+app. To test a user-owned app, create a second new workspace and explicit profile and use
+`session start --credential-storage file --client-file /private/desktop-client.json` there.
+Never print that file. A successful existing-account login does not prove an outside-test-user
+can connect, or that Google approved the app: record those checks separately.
+
+Copy [`live-manifest.example.json`](live-manifest.example.json) into the private directory and
+replace every `REPLACE_*` ID. Match it to the synthetic Google files you created: include every
+imported document, folder ancestry, expected names/tabs, searchable markers and separately expected
+Markdown markers. Add the duplicate-title document and uploaded text fixtures as extra entries.
+The root's parent is optional; nested parents should be explicit. `absent_ids` names fixtures
+that should have left the active catalog. Headers/comments are checked manually against the exclusions.
+
+```sh
+node performance/documents/offline-catalog/live.mjs check \
+  --workspace "$W" --profile "$PROFILE" --drive "$DRIVE" \
+  --manifest /private/fixture.json --output /private/first.json --refresh --annotate
+```
+
+After renaming, editing or moving synthetic files in Google's UI, update the expected manifest
+and use a new output path plus `--baseline /private/first.json`. This checks stable references
+and retained local annotations. For an edit, put the replaced phrase in `absent_markers`.
+For a removed source, remove its document entry and add its ID to `absent_ids`; retain at least
+one indexed document. Omit `--refresh` to check the cache offline. Reports are mode 0600 and
+contain private source IDs/references for comparisons; stdout contains totals only. Nothing is
+automatically disconnected, removed or overwritten.
+
+The runner automates only the observations listed above. Interrupt/resume, a second-profile
+isolation check, person/project links, memory staleness, OAuth refresh/revocation, public-app
+verification and real embeddings/AI extraction remain separate manual acceptance cases.
+
+### Complete the behavior matrix
 
 | Step | Action | Required observation |
 | --- | --- | --- |

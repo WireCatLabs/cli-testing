@@ -7,6 +7,44 @@ It supports adopting the shared `store.catalog` API rather than another Drive-sp
 The release check also asks whether the new JSON envelope and config migration preserve those
 workflows for installed-package consumers.
 
+The [controlled Google checklist](live-checklist.md#use-the-prepared-checker) now includes a
+reusable isolated acceptance runner. Google checks remain unrun until the owner connects a
+dedicated test account; its synthetic and installed-package validation is recorded below.
+
+## Live-checker preparation
+
+The live checklist was manual and could not repeatedly check source identity and local context
+after Google UI edits. `live.mjs` now verifies a private expected fixture through the compiled
+CLI. It refuses unrelated selected roots and preserves prior reports. `--refresh` is the only
+path to Google, and invokes sync only; fixtures are changed manually in Google's UI. Model/AI
+requests and remote writes are outside the runner.
+
+Reproduce its guard tests with no credentials or package installation:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node --test performance/documents/offline-catalog/live.test.mjs
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/offline-catalog/live.mjs plan
+```
+
+For compiled-package output compatibility, use an already installed exact npm package:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/offline-catalog/live-installed.mjs /path/to/node_modules/@wirecat/drive-cli
+```
+
+This seeds synthetic data through cli-core's public store API, wraps the actual published binary
+with HTTP/browser/keyring denial, imports its catalog and checks local annotations plus a repeat
+baseline. It does not import Drive source or pretend to test a real Google export. Fixture
+directories remain available; cleanup is a separate owner action.
+
+On 2026-10-14 (Linux, Node 24.19.0), all nine guard tests passed. The installed Drive 0.7.0
+package on Core 0.278.0/framework 0.28.2 passed eight checks on the annotated synthetic fixture
+and eight on a repeat using its baseline. The compiled-package run caught the real nested
+notes list and structured tag records, preventing mocks from certifying a wrong consumer shape.
+Negative cases cover wrong scope, wrong-source search hits, pending sync, changed references,
+lost notes, unknown input, existing output and error-output canary exclusion. No Google login,
+conversion fidelity, remote mutations, real embeddings or OAuth verification were measured.
+
 ## Setup and reproduction
 
 Synthetic data only: one root, one nested folder, one indexed PDF fixture and a second explicit

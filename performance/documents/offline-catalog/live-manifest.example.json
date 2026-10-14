@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "drive_version": "0.7.0",
+  "folder_id": "REPLACE_ROOT_ID",
+  "folders": [{ "id": "REPLACE_ROOT_ID" }, { "id": "REPLACE_NESTED_ID", "parents": ["REPLACE_ROOT_ID"] }],
+  "documents": [
+    {
+      "id": "REPLACE_DOC_ID",
+      "parents": ["REPLACE_NESTED_ID"],
+      "name": "Synthetic acceptance document",
+      "min_tabs": 2,
+      "markers": ["wirecatbodymarker", "wirecattabmarker", "wirecattablemarker", "wirecatfootnotemarker"],
+      "markdown_markers": ["wirecatbodymarker", "wirecattablemarker"],
+      "absent_markers": []
+    }
+  ],
+  "absent_ids": []
+}

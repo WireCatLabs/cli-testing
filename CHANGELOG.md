@@ -17,6 +17,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- Controlled Drive acceptance: an explicit-profile, isolated-workspace checker for cached text,
+  hierarchy, source identity, exact search, Markdown, local annotations and optional syncs.
+  A private fixture manifest and owner-started test-account login are required for live use;
+  synthetic guards and compiled-package checks run without Google credentials.
 - Architecture checks: `performance/engineering/architecture-checks/` measures each CLI's lint guards
   (import loops, file size, import boundaries), cli-core pins and files over 500 lines, and keeps a
   dated table for the trend. The monthly workflow writes a fresh table to its run summary; copy it
