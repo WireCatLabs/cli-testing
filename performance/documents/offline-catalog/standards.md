@@ -26,7 +26,7 @@ come from npm 0.6.0, not an unreleased source build.
 | Machine responses | Verified strict item/list envelopes; snake_case search; provider keys retained | Verified contract 3: `effects`, `api_operation`, `meta.complete`, page continuation and JSONL end records; old flags are refused |
 | MCP argument failures | Verified over stdio: bad type, unknown field and missing field return named validation errors and are audited without argument values | Same three stdio failure/audit cases passed; local-read MCP tools correctly declare no open-world access |
 | Core error registration | Shipped by PR35 with `failureContext`; CLI error envelopes verified here | A core-origin reason/detail round trip remains covered by Drive's own tests, not independently exercised by this runner |
-| Command naming and options | 69 inherited findings; no new findings against the checked-in baseline | 10 unknown verbs, 3 resources and 56 option-role findings need review and a shrinking baseline |
+| Command naming and options | 69 inherited findings; no new findings against the checked-in baseline | 0.6.0 reports 67 inherited findings and zero new against its own checked-in baseline (budget unchanged); continue shrinking the baseline |
 | Google conversion and sync | Synthetic catalog/import/search behavior verified | Controlled live edits, moves, removals and native Docs fidelity remain unverified by this run |
 | Other runtimes/platforms | Release validation covers Node/Bun package smoke; this run uses Node 24.19.0 on Linux | No independent Windows Google sign-in or live ingestion result here |
 | Native developer documentation | The release-tag alignment page still names Core 0.231.0/framework 0.19.4 and says no Drive release exists | Correction prepared in [Drive PR40](https://github.com/WireCatLabs/drive-cli/pull/40); portal review must adopt 0.6.0 and the corrected source guide |
@@ -40,7 +40,10 @@ T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR
 
 Result: `69 violations — 69 in the baseline, 0 overridden (budget 10), 0 new` and `lint: ok`.
 Running outside that checkout reports the same findings as new because it has no baseline;
-that is not evidence of a release regression. The baseline and override budget were not edited.
+that is not evidence of a release regression. The baseline and override budget were not edited by these checks. Repeating the command with
+the exact 0.6.0 npm package and its release checkout reports `67 violations — 67 in the baseline,
+0 overridden (budget 10), 0 new` and `lint: ok`: two fewer inherited findings. Use the package
+and matching checkout together; the 0.5.0 baseline is not the 0.6.0 baseline.
 
 ## Order of work
 
