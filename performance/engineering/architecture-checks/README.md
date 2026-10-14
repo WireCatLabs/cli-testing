@@ -107,7 +107,9 @@ Over 1000 lines, capped in lint:
 - cli-core `src/store/sqlite/schema.ts` 1714 — one: the table definitions.
 - cli-core `scripts/schema/spec.mjs` 1440 — one: tables of column changes and the spec builder.
 - cli-core `src/store/sqlite/emails.ts` 1139 — several: mail storage and reads, plus chunking threads
-  and the mail index queue. Seam: move the index part to `email-index.ts`, as `note-index.ts` did.
+  and the mail index queue. Split on 2026-10-14 along that seam
+  ([cli-core #1212](https://github.com/WireCatLabs/cli-core/pull/1212)): `email-index.ts` 222, `emails.ts` 932,
+  and its cap is gone.
 - cli-core `src/store/sqlite/lucene.ts` 1070 — one: compiles a parsed search query into SQL.
 - tg-cli `src/telegram/adapter.ts` 2312 — several: one class for login, the live updates loop, reads,
   sends, topics, folders, group admin and contacts. Seam: move login and the updates loop to modules
