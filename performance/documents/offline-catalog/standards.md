@@ -8,28 +8,28 @@ changes, so the next release does not accidentally mix those claims.
 
 - Published Drive 0.5.0: exact npm installation, Core 0.268.0, framework 0.27.2, discovery contract 2.
 - Previous Drive 0.4.0: exact npm installation, Core 0.265.0, framework 0.27.1, discovery contract 1.
-- Source snapshot: Drive main `d8a74f57ccce957505ac7bd54ed6368b12892799`, containing PRs
-  [36](https://github.com/WireCatLabs/drive-cli/pull/36) and
-  [37](https://github.com/WireCatLabs/drive-cli/pull/37). It pins Core 0.273.0/framework 0.28.1.
-  Its package version still says 0.5.0, but these changes are marked Unreleased. That does not
-  make them part of the npm 0.5.0 artifact.
+- Published Drive 0.6.0: exact npm installation, Core 0.275.0, framework 0.28.2, discovery contract 3.
+  Release commit `11008772bde9bc46910a5b8afcd8173fb4be271f`, published through
+  [release workflow 38619750507](https://github.com/WireCatLabs/drive-cli/actions/runs/38619750507).
+  Earlier review inspected unreleased main at `d8a74f5`; those source changes were not present
+  in npm 0.5.0. The later release has now been checked independently.
 
 All executable checks used synthetic fixtures and temporary state. See [reproduction and
-results](README.md#output-migration-acceptance) and [run.mjs](run.mjs). The source snapshot was
-read for this comparison, not built or certified by this run.
+results](README.md#output-migration-acceptance) and [run.mjs](run.mjs). Source review and installed artifact checks are separate evidence; the contract-3 results
+come from npm 0.6.0, not an unreleased source build.
 
 ## Findings
 
-| Area | Published 0.5.0 | Newer source / remaining work |
+| Area | Published 0.5.0 | Published 0.6.0 / remaining work |
 | --- | --- | --- |
 | Config migration | Verified: camelCase loads, rewrites once, preserves permissions | Keep this regression in every artifact check |
-| Machine responses | Verified strict item/list envelopes; snake_case search; provider keys retained | Source adds contract 3, `effects`, `api_operation`, `meta.complete`, page paging and JSONL end records; test the next exact package before claiming those are shipped |
-| MCP argument failures | Verified over stdio: bad type, unknown field and missing field return named validation errors and are audited without argument values | Keep the protocol test outside Drive as well as its unit suite |
+| Machine responses | Verified strict item/list envelopes; snake_case search; provider keys retained | Verified contract 3: `effects`, `api_operation`, `meta.complete`, page continuation and JSONL end records; old flags are refused |
+| MCP argument failures | Verified over stdio: bad type, unknown field and missing field return named validation errors and are audited without argument values | Same three stdio failure/audit cases passed; local-read MCP tools correctly declare no open-world access |
 | Core error registration | Shipped by PR35 with `failureContext`; CLI error envelopes verified here | A core-origin reason/detail round trip remains covered by Drive's own tests, not independently exercised by this runner |
 | Command naming and options | 69 inherited findings; no new findings against the checked-in baseline | 10 unknown verbs, 3 resources and 56 option-role findings need review and a shrinking baseline |
 | Google conversion and sync | Synthetic catalog/import/search behavior verified | Controlled live edits, moves, removals and native Docs fidelity remain unverified by this run |
 | Other runtimes/platforms | Release validation covers Node/Bun package smoke; this run uses Node 24.19.0 on Linux | No independent Windows Google sign-in or live ingestion result here |
-| Native developer documentation | Current source alignment page still names Core 0.231.0/framework 0.19.4 and says no Drive release exists | Refresh it alongside the next source release; the public portal already reviews the released 0.5.0 user guides |
+| Native developer documentation | The release-tag alignment page still names Core 0.231.0/framework 0.19.4 and says no Drive release exists | Correction prepared in [Drive PR40](https://github.com/WireCatLabs/drive-cli/pull/40); portal review must adopt 0.6.0 and the corrected source guide |
 
 The command lint check was run from the clean PR35 checkout so it could read the exact reviewed
 baseline, while targeting the fresh npm executable:
@@ -44,9 +44,11 @@ that is not evidence of a release regression. The baseline and override budget w
 
 ## Order of work
 
-1. Coordinate release of the already-merged contract-3 changes, with independent checks for
-   discovery effects, retry safety, page metadata, JSONL termination and unknown-argument refusal.
-   Do not publish the current package version over the existing 0.5.0 tag.
+1. Keep contract-3 installed-package acceptance in subsequent release checks. It passed 35 CLI
+   invocations and three MCP calls on npm 0.6.0. Validation failures are non-retryable; transient
+   provider reads/writes remain covered by native unit tests rather than a live injected failure.
+   Reconcile conservative handwritten remote-read effects with generated-operation metadata
+   if identical local-effect claims become a requirement.
 2. Reduce inherited naming findings in small reviewed batches. Prefer shared vocabulary/role
    definitions when they describe an existing standard; use canonical command names with
    compatibility aliases when a name must change. Google wire parameter names and JSON bodies

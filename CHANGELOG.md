@@ -11,7 +11,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 ### Added
 
 - The offline Drive catalog runner checks published contract-1/contract-2 responses, one-time
-  settings migration, provider metadata keys and field-specific MCP validation/auditing. Unknown
+  settings migration, provider metadata keys and field-specific MCP validation/auditing. Contract 3
+  adds effects, page continuation, completeness, JSONL termination and removed-flag checks. Unknown
   discovery contracts are refused. The research report distinguishes released behavior from
   newer source changes and includes a separately authorized live Google checklist.
 
