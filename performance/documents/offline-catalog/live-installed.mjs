@@ -6,13 +6,15 @@ import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 import { verifyKnowledge } from "./knowledge-installed.mjs"
-import { initialize, workspaceEnvironment } from "./live-input.mjs"
+import { initialize, releaseOf, workspaceEnvironment } from "./live-input.mjs"
 
 const [input, ...rest] = process.argv.slice(2)
-assert.ok(input && rest.length === 0, "usage: node live-installed.mjs <installed-drive-0.7.0-package>")
+assert.ok(input && rest.length === 0, "usage: node live-installed.mjs <installed-reviewed-drive-package>")
 const pkg = resolve(input)
 const metadata = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8"))
-assert.equal(metadata.version, "0.7.0")
+const release = releaseOf(metadata.version)
+assert.equal(metadata.dependencies["@wirecat/cli-core"], release.core)
+assert.equal(metadata.dependencies["@wirecat/cli-base"], release.framework)
 const require = createRequire(join(pkg, "package.json"))
 const { openStore } = await import(pathToFileURL(require.resolve("@wirecat/cli-core/store")))
 const root = mkdtempSync(join(tmpdir(), "drive-live-installed-"))
@@ -104,7 +106,7 @@ writeFileSync(
   manifest,
   JSON.stringify({
     schema_version: 1,
-    drive_version: "0.7.0",
+    drive_version: metadata.version,
     folder_id: "root",
     folders: [{ id: "root", parents: [] }],
     documents: [
@@ -161,7 +163,7 @@ const invoke = (words, { offline = true, failure = false } = {}) => {
   if (!failure) assert.equal(answer.meta.complete, true)
   return answer
 }
-const knowledge = await verifyKnowledge({ invoke, openStore, env, workspace, reference: note.ref })
+const knowledge = await verifyKnowledge({ invoke, openStore, env, workspace, reference: note.ref, release })
 process.stdout.write(
   `${JSON.stringify({ passed: true, data: "synthetic", live_google: false, drive: metadata.version, core: metadata.dependencies["@wirecat/cli-core"], first_checks: annotated.checks.length, repeat_checks: repeated.checks.length, knowledge_checks: knowledge })}\n`,
 )

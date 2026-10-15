@@ -3,6 +3,16 @@ import { mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 
 const marker = "drive-acceptance-workspace.json"
+const releases = {
+  "0.7.0": { export_flag: "--out", memory_search: "item", core: "0.278.0", framework: "0.28.2" },
+  "0.8.1": { export_flag: "--output", memory_search: "items", core: "0.283.0", framework: "0.31.1" },
+  "0.8.0": { export_flag: "--output", memory_search: "items", core: "0.281.0", framework: "0.31.0" },
+}
+export const releaseOf = (version) => {
+  assert.equal(typeof version, "string")
+  assert.ok(Object.hasOwn(releases, version), "unreviewed Drive release")
+  return releases[version]
+}
 const object = (value, keys) => {
   assert.ok(value && typeof value === "object" && !Array.isArray(value), "invalid manifest object")
   assert.ok(
@@ -20,7 +30,7 @@ const strings = (value) => {
 export const validateManifest = (value) => {
   object(value, ["schema_version", "drive_version", "folder_id", "folders", "documents", "absent_ids"])
   assert.equal(value.schema_version, 1)
-  assert.equal(value.drive_version, "0.7.0", "review a new package before changing the accepted version")
+  releaseOf(value.drive_version)
   id(value.folder_id)
   assert.ok(Array.isArray(value.folders) && value.folders.length > 0)
   assert.ok(Array.isArray(value.documents) && value.documents.length > 0)

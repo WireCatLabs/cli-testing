@@ -1,6 +1,7 @@
 import assert from "node:assert/strict"
 import { mkdtempSync, readFileSync } from "node:fs"
 import { join } from "node:path"
+import { releaseOf } from "./live-input.mjs"
 
 const tag = "wirecat-acceptance"
 const note = "Synthetic acceptance note; preserve across rename and resync."
@@ -9,6 +10,7 @@ const annotated = (context) =>
   context.tags.some((entry) => entry.tag === tag) && context.notes.items.some((entry) => entry.text === note)
 
 export const checkFixture = ({ manifest, invoke, workspace, refresh = false, annotate = false, baseline }) => {
+  const release = releaseOf(manifest.drive_version)
   const checks = []
   const check = (name, fn) => {
     fn()
@@ -74,7 +76,7 @@ export const checkFixture = ({ manifest, invoke, workspace, refresh = false, ann
       check("old-marker-removed", () => assert.ok(search.hits.every((hit) => hit.ref !== document.reference)))
     }
     const out = join(exports, `${index}.md`)
-    item(["documents", "export", entry.id, "--out", out])
+    item(["documents", "export", entry.id, release.export_flag, out])
     check("markdown-export", () => {
       const markdown = readFileSync(out, "utf8")
       for (const text of entry.markdown_markers ?? []) assert.ok(markdown.includes(text))
