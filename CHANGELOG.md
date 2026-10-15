@@ -17,6 +17,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- Synthetic installed-Drive decision history checks: replacement on acceptance, reversal, event
+  time and document/account/policy boundaries, with a network/browser/keyring guard.
 - `security preflight` checks scanner pins, command availability, canonical repository paths and
   aliases, GitHub analysis access and an optional comparison baseline without scanning source.
   JSON diagnostics distinguish scanner readiness from the separately approved audit stages.
