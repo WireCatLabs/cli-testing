@@ -11,7 +11,7 @@ A version at least two weeks old on the day of the run, recorded in `SCOPE.md` b
 
 ```sh
 AUDIT_TOOLS="${XDG_CACHE_HOME:-$HOME/.cache}/wirecat-audit/semgrep-1.178.0"
-uv venv "$AUDIT_TOOLS"   # create once; reuse it on later runs
+test -x "$AUDIT_TOOLS/bin/python" || uv venv "$AUDIT_TOOLS"
 uv pip install --python "$AUDIT_TOOLS/bin/python" semgrep==1.178.0 zizmor==1.30.1
 export PATH="$AUDIT_TOOLS/bin:$PATH"
 export SEMGREP_SEND_METRICS=off SEMGREP_ENABLE_VERSION_CHECK=0
