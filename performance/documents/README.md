@@ -2,6 +2,9 @@
 
 Measurements of how documents become text before they are indexed and searched.
 
+- [drive-ai](drive-ai/README.md): executable extraction checks with a loopback model responder,
+  source evidence, explicit saves, error handling and an in-flight source change.
+
 - [drive-complex](drive-complex/README.md): seven read-only multi-tab Google Docs plus compiled
   SDK-fixture checks for nested content, edit/move/trash recovery, scope exit/re-entry and context retention.
 
