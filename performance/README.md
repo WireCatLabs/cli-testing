@@ -8,3 +8,5 @@
 - [store](store/README.md): the shared SQLite store — filters, migrations.
 - [agents](agents/README.md): what the CLIs cost the AI agent that reads their answers — output size.
 - [tasks](tasks/README.md): tasks found in messages — duplicate detection.
+- [startup](startup/README.md): install size and cold start of the five CLIs, and which packages a simple
+  command loads.
