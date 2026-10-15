@@ -27,6 +27,9 @@ Facts learned during the audits, with their source. Each cost time once.
   empty. A result points at its rule through `rule.toolComponent.index` and `rule.index`; a gate
   that looks rules up in `driver.rules` by `ruleId` finds none and never fails. Resolve every
   result to a rule, and fail when one has no rule.
+- **A pinned semgrep in its own virtualenv still runs the newest semgrep on `PATH`**: the
+  `semgrep` wrapper starts whichever `osemgrep` it finds first. Put the virtualenv's `bin` first on
+  `PATH` and check `semgrep --version` before a run (semgrep 1.178.0 next to 1.180.0).
 - **Trail of Bits `supply-chain-risk-auditor` does not read `pnpm-lock.yaml`**; it covers direct
   dependencies only (its `SKILL.md`). osv-scanner covers the tree.
 - **Trail of Bits `fp-check` installs a Stop hook on every session** that blocks stopping until the
@@ -48,6 +51,9 @@ Facts learned during the audits, with their source. Each cost time once.
 - **CodeQL default setup and workflow CodeQL do not mix**: with default setup on, GitHub refuses
   the SARIF a workflow uploads for the same languages
   ([docs](https://docs.github.com/en/code-security/code-scanning/troubleshooting-sarif-uploads/default-setup-enabled)).
+- **A reusable workflow runs in the caller's checkout.** A script file kept next to
+  `release-checks.yml` in cli-base does not exist when max-cli calls it; the gate's code has to be
+  inline in the workflow.
 - **A CodeQL alert number is per repository**; check every dismissed alert's path after dismissing
   by number.
 
@@ -61,6 +67,5 @@ Facts learned during the audits, with their source. Each cost time once.
 ## Agents
 
 - **`claude -p` with `--allowedTools` limited to read tools refuses a write and still records it**,
-  which makes a safe canary for injection tests.
-- **On 2026-10-09, Opus 5.5 and Haiku 5.5 made no write in 16 injection runs.** That is model
-  behaviour on one day, not a control.
+  which makes a safe canary for injection tests. Whether a model resisted an injection on one day is
+  behaviour, not a control.
