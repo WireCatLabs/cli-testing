@@ -101,4 +101,17 @@ describe("run folders", () => {
       expect(() => readRun(root)).toThrow("invalid run record")
     }
   })
+
+  it("derives explicit rule coverage from retained raw reports without rewriting them", () => {
+    const root = createRun(join(fixture(), "coverage")),
+      repo = join(root, "raw", "fixture")
+    mkdirSync(repo)
+    const original = JSON.stringify({ results: [], coverageGaps: [{ rule: "synthetic-rule", path: "fixture.ts" }] })
+    const path = join(repo, "semgrep.json")
+    writeFileSync(path, original)
+    const coverage = new Set<string>()
+    expect(collectObservations(root, coverage)).toEqual([])
+    expect(coverage.has('["fixture","semgrep","rule-gap","synthetic-rule","fixture.ts"]')).toBe(true)
+    expect(readFileSync(path, "utf8")).toBe(original)
+  })
 })

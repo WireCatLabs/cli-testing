@@ -24,6 +24,8 @@ Start with the read-only preflight in [RUNBOOK](RUNBOOK.md#preflight-and-baselin
 baseline without `--previous` when no complete comparable run exists. Historical gaps stay gaps;
 scanner completion never substitutes for the manual/Socket/A7 stages. The
 [regression checklist](REGRESSIONS.md) defines the evidence and stage ledger for a complete audit.
+Comparison coverage includes Semgrep rule/file gaps and partial-parsing positions. A change in
+those warnings refuses automatic fixed-observation claims, even when scanner names are unchanged.
 
 1. `cli-testing security scan <run-dir> <checkout>... [--previous <run>]` creates the run folder,
    refuses tool versions other than the pins (or pins younger than two weeks), and calls

@@ -52,6 +52,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Fixed
 
+- Security comparison coverage includes Semgrep rule/file gaps and partial-parsing spans. A new
+  gap cannot make a missing observation appear fixed merely because the scanner names match.
+  Existing records retain their original coverage; older and new fingerprints must not be mixed.
 - `cli-testing security scan` runs its Semgrep stage from an installed package: the stage ships as
   compiled `dist/semgrep.js`, because Node refuses to strip types under `node_modules`. Before, every
   scan from an install failed at Semgrep; it worked only from a checkout.

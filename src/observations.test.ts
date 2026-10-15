@@ -1,7 +1,60 @@
 import { describe, expect, it } from "vitest"
-import { scannerObservations } from "./observations.js"
+import { compareRuns } from "./compare.js"
+import { scannerCoverage, scannerObservations } from "./observations.js"
 
 describe("scanner observations", () => {
+  it("refuses fixed claims when a rule/file gap or partial-parsing span changes", () => {
+    const report = {
+      results: [],
+      coverageGaps: [{ rule: "synthetic-rule", path: "src/fixture.ts" }],
+      errors: [
+        {
+          type: ["PartialParsing", [{ path: "src/fixture.ts", start: { line: 1, col: 2 }, end: { line: 1, col: 5 } }]],
+        },
+      ],
+    }
+    const coverage = scannerCoverage("fixture", "semgrep", report)
+    expect(coverage).toHaveLength(3)
+    const before = {
+      schema: 1 as const,
+      suite: "security",
+      complete: true,
+      observations: [{ id: "synthetic" }],
+      known: ["synthetic"],
+      coverage: scannerCoverage("fixture", "semgrep", { results: [] }),
+    }
+    expect(() => compareRuns("security", before, { ...before, observations: [], coverage })).toThrow(
+      "coverage must match",
+    )
+    const moved = {
+      ...report,
+      errors: [
+        {
+          type: ["PartialParsing", [{ path: "src/fixture.ts", start: { line: 2, col: 2 }, end: { line: 2, col: 5 } }]],
+        },
+      ],
+    }
+    expect(scannerCoverage("fixture", "semgrep", moved)).not.toEqual(coverage)
+    expect(scannerCoverage("fixture", "codeql", [])).toEqual(['["fixture","codeql"]'])
+  })
+
+  it("rejects malformed gap metadata rather than silently dropping its coverage", () => {
+    for (const report of [
+      { coverageGaps: [{ rule: "", path: "fixture.ts" }] },
+      {
+        errors: [
+          {
+            type: ["PartialParsing", [{ path: "fixture.ts", start: { line: "1", col: 1 }, end: { line: 1, col: 2 } }]],
+          },
+        ],
+      },
+      { errors: [{ type: ["PartialParsing", null] }] },
+    ])
+      expect(() => scannerCoverage("fixture", "semgrep", report)).toThrow()
+    expect(scannerCoverage("fixture", "semgrep", { errors: [{ type: "other warning" }] })).toEqual([
+      '["fixture","semgrep"]',
+    ])
+  })
   it.each([
     [
       "osv",
