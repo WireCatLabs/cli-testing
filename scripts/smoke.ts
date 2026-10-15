@@ -13,6 +13,7 @@ import {
   runContracts,
   SUITE_GROUPS,
   scanLeaks,
+  securityPreflight,
 } from "../src/index.ts"
 
 assert.ok(SUITE_GROUPS.includes("security"))
@@ -23,4 +24,5 @@ assert.equal(contractToolSnapshot([]), "[]\n")
 assert.equal(typeof runContracts, "function")
 assert.deepEqual(findLeaks("ordinary diagnostic"), [])
 assert.equal(typeof scanLeaks, "function")
+assert.equal(typeof securityPreflight, "function")
 console.log("smoke ok")

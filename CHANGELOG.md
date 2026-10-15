@@ -17,6 +17,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- `security preflight` checks scanner pins, command availability, canonical repository paths and
+  aliases, GitHub analysis access and an optional comparison baseline without scanning source.
+  JSON diagnostics distinguish scanner readiness from the separately approved audit stages.
 - Drive AI extraction research drives the executable against a guarded loopback responder,
   checking evidence quotes, proposal persistence, provider failures and source changes.
   Historical npm and local candidate results are explicitly distinguished.

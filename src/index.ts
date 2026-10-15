@@ -12,5 +12,6 @@ export {
   runContracts,
 } from "./contracts.js"
 export { findLeaks, type LeakFinding, scanLeaks } from "./leaks.js"
+export { type PreflightCheck, securityPreflight } from "./preflight.js"
 export { type ProcessRunner, runAgent, runSecurity, TOOL_PINS } from "./runner.js"
 export { readRun } from "./runs.js"
