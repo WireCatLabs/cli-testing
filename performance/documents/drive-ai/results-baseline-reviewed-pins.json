@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "data": "synthetic",
+  "real_model": false,
+  "drive": "0.12.0",
+  "core": "0.289.0",
+  "base": "0.33.0",
+  "build": "npm",
+  "commands": 59,
+  "provider_requests": 12,
+  "quote_policy": "known-conflict-baseline",
+  "checks": [
+    "preview-does-not-persist-and-source-hash-is-retained",
+    "tab-selection-does-not-send-sibling-text",
+    "explicit-save-creates-reviewable-scoped-facts-and-memories",
+    "invalid-or-failed-provider-batches-save-nothing-and-leak-no-response-body",
+    "empty-proposal-batch-is-a-noop",
+    "offline-readonly-denied-policy-missing-tab-disabled-provider-and-dry-run-precede-network",
+    "real-sync-during-model-request-refuses-stale-proposals"
+  ]
+}

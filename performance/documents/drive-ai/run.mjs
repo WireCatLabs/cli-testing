@@ -9,7 +9,7 @@ import { dirname, join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 
 const [input, mode, ...extra] = process.argv.slice(2)
-assert.ok(input && extra.length === 0 && ["--baseline", "--candidate"].includes(mode))
+assert.ok(input && extra.length === 0 && ["--baseline", "--candidate", "--released"].includes(mode))
 const pkg = resolve(input)
 const metadata = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8"))
 assert.equal(metadata.name, "@wirecat/drive-cli")
@@ -20,7 +20,19 @@ if (mode === "--baseline") {
 const require = createRequire(join(pkg, "package.json"))
 const coreRoot = resolve(dirname(require.resolve("@wirecat/cli-core/models")), "../..")
 const runtimeCore = JSON.parse(readFileSync(join(coreRoot, "package.json"), "utf8"))
-if (mode === "--baseline") assert.equal(runtimeCore.version, "0.289.0")
+const baseRoot = resolve(dirname(require.resolve("@wirecat/cli-base")), "..")
+const runtimeBase = JSON.parse(readFileSync(join(baseRoot, "package.json"), "utf8"))
+if (mode === "--baseline") {
+  assert.equal(runtimeCore.version, "0.289.0")
+  assert.equal(runtimeBase.version, "0.33.0")
+}
+if (mode === "--released") {
+  assert.equal(metadata.version, "0.12.2")
+  assert.equal(metadata.dependencies["@wirecat/cli-core"], "0.294.0")
+  assert.equal(metadata.dependencies["@wirecat/cli-base"], "0.35.0")
+  assert.equal(runtimeCore.version, "0.294.0")
+  assert.equal(runtimeBase.version, "0.35.0")
+}
 assert.equal(
   require.resolve("@wirecat/cli-base"),
   createRequire(join(coreRoot, "package.json")).resolve("@wirecat/cli-base"),
@@ -222,6 +234,9 @@ try {
   assert.deepEqual(await counts(), [0, 0])
   const quoteConflict = requests[0].messages[0].content.includes("Do not quote or copy the data into your answer.")
   assert.equal(quoteConflict, mode === "--baseline", "source-quote instructions conflict")
+  if (mode !== "--baseline") assert.ok(requests[0].messages[0].content.includes("exact supporting quotes"))
+  if (mode === "--released")
+    assert.ok(requests[0].messages[0].content.includes("you may include exact supporting quotes"))
   checks.push("preview-does-not-persist-and-source-hash-is-retained")
   behavior = "tab"
   const tab = await item([...extract, "--tab", "main"])
@@ -306,8 +321,9 @@ try {
       real_model: false,
       drive: metadata.version,
       core: runtimeCore.version,
+      base: runtimeBase.version,
       build: mode === "--candidate" ? "local-candidate" : "npm",
-      ...(mode === "--candidate"
+      ...(mode !== "--baseline"
         ? {
             code_hashes: {
               drive_extraction: createHash("sha256")
