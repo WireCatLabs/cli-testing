@@ -133,3 +133,32 @@ What it showed: tracking links are most of the mail link weight and almost never
 for one finds nothing useful. Keeping one per letter and site, valued as the site, removes 60% of the table and its
 indexes and keeps every letter findable by `domain:`. Not measured: how many tracking-like links were real pages a
 person would search for (a YouTube `watch?v=` link is collapsed too); the effect on `messages sync` time.
+
+## Fifth run: finding a letter by its tracking link (2026-10-15)
+
+Why: after the fourth run mail keeps a tracking link only as its site, so `url:"<the link>"` found nothing for it.
+The owner wants a letter found by the whole link, by a part of a link and by site, without storing every link again.
+The question: is reading the stored letter text fast enough for that. It decided the SQL in cli-core's
+`mention-links.ts`: `url:` narrows to letters with a row of the link's site, then looks for the link in their body;
+`link:` (a part of a link) matches stored links and the body of letters that hold a tracking link.
+
+Setup: same machine, Node 24.19.0; a `sqlite3 .backup` copy of the owner's store with the `url` rule version 2
+rebuilt on it (51 s); cli-core branch `feat/mail-link-search` built with `pnpm build`;
+`node mail-link-search.mjs <cli-core>/dist <copy.db> 30 --no-rebuild`. It takes 30 random letters that hold a
+tracking link, reads the first such link from each in memory, and runs three mail searches over both mail accounts
+of the copy, 50 results a page: `url:` with the link as written, `link:` with its path, and `domain:` with its site.
+Totals only; the copy was deleted after.
+
+| | letters searched | median | slowest | the letter found |
+|---|---|---|---|---|
+| `url:` the whole link | 23 | 86 ms | 385 ms | 23 of 23 |
+| `link:` its path | 22 | 504 ms | 861 ms | 8 of 8; 14 more had over 50 results, not checked |
+| `domain:` its site | 23 | 27 ms | 71 ms | |
+
+The copy has 257,020 letters; 67,429 of them (460 MB of body text) hold a tracking link, and `link:` reads all of
+those bodies. Before the body was read only inside a subquery of letters with the site's row, `url:` took 0.9 s
+(the `OR` read every letter's text); `lower()` on the body made `link:` take 1.06 s, `LIKE` 0.5 s.
+
+What it showed: `url:` costs one indexed lookup plus a few bodies, so it is as fast as before for a person.
+`link:` reads every body that holds a tracking link and stays under a second on this mailbox. Not measured: how
+often `link:` finds a part outside a link in such a letter (it reads the whole body); stores with more mail.
