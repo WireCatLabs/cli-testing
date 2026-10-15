@@ -52,6 +52,26 @@ memo main 7b23287 (cli-memo#202, #206), local build. Only the questions run 1 le
   because billing, airline and booking mail carries the same List-Unsubscribe header as newsletters. The
   exclusion is now opt-in, `NOT mailbox:bulk`, which trims newsletters (8 → 5, 10 → 8 hits) without that loss.
 
+### Run 3 — one more year imported, 2026-10-16
+
+memo 0.46.0, installed. The store now holds full text from 2018. 19 PDFs that had failed to read were read again,
+and bulk exclusion stays opt-in. Only the questions new data could reach were rerun: the bills question and the two
+not found. 28 memo calls in total.
+
+| | Run 2 | Run 3 |
+|---|---:|---:|
+| Answered | 1 | 1 |
+| Partly answered | 3 | 3 |
+| Not found | 2 | 2 |
+
+- The bills answer improved: an unpaid-bill notice's PDF is now read, so its amount is known. It's still "partly"
+  because totals and paid status need facts per bill.
+- The two "not found" questions stayed not found. The extra year holds only shop marketing from that country, so
+  the years they need are probably earlier still.
+- New friction for an agent: showing an email lists its attachments' names but not their text; `from:` with an
+  address needs quotes; and common words combined with a date range or `NOT mailbox:bulk` exceed the search time
+  budget.
+
 ## What it showed
 
 - **Stored text is sometimes raw HTML** for template-built emails such as flight itineraries. The facts are in the
@@ -68,4 +88,4 @@ memo main 7b23287 (cli-memo#202, #206), local build. Only the questions run 1 le
 
 - Answer quality against a written key: this run judged answers by hand.
 - Search by meaning in isolation; every query used the default mixed search.
-- Years before 2019, and the second mail account.
+- Years before 2018 (run 3 added 2018), and the second mail account.
