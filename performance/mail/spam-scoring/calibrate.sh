@@ -36,7 +36,7 @@ raw='(.score - (if (.signals | index("spam_folder")) then 4 else 0 end)
 
 jq -n --argjson t "$threshold" --slurpfile spam "$work/spam.json" --slurpfile all "$work/all.json" "
   def raw: $raw;
-  (\$spam[0].items) as \$s | (\$all[0].items) as \$a |
+  ((\$spam[0].item // \$spam[0]).items) as \$s | ((\$all[0].item // \$all[0]).items) as \$a |
   (\$a | map(select(.replied))) as \$replied |
   (\$a | map(select(.replied | not))) as \$others |
   {
