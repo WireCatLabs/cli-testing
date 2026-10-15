@@ -52,10 +52,13 @@ absence of the blanket prohibition.
 | Source changes during extraction | Actual sync changes source hash; extraction refuses stale proposals with `document.changed`; the earlier confirmed memory becomes stale |
 
 Separately, the Drive candidate's **195 unit tests passed**, with **90.28% line coverage**.
-The shared Core baseline passed **4,567 tests**, with four existing skips and **95.11% line
-coverage**, before the concurrent meeting API/Base 0.35 changes were rebased in. The rebased
-Core candidate passed its **29 focused model tests** and typecheck on Base 0.35. These scopes
-are separate; the full earlier Core run does not certify the later unrelated changes.
+The rebased shared Core candidate passed **4,577 tests**, with four existing skips and
+**95.11% line coverage** on the matching Base 0.35 pair. The full-suite tested commit is
+`2ae50456e501652107c2e413e7b6c98708e3be71`. Focused model tests, typecheck and docs checks
+also passed. After the independent removal of old personal MCP exports, the 29 focused model
+tests passed again on preserved branch commit `1c1d5dd0eed4bc2debd8c8dd6ecad38754a55787`.
+The [research main validation](https://github.com/WireCatLabs/cli-testing/actions/runs/38809071449)
+passed after the initial report merged.
 
 ## Decision and limits
 
@@ -68,3 +71,19 @@ and source-change handling. It does not establish real model extraction quality,
 to prompt injection or compliance with instructions. No live AI-provider call or Google write
 was made. Publishing and validating a fresh installed npm artifact remain separate follow-up
 steps; candidate results must not be presented as released-package evidence.
+
+## Publication status
+
+Core PR #1317 was closed without merging at 21:20 UTC on 2026-10-15 under the owner's
+GitHub account, with no comment explaining the closure. The tested source is preserved on
+[fix/model-source-quotes](https://github.com/WireCatLabs/cli-core/tree/fix/model-source-quotes).
+The dependent Drive caller change remains a local candidate; no fixed Core or Drive npm release
+was made by this work. Reopening or replacing the closed PR needs the closure's intent clarified.
+
+Additional local checks passed Drive typecheck and generator freshness. Full lint crashed in
+Biome while following the temporary cross-repository Core symlink. The generated missing-option
+contract also returned `internal_error` instead of `validation_error`; the synthetic stack showed
+a Commander instance from Core's physical dependency tree while Drive checks its own instance.
+These candidate symlink checks are not release certification. Normal, exact published dependencies
+must replace the local links, followed by lint, contracts, upgrade, leak checks and installed Node/Bun
+acceptance before releasing Drive. Do not weaken those checks to accept the candidate failures.
