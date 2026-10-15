@@ -6,7 +6,7 @@ import { join } from "node:path"
 import { test } from "node:test"
 import { fileURLToPath } from "node:url"
 import { checkFixture } from "./live-check.mjs"
-import { initialize, validateManifest, workspaceEnvironment } from "./live-input.mjs"
+import { initialize, releaseOf, validateManifest, workspaceEnvironment } from "./live-input.mjs"
 
 const runner = fileURLToPath(new URL("./live.mjs", import.meta.url))
 const testPackage = {
@@ -141,6 +141,19 @@ test("reviewed 0.8 uses --output while 0.7 keeps --out", () => {
   checkFixture(args)
   assert.ok(args.calls.some((call) => call.words.includes("--output")))
   assert.ok(args.calls.every((call) => !call.words.includes("--out")))
+})
+test("reviewed 0.11.1 requires exact shared pins and retains offline fixture checks", () => {
+  assert.deepEqual(releaseOf("0.11.1"), {
+    export_flag: "--output",
+    memory_search: "items",
+    list_queries: true,
+    core: "0.288.0",
+    framework: "0.33.0",
+  })
+  assert.throws(() => releaseOf("0.11.2"))
+  const args = setup({ version: "0.11.1" })
+  assert.ok(checkFixture(args).checks.includes("markdown-export"))
+  assert.ok(args.calls.every((call) => call.offline))
 })
 test("wrong root refuses before any Google access or local annotation", () => {
   const args = setup({ extraRoot: true })

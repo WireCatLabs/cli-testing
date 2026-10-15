@@ -4,6 +4,13 @@ import { join, resolve } from "node:path"
 
 const marker = "drive-acceptance-workspace.json"
 const releases = {
+  "0.11.1": {
+    export_flag: "--output",
+    memory_search: "items",
+    list_queries: true,
+    core: "0.288.0",
+    framework: "0.33.0",
+  },
   "0.7.0": { export_flag: "--out", memory_search: "item", core: "0.278.0", framework: "0.28.2" },
   "0.8.1": { export_flag: "--output", memory_search: "items", core: "0.283.0", framework: "0.31.1" },
   "0.8.0": { export_flag: "--output", memory_search: "items", core: "0.281.0", framework: "0.31.0" },

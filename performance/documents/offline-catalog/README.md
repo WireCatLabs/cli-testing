@@ -76,6 +76,39 @@ published artifact; comments were empty, so no comment-thread behavior is inferr
 Private scripts/results remain in the live-run report named above. No source body or query is
 published here; fresh user consent, remote writes and AI extraction remain outside the run.
 
+## Released 0.11.1 list queries
+
+Drive's later standards updates replaced list filter flags with query terms. This run asks
+whether those changes preserve document context and memory lifecycle behavior through a fresh
+npm installation, including the document-specific JSON fields repaired in 0.11.1.
+
+On 2026-10-15, Linux/Node 24.19.0, npm Drive 0.11.1 with exact Core 0.288.0/Base 0.33.0
+passed the precise contract-3 runner: 41 CLI invocations and three MCP validation/audit calls.
+The synthetic lifecycle runner passed eight initial checks, eight repeat checks and nine
+knowledge groups. Eleven checker guard tests also passed.
+
+| Additional installed-package behavior | Result |
+| --- | --- |
+| `documents list person:PERSON_UID` | Linked source returned |
+| `documents list tag:NAME` | Existing tag matched; missing tag returned no rows |
+| `documents list --json=id,name,reference,tabs` with a person query | Exact selected fields and original values retained |
+| Filtered document list with `--limit 1 --page 2` | Empty second page for the one-source fixture |
+| `memories list DOC scope:work status:confirmed` | Confirmed source memory returned; proposed/personal queries empty |
+| `memories search DOC WORD scope:work` | Source memory found |
+| Removed document `--person` and memory-list `--scope`; unknown document query field | `validation_error` |
+
+The release-aware checker explicitly selects these contracts for 0.11.1; unknown versions
+remain refused. Historical 0.7/0.8 filter and output expectations are retained. This run's
+fixtures use a new store, invented people and cached documents. HTTP, browser and keyring
+access are denied; no Google account, owner store, AI extraction or remote write is exercised.
+This is functional acceptance, not a latency measurement or live export-fidelity check.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix /var/tmp/drive-check-0111 --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.11.1
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/offline-catalog/run.mjs /var/tmp/drive-check-0111/node_modules/@wirecat/drive-cli /var/tmp/drive-check-0111/node_modules/@wirecat/cli-core --precise-effects
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/offline-catalog/live-installed.mjs /var/tmp/drive-check-0111/node_modules/@wirecat/drive-cli
+```
+
 ## Live-checker preparation
 
 The live checklist was manual and could not repeatedly check source identity and local context
