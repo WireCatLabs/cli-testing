@@ -58,11 +58,23 @@ generated API commands lose their operation identity/effects. Do not interpret t
 pass as full standards acceptance. The producer correction is
 [Core PR 1257](https://github.com/WireCatLabs/cli-core/pull/1257).
 
-The aligned candidate (Core 0.283.0/Base 0.31.1) passes 41 CLI invocations and three MCP
-validation/audit calls. Its installed Node and Bun smoke checks require generated read/write
-operation identities and correct remote effects. Drive also preserves its existing one-time
-camelCase config migration after the producer stopped converting old settings. Candidate
-results must be distinguished from the eventual published patch's installation results.
+The aligned candidate (Core 0.283.0/Base 0.31.1) passed 41 CLI invocations and three MCP
+validation/audit calls. The subsequently published Drive 0.8.1 passed those same 41/3 checks
+from a new npm installation, plus 8 initial, 8 repeat and 7 knowledge lifecycle groups.
+[Release validation](https://github.com/WireCatLabs/drive-cli/actions/runs/38667138731) passed
+at source `420fcb902e9913b454527bbd77c715138044df0d`. Installed Node/Bun smoke requires both
+one physical Base instance and generated read/write operation identities/effects.
+
+Drive preserves its existing one-time camelCase config migration after the producer stopped
+converting old settings. A copy of the closed 0.7.0 live-validation cache also passed against
+npm 0.8.1: all 378 file records remained visible, the sampled reference/body/Markdown matched,
+and its local tag/note/personal proposed memory survived. The original store was not migrated.
+An offline real-cache search confirmed `--json=hits.ref,hits.excerpt` returns those fields
+unchanged while retaining completeness metadata. The five separately authorized read-only
+provider checks (account, folder files, revisions, comments and permissions) passed through the
+published artifact; comments were empty, so no comment-thread behavior is inferred.
+Private scripts/results remain in the live-run report named above. No source body or query is
+published here; fresh user consent, remote writes and AI extraction remain outside the run.
 
 ## Live-checker preparation
 
