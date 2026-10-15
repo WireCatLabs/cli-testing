@@ -7,10 +7,10 @@ import { pathToFileURL } from "node:url"
 import { complexDocument, expectedMarkers, expectedTabs, nativeMarkdown } from "./fixture.mjs"
 
 const [input, ...extra] = process.argv.slice(2)
-assert.ok(input && extra.length === 0, "usage: node run.mjs <installed-drive-0.11.2>")
+assert.ok(input && extra.length === 0, "usage: node run.mjs <installed-reviewed-drive-package>")
 const pkg = resolve(input)
 const metadata = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8"))
-assert.equal(metadata.version, "0.11.2")
+assert.ok(["0.11.2", "0.12.0"].includes(metadata.version), "unreviewed Drive release")
 assert.equal(metadata.dependencies["@wirecat/cli-core"], "0.289.0")
 assert.equal(metadata.dependencies["@wirecat/cli-base"], "0.33.0")
 const require = createRequire(join(pkg, "package.json"))
