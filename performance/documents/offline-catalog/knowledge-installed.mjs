@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import { existsSync } from "node:fs"
 import { join } from "node:path"
 
-export const verifyKnowledge = async ({ invoke, openStore, env, workspace, reference }) => {
+export const verifyKnowledge = async ({ invoke, openStore, env, workspace, reference, release }) => {
   const checks = []
   const item = (words, options) => {
     const answer = invoke(words, options)
@@ -50,8 +50,9 @@ export const verifyKnowledge = async ({ invoke, openStore, env, workspace, refer
   checks.push("memory-evidence-and-review")
   assert.equal(list(["memories", "list", "doc", "--scope", "personal"]).length, 0)
   assert.ok(list(["memories", "list", "doc", "--scope", "work"]).some((entry) => entry.ref === memory.ref))
-  const found = item(["memories", "search", "doc", "lifecyclemarker", "--scope", "work"])
-  assert.ok(found.items.some((entry) => entry.ref === memory.ref))
+  const search = ["memories", "search", "doc", "lifecyclemarker", "--scope", "work"]
+  const found = release.memory_search === "items" ? list(search) : item(search).items
+  assert.ok(found.some((entry) => entry.ref === memory.ref))
   checks.push("memory-scope-and-source-search")
 
   item(["folders", "remove", "root"])

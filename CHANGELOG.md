@@ -17,6 +17,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- Drive research acceptance selects exact version-specific export and memory-search contracts,
+  and records aggregate read-only Google import/recovery results without publishing source data.
+
 - The installed Drive research check now verifies person links, stale-note revision refusal,
   scoped source-backed memories and local source retirement through the released CLI. It
   checks persisted memory staleness and owner-note preservation with synthetic data only.

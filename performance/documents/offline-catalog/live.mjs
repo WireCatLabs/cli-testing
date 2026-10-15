@@ -4,7 +4,7 @@ import { closeSync, openSync, readFileSync, writeFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 import { parseArgs } from "node:util"
 import { checkFixture } from "./live-check.mjs"
-import { initialize, validateManifest, workspaceEnvironment } from "./live-input.mjs"
+import { initialize, releaseOf, validateManifest, workspaceEnvironment } from "./live-input.mjs"
 
 let report
 let stage = "preflight"
@@ -64,6 +64,9 @@ try {
       const pkg = JSON.parse(readFileSync(join(values.drive, "package.json"), "utf8"))
       assert.equal(pkg.name, "@wirecat/drive-cli")
       assert.equal(pkg.version, manifest.drive_version)
+      const release = releaseOf(pkg.version)
+      assert.equal(pkg.dependencies?.["@wirecat/cli-core"], release.core)
+      assert.equal(pkg.dependencies?.["@wirecat/cli-base"], release.framework)
       const baseline = values.baseline ? JSON.parse(readFileSync(values.baseline, "utf8")) : undefined
       if (baseline) {
         assert.equal(baseline.passed, true)

@@ -8,8 +8,61 @@ The release check also asks whether the new JSON envelope and config migration p
 workflows for installed-package consumers.
 
 The [controlled Google checklist](live-checklist.md#use-the-prepared-checker) now includes a
-reusable isolated acceptance runner. Google checks remain unrun until the owner connects a
-dedicated test account; its synthetic and installed-package validation is recorded below.
+reusable isolated acceptance runner. The owner later explicitly authorized read-only checks with
+an existing profile; aggregate results are recorded below, alongside synthetic package validation.
+
+## Read-only Google acceptance
+
+The owner asked to validate an existing selected folder using its already connected profile.
+On 2026-10-15, Linux/Node 24.19.0 and installed Drive 0.7.0 (Core 0.278.0/Base 0.28.2)
+read Google while keeping all content, database, checkpoints and model-cache paths in a new
+private workspace. Original authentication was reused; the owner's database was not opened.
+Google files, sharing and permissions were never modified.
+
+| Check | Observed result |
+| --- | --- |
+| Complete selected catalog | 443 entries: 65 folders and 378 files |
+| Full import | 197 text-indexed files; 181 metadata-only; zero pending jobs |
+| Metadata-only reasons | 179 unsupported types; one scanned PDF without a text layer; one unreadable XLSX |
+| Cached hierarchy and metadata | Complete folder ancestry/tree and retained provider metadata |
+| Initial offline batch | 20 files; 56 assertions passed with network/browser/keyring denied |
+| Reader coverage | Exact word search and byte-exact Markdown export passed for one file each in eight categories |
+| Live Google Docs comparison | Five single-tab Docs; 937 fragments and two tables matched; provider versions stayed stable |
+| Interruption and resume | Own CLI exited 130 after SIGINT; resumed and drained pending jobs |
+| Local document context | Temporary tag, note and proposed source-backed memory survived interruption and repeated sync |
+| Repeat import | Zero new text saves; zero pending jobs; source references preserved |
+
+The eight categories were Google Docs, Google Sheets, PDF, DOCX, XLSX, CSV, Markdown and TXT.
+Exported files had mode 0600. The TXT test initially normalized CRLF while comparing Python
+strings; comparing UTF-8 bytes established exact preservation. This was a harness issue.
+
+Private report and scripts: `cli-private/reports/drive/2026-10-15-live-read/`. Queries, source IDs,
+per-file outcomes and local workspace paths stay there. These scripts describe historical staged
+checks on that authorized workspace; they are not an invitation to use arbitrary owner accounts.
+The reusable synthetic runner below remains independent of this live run.
+
+This establishes reading and offline retrieval for this selected tree. It does not certify fresh
+OAuth consent, Google verification, all fields on every account, remote writes, AI extraction,
+embeddings or OCR. No footnotes or multiple/nested tabs occurred in the five-Doc live sample.
+
+## Fresh-install compatibility
+
+Drive 0.8.0 changes export to `--output` and memory search to a list envelope. The version-aware
+checker accepts exact reviewed pins and selects the corresponding contract, retaining 0.7.0's
+`--out` and rich memory-search result. Ten synthetic guard tests pass; 0.7.0's 8 initial, 8 repeat
+and 7 knowledge lifecycle groups still pass after these checker changes.
+
+A fresh npm 0.8.0 install passed the same lifecycle groups but failed broader discovery checks:
+Core 0.281.0 asks for Base 0.28.x, while Drive pins Base 0.31.0. npm installs two instances and
+generated API commands lose their operation identity/effects. Do not interpret the lifecycle
+pass as full standards acceptance. The producer correction is
+[Core PR 1257](https://github.com/WireCatLabs/cli-core/pull/1257).
+
+The aligned candidate (Core 0.283.0/Base 0.31.1) passes 41 CLI invocations and three MCP
+validation/audit calls. Its installed Node and Bun smoke checks require generated read/write
+operation identities and correct remote effects. Drive also preserves its existing one-time
+camelCase config migration after the producer stopped converting old settings. Candidate
+results must be distinguished from the eventual published patch's installation results.
 
 ## Live-checker preparation
 
@@ -288,8 +341,7 @@ and the [controlled live checklist](live-checklist.md) for the separately author
 
 ## Limits
 
-This is a functional contract check, not a latency benchmark or Google API integration test.
-It does not establish extraction fidelity, live metadata completeness, Google verification or
-live user sign-in. Metadata-only backfill never refreshes old Google responses, and
-catalog retirement differs from regular sync's indexed-content removal. No owner account data
-is used or published.
+The synthetic runner is a functional contract check, not a latency benchmark or Google API
+integration test. It does not establish extraction fidelity, live metadata completeness, Google
+verification or live user sign-in; the bounded real-data observations above are reported separately. Metadata-only backfill never refreshes old Google responses, and
+catalog retirement differs from regular sync's indexed-content removal. Synthetic fixtures contain no owner data. The separately authorized live run publishes totals only.

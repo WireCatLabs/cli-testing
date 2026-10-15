@@ -9,6 +9,11 @@ import { checkFixture } from "./live-check.mjs"
 import { initialize, validateManifest, workspaceEnvironment } from "./live-input.mjs"
 
 const runner = fileURLToPath(new URL("./live.mjs", import.meta.url))
+const testPackage = {
+  name: "@wirecat/drive-cli",
+  version: "0.7.0",
+  dependencies: { "@wirecat/cli-core": "0.278.0", "@wirecat/cli-base": "0.28.2" },
+}
 const fixture = () => ({
   schema_version: 1,
   drive_version: "0.7.0",
@@ -57,7 +62,9 @@ const setup = (change = {}) => {
     if (group === "documents" && action === "show")
       return item({ metadata: { id: "doc" }, text: "acceptance-new", tabs: ["one", "two"] })
     if (group === "documents" && action === "export") {
-      writeFileSync(words[words.indexOf("--out") + 1], "# Acceptance")
+      const offset = words.indexOf(change.version && change.version !== "0.7.0" ? "--output" : "--out")
+      assert.ok(offset >= 0)
+      writeFileSync(words[offset + 1], "# Acceptance")
       return item({})
     }
     if (group === "documents" && action === "context")
@@ -69,7 +76,12 @@ const setup = (change = {}) => {
       })
     throw new Error("unexpected fixture command")
   }
-  return { workspace, calls, invoke, manifest: validateManifest(fixture()) }
+  return {
+    workspace,
+    calls,
+    invoke,
+    manifest: validateManifest({ ...fixture(), drive_version: change.version ?? "0.7.0" }),
+  }
 }
 
 test("manifest rejects unknown fields, wrong release, duplicate ids and undeclared parents", () => {
@@ -78,7 +90,7 @@ test("manifest rejects unknown fields, wrong release, duplicate ids and undeclar
       f.extra = true
     },
     (f) => {
-      f.drive_version = "0.8.0"
+      f.drive_version = "0.9.0"
     },
     (f) => {
       f.documents[0].id = "root"
@@ -124,6 +136,12 @@ test("cached verification checks hierarchy, own-source search, tabs, exports and
   assert.ok(args.calls.every((call) => call.offline))
   assert.equal(result.references.length, 3)
 })
+test("reviewed 0.8 uses --output while 0.7 keeps --out", () => {
+  const args = setup({ version: "0.8.0" })
+  checkFixture(args)
+  assert.ok(args.calls.some((call) => call.words.includes("--output")))
+  assert.ok(args.calls.every((call) => !call.words.includes("--out")))
+})
 test("wrong root refuses before any Google access or local annotation", () => {
   const args = setup({ extraRoot: true })
   assert.throws(() => checkFixture({ ...args, refresh: true, annotate: true }))
@@ -158,10 +176,7 @@ test("entry point refuses unknown flags, missing profile and existing report bef
   assert.ok(!existsSync(join(workspace, "missing-profile")))
   initialize(join(workspace, "state"), "synthetic")
   mkdirSync(join(workspace, "package"))
-  writeFileSync(
-    join(workspace, "package/package.json"),
-    JSON.stringify({ name: "@wirecat/drive-cli", version: "0.7.0" }),
-  )
+  writeFileSync(join(workspace, "package/package.json"), JSON.stringify(testPackage))
   writeFileSync(join(workspace, "manifest.json"), JSON.stringify(fixture()))
   const output = join(workspace, "report.json")
   writeFileSync(output, "preserve")
@@ -187,7 +202,7 @@ test("failed CLI output never leaks through stdout, diagnostics or a private fai
   initialize(join(root, "workspace"), "synthetic")
   const pkg = join(root, "package")
   mkdirSync(join(pkg, "dist/bin"), { recursive: true })
-  writeFileSync(join(pkg, "package.json"), JSON.stringify({ name: "@wirecat/drive-cli", version: "0.7.0" }))
+  writeFileSync(join(pkg, "package.json"), JSON.stringify(testPackage))
   writeFileSync(
     join(pkg, "dist/bin/drive.js"),
     'process.stdout.write(JSON.stringify({error:{code:"synthetic_failure",message:"SYNTHETIC_TOKEN_CANARY"}})); process.stderr.write("SYNTHETIC_TOKEN_CANARY"); process.exitCode=1;',
