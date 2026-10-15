@@ -2,6 +2,9 @@
 
 Measurements of how documents become text before they are indexed and searched.
 
+- [drive-decisions](drive-decisions/README.md): installed-package decision replacement, confirmation,
+  reversal, event time and local account/policy boundaries.
+
 - [drive-ai](drive-ai/README.md): executable extraction checks with a loopback model responder,
   source evidence, explicit saves, error handling and an in-flight source change.
 
