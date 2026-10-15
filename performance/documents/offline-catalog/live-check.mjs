@@ -9,6 +9,27 @@ const same = (left, right) => assert.deepEqual([...left].sort(), [...right].sort
 const annotated = (context) =>
   context.tags.some((entry) => entry.tag === tag) && context.notes.items.some((entry) => entry.text === note)
 
+export const importedDocuments = (invoke, release, expectedCount) => {
+  if (!release.list_queries) {
+    const answer = invoke(["documents", "list"])
+    assert.ok(Array.isArray(answer.items))
+    return answer.items
+  }
+  const items = []
+  const limit = 50
+  for (let page = 1; page <= Math.floor(expectedCount / limit) + 1; page++) {
+    const answer = invoke(["documents", "list", "--limit", String(limit), "--page", String(page)])
+    assert.ok(Array.isArray(answer.items) && answer.items.length <= limit)
+    assert.equal(answer.page.mode, "page")
+    assert.equal(answer.page.limit, limit)
+    items.push(...answer.items)
+    if (answer.page.has_more === false) return items
+    assert.equal(answer.page.has_more, true)
+    assert.equal(answer.page.next_page, page + 1)
+  }
+  assert.fail("imported document list exceeds the expected fixture; refusing an unbounded scan")
+}
+
 export const checkFixture = ({ manifest, invoke, workspace, refresh = false, annotate = false, baseline }) => {
   const release = releaseOf(manifest.drive_version)
   const checks = []
@@ -36,7 +57,7 @@ export const checkFixture = ({ manifest, invoke, workspace, refresh = false, ann
     item(["sync"], false)
     check("sync-drained", () => assert.equal(item(["status"]).pending, 0))
   }
-  const imported = list(["documents", "list"])
+  const imported = importedDocuments(invoke, release, manifest.documents.length)
   check("scope-and-unique-identities", () => {
     same(
       imported.map((entry) => entry.id),
@@ -98,7 +119,7 @@ export const checkFixture = ({ manifest, invoke, workspace, refresh = false, ann
     check("unchanged-sync-is-idempotent", () => {
       assert.equal(item(["status"]).pending, 0)
       same(
-        list(["documents", "list"]).map((entry) => entry.reference),
+        importedDocuments(invoke, release, manifest.documents.length).map((entry) => entry.reference),
         imported.map((entry) => entry.reference),
       )
     })

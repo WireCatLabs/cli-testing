@@ -5,8 +5,8 @@ import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { test } from "node:test"
 import { fileURLToPath } from "node:url"
-import { checkFixture } from "./live-check.mjs"
-import { initialize, validateManifest, workspaceEnvironment } from "./live-input.mjs"
+import { checkFixture, importedDocuments } from "./live-check.mjs"
+import { initialize, releaseOf, validateManifest, workspaceEnvironment } from "./live-input.mjs"
 
 const runner = fileURLToPath(new URL("./live.mjs", import.meta.url))
 const testPackage = {
@@ -58,7 +58,11 @@ const setup = (change = {}) => {
       return item({
         hits: action === "acceptance-old" ? [] : [{ ref: change.wrongHit ? "other:stable" : "doc:stable" }],
       })
-    if (group === "documents" && action === "list") return { items: [{ id: "doc", reference: "doc:stable" }] }
+    if (group === "documents" && action === "list")
+      return {
+        items: [{ id: "doc", reference: "doc:stable" }],
+        page: { mode: "page", limit: 50, has_more: false },
+      }
     if (group === "documents" && action === "show")
       return item({ metadata: { id: "doc" }, text: "acceptance-new", tabs: ["one", "two"] })
     if (group === "documents" && action === "export") {
@@ -141,6 +145,60 @@ test("reviewed 0.8 uses --output while 0.7 keeps --out", () => {
   checkFixture(args)
   assert.ok(args.calls.some((call) => call.words.includes("--output")))
   assert.ok(args.calls.every((call) => !call.words.includes("--out")))
+})
+test("reviewed 0.11.1 requires exact shared pins and retains offline fixture checks", () => {
+  assert.deepEqual(releaseOf("0.11.1"), {
+    export_flag: "--output",
+    memory_search: "items",
+    list_queries: true,
+    core: "0.288.0",
+    framework: "0.33.0",
+  })
+  assert.throws(() => releaseOf("0.11.2"))
+  const args = setup({ version: "0.11.1" })
+  assert.ok(checkFixture(args).checks.includes("markdown-export"))
+  assert.ok(args.calls.every((call) => call.offline))
+})
+test("paged import checks include sources after the first fifty and reject looping or extra pages", () => {
+  const release = releaseOf("0.11.1")
+  const calls = []
+  const invoke = (words) => {
+    calls.push(words)
+    const page = Number(words.at(-1))
+    return {
+      items: Array.from({ length: page === 1 ? 50 : 1 }, (_, i) => ({ id: `doc-${(page - 1) * 50 + i}` })),
+      page: { mode: "page", limit: 50, has_more: page === 1, ...(page === 1 ? { next_page: 2 } : {}) },
+    }
+  }
+  const found = importedDocuments(invoke, release, 51)
+  assert.equal(found.length, 51)
+  assert.equal(found.at(-1).id, "doc-50")
+  assert.deepEqual(
+    calls.map((words) => words.at(-1)),
+    ["1", "2"],
+  )
+  assert.throws(() =>
+    importedDocuments(
+      () => ({
+        items: [],
+        page: { mode: "page", limit: 50, has_more: true, next_page: 1 },
+      }),
+      release,
+      51,
+    ),
+  )
+  let attempts = 0
+  assert.throws(() =>
+    importedDocuments(
+      () => ({
+        items: [],
+        page: { mode: "page", limit: 50, has_more: true, next_page: ++attempts + 1 },
+      }),
+      release,
+      1,
+    ),
+  )
+  assert.equal(attempts, 1)
 })
 test("wrong root refuses before any Google access or local annotation", () => {
   const args = setup({ extraRoot: true })

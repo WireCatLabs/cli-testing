@@ -28,7 +28,22 @@ export const verifyKnowledge = async ({ invoke, openStore, env, workspace, refer
   const personRef = `person:${person.uid}`
   item(["relationships", "add", "doc", personRef, "--kind", "related-to"])
   assert.ok(item(["documents", "context", "doc"]).links.some((link) => link.to === personRef))
-  assert.ok(list(["documents", "list", "--person", personRef]).some((doc) => doc.id === "doc"))
+  const personFilter = release.list_queries ? [`person:${person.uid}`] : ["--person", personRef]
+  assert.ok(list(["documents", "list", ...personFilter]).some((doc) => doc.id === "doc"))
+  if (release.list_queries) {
+    assert.equal(list(["documents", "list", "tag:wirecat-acceptance"])[0].id, "doc")
+    assert.equal(list(["documents", "list", "tag:synthetic-missing-tag"]).length, 0)
+    const projected = list(["documents", "list", ...personFilter, "--json=id,name,reference,tabs"])
+    assert.equal(projected.length, 1)
+    assert.deepEqual(projected[0], { id: "doc", name: "Synthetic document", reference, tabs: 2 })
+    assert.equal(list(["documents", "list", ...personFilter, "--limit", "1", "--page", "2"]).length, 0)
+    assert.equal(invoke(["documents", "list", "--person", personRef], { failure: true }).error.code, "validation_error")
+    assert.equal(
+      invoke(["documents", "list", "synthetic_unknown:value"], { failure: true }).error.code,
+      "validation_error",
+    )
+    checks.push("document-query-projection-and-removed-filter-refusal")
+  }
   checks.push("explicit-person-link-and-filter")
 
   const note = item(["notes", "add", "doc", "Synthetic lifecycle note"])
@@ -48,12 +63,22 @@ export const verifyKnowledge = async ({ invoke, openStore, env, workspace, refer
   assert.equal(memory.scope, "work")
   assert.equal(item(["memories", "confirm", "doc", memory.ref]).status, "confirmed")
   checks.push("memory-evidence-and-review")
-  assert.equal(list(["memories", "list", "doc", "--scope", "personal"]).length, 0)
-  assert.ok(list(["memories", "list", "doc", "--scope", "work"]).some((entry) => entry.ref === memory.ref))
-  const search = ["memories", "search", "doc", "lifecyclemarker", "--scope", "work"]
+  const scope = (value) => (release.list_queries ? [`scope:${value}`] : ["--scope", value])
+  assert.equal(list(["memories", "list", "doc", ...scope("personal")]).length, 0)
+  assert.ok(list(["memories", "list", "doc", ...scope("work")]).some((entry) => entry.ref === memory.ref))
+  const search = ["memories", "search", "doc", "lifecyclemarker", ...scope("work")]
   const found = release.memory_search === "items" ? list(search) : item(search).items
   assert.ok(found.some((entry) => entry.ref === memory.ref))
   checks.push("memory-scope-and-source-search")
+  if (release.list_queries) {
+    assert.equal(list(["memories", "list", "doc", "status:proposed"]).length, 0)
+    assert.equal(list(["memories", "list", "doc", "scope:work status:confirmed"])[0].ref, memory.ref)
+    assert.equal(
+      invoke(["memories", "list", "doc", "--scope", "work"], { failure: true }).error.code,
+      "validation_error",
+    )
+    checks.push("memory-query-combination-and-removed-filter-refusal")
+  }
 
   item(["folders", "remove", "root"])
   // With no selected roots, this sync reconciles local sources; the provider/keyring guard remains installed.
