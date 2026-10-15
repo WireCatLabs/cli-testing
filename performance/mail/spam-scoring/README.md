@@ -75,12 +75,44 @@ What it showed:
 - **The common spam signal is "never replied plus bulk"** (145 of 202 groups), but its weight (+1) alone never
   reaches 3. It also fires on all ordinary mass mail, so raising it would flag newsletters as spam.
 
-Next: try threshold 2, and a "never replied, no List-Unsubscribe, no bulk headers, Reply-To elsewhere" combination,
-which separates scams from newsletters better than bulk alone.
+**Run 2 — 2026-10-15**, same account and window (Spam: 336 emails, 203 groups; 63 replied-to groups). The old score
+ran from the installed memo 0.41.0. The new score ran from a local build of
+[cli-memo#205](https://github.com/WireCatLabs/cli-memo/pull/205), through a `memo` shim on `PATH`.
+
+Before choosing signals, per-group features were dumped from a local build. Share of groups each feature fires on:
+
+| Feature | Spam | Replied-to | Other never-replied |
+|---|---:|---:|---:|
+| None of its mail opened | 99.5% | 0% | 73.9% |
+| DKIM not passed on most mail | 16.3% | 4.8% | 0.8% |
+| 2 emails or fewer | 89.7% | 41.3% | 64.8% |
+| List-Unsubscribe on most mail | 71.4% | 9.5% | 68.2% |
+| Free-mail sender | 3.0% | 15.9% | 0.6% |
+
+"No List-Unsubscribe" did not separate scams: most Gmail Spam here is marketing that carries it. "Few emails"
+flags too many people the owner writes to. Two signals were added: `never_opened` +2 and `dkim_not_passed` +2,
+where a Gmail stamp with no `dkim=` verdict means the mail had no signature.
+
+| Score | Threshold | Spam caught | Replied-to flagged | Other never-replied groups reaching it |
+|---|---:|---:|---:|---:|
+| old | 2 | 23.5% | 1/63 | 435/3,093 |
+| old | 3 | 22.9% | 1/63 | 376/3,093 |
+| new | 2 | 99.4% | 3/63 (4.8%) | 2,355/3,093 |
+| new | 3 | **84.2%** | **1/63 (1.6%)** | 1,919/3,093 |
+
+What it showed:
+
+- **Threshold 3 with the new score is the choice.** It catches 84% of Spam, up from 23%, with no more false alarms
+  on the people the owner writes to.
+- **It also marks most never-opened mass mail** (1,919 of 3,093 other groups). That is the robot part of
+  "spam, scam or robot", not a false alarm, but a rule should pair the score with a kind or bulk filter rather than
+  trash on the score alone.
+- **The recall is flattered.** Mail in Spam is unread partly because it sits in Spam, so `never_opened` fires there
+  more easily than on spam that reached the inbox.
 
 ## Not measured
 
 - Spam older than 30 days, because Gmail deletes it.
-- Other thresholds: each run lists the mailbox again, so run 1 used only threshold 3.
+- Thresholds above 3 for the new score, and weights other than the ones listed.
 - Scams that pass every check, such as a plain Gmail address with no brand name and no Reply-To.
 - Whether a high score on a never-replied group is junk or a real sender: the owner checks a sample by hand.
