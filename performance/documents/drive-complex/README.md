@@ -8,8 +8,8 @@ without editing an owner's Google files.
 
 ## Setup and reproduction
 
-2026-10-15, Linux, Node 24.19.0, fresh npm Drive **0.11.2**, exact Core **0.289.0** and Base
-**0.33.0**. The runner refuses other versions. It imports only the installed package's public
+2026-10-15, Linux, Node 24.19.0, fresh npm Drive **0.11.2** and **0.12.0**, exact Core **0.289.0**
+and Base **0.33.0**. The runner accepts those reviewed versions and refuses others. It imports only the installed package's public
 compiled `createProgram` and `googleSource` exports, the SDK and framework helpers. It never
 imports Drive TypeScript source or replaces the index with a mock.
 
@@ -17,6 +17,9 @@ imports Drive TypeScript source or replaces the index with a mock.
 D=$(mktemp -d -p /var/tmp) && T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix "$D" --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.11.2
 T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/drive-complex/run.mjs "$D/node_modules/@wirecat/drive-cli"
 ```
+
+Repeat these commands with `@wirecat/drive-cli@0.12.0` for its independent compatibility check;
+the first command creates another fresh installation directory.
 
 [fixture.mjs](fixture.mjs) supplies valid-shaped Docs responses with five tabs, two nested
 levels, a table containing another table, an empty cell/tab, a footnote, a table of contents,
@@ -29,8 +32,10 @@ be reads. Temporary fixture state remains available for inspection; cleanup is s
 
 ## Compiled-package results
 
-**45 command invocations and ten behavior groups passed.** The synthetic-only summary is
-saved in [results.json](results.json).
+**45 command invocations and ten behavior groups passed on each package.** Synthetic-only summaries
+are saved separately for [0.11.2](results.json) and [0.12.0](results-0.12.0.json). The newer release
+adds uploads; it leaves the document extraction, Google source, sync and store modules unchanged.
+This compatibility run exercises reading and local source lifecycle, not uploads.
 
 | Behavior | Observed result |
 | --- | --- |
