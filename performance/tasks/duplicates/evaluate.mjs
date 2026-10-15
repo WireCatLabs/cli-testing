@@ -10,6 +10,7 @@ import { fileURLToPath, pathToFileURL } from "node:url"
 
 const here = dirname(fileURLToPath(import.meta.url))
 const CORE_VERSION = "0.277.0"
+// biome-ignore lint/security/noSecrets: published package integrity hash, not a key
 const CORE_INTEGRITY = "sha512-X0IBZ2waGP3EV4R5mbUnpT+nUFjXvPXvkwAS2lK3yeUfWVbazIVp1kJz1G2fKwsN7ZQH5dvW7zroeGWhyTk+Vg=="
 const DAY = 86_400_000
 const SPLIT_SEED = "tasks-duplicates-1"
