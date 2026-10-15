@@ -77,7 +77,7 @@ steps; candidate results must not be presented as released-package evidence.
 Core PR #1317 was closed without merging at 21:20 UTC on 2026-10-15 under the owner's
 GitHub account, with no comment explaining the closure. The tested source is preserved on
 [fix/model-source-quotes](https://github.com/WireCatLabs/cli-core/tree/fix/model-source-quotes).
-The dependent Drive caller change remains a local candidate; no fixed Core or Drive npm release
+The dependent [Drive caller patch](drive-caller.patch) remains a local candidate; no fixed Core or Drive npm release
 was made by this work. Reopening or replacing the closed PR needs the closure's intent clarified.
 
 Additional local checks passed Drive typecheck and generator freshness. Full lint crashed in
