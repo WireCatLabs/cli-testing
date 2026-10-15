@@ -27,8 +27,8 @@ age=()
 [ -n "${DOMAIN_AGE:-}" ] && age=(--domain-age)
 
 MEMO_CONFIG_DIR="$work/config" MEMO_STATE_DIR="$work/state" MESSAGING_STORE="$work/store" \
-  memo mail probe "$account" --json --limit-groups 1000000 "${window[@]}" "${age[@]}" >"$work/spam.json"
-memo mail probe "$account" --json --limit-groups 1000000 "${window[@]}" >"$work/all.json"
+  memo mail probe "$account" --json --limit 1000000 "${window[@]}" "${age[@]}" >"$work/spam.json"
+memo mail probe "$account" --json --limit 1000000 "${window[@]}" >"$work/all.json"
 
 # Without the two signals that know the answer: being in Spam, and the owner's own replies.
 raw='(.score - (if (.signals | index("spam_folder")) then 4 else 0 end)
