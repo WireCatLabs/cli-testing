@@ -2,6 +2,9 @@
 
 Measurements of how documents become text before they are indexed and searched.
 
+- [drive-complex](drive-complex/README.md): seven read-only multi-tab Google Docs plus compiled
+  SDK-fixture checks for nested content, edit/move/trash recovery, scope exit/re-entry and context retention.
+
 - [html-readers](html-readers/README.md): regex reader, defuddle and Readability with Turndown compared on 30
   public HTML pages (2026-10-13).
 
