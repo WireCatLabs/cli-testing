@@ -2,88 +2,105 @@
 
 Drive requires an exact source quote for every extracted fact or memory. Its shared model
 gateway appended a blanket instruction not to quote source data. This check reproduces that
-contradiction and validates an explicit source-quote opt-in before publishing it.
+contradiction, verifies the explicit source-quote permission, and confirms the fix through a
+fresh npm installation of Drive **0.12.2**.
 
-## Setup
+## Setup and reproduction
 
-2026-10-15, Linux, Node 24.19.0. The baseline is npm Drive **0.12.0**, Core **0.289.0**,
-Base **0.33.0**. The local candidate is compiled Drive 0.12.0 plus the extraction caller change
-and Core PR [#1317](https://github.com/WireCatLabs/cli-core/pull/1317), with Base **0.35.0**.
-Its Core package metadata still says 0.292.0; it is **not the npm 0.292.0 artifact**. Candidate
-results record compiled module hashes to distinguish it. No fixed npm release is claimed here.
+Runs began on 2026-10-15; released-package verification completed on 2026-10-16, Europe/Madrid.
+Linux, Node 24.19.0. The reviewed release pins Core **0.294.0** and Base **0.35.0** exactly.
+The runner checks the declared and runtime versions, requires one physical Base instance,
+and verifies the gateway actually permits evidence quotes alongside structured output.
+
+```sh
+D=$(mktemp -d -p /var/tmp) && T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix "$D" --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.12.2
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/drive-ai/run.mjs "$D/node_modules/@wirecat/drive-cli" --released
+```
+
+To reproduce the known-conflict baseline, install **0.12.0** in a separate fresh directory and
+use `--baseline`. Its runtime pins must be Core **0.289.0** and Base **0.33.0**. Both modes
+refuse unreviewed versions. `--candidate` accepts a local build, records compiled module hashes
+and explicitly labels its result as local; it is not npm release evidence.
 
 [run.mjs](run.mjs) starts the actual compiled Drive executable in child processes. It seeds
 synthetic documents through the public shared-store API, then uses ordinary CLI commands,
 the real model gateway, an OpenAI-compatible loopback HTTP responder and the real SQLite store.
 Only the in-flight source-change case calls the compiled public command entry point in the
 parent, supplying a synthetic Google source to perform a real sync while the model response waits.
-
-```sh
-D=$(mktemp -d -p /var/tmp) && T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix "$D" --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.12.0
-T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/drive-ai/run.mjs "$D/node_modules/@wirecat/drive-cli" --baseline
-```
-
-For a locally built candidate, substitute its package directory and `--candidate`. This mode
-records hashes and labels the result as local, rather than npm. Temporary state remains for
-inspection. Each run refuses separate physical Base instances in Drive and Core.
+No injected Complete function replaces the executable's gateway or transport.
 
 [guard.mjs](guard.mjs) permits child fetch requests only to the exact loopback origin and
 chat-completion path; redirects, other HTTP requests, process launches and keyring access are
-refused. Child environments contain only the runner's temporary paths and an allowlist of
-process settings. The responder asserts that no Authorization header is present. No Google
-account, owner database, real document or model credential is used.
+refused. Child environments contain only temporary paths and an allowlist of process settings.
+The responder asserts that no Authorization header is present. No Google account, owner database,
+real document or model credential is used. Temporary synthetic state remains for inspection.
 
-## Results
+## Executable results
 
-Both the [baseline](results-baseline.json) and [candidate](results-candidate.json) passed
-**59 CLI command checks**, with **12 loopback provider requests**, across seven behavior groups.
-The baseline explicitly expects the contradictory quote policy; passing that baseline does not
-mean its prompt is correct. The candidate requires the explicit evidence-quote policy and the
-absence of the blanket prohibition.
+Each recorded run passed **59 CLI command checks**, with **12 loopback provider requests**,
+across seven behavior groups. Passing the baseline means reproducing its contradictory quote
+policy; it does not mean that prompt is correct.
+
+| Run | Drive / Core / Base | Quote policy |
+| --- | --- | --- |
+| [Reviewed npm baseline](results-baseline-reviewed-pins.json) | 0.12.0 / 0.289.0 / 0.33.0 | Known blanket no-copy conflict |
+| [Initial local candidate](results-candidate.json) | 0.12.0 / 0.292.0 metadata / 0.35.0 | Explicit evidence quotes |
+| [Packed local candidate](results-packed-candidate.json) | 0.12.2 / 0.293.0 metadata / 0.35.0 | Explicit evidence quotes with normal dependency resolution |
+| [Fresh npm release](results-released.json) | 0.12.2 / 0.294.0 / 0.35.0 | Final permission wording verified |
+
+The two candidate Core version numbers describe local package metadata, not the same-number npm
+artifacts: those candidates contain the unpublished quote opt-in. Their code hashes distinguish
+them. The [earliest baseline record](results-baseline.json) is retained separately; the reviewed
+baseline rerun adds runtime Base verification. [npm-integrities.json](npm-integrities.json) records
+SHA-512 integrity values from the fresh installation's lockfile and verifies exactly one copy of
+each reviewed WireCat package.
 
 | Behavior | Observed result |
 | --- | --- |
-| Preview | No writes; source hash, reference, provider and model retained |
+| Preview | No facts or memories saved; source hash, reference, provider and model retained |
 | Select one document tab | Sibling tab content excluded from the outbound request |
 | Explicit save and review | One scoped fact and one scoped memory saved as proposals with source evidence; explicit confirmation succeeds |
 | Invalid or failed response | Invented quote, invalid kind, oversized batch, malformed JSON, truncated response, HTTP 429 and HTTP 500 all save nothing; provider error body is absent from output |
 | Empty extraction | Successful no-op with no new proposals |
 | Guards before network | Offline, read-only, policy denial, absent tab, disabled provider and dry run do not contact the responder |
-| Source changes during extraction | Actual sync changes source hash; extraction refuses stale proposals with `document.changed`; the earlier confirmed memory becomes stale |
+| Source changes during extraction | Actual sync changes source hash; extraction refuses stale proposals with document.changed; the earlier confirmed memory becomes stale |
 
-Separately, the Drive candidate's **195 unit tests passed**, with **90.28% line coverage**.
-The rebased shared Core candidate passed **4,577 tests**, with four existing skips and
-**95.11% line coverage** on the matching Base 0.35 pair. The full-suite tested commit is
-`2ae50456e501652107c2e413e7b6c98708e3be71`. Focused model tests, typecheck and docs checks
-also passed. After the independent removal of old personal MCP exports, the 29 focused model
-tests passed again on preserved branch commit `1c1d5dd0eed4bc2debd8c8dd6ecad38754a55787`.
-The [research main validation](https://github.com/WireCatLabs/cli-testing/actions/runs/38809071449)
-passed after the initial report merged.
+## Other release checks
 
-## Decision and limits
+Drive passed **195 unit tests**, with **90.26% line coverage**, against the published Core/Base
+pair. Types, lint, shared standards, generator freshness, eight CLI/MCP contracts, five
+previous-store upgrade checks, leak checks, docs and installed Node/Bun package smoke all passed.
+Command lint reported **zero new violations**; the existing lint and coverage baselines were
+not weakened. These checks include the latest catalog tree fix merged before the release.
 
-Expose `ModelRequest.allowSourceQuotes: true` in Core and opt in only from Drive's evidence
-extraction caller. Leave ordinary requests' existing no-copy instruction intact. Source data
-remains in a separate message that instructs the model to treat it as untrusted content.
+The initial cross-repository Core symlink setup made Biome crash and split Commander instances,
+so a missing-option contract returned internal_error. A packed SDK with normal dependency
+resolution resolved both failures. The final published dependency pair passed the same checks;
+the failures were not accepted as a new baseline.
 
-The deterministic responder establishes transport, policy selection, validation, persistence
-and source-change handling. It does not establish real model extraction quality, resistance
-to prompt injection or compliance with instructions. No live AI-provider call or Google write
-was made. Publishing and validating a fresh installed npm artifact remain separate follow-up
-steps; candidate results must not be presented as released-package evidence.
+The earlier Core candidate passed 4,577 tests, four existing skips and 95.11% lines at
+`2ae50456e501652107c2e413e7b6c98708e3be71`. Later shared changes are covered by the complete
+[Core 0.294.0 release validation](https://github.com/WireCatLabs/cli-core/actions/runs/38815194042),
+not by that earlier local run. The first release attempt passed 4,592 tests but stopped on duplicate
+changelog headings; [the notes-only repair](https://github.com/WireCatLabs/cli-core/pull/1337)
+preserved every release note and the corrected publishing run succeeded.
 
-## Publication status
+## Published change and limits
 
-Core PR #1317 was closed without merging at 21:20 UTC on 2026-10-15 under the owner's
-GitHub account, with no comment explaining the closure. The tested source is preserved on
-[fix/model-source-quotes](https://github.com/WireCatLabs/cli-core/tree/fix/model-source-quotes).
-The dependent [Drive caller patch](drive-caller.patch) remains a local candidate; no fixed Core or Drive npm release
-was made by this work. Reopening or replacing the closed PR needs the closure's intent clarified.
+[Core #1330](https://github.com/WireCatLabs/cli-core/pull/1330) adds
+`ModelRequest.allowSourceQuotes: true`; [#1333](https://github.com/WireCatLabs/cli-core/pull/1333)
+clarifies that it permits quotes rather than requiring a quote-only answer. This is an SDK
+request option, not a saved CLI setting. Ordinary requests retain their no-copy instruction.
+Source data remains in a separate message that instructs the model to treat it as untrusted content.
 
-Additional local checks passed Drive typecheck and generator freshness. Full lint crashed in
-Biome while following the temporary cross-repository Core symlink. The generated missing-option
-contract also returned `internal_error` instead of `validation_error`; the synthetic stack showed
-a Commander instance from Core's physical dependency tree while Drive checks its own instance.
-These candidate symlink checks are not release certification. Normal, exact published dependencies
-must replace the local links, followed by lint, contracts, upgrade, leak checks and installed Node/Bun
-acceptance before releasing Drive. Do not weaken those checks to accept the candidate failures.
+[Drive #86](https://github.com/WireCatLabs/drive-cli/pull/86) opts in from the evidence extraction
+caller and pins the published Core/Base pair. The [Drive 0.12.2 release](https://github.com/WireCatLabs/drive-cli/actions/runs/38817541530)
+passed from `0e06e0a779cb332926d2409acfd93a6be2e89f45`; the fresh npm result above is separate
+from the local candidates. The [historical caller patch](drive-caller.patch) remains available.
+
+The deterministic responder establishes transport, policy selection, validation, proposal
+persistence and source-change handling. It does not establish real model extraction quality,
+resistance to prompt injection, factual entailment or compliance with instructions. Quotes support
+owner review, not automatic factual approval. Source-change staleness is verified for memories;
+this suite does not establish freshness or retraction behavior for accepted facts. No live
+AI-provider call or Google write was made.

@@ -22,7 +22,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   JSON diagnostics distinguish scanner readiness from the separately approved audit stages.
 - Drive AI extraction research drives the executable against a guarded loopback responder,
   checking evidence quotes, proposal persistence, provider failures and source changes.
-  Historical npm and local candidate results are explicitly distinguished.
+  Historical npm, local candidate and fixed npm 0.12.2 results are distinguished.
+  Released checks enforce exact Core/Base pins, quote permission and one shared Base instance,
+  and record compiled hashes and npm integrity values.
 - Complex Drive research acceptance: compiled-package SDK fixtures exercise nested content,
   interrupted exports and source lifecycle with a real temporary store; live multi-tab comparisons
   publish aggregate counts only, with private source details kept separately. Exact 0.11.2 and
