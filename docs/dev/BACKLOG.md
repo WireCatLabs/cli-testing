@@ -19,8 +19,9 @@ the private `cli-private` repository, never here.
 
 ## Phase 1 — remaining security work
 
-- **SEC-5 · P2** A second audit run of max-cli and tg-cli after the first audit's fixes ship,
-  compared with the first; the agent suite on tg-cli for the first time.
+- **SEC-5 · P2** A complete new audit over the current repository set, with explicit scanner,
+  Socket, manual/false-positive and owner-approved agent stages. Start a fresh scanner baseline
+  if historical coverage is incomplete; compare only complete records with matching coverage.
 
 ## Phase 2 — contract
 

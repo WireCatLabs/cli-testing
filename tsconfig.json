@@ -1,5 +1,5 @@
 {
-  "extends": "@wirecat/cli-base/tsconfig.base.json",
+  "extends": "./node_modules/@wirecat/cli-base/config/tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist"

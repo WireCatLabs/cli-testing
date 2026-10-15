@@ -26,7 +26,8 @@ Install this package as a development dependency and build it before running fro
 Give every scan a new private output directory; a recorded stage is never overwritten.
 
 ```sh
-cli-testing security scan <run-dir> <checkout>...
+cli-testing security preflight <checkout>... [--previous <run>]
+cli-testing security scan <run-dir> <checkout>... [--previous <run>]
 cli-testing security socket <run-dir> <checkout>...
 cli-testing compare security <run-a> <run-b>
 ```

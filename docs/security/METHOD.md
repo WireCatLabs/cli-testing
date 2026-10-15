@@ -20,6 +20,11 @@ gh repo list WireCatLabs --limit 100 --json name,visibility --jq '.[] | "\(.name
 
 ## A run, step by step
 
+Start with the read-only preflight in [RUNBOOK](RUNBOOK.md#preflight-and-baseline). Use a new
+baseline without `--previous` when no complete comparable run exists. Historical gaps stay gaps;
+scanner completion never substitutes for the manual/Socket/A7 stages. The
+[regression checklist](REGRESSIONS.md) defines the evidence and stage ledger for a complete audit.
+
 1. `cli-testing security scan <run-dir> <checkout>... [--previous <run>]` creates the run folder,
    refuses tool versions other than the pins (or pins younger than two weeks), and calls
    [`scripts/security/scan`](../../scripts/security/scan). The script exports `origin/main` of each
@@ -33,9 +38,10 @@ gh repo list WireCatLabs --limit 100 --json name,visibility --jq '.[] | "\(.name
    adds its exit code to `run.json`. The Socket CLI banner prints the start of the API token; the
    script passes `--no-banner` after the command (before it, the flag is not parsed). Raw output
    goes to `<run-dir>/raw/<repo>/<tool>.json`, so two runs can be diffed.
-3. gitleaks over the full history of every repository, `cli-private` included, from each
-   repository's root (it reads `.gitleaksignore` from the current folder):
-   `gitleaks git --no-banner --redact .`. Exit codes and hit counts go into `SCOPE.md`.
+3. gitleaks over the full history of each public repository, from its root (it reads
+   `.gitleaksignore` from the current folder): `gitleaks git --no-banner --redact .`. The private
+   allowlist/exclusions must respect the owner's file permissions and are recorded separately;
+   see RUNBOOK. Record exit codes, hit counts and nonzero scanned history in `SCOPE.md`.
 4. Read the GitHub settings that `scan` does not (commands in "GitHub settings") into `SCOPE.md`.
 5. Do the manual review (section "Checklist"). Every item gets a verdict in `runs/<date>/REPORT.md`:
    safe, finding, or not applicable — each with the evidence that supports it.

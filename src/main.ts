@@ -5,10 +5,12 @@ import { fileURLToPath } from "node:url"
 import { parseArgs } from "node:util"
 import { compareRuns } from "./compare.js"
 import { scanLeaks } from "./leaks.js"
+import { securityPreflight } from "./preflight.js"
 import { type ProcessRunner, runAgent, runSecurity } from "./runner.js"
 import { readRun } from "./runs.js"
 
-export const HELP = `cli-testing security scan <output> <checkout>... [--previous <run>]
+export const HELP = `cli-testing security preflight <checkout>... [--previous <run>]
+cli-testing security scan <output> <checkout>... [--previous <run>]
 cli-testing security socket <output> <checkout>...
 cli-testing security no-leak <root> <policy.json>
 cli-testing agent <output> <plan.json> --live [--previous <run>]
@@ -24,6 +26,13 @@ export const runCli = (argv: string[], deps: { run?: ProcessRunner; now?: () => 
     options: { help: { type: "boolean", short: "h" }, live: { type: "boolean" }, previous: { type: "string" } },
   })
   if (values.help || args.length === 0) return { exit: 0, output: HELP }
+  if (args[0] === "security" && args[1] === "preflight") {
+    const report = securityPreflight(args.slice(2), {
+      ...deps,
+      ...(values.previous === undefined ? {} : { previous: values.previous }),
+    })
+    return { exit: report.ready ? 0 : 1, output: `${JSON.stringify(report)}\n` }
+  }
   if (args[0] === "security" && args[1] === "no-leak" && args.length === 4) {
     try {
       const policy = JSON.parse(readFileSync(resolve(args[3] as string), "utf8")) as {

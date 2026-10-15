@@ -35,6 +35,13 @@ Facts learned during the audits, with their source. Each cost time once.
 - **Trail of Bits `fp-check` installs a Stop hook on every session** that blocks stopping until the
   verification is visible in the conversation itself. Disabling the plugin takes effect from the next
   session; in the current one, turn it off in `/hooks`.
+- **Zero scanned history is not a clean secret scan.** Gitleaks splits `--log-opts` itself;
+  embedded shell quotes can select zero commits. Keep the history/path expression in one shell
+  argument without internal quotes, verify a nonzero scanned count and use a separate synthetic
+  known-positive control. A private allowlisted scan does not establish whole-repository coverage.
+- **A delivery closeout is not a new audit baseline.** Do not change historical incomplete runs
+  to pass comparison. Bootstrap a new scanner run without `--previous`, record its coverage and
+  track manual verification, Socket and live A7 independently.
 
 ## GitHub
 
