@@ -1,0 +1,1077 @@
+{
+  "machine": {
+    "date": "2026-10-15T09:48:36.632Z",
+    "uname": "Linux TBookU 7.0.0-38-generic #38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:10:14 UTC 2026 x86_64 GNU/Linux",
+    "cpu": "AMD Ryzen AI 9 HX 470 w/ Radeon 890M",
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "nodeBaselineMs": {
+      "median": 29.4,
+      "min": 24.7,
+      "max": 42.2
+    }
+  },
+  "results": [
+    {
+      "cli": "@wirecat/tg-cli",
+      "version": "0.58.0",
+      "cliCore": "0.285.0",
+      "cliBase": "0.31.1",
+      "installMb": 278.4,
+      "packages": 197,
+      "optionalOnDiskMb": 169,
+      "biggest": [
+        {
+          "name": "echarts",
+          "mb": 61.4
+        },
+        {
+          "name": "@mtcute/core",
+          "mb": 21.5
+        },
+        {
+          "name": "@wirecat/cli-core",
+          "mb": 19.6
+        },
+        {
+          "name": "@anthropic-ai/sdk",
+          "mb": 17.6
+        },
+        {
+          "name": "sherpa-onnx",
+          "mb": 14.7
+        },
+        {
+          "name": "@wirecat/cli-core-onnx",
+          "mb": 13.7
+        },
+        {
+          "name": "better-sqlite3",
+          "mb": 10.1
+        },
+        {
+          "name": "@wirecat/cli-core-sqlite",
+          "mb": 9.8
+        },
+        {
+          "name": "ogg-opus-decoder",
+          "mb": 9.8
+        },
+        {
+          "name": "@mixmark-io/domino",
+          "mb": 8.7
+        }
+      ],
+      "timing": {
+        "--version": {
+          "median": 910.4,
+          "min": 809.2,
+          "max": 1323
+        },
+        "--help": {
+          "median": 687.9,
+          "min": 632.9,
+          "max": 875.9
+        },
+        "commands --json": {
+          "median": 684.9,
+          "min": 647.5,
+          "max": 764.7
+        },
+        "--help, NODE_COMPILE_CACHE warm": {
+          "median": 559.2,
+          "min": 527.5,
+          "max": 595.3
+        }
+      },
+      "loaded": {
+        "--help": {
+          "files": 1727,
+          "nodeModulesFiles": 1727,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@fuman/io",
+            "@fuman/net",
+            "@fuman/node",
+            "@fuman/utils",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@mtcute/core",
+            "@mtcute/file-id",
+            "@mtcute/html-parser",
+            "@mtcute/markdown-parser",
+            "@mtcute/node",
+            "@mtcute/tl-runtime",
+            "@mtcute/wasm",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/tg-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "better-sqlite3",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "dom-serializer",
+            "domelementtype",
+            "domhandler",
+            "domutils",
+            "emoji-regex",
+            "entities",
+            "fflate",
+            "get-east-asian-width",
+            "htmlparser2",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "long",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK",
+            "better-sqlite3",
+            "@mtcute"
+          ]
+        },
+        "commands --json": {
+          "files": 1727,
+          "nodeModulesFiles": 1727,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@fuman/io",
+            "@fuman/net",
+            "@fuman/node",
+            "@fuman/utils",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@mtcute/core",
+            "@mtcute/file-id",
+            "@mtcute/html-parser",
+            "@mtcute/markdown-parser",
+            "@mtcute/node",
+            "@mtcute/tl-runtime",
+            "@mtcute/wasm",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/tg-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "better-sqlite3",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "dom-serializer",
+            "domelementtype",
+            "domhandler",
+            "domutils",
+            "emoji-regex",
+            "entities",
+            "fflate",
+            "get-east-asian-width",
+            "htmlparser2",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "long",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK",
+            "better-sqlite3",
+            "@mtcute"
+          ]
+        }
+      },
+      "importAlone": {
+        "@modelcontextprotocol/server": {
+          "median": 85.6,
+          "min": 66.9,
+          "max": 124.4
+        },
+        "@wirecat/cli-base": {
+          "median": 53.4,
+          "min": 39,
+          "max": 84.8
+        },
+        "@wirecat/cli-core": {
+          "median": 106.9,
+          "min": 98.8,
+          "max": 169.4
+        }
+      },
+      "helpPeakRssMb": 259.9
+    },
+    {
+      "cli": "@wirecat/max-cli",
+      "version": "0.53.0",
+      "cliCore": "0.279.0",
+      "cliBase": "0.28.1",
+      "installMb": 240.7,
+      "packages": 152,
+      "optionalOnDiskMb": 169,
+      "biggest": [
+        {
+          "name": "echarts",
+          "mb": 61.4
+        },
+        {
+          "name": "@wirecat/cli-core",
+          "mb": 19.8
+        },
+        {
+          "name": "@anthropic-ai/sdk",
+          "mb": 17.6
+        },
+        {
+          "name": "sherpa-onnx",
+          "mb": 14.7
+        },
+        {
+          "name": "@wirecat/cli-core-onnx",
+          "mb": 13.7
+        },
+        {
+          "name": "@wirecat/cli-core-sqlite",
+          "mb": 9.8
+        },
+        {
+          "name": "ogg-opus-decoder",
+          "mb": 9.8
+        },
+        {
+          "name": "@mixmark-io/domino",
+          "mb": 8.7
+        },
+        {
+          "name": "zod",
+          "mb": 8.2
+        },
+        {
+          "name": "@wasm-audio-decoders/opus-ml",
+          "mb": 7.9
+        }
+      ],
+      "timing": {
+        "--version": {
+          "median": 535.4,
+          "min": 510.9,
+          "max": 801.3
+        },
+        "--help": {
+          "median": 517.6,
+          "min": 479.5,
+          "max": 694.6
+        },
+        "commands --json": {
+          "median": 594.5,
+          "min": 551,
+          "max": 927.8
+        },
+        "--help, NODE_COMPILE_CACHE warm": {
+          "median": 444.7,
+          "min": 395,
+          "max": 736.8
+        }
+      },
+      "loaded": {
+        "--help": {
+          "files": 1084,
+          "nodeModulesFiles": 1084,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@msgpack/msgpack",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/max-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "emoji-regex",
+            "fflate",
+            "get-east-asian-width",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "ws",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK"
+          ]
+        },
+        "commands --json": {
+          "files": 1084,
+          "nodeModulesFiles": 1084,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@msgpack/msgpack",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/max-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "emoji-regex",
+            "fflate",
+            "get-east-asian-width",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "ws",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK"
+          ]
+        }
+      },
+      "importAlone": {
+        "@modelcontextprotocol/server": {
+          "median": 99.6,
+          "min": 78.8,
+          "max": 145
+        },
+        "@wirecat/cli-base": {
+          "median": 56.9,
+          "min": 46,
+          "max": 67.3
+        },
+        "@wirecat/cli-core": {
+          "median": 146.4,
+          "min": 110.4,
+          "max": 173.2
+        }
+      },
+      "helpPeakRssMb": 196.8
+    },
+    {
+      "cli": "@wirecat/cli-memo",
+      "version": "0.38.0",
+      "cliCore": "0.285.0",
+      "cliBase": "0.31.1",
+      "installMb": 242.3,
+      "packages": 153,
+      "optionalOnDiskMb": 169,
+      "biggest": [
+        {
+          "name": "echarts",
+          "mb": 61.4
+        },
+        {
+          "name": "@wirecat/cli-core",
+          "mb": 19.6
+        },
+        {
+          "name": "@anthropic-ai/sdk",
+          "mb": 17.6
+        },
+        {
+          "name": "sherpa-onnx",
+          "mb": 14.7
+        },
+        {
+          "name": "@wirecat/cli-core-onnx",
+          "mb": 13.7
+        },
+        {
+          "name": "@wirecat/cli-core-sqlite",
+          "mb": 9.8
+        },
+        {
+          "name": "ogg-opus-decoder",
+          "mb": 9.8
+        },
+        {
+          "name": "@mixmark-io/domino",
+          "mb": 8.7
+        },
+        {
+          "name": "zod",
+          "mb": 8.2
+        },
+        {
+          "name": "@wasm-audio-decoders/opus-ml",
+          "mb": 7.9
+        }
+      ],
+      "timing": {
+        "--version": {
+          "median": 569.1,
+          "min": 516.7,
+          "max": 752.4
+        },
+        "--help": {
+          "median": 597.4,
+          "min": 522.1,
+          "max": 785.9
+        },
+        "commands --json": {
+          "median": 597.1,
+          "min": 544.8,
+          "max": 657.8
+        },
+        "--help, NODE_COMPILE_CACHE warm": {
+          "median": 533.8,
+          "min": 473,
+          "max": 604.9
+        }
+      },
+      "loaded": {
+        "--help": {
+          "files": 1101,
+          "nodeModulesFiles": 1101,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/cli-memo",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "disposable-email-domains-js",
+            "emoji-regex",
+            "fflate",
+            "get-east-asian-width",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "postal-mime",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "tldts",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "yaml",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK"
+          ]
+        },
+        "commands --json": {
+          "files": 1101,
+          "nodeModulesFiles": 1101,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/cli-memo",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "disposable-email-domains-js",
+            "emoji-regex",
+            "fflate",
+            "get-east-asian-width",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "postal-mime",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "tldts",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "yaml",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK"
+          ]
+        }
+      },
+      "importAlone": {
+        "@modelcontextprotocol/server": {
+          "median": 106.1,
+          "min": 91.2,
+          "max": 121.2
+        },
+        "@wirecat/cli-base": {
+          "median": 54,
+          "min": 46.6,
+          "max": 68.3
+        },
+        "@wirecat/cli-core": {
+          "median": 115.4,
+          "min": 94.7,
+          "max": 122.1
+        }
+      },
+      "helpPeakRssMb": 190.3
+    },
+    {
+      "cli": "@wirecat/drive-cli",
+      "version": "0.8.1",
+      "cliCore": "0.283.0",
+      "cliBase": "0.31.1",
+      "installMb": 255.3,
+      "packages": 200,
+      "optionalOnDiskMb": 169,
+      "biggest": [
+        {
+          "name": "echarts",
+          "mb": 61.4
+        },
+        {
+          "name": "@wirecat/cli-core",
+          "mb": 19.1
+        },
+        {
+          "name": "@anthropic-ai/sdk",
+          "mb": 17.6
+        },
+        {
+          "name": "sherpa-onnx",
+          "mb": 14.7
+        },
+        {
+          "name": "@wirecat/cli-core-onnx",
+          "mb": 13.7
+        },
+        {
+          "name": "@wirecat/cli-core-sqlite",
+          "mb": 9.8
+        },
+        {
+          "name": "ogg-opus-decoder",
+          "mb": 9.8
+        },
+        {
+          "name": "web-streams-polyfill",
+          "mb": 8.8
+        },
+        {
+          "name": "@mixmark-io/domino",
+          "mb": 8.7
+        },
+        {
+          "name": "zod",
+          "mb": 8.2
+        }
+      ],
+      "timing": {
+        "--version": {
+          "median": 766.8,
+          "min": 593.1,
+          "max": 1426.5
+        },
+        "--help": {
+          "median": 795.1,
+          "min": 739.1,
+          "max": 1845.8
+        },
+        "commands --json": {
+          "median": 818.9,
+          "min": 707.3,
+          "max": 2078.8
+        },
+        "--help, NODE_COMPILE_CACHE warm": {
+          "median": 549.8,
+          "min": 471.7,
+          "max": 803.2
+        }
+      },
+      "loaded": {
+        "--help": {
+          "files": 1078,
+          "nodeModulesFiles": 1078,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@googleapis/docs",
+            "@googleapis/drive",
+            "@googleapis/driveactivity",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/drive-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "base64-js",
+            "bignumber.js",
+            "call-bind-apply-helpers",
+            "call-bound",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "dunder-proto",
+            "ecdsa-sig-formatter",
+            "emoji-regex",
+            "es-define-property",
+            "es-errors",
+            "es-object-atoms",
+            "extend",
+            "fflate",
+            "function-bind",
+            "gaxios",
+            "gcp-metadata",
+            "get-east-asian-width",
+            "get-intrinsic",
+            "get-proto",
+            "google-auth-library",
+            "google-logging-utils",
+            "googleapis-common",
+            "gopd",
+            "graceful-fs",
+            "has-symbols",
+            "hasown",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "json-bigint",
+            "jwa",
+            "jws",
+            "liquidjs",
+            "lossless-json",
+            "math-intrinsics",
+            "object-inspect",
+            "path-key",
+            "picocolors",
+            "proper-lockfile",
+            "psl",
+            "qrcode-generator",
+            "qs",
+            "retry",
+            "safe-buffer",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "side-channel",
+            "side-channel-list",
+            "side-channel-map",
+            "side-channel-weakmap",
+            "signal-exit",
+            "string-width",
+            "strip-ansi",
+            "url-template",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK",
+            "googleapis"
+          ]
+        },
+        "commands --json": {
+          "files": 1078,
+          "nodeModulesFiles": 1078,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@googleapis/docs",
+            "@googleapis/drive",
+            "@googleapis/driveactivity",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/drive-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "base64-js",
+            "bignumber.js",
+            "call-bind-apply-helpers",
+            "call-bound",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "dunder-proto",
+            "ecdsa-sig-formatter",
+            "emoji-regex",
+            "es-define-property",
+            "es-errors",
+            "es-object-atoms",
+            "extend",
+            "fflate",
+            "function-bind",
+            "gaxios",
+            "gcp-metadata",
+            "get-east-asian-width",
+            "get-intrinsic",
+            "get-proto",
+            "google-auth-library",
+            "google-logging-utils",
+            "googleapis-common",
+            "gopd",
+            "graceful-fs",
+            "has-symbols",
+            "hasown",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "json-bigint",
+            "jwa",
+            "jws",
+            "liquidjs",
+            "lossless-json",
+            "math-intrinsics",
+            "object-inspect",
+            "path-key",
+            "picocolors",
+            "proper-lockfile",
+            "psl",
+            "qrcode-generator",
+            "qs",
+            "retry",
+            "safe-buffer",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "side-channel",
+            "side-channel-list",
+            "side-channel-map",
+            "side-channel-weakmap",
+            "signal-exit",
+            "string-width",
+            "strip-ansi",
+            "url-template",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK",
+            "googleapis"
+          ]
+        }
+      },
+      "importAlone": {
+        "@modelcontextprotocol/server": {
+          "median": 114.3,
+          "min": 100.3,
+          "max": 127.8
+        },
+        "@wirecat/cli-base": {
+          "median": 67.7,
+          "min": 54.7,
+          "max": 78.9
+        },
+        "@wirecat/cli-core": {
+          "median": 144.8,
+          "min": 119.6,
+          "max": 187.5
+        }
+      },
+      "helpPeakRssMb": 196.8
+    },
+    {
+      "cli": "@wirecat/zoom-cli",
+      "version": "0.17.1",
+      "cliCore": "0.285.0",
+      "cliBase": "0.31.1",
+      "installMb": 256.3,
+      "packages": 234,
+      "optionalOnDiskMb": 169,
+      "biggest": [
+        {
+          "name": "echarts",
+          "mb": 61.4
+        },
+        {
+          "name": "@wirecat/cli-core",
+          "mb": 19.6
+        },
+        {
+          "name": "@anthropic-ai/sdk",
+          "mb": 17.6
+        },
+        {
+          "name": "sherpa-onnx",
+          "mb": 14.7
+        },
+        {
+          "name": "@wirecat/cli-core-onnx",
+          "mb": 13.7
+        },
+        {
+          "name": "@wirecat/cli-core-sqlite",
+          "mb": 9.8
+        },
+        {
+          "name": "ogg-opus-decoder",
+          "mb": 9.8
+        },
+        {
+          "name": "@mixmark-io/domino",
+          "mb": 8.7
+        },
+        {
+          "name": "zod",
+          "mb": 8.2
+        },
+        {
+          "name": "@wasm-audio-decoders/opus-ml",
+          "mb": 7.9
+        }
+      ],
+      "timing": {
+        "--version": {
+          "median": 656.7,
+          "min": 578.1,
+          "max": 950.2
+        },
+        "--help": {
+          "median": 720.2,
+          "min": 601.8,
+          "max": 1055.5
+        },
+        "commands --json": {
+          "median": 756.6,
+          "min": 629.9,
+          "max": 917.9
+        },
+        "--help, NODE_COMPILE_CACHE warm": {
+          "median": 695.9,
+          "min": 552.4,
+          "max": 822.3
+        }
+      },
+      "loaded": {
+        "--help": {
+          "files": 976,
+          "nodeModulesFiles": 976,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/zoom-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "emoji-regex",
+            "fflate",
+            "get-east-asian-width",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK"
+          ]
+        },
+        "commands --json": {
+          "files": 976,
+          "nodeModulesFiles": 976,
+          "native": [],
+          "packages": [
+            "@bomb.sh/tab",
+            "@modelcontextprotocol/core",
+            "@modelcontextprotocol/server",
+            "@valibot/to-json-schema",
+            "@wirecat/cli-base",
+            "@wirecat/cli-core",
+            "@wirecat/zoom-cli",
+            "@xmldom/xmldom",
+            "ansi-regex",
+            "ansi-styles",
+            "chardet",
+            "cli-table3",
+            "commander",
+            "cross-spawn",
+            "emoji-regex",
+            "fflate",
+            "get-east-asian-width",
+            "iconv-lite",
+            "image-size",
+            "is-fullwidth-code-point",
+            "isexe",
+            "liquidjs",
+            "lossless-json",
+            "path-key",
+            "picocolors",
+            "psl",
+            "qrcode-generator",
+            "safer-buffer",
+            "shebang-command",
+            "shebang-regex",
+            "string-width",
+            "strip-ansi",
+            "valibot",
+            "which",
+            "wrap-ansi",
+            "zod"
+          ],
+          "heavyLoaded": [
+            "MCP SDK"
+          ]
+        }
+      },
+      "importAlone": {
+        "@modelcontextprotocol/server": {
+          "median": 147.5,
+          "min": 110.4,
+          "max": 170
+        },
+        "@wirecat/cli-base": {
+          "median": 82.6,
+          "min": 68.2,
+          "max": 93.3
+        },
+        "@wirecat/cli-core": {
+          "median": 182.4,
+          "min": 142.1,
+          "max": 199.9
+        }
+      },
+      "helpPeakRssMb": 185.2
+    }
+  ]
+}
