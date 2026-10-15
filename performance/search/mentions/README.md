@@ -100,3 +100,36 @@ Setup: same machine; installed `@wirecat/tg-cli` 0.55.0 (cli-core 0.275.0); comm
 What it showed: the released rule finds the same names as the branch. The 3.4 s is the whole process, not the
 rebuild alone as in the 0.7 s row above, so the two are not comparable. A name search by person
 (`mentions:"person:<id>"`) answered on the real store. Not measured: the time names add to `messages sync`.
+
+## Fourth run: tracking links in mail (2026-10-15)
+
+Why: store version 16 (cli-core 0.285.0) reads mail too. A full `mentions rebuild` on the owner's store made the
+file grow by about 0.4 GB, nearly all of it links in mail. The question: how many of them are one-off tracking
+links, and what keeping one per letter and site saves without losing a letter or a site from `domain:` search. It
+decided the mail rule in [cli-core#1310](https://github.com/WireCatLabs/cli-core/pull/1310).
+
+Setup: same machine; a `sqlite3 .backup` copy of the owner's store (store version 16, 92,444 letters with text);
+cli-core branch `feat/mentions-other-sources` built with `pnpm build`;
+`node rebuild-url.mjs <cli-core>/dist <copy.db>` (rebuilds `url` only), then `sqlite3 <copy.db> < mail-links.sql`
+before and after. "Tracking-like" means a query string or a run of 24+ `[A-Za-z0-9_-]`. Totals only; the copy was
+deleted after.
+
+| | before | after |
+|---|---|---|
+| mail link rows | 733,311 | 450,118 |
+| distinct mail link values | 409,635 | 98,611 |
+| link text stored, MB | 99.8 | 14.3 |
+| `mentions` table and its indexes, MB | 428 | 172 |
+| letters with a link | 76,332 | 76,332 |
+| sites in mail links | 20,838 | 20,838 |
+| message link rows | 5,013 | 5,013 |
+| rebuild of `url`, all sources | | 39 s |
+
+Before the rule: 388,309 mail link rows were tracking-like (320,209 distinct values); only 9,389 of those values
+were in more than one letter. They held 88 of the 100 MB of link text. 93% of all distinct mail link values were in
+one letter only.
+
+What it showed: tracking links are most of the mail link weight and almost never repeat, so an exact `url:` search
+for one finds nothing useful. Keeping one per letter and site, valued as the site, removes 60% of the table and its
+indexes and keeps every letter findable by `domain:`. Not measured: how many tracking-like links were real pages a
+person would search for (a YouTube `watch?v=` link is collapsed too); the effect on `messages sync` time.
