@@ -13,6 +13,31 @@ const string = (value: unknown): string => {
   return value
 }
 
+export const scannerCoverage = (repo: string, tool: string, value: unknown): string[] => {
+  const keys = new Set([JSON.stringify([repo, tool])])
+  if (tool !== "semgrep") return [...keys]
+  const report = object(value)
+  for (const item of list(report.coverageGaps ?? [])) {
+    const gap = object(item)
+    keys.add(JSON.stringify([repo, tool, "rule-gap", string(gap.rule), string(gap.path)]))
+  }
+  const point = (value: unknown) => {
+    const position = object(value)
+    if (!Number.isSafeInteger(position.line) || !Number.isSafeInteger(position.col))
+      throw new Error("invalid partial parsing position")
+    return [position.line, position.col]
+  }
+  for (const item of list(report.errors ?? [])) {
+    const type = object(item).type
+    if (!Array.isArray(type) || type[0] !== "PartialParsing") continue
+    for (const item of list(type[1])) {
+      const span = object(item)
+      keys.add(JSON.stringify([repo, tool, "partial", string(span.path), point(span.start), point(span.end)]))
+    }
+  }
+  return [...keys].sort()
+}
+
 /** These are scanner observations, not verdicts on whether a vulnerability is reachable. */
 export const scannerObservations = (repo: string, tool: string, value: unknown): Observation[] => {
   const ids: string[] = []

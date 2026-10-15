@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs"
 import { dirname, join, resolve } from "node:path"
 import type { Observation, RunRecord } from "./compare.js"
-import { scannerObservations } from "./observations.js"
+import { scannerCoverage, scannerObservations } from "./observations.js"
 
 export const readRun = (directory: string): RunRecord => {
   if (!existsSync(join(directory, "run.json"))) {
@@ -48,7 +48,6 @@ export const collectObservations = (directory: string, coverage?: Set<string>): 
     for (const file of readdirSync(join(directory, "raw", repo.name), { withFileTypes: true })) {
       if (!file.isFile() || !file.name.endsWith(".json")) continue
       const tool = file.name.slice(0, -5)
-      coverage?.add(JSON.stringify([repo.name, tool]))
       const raw = readFileSync(join(directory, "raw", repo.name, file.name), "utf8")
       let value: unknown
       try {
@@ -60,7 +59,8 @@ export const collectObservations = (directory: string, coverage?: Set<string>): 
           .split("\n")
           .map((line) => JSON.parse(line))
       }
-      observations.push(...scannerObservations(repo.name, tool, value))
+      for (const key of scannerCoverage(repo.name, tool, value)) coverage?.add(key)
+      for (const observation of scannerObservations(repo.name, tool, value)) observations.push(observation)
     }
   }
   return observations
