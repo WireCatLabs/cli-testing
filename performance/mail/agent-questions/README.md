@@ -33,6 +33,25 @@ Totals only; the questions, answers and evidence stay in the owner's private rep
 - Both "not found" questions are about years before 2019, which held only envelopes, so the gap is the import scope,
   not search.
 
+### Run 2 — after the gap fixes, 2026-10-15
+
+memo main 7b23287 (cli-memo#202, #206), local build. Only the questions run 1 left partial were rerun.
+
+| | Run 1 | Run 2 |
+|---|---:|---:|
+| Answered | 1 | 1 |
+| Partly answered | 3 | 3 |
+| Not found | 2 | 2 |
+
+- Answers didn't change. The one answered question needs no hand extraction now: an itinerary that was stored as
+  HTML markup is readable text (214k → 3.5k characters), and 239 such emails were repaired in place.
+- A school timetable stays missing. The email links to the school portal and holds no attachment, so no mail tool
+  could read it.
+- Bill totals still need facts extracted from the PDFs, which memo doesn't do yet.
+- Leaving bulk mail out of search by default lost real answers: a utility-bill query went from 10 hits to 0,
+  because billing, airline and booking mail carries the same List-Unsubscribe header as newsletters. The
+  exclusion is now opt-in, `NOT mailbox:bulk`, which trims newsletters (8 → 5, 10 → 8 hits) without that loss.
+
 ## What it showed
 
 - **Stored text is sometimes raw HTML** for template-built emails such as flight itineraries. The facts are in the
