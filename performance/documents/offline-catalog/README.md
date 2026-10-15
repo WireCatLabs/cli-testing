@@ -85,7 +85,9 @@ npm installation, including the document-specific JSON fields repaired in 0.11.1
 On 2026-10-15, Linux/Node 24.19.0, npm Drive 0.11.1 with exact Core 0.288.0/Base 0.33.0
 passed the precise contract-3 runner: 41 CLI invocations and three MCP validation/audit calls.
 The synthetic lifecycle runner passed eight initial checks, eight repeat checks and nine
-knowledge groups. Eleven checker guard tests also passed.
+knowledge groups. Twelve checker guard tests also passed, including a 51-source paged response
+and refusal of looping or excessive continuation pages. The compiled-package fixture has one
+document; the 51-source case tests the checker's pagination independently.
 
 | Additional installed-package behavior | Result |
 | --- | --- |

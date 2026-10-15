@@ -18,7 +18,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 ### Added
 
 - The installed Drive research runner accepts exact npm 0.11.1 pins and checks list queries,
-  document-specific JSON fields, paging and refusal of removed filter flags. Older release
+  document-specific JSON fields, paging and refusal of removed filter flags. Fixture checks
+  follow document-list pages with a bounded scan rather than stopping after fifty sources. Older release
   expectations remain separate.
 - Drive research acceptance selects exact version-specific export and memory-search contracts,
   and records aggregate read-only Google import/recovery results without publishing source data.
