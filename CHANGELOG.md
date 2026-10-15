@@ -17,6 +17,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- Drive AI extraction research drives the executable against a guarded loopback responder,
+  checking evidence quotes, proposal persistence, provider failures and source changes.
+  Historical npm and local candidate results are explicitly distinguished.
 - Complex Drive research acceptance: compiled-package SDK fixtures exercise nested content,
   interrupted exports and source lifecycle with a real temporary store; live multi-tab comparisons
   publish aggregate counts only, with private source details kept separately. Exact 0.11.2 and
