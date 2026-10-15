@@ -17,6 +17,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- Complex Drive research acceptance: compiled-package SDK fixtures exercise nested content,
+  interrupted exports and source lifecycle with a real temporary store; live multi-tab comparisons
+  publish aggregate counts only, with private source details kept separately.
 - The installed Drive research runner accepts exact npm 0.11.1 pins and checks list queries,
   document-specific JSON fields, paging and refusal of removed filter flags. Fixture checks
   follow document-list pages with a bounded scan rather than stopping after fifty sources. Older release
