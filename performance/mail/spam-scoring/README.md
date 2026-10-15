@@ -47,11 +47,40 @@ It prints totals only. It never prints a sender, a domain or a subject.
 
 ## Results
 
-Not run yet. Real results stay in the private `cli-private` repository (`docs_ai/reports/`). Only totals come
-here.
+Totals only; nothing per sender leaves the owner's machine.
+
+**Run 1 — 2026-10-15**, memo 0.36.0, one personal Gmail account. Command:
+`DOMAIN_AGE=1 calibrate.sh personal 3 2025-01-01`, so Spam holds the last 30 days and the replied-to senders
+come from mail since 2025-01-01.
+
+| | Value |
+|---|---:|
+| Spam emails / sender groups | 331 / 202 |
+| Spam emails reaching score 3 (recall) | 79 (23.9%) |
+| Replied-to sender groups | 63 |
+| …reaching score 3 (false alarms) | 1 (1.6%) |
+| Never-replied groups reaching score 3 | 377 of 3,091 (12.2%) |
+
+Signals on the 202 Spam groups: never replied plus bulk 145, Reply-To on another domain 26, young domain 3,
+DMARC fail 2. On the replied-to senders, only DMARC fail fired, once.
+
+What it showed:
+
+- **The score is safe but weak.** It almost never flags people the owner writes to (1.6%), and catches only a
+  quarter of real spam at threshold 3.
+- **Spam passes Gmail's sender checks.** DMARC failed on 2 of 202 spam groups, so a DMARC fail (+3) is rare.
+  Spammers authenticate their own domains.
+- **Domain age barely fires** (3 groups): many spam domains have no RDAP service (country domains), or aren't
+  young.
+- **The common spam signal is "never replied plus bulk"** (145 of 202 groups), but its weight (+1) alone never
+  reaches 3. It also fires on all ordinary mass mail, so raising it would flag newsletters as spam.
+
+Next: try threshold 2, and a "never replied, no List-Unsubscribe, no bulk headers, Reply-To elsewhere" combination,
+which separates scams from newsletters better than bulk alone.
 
 ## Not measured
 
 - Spam older than 30 days, because Gmail deletes it.
+- Other thresholds: each run lists the mailbox again, so run 1 used only threshold 3.
 - Scams that pass every check, such as a plain Gmail address with no brand name and no Reply-To.
 - Whether a high score on a never-replied group is junk or a real sender: the owner checks a sample by hand.
