@@ -297,3 +297,78 @@ Raw numbers: [`results-linked.json`](results-linked.json).
   would change this set and every result above.
 - Rule-made tasks next to agent-made ones in one store: the rule runs give every task an empty title.
 
+
+## Follow-up: Spanish due dates (2026-10-16)
+
+### Why it was run
+
+The owner's chats are also in Spanish. The due date is one field of the duplicate check (+4 when two tasks are due
+within 2 days, −1 when further apart), but the patterns read dates in English and Russian only. A Spanish task
+(`¿me lo envías el jueves?`, `para mañana`) had no due date, so a reminder lost its +4 and two jobs a week apart
+lost their −1. The questions: does reading Spanish dates the way English and Russian ones are read find more
+duplicates, and does it make wrong matches on the English and Russian set? The answer went into the cli-core change
+that adds the Spanish forms
+([WireCatLabs/cli-core#1352](https://github.com/WireCatLabs/cli-core/pull/1352)).
+
+### Setup
+
+- Machine, versions and time zone as above.
+- Patterns: [`chain.mjs`](chain.mjs) now reads, as cli-core does: `hoy`, `mañana` (not `por la mañana`,
+  `esta mañana`), `pasado mañana`, a weekday (not `los viernes`, which is every Friday), `fin de mes`,
+  `15 de noviembre` (a Spanish month only after `<day> de`), and a day of the month (`antes del 5`, `el día 20`;
+  not when a month or `de` follows). Left out because English and Russian have no such form: `la semana que viene`
+  and `3/11`.
+- Data: [`spanish.jsonl`](spanish.jsonl), 18 synthetic tasks written by hand, in the set's format, from 3 invented
+  people (Lucía Ejemplo, Pablo Muestra, Marta Prueba) in private chats, 2026-10-12 to 2026-11-28. Seven duplicate
+  groups, each a task and a later reminder: the date written another way (`el jueves` / `para mañana`,
+  `el 15 de noviembre` / `para el domingo`), `mañana` read from the reminder's own time, and `por la mañana` in both
+  messages of one job (no date). Three look-alike pairs: the same job on another date (`el martes` /
+  `a fin de mes`, `hoy` / `el sábado`), and monthly rent (`antes del 5 de noviembre` / `de diciembre`, the first
+  closed). The labels are calendar dates in Europe/Madrid.
+- [`spanish.mjs`](spanish.mjs) counts the due dates against the labels, and prints the dates read from the Spanish
+  category set ([`../categories/spanish.json`](../categories/spanish.json), 24 messages, no date labels) as if sent
+  on Wednesday 2026-10-14. [`linked.mjs`](linked.mjs) replays `spanish.jsonl` with the shipped weights and bands
+  (results: [`results-spanish.json`](results-spanish.json)). "Before" is the same scripts on `chain.mjs` without the
+  Spanish patterns.
+
+```sh
+performance/tasks/duplicates/run.sh   # the Spanish runs are its last two commands
+```
+
+### Results
+
+Due dates on `spanish.jsonl`: before, 16 of 16 missed; after, 16 right, 0 wrong, and the 2 `por la mañana` tasks
+still have none. On the Spanish category set, 6 of 24 messages now get a date (before: 0); one of them is a date in
+the past (`ya te he pagado lo del sábado` reads as next Saturday), as `paid for saturday` would in English.
+
+The 251-task English and Russian set: every count, weight, band and extraction number above is the same as before
+(only runtime moves), so no due date there changed.
+
+Replay of `spanish.jsonl` (6 duplicate pairs, 12 tasks with no earlier duplicate):
+
+| Run | | ≥ 5 true/false | P | R | ≥ 10 true/false | P | R | new refused |
+|---|---|---|---|---|---|---|---|---|
+| Agent, own text | before | 6/2 | 75% | 100% | 0/0 | — | 0% | 2/12 |
+| Agent, own text | after | 6/1 | 86% | 100% | 3/0 | 100% | 50% | 1/12 |
+| Rule tasks, source message read | before | 4/2 | 67% | 67% | 0/0 | — | 0% | 2/12 |
+| Rule tasks, source message read | after | 5/2 | 71% | 83% | 2/1 | 67% | 33% | 1/12 |
+
+### What it showed
+
+- **A matched date lifts a reminder from maybe to likely.** The three reminders that name the same day another way
+  (`el jueves` / `mañana`, `el viernes` / `mañana`, `pasado mañana` / `mañana` a day later) scored 9 before and 13
+  after. Two more (`antes del día 20` / `hoy`, `el 15 de noviembre` / `el domingo`) rose from 5 to 9. The
+  `por la mañana` pair scored 9 both times: it was not read as tomorrow.
+- **A date apart drops a look-alike.** `fotos del viaje hoy` / `fotos de la boda el sábado` fell from 5 (maybe) to
+  below it. `el coche al taller el martes` / `a fin de mes` fell from 9 to 8 and stays a maybe: the words and the
+  person are the same, and −1 cannot outweigh them.
+- **The one new wrong "likely" is a date shared by chance.** In the rule run, which compares a rule's task by its
+  message only, `Lo de la mesa es para mañana por la noche` and `Lo del pasaporte de Leo es mañana` (same person,
+  same day) rose from 7 to 11. With the agent's titles they stay apart. English `tomorrow` would do the same.
+
+### Not measured
+
+- Real Spanish chats. The 18 tasks were written with the patterns in mind, so they show only that the patterns work
+  on these phrasings.
+- Spanish amounts (`900 €` already reads; `15 mil`, `900 pavos` do not), and Spanish forms with no English or
+  Russian counterpart (`la semana que viene`, `3/11`).
