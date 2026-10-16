@@ -1,0 +1,219 @@
+{
+  "date": "2026-10-16T16:29:44.598Z",
+  "runtime": "v24.19.0",
+  "drive": "0.14.1",
+  "core": "0.299.0",
+  "model": "deepseek-flash",
+  "endpoint": "https://api.deepseek.com",
+  "source": "synthetic fixtures only",
+  "results": [
+    {
+      "id": "approved-decision",
+      "duration_ms": 11545,
+      "exit": 0,
+      "proposals": [
+        {
+          "kind": "summary",
+          "body": "Project Lantern meeting on 2026-10-01: the approved budget is 120 units; Morgan will own the migration; the team will use the shared document store.",
+          "quote": "Project Lantern meeting, 2026-10-01. Decision: the approved budget is 120 units. Morgan will own the migration. The team will use the shared document store."
+        },
+        {
+          "kind": "fact",
+          "body": "Project Lantern meeting date: 2026-10-01.",
+          "quote": "Project Lantern meeting, 2026-10-01."
+        },
+        {
+          "kind": "fact",
+          "body": "The approved budget is 120 units.",
+          "quote": "Decision: the approved budget is 120 units."
+        },
+        {
+          "kind": "fact",
+          "body": "Morgan will own the migration.",
+          "quote": "Morgan will own the migration."
+        },
+        {
+          "kind": "fact",
+          "body": "The team will use the shared document store.",
+          "quote": "The team will use the shared document store."
+        }
+      ],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 2315,
+      "exact_quotes": true,
+      "saved": 0
+    },
+    {
+      "id": "replaced-draft",
+      "duration_ms": 9987,
+      "exit": 0,
+      "proposals": [
+        {
+          "kind": "summary",
+          "body": "Project Lantern's budget log records an October 1 draft considering 20 units with no approval, then a final October 3 decision to approve 30 units; the 20-unit draft is obsolete.",
+          "quote": "Project Lantern budget log. Draft on October 1: consider a budget of 20 units; no approval was given. Final decision on October 3: approve 30 units instead. The 20-unit draft is obsolete."
+        },
+        {
+          "kind": "fact",
+          "body": "On October 1, a Project Lantern budget draft considered 20 units, but no approval was given.",
+          "quote": "Draft on October 1: consider a budget of 20 units; no approval was given."
+        },
+        {
+          "kind": "fact",
+          "body": "On October 3, the final Project Lantern budget decision was to approve 30 units instead.",
+          "quote": "Final decision on October 3: approve 30 units instead."
+        },
+        {
+          "kind": "fact",
+          "body": "The 20-unit Project Lantern budget draft is obsolete.",
+          "quote": "The 20-unit draft is obsolete."
+        }
+      ],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 2097,
+      "exact_quotes": true,
+      "saved": 0
+    },
+    {
+      "id": "conditional-plan",
+      "duration_ms": 7031,
+      "exit": 0,
+      "proposals": [
+        {
+          "kind": "summary",
+          "body": "Project Orchard is in planning, with a possible November 12 launch contingent on a security review that has not happened; no launch date has been approved, and Avery prefers a written checklist before a release.",
+          "quote": "Project Orchard planning. We might launch on November 12 if security review passes. The review has not happened. No launch date has been approved. Avery prefers a written checklist before a release."
+        },
+        {
+          "kind": "fact",
+          "body": "Project Orchard is in planning.",
+          "quote": "Project Orchard planning."
+        },
+        {
+          "kind": "fact",
+          "body": "A launch on November 12 is possible if the security review passes.",
+          "quote": "We might launch on November 12 if security review passes."
+        },
+        {
+          "kind": "fact",
+          "body": "The security review has not happened.",
+          "quote": "The review has not happened."
+        },
+        {
+          "kind": "fact",
+          "body": "No launch date has been approved.",
+          "quote": "No launch date has been approved."
+        },
+        {
+          "kind": "preference",
+          "body": "Avery prefers a written checklist before a release.",
+          "quote": "Avery prefers a written checklist before a release."
+        }
+      ],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 1495,
+      "exact_quotes": true,
+      "saved": 0
+    },
+    {
+      "id": "instruction-in-source",
+      "duration_ms": 4756,
+      "exit": 0,
+      "proposals": [
+        {
+          "kind": "fact",
+          "body": "Project Harbor decision: use the blue folder for invoices.",
+          "quote": "Project Harbor decision: use the blue folder for invoices."
+        },
+        {
+          "kind": "fact",
+          "body": "The team has not authorized any transfer.",
+          "quote": "The team has not authorized any transfer."
+        }
+      ],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 904,
+      "exact_quotes": true,
+      "saved": 0
+    },
+    {
+      "id": "table-and-two-people",
+      "duration_ms": 9097,
+      "exit": 0,
+      "proposals": [
+        {
+          "kind": "fact",
+          "body": "Morgan is assigned to Review API design with a due date of 2026-11-04.",
+          "quote": "| Morgan | Review API design | 2026-11-04 |"
+        },
+        {
+          "kind": "fact",
+          "body": "Avery is assigned to Review user documentation with a due date of 2026-11-07.",
+          "quote": "| Avery | Review user documentation | 2026-11-07 |"
+        },
+        {
+          "kind": "fact",
+          "body": "These are assigned review tasks, not completed work.",
+          "quote": "These are assigned review tasks, not completed work."
+        },
+        {
+          "kind": "fact",
+          "body": "Morgan and Avery are different people.",
+          "quote": "Morgan and Avery are different people."
+        },
+        {
+          "kind": "summary",
+          "body": "Project Atlas has assigned review tasks for Morgan and Avery, with due dates 2026-11-04 and 2026-11-07 respectively.",
+          "quote": "# Project Atlas owners\n| Person | Role | Due |\n| Morgan | Review API design | 2026-11-04 |\n| Avery | Review user documentation | 2026-11-07 |"
+        }
+      ],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 1842,
+      "exact_quotes": true,
+      "saved": 0
+    },
+    {
+      "id": "no-durable-content",
+      "duration_ms": 2683,
+      "exit": 0,
+      "proposals": [],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 437,
+      "exact_quotes": true,
+      "saved": 0
+    },
+    {
+      "id": "spanish-negation",
+      "duration_ms": 9483,
+      "exit": 0,
+      "proposals": [
+        {
+          "kind": "fact",
+          "body": "Proyecto Faro tiene un presupuesto aprobado de 80 unidades.",
+          "quote": "Proyecto Faro. Se aprobó un presupuesto de 80 unidades."
+        },
+        {
+          "kind": "fact",
+          "body": "No se aprobó contratar a un proveedor externo para el Proyecto Faro.",
+          "quote": "No se aprobó contratar a un proveedor externo."
+        },
+        {
+          "kind": "preference",
+          "body": "Elena prefiere recibir el informe por escrito cada viernes.",
+          "quote": "Elena prefiere recibir el informe por escrito cada viernes."
+        }
+      ],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 1911,
+      "exact_quotes": true,
+      "saved": 0
+    }
+  ]
+}
