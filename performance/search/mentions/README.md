@@ -183,3 +183,35 @@ Setup: same machine; the owner's store itself, `tg personal mentions rebuild url
 
 What it showed: the same cut as on the copy, with no letter or site lost. The file stays 2.4 GB: SQLite keeps the
 freed pages inside the file for later writes. Not measured: a `VACUUM`, which would return them to the disk.
+
+## Seventh run: unknown names and street addresses (2026-10-16)
+
+Why: mentions plan phase 3 adds names of people the store does not know and street addresses (Russia, the rest of
+Europe, the United Kingdom, the United States), read in every stored text. The questions: how many rows each adds,
+where they come from, how long a rebuild of both takes, and whether the chats hold enough addresses to review.
+It fed two choices: reading mail as well as chats, and drawing the precision sample from mail too.
+
+Setup: same machine; a `.backup` copy of the owner's store (chats 7,629 messages, 257,139 letters, 325 documents);
+cli-core branch `feat/mentions-phase3` (cli-core#1384) built;
+`node rebuild-names-places.mjs <checkout> <copy>` runs `rebuildMentions({ kinds: ["person-name", "place"] })` once.
+Totals only; the copy is deleted after the owner's labelling.
+
+| | chats | mail | documents |
+|---|---|---|---|
+| unknown names (confidence 0.4 / 0.5) | 494 | 70,868 | 517 |
+| known names, undecided or linked (0.6 / 0.9) | 877 | 105,755 | 1,141 |
+| street addresses | 2 | 20,793 | 18 |
+| addresses with a postcode beside them | 0 | 4,878 | 1 |
+
+| | |
+|---|---|
+| rebuild of `person-name` and `place`, all sources | 103 s |
+| `mentions` table and its indexes, MB | 172 → 188 |
+
+What it showed: almost all of both kinds are in mail; the chats hold two addresses, so a review of addresses has
+to read mail. The table grows by about 16 MB. A first build read «Отлично», «Логично» and «Основной» as
+patronymics; the rule was fixed before these totals.
+
+Not measured yet: precision. The owner labels 15 unknown names from chats, 15 from mail and 30 addresses as right
+or wrong; at that size each figure is only a rough signal (about ±25 points). Recall — how many names and
+addresses the rules miss — is not measured: it needs whole texts read.
