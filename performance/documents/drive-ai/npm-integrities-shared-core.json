@@ -1,0 +1,14 @@
+{
+  "drive": {
+    "version": "0.14.0",
+    "dist.integrity": "sha512-cJW8B/szDa1Zn58D0bnEJ1XlfYyV/TsKm/Mc/g4NWuYphjNQxuZeyfxHdRv3DT1TFbpn646iBjVXka54aSJlkw=="
+  },
+  "core": {
+    "version": "0.295.0",
+    "dist.integrity": "sha512-7eW8azMr2iJH67zpt6/XdKOWCw8BLtu0KTJ7NF1r3Dk+UzXNUkUygQta2mx6Mm0/Qfahi+zQ8nBLkoncsPXAgw=="
+  },
+  "base": {
+    "version": "0.40.0",
+    "dist.integrity": "sha512-jv+n/hyKzASfS9Sz8Q+pljE8qefsqn4H+jDS5/tsr2vIfEDvFXw+inME+mM2kzaSV70s+eSH8kyEUPmq7UGd5A=="
+  }
+}

@@ -38,3 +38,11 @@ records the published version and integrity. Source changes shipped in
 The runner checks behavior with synthetic local records. It does not measure live Google access,
 remote writes, AI accuracy or model transfers. MCP filtering and public command effects are covered
 by Drive's source tests; this runner measures CLI execution only.
+
+## Shared Core adoption
+
+The [0.14.0 npm result](results-shared-core.json) repeats the same 24 executable invocations
+after Drive adopted Core's document-scoped knowledge service. Use the existing runner with
+`--shared-core` after the installed package directory to enforce Drive 0.14.0 / Core 0.295.0 /
+Base 0.40.0. The historical 0.13.0 result and default runner mode remain unchanged. The AI
+workflow's [integrity record](../drive-ai/npm-integrities-shared-core.json) covers this same npm installation.

@@ -17,6 +17,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- Installed Drive 0.14.0 shared-Core acceptance: 59 AI workflow commands/12 loopback requests
+  and 24 decision-history commands, exact Core/Base pins, registry integrity and shared-module
+  hashes. Historical runner modes and results remain reproducible.
 - Synthetic installed-Drive decision history checks: replacement on acceptance, reversal, event
   time and document/account/policy boundaries, with a network/browser/keyring guard.
 - `security preflight` checks scanner pins, command availability, canonical repository paths and

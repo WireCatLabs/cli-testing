@@ -104,3 +104,19 @@ resistance to prompt injection, factual entailment or compliance with instructio
 owner review, not automatic factual approval. Source-change staleness is verified for memories;
 this suite does not establish freshness or retraction behavior for accepted facts. No live
 AI-provider call or Google write was made.
+
+## Shared Core workflows
+
+Drive's extraction and source lifecycle moved into Core's public document module in
+[Core #1348](https://github.com/WireCatLabs/cli-core/pull/1348) and
+[Drive #90](https://github.com/WireCatLabs/drive-cli/pull/90). The
+[0.14.0 npm result](results-shared-core.json) repeats all 59 executable invocations and
+12 loopback requests with Core 0.295.0 and Base 0.40.0. It checks one physical Base instance
+and records compiled hashes for the six shared workflow modules. Earlier results are retained.
+
+Repeat against a fresh npm installation using the same isolated-state setup above, with
+`node performance/documents/drive-ai/run.mjs /absolute/path/to/installed/node_modules/@wirecat/drive-cli --shared-core`.
+The mode enforces that exact released package tuple. [Registry integrity values](npm-integrities-shared-core.json)
+identify all three packages. These checks exercise actual installed CLI behavior and a real temporary
+store, with synthetic sources and the guarded loopback model; they do not test live Box/Microsoft
+adapters or real model accuracy. Core separately tests non-Google source ports and provider-ID isolation.
