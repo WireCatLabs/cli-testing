@@ -1,0 +1,260 @@
+{
+  "environment": {
+    "node": "v24.19.0",
+    "cliCoreStemmers": "0.277.0",
+    "portCheck": "matches cli-core's categorize() on 251 tasks × 2 lists"
+  },
+  "categories": {
+    "old": 7,
+    "new": 36
+  },
+  "categoryAccuracy": {
+    "old": {
+      "newLabels": {
+        "right": 66,
+        "of": 251,
+        "share": 0.26294820717131473
+      },
+      "setLabels": {
+        "right": 110,
+        "of": 251,
+        "share": 0.43824701195219123
+      },
+      "fellToOther": 144,
+      "misses": {
+        "money → other": 24,
+        "home → other": 19,
+        "family → other": 17,
+        "meeting → other": 13,
+        "work → other": 11,
+        "family → personal": 9,
+        "bills → money": 7,
+        "content → other": 7,
+        "tech → other": 6,
+        "health → other": 6,
+        "bills → other": 5,
+        "events → other": 5,
+        "home → money": 4,
+        "clients → other": 4,
+        "documents → other": 4,
+        "personal → other": 3,
+        "car → other": 3,
+        "shopping → other": 3,
+        "delivery → other": 3,
+        "legal → other": 3,
+        "government → documents": 2,
+        "car → money": 2,
+        "access → other": 2,
+        "taxes → other": 2,
+        "travel → other": 2,
+        "family → meeting": 2,
+        "team → other": 2,
+        "partners → documents": 2,
+        "health → personal": 2,
+        "work → documents": 1,
+        "access → money": 1,
+        "tech → documents": 1,
+        "family → money": 1,
+        "bills → personal": 1,
+        "tech → access": 1,
+        "taxes → documents": 1,
+        "content → documents": 1,
+        "hiring → meeting": 1,
+        "tech → money": 1,
+        "travel → meeting": 1
+      }
+    },
+    "new": {
+      "newLabels": {
+        "right": 146,
+        "of": 251,
+        "share": 0.5816733067729084
+      },
+      "setLabels": {
+        "right": 125,
+        "of": 251,
+        "share": 0.49800796812749004
+      },
+      "fellToOther": 55,
+      "misses": {
+        "money → other": 11,
+        "meeting → other": 8,
+        "work → other": 7,
+        "family → other": 7,
+        "bills → money": 4,
+        "home → money": 3,
+        "money → entertainment": 3,
+        "money → events": 3,
+        "documents → other": 3,
+        "family → travel": 3,
+        "tech → other": 3,
+        "home → other": 3,
+        "money → travel": 3,
+        "meeting → projects": 2,
+        "work → team": 2,
+        "work → sales": 2,
+        "personal → other": 2,
+        "money → shopping": 2,
+        "access → home": 2,
+        "content → other": 2,
+        "delivery → other": 2,
+        "clients → other": 2,
+        "family → health": 2,
+        "work → content": 1,
+        "meeting → home": 1,
+        "health → other": 1,
+        "meeting → content": 1,
+        "clients → sales": 1,
+        "tech → documents": 1,
+        "personal → home": 1,
+        "family → money": 1,
+        "meeting → family": 1,
+        "documents → health": 1,
+        "access → other": 1,
+        "car → other": 1,
+        "documents → travel": 1,
+        "shopping → work": 1,
+        "travel → shopping": 1,
+        "documents → home": 1,
+        "partners → documents": 1,
+        "bills → home": 1,
+        "hiring → meeting": 1,
+        "bills → other": 1,
+        "events → other": 1,
+        "documents → car": 1,
+        "money → follow-up": 1,
+        "money → content": 1
+      }
+    }
+  },
+  "duplicateRuns": {
+    "set labels (old seven)": {
+      "agentTasks": {
+        "maybe": {
+          "true": 72,
+          "false": 53,
+          "precision": 0.576,
+          "recall": 0.9
+        },
+        "likely": {
+          "true": 34,
+          "false": 6,
+          "precision": 0.85,
+          "recall": 0.425
+        },
+        "newRefused": 38
+      },
+      "ruleTasks": {
+        "maybe": {
+          "true": 59,
+          "false": 27,
+          "precision": 0.686046511627907,
+          "recall": 0.7375
+        },
+        "likely": {
+          "true": 27,
+          "false": 3,
+          "precision": 0.9,
+          "recall": 0.3375
+        },
+        "newRefused": 18
+      }
+    },
+    "new labels (36)": {
+      "agentTasks": {
+        "maybe": {
+          "true": 72,
+          "false": 41,
+          "precision": 0.6371681415929203,
+          "recall": 0.9
+        },
+        "likely": {
+          "true": 34,
+          "false": 6,
+          "precision": 0.85,
+          "recall": 0.425
+        },
+        "newRefused": 32
+      },
+      "ruleTasks": {
+        "maybe": {
+          "true": 59,
+          "false": 24,
+          "precision": 0.7108433734939759,
+          "recall": 0.7375
+        },
+        "likely": {
+          "true": 27,
+          "false": 3,
+          "precision": 0.9,
+          "recall": 0.3375
+        },
+        "newRefused": 17
+      }
+    },
+    "rule, old list": {
+      "agentTasks": {
+        "maybe": {
+          "true": 69,
+          "false": 47,
+          "precision": 0.5948275862068966,
+          "recall": 0.8625
+        },
+        "likely": {
+          "true": 34,
+          "false": 5,
+          "precision": 0.8717948717948718,
+          "recall": 0.425
+        },
+        "newRefused": 33
+      },
+      "ruleTasks": {
+        "maybe": {
+          "true": 56,
+          "false": 28,
+          "precision": 0.6666666666666666,
+          "recall": 0.7
+        },
+        "likely": {
+          "true": 27,
+          "false": 2,
+          "precision": 0.9310344827586207,
+          "recall": 0.3375
+        },
+        "newRefused": 19
+      }
+    },
+    "rule, new list": {
+      "agentTasks": {
+        "maybe": {
+          "true": 69,
+          "false": 36,
+          "precision": 0.6571428571428571,
+          "recall": 0.8625
+        },
+        "likely": {
+          "true": 34,
+          "false": 6,
+          "precision": 0.85,
+          "recall": 0.425
+        },
+        "newRefused": 28
+      },
+      "ruleTasks": {
+        "maybe": {
+          "true": 56,
+          "false": 19,
+          "precision": 0.7466666666666667,
+          "recall": 0.7
+        },
+        "likely": {
+          "true": 27,
+          "false": 3,
+          "precision": 0.9,
+          "recall": 0.3375
+        },
+        "newRefused": 13
+      }
+    }
+  }
+}
