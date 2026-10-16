@@ -6,6 +6,14 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Fixed
+
+- Agent audit runs require one successful terminal result. The host canary matches each attempted
+  write to its permission denial by tool name and call ID; unrelated or partial denials fail.
+  Payload runs reject write attempts even when their command text is empty.
+
 ## 0.5.0 — 16.10.2026
 
 ### Changed — may break callers
