@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "data": "synthetic",
+  "real_model": false,
+  "drive": "0.14.0",
+  "core": "0.295.0",
+  "base": "0.40.0",
+  "build": "npm",
+  "code_hashes": {
+    "drive_extraction": "90d53ea33698d70a825c5032dec60a593fbe4513dc90359c2877de56259a437b",
+    "core_model_types": "cd999ad5d47ebb93c606869a84e234429c3b5106d128066e05937231bc13d977"
+  },
+  "shared_workflow_hashes": {
+    "plan": "1c4692e3e72f0a05b333ecb319794d66b8344d82660e7499ac191a10587904fb",
+    "sync": "933044284b700fd48af39651c8fefc027d499a4cf9fcf04dc67493433d470040",
+    "ingestion": "287a3b85aee88ac14efe3412a822786ad458c7b6c283afae42b3d561dfeac966",
+    "knowledge": "6cf21466accd1b06bfc0e295d370a9d5c320a72f21930797f8f28dbd9a759241",
+    "extraction": "2f24f795714622e5b5ac7ade9aff21ff29d67fd553d23639548f14120998d562",
+    "proposals": "3b056e2c98fd562a1c8d310746a72ee68b0f16ba7342978c7ceeb036b6fc0cdb"
+  },
+  "commands": 59,
+  "provider_requests": 12,
+  "quote_policy": "explicit-evidence-quotes",
+  "checks": [
+    "preview-does-not-persist-and-source-hash-is-retained",
+    "tab-selection-does-not-send-sibling-text",
+    "explicit-save-creates-reviewable-scoped-facts-and-memories",
+    "invalid-or-failed-provider-batches-save-nothing-and-leak-no-response-body",
+    "empty-proposal-batch-is-a-noop",
+    "offline-readonly-denied-policy-missing-tab-disabled-provider-and-dry-run-precede-network",
+    "real-sync-during-model-request-refuses-stale-proposals"
+  ]
+}

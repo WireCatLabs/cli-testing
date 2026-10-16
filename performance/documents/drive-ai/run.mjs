@@ -9,7 +9,7 @@ import { dirname, join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 
 const [input, mode, ...extra] = process.argv.slice(2)
-assert.ok(input && extra.length === 0 && ["--baseline", "--candidate", "--released"].includes(mode))
+assert.ok(input && extra.length === 0 && ["--baseline", "--candidate", "--released", "--shared-core"].includes(mode))
 const pkg = resolve(input)
 const metadata = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8"))
 assert.equal(metadata.name, "@wirecat/drive-cli")
@@ -32,6 +32,13 @@ if (mode === "--released") {
   assert.equal(metadata.dependencies["@wirecat/cli-base"], "0.35.0")
   assert.equal(runtimeCore.version, "0.294.0")
   assert.equal(runtimeBase.version, "0.35.0")
+}
+if (mode === "--shared-core") {
+  assert.equal(metadata.version, "0.14.0")
+  assert.equal(metadata.dependencies["@wirecat/cli-core"], "0.295.0")
+  assert.equal(metadata.dependencies["@wirecat/cli-base"], "0.40.0")
+  assert.equal(runtimeCore.version, "0.295.0")
+  assert.equal(runtimeBase.version, "0.40.0")
 }
 assert.equal(
   require.resolve("@wirecat/cli-base"),
@@ -333,6 +340,18 @@ try {
                 .update(readFileSync(join(coreRoot, "dist/models/types.js")))
                 .digest("hex"),
             },
+          }
+        : {}),
+      ...(mode === "--shared-core"
+        ? {
+            shared_workflow_hashes: Object.fromEntries(
+              ["plan", "sync", "ingestion", "knowledge", "extraction", "proposals"].map((name) => [
+                name,
+                createHash("sha256")
+                  .update(readFileSync(join(coreRoot, `dist/services/documents/${name}.js`)))
+                  .digest("hex"),
+              ]),
+            ),
           }
         : {}),
       commands,

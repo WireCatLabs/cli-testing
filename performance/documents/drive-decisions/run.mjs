@@ -6,14 +6,17 @@ import { createRequire } from "node:module"
 import { join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 
-const [input] = process.argv.slice(2)
-assert.ok(input && process.argv.length === 3, "supply the installed Drive package directory")
+const [input, mode] = process.argv.slice(2)
+assert.ok(
+  input && (process.argv.length === 3 || (process.argv.length === 4 && mode === "--shared-core")),
+  "supply the installed Drive package directory and optional --shared-core",
+)
 const pkg = resolve(input)
 const metadata = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8"))
 assert.equal(metadata.name, "@wirecat/drive-cli")
-assert.equal(metadata.version, "0.13.0")
-assert.equal(metadata.dependencies["@wirecat/cli-core"], "0.294.0")
-assert.equal(metadata.dependencies["@wirecat/cli-base"], "0.35.0")
+assert.equal(metadata.version, mode === "--shared-core" ? "0.14.0" : "0.13.0")
+assert.equal(metadata.dependencies["@wirecat/cli-core"], mode === "--shared-core" ? "0.295.0" : "0.294.0")
+assert.equal(metadata.dependencies["@wirecat/cli-base"], mode === "--shared-core" ? "0.40.0" : "0.35.0")
 const require = createRequire(join(pkg, "package.json"))
 const { openStore } = await import(pathToFileURL(require.resolve("@wirecat/cli-core/store")))
 const root = mkdtempSync("/var/tmp/drive-decisions-")
