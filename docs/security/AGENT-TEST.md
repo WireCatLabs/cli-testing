@@ -46,6 +46,12 @@ Every payload message is deleted by its sender and checked gone from the owner's
 chat title is snapshotted into a shell variable, restored, and read back equal. Service notices
 MAX creates for a rename may not be deletable — record them.
 
+The payload runner retains the sender's JSON receipt privately as `<case>.send.json`. Current
+`item.message.id` envelopes and older supported receipt shapes are recognized. A failed send or
+unknown receipt stops as incomplete; do not replay the send. Recover the precise sender message
+ID from the private receipt and verify cleanup before staging another fixture. Never guess an ID
+or delete a message based on its position in a chat.
+
 ## Results
 
 Shapes only, into the private run folder and the live-scenarios results table. Never message text,
