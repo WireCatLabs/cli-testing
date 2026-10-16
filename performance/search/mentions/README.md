@@ -162,3 +162,24 @@ those bodies. Before the body was read only inside a subquery of letters with th
 What it showed: `url:` costs one indexed lookup plus a few bodies, so it is as fast as before for a person.
 `link:` reads every body that holds a tracking link and stays under a second on this mailbox. Not measured: how
 often `link:` finds a part outside a link in such a letter (it reads the whole body); stores with more mail.
+
+## Sixth run: the url rebuild on the real store with the released tg 0.61.0 (2026-10-16)
+
+Why: the fourth run measured the mail link rule on a copy; the owner's store kept every mail link until a rebuild
+with a released tg that carries the rule (cli-core ≥ 0.292.0). The question: does the real store shrink the same.
+
+Setup: same machine; the owner's store itself, `tg personal mentions rebuild url` with the released tg 0.61.0
+(cli-core 0.292.0), counts read with `sqlite3 -readonly` before and after. Totals only.
+
+| | before | after |
+|---|---|---|
+| mail link rows | 733,515 | 450,296 |
+| distinct mail link values | 409,702 | 98,641 |
+| letters with a link | 76,383 | 76,383 |
+| sites in mail links | 20,842 | 20,842 |
+| message link rows | 4,921 | 4,921 |
+| `mentions` table and its indexes, MB | 428 | 172 |
+| rebuild of `url`, all sources | | 41 s |
+
+What it showed: the same cut as on the copy, with no letter or site lost. The file stays 2.4 GB: SQLite keeps the
+freed pages inside the file for later writes. Not measured: a `VACUUM`, which would return them to the disk.
