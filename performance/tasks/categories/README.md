@@ -36,9 +36,11 @@ The answers went into the cli-core change that ships the list.
     utility `bills`). Every task of one duplicate group has the same label. The old list scores against these labels
     too: its names that exist in the new list can match.
 - Rule: [`evaluate.mjs`](evaluate.mjs) ports cli-core's `categorize()` (`src/services/task-categories.ts`): stems by
-  script, a Latin word through the English stemmer only (cli-core's first default Latin stemmer, so Spanish words are
-  stemmed by it too), the category with the most distinct trigger stems hit, a tie to the earlier one, none hit is
-  `other`. With `--core`, the script checks the port against the real function on all 251 tasks and both lists.
+  script, every trigger against the message's English stems, and `es` triggers also against its Spanish stems when
+  the message reads as Spanish (see [Spanish](#spanish)); the category with the most distinct trigger stems hit, a
+  tie to the earlier one, none hit is `other`. With `--core`, the script checks the port against the real function
+  on all 251 tasks, both lists and the Spanish messages. The results above Spanish were measured when cli-core
+  stemmed every Latin word as English only; the Spanish change moves none of them (re-run 2026-10-16).
 - Duplicates: the replay of [`../duplicates/linked.mjs`](../duplicates/linked.mjs) with cli-core's shipped weights
   and bands (maybe ≥ 5, likely ≥ 10), run four times with `category` taken from the set labels, the new labels, the
   rule with the old list and the rule with the new list. Two of its runs are reported: tasks with an agent's own text
@@ -118,11 +120,54 @@ The first-draft list gave 69/37 and 34/5 (agent), 56/19 and 27/2 (rule).
   so it is `money`. Paybacks for tickets, flights or a hotel go to `events`, `travel` or `entertainment`, since the
   payback itself ("скинь", "your half") has no trigger. The tie order cannot fix either: these are not ties.
 
+## Spanish
+
+### Why it was run
+
+Building the new list showed that the rule stemmed every Latin word with the English stemmer, Spanish triggers
+included. `pagues`, `pagado` and `pagar` did not meet: the Spanish triggers matched only their exact form or a plural.
+The fix ([cli-core#1351](https://github.com/WireCatLabs/cli-core/pull/1351)) stems a message both ways when it
+reads as Spanish, and matches `es` triggers by their Spanish stem. The questions: does it help Spanish messages, and
+does it change anything for English and Russian ones?
+
+### Setup
+
+- [`spanish.json`](spanish.json): 24 synthetic Spanish messages, each labelled by hand with one of the 36 names from
+  the meanings, before either rule was run on them. They mix exact trigger forms (`pagar la factura`) with other
+  forms of a word (`¿Me pagas…?`, `Ya te he pagado…`).
+- "Reads as Spanish": a letter of `ñáéíóú¿¡`, or one of the words `de del la las el los que por para una unos unas
+  hay tengo hola gracias`. A Spanish stem is short, and English words land on it (`page` → `pag`, the stem of
+  `pagar`), so an English message without those is not read as Spanish. Short words that are also English (`al`,
+  `su`, `tu`, `mi`, `con`) are left out of the list.
+- Same command as above.
+
+### Results
+
+| Spanish set, new list | Right | Fell to `other` |
+|---|---|---|
+| English stems only (before) | 21/24 (88%) | 3 |
+| Spanish stems too (after) | 23/24 (96%) | 0 |
+
+The 251 tasks of the duplicate set: no category changes, so every row of the tables above is the same before and
+after, and the [duplicate replay](../duplicates/README.md) does not read categories from the rule and is unchanged.
+
+### What it showed
+
+- **The three messages the fix gains are all verb forms of `pagar`** (`pagas`, `pagues`, `pagado`). Plurals and exact
+  forms already matched through the English stemmer, which only cuts an English ending such as `-s`.
+- **It loses one to the tie order**: "Compré las entradas para el concierto" now also hits `shopping` (`compré` →
+  `compr`, the stem of `comprar`), and `shopping` comes before `entertainment` in the list. One hit each, the earlier
+  one wins.
+- **English and Russian are untouched here.** No message of the set reads as Spanish. An English message that
+  uses `de`, `la` or `el` would be, and could then hit a Spanish stem; the set has none.
+
 ## Not measured
 
 - **The labels and the triggers have one author.** Labels were written before the first measurement, from the
   meanings, but by the same person who wrote the triggers, and the shipped triggers were trimmed after seeing misses.
-- Real chats: the set is synthetic, Russian and English, with no Spanish message. Spanish triggers are untested here.
+- Real chats: the set is synthetic, Russian and English, with no Spanish message. The Spanish check is 24 synthetic
+  messages by the author of the triggers; mixed English and Spanish chats, and English messages that use one of the
+  Spanish words, are not measured.
 - An agent's category choice. Agents name a category themselves; this measures the rule only.
 - Categories outside this set's topics: `insurance`, `bank`, `sales`, `support`, `education`, `community`, `intro`
   and `follow-up` have no task with that label.

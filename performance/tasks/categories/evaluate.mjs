@@ -14,6 +14,7 @@ const snowball = join(duplicates, ".cache", `cli-core-${CORE_VERSION}`, "package
 const load = async (file) => (await import(pathToFileURL(join(snowball, file)).href)).default
 const russian = new (await load("russian-stemmer.js"))()
 const english = new (await load("english-stemmer.js"))()
+const spanish = new (await load("spanish-stemmer.js"))()
 
 const read = (file) => JSON.parse(readFileSync(join(here, file), "utf8"))
 const lists = { old: read("old-defaults.json"), new: read("new-defaults.json") }
@@ -23,34 +24,49 @@ const tasks = readFileSync(join(duplicates, "tasks.jsonl"), "utf8")
   .split("\n")
   .map((line) => JSON.parse(line))
 
-// cli-core stemTokens(): one stemmer per script, and a Latin word takes only the first default Latin stemmer
-// (english), so Spanish words are stemmed by the English one, triggers and message alike.
+// cli-core stemTokens() with one Latin stemmer: a stemmer per script.
 const TOKEN = /[\p{L}\p{N}\p{Co}\p{M}]+/gu
 const MARKS = /\p{M}+/gu
 const CYRILLIC = /^\p{Script=Cyrillic}+$/u
 const LATIN = /^\p{Script=Latin}+$/u
-const stemTokens = (text) =>
+const stemTokens = (latin) => (text) =>
   (text.normalize("NFC").toLowerCase().match(TOKEN) ?? [])
     .map((token) => {
       const word = token.normalize("NFC").toLowerCase().replace(MARKS, "")
-      const engine = CYRILLIC.test(word) ? russian : LATIN.test(word) ? english : null
+      const engine = CYRILLIC.test(word) ? russian : LATIN.test(word) ? latin : null
       return normalize(engine?.stemWord(word) || word)
     })
     .filter(Boolean)
+const englishStems = stemTokens(english)
+const spanishStems = stemTokens(spanish)
 
-// cli-core src/services/task-categories.ts categorize(): most distinct trigger stems hit, a tie to the earlier one.
-const categorizer = (list) => {
+// cli-core src/services/task-categories.ts categorize() (`spanishStems: false` is the version before the Spanish stems fix: English
+// stems only, so a Spanish word was stemmed as English): every trigger meets the message's English stems; `es`
+// triggers also meet its Spanish stems when the message reads as Spanish. Most distinct trigger stems hit wins, a tie
+// goes to the earlier one, a word counts once (its English stem first).
+const SPANISH_LETTERS = /[ñáéíóú¿¡]/u
+const SPANISH_WORDS = new Set("de del la las el los que por para una unos unas hay tengo hola gracias".split(" "))
+const readsSpanish = (text) =>
+  SPANISH_LETTERS.test(text.toLowerCase()) ||
+  (text.toLowerCase().match(/\p{L}+/gu) ?? []).some((word) => SPANISH_WORDS.has(word))
+
+const categorizer = (list, { spanishStems: withSpanish = true } = {}) => {
   const stems = list.map(({ name, triggers }) => ({
     name,
-    stems: new Set(Object.values(triggers).flatMap((words) => words.flatMap(stemTokens))),
+    english: new Set(Object.values(triggers).flatMap((words) => words.flatMap(englishStems))),
+    spanish: new Set(triggers.es.flatMap(spanishStems)),
   }))
   return (text) => {
-    const words = new Set(stemTokens(text))
+    const words = englishStems(text)
+    const other = withSpanish && readsSpanish(text) ? spanishStems(text) : []
     let best = { name: "other", hits: 0 }
-    for (const { name, stems: own } of stems) {
-      let hits = 0
-      for (const stem of own) if (words.has(stem)) hits += 1
-      if (hits > best.hits) best = { name, hits }
+    for (const { name, english: en, spanish: es } of stems) {
+      const hit = new Set()
+      words.forEach((word, at) => {
+        if (en.has(word)) hit.add(word)
+        else if (other[at] !== undefined && es.has(other[at])) hit.add(other[at])
+      })
+      if (hit.size > best.hits) best = { name, hits: hit.size }
     }
     return best.name
   }
@@ -63,6 +79,21 @@ const predicted = Object.fromEntries(
   }),
 )
 
+// Synthetic Spanish messages, labelled by hand from the meanings before they were scored: the duplicate set has none.
+const spanishSet = read("spanish.json")
+const spanishRuns = Object.fromEntries(
+  [
+    ["English stems only (before)", false],
+    ["Spanish stems too (after)", true],
+  ].map(([name, withSpanish]) => {
+    const categorize = categorizer(lists.new, { spanishStems: withSpanish })
+    const picks = spanishSet.map(({ text }) => categorize(text))
+    const right = spanishSet.filter(({ label }, at) => picks[at] === label).length
+    const fellToOther = picks.filter((pick) => pick === "other").length
+    return [name, { right, of: spanishSet.length, share: right / spanishSet.length, fellToOther, picks }]
+  }),
+)
+
 const coreAt = process.argv.indexOf("--core")
 let portCheck = "not run (pass --core <cli-core checkout>)"
 if (coreAt > 0) {
@@ -71,8 +102,10 @@ if (coreAt > 0) {
   const differ = Object.entries(lists).flatMap(([name, list]) =>
     tasks.filter((task) => categorize(task.description, list) !== predicted[name][task.id]).map((task) => task.id),
   )
+  const after = spanishRuns["Spanish stems too (after)"].picks
+  differ.push(...spanishSet.filter(({ text }, at) => categorize(text, lists.new) !== after[at]).map(({ text }) => text))
   if (differ.length) throw new Error(`the port of categorize() differs from cli-core on ${differ.join(", ")}`)
-  portCheck = `matches cli-core's categorize() on ${tasks.length} tasks × 2 lists`
+  portCheck = `matches cli-core's categorize() on ${tasks.length} tasks × 2 lists and ${spanishSet.length} Spanish messages`
 }
 
 // The old seven, for the set's own labels: a new name maps to the old one that held its tasks.
@@ -157,6 +190,7 @@ writeFileSync(
       environment: { node: process.version, cliCoreStemmers: CORE_VERSION, portCheck },
       categories: Object.fromEntries(Object.entries(lists).map(([name, list]) => [name, list.length])),
       categoryAccuracy,
+      spanish: spanishRuns,
       duplicateRuns,
     },
     null,
@@ -176,6 +210,9 @@ for (const [name, a] of Object.entries(categoryAccuracy))
     `| ${name} | ${a.newLabels.right}/${a.newLabels.of} ${pct(a.newLabels.share)} | ` +
       `${a.setLabels.right}/${a.setLabels.of} ${pct(a.setLabels.share)} | ${a.fellToOther} |`,
   )
+lines.push("", "| Spanish set, new list | right | fell to other |", "|---|---|---|")
+for (const [name, run] of Object.entries(spanishRuns))
+  lines.push(`| ${name} | ${run.right}/${run.of} ${pct(run.share)} | ${run.fellToOther} |`)
 lines.push(
   "",
   "| category from | tasks | ≥ 5 true/false | P | R | ≥ 10 true/false | P | R | new tasks refused |",
