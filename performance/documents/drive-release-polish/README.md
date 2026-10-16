@@ -71,3 +71,23 @@ The [shared-store acceptance](../drive-shared-store/README.md) and
 shared retrieval/extraction behavior. We did not repeat model calls or live Google writes.
 Dependency advisories and production OAuth approval are separate release checks; these results
 do not certify an advisory-free dependency graph or unrestricted Google sign-in.
+
+
+## Published polish release: 0.15.1
+
+[Release 38982130167](https://github.com/WireCatLabs/drive-cli/actions/runs/38982130167)
+published the validated tarball from `a6d17f6144bfe447b7945d9b0d15b27e78ecd018`.
+All 237 tests passed with 89.69% line coverage, alongside CLI/MCP contracts, prior-store upgrades,
+secret checks and Node/Bun package acceptance. The dependency check passed its configured gate;
+this does not claim the entire dependency graph has no advisories.
+
+A clean global install into a new temporary npm prefix reports 0.15.1. The same eight executable
+checks passed with network/browser/keyring access blocked. [Registry results](results-0.15.1.json)
+record the npm integrity, Git head, installed bin hash and exact Core 0.301.0 / Base 0.40.0 pins.
+The original source-candidate results above are retained separately.
+
+Fresh shared-app sign-in was started in an empty isolated workspace with explicit profile
+`personal` and read-only scope, without a custom OAuth client. Browser approval did not complete
+before the five-minute deadline; a subsequent local session list contained no profiles. This
+checks startup/timeout behavior, not successful live consent, import/search, outside-test-user
+access or Google verification. It is not reported as a passed connection test.
