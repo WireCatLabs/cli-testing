@@ -104,12 +104,45 @@ describe("scanner observations", () => {
     expect(JSON.stringify(observations)).not.toContain("description")
   })
 
+  it("retains mixed ecosystems without changing existing npm identifiers", () => {
+    const value = {
+      ok: true,
+      data: {
+        alerts: {
+          npm: { fixture: { "1.0.0": { type: "fixture-rule" } } },
+          pypi: { fixture: { "1.0.0": [{ type: "fixture-rule" }, { type: "fixture-rule" }] } },
+        },
+      },
+    }
+    expect(scannerObservations("fixture", "socket", value).map(({ id }) => JSON.parse(id))).toEqual([
+      ["fixture", "socket", "fixture", "1.0.0", "fixture-rule"],
+      ["fixture", "socket", "pypi", "fixture", "1.0.0", "fixture-rule"],
+    ])
+    const pythonOnly = { ok: true, data: { alerts: { pypi: value.data.alerts.pypi } } }
+    expect(scannerObservations("fixture", "socket", pythonOnly)).toHaveLength(1)
+  })
+
+  it("separates all-ecosystem coverage from historical npm-only normalization", () => {
+    const coverage = scannerCoverage("fixture", "socket", { ok: true, data: { healthy: true, alerts: {} } })
+    expect(coverage).toEqual(['["fixture","socket"]', '["fixture","socket","all-ecosystems-v1"]'])
+    const before = {
+      schema: 1 as const,
+      suite: "security",
+      complete: true,
+      observations: [],
+      known: [],
+      coverage: ['["fixture","socket"]'],
+    }
+    expect(() => compareRuns("security", before, { ...before, coverage })).toThrow("coverage must match")
+  })
+
   it.each([
     ["osv", { results: [] }],
     ["semgrep", { results: [] }],
     ["zizmor", []],
     ["codeql", []],
     ["socket", { ok: true, data: { alerts: { npm: {} } } }],
+    ["socket", { ok: true, data: { alerts: { pypi: {} } } }],
     ["socket", { ok: true, data: { healthy: true, alerts: {} } }],
   ])("accepts an explicit empty %s result", (tool, value) =>
     expect(scannerObservations("fixture", tool as string, value)).toEqual([]),
@@ -126,7 +159,7 @@ describe("scanner observations", () => {
     ["codeql", [{ number: "1", rule: { id: "fixture" } }]],
     ["socket", { ok: false }],
     ["socket", { ok: true, data: { healthy: false, alerts: {} } }],
-    ["socket", { ok: true, data: { healthy: true, alerts: { unknown: {} } } }],
+    ["socket", { ok: true, data: { healthy: true, alerts: { unknown: null } } }],
   ])("refuses malformed %s evidence instead of returning a clean result", (tool, value) =>
     expect(() => scannerObservations("fixture", tool as string, value)).toThrow(),
   )

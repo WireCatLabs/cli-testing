@@ -8,6 +8,13 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+### Fixed
+
+- Socket results retain alerts from Python and other reported ecosystems, including reports
+  that also contain npm alerts. Existing npm observation IDs stay stable; other ecosystems get
+  distinct IDs. Coverage fingerprints distinguish this normalization from older npm-only runs,
+  so comparisons require a baseline produced with the same coverage.
+
 ### Changed â€” may break callers
 
 - The offline catalog research runner accepts an optional `--precise-effects` expectation for
