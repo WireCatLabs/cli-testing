@@ -8,5 +8,7 @@ Measurements of reading a mailbox into the shared store with memo.
   replied-to senders it wrongly flags (run 1: 24% of spam caught, 1.6% false alarms, 2026-10-15).
 - [indexing](indexing/README.md): why the scheduled sync held memo's lock for hours after 44,000 emails were cut
   to envelopes, and the fix that drains the same queue 266 times faster (2026-10-15).
+- [search](search/README.md): why searches with `NOT mailbox:bulk` never answered on a 257k-email store, and the
+  same searches after cli-core 0.295.0: 67 s → 0.7 s (2026-10-16).
 - [agent-questions](agent-questions/README.md): six everyday questions an agent answers from an imported mailbox —
   1 answered, 3 partly, 2 not found (before the imported years), and what memo made hard (2026-10-15).
