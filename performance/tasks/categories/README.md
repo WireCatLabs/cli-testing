@@ -39,7 +39,7 @@ The answers went into the cli-core change that ships the list.
   script, every trigger against the message's English stems, and `es` triggers also against its Spanish stems when
   the message reads as Spanish (see [Spanish](#spanish)); the category with the most distinct trigger stems hit, a
   tie to the earlier one, none hit is `other`. With `--core`, the script checks the port against the real function
-  on all 251 tasks, both lists and the Spanish messages. The results above Spanish were measured when cli-core
+  on all 251 tasks, all three lists and the Spanish messages. The results above Spanish were measured when cli-core
   stemmed every Latin word as English only; the Spanish change moves none of them (re-run 2026-10-16).
 - Duplicates: the replay of [`../duplicates/linked.mjs`](../duplicates/linked.mjs) with cli-core's shipped weights
   and bands (maybe ≥ 5, likely ≥ 10), run four times with `category` taken from the set labels, the new labels, the
@@ -53,7 +53,7 @@ node performance/tasks/categories/evaluate.mjs --core <cli-core checkout, built>
 
 ## Results
 
-Port check: the port matches cli-core's `categorize()` on 251 tasks × 2 lists.
+Port check: the port matches cli-core's `categorize()` on 251 tasks × 3 lists (old, 36, 59).
 
 ### How often the rule's category is right (251 tasks)
 
@@ -160,6 +160,54 @@ after, and the [duplicate replay](../duplicates/README.md) does not read categor
   one wins.
 - **English and Russian are untouched here.** No message of the set reads as Spanish. An English message that
   uses `de`, `la` or `el` would be, and could then hit a Spanish stem; the set has none.
+
+## 59 names
+
+### Why it was run
+
+The owner chose to add 23 more categories to the 36 (cli-core
+[`docs/dev/tasks-plan.md`](https://github.com/WireCatLabs/cli-core/blob/main/docs/dev/tasks-plan.md), "Default
+list"). More names split the same messages finer, and every name brings trigger words that can collide with common
+words. The questions: is the rule's category still right as often, and does the duplicate check lose anything?
+
+### Setup
+
+- [`list-59.json`](list-59.json): the list the cli-core change ships, exported from `DEFAULT_TASK_CATEGORIES`.
+- [`labels-59.json`](labels-59.json): [`labels.json`](labels.json) with 27 tasks moved to one of the 23 added names
+  whose meaning is more specific (groceries → `food`, a router or a laptop to choose → `devices`, mockups and brand
+  guidelines → `design`, a birthday or anniversary → `celebrations`, medicine or groceries taken to a grandmother →
+  `elder-care`, a domain renewal or hosting → `subscriptions`, a restaurant table → `food`, help with a move →
+  `moving`). Written before the 59 list was run; every duplicate group keeps one label.
+- Same command as above.
+
+### Results
+
+| List | Its own labels | Fell to `other` |
+|---|---|---|
+| 36 names | 146/251 (58%) | 55 |
+| 59 names, first draft | 141/251 (56%) | 46 |
+| 59 names, shipped | 150/251 (60%) | 51 |
+
+| Category from | Tasks | ≥ 5 true/false | P | R | New tasks refused |
+|---|---|---|---|---|---|
+| Rule, 36 list | agent | 69/36 | 66% | 86% | 28 |
+| Rule, 59 list | agent | 69/34 | 67% | 86% | 27 |
+| Rule, 36 list | rule | 56/19 | 75% | 70% | 13 |
+| Rule, 59 list | rule | 56/19 | 75% | 70% | 13 |
+
+Spanish set with the 59 list: 23/24, the same miss as above.
+
+### What it showed
+
+- **The 23 names cost nothing measurable.** The rule is right about as often (60% against 58%), and the duplicate
+  check moves by two false pairs.
+- **The first draft lost 2 points to collisions, all fixed in the shipped list:** `reporter` stems to `report`
+  ("review the Q3 report" became `media`), `еда` to `ед` ("в субботу едем" became `food`), `коробки` sent a trip to
+  the dacha to `moving`, and meal words made "lunch on Wednesday?" `food`. Two tie orders moved: `delivery` before
+  `devices` ("the courier can collect the laptop"), `celebrations` before `family` ("день рождения папы"). These
+  fixes used the set, so the 60% is partly in-sample.
+- **Some added names can't be told from words alone.** Medicine for a grandmother is `health` to the rule
+  (`лекарства`), `elder-care` to the label; paying a friend back for a kids' club is `childcare` to the rule.
 
 ## Not measured
 

@@ -2,15 +2,88 @@
   "environment": {
     "node": "v24.19.0",
     "cliCoreStemmers": "0.277.0",
-    "portCheck": "matches cli-core's categorize() on 251 tasks × 2 lists and 24 Spanish messages"
+    "portCheck": "not run (pass --core <cli-core checkout>)"
   },
   "categories": {
+    "59": 59,
     "old": 7,
     "new": 36
   },
   "categoryAccuracy": {
+    "59": {
+      "newLabels": {
+        "right": 131,
+        "of": 251,
+        "share": 0.5219123505976095
+      },
+      "labels59": {
+        "right": 150,
+        "of": 251,
+        "share": 0.5976095617529881
+      },
+      "setLabels": {
+        "right": 117,
+        "of": 251,
+        "share": 0.46613545816733065
+      },
+      "fellToOther": 51,
+      "misses": {
+        "meeting → other": 8,
+        "money → other": 8,
+        "work → other": 7,
+        "family → other": 7,
+        "bills → money": 3,
+        "home → money": 3,
+        "money → entertainment": 3,
+        "money → events": 3,
+        "documents → other": 3,
+        "family → travel": 3,
+        "tech → other": 3,
+        "home → other": 3,
+        "money → travel": 3,
+        "meeting → projects": 2,
+        "work → team": 2,
+        "work → sales": 2,
+        "personal → other": 2,
+        "access → home": 2,
+        "content → other": 2,
+        "delivery → other": 2,
+        "clients → other": 2,
+        "money → childcare": 2,
+        "elder-care → health": 2,
+        "meeting → home": 1,
+        "health → other": 1,
+        "meeting → design": 1,
+        "clients → sales": 1,
+        "tech → documents": 1,
+        "family → money": 1,
+        "meeting → family": 1,
+        "subscriptions → money": 1,
+        "documents → health": 1,
+        "access → vendors": 1,
+        "car → other": 1,
+        "access → design": 1,
+        "documents → travel": 1,
+        "travel → shopping": 1,
+        "documents → home": 1,
+        "partners → documents": 1,
+        "bills → home": 1,
+        "hiring → meeting": 1,
+        "bills → other": 1,
+        "food → other": 1,
+        "documents → car": 1,
+        "elder-care → family": 1,
+        "food → shopping": 1,
+        "money → design": 1
+      }
+    },
     "old": {
       "newLabels": {
+        "right": 66,
+        "of": 251,
+        "share": 0.26294820717131473
+      },
+      "labels59": {
         "right": 66,
         "of": 251,
         "share": 0.26294820717131473
@@ -69,6 +142,11 @@
         "right": 146,
         "of": 251,
         "share": 0.5816733067729084
+      },
+      "labels59": {
+        "right": 130,
+        "of": 251,
+        "share": 0.5179282868525896
       },
       "setLabels": {
         "right": 125,
@@ -305,6 +383,70 @@
           "recall": 0.425
         },
         "newRefused": 28
+      },
+      "ruleTasks": {
+        "maybe": {
+          "true": 56,
+          "false": 19,
+          "precision": 0.7466666666666667,
+          "recall": 0.7
+        },
+        "likely": {
+          "true": 27,
+          "false": 3,
+          "precision": 0.9,
+          "recall": 0.3375
+        },
+        "newRefused": 13
+      }
+    },
+    "labels (59)": {
+      "agentTasks": {
+        "maybe": {
+          "true": 72,
+          "false": 40,
+          "precision": 0.6428571428571429,
+          "recall": 0.9
+        },
+        "likely": {
+          "true": 34,
+          "false": 6,
+          "precision": 0.85,
+          "recall": 0.425
+        },
+        "newRefused": 31
+      },
+      "ruleTasks": {
+        "maybe": {
+          "true": 59,
+          "false": 24,
+          "precision": 0.7108433734939759,
+          "recall": 0.7375
+        },
+        "likely": {
+          "true": 27,
+          "false": 3,
+          "precision": 0.9,
+          "recall": 0.3375
+        },
+        "newRefused": 17
+      }
+    },
+    "rule, 59 list": {
+      "agentTasks": {
+        "maybe": {
+          "true": 69,
+          "false": 34,
+          "precision": 0.6699029126213593,
+          "recall": 0.8625
+        },
+        "likely": {
+          "true": 34,
+          "false": 6,
+          "precision": 0.85,
+          "recall": 0.425
+        },
+        "newRefused": 27
       },
       "ruleTasks": {
         "maybe": {
