@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-# Regenerates the set, checks it matches the committed one, and runs the chain with and without the certain rules.
+# Regenerates the set, checks it matches the committed one, runs the chain with and without the certain rules, and
+# replays it with the messages linked to a task read and unread.
 set -euo pipefail
 cd "$(dirname "$0")"
 node generate.mjs | cmp - tasks.jsonl
 node evaluate.mjs --certain plan
 echo
 node evaluate.mjs --certain none
+echo
+node linked.mjs
