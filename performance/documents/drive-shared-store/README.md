@@ -59,3 +59,18 @@ Drive's 205-test suite separately passed with 89.33% line coverage, ten CLI/MCP 
 five prior-store upgrade cases. The transition cases include a destination row-ID collision,
 interrupted rebuilding, annotation refusal with the old file still readable, explicit missing-
 snapshot recovery and concurrent cached reading while sync holds the profile lock.
+
+## Published-reader compatibility
+
+[The all-registry run](results-published-readers.json) passed ten executable checks with Drive
+0.15.0, Telegram 0.63.0, MAX 0.56.0 and Memo 0.52.1, each using its original registry dependency
+graph. It verifies ordinary shared text/tag search, mixed messages/documents, Telegram document
+links and Drive cached reading. These earlier readers do not all expose the enhanced provenance
+fields/profile filters. Registry MAX 0.56.0 does not mount `chats documents list`; that capability
+is explicitly recorded as not run in this compatibility mode and is covered by the merged-candidate
+run above. No compatibility assertion replaces the stricter candidate checks.
+
+To reproduce with exactly those four registry packages in the prefix, append `--published-readers`
+to the runner command. The ordinary mode still requires one physical Core package, provenance
+fields and both messengers' chat-document commands; it passed again after adding this compatibility
+mode. Public recipes deliberately avoid reader profile filters that need the later adoption.
