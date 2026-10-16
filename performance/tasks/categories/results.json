@@ -2,7 +2,7 @@
   "environment": {
     "node": "v24.19.0",
     "cliCoreStemmers": "0.277.0",
-    "portCheck": "matches cli-core's categorize() on 251 tasks × 2 lists"
+    "portCheck": "matches cli-core's categorize() on 251 tasks × 2 lists and 24 Spanish messages"
   },
   "categories": {
     "old": 7,
@@ -125,6 +125,72 @@
         "money → follow-up": 1,
         "money → content": 1
       }
+    }
+  },
+  "spanish": {
+    "English stems only (before)": {
+      "right": 21,
+      "of": 24,
+      "share": 0.875,
+      "fellToOther": 3,
+      "picks": [
+        "money",
+        "other",
+        "other",
+        "other",
+        "money",
+        "bills",
+        "bills",
+        "health",
+        "health",
+        "travel",
+        "travel",
+        "home",
+        "home",
+        "documents",
+        "delivery",
+        "car",
+        "car",
+        "bank",
+        "taxes",
+        "personal",
+        "family",
+        "meeting",
+        "clients",
+        "entertainment"
+      ]
+    },
+    "Spanish stems too (after)": {
+      "right": 23,
+      "of": 24,
+      "share": 0.9583333333333334,
+      "fellToOther": 0,
+      "picks": [
+        "money",
+        "money",
+        "money",
+        "money",
+        "money",
+        "bills",
+        "bills",
+        "health",
+        "health",
+        "travel",
+        "travel",
+        "home",
+        "home",
+        "documents",
+        "delivery",
+        "car",
+        "car",
+        "bank",
+        "taxes",
+        "personal",
+        "family",
+        "meeting",
+        "clients",
+        "shopping"
+      ]
     }
   },
   "duplicateRuns": {
