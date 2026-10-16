@@ -22,7 +22,7 @@ for (const lang of ["en", "ru", "es"]) {
       const path =
         format === "html"
           ? `/${lang}/docs/drive${slug}`
-          : `/llms.mdx/docs/${lang === "en" ? "" : lang + "/"}drive${slug}/content.md`
+          : `/llms.mdx/docs/${lang === "en" ? "" : `${lang}/`}drive${slug}/content.md`
       const body = execFileSync(
         "curl",
         ["--fail", "--silent", "--show-error", "--max-time", "25", `https://wirecat.dev${path}`],
@@ -42,5 +42,5 @@ for (const lang of ["en", "ru", "es"]) {
     }
   }
 }
-writeFileSync("/var/tmp/drive-0151-live-results.json", JSON.stringify({ version: "0.15.1", checks }, null, 2) + "\n")
+writeFileSync("/var/tmp/drive-0151-live-results.json", `${JSON.stringify({ version: "0.15.1", checks }, null, 2)}\n`)
 process.stdout.write(`${checks.length} live release HTML/Markdown checks passed\n`)
