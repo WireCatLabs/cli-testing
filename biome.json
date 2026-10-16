@@ -16,7 +16,8 @@
       "!performance/documents/html-readers/sizes.json",
       "!performance/documents/html-readers/manifest.json",
       "!performance/startup/cold-start-and-install/results.json",
-      "!performance/tasks/duplicates/results-*.json"
+      "!performance/tasks/duplicates/results-*.json",
+      "!performance/tasks/categories/results.json"
     ],
     "maxSize": 16777216
   },

@@ -1,4 +1,4 @@
-// Usage: node linked.mjs [tasks.jsonl]
+// Usage: node linked.mjs [tasks.jsonl] [results.json]
 // Replays the set through cli-core's shipped duplicate check with an agent that answers every refusal right, once
 // with the comparison reading only a task's own text and once reading the messages linked to it too, and runs the
 // check again each time a message is linked. Writes results-linked.json.
@@ -294,7 +294,7 @@ const runs = {
   "rule tasks, source message read (after)": replay({ read: true, agent: false, rule: true }),
 }
 writeFileSync(
-  join(here, "results-linked.json"),
+  process.argv[3] ?? join(here, "results-linked.json"),
   `${JSON.stringify(
     {
       environment: {
