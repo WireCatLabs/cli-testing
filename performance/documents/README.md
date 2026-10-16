@@ -2,6 +2,8 @@
 
 Measurements of document conversion, shared retrieval and source-backed memories.
 
+- [drive-release-polish](drive-release-polish/README.md): isolated executable setup, validation, profiles and legacy settings checks before public-release polish.
+
 - [drive-shared-store](drive-shared-store/README.md): offline import, provenance, tags and message links across Drive, Telegram, MAX and Memo executables.
 
 - [drive-ai-quality](drive-ai-quality/README.md): real-model extraction over synthetic decisions, drafts, uncertainty, assignments, injection and Spanish negation.
