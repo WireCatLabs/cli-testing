@@ -89,4 +89,4 @@ const report = {
   remote_writes: false,
 }
 writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, { flag: "wx", mode: 0o600 })
-process.stdout.write(JSON.stringify(report) + "\n")
+process.stdout.write(`${JSON.stringify(report)}\n`)
