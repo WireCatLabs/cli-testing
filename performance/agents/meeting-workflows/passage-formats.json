@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "scope": "passage output size only; excluded from timed workflow comparison",
+  "samples": 3,
+  "packages": {
+    "zoom-cli": {
+      "version": "0.21.2",
+      "integrity": "sha512-L+7PAFLrHjvVYYE6YSRHj+HP58wgbvlULSz8VtFz1um6yOFuXxbCF64iaSFZRHaeQ0YYh+xw8pdPVEWo00+Ozg=="
+    },
+    "cli-core": {
+      "version": "0.299.0",
+      "integrity": "sha512-aSyLkbNm4cn2SavRniJ35yCeEBcc6ygz0z4BGDf3sQ3zOLyNacIgbIlMP3L5+T3XvUrFlqz36IpJYKndT6Xpyw=="
+    },
+    "cli-base": {
+      "version": "0.40.0",
+      "integrity": "sha512-jv+n/hyKzASfS9Sz8Q+pljE8qefsqn4H+jDS5/tsr2vIfEDvFXw+inME+mM2kzaSV70s+eSH8kyEUPmq7UGd5A=="
+    }
+  },
+  "source_sha256": "52d3e03902634e2db4a48b9729423d4e7b0f01908dc3315de4340af8502d5836",
+  "workflow_results_sha256": "708ef60ebbb1fd2b2b5e5fd3050e5365f46ae298ebe22908c6f1d7eb8dbf81f4",
+  "cases": [
+    {
+      "name": "small",
+      "requests": 17,
+      "cues": 51,
+      "formats": {
+        "json-full": {
+          "median_stdout_bytes": 35547,
+          "samples": [35547, 35547, 35547]
+        },
+        "json-compact": {
+          "median_stdout_bytes": 22207,
+          "samples": [22207, 22207, 22207]
+        },
+        "text": {
+          "median_stdout_bytes": 11599,
+          "samples": [11599, 11599, 11599]
+        },
+        "markdown": {
+          "median_stdout_bytes": 11939,
+          "samples": [11939, 11939, 11939]
+        }
+      },
+      "content_and_coverage_checks": "passed"
+    },
+    {
+      "name": "medium",
+      "requests": 17,
+      "cues": 51,
+      "formats": {
+        "json-full": {
+          "median_stdout_bytes": 35649,
+          "samples": [35649, 35649, 35649]
+        },
+        "json-compact": {
+          "median_stdout_bytes": 22291,
+          "samples": [22291, 22291, 22291]
+        },
+        "text": {
+          "median_stdout_bytes": 11683,
+          "samples": [11683, 11683, 11683]
+        },
+        "markdown": {
+          "median_stdout_bytes": 12023,
+          "samples": [12023, 12023, 12023]
+        }
+      },
+      "content_and_coverage_checks": "passed"
+    }
+  ]
+}

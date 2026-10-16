@@ -56,10 +56,77 @@ These probes are outside the timed normal workflow.
 
 ## Results
 
-The runner writes every measured trial, per-call timing/byte counts, package versions and integrity,
-harness hashes, fixture hashes and evidence digests to `results.json`. It also checkpoints completed
-trials. Summaries use medians and observed ranges; five samples do not establish a latency guarantee.
+Measured with Zoom 0.21.2, Core 0.299.0 and Base 0.40.0 on Linux/Node 24.19.0. The
+[recorded results](results.json) retain all 40 trials, 620 timed CLI invocations, evidence digests,
+per-call traces, fixture hashes, package integrity and host details. Small is 1,920 selected-profile
+cues; medium is 14,400. Each has the same 17-hit task, plus one excluded foreign-profile meeting.
+
+| Fixture | Mode | CLI processes | Median seconds (range) | Median stdout bytes |
+| --- | --- | --- | --- | --- |
+| small | single-full | 27 | 13.91 (12.60–20.20) | 45,975 |
+| small | batch-full | 4 | 1.95 (1.77–2.43) | 48,855 |
+| small | single-compact | 27 | 15.70 (12.14–20.32) | 30,107 |
+| small | batch-compact | 4 | 2.79 (1.90–2.96) | 32,987 |
+| medium | single-full | 27 | 17.11 (11.85–18.69) | 46,155 |
+| medium | batch-full | 4 | 2.27 (1.75–3.07) | 49,035 |
+| medium | single-compact | 27 | 14.58 (11.94–17.84) | 30,223 |
+| medium | batch-compact | 4 | 1.85 (1.77–2.25) | 33,107 |
+
+All modes retained every expected hit and all 51 context cues, including the 48 around decision
+topics. Per-fixture evidence digests matched across every mode and repetition. The incidental
+abbreviation hit stayed available for review; no foreign-account hit appeared. Missing/stale
+passages remained correlated errors beside a successful passage. Budget refusal produced `not_run`;
+retrying only that request retained both intended passages and reported completeness truthfully.
+
+Batching reduced 27 processes to 4. For full JSON its median improvement was 7.1× on small and
+7.5× on medium in this run. Batch framing added about 2.9 KB; batching alone did not shrink output.
+Field selection reduced stdout by about 34.5% for separate reads and 32.5% within batches.
+Using batches with field selection was about 28% smaller than full JSON from separate reads.
+Projection did not consistently reduce elapsed time; its demonstrated benefit here is fewer bytes.
+
+Use batches for known independent queries, then batch the deduplicated cited passages. Keep each
+query's cursor and each answer's coverage. Choose practical per-request byte ceilings: these passage
+requests reserve 64 KiB each, so all 17 fit the aggregate budget. The three-hit search page deliberately
+exercises continuation; a larger page can reduce processes further and was not timed here.
+
+### Limits
+
+The fixture and scorer were written by the same agent. This checks scripted retrieval and evidence
+preservation, not blind relevance assessment, discovery of unknown aliases or correct interpretation
+of a real project's decisions. CLI process count is not a count of model/API turns.
+These are warm-index measurements on a shared developer machine. The observed timing ranges are
+wide; they do not isolate startup, storage and rendering costs or establish general speed guarantees.
+
 
 Stdout and request sizes are UTF-8 byte counts. Request bytes are serialized CLI arguments plus stdin,
 excluding the fixed Node/preload prefix. No tokenizer or language model is run, so this benchmark does
 not claim exact token savings, real-project relevance, or independent agent decision accuracy.
+
+## Passage formats
+
+A separate [format probe](formats.mjs) measures the passage stage only: the same 17 requests and
+51 cues, three samples per format. These calls are excluded from the 40 timed workflows above.
+The [recorded format results](passage-formats.json) include every byte sample and source hashes.
+
+| Fixture | Full JSON bytes | Selected JSON bytes | Text bytes | Markdown bytes |
+| --- | --- | --- | --- | --- |
+| small | 35,547 | 22,207 | 11,599 | 11,939 |
+| medium | 35,649 | 22,291 | 11,683 | 12,023 |
+
+Text was about 67% smaller than full JSON and 48% smaller than selected JSON for these passages.
+Every text/Markdown sample contained all expected cue references, timestamps, speakers and text,
+with one coverage summary per request and unknown archive coverage preserved.
+
+Use JSON for machine pagination, structured error handling and fingerprint preconditions. Text or
+Markdown is smaller when the next step is reading and citing passages. This check does not claim
+that plain text exposes every field of the JSON envelope or measures an agent's interpretation.
+
+After a workflow run, reproduce the format probe against its retained seed stores:
+
+```sh
+node performance/agents/meeting-workflows/formats.mjs \
+  --install /tmp/meeting-bench-install \
+  --results /tmp/meeting-bench-results/results.json \
+  --run-root /tmp/meeting-bench-results \
+  --output /tmp/meeting-bench-formats.json
+```
