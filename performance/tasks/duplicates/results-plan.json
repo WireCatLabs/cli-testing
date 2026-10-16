@@ -1,10 +1,10 @@
 {
-  "generated": "2026-10-14",
+  "generated": "2026-10-16",
   "environment": {
     "node": "v24.19.0",
     "sqlite": "3.53.3",
-    "cliCore": "0.277.0",
-    "cliCoreIntegrity": "sha512-X0IBZ2waGP3EV4R5mbUnpT+nUFjXvPXvkwAS2lK3yeUfWVbazIVp1kJz1G2fKwsN7ZQH5dvW7zroeGWhyTk+Vg==",
+    "cliCore": "0.303.0",
+    "cliCoreIntegrity": "sha512-uBOSOaFttYyHEzcKPdPLm3mJ8Ua0qIBePkv7LZf3M0MEL06TXkCa9KUHz4urWxXE5okiE7AF/yIwx8PFmJtWJQ==",
     "snowball": "3.1.1 (vendored in cli-core dist/search/snowball)",
     "timeZone": "Europe/Madrid",
     "splitSeed": "tasks-duplicates-1"
@@ -103,10 +103,10 @@
     }
   },
   "runtime": {
-    "totalMs": 290,
-    "perTaskMedianMs": 0.773,
-    "perTaskP95Ms": 2.094,
-    "perTaskMaxMs": 36.878
+    "totalMs": 77,
+    "perTaskMedianMs": 0.201,
+    "perTaskP95Ms": 0.452,
+    "perTaskMaxMs": 10.971
   },
   "certainRules": [
     "reply to a linked message",

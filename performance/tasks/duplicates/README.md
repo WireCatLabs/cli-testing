@@ -39,7 +39,7 @@ This run is step 1 of the plan's build order. Its answers go into the scoring mo
 
   The set has 80 duplicate pairs, counted as each task paired with every earlier task of its group.
 - Chain: [`evaluate.mjs`](evaluate.mjs) follows the plan's chain:
-  - **Stems.** The Snowball 3.1.1 stemmers and `normalize()` come from the published `@wirecat/cli-core@0.277.0`
+  - **Stems.** The Snowball 3.1.1 stemmers and `normalize()` come from the published `@wirecat/cli-core@0.303.0`
     tarball. The script downloads it with `npm pack`, checks its sha512 and keeps it in `.cache/`. The stemmer
     factory `createStemmer` (`src/search/stem.ts`) is not a public export, so the script copies its token logic:
     the same token pattern and script test, Snowball on the lower-cased word, `normalize()` after it. A Latin word
@@ -47,8 +47,9 @@ This run is step 1 of the plan's build order. Its answers go into the scoring mo
   - **Two steps the plan names but cli-core does not have yet.** The script adds them on top: digit groups joined
     (`15 000` → `15000`, only before exactly three digits, so `20.10` stays a date) and stop words removed
     (Russian and English).
-  - **Signature.** Amount, currency and due date come from patterns in the text, as a rule would find them. They
-    never come from the labelled fields. A date phrase must be a whole word, and a month a whole month name or its
+  - **Signature.** Amount, currency and due date come from patterns in the text, as a rule would find them, read by
+    cli-core's own `amountOf` and `dueDayOf` (`dist/search/task-signature.js`). They never come from the labelled
+    fields. A date phrase must be a whole word, and a month a whole month name or its
     English abbreviation; due days are calendar dates in the machine's time zone.
   - **Candidates.** A real FTS5 table with `bm25()` gives the top 20 matches on any stem. The same person gives up
     to 10 newest tasks, the same category gives up to 10 newest tasks, and the reply chain adds its tasks. A
@@ -372,3 +373,18 @@ Replay of `spanish.jsonl` (6 duplicate pairs, 12 tasks with no earlier duplicate
   on these phrasings.
 - Spanish amounts (`900 €` already reads; `15 mil`, `900 pavos` do not), and Spanish forms with no English or
   Russian counterpart (`la semana que viene`, `3/11`).
+
+## Follow-up: amounts and dates read by cli-core (2026-10-16)
+
+`chain.mjs` kept its own copy of cli-core's amount and due-date patterns, so a fix in cli-core reached this test
+only when someone copied it by hand. The question: does the chain give the same answers when it reads amounts and
+dates with cli-core's own functions? The answer decided whether the copy could go.
+
+- Setup: the same machine and data as above, Node v24.19.0, `@wirecat/cli-core@0.303.0` (stemmers, `normalize()`
+  and now `dist/search/task-signature.js`), Europe/Madrid, load average near 5. Command: `bash run.sh`.
+- Results: every count, score and band in `results-plan.json`, `results-none.json`, `results-linked.json` and
+  `results-spanish.json` is the same as with the copy on cli-core 0.277.0. Only the version, the date and the
+  runtime changed: plan run 0.3 ms per task (median), 0.6 ms at the 95th percentile, 16 ms maximum, 0.1 s for all
+  251 tasks.
+- What it showed: the copy matched cli-core exactly, so it was removed. The runtime is lower mainly because this
+  run had a load near 5, not near 50; it was not measured apart from that.

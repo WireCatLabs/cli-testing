@@ -1,10 +1,10 @@
 {
-  "generated": "2026-10-14",
+  "generated": "2026-10-16",
   "environment": {
     "node": "v24.19.0",
     "sqlite": "3.53.3",
-    "cliCore": "0.277.0",
-    "cliCoreIntegrity": "sha512-X0IBZ2waGP3EV4R5mbUnpT+nUFjXvPXvkwAS2lK3yeUfWVbazIVp1kJz1G2fKwsN7ZQH5dvW7zroeGWhyTk+Vg==",
+    "cliCore": "0.303.0",
+    "cliCoreIntegrity": "sha512-uBOSOaFttYyHEzcKPdPLm3mJ8Ua0qIBePkv7LZf3M0MEL06TXkCa9KUHz4urWxXE5okiE7AF/yIwx8PFmJtWJQ==",
     "snowball": "3.1.1 (vendored in cli-core dist/search/snowball)",
     "timeZone": "Europe/Madrid",
     "splitSeed": "tasks-duplicates-1"
@@ -68,10 +68,10 @@
     }
   },
   "runtime": {
-    "totalMs": 238.8,
-    "perTaskMedianMs": 0.646,
-    "perTaskP95Ms": 1.427,
-    "perTaskMaxMs": 36.586
+    "totalMs": 106.9,
+    "perTaskMedianMs": 0.295,
+    "perTaskP95Ms": 0.621,
+    "perTaskMaxMs": 16.155
   },
   "certainRules": [],
   "tuning": {
