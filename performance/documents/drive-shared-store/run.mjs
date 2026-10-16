@@ -7,7 +7,9 @@ import { tmpdir } from "node:os"
 import { dirname, join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 
-const [prefix, output] = process.argv.slice(2)
+const [prefix, output, mode] = process.argv.slice(2)
+assert.ok(mode === undefined || mode === "--published-readers")
+const publishedReaders = mode === "--published-readers"
 assert.ok(prefix && output, "run.mjs INSTALLED_PREFIX OUTPUT_JSON")
 const modules = join(resolve(prefix), "node_modules/@wirecat")
 const drive = join(modules, "drive-cli")
@@ -137,7 +139,11 @@ const run = async (app, args) => {
       .digest("hex"),
   }
   const readerCore = createRequire(join(pkg, "package.json")).resolve("@wirecat/cli-core/store")
-  assert.equal(readerCore, require.resolve("@wirecat/cli-core/store"), "one physical released Core")
+  if (!publishedReaders)
+    assert.equal(readerCore, require.resolve("@wirecat/cli-core/store"), "one physical released Core")
+  artifacts[app].core = JSON.parse(
+    readFileSync(join(resolve(dirname(readerCore), "../.."), "package.json"), "utf8"),
+  ).version
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, ["--import", guard, join(pkg, `dist/bin/${app}.js`), ...args, "--json"], {
       env,
@@ -178,15 +184,21 @@ for (const app of ["tg", "max"]) {
     "zebra",
     "--only",
     "notes",
-    "--source",
-    "drive:synthetic",
+    ...(publishedReaders ? [] : ["--source", "drive:synthetic"]),
     "--exact",
   ])
   assert.equal(found.items.length, 1)
-  assert.equal(found.items[0].kind, "document")
-  assert.equal(found.items[0].url, url)
-  assert.equal(found.items[0].timestamp, "2026-01-02T03:04:05Z")
-  assert.equal(found.items[0].account, "synthetic")
+  assert.equal(found.items[0].title, "Zebra harbor budget")
+  if (!publishedReaders) {
+    assert.equal(found.items[0].kind, "document")
+    assert.equal(found.items[0].url, url)
+    assert.equal(found.items[0].timestamp, "2026-01-02T03:04:05Z")
+    assert.equal(found.items[0].account, "synthetic")
+  }
+  if (publishedReaders && app === "max") {
+    assert.equal(versions.max, "0.56.0")
+    continue
+  }
   const chat = await run(app, ["synthetic", "--offline", "chats", "documents", "list", "7"])
   assert.equal(chat.items.length, 1)
   assert.equal(chat.items[0].in_store, true)
@@ -202,10 +214,18 @@ const mixed = await run("tg", [
   "messages,notes",
   "--exact",
 ])
-assert.ok(mixed.items.some((item) => item.kind === "document" && item.url === url))
+assert.ok(
+  mixed.items.some((item) =>
+    publishedReaders ? item.title === "Zebra harbor budget" : item.kind === "document" && item.url === url,
+  ),
+)
 assert.ok(mixed.items.some((item) => item.kind === "message"))
 const memo = await run("memo", ["search", "all", "zebra", "--only", "notes", "--exact"])
-assert.ok(memo.items.some((item) => item.kind === "document" && item.url === url))
+assert.ok(
+  memo.items.some((item) =>
+    publishedReaders ? item.title === "Zebra harbor budget" : item.kind === "document" && item.url === url,
+  ),
+)
 await run("drive", ["synthetic", "--offline", "tags", "add", id, "shared-proof"])
 for (const app of ["tg", "max"]) {
   const found = await run(app, [
@@ -214,18 +234,17 @@ for (const app of ["tg", "max"]) {
     "search",
     "notes",
     "tag:shared-proof",
-    "--source",
-    "drive:synthetic",
+    ...(publishedReaders ? [] : ["--source", "drive:synthetic"]),
     "--exact",
   ])
   assert.equal(found.items.length, 1)
-  assert.equal(found.items[0].url, url)
+  if (!publishedReaders) assert.equal(found.items[0].url, url)
 }
 await addMessages(2)
 await sync()
 await sync()
 assert.equal(reads, 1, "unchanged sources are not downloaded for new messages")
-for (const app of ["tg", "max"]) {
+for (const app of publishedReaders ? ["tg"] : ["tg", "max"]) {
   const chat = await run(app, ["synthetic", "--offline", "chats", "documents", "list", "7"])
   assert.equal(chat.items.length, 2)
   assert.ok(chat.items.every((item) => item.in_store && item.title === "Zebra harbor budget"))
@@ -233,6 +252,6 @@ for (const app of ["tg", "max"]) {
 await run("drive", ["synthetic", "--offline", "documents", "show", id])
 writeFileSync(
   resolve(output),
-  `${JSON.stringify({ status: "passed", date: new Date().toISOString(), runtime: process.version, core: core.version, versions, artifacts, synthetic_source_syncs: 3, source_content_reads: reads, checks }, null, 2)}\n`,
+  `${JSON.stringify({ status: "passed", date: new Date().toISOString(), runtime: process.version, core: core.version, versions, artifacts, ...(publishedReaders ? { not_run: [{ app: "max", command: "chats documents list", reason: "Published MAX 0.56.0 does not mount this shared command; the merged adoption is tested in the candidate run" }] } : {}), synthetic_source_syncs: 3, source_content_reads: reads, checks }, null, 2)}\n`,
 )
 process.stdout.write(`${checks.length} executable checks passed across Drive, Telegram, MAX and Memo\n`)
