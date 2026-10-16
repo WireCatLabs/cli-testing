@@ -15,6 +15,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   Its JSON summary records the selected effects expectation. The profile also checks JSON/JSONL
   field selection, provider key paths, unknown fields and refusal before undeclared writes.
 
+### Fixed
+
+- The search-matrix hash lock installs the NLTK version declared in its requirements instead
+  of an older version. Historical result/version records remain unchanged; the reproduction
+  guide identifies the previous lock's source commit.
+
 ### Added
 
 - Installed Drive 0.14.0 shared-Core acceptance: 59 AI workflow commands/12 loopback requests
