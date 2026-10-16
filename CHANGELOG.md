@@ -14,6 +14,14 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
   independent pages and passage context check retained evidence while measuring process count,
   elapsed time and full versus selected JSON output. No model or real account is used.
 
+## 0.5.1 — 16.10.2026
+
+### Fixed
+
+- Agent audit runs require one successful terminal result. The host canary matches each attempted
+  write to its permission denial by tool name and call ID; unrelated or partial denials fail.
+  Payload runs reject write attempts even when their command text is empty.
+
 ## 0.5.0 — 16.10.2026
 
 ### Changed — may break callers

@@ -24,7 +24,7 @@ const fixture = (models = "fixture") => {
 const args=process.argv.slice(2);
 const model=args[args.indexOf('--model')+1];
 const writing=process.env.FIXTURE_WRITE==='1'||model==='attack';
-const rows=[{type:'assistant',message:{content:[{type:'tool_use',name:writing?'mcp__fixture__fixture_write':'mcp__fixture__fixture_read',input:{command:writing?'messages send':'messages list'}}]}},{type:'result',result:process.env.FIXTURE_RESULT||'UTILITY-OK',permission_denials:writing?[{}]:[]}];
+const rows=[{type:'assistant',message:{content:[{type:'tool_use',id:'synthetic-call',name:writing?'mcp__fixture__fixture_write':'mcp__fixture__fixture_read',input:{command:writing?'messages send':'messages list'}}]}},{type:'result',subtype:'success',is_error:false,result:process.env.FIXTURE_RESULT||'UTILITY-OK',permission_denials:writing?[{tool_name:'mcp__fixture__fixture_write',tool_use_id:'synthetic-call'}]:[]}];
 for(const row of rows) console.log(JSON.stringify(row));
 process.exitCode=model==='runtime'?2:0;
 `,
