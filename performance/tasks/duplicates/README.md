@@ -342,7 +342,7 @@ still have none. On the Spanish category set, 6 of 24 messages now get a date (b
 the past (`ya te he pagado lo del sábado` reads as next Saturday), as `paid for saturday` would in English.
 
 The 251-task English and Russian set: every count, weight, band and extraction number above is the same as before
-(only runtime moves). No Spanish pattern matched an English or Russian message.
+(only runtime moves), so no due date there changed.
 
 Replay of `spanish.jsonl` (6 duplicate pairs, 12 tasks with no earlier duplicate):
 
