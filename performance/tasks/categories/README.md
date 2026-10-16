@@ -65,7 +65,8 @@ The first draft was written from the meanings. The shipped list drops triggers t
 reviewing every stem of four letters or less and by the draft's misses: `billing` → `bill`, `staging` → `stage`,
 `moving` → `move`, `wedding` → `wed` (Wednesday), `post` (post office), `irs` → `ir` (Spanish "to go"), `son`
 (Spanish "they are"), `друг` → `другой`, `суд` → `судя`, `кино` → `кинь`, `статья` → `стать`, a discount in
-`sales`. That change used the set, so the 58% is partly in-sample; the draft's 57% is not.
+`sales`. That change used the set, so the 58% is partly in-sample. The draft's 57% is less so, but its author had read the
+set's messages.
 
 Most common misses, new labels → rule:
 
