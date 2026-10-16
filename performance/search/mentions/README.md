@@ -183,3 +183,50 @@ Setup: same machine; the owner's store itself, `tg personal mentions rebuild url
 
 What it showed: the same cut as on the copy, with no letter or site lost. The file stays 2.4 GB: SQLite keeps the
 freed pages inside the file for later writes. Not measured: a `VACUUM`, which would return them to the disk.
+
+## Seventh run: unknown names and street addresses (2026-10-16)
+
+Why: mentions plan phase 3 adds names of people the store does not know and street addresses (Russia, the rest of
+Europe, the United Kingdom, the United States), read in every stored text. The questions: how many rows each adds,
+where they come from, how long a rebuild of both takes, and whether the chats hold enough addresses to review.
+It fed two choices: reading mail as well as chats, and drawing the precision sample from mail too.
+
+Setup: same machine; a `.backup` copy of the owner's store (chats 7,629 messages, 257,139 letters, 325 documents);
+cli-core branch `feat/mentions-phase3` (cli-core#1384) built;
+`node rebuild-names-places.mjs <checkout> <copy>` runs `rebuildMentions({ kinds: ["person-name", "place"] })` once.
+Totals only; the copy is deleted after the owner's labelling.
+
+| | chats | mail | documents |
+|---|---|---|---|
+| unknown names (confidence 0.4 / 0.5) | 494 | 70,868 | 517 |
+| known names, undecided or linked (0.6 / 0.9) | 877 | 105,755 | 1,141 |
+| street addresses | 2 | 20,793 | 18 |
+| addresses with a postcode beside them | 0 | 4,878 | 1 |
+
+| | |
+|---|---|
+| rebuild of `person-name` and `place`, all sources | 103 s |
+| `mentions` table and its indexes, MB | 172 → 188 |
+
+What it showed: almost all of both kinds are in mail; the chats hold two addresses, so a review of addresses has
+to read mail. The table grows by about 16 MB. A first build read «Отлично», «Логично» and «Основной» as
+patronymics; the rule was fixed before these totals.
+
+Precision, labelled by the owner on a random sample (his answers stay private; totals only):
+
+| | sample | right | partly | wrong | right, share |
+|---|---|---|---|---|---|
+| unknown names in chats | 15 | 10 | 1 | 4 | 67% |
+| unknown names in mail | 15 | 13 | 0 | 2 | 87% |
+| street addresses | 30 | 30 | 0 | 0 | 100% |
+
+At this size each share is a rough signal (about ±25 points). Every address was a real one, but the span stops at
+the house number or the postcode: the city, the flat and the rest of the line are left out.
+
+Whole addresses, after the span was extended over the rest of the address: the owner marked 4 of 10 as whole and 6
+as partly; three more random samples of 30 were read on the copy with his leave, and the rule was fixed after each
+(flat and suite words, `|` separators, a city with no comma before its postcode, the country on the next line of a
+signature, Luxembourg and Swiss postcodes, the region before a Russian street). In the last sample about 22 of 30
+were whole; the rest were addresses of countries outside the rule (Canada, Singapore, Armenia).
+
+Not measured: recall — how many names and addresses the rules miss. It needs whole texts read.
