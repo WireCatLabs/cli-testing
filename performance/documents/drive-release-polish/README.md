@@ -93,3 +93,34 @@ Fresh shared-app sign-in was started in an empty isolated workspace with explici
 before the five-minute deadline; a subsequent local session list contained no profiles. This
 checks startup/timeout behavior, not successful live consent, import/search, outside-test-user
 access or Google verification. It is not reported as a passed connection test.
+
+
+### Successful consent retry and bounded live import
+
+The subsequent fresh consent flow completed against npm Drive 0.15.1 using WireCat's bundled
+application and read-only scope, with no custom OAuth client JSON. It used the same empty isolated
+test workspace; the existing owner profile/store were not changed. Private-file credentials were
+explicitly selected for this workspace. This establishes a fresh local installation's connection
+for the consenting account, not Google's verification or access for every external account.
+
+One previously owner-selected folder root was imported with `sync --limit 5`. Five sources were
+saved; 373 source operations remained. This was a bounded first-batch smoke test, not complete
+coverage of the selected folder. No Google files were edited and no AI/model request was made.
+
+The [cached-read runner](live-cache.mjs) then invoked the actual installed bin 13 times with
+network, browser and keyring access blocked. All five cached sources could be read and found by
+an exact word from their own text, with their source references/URLs retained.
+[Aggregate-only results](results-live-cache-0.15.1.json) contain no account email, folder/document
+ID, title, query, passage, OAuth code or token. Raw content and credentials stay in the private
+acceptance workspace; only counts and outcomes are published.
+
+To repeat cached acceptance after explicitly connecting and importing into an isolated workspace:
+
+```sh
+T=/var/tmp/OWNER_CREATED_ISOLATED_WORKSPACE
+HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-release-polish/live-cache.mjs /path/to/npm/drive-cli "$T" EXPLICIT_PROFILE "$T/new-report.json"
+```
+
+This runner refuses a preexisting report and non-temporary workspace. It never starts sign-in,
+selects an account, fetches Google data or chooses an import root. Its cached success does not
+certify semantic model quality, a complete selected tree, or Google's app verification.
