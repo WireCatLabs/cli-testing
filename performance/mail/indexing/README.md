@@ -62,3 +62,23 @@ The embedding rows differ only by machine load; #1259 does not touch embedding.
 - Stores with more than one embedding model; the fix seeks once per model.
 - A queue of threads with text: one email with text was in this queue, so the word-index row comes from a
   separate, synthetic queue of the newest 300 emails with text.
+
+## Synthetic release check
+
+Before a dependency update, `run-synthetic.sh <built Core checkout>` repeats the same index-drain
+protocol without owner mail or downloaded models. It creates 600 fictional threads, builds their
+chunks, adds 10,000 unrelated synthetic vectors and cuts 300 messages to envelopes. The profile
+then measures 300 queued threads and the word index of 300 remaining messages with text. A fourth
+argument of `0` to `run.sh` skips embedding entirely; it neither loads nor downloads a model.
+
+The synthetic fixture is retained in the temporary directory printed by the launcher. The profile
+works on its own copies as before. This check can catch index-drain regressions; it does not measure
+real mailbox coverage, IMAP throughput, semantic quality or embedding latency. Record the exact
+Core revision, runtime and output with the consuming release review.
+
+[One synthetic release check](synthetic-release-check.json) against the recorded Core source build
+finished the combined 300-email/300-thread queue in 68 ms and the word index of 300 messages
+(453,300 characters) in 112 ms, leaving no queued work. This single shared-host trial is an advisory
+release check. Its normalized per-thread figure includes email-word cleanup, and it measures no
+embedding. The JSON records source hashes, exact Core revision and limits; it is not a result for
+the npm package sharing that branch build's version string.
