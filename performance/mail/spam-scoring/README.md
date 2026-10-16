@@ -116,3 +116,5 @@ What it showed:
 - Thresholds above 3 for the new score, and weights other than the ones listed.
 - Scams that pass every check, such as a plain Gmail address with no brand name and no Reply-To.
 - Whether a high score on a never-replied group is junk or a real sender: the owner checks a sample by hand.
+
+Follow-up: [the score on stored mail](stored-mail/README.md) — what ranking by it would push down in search.
