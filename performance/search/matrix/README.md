@@ -159,6 +159,12 @@ python3 performance/search/message-search/prepare-reranker.py /tmp/search-multil
   --output /tmp/search-matrix-results
 ```
 
+The current hash lock follows the declared requirements, including NLTK 3.10.3. The published
+matrix results and frozen-input records retain the versions actually measured, including NLTK
+3.9.2; they have not been rerun or relabeled. To reproduce that historical environment, obtain
+`performance/search/matrix/requirements.lock` from commit
+`a1e42101e78178ef011af64afc8f9b0414b1326e`. New runs must record their installed versions separately.
+
 The two small model revisions/checksums are recorded in [models/tinybert.json](models/tinybert.json)
 and [models/minilm-l6.json](models/minilm-l6.json). The e5 files are pinned by the selected build;
 this runner does not install it. Current reranker preparation is optional if its verified cache
