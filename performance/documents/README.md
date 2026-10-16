@@ -1,6 +1,10 @@
 # Document reading
 
-Measurements of how documents become text before they are indexed and searched.
+Measurements of document conversion, shared retrieval and source-backed memories.
+
+- [drive-shared-store](drive-shared-store/README.md): offline import, provenance, tags and message links across Drive, Telegram, MAX and Memo executables.
+
+- [drive-ai-quality](drive-ai-quality/README.md): real-model extraction over synthetic decisions, drafts, uncertainty, assignments, injection and Spanish negation.
 
 - [drive-decisions](drive-decisions/README.md): installed-package decision replacement, confirmation,
   reversal, event time and local account/policy boundaries.

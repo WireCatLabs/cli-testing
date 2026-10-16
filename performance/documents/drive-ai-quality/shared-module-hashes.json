@@ -1,0 +1,13 @@
+{
+  "description": "AI extraction and proposal orchestration are byte-identical in the evaluated initial and adopted registry Core versions",
+  "sha256": {
+    "dist/services/documents/extraction.js": {
+      "0.299.0": "2f24f795714622e5b5ac7ade9aff21ff29d67fd553d23639548f14120998d562",
+      "0.301.0": "2f24f795714622e5b5ac7ade9aff21ff29d67fd553d23639548f14120998d562"
+    },
+    "dist/services/documents/proposals.js": {
+      "0.299.0": "3b056e2c98fd562a1c8d310746a72ee68b0f16ba7342978c7ceeb036b6fc0cdb",
+      "0.301.0": "3b056e2c98fd562a1c8d310746a72ee68b0f16ba7342978c7ceeb036b6fc0cdb"
+    }
+  }
+}
