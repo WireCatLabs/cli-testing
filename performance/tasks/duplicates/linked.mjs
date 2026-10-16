@@ -108,7 +108,7 @@ const levelsOf = (a, b, reply) => {
 }
 const scoreOf = (levels) => Object.entries(levels).reduce((sum, [field, level]) => sum + WEIGHTS[field][level], 0)
 
-const replay = ({ read, agent }) => {
+const replay = ({ read, agent, rule = false }) => {
   const db = new DatabaseSync(":memory:")
   db.exec(`CREATE TABLE tasks (id INTEGER PRIMARY KEY, person TEXT, category TEXT, created INTEGER, closed INTEGER);
 CREATE VIRTUAL TABLE task_stems USING fts5(stems);`)
@@ -178,10 +178,18 @@ CREATE VIRTUAL TABLE task_stems USING fts5(stems);`)
 
   for (const task of tasks) {
     const created = Date.parse(task.created_at)
-    const base = baseView(task)
+    // A rule's task has a placeholder title and no description: before, it compared on no words at all.
+    const shown = rule ? { ...task, title: "", description: "" } : task
+    const base = baseView(shown)
+    const own =
+      rule && read ? [{ message: task.source_message, text: task.description, person: task.person, sent: created }] : []
     const stored = records.filter((record) => record.task.group === task.group)
     const scored = candidates(
-      { views: [base], category: task.category, messages: [task.source_message] },
+      {
+        views: [base, ...own.map((message) => linkedView(shown, base, message))],
+        category: task.category,
+        messages: [task.source_message],
+      },
       created,
       undefined,
     )
@@ -224,9 +232,9 @@ CREATE VIRTUAL TABLE task_stems USING fts5(stems);`)
       continue
     }
     const record = {
-      task,
+      task: shown,
       base,
-      linked: [],
+      linked: own,
       index: records.length,
       closed: task.closed_at ? Date.parse(task.closed_at) : null,
     }
@@ -282,6 +290,8 @@ const runs = {
   "no agent (port check: matches results-none.json, recommended weights)": replay({ read: false, agent: false }),
   "agent, own text only (before)": replay({ read: false, agent: true }),
   "agent, linked messages read (after)": replay({ read: true, agent: true }),
+  "rule tasks, no words (before)": replay({ read: false, agent: false, rule: true }),
+  "rule tasks, source message read (after)": replay({ read: true, agent: false, rule: true }),
 }
 writeFileSync(
   join(here, "results-linked.json"),

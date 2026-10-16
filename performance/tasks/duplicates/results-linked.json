@@ -162,6 +162,84 @@
         },
         "wrong": []
       }
+    },
+    "rule tasks, no words (before)": {
+      "positives": 80,
+      "pairs": {
+        "maybe": {
+          "true": 6,
+          "false": 3,
+          "precision": 0.6666666666666666,
+          "recall": 0.075
+        },
+        "likely": {
+          "true": 0,
+          "false": 0,
+          "precision": null,
+          "recall": 0
+        }
+      },
+      "tasks": {
+        "withDuplicate": 71,
+        "duplicateFlagged": 5,
+        "attached": 0,
+        "new": 180,
+        "newRefused": 3,
+        "stored": 251,
+        "duplicatesStored": 71
+      },
+      "linkCheck": {
+        "pairs": 0,
+        "flaggedBefore": 0,
+        "maybe": {
+          "true": 0,
+          "false": 0
+        },
+        "likely": {
+          "true": 0,
+          "false": 0
+        },
+        "wrong": []
+      }
+    },
+    "rule tasks, source message read (after)": {
+      "positives": 80,
+      "pairs": {
+        "maybe": {
+          "true": 59,
+          "false": 27,
+          "precision": 0.686046511627907,
+          "recall": 0.7375
+        },
+        "likely": {
+          "true": 27,
+          "false": 3,
+          "precision": 0.9,
+          "recall": 0.3375
+        }
+      },
+      "tasks": {
+        "withDuplicate": 71,
+        "duplicateFlagged": 55,
+        "attached": 0,
+        "new": 180,
+        "newRefused": 18,
+        "stored": 251,
+        "duplicatesStored": 71
+      },
+      "linkCheck": {
+        "pairs": 0,
+        "flaggedBefore": 0,
+        "maybe": {
+          "true": 0,
+          "false": 0
+        },
+        "likely": {
+          "true": 0,
+          "false": 0
+        },
+        "wrong": []
+      }
     }
   }
 }

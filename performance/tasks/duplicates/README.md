@@ -241,7 +241,8 @@ The plan says the check runs on every new task and on every new message linked t
 [#1345](https://github.com/WireCatLabs/cli-core/pull/1345), the comparison read only a task's title and description,
 so a linked message changed no score and a check at link time would do nothing. That change makes the comparison
 read a task's source message and its 5 newest linked messages, and runs the check again after a link. The weights
-and bands stay as shipped. The question: does reading linked messages make precision or recall worse?
+and bands stay as shipped. The questions: does reading linked messages make precision or recall worse, and what does
+reading the source message do for a rule's task, whose title is a placeholder and which compared on no words before?
 
 ### Setup
 
@@ -252,8 +253,10 @@ every refusal right: when a task's maybe-or-likely candidates hold a real duplic
 best one, as `tasks add --into` does, and no task opens. Otherwise the task opens. "Before" compares a task's own
 text only. "After" also compares it with each linked message, one at a time: the task's text plus that message,
 the best pair counted whole. After each link, the replay runs the check again for the linked task, and counts the
-pairs it would send to review that were not flagged before ("before" runs it too, as a control). Same machine and
-versions as above.
+pairs it would send to review that were not flagged before ("before" runs it too, as a control). The two "rule
+tasks" runs give every task an empty title and description, as a rule's task has, with no agent: "before" compares
+on no words, "after" adds the source message as a view. The text index stays empty for them, as in cli-core, so they
+are found by person, category and reply only. Same machine and versions as above.
 
 ```sh
 node performance/tasks/duplicates/linked.mjs
@@ -268,14 +271,21 @@ Pairs are new task × candidate, as above; recall counts the duplicates still st
 | No agent (port check) | 72/53 | 58% | 90% | 34/6 | 85% | 43% | 65/71 | 0 | 38/180 | — |
 | Agent, own text only (before) | 65/45 | 59% | 92% | 30/6 | 83% | 42% | 65/71 | 65 | 36/180 | 0 new, 13 listed before |
 | Agent, linked messages read (after) | 65/45 | 59% | 92% | 30/6 | 83% | 42% | 65/71 | 65 | 36/180 | 0 new, 13 listed before |
+| Rule tasks, no words (before) | 6/3 | 67% | 8% | 0/0 | — | 0% | 5/71 | — | 3/180 | — |
+| Rule tasks, source message read (after) | 59/27 | 69% | 74% | 27/3 | 90% | 34% | 55/71 | — | 18/180 | — |
 
 The port check matches the "recommended" sweep above (72/53 at ≥ 5, 34/6 at ≥ 10, 38 of 180 new tasks flagged).
 Raw numbers: [`results-linked.json`](results-linked.json).
 
 ### What it showed
 
-- **Nothing got worse, and on this set nothing got better.** Every pair scored the same before and after. The check
-  after a link found 13 pairs at maybe or above, and all of them had already been flagged when the task opened.
+- **For tasks with their own text, nothing got worse, and on this set nothing got better.** Every pair scored the
+  same before and after. The check after a link found 13 pairs at maybe or above, and all of them had already been
+  flagged when the task opened.
+- **For a rule's task, reading the source message is most of the check.** Before, such a task compared on no words:
+  9 pairs reached maybe, 8% of duplicates. With its message, maybe or likely finds 74% of duplicates at 69%
+  precision, and likely 34% at 90%. The cost: 18 of 180 new tasks (10%) now have a maybe-or-likely candidate, so a
+  rule sends them to review (3 before).
 - **The set cannot show the gain.** Each task here carries its whole message as its description, and the second and
   third messages of one job repeat what the first said. A linked message adds no word, amount or date the task's
   own text lacks. The gain is for a task whose title says less than a later message, such as an agent's
@@ -285,5 +295,5 @@ Raw numbers: [`results-linked.json`](results-linked.json).
 
 - A set where later messages add facts the first lacked: an amount, a date, the other language. Writing one
   would change this set and every result above.
-- Rule-made tasks, whose title is a placeholder. Here every task has a title.
+- Rule-made tasks next to agent-made ones in one store: the rule runs give every task an empty title.
 
