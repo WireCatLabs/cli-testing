@@ -223,4 +223,10 @@ Precision, labelled by the owner on a random sample (his answers stay private; t
 At this size each share is a rough signal (about ±25 points). Every address was a real one, but the span stops at
 the house number or the postcode: the city, the flat and the rest of the line are left out.
 
+Whole addresses, after the span was extended over the rest of the address: the owner marked 4 of 10 as whole and 6
+as partly; three more random samples of 30 were read on the copy with his leave, and the rule was fixed after each
+(flat and suite words, `|` separators, a city with no comma before its postcode, the country on the next line of a
+signature, Luxembourg and Swiss postcodes, the region before a Russian street). In the last sample about 22 of 30
+were whole; the rest were addresses of countries outside the rule (Canada, Singapore, Armenia).
+
 Not measured: recall — how many names and addresses the rules miss. It needs whole texts read.
