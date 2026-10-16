@@ -17,8 +17,10 @@ const english = new (await load("english-stemmer.js"))()
 const spanish = new (await load("spanish-stemmer.js"))()
 
 const read = (file) => JSON.parse(readFileSync(join(here, file), "utf8"))
-const lists = { old: read("old-defaults.json"), new: read("new-defaults.json") }
+const lists = { old: read("old-defaults.json"), new: read("new-defaults.json"), 59: read("list-59.json") }
 const labels = read("labels.json")
+// The 36 labels with a task moved where one of the 23 added names is more specific; written before the 59 list ran.
+const labels59 = read("labels-59.json")
 const tasks = readFileSync(join(duplicates, "tasks.jsonl"), "utf8")
   .trim()
   .split("\n")
@@ -105,7 +107,7 @@ if (coreAt > 0) {
   const after = spanishRuns["Spanish stems too (after)"].picks
   differ.push(...spanishSet.filter(({ text }, at) => categorize(text, lists.new) !== after[at]).map(({ text }) => text))
   if (differ.length) throw new Error(`the port of categorize() differs from cli-core on ${differ.join(", ")}`)
-  portCheck = `matches cli-core's categorize() on ${tasks.length} tasks × 2 lists and ${spanishSet.length} Spanish messages`
+  portCheck = `matches cli-core's categorize() on ${tasks.length} tasks × 3 lists and ${spanishSet.length} Spanish messages`
 }
 
 // The old seven, for the set's own labels: a new name maps to the old one that held its tasks.
@@ -134,10 +136,11 @@ const accuracy = (pick, truth) => {
   return { right, of: tasks.length, share: right / tasks.length }
 }
 const confusion = (name) => {
+  const truth = name === "59" ? labels59 : labels
   const counts = {}
   for (const task of tasks) {
-    const key = `${labels[task.id]} → ${predicted[name][task.id]}`
-    if (labels[task.id] !== predicted[name][task.id]) counts[key] = (counts[key] ?? 0) + 1
+    const key = `${truth[task.id]} → ${predicted[name][task.id]}`
+    if (truth[task.id] !== predicted[name][task.id]) counts[key] = (counts[key] ?? 0) + 1
   }
   return Object.fromEntries(Object.entries(counts).sort((a, b) => b[1] - a[1]))
 }
@@ -148,6 +151,10 @@ const categoryAccuracy = Object.fromEntries(
       newLabels: accuracy(
         (task) => predicted[name][task.id],
         (task) => labels[task.id],
+      ),
+      labels59: accuracy(
+        (task) => predicted[name][task.id],
+        (task) => labels59[task.id],
       ),
       setLabels: accuracy(
         (task) => coarse(predicted[name][task.id]),
@@ -167,6 +174,8 @@ const variants = {
   "new labels (36)": (task) => labels[task.id],
   "rule, old list": (task) => predicted.old[task.id],
   "rule, new list": (task) => predicted.new[task.id],
+  "labels (59)": (task) => labels59[task.id],
+  "rule, 59 list": (task) => predicted[59][task.id],
 }
 const duplicateRuns = {}
 for (const [name, categoryOf] of Object.entries(variants)) {
@@ -202,12 +211,13 @@ const pct = (x) => (x === null ? "—" : `${(100 * x).toFixed(0)}%`)
 const lines = [
   `port check: ${portCheck}`,
   "",
-  "| list | new labels | set labels (old 7) | fell to other |",
-  "|---|---|---|---|",
+  "| list | new labels | 59 labels | set labels (old 7) | fell to other |",
+  "|---|---|---|---|---|",
 ]
 for (const [name, a] of Object.entries(categoryAccuracy))
   lines.push(
     `| ${name} | ${a.newLabels.right}/${a.newLabels.of} ${pct(a.newLabels.share)} | ` +
+      `${a.labels59.right}/${a.labels59.of} ${pct(a.labels59.share)} | ` +
       `${a.setLabels.right}/${a.setLabels.of} ${pct(a.setLabels.share)} | ${a.fellToOther} |`,
   )
 lines.push("", "| Spanish set, new list | right | fell to other |", "|---|---|---|")
