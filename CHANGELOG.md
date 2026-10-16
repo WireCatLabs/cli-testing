@@ -6,6 +6,14 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- **The meeting workflow benchmark compares separate reads with batches.** Synthetic alias searches,
+  independent pages and passage context check retained evidence while measuring process count,
+  elapsed time and full versus selected JSON output. No model or real account is used.
+
 ## 0.5.1 — 16.10.2026
 
 ### Fixed

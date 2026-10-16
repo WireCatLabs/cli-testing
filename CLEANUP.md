@@ -23,3 +23,5 @@ one batch after the owner confirms.
 - `performance/tasks/duplicates/.cache/` — downloaded `@wirecat/cli-core@0.277.0` tarball, ignored by git; remove with the worktree — 2026-10-14.
 - `~/Projects/AI/cli-private-wt-blog-duplicates` — detached cli-private worktree used to push POST-61 (`efff825f`); remove any time — 2026-10-14.
 - `~/Projects/AI/cli-testing-wt-tasks-dates` — worktree of branch `fix/tasks-duplicates-dates` (date-pattern fixes in the duplicate set), with its `.cache/`; remove after its PR merges — 2026-10-14.
+
+- 2026-10-16: `.worktrees/meeting-workflows`, `.worktrees/private-meeting-workflows` and `.worktrees/meeting-workflow-run` — synthetic meeting benchmark worktrees, pinned installs and retained fixture stores; remove in the owner's cleanup batch after reviewing `performance/agents/meeting-workflows/README.md`. `/tmp/meeting-workflow-*` logs/probes belong to the same task.
