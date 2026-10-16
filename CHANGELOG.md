@@ -8,25 +8,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## 0.5.0 â€” 16.10.2026
 
-### Fixed
-
-- Socket results retain alerts from Python and other reported ecosystems, including reports
-  that also contain npm alerts. Existing npm observation IDs stay stable; other ecosystems get
-  distinct IDs. Coverage fingerprints distinguish this normalization from older npm-only runs,
-  so comparisons require a baseline produced with the same coverage.
-
 ### Changed â€” may break callers
 
 - The offline catalog research runner accepts an optional `--precise-effects` expectation for
   the corrected provider-only metadata, while retaining exact historical release expectations.
   Its JSON summary records the selected effects expectation. The profile also checks JSON/JSONL
   field selection, provider key paths, unknown fields and refusal before undeclared writes.
-
-### Fixed
-
-- The search-matrix hash lock installs the NLTK version declared in its requirements instead
-  of an older version. Historical result/version records remain unchanged; the reproduction
-  guide identifies the previous lock's source commit.
 
 ### Added
 
@@ -72,6 +59,13 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Fixed
 
+- Socket results retain alerts from Python and other reported ecosystems, including reports
+  that also contain npm alerts. Existing npm observation IDs stay stable; other ecosystems get
+  distinct IDs. Coverage fingerprints distinguish this normalization from older npm-only runs,
+  so comparisons require a baseline produced with the same coverage.
+- The search-matrix hash lock installs the NLTK version declared in its requirements instead
+  of an older version. Historical result/version records remain unchanged; the reproduction
+  guide identifies the previous lock's source commit.
 - Security comparison coverage includes Semgrep rule/file gaps and partial-parsing spans. A new
   gap cannot make a missing observation appear fixed merely because the scanner names match.
   Existing records retain their original coverage; older and new fingerprints must not be mixed.
