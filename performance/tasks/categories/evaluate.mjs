@@ -45,11 +45,7 @@ const spanishStems = stemTokens(spanish)
 // triggers also meet its Spanish stems when the message reads as Spanish. Most distinct trigger stems hit wins, a tie
 // goes to the earlier one, a word counts once (its English stem first).
 const SPANISH_LETTERS = /[ñáéíóú¿¡]/u
-const SPANISH_WORDS = new Set(
-  "de del la las el los al lo que por para con una unos unas mi mis tu tus su sus nos hay tengo hola gracias".split(
-    " ",
-  ),
-)
+const SPANISH_WORDS = new Set("de del la las el los que por para una unos unas hay tengo hola gracias".split(" "))
 const readsSpanish = (text) =>
   SPANISH_LETTERS.test(text.toLowerCase()) ||
   (text.toLowerCase().match(/\p{L}+/gu) ?? []).some((word) => SPANISH_WORDS.has(word))

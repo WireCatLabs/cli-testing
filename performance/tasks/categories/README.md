@@ -135,9 +135,10 @@ does it change anything for English and Russian ones?
 - [`spanish.json`](spanish.json): 24 synthetic Spanish messages, each labelled by hand with one of the 36 names from
   the meanings, before either rule was run on them. They mix exact trigger forms (`pagar la factura`) with other
   forms of a word (`¿Me pagas…?`, `Ya te he pagado…`).
-- "Reads as Spanish": a letter of `ñáéíóú¿¡`, or one of the words `de del la las el los al lo que por para con una
-  unos unas mi mis tu tus su sus nos hay tengo hola gracias`. A Spanish stem is short, and English words land on
-  it (`page` → `pag`, the stem of `pagar`), so an English message is not read as Spanish.
+- "Reads as Spanish": a letter of `ñáéíóú¿¡`, or one of the words `de del la las el los que por para una unos unas
+  hay tengo hola gracias`. A Spanish stem is short, and English words land on it (`page` → `pag`, the stem of
+  `pagar`), so an English message without those is not read as Spanish. Short words that are also English (`al`,
+  `su`, `tu`, `mi`, `con`) are left out of the list.
 - Same command as above.
 
 ### Results
@@ -157,7 +158,8 @@ after, and the [duplicate replay](../duplicates/README.md) does not read categor
 - **It loses one to the tie order**: "Compré las entradas para el concierto" now also hits `shopping` (`compré` →
   `compr`, the stem of `comprar`), and `shopping` comes before `entertainment` in the list. One hit each, the earlier
   one wins.
-- **English and Russian are untouched here.** No message of the set reads as Spanish.
+- **English and Russian are untouched here.** No message of the set reads as Spanish. An English message that
+  uses `de`, `la` or `el` would be, and could then hit a Spanish stem; the set has none.
 
 ## Not measured
 
