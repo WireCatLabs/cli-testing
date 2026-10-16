@@ -7,14 +7,14 @@ import { dirname, join } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 
 const here = dirname(fileURLToPath(import.meta.url))
-export const CORE_VERSION = "0.277.0"
+export const CORE_VERSION = "0.303.0"
 export const CORE_INTEGRITY =
   // biome-ignore lint/security/noSecrets: published package integrity hash, not a key
-  "sha512-X0IBZ2waGP3EV4R5mbUnpT+nUFjXvPXvkwAS2lK3yeUfWVbazIVp1kJz1G2fKwsN7ZQH5dvW7zroeGWhyTk+Vg=="
+  "sha512-uBOSOaFttYyHEzcKPdPLm3mJ8Ua0qIBePkv7LZf3M0MEL06TXkCa9KUHz4urWxXE5okiE7AF/yIwx8PFmJtWJQ=="
 export const DAY = 86_400_000
 
 const coreDir = join(here, ".cache", `cli-core-${CORE_VERSION}`)
-if (!existsSync(join(coreDir, "package", "dist", "store", "normalize.js"))) {
+if (!existsSync(join(coreDir, "package", "dist", "search", "task-signature.js"))) {
   mkdirSync(coreDir, { recursive: true })
   const [packed] = JSON.parse(
     execFileSync("npm", ["pack", `@wirecat/cli-core@${CORE_VERSION}`, "--json", "--pack-destination", coreDir], {
@@ -31,6 +31,7 @@ if (!existsSync(join(coreDir, "package", "dist", "store", "normalize.js"))) {
     coreDir,
     "package/dist/search/snowball",
     "package/dist/store/normalize.js",
+    "package/dist/search/task-signature.js",
   ])
 }
 const load = async (path) => (await import(pathToFileURL(join(coreDir, "package", "dist", path)).href)).default
@@ -95,129 +96,7 @@ export const jaccard = (a, b) => {
   return shared / (a.size + b.size - shared)
 }
 
-const CURRENCY = [
-  [/^(₽|руб.*|р\.?|rub)$/u, "RUB"],
-  [/^(€|eur|евро|euros?)$/u, "EUR"],
-  [/^(\$|usd|долл.*|dollars?)$/u, "USD"],
-]
-const currencyOf = (word) => (word ? (CURRENCY.find(([pattern]) => pattern.test(word))?.[1] ?? null) : null)
-const AMOUNT =
-  /(?<![\p{L}\p{N}])([$€₽])?\s?(\d+(?:[.,]\d+)?)(?:([кk])(?![\p{L}])|\s?(тыс\.?|тысяч\p{L}*))?(?![\p{N}])\s?(₽|руб\p{L}*\.?|р\.|р(?![\p{L}])|rub|eur|евро|€|\$|usd|долл\p{L}*|dollars?|euros?)?(?![\p{L}])/gu
-export const amountOf = (text) => {
-  for (const match of text.matchAll(AMOUNT)) {
-    const [, before, number, short, long, after] = match
-    const multiplier = short ?? long
-    if (!before && !after && !multiplier) continue
-    const value = Math.round(Number(number.replace(",", ".")) * (multiplier ? 1000 : 1))
-    return { value, currency: currencyOf(before ?? after?.replace(/\.$/u, "")) }
-  }
-  return null
-}
-
-const RU_WEEKDAYS = ["воскресен", "понедельник", "вторник", "сред", "четверг", "пятниц", "суббот"]
-const EN_WEEKDAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
-const ES_WEEKDAYS = ["domingo", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado"]
-// `los viernes` is every Friday, as `по пятницам` and `fridays` are, which are not read either.
-const WEEKDAY_WORDS =
-  "понедельник[аеу]?|вторник[аеу]?|сред[аеуы]|четверг[аеу]?|пятниц[аеуы]|суббот[аеуы]|воскресень[еяю]|" +
-  `${EN_WEEKDAYS.join("|")}|(?<!los )(?:${ES_WEEKDAYS.join("|")})`
-// Spanish month names only after `<day> de`: on their own, `mayo 2` in an English message would read as May 2.
-const ES_MONTHS = [
-  "enero",
-  "febrero",
-  "marzo",
-  "abril",
-  "mayo",
-  "junio",
-  "julio",
-  "agosto",
-  "sep?tiembre",
-  "octubre",
-  "noviembre",
-  "diciembre",
-]
-const esMonth = (word = "") => ES_MONTHS.findIndex((month) => new RegExp(`^${month}$`, "u").test(word))
-// Whole month words only: a prefix test read `decide 3` as December 3 and `maybe 2` as May 2.
-const MONTHS = [
-  /^(январ[ьяею]|jan(uary)?)$/u,
-  /^(феврал[ьяею]|feb(ruary)?)$/u,
-  /^(март[ауе]?|mar(ch)?)$/u,
-  /^(апрел[ьяею]|apr(il)?)$/u,
-  /^(ма[яеию]|may)$/u,
-  /^(июн[ьяею]|june?)$/u,
-  /^(июл[ьяею]|july?)$/u,
-  /^(август[ауе]?|aug(ust)?)$/u,
-  /^(сентябр[ьяею]|sept?(ember)?)$/u,
-  /^(октябр[ьяею]|oct(ober)?)$/u,
-  /^(ноябр[ьяею]|nov(ember)?)$/u,
-  /^(декабр[ьяею]|dec(ember)?)$/u,
-]
-const monthIndex = (word) => MONTHS.findIndex((month) => month.test(word))
-// A due date is a calendar date where the owner is: the machine's time zone, not UTC.
-export const dayOf = (ms) => {
-  const date = new Date(ms)
-  return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / DAY)
-}
-const dateDay = (year, month, day) => Math.floor(Date.UTC(year, month, day) / DAY)
-// JavaScript's \b knows only ASCII letters: without these edges `средства` read as Wednesday, `завтрак` as tomorrow.
-const words = (source) => new RegExp(`(?<![\\p{L}\\p{N}])(?:${source})(?![\\p{L}\\p{N}])`, "u")
-const ES_DAY = "(3[01]|[12]\\d|0?[1-9])"
-const DUE_PATTERNS = [
-  [words("послезавтра|pasado manana"), (_, now) => now + 2],
-  // `por la mañana` and `esta mañana` are a morning, not tomorrow.
-  [words("завтра|tomorrow|(?<!(?:la|esta|cada|una) )manana"), (_, now) => now + 1],
-  [words("сегодня|today|hoy"), (_, now) => now],
-  [words("(\\d{1,2})\\.(\\d{2})"), (m, _, year) => dateDay(year, Number(m[2]) - 1, Number(m[1]))],
-  [words("(\\d{1,2})(?:st|nd|rd|th)?\\s+(\\p{L}+)"), (m, _, year) => monthDate(year, m[2], m[1])],
-  [words("(\\p{L}+)\\.?\\s+(\\d{1,2})"), (m, _, year) => monthDate(year, m[1], m[2])],
-  [
-    words("(?:до|к|by|until|before|on|deadline)\\s+(?:the\\s+)?(\\d{1,2})(?:-?(?:го|е|числа)|\\s+числа|st|nd|rd|th)"),
-    nthDay,
-  ],
-  [words(`${ES_DAY}\\s+de\\s+(${ES_MONTHS.join("|")})`), (m, _, year) => dateDay(year, esMonth(m[2]), Number(m[1]))],
-  // Spanish has no ordinal suffix, so a bare day counts only when no month follows: `antes del 5 de mayo` is May 5.
-  [
-    words(
-      `(?:(?:antes del|hasta el|para el|el)\\s+dia|antes del|hasta el|para el)\\s+${ES_DAY}(?![.,/]\\d|\\s*%|\\s+del?\\s)`,
-    ),
-    nthDay,
-  ],
-  [words("конца месяца|end of (?:the )?month|fin(?:al)? del? mes"), (_, now) => monthEnd(now)],
-  [words(`(${WEEKDAY_WORDS})`), nextWeekday],
-]
-function monthDate(year, word, day) {
-  const month = monthIndex(word)
-  return month < 0 || Number(day) > 31 ? undefined : dateDay(year, month, Number(day))
-}
-function nthDay(m, now) {
-  const date = new Date(now * DAY)
-  const day = Number(m[1])
-  const sameMonth = dateDay(date.getUTCFullYear(), date.getUTCMonth(), day)
-  return sameMonth >= now ? sameMonth : dateDay(date.getUTCFullYear(), date.getUTCMonth() + 1, day)
-}
-function monthEnd(now) {
-  const date = new Date(now * DAY)
-  return dateDay(date.getUTCFullYear(), date.getUTCMonth() + 1, 0)
-}
-function nextWeekday(m, now) {
-  const word = m[1]
-  const target = Math.max(
-    RU_WEEKDAYS.findIndex((stem) => word.startsWith(stem)),
-    EN_WEEKDAYS.indexOf(word),
-    ES_WEEKDAYS.indexOf(word),
-  )
-  for (let day = now + 1; ; day++) if (new Date(day * DAY).getUTCDay() === target) return day
-}
-export const dueOf = (text, createdMs) => {
-  const now = dayOf(createdMs)
-  const year = new Date(createdMs).getFullYear()
-  let best
-  for (const [pattern, resolve] of DUE_PATTERNS)
-    for (const match of text.matchAll(new RegExp(pattern.source, `${pattern.flags}g`))) {
-      const day = resolve(match, now, year)
-      if (day === undefined || Number.isNaN(day)) continue
-      if (!best || match.index < best.index) best = { index: match.index, day }
-      break
-    }
-  return best?.day ?? null
-}
+// Amounts and due dates come from cli-core itself, so a fix there reaches this test with a version bump.
+const signature = await import(pathToFileURL(join(coreDir, "package", "dist", "search", "task-signature.js")).href)
+export const { amountOf, dayOf } = signature
+export const dueOf = signature.dueDayOf

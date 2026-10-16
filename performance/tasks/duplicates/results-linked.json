@@ -1,8 +1,8 @@
 {
   "environment": {
     "node": "v24.19.0",
-    "cliCore": "0.277.0",
-    "cliCoreIntegrity": "sha512-X0IBZ2waGP3EV4R5mbUnpT+nUFjXvPXvkwAS2lK3yeUfWVbazIVp1kJz1G2fKwsN7ZQH5dvW7zroeGWhyTk+Vg==",
+    "cliCore": "0.303.0",
+    "cliCoreIntegrity": "sha512-uBOSOaFttYyHEzcKPdPLm3mJ8Ua0qIBePkv7LZf3M0MEL06TXkCa9KUHz4urWxXE5okiE7AF/yIwx8PFmJtWJQ==",
     "timeZone": "Europe/Madrid"
   },
   "weights": {
