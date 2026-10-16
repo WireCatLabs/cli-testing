@@ -14,6 +14,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   independent pages and passage context check retained evidence while measuring process count,
   elapsed time and full versus selected JSON output. No model or real account is used.
 
+### Fixed
+
+- Agent payload runs recognize current CLI send envelopes and retain the private sender receipt
+  for cleanup recovery. Failed or unknown receipts stop as incomplete runs without replaying the
+  send; resolve cleanup before staging another fixture.
+
 ## 0.5.1 â€” 16.10.2026
 
 ### Fixed
