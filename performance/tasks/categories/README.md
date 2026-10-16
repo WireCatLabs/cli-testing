@@ -39,7 +39,7 @@ The answers went into the cli-core change that ships the list.
   script, every trigger against the message's English stems, and `es` triggers also against its Spanish stems when
   the message reads as Spanish (see [Spanish](#spanish)); the category with the most distinct trigger stems hit, a
   tie to the earlier one, none hit is `other`. With `--core`, the script checks the port against the real function
-  on all 251 tasks, both lists and the Spanish messages. The results above Spanish were measured when cli-core
+  on all 251 tasks, all three lists and the Spanish messages. The results above Spanish were measured when cli-core
   stemmed every Latin word as English only; the Spanish change moves none of them (re-run 2026-10-16).
 - Duplicates: the replay of [`../duplicates/linked.mjs`](../duplicates/linked.mjs) with cli-core's shipped weights
   and bands (maybe ≥ 5, likely ≥ 10), run four times with `category` taken from the set labels, the new labels, the
@@ -53,7 +53,7 @@ node performance/tasks/categories/evaluate.mjs --core <cli-core checkout, built>
 
 ## Results
 
-Port check: the port matches cli-core's `categorize()` on 251 tasks × 2 lists.
+Port check: the port matches cli-core's `categorize()` on 251 tasks × 3 lists (old, 36, 59).
 
 ### How often the rule's category is right (251 tasks)
 
