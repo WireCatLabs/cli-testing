@@ -61,8 +61,10 @@ is resolved on that run; it does not guarantee every future runner has identical
 Portal strict checks passed with 1,333 command-reference entries, zero gaps and zero invalid
 examples. All 306 portal unit tests, 24 Drive browser cases across EN/RU/ES and seven browser
 smoke cases passed. The development server emitted the existing Sidebar key warnings and one
-JSON parsing error during home navigation despite passing smoke assertions; a focused recheck
-is separate from these results. Full production-export/browser deployment remains its own gate.
+JSON parsing error during home navigation despite passing smoke assertions. One focused repeat
+of the home-navigation case passed without reproducing that JSON error. Its origin is unproven;
+these smoke results do not assert that all console output is clean. Full production-export/browser
+deployment remains its own gate.
 
 The [shared-store acceptance](../drive-shared-store/README.md) and
 [real-model synthetic evaluation](../drive-ai-quality/README.md) remain applicable to unchanged
