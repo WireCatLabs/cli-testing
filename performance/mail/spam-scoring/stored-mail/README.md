@@ -31,7 +31,8 @@ Full-text emails, and their sender groups, that each threshold would rank lower:
 | Scorer | All signals ≥ 3 | Strong signals ≥ 3 | Strong signals ≥ 2 |
 |---|---:|---:|---:|
 | memo 0.55.0 | 17,459 (4,079 groups) | 697 (71 groups) | 1,183 (197 groups) |
-| cli-memo#253 | 17,157 (4,060 groups) | **200 (20 groups)** | 718 (149 groups) |
+| cli-memo#253 | 17,157 (4,060 groups) | 200 (20 groups) | 718 (149 groups) |
+| cli-memo#257 | 17,041 (4,050 groups) | **2 (2 groups)** | 520 (131 groups) |
 
 What it showed:
 
@@ -43,9 +44,11 @@ What it showed:
     whole group, so one platform newsletter group of 893 emails was flagged.
   - `dmarc_fail` fired on senders whose DKIM signature was valid but for another domain, a setup mistake common at
     newsletter services before 2021. All 414 DMARC failures in the store are from 2018–2021, none later.
-- **What is left at strong ≥ 3 is still mostly real mail:** old unsigned mail from a university's alumni office
-  and a payment provider, plus two real look-alike senders (a crypto exchange's name on another domain, a
-  "Microsoft Exchange" sender on a random domain). Not yet good enough to rank by.
+- **After #253, what was left at strong ≥ 3 was still mostly real mail:** old unsigned mail from a university's
+  alumni office and a payment provider, plus two real look-alike senders (a crypto exchange's name on another
+  domain, a "Microsoft Exchange" sender on a random domain).
+- **#257 counts a DMARC failure only on mail from 2022 on** (the owner's choice). Every failure in this store was
+  from 2018 to March 2021. What is left at strong ≥ 3 is the two look-alike senders, one email each.
 - **Few emails carry an authentication result at all:** about one in eight, and almost none from 2022 on, so the
   DMARC and DKIM signals see little of the mail.
 
