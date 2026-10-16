@@ -47,8 +47,22 @@ executable run does not measure live export fidelity or model quality.
 [Main validation 38978049659](https://github.com/WireCatLabs/drive-cli/actions/runs/38978049659)
 passed on `1faec0d9b6708c073e991e6176cdc7f285f14634` on October 16, including coverage,
 API generation, CLI/MCP contracts, previous-store upgrades, security checks and Node/Bun package
-smoke. It predates these polish changes. The new main run must independently pass before calling
-this candidate fully validated.
+smoke. It predates these polish changes. The first polish main run exceeded the existing five-second deadline in the 200-other-memories
+fixture (229 other tests passed). Isolated profiling measured about 539 ms to seed that fixture
+and 24 ms to search locally. No instrumentation was committed.
+
+Follow-up Drive#99 limits fixture concurrency to two workers without reducing records, changing
+assertions, increasing deadlines or lowering coverage floors. All 230 tests passed locally with
+89.69% line coverage. [Full main validation 38979187896](https://github.com/WireCatLabs/drive-cli/actions/runs/38979187896)
+then passed on `e620947ca94bec97e578384cf76e87d1e0c649cf`, including coverage, generated checks,
+contracts/upgrades, security and Node/Bun package checks. This confirms the observed CI failure
+is resolved on that run; it does not guarantee every future runner has identical timing.
+
+Portal strict checks passed with 1,333 command-reference entries, zero gaps and zero invalid
+examples. All 306 portal unit tests, 24 Drive browser cases across EN/RU/ES and seven browser
+smoke cases passed. The development server emitted the existing Sidebar key warnings and one
+JSON parsing error during home navigation despite passing smoke assertions; a focused recheck
+is separate from these results. Full production-export/browser deployment remains its own gate.
 
 The [shared-store acceptance](../drive-shared-store/README.md) and
 [real-model synthetic evaluation](../drive-ai-quality/README.md) remain applicable to unchanged
