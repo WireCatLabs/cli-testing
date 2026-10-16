@@ -72,6 +72,23 @@ not found. 28 memo calls in total.
   address needs quotes; and common words combined with a date range or `NOT mailbox:bulk` exceed the search time
   budget.
 
+### Run 4 — after the search fixes, 2026-10-16
+
+memo 0.49.0 (cli-core 0.295.0, cli-base 0.40.0), installed: `messages show` gives each attachment's text, `from:`
+takes an unquoted address, and a mailbox filter no longer runs past the time budget ([search](../search/README.md)).
+Same three questions as run 3. 10 memo calls in total.
+
+| | Run 3 | Run 4 |
+|---|---:|---:|
+| Answered | 1 | 2 |
+| Partly answered | 3 | 2 |
+| Not found | 2 | 2 |
+
+- The bills question is answered: one search and one `messages show` read the unpaid notice's amount and due
+  date from its attachment, where run 3 needed a hunt through PDFs.
+- The two "not found" questions now get real answers instead of a time-budget error, but every hit is a digest or
+  a newsletter: the mail they need is from before the imported years.
+
 ## What it showed
 
 - **Stored text is sometimes raw HTML** for template-built emails such as flight itineraries. The facts are in the

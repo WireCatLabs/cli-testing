@@ -11,4 +11,4 @@ Measurements of reading a mailbox into the shared store with memo.
 - [search](search/README.md): why searches with `NOT mailbox:bulk` never answered on a 257k-email store, and the
   same searches after cli-core 0.295.0: 67 s → 0.7 s (2026-10-16).
 - [agent-questions](agent-questions/README.md): six everyday questions an agent answers from an imported mailbox —
-  1 answered, 3 partly, 2 not found (before the imported years), and what memo made hard (2026-10-15).
+  run 4: 2 answered, 2 partly, 2 not found (before the imported years), and what memo made hard (2026-10-16).
