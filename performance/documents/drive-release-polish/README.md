@@ -83,7 +83,9 @@ this does not claim the entire dependency graph has no advisories.
 
 A clean global install into a new temporary npm prefix reports 0.15.1. The same eight executable
 checks passed with network/browser/keyring access blocked. [Registry results](results-0.15.1.json)
-record the npm integrity, Git head, installed bin hash and exact Core 0.301.0 / Base 0.40.0 pins.
+record npm integrity, installed bin hash and exact Core 0.301.0 / Base 0.40.0 pins. The npm
+metadata response omitted `gitHead`; the separate release-source record comes from the GitHub
+workflow commit, not a registry field.
 The original source-candidate results above are retained separately.
 
 Fresh shared-app sign-in was started in an empty isolated workspace with explicit profile

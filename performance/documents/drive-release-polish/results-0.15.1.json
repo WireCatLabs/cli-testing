@@ -45,5 +45,10 @@
     "version": "0.15.1",
     "dist.integrity": "sha512-+5+iLP+UC4PjgtQxne0B0FuUbLkS+tOgRuKesyoMhPDpT0Kp5PYD+/CEL3FI0iJX7wa2wKVqSXrkzBa+fRwcSw=="
   },
-  "artifact": "npm registry install"
+  "artifact": "npm registry install",
+  "release_source": {
+    "git_head": "a6d17f6144bfe447b7945d9b0d15b27e78ecd018",
+    "workflow_run": "https://github.com/WireCatLabs/drive-cli/actions/runs/38982130167",
+    "registry_git_head": null
+  }
 }
