@@ -212,6 +212,15 @@ What it showed: almost all of both kinds are in mail; the chats hold two address
 to read mail. The table grows by about 16 MB. A first build read «Отлично», «Логично» and «Основной» as
 patronymics; the rule was fixed before these totals.
 
-Not measured yet: precision. The owner labels 15 unknown names from chats, 15 from mail and 30 addresses as right
-or wrong; at that size each figure is only a rough signal (about ±25 points). Recall — how many names and
-addresses the rules miss — is not measured: it needs whole texts read.
+Precision, labelled by the owner on a random sample (his answers stay private; totals only):
+
+| | sample | right | partly | wrong | right, share |
+|---|---|---|---|---|---|
+| unknown names in chats | 15 | 10 | 1 | 4 | 67% |
+| unknown names in mail | 15 | 13 | 0 | 2 | 87% |
+| street addresses | 30 | 30 | 0 | 0 | 100% |
+
+At this size each share is a rough signal (about ±25 points). Every address was a real one, but the span stops at
+the house number or the postcode: the city, the flat and the rest of the line are left out.
+
+Not measured: recall — how many names and addresses the rules miss. It needs whole texts read.
