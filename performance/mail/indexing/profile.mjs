@@ -35,9 +35,12 @@ await store.mail.chunksToEmbed("e5-small", { limit: 64 })
 const listMs = performance.now() - t
 
 t = performance.now()
-const done = await embedMail(store, { maxChunks: toEmbed, env: process.env })
+const done = toEmbed === 0 ? { embedded: 0 } : await embedMail(store, { maxChunks: toEmbed, env: process.env })
 const embedMs = performance.now() - t
 await store.close()
+const after = new DatabaseSync(storePath)
+const pendingAfter = after.prepare("SELECT count(*) n FROM email_index_pending").get().n
+after.close()
 
 process.stdout.write(
   `${JSON.stringify(
@@ -48,6 +51,8 @@ process.stdout.write(
       drain_ms: Math.round(drainMs),
       drain_ms_per_thread: sample.threads ? +(drainMs / sample.threads).toFixed(1) : null,
       list_batch_ms: Math.round(listMs),
+      pending_after: pendingAfter,
+      embedding_skipped: toEmbed === 0,
       embedded: done.embedded,
       embed_ms: Math.round(embedMs),
       embed_ms_per_chunk: done.embedded ? +(embedMs / done.embedded).toFixed(1) : null,

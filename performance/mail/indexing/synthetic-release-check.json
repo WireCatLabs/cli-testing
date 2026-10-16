@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "purpose": "synthetic mail index release check for the reviewed-findings Core dependency update",
+  "runtime": "v24.19.0",
+  "core": {
+    "source_commit": "151c98d5f1ee9d6e2979898176179cb8aad4e9b1",
+    "package_version": "0.307.0",
+    "build": "source branch; not the npm package of the same version",
+    "store_entry_sha256": "3cb6cf62689ed513b460676b83438acd0cfda8a879cf23772c654ab587a129c6",
+    "lock_sha256": "bf2be4df6cff4b9e80a4908f2810fa7ef080a8c2a53fef7b868105146d0095af"
+  },
+  "measured_source_sha256": {
+    "run-synthetic.sh": "be2d2687338c5551cce4cd17650656a0c56d8f172df6153fd2ce391ba15633c2",
+    "seed-synthetic.mjs": "f272d329e3ea412b048b396dfa7791e6ecf211e468f65d89e8517ad97c76ea5f",
+    "run.sh": "586d0739ba3dd4ccde02aa16b84f9f0d4a49e1ed24c84f508e2df99fb34b2c93",
+    "profile.mjs": "929839bf01a49addbb6a39412da491725567799cd9214245fa6021c6a9ac4b22",
+    "profile-words.mjs": "80cf9f027878016d6891f17a2098b066a7cc167a411cf2b6c5460cc942b2ad99"
+  },
+  "fixture": {
+    "fixture": "synthetic-only",
+    "emails": 600,
+    "threads": 600,
+    "vectors": 10000,
+    "chunks": 1200,
+    "queued_threads": 300
+  },
+  "queue_drain": {
+    "pending_before": [
+      {
+        "t": "email",
+        "n": 300
+      },
+      {
+        "t": "email_thread",
+        "n": 300
+      }
+    ],
+    "sample": {
+      "threads": 300,
+      "emails": 300,
+      "withText": 0
+    },
+    "sizes": {
+      "embeddings": 10000,
+      "chunks": 1200
+    },
+    "drain_ms": 68,
+    "drain_ms_per_thread": 0.2,
+    "list_batch_ms": 5,
+    "pending_after": 0,
+    "embedding_skipped": true,
+    "embedded": 0,
+    "embed_ms": 0,
+    "embed_ms_per_chunk": null
+  },
+  "word_index": {
+    "emails": 300,
+    "text_chars": 453300,
+    "drain_ms": 112,
+    "ms_per_email": 0.4,
+    "left": 0
+  },
+  "limits": [
+    "One final trial on a shared host; OS caches were not flushed.",
+    "Combined queue drain includes 300 email-word removals and 300 envelope threads; its per-thread value is a normalization, not isolated thread latency.",
+    "Synthetic vectors exercise index cleanup; embedding was explicitly skipped.",
+    "No owner store, mail, model, IMAP or semantic-quality evaluation."
+  ]
+}

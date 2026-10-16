@@ -6,6 +6,12 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- A synthetic mail-index release check reuses the existing profile without owner mail or models; passing zero chunks skips embedding.
+
 ## 0.5.2 — 17.10.2026
 
 ### Added
