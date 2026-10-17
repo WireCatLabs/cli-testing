@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "date": "2026-10-17T21:28:47.156Z",
+  "runtime": "v24.19.0",
+  "drive": "0.16.0",
+  "core": "0.327.0",
+  "artifact": "packed source candidate",
+  "integrity": "sha512-AUEF0sBYXQnC7CqGWK8I5MKQdYmwM/LQUYAEplR279uCokew+dFyL3p3qBrD3QgvgDZy2/M0LCKmXt023o7q0Q==",
+  "bin_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828",
+  "one_physical_base": true,
+  "one_physical_commander": true,
+  "checks": [
+    {
+      "command": "status",
+      "exit": 0
+    },
+    {
+      "command": "store check",
+      "exit": 0
+    },
+    {
+      "command": "store import",
+      "exit": 5
+    },
+    {
+      "command": "store check",
+      "exit": 2
+    },
+    {
+      "command": "store import",
+      "exit": 2
+    },
+    {
+      "command": "store import",
+      "exit": 0
+    },
+    {
+      "command": "documents show",
+      "exit": 0
+    },
+    {
+      "command": "tags list",
+      "exit": 0
+    },
+    {
+      "command": "search tag:retained-tag",
+      "exit": 0
+    },
+    {
+      "command": "documents context",
+      "exit": 0
+    },
+    {
+      "command": "status",
+      "exit": 0
+    },
+    {
+      "command": "store check",
+      "exit": 0
+    },
+    {
+      "command": "store import",
+      "exit": 0
+    },
+    {
+      "command": "notes list",
+      "exit": 0
+    }
+  ]
+}
