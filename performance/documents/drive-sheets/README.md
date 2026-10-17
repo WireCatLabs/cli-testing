@@ -77,3 +77,40 @@ These are public-client integration checks, separate from the 17 actual CLI proc
 above. The provider fixture does not calculate formulas, reproduce Google's table detection or
 model cell formatting. No live Google write, dedicated fixture validation, Cloud project API
 setting or data-access approval is established. Published npm 0.15.1 still lacks these commands.
+
+## Bounded tab structure and formatting
+
+The structure candidate adds `sheets create`, `rename`, `insert` and `format`, and adopts exact
+Base 0.40.1 while retaining compatible Core 0.307.0. The original reports above remain separate;
+`--structure` explicitly enables the additional checks when reproducing the new candidate.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/run.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-structure-cli.json 2fb19bc8c06566856d51cb91a82f94fdca83dcf2 --structure
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-structure-client.json --structure
+```
+
+Source: [Drive#108](https://github.com/WireCatLabs/drive-cli/pull/108), candidate
+`2fb19bc8c06566856d51cb91a82f94fdca83dcf2`. Published npm 0.15.1 still lacks these additions.
+
+| Check | Evidence |
+| --- | --- |
+| Explicit structure command tree and dry-run mappings | [CLI result](results-structure-cli.json) |
+| Invalid insertion counts, oversized format ranges and value-writing format bodies | Refused before network access |
+| Friendly/raw/generated rename denial | Refused before SDK dispatch |
+| Create/rename and stable tab IDs with an unchanged neighboring tab | [Public-client result](results-structure-client.json) |
+| Format only one leaf while retaining the cell value, italic flag and number format | Independent grid-data readback in the fixture |
+| Row insertion with an apply-then-503 response | One request; one insertion; later metadata confirms row count |
+
+The CLI records **ten checks and 27 guarded process invocations**.
+The public client records **eight checks and 18 in-memory SDK requests**, including the original
+cell workflows. Source validation passed **290 tests, 90.38% lines**, ten CLI/MCP contracts, five
+prior-store upgrades, generation freshness, type/lint/Markdown/leak checks and Node/Bun installed
+acceptance with one Base instance. Shared A1 and JSON parsing remain in the Google adapter;
+provider-neutral storage and permission primitives remain shared. Six vocabulary exceptions are
+removed; baseline files are unchanged, with two dated new verb exceptions plus the existing fact
+verb exception.
+
+The fixture proves request encoding, command execution, permission routing and controlled state
+changes; it is not a Google formula/reference engine, table detector or formatting-fidelity test.
+No live Google write or shared-project API enablement was performed. Dedicated live fixture,
+registry release and reviewed multilingual portal publication remain separate launch checks.
