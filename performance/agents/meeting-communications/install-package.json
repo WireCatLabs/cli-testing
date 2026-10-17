@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@wirecat/zoom-cli": "file:./candidate.tgz"
+  }
+}
