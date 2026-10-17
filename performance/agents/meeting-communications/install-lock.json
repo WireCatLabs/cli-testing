@@ -556,9 +556,9 @@
       }
     },
     "node_modules/@wirecat/cli-base": {
-      "version": "0.40.4",
-      "resolved": "https://registry.npmjs.org/@wirecat/cli-base/-/cli-base-0.40.4.tgz",
-      "integrity": "sha512-9qJf3/bmpa4HXpxxcXarOMLT1GEGpqplJ1t9oWocXgeqB+hewSTjcPZ4qF5zocMW6bdIZrV2RV08yFPDnZlIlw==",
+      "version": "0.43.1",
+      "resolved": "https://registry.npmjs.org/@wirecat/cli-base/-/cli-base-0.43.1.tgz",
+      "integrity": "sha512-V0UfyNYvXx1Gyv83Ftg2LaY7Ex/xTQS/C+vNrUmbqVRJZLC2jEMrx/NHEBCzuc46Yh3uy1KhIqUTMoL7kEQwZw==",
       "license": "Apache-2.0",
       "dependencies": {
         "@valibot/to-json-schema": "1.8.0",
@@ -577,18 +577,22 @@
         "@napi-rs/keyring": "2.1.0"
       },
       "peerDependencies": {
-        "commander": ">=15"
+        "commander": ">=15",
+        "vitest": ">=5"
       },
       "peerDependenciesMeta": {
         "commander": {
+          "optional": true
+        },
+        "vitest": {
           "optional": true
         }
       }
     },
     "node_modules/@wirecat/cli-core": {
-      "version": "0.324.0",
-      "resolved": "https://registry.npmjs.org/@wirecat/cli-core/-/cli-core-0.324.0.tgz",
-      "integrity": "sha512-BD103PXlr8C5KJe0VQaaTxoxyOpl3g/VIrFvIz+86Q7TxODv4zEkvOtSq/h+LEPZOO8eDhjJCc0jMNJ5vDP7SQ==",
+      "version": "0.326.0",
+      "resolved": "https://registry.npmjs.org/@wirecat/cli-core/-/cli-core-0.326.0.tgz",
+      "integrity": "sha512-vVr3PjYdArF0DvjVASexJ/hV+k8fQ0CMjF0s5mRuXe53o6pDOtoSzf6PSk+f/sTYN6LrqlQQRcuiJ8N3nW9jJA==",
       "license": "Apache-2.0",
       "dependencies": {
         "@anthropic-ai/sdk": "0.131.0",
@@ -629,7 +633,7 @@
       },
       "peerDependencies": {
         "@napi-rs/canvas": ">=0.1.69 <2",
-        "@wirecat/cli-base": ">=0.40.0 <0.41.0",
+        "@wirecat/cli-base": ">=0.42.0 <0.44.0",
         "commander": ">=15"
       },
       "peerDependenciesMeta": {
@@ -656,12 +660,12 @@
     "node_modules/@wirecat/zoom-cli": {
       "version": "0.23.2",
       "resolved": "file:candidate.tgz",
-      "integrity": "sha512-Hf19KPyDx1Jd9ykzfPe4wd2eTZhLDE0agQPlVSOTydqlL5nemuKwNlF6k6PO37g6io2pFka0iTbG38RmF9N63g==",
+      "integrity": "sha512-wtCewozVHw0Y46A03xid1rZ3SUaKoz8naH5njhPSTM6f4EbKo6BrSMZd1+U2fIvGp9gGsRqMSY3uz6Y+eLKg8g==",
       "license": "Apache-2.0",
       "dependencies": {
         "@modelcontextprotocol/sdk": "1.32.1",
-        "@wirecat/cli-base": "0.40.4",
-        "@wirecat/cli-core": "0.324.0",
+        "@wirecat/cli-base": "0.43.1",
+        "@wirecat/cli-core": "0.326.0",
         "commander": "15.0.0",
         "valibot": "1.5.0"
       },
