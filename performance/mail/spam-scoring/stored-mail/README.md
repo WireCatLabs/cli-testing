@@ -67,6 +67,22 @@ kept them; cli-memo#266 read them from Gmail. With the signals visible on all ma
 - **Ranking stays off.** A failed DMARC check alone still marks real senders; it should count as fraud only
   beside another fraud signal before anything is ranked by it.
 
+### Fraud signals redefined, domain ages looked up (cli-memo#281)
+
+The owner's choices: a domain under 180 days old adds 5; a failed DMARC check counts only beside another fraud
+signal (vendor data puts DMARC pass at about half of senders, and on this mailbox it alone flagged an airline and
+a university); a Reply-To on another domain is no longer a fraud signal. The daily scoring now looks up the
+registration date of every never-replied sender's domain heard from in the last two years: 701 lookups, 1,024
+domains known (the rest have no RDAP).
+
+- **Fraud signals at 3 or more: 15 senders, 58 emails stored in full.** Two are look-alike senders; 12 have a
+  domain under 180 days old: mostly cold sales mail and new tools' reports, but also a large site's new mail
+  domain, a creator platform and the owner's own project domain. That is close to the ~70% bad share
+  [Unit 42](https://unit42.paloaltonetworks.com/newly-registered-domains-malicious-abuse-by-bad-actors/) reports for
+  newly registered domains, not 95%.
+- **The DMARC-only false alarms (airline, university) are gone.**
+- **Benchmark searches, plus searches for the airline, the project and the large site, lose no hit at 3 or more.**
+
 ## Not measured
 
 - Domain ages (`young_domain`): no lookups were stored for this account.
