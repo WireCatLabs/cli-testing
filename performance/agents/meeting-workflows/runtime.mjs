@@ -18,6 +18,7 @@ export function runner(install, directory) {
   mkdirSync(directory, { recursive: true })
   const env = {
     PATH: process.env.PATH,
+    HOME: join(directory, "home"),
     SystemRoot: process.env.SystemRoot,
     WINDIR: process.env.WINDIR,
     XDG_CONFIG_HOME: join(directory, "xdg-config"),
@@ -28,6 +29,8 @@ export function runner(install, directory) {
     ZM_CACHE_DIR: join(directory, "cache"),
     WIRECAT_STATE_DIR: join(directory, "wirecat"),
     MESSAGING_STORE: join(directory, "store.db"),
+    MEMO_AUTO: "1",
+    MEMO_NO_UPDATE_CHECK: "1",
     TMPDIR: directory,
     TMP: directory,
     TEMP: directory,
@@ -35,27 +38,38 @@ export function runner(install, directory) {
     MEETING_BENCH_DENIED: join(directory, "guard-denied"),
   }
   const calls = []
-  function invoke(args, { selector, input } = {}) {
-    const argv = [...args, "--offline", selector ? `--json=${selector}` : "--json"]
+  function invoke(args, { selector, input, tool = "zoom", agent = false, status = 0 } = {}) {
+    assert.ok(tool === "zoom" || tool === "memo")
+    const binary = tool === "zoom" ? "@wirecat/zoom-cli/dist/bin/zm.js" : "@wirecat/cli-memo/dist/bin/memo.js"
+    const argv = [...args, ...(tool === "zoom" ? ["--offline"] : []), selector ? `--json=${selector}` : "--json"]
     const start = performance.now()
     const result = spawnSync(
       process.execPath,
-      ["--no-addons", "--require", guard, resolve(install, "node_modules/@wirecat/zoom-cli/dist/bin/zm.js"), ...argv],
-      { env, cwd: directory, input, encoding: "utf8", timeout: 30000, maxBuffer: 8 * 1024 * 1024 },
+      ["--no-addons", "--require", guard, resolve(install, "node_modules", binary), ...argv],
+      {
+        env: { ...env, ...(agent ? { AI_AGENT: "meeting-workflow-fixture" } : {}) },
+        cwd: directory,
+        input,
+        encoding: "utf8",
+        timeout: 30000,
+        maxBuffer: 8 * 1024 * 1024,
+      },
     )
     const elapsed = performance.now() - start
     assert.equal(result.error, undefined)
-    assert.equal(result.status, 0, `${args[0]} failed: ${result.stderr}`)
+    assert.equal(result.status, status, `${tool} ${args.join(" ")} failed: ${result.stderr}`)
     assert.equal(existsSync(env.MEETING_BENCH_DENIED), false, "external access attempted")
     assert.equal(existsSync(env.MEETING_BENCH_LOADED), true)
     const stderr = result.stderr.replace(
       /\(node:\d+\) ExperimentalWarning: SQLite is an experimental feature and might change at any time\r?\n(?:\(Use .+?\r?\n)?/g,
       "",
     )
-    assert.equal(stderr, "")
-    const answer = JSON.parse(result.stdout)
+    if (status === 0) assert.equal(stderr, "")
+    const answer = JSON.parse(status === 0 ? result.stdout : stderr)
     calls.push({
       command: args.slice(0, 2),
+      tool,
+      exit_code: result.status,
       elapsed_ms: elapsed,
       stdout_bytes: Buffer.byteLength(result.stdout),
       stdin_bytes: Buffer.byteLength(input ?? ""),

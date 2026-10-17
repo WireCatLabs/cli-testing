@@ -130,3 +130,45 @@ node performance/agents/meeting-workflows/formats.mjs \
   --run-root /tmp/meeting-bench-results \
   --output /tmp/meeting-bench-formats.json
 ```
+
+## Review findings across Zoom and Memo
+
+Use this [acceptance scenario](reviewed.mjs) to check that the released tools can carry a project
+investigation through review and a later read. It uses Zoom 0.23.1 and Memo 0.59.0, independently
+pinned with their actual Core/Base versions. It does not replace the cost measurements above.
+
+```sh
+mkdir -p /tmp/meeting-review-install
+cp performance/agents/meeting-workflows/reviewed-install-package.json /tmp/meeting-review-install/package.json
+cp performance/agents/meeting-workflows/reviewed-install-lock.json /tmp/meeting-review-install/package-lock.json
+npm ci --prefix /tmp/meeting-review-install --ignore-scripts --no-audit --no-fund
+node performance/agents/meeting-workflows/reviewed.mjs \
+  --install /tmp/meeting-review-install --output /tmp/meeting-review-results
+```
+
+Choose a new output directory. The runner creates a fictional project with two aliases, an already
+confirmed call, an initially unlinked call and a matching call in a foreign account. It follows
+project-evidence pages and reads nearby cues, retaining unknown archive/index coverage. Word
+matches never establish membership. Findings from the unlinked call fail until the synthetic
+owner explicitly links it.
+
+The producer stages a supported budget fact, a checklist task and an unsupported expansion claim.
+Staging and refused agent review create no accepted records. A simulated owner terminal selects
+only the budget and checklist against the preview fingerprint; a stale fingerprint is refused.
+Fresh processes retrieve the fact, project task and receipt citations. Repeating the review,
+repeating the staging key and staging a second key leave exactly one fact/task and preserve the
+rejection. The script models the owner boundary only in this isolated fixture; it is not an agent
+instruction to remove its identity during a real workflow.
+
+The [recorded report](reviewed-results.json) contains package integrities, source/fixture hashes,
+assertions, CLI call counts and synthetic answers. Ephemeral cursors are stored as SHA-256 hashes;
+the actual cursors drive pagination during the run. Project tasks are read with
+`memo tasks list project:HOB`; their exact meeting citations remain in the reviewed batch.
+Account-scoped `tasks show` is not a project-task reader in these versions. Source URLs stay null
+for the imported VTT fixture. No live schedule or upcoming-call preparation is exercised.
+
+The common process runner now also isolates HOME and disables Memo background sync/update checks.
+Its existing preload guard denies Node network, keyring and child-process access for both tools;
+this is a controlled Node fixture, not an operating-system sandbox. No owner data, login, model or
+LLM is used. The scenario verifies deterministic command behavior, not an agent's ability to choose
+findings or judge whether their claims are supported. It makes no timing or token-cost claim.

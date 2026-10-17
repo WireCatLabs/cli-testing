@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@wirecat/cli-memo": "0.59.0",
+    "@wirecat/zoom-cli": "0.23.1"
+  }
+}
