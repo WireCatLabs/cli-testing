@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "date": "2026-10-17T20:53:34.762Z",
+  "runtime": "v24.19.0",
+  "source": {
+    "version": "0.307.0",
+    "base_version": "0.40.4",
+    "schema": 17,
+    "type": "registry",
+    "integrity": "sha512-LpBz7Kx1+e3eU2anjbTI3kfsovllYR03BhR7a9tIBfjJ77MlXmI55z1qE2ZDZrCDRKfdFczUE97DN6G9r6vN8Q==",
+    "store_entry_sha256": "3cb6cf62689ed513b460676b83438acd0cfda8a879cf23772c654ab587a129c6"
+  },
+  "target": {
+    "version": "0.326.0",
+    "base_version": "0.43.0",
+    "schema": 21,
+    "type": "packed source candidate",
+    "integrity": "sha512-sflk7y/a8b5ud0I8GiQjHcU/UbcW+u2xn3S/Eo/ezjQqQe3VEbTZd+xVFH3aij18X6IKyxmjBm/J4CHzb0XHqQ==",
+    "store_entry_sha256": "87fac10c4a6f8797cc858711ee433f8ccceaad1cf3743429cb0a583d94ad042d"
+  },
+  "fixture": {
+    "documents": 2,
+    "providers": 2,
+    "owner_data": false,
+    "network": false
+  },
+  "checks": [
+    {
+      "name": "previous-registry-sdk-creates-source",
+      "status": "passed"
+    },
+    {
+      "name": "unresolved-incoming-link-refuses-without-guessing",
+      "status": "passed"
+    },
+    {
+      "name": "interrupted-copy-rolls-back-every-new-record",
+      "status": "passed"
+    },
+    {
+      "name": "copy-retains-text-notes-tags-aliases-and-unrelated-data",
+      "status": "passed"
+    },
+    {
+      "name": "memory-status-evidence-and-editor-identities-retain-meaning",
+      "status": "passed"
+    },
+    {
+      "name": "previous-source-bytes-remain-unchanged",
+      "status": "passed"
+    },
+    {
+      "name": "previous-sdk-writes-newer-destination-without-losing-annotations",
+      "status": "passed"
+    },
+    {
+      "name": "completed-copy-replay-preserves-subsequent-destination-writes",
+      "status": "passed"
+    },
+    {
+      "name": "changed-completed-source-refuses-with-both-copies-retained",
+      "status": "passed"
+    }
+  ]
+}
