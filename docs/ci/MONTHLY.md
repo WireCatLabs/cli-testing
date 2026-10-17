@@ -5,13 +5,15 @@ The scheduled workflow is `monthly.yml`; it calls the existing `ci.yml` and pinn
 `release-checks.yml`. Tests, coverage floors, build, documentation contracts, parity, Bun, and
 platform/browser jobs run where that project's full workflow defines them.
 Security includes production dependency audits, workflow analysis, full-history secret detection,
-and CodeQL. Messaging includes C/C++ analysis as well as JavaScript/TypeScript and Actions.
+and CodeQL. Messaging includes C/C++ analysis as well as JavaScript/TypeScript and Actions; whatsapp-cli adds Go
+for its engine.
 
 ## Schedule
 
 | Repository/workflow | First day of each month, UTC |
 | --- | --- |
 | cli-base / monthly.yml | 02:17 |
+| whatsapp-cli / monthly.yml | 02:24 |
 | cli-memo / monthly.yml | 02:31 |
 | cli-core / monthly.yml | 02:38 |
 | drive-cli / monthly.yml | 02:45 |

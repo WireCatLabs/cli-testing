@@ -17,6 +17,7 @@ add time. Parallel jobs overlap; their durations should not be summed.
 | max-cli | About 1 s | 40–70 s | 40–70 s | 8–15 min |
 | tg-cli | About 1 s | 30–60 s | 30–60 s | 6–12 min |
 | zoom-cli | About 1 s | 20–40 s | 20–40 s | 3–5 min |
+| whatsapp-cli | Below 1 s | 20–40 s | 20–40 s; full validation 2–3 min | No release yet; monthly run about 2.5 min |
 | cli-docs | About 1 s | 40–60 s | 40–60 s plus deployment | 10–20 min deployment |
 | cli-messaging-onnx | Messaging hooks | Messaging ordinary CI | Messaging ordinary CI | 5–15 min |
 | cli-messaging-sqlite | Messaging hooks | Messaging ordinary CI | Messaging ordinary CI | 5–20 min |
@@ -61,6 +62,11 @@ The first successful updated PR jobs, including `ci:quick`, took 18 s for core, 
 19 s for meetings, 27 s for memo, 29 s for messaging, 21 s for tasks, 17 s for testing,
 22 s for MAX, 29 s for Telegram, and 20 s for Zoom. Community took 14 s.
 These are job durations, excluding queue time and independently posted third-party checks.
+
+The whatsapp-cli row was measured later, on 2026-10-17, from its last 15 successful runs of each kind:
+standards jobs took 18–40 s on PRs and 20–35 s on `main`, full validation on `main` 1 min 42 s to
+3 min, and the one monthly run, started by hand, about 2.5 min including queue. Its commit hook took 0.35 s on a
+workflow-only commit, where Biome had no file to check.
 
 Release validation now packs its checked Linux build once. The handoff verifies its SHA-256
 and publishes that artifact without a second installation, test suite, or build. Separate Bun
