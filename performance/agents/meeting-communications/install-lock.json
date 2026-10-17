@@ -5,7 +5,7 @@
   "packages": {
     "": {
       "dependencies": {
-        "@wirecat/zoom-cli": "file:./candidate.tgz"
+        "@wirecat/zoom-cli": "0.24.0"
       }
     },
     "node_modules/@anthropic-ai/sdk": {
@@ -556,9 +556,9 @@
       }
     },
     "node_modules/@wirecat/cli-base": {
-      "version": "0.43.1",
-      "resolved": "https://registry.npmjs.org/@wirecat/cli-base/-/cli-base-0.43.1.tgz",
-      "integrity": "sha512-V0UfyNYvXx1Gyv83Ftg2LaY7Ex/xTQS/C+vNrUmbqVRJZLC2jEMrx/NHEBCzuc46Yh3uy1KhIqUTMoL7kEQwZw==",
+      "version": "0.43.2",
+      "resolved": "https://registry.npmjs.org/@wirecat/cli-base/-/cli-base-0.43.2.tgz",
+      "integrity": "sha512-3JdL0pDCBWQEJX+Uks6PRNDgUXMD3qRCX5ZA9uit2UD8S42soBOf/ZHr9gBFXjsI2IuOLcucOsKgkzFbYOB1Gw==",
       "license": "Apache-2.0",
       "dependencies": {
         "@valibot/to-json-schema": "1.8.0",
@@ -590,9 +590,9 @@
       }
     },
     "node_modules/@wirecat/cli-core": {
-      "version": "0.326.0",
-      "resolved": "https://registry.npmjs.org/@wirecat/cli-core/-/cli-core-0.326.0.tgz",
-      "integrity": "sha512-vVr3PjYdArF0DvjVASexJ/hV+k8fQ0CMjF0s5mRuXe53o6pDOtoSzf6PSk+f/sTYN6LrqlQQRcuiJ8N3nW9jJA==",
+      "version": "0.332.0",
+      "resolved": "https://registry.npmjs.org/@wirecat/cli-core/-/cli-core-0.332.0.tgz",
+      "integrity": "sha512-Jbg+tDOYJKY4TwCDgHeXYOYMFYxrjsjixs24cOdQMkJR5ws8loWsM52aQNXWOAMuxB9/NseDAwNoB09QkEQsxA==",
       "license": "Apache-2.0",
       "dependencies": {
         "@anthropic-ai/sdk": "0.131.0",
@@ -658,14 +658,14 @@
       "license": "Apache-2.0"
     },
     "node_modules/@wirecat/zoom-cli": {
-      "version": "0.23.2",
-      "resolved": "file:candidate.tgz",
-      "integrity": "sha512-wtCewozVHw0Y46A03xid1rZ3SUaKoz8naH5njhPSTM6f4EbKo6BrSMZd1+U2fIvGp9gGsRqMSY3uz6Y+eLKg8g==",
+      "version": "0.24.0",
+      "resolved": "https://registry.npmjs.org/@wirecat/zoom-cli/-/zoom-cli-0.24.0.tgz",
+      "integrity": "sha512-HibgNMqjKWlnlZVKXvhPSJtXTrQRL4RmFdMmwqFR263PGPeZY0yjOsgB2iiE5I4uscnKUdI6H4DeSP83gALO2g==",
       "license": "Apache-2.0",
       "dependencies": {
         "@modelcontextprotocol/sdk": "1.32.1",
-        "@wirecat/cli-base": "0.43.1",
-        "@wirecat/cli-core": "0.326.0",
+        "@wirecat/cli-base": "0.43.2",
+        "@wirecat/cli-core": "0.332.0",
         "commander": "15.0.0",
         "valibot": "1.5.0"
       },
