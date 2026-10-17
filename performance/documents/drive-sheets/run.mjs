@@ -1,13 +1,15 @@
 import assert from "node:assert/strict"
 import { spawnSync } from "node:child_process"
 import { createHash } from "node:crypto"
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs"
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
 const pkg = resolve(process.argv[2])
 const output = resolve(process.argv[3])
 const sourceCommit = process.argv[4] ?? null
+const structure = process.argv[5] === "--structure"
+assert.ok(process.argv[5] === undefined || structure)
 assert.ok(sourceCommit === null || /^[a-f0-9]{40}$/.test(sourceCommit))
 const metadata = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8"))
 assert.equal(metadata.name, "@wirecat/drive-cli")
@@ -50,7 +52,12 @@ const check = (name, action) => {
 const preview = (args) => run(["verification", "--dry-run", ...args]).item
 check("configuration-free Sheets discovery and generated method effects", () => {
   const tree = run(["commands", "sheets"])
-  assert.deepEqual(tree.commands[0].commands.map((one) => one.name).sort(), ["add", "clear", "info", "show", "update"])
+  assert.deepEqual(
+    tree.commands[0].commands.map((one) => one.name).sort(),
+    structure
+      ? ["add", "clear", "create", "format", "info", "insert", "rename", "show", "update"]
+      : ["add", "clear", "info", "show", "update"],
+  )
   const methods = run(["api", "list", "service:sheets"]).items
   assert.equal(methods.length, 17)
   assert.equal(methods.find((one) => one.name.endsWith(".getByDataFilter")).mutates, false)
@@ -120,14 +127,69 @@ check("raw writes need explicit acknowledgment and generated bodies retain valid
     "validation_error",
   )
 })
+if (structure) {
+  check("tab creation, rename and insertion preview a guarded batch write", () => {
+    for (const args of [
+      ["create", "synthetic-sheet", "Q2"],
+      ["rename", "synthetic-sheet", "0", "Q2"],
+      ["insert", "synthetic-sheet", "0", "rows", "1", "3"],
+    ]) {
+      const answer = preview(["sheets", ...args])
+      assert.equal(answer.method, "sheets.spreadsheets.batchUpdate")
+      assert.equal(answer.mutates, true)
+    }
+  })
+  check("format previews and invalid structure/format arguments refuse early", () => {
+    assert.equal(
+      preview(["sheets", "format", "synthetic-sheet", "0", "A1:C1", "--body", '{"textFormat":{"bold":true}}']).method,
+      "sheets.spreadsheets.batchUpdate",
+    )
+    for (const args of [
+      ["insert", "synthetic-sheet", "0", "rows", "0", "1001"],
+      ["format", "synthetic-sheet", "0", "A1:Z1000", "--body", '{"textFormat":{"bold":true}}'],
+      ["format", "synthetic-sheet", "0", "A1", "--body", '{"userEnteredValue":"DO_NOT_LOG"}'],
+    ])
+      run(["verification", "--dry-run", "sheets", ...args], "validation_error")
+  })
+  check("rename denial reaches friendly, raw and generated batch commands", () => {
+    mkdirSync(env.DRIVE_CONFIG_DIR, { recursive: true })
+    writeFileSync(
+      join(env.DRIVE_CONFIG_DIR, "config.json"),
+      JSON.stringify({ profiles: {}, defaults: { permissions: { "sheets.rename": "deny" } } }),
+      { mode: 0o600 },
+    )
+    const body = '{"requests":[{"updateSheetProperties":{"properties":{"sheetId":0,"title":"Q2"},"fields":"title"}}]}'
+    for (const args of [
+      ["sheets", "rename", "synthetic-sheet", "0", "Q2"],
+      [
+        "api",
+        "call",
+        "sheets.spreadsheets.batchUpdate",
+        "--params",
+        '{"spreadsheetId":"synthetic-sheet"}',
+        "--body",
+        body,
+        "--allow-writes",
+      ],
+      ["api", "sheets-spreadsheets-batch-update", "--spreadsheet-id", "synthetic-sheet", "--body", body],
+    ])
+      run(["verification", "--dry-run", ...args], "permission_error")
+  })
+}
 writeFileSync(
   output,
   `${JSON.stringify(
     {
       package_version: metadata.version,
+      structure,
       artifact_kind: "compiled_candidate",
       source_commit: sourceCommit,
-      compiled_sha256: ["commands/sheets.js", "google-api.js", "generated/manifest.js"].map((path) => ({
+      compiled_sha256: [
+        "commands/sheets.js",
+        "google-api.js",
+        "generated/manifest.js",
+        ...(structure ? ["commands/sheets-structure.js", "sheets-input.js", "policy.js"] : []),
+      ].map((path) => ({
         path,
         sha256: createHash("sha256")
           .update(readFileSync(join(pkg, "dist", path)))
