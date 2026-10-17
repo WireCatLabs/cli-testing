@@ -33,6 +33,7 @@ Full-text emails, and their sender groups, that each threshold would rank lower:
 | memo 0.55.0 | 17,459 (4,079 groups) | 697 (71 groups) | 1,183 (197 groups) |
 | cli-memo#253 | 17,157 (4,060 groups) | 200 (20 groups) | 718 (149 groups) |
 | cli-memo#257 | 17,041 (4,050 groups) | **2 (2 groups)** | 520 (131 groups) |
+| #257 + headers of older mail (cli-memo#266) | 22,890 | 26 (5 groups) | 7,747 (1,353 groups) |
 
 What it showed:
 
@@ -51,6 +52,20 @@ What it showed:
   from 2018 to March 2021. What is left at strong ≥ 3 is the two look-alike senders, one email each.
 - **Few emails carry an authentication result at all:** about one in eight, and almost none from 2022 on, so the
   DMARC and DKIM signals see little of the mail.
+
+### After older mail got its headers
+
+57,000 of the emails stored in full had no Reply-To or DKIM/DMARC verdicts, because they were imported before memo
+kept them; cli-memo#266 read them from Gmail. With the signals visible on all mail:
+
+- **Strong signals at 3 or more: 26 emails from 5 senders.** Two are real look-alikes, one is likely junk, and
+  two are real: a university programme and an airline whose DMARC fails on mail from 2022 on. A search for that
+  airline would push down 4 of its 20 hits, its bookings among them.
+- **At 2 or more: 7,747 emails.** `reply_to_elsewhere` alone now fires on 352 senders, mostly real companies
+  that answer from a help-desk domain; it pushed down 7 of 30 hits for one benchmark question.
+- **The eight benchmark-style searches lose nothing at 3 or more.**
+- **Ranking stays off.** A failed DMARC check alone still marks real senders; it should count as fraud only
+  beside another fraud signal before anything is ranked by it.
 
 ## Not measured
 
