@@ -3,7 +3,7 @@
 Drive's store switch refused to strand annotations, but users had no supported way to copy them into
 the shared database. This check verifies Core's provider-neutral copy against actual packaged SDKs:
 a store written by the Core version used in Drive 0.16.0, and the new transfer implementation. It
-checks identity/reference collisions and retry behavior before Drive adopts the released SDK.
+checks identity/reference collisions, retry behavior and the actual released Drive consumer.
 
 ## Released Core SDK
 
@@ -12,8 +12,31 @@ checks identity/reference collisions and retry behavior before Drive adopts the 
 [Core release 39069033136](https://github.com/WireCatLabs/cli-core/actions/runs/39069033136) passes its
 checks and tags [v0.327.0](https://github.com/WireCatLabs/cli-core/releases/tag/v0.327.0) at
 cad9a03b368b12ee480e311363dc1baed14cc211. Publication used the documented MCP adoption ref for the
-already-pending Telegram/MAX change; it did not disable parity. The feature is ready for Drive's
-exact dependency adoption. This SDK result is separate from a Drive CLI release claim.
+already-pending Telegram/MAX change; it did not disable parity. Drive adopts this exact SDK in its release below. SDK results remain separate from compiled CLI checks.
+
+## Released Drive CLI
+
+[Fresh registry results](results-drive-registry-0170.json) pass **14 guarded CLI invocations** with
+Drive **0.17.0**, Core **0.327.0**, Base **0.43.0** and one physical Base/Commander per consumer.
+Both the source and preexisting destination start at schema 17 through registry Core 0.307.0.
+The CLI migrates the destination to schema 21, preserves the source bytes, updates the profile
+checkpoint only after copying, and retains unrelated destination evidence. Cached reading,
+tagged search, notes and completed-copy replay pass after the original process exits.
+
+[Release 39071901963](https://github.com/WireCatLabs/drive-cli/actions/runs/39071901963) publishes
+[v0.17.0](https://github.com/WireCatLabs/drive-cli/releases/tag/v0.17.0) from
+**eb16d6092c6d475a0c8bb8b42d08f7cbe947b3c3**. The recorded npm integrity matches a fresh install;
+the source suite passes 310 tests at 91% line coverage, ten CLI/MCP contracts and five older-store
+upgrade cases. Installed Node/Bun smoke also passes. No existing account, store or Google API was
+used for this release acceptance. The normal refusal guard remains for implicit store changes;
+explicit `store check` / `store import --fingerprint` is the reviewed migration path.
+
+Reproduce the compiled acceptance after installing exact registry Drive 0.17.0 into a fresh
+`DRIVE_PREFIX` and the previous Core 0.307.0 / Base 0.40.4 into a separate `SOURCE_PREFIX`:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/annotation-transfer/cli.mjs DRIVE_PREFIX SOURCE_PREFIX OUTPUT_JSON
+```
 
 ## Candidate result
 
