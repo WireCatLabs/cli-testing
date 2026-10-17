@@ -2,6 +2,8 @@
 
 Measurements of document conversion, shared retrieval and source-backed memories.
 
+- [drive-sheets](drive-sheets/README.md): guarded executable acceptance for native spreadsheet ranges, cell writes and generated Sheets methods.
+
 - [drive-release-polish](drive-release-polish/README.md): isolated executable setup, validation, profiles and legacy settings checks before public-release polish.
 
 - [drive-shared-store](drive-shared-store/README.md): offline import, provenance, tags and message links across Drive, Telegram, MAX and Memo executables.
