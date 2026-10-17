@@ -464,21 +464,34 @@ answer decides whether cli-core changes the scoring module before agents create 
   its title ([`oldprompt.txt`](real-chats/labelled-2/oldprompt.txt); 70 of 90 found with confidence) and scored
   with the same scorer, without the description and category, which were lost. The rebuilt band matches the first
   run's band on 60 of 85 pairs, so "old" is approximate.
-- Command: `node replay.mjs <dir>`, `node features.mjs <cli-core> new-in.json new-feat.json`, then
-  `python3 report.py` and `python3 holdout.py` ([output](real-chats/labelled-2/results.txt)).
+- Command: `bash real-chats/labelled-2/run.sh <cli-core dir>` in a private folder with `chats.json` (chat and
+  account ids) and `categories.txt`; it runs every step in order ([output](real-chats/labelled-2/results.txt)).
+  No two labels contradict each other: no three pairs where two are "same" and the closing one "different".
 
 ### Results
 
-Each signal over the labelled pairs: wrong / right, precision, and the weight that counting would give it
-(`log2(m/u)`, +0.5 smoothing). The sample is chosen around these signals, so m and u are biased; the precision is
-what the owner sees.
+**Over the whole candidate pool.** 99 of the 129 pairs were picked because a signal fired, so the plain share of
+"same" pairs in the sample (23%) is not the pool's. Each targeted pair counts once (every pair of each targeted kind
+is in the sample) and each random pair counts for 146 pool pairs (4,374 / 30). The random pairs had no "same" pair,
+so "same" pairs in the pool are rare: about 29 of 4,473. Weighted that way, each signal against today's weight:
 
-| Signal (weight now) | old, 85 pairs | new, 128 pairs | all, 213 pairs |
-|---|---|---|---|
-| titles alike letter by letter (text +5) | 21 / 6 (22%), −0.1 | 44 / 18 (29%), +0.5 | 65 / 24 (27%), +0.3 |
-| same person (+1) | 10 / 1 (9%), −1.2 | 41 / 15 (27%), +0.3 | 51 / 16 (24%), +0.1 |
-| one reply chain (+6) | 3 / 2 (40%), +1.2 | 8 / 1 (11%), −0.8 | 11 / 3 (21%), 0.0 |
-| "same" among all labelled | 20 / 85 (24%) | 29 / 128 (23%) | 49 / 213 (23%) |
+| Signal | duplicates showing it (m) | other pairs showing it (u) | counted weight | weight now |
+|---|---|---|---|---|
+| titles alike letter by letter | 18 of 29 | 44 of ~4,443 (1%) | +5.9 | text +5 |
+| same person | 15 of 29 | ~1,634 of ~4,443 (37%) | +0.5 | +1 |
+| one reply chain | 1 of 29 | 8 of ~4,443 | +4.7 (one pair) | +6 |
+
+Other levels counted the same way that differ most from today's: "4–14 days apart" +1.4 (now −2), due date
+within 2 days +2.7 (now +4). The "same" pairs come only from the targeted part, so m is high for the signals that
+chose them; these weights are a check, not a fit to ship.
+
+**Among the pairs the owner is shown** ("maybe" or "likely" as shipped), wrong / right:
+
+| | titles alike | same person | reply chain | all shown |
+|---|---|---|---|---|
+| old (rebuilt) | 5 / 5 | 2 / 0 | 3 / 1 | 12 / 13 |
+| new | 5 / 10 | 5 / 11 | 8 / 1 | 28 / 21 |
+| all | 10 / 15 | 7 / 11 | 11 / 2 | 40 / 34 |
 
 The bands as shipped, on the new set (every flagged pair is labelled): "likely" 5 of 11 right, "maybe" or "likely"
 21 of 49 right (43%), finding 21 of the 29 same pairs.
@@ -495,33 +508,37 @@ Changes tried, "maybe" or "likely": right / shown, and same pairs found:
 | trigrams of the title without its first word | 11 / 21 · 11 | 17 / 43 · 17 | 28 / 64 · 28 |
 | reply +2, person 0, trigram floor together | 12 / 20 · 12 | 16 / 38 · 16 | 28 / 58 · 28 |
 
-How well the score puts "same" above "different" (AUC): shipped weights 0.75 on old and 0.80 on new. All weights
-counted on new give 0.65 on old; counted on old, 0.67 on new. Reply +2 gives 0.73 on old and 0.82 on new.
+How well the score puts "same" above "different" on the old pairs (AUC): shipped weights 0.75; every level counted
+on the new set, weighted to the pool, 0.74. Reply +2 alone: 0.73 on old, 0.82 on new (shipped 0.80).
 
 ### What it showed
 
-- **The three signals cannot be fixed by weights on this data.** Each one fires on "same" pairs about as often as
-  "same" pairs occur at all (21–29% against 23%), so it adds almost nothing. But lowering it removes right pairs
-  about as fast as wrong ones. The wrong pairs agree on every field: the same contact, the same verb-first title
-  pattern ("Получить от … …"), the same category, a few days apart. They differ in the object: which audit, which
-  payment, which call. No field sees that.
-- **Counting new weights overfits.** Weights counted on one set order the other set worse than the shipped ones.
+- **Over the whole pool the three signals do their job.** Titles alike and a reply chain are rare among unrelated
+  pairs and common among duplicates; counted, they come out near today's weights. Same person is weak (+0.5 against
+  +1): in a one-to-one chat a third of all pairs share it. These signals are what make a pair a candidate.
+- **Among the pairs that already score high, they do not tell right from wrong — except reply chain, which points
+  the wrong way.** Titles alike (10 wrong / 15 right) and same person (7 / 11) are right a little more often than
+  the shown pairs as a whole (40 / 34). Reply chain is wrong 11 times in 13. The wrong pairs agree on every field:
+  the same contact, the same verb-first title pattern ("Получить от … …"), the same category, a few days apart. They
+  differ in the object: which audit, which payment, which call. No field sees that, so no weight change takes the
+  shown pairs much past 50% right.
+- **Lowering titles alike or same person costs found duplicates** (stems only: 15 of 29 found instead of 21) for no
+  gain in precision. Counting every weight anew on this data does not order the old pairs better.
 - **Reply chain +6 → +2 is the only change that helped both sets at the band.** "Maybe" or "likely" precision went
-  from 52% to 57% on old and from 43% to 47% on new, losing one right pair on each. AUC moved the other way on old.
-  On these counts it is a candidate, not a proven fix.
-- Outside the three: due date "within 2 days" (+4) counts to about +1.2, and "4–14 days apart" (−2) to about +0.3.
-  Both come from the biased sample.
+  from 52% to 57% on old and from 43% to 47% on new, losing one right pair on each; the pool count (+4.7) rests on a
+  single duplicate. A candidate, not a proven fix.
 
 Proposal for a follow-up in cli-core: reply chain `yes` from +6 to +2. Leave the same-person and trigram weights as
-they are. The real fix is the judge: `tasks add` already asks the agent that writes the task, and that agent can read
-the object.
+they are. The fix for the rest is the judge: `tasks add` already asks the agent that writes the task, and that agent
+can read the object. Worth measuring next, on a sample drawn for it: "4–14 days apart" (−2), which counts positive
+here.
 
 ### Not measured
 
 - Group chats: the new set is two one-to-one chats only. Same person fires on most pairs there.
 - Reply chains: only 9 new pairs, 14 in all.
 - Recall over the whole pool: the 30 random pairs had no same pair, so misses outside the targeted pairs are not
-  estimated.
+  estimated, and m in the pool table counts only the duplicates the targeted part found.
 - The old pairs' exact levels: rebuilt without description or category.
 - Labels from the owner: the labels come from a model and a reviewer, not from the owner.
 - Agents other than the one that drafted; languages other than Russian.
