@@ -1,0 +1,48 @@
+{
+  "package_version": "0.15.1",
+  "artifact_kind": "compiled_public_client_candidate",
+  "dependencies": {
+    "sheets": "18.1.1",
+    "core": "0.307.0",
+    "base": "0.40.0"
+  },
+  "compiled_sha256": [
+    {
+      "path": "commands/sheets.js",
+      "sha256": "29a13b1795a1ca6b937fba507ed697ceb46f284d5e9d2c2e2048872104ff528e"
+    },
+    {
+      "path": "google-api.js",
+      "sha256": "f9a520e44b7c7677d71316d62dea98be4f338a68fe750b348d5f1a348fa9cbce"
+    },
+    {
+      "path": "generated/manifest.js",
+      "sha256": "3526cb9f4d96a71fe0ab8e8053a8a1dd1df14e51ff1e641b9036e48e0d45e1d4"
+    }
+  ],
+  "entry_sha256": "7de72e8b657f8b819110d30d455b057a8867a16425119d00842d08ec70e3073f",
+  "checks": [
+    {
+      "name": "SDK update followed by a separate read preserves neighbors",
+      "passed": true
+    },
+    {
+      "name": "formula mode is explicit and null skips a cell",
+      "passed": true
+    },
+    {
+      "name": "append reports its actual destination and clear limits its cells",
+      "passed": true
+    },
+    {
+      "name": "an applied append with a 503 response is not replayed",
+      "passed": true
+    }
+  ],
+  "sdk_requests": 10,
+  "live_google_requests": 0,
+  "live_google_writes": 0,
+  "limitations": [
+    "In-memory provider fixture; not Google formula calculation, table detection, formatting or live validation"
+  ]
+}

@@ -53,3 +53,27 @@ The friendly commands bound input to 10,000 supplied cells and finite A1 rectang
 batch operations retain Google's broader request semantics. Append finds a table inside the
 search rectangle and can insert rows beyond it; this check does not claim otherwise. The report
 also does not measure extraction fidelity, latency or real-model quality.
+
+## Stateful public-client roundtrips
+
+The first executable checks stop at previews/refusals. They do not show a separate read after
+an SDK write. `client-roundtrip.mjs` exercises Drive's public compiled package exports
+(`createProgram` and `googleApi`) through the pinned Sheets SDK and OAuth transporter. A stateful
+in-memory provider responds while the same socket/browser/keyring-subprocess guard blocks real I/O.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-client-roundtrip.json
+```
+
+[Client result](results-client-roundtrip.json): **four checks, ten in-memory SDK requests**.
+Updates have separate readback and unchanged-neighbor assertions. Formula mode is explicit;
+null skips a cell. Append destinations are inspected and selected values cleared. An
+apply-then-503 append leaves one new row, returns `outcome_unknown` and is not replayed; a
+subsequent read observes that single row. Errors do not return the synthetic bearer or provider
+body. The source suite adds four equivalent command/SDK boundary cases in
+[Drive#107](https://github.com/WireCatLabs/drive-cli/pull/107).
+
+These are public-client integration checks, separate from the 17 actual CLI process invocations
+above. The provider fixture does not calculate formulas, reproduce Google's table detection or
+model cell formatting. No live Google write, dedicated fixture validation, Cloud project API
+setting or data-access approval is established. Published npm 0.15.1 still lacks these commands.
