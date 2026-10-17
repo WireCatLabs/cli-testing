@@ -230,3 +230,31 @@ signature, Luxembourg and Swiss postcodes, the region before a Russian street). 
 were whole; the rest were addresses of countries outside the rule (Canada, Singapore, Armenia).
 
 Not measured: recall — how many names and addresses the rules miss. It needs whole texts read.
+
+## Eighth run: names and addresses on the real store with the released cli-core 0.308.0 (2026-10-17)
+
+Why: the seventh run measured the phase 3 rules on a copy; the owner asked to bring them to his store before tg
+moves to the new cli-core. The question: the same totals on the real store, and whether the build tg uses still opens
+it after store version 18.
+
+Setup: same machine; a `.backup` of the store taken first (deleted after the checks); a script that imports the
+released `@wirecat/cli-core@0.308.0` from npm and runs `mentions.rebuildMentions({ kinds: [kind] })` for
+`person-name`, then `place`; counts read with `sqlite3 -readonly`. Totals only.
+
+| | chats | mail | documents |
+|---|---|---|---|
+| unknown names | 494 | 68,055 | 517 |
+| known names, undecided or linked | 877 | 105,765 | 1,141 |
+| street addresses with a postcode or city beside them | 0 | 12,625 | 1 |
+| street addresses without | 2 | 8,168 | 17 |
+
+| | |
+|---|---|
+| rebuild of `person-name`, all sources | 180 s |
+| rebuild of `place`, all sources | 160 s |
+| `mentions` table and its indexes, MB | 172 → 187 |
+| `places` rows (confirmed addresses) | 0 |
+
+What it showed: the real store matches the copy. With the address tail read, 61% of the addresses now carry a
+postcode or city, against 23% in the seventh run. The released cli-core 0.303.0, which tg 0.63–0.64 is built on, still
+opens the store after the migration to version 18. Not measured: a `VACUUM`.
