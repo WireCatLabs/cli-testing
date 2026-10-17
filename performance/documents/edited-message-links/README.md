@@ -20,7 +20,7 @@ time and revision-by-message index. Older SDKs capture text revisions without ad
 row's update timestamp, so checking that timestamp alone would still miss their writes. Provider
 edit timestamps can be absent or older than the local checkpoint. The query needs no new table or index; Drive uses the adopted SDK's normal store upgrade.
 The source regression cases reproduce the old behavior and pass after the fix; released Drive
-acceptance is recorded separately once it adopts the SDK.
+acceptance is recorded separately below.
 
 ## Fixed SDK and packaged consumer
 
@@ -47,7 +47,7 @@ Drive's host marker is saved only after historical and recent passes succeed. Ex
 without the marker get one historical local pass. Failure leaves retry state; later successful
 runs return to incremental linking. The source suite passes 312 tests / 91.01% lines, ten CLI/MCP
 contracts, five older-store cases and Node/Bun installed acceptance. Exact registry consumer
-results remain a separate delivery check. The checker initially used a removed top-level reader
+results are recorded separately below. The checker initially used a removed top-level reader
 alias; it was corrected to the public messages store area before recording passing results.
 
 ## Registry Drive release
@@ -65,6 +65,31 @@ The JSON records the exact Drive/Core registry integrity and one physical Base/C
 consumer graph. The installed command reports 0.17.1. The message writer remains the separate
 registry Core 0.307.0 graph; existing SDKs can continue storing edits against the upgraded store.
 These checks do not require an account login or a new Google grant.
+
+## Published guides
+
+[Portal#306](https://github.com/WireCatLabs/cli-docs/pull/306) updates the existing conversation-linking
+recipe and changelog in EN/RU/ES. [Deployment 39077630310](https://github.com/WireCatLabs/cli-docs/actions/runs/39077630310)
+passes security, platform installation, full export and all four browser shards at
+**f409d87f6e8fa800abf8f029251da8e8c6cd1dad**. Its
+[reviewed configuration](https://github.com/WireCatLabs/cli-docs/blob/f409d87f6e8fa800abf8f029251da8e8c6cd1dad/tools.json)
+pins Drive v0.17.1 while preserving the concurrent Telegram/Memo updates.
+
+[Twelve live HTML/Markdown checks](results-live-portal-0171.json) pass for the changed recipe and
+changelog in all three languages. They verify the locally saved edit prerequisite, retained chat
+lookup command and release repair notes. The HTTP helper now accepts locale-specific prose markers;
+the existing annotation-transfer checker still passes all 30 routes after that extension.
+
+Local portal checks pass 309 unit tests, seven smoke cases, three localized recipe browser cases,
+four translation structures and strict command/reference validation with zero gaps/invalid examples.
+No installation, navigation, Google grant or new command is introduced.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/edited-message-links/portal.mjs https://wirecat.dev OUTPUT_JSON f409d87f6e8fa800abf8f029251da8e8c6cd1dad 0.17.1
+```
+
+Live content checks establish served instructions, not Google consent, remote event delivery or
+the source ref embedded in a page; provenance comes from the deployed commit and reviewed config.
 
 ## Reproduce
 
