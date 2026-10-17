@@ -1,0 +1,51 @@
+{
+  "base": "https://wirecat.dev",
+  "docs_source_commit": "559141ef9d42e0f8fb675d76f85a36ce7538aeb1",
+  "playwright": "1.63.0",
+  "browser": "153.0.8010.12",
+  "checks": [
+    {
+      "locale": "en",
+      "width": 390,
+      "keyboard_recipe_and_recovery": true,
+      "retained_commands": true,
+      "no_overflow": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "keyboard_recipe_and_recovery": true,
+      "retained_commands": true,
+      "no_overflow": true
+    },
+    {
+      "locale": "ru",
+      "width": 390,
+      "keyboard_recipe_and_recovery": true,
+      "retained_commands": true,
+      "no_overflow": true
+    },
+    {
+      "locale": "ru",
+      "width": 1280,
+      "keyboard_recipe_and_recovery": true,
+      "retained_commands": true,
+      "no_overflow": true
+    },
+    {
+      "locale": "es",
+      "width": 390,
+      "keyboard_recipe_and_recovery": true,
+      "retained_commands": true,
+      "no_overflow": true
+    },
+    {
+      "locale": "es",
+      "width": 1280,
+      "keyboard_recipe_and_recovery": true,
+      "retained_commands": true,
+      "no_overflow": true
+    }
+  ],
+  "limits": ["Published reader navigation only; no command, Google account, OAuth or database action"]
+}
