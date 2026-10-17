@@ -8,11 +8,14 @@ import { dirname, join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 
 const [prefix, output, mode] = process.argv.slice(2)
-assert.ok(mode === undefined || mode === "--published-readers")
+assert.ok(mode === undefined || ["--published-readers", "--current-readers"].includes(mode))
 const publishedReaders = mode === "--published-readers"
+const currentReaders = mode === "--current-readers"
 assert.ok(prefix && output, "run.mjs INSTALLED_PREFIX OUTPUT_JSON")
 const modules = join(resolve(prefix), "node_modules/@wirecat")
-const drive = join(modules, "drive-cli")
+const packageRoot = (app, name) =>
+  currentReaders ? join(resolve(prefix), app, "node_modules/@wirecat", name) : join(modules, name)
+const drive = packageRoot("drive", "drive-cli")
 const require = createRequire(join(drive, "package.json"))
 const { openStore } = await import(pathToFileURL(require.resolve("@wirecat/cli-core/store")))
 const { captureStreams } = await import(pathToFileURL(require.resolve("@wirecat/cli-base")))
@@ -98,7 +101,7 @@ const addMessages = async (number) => {
       ["telegram", "500"],
       ["max", "600"],
     ]) {
-      await store.saveChats({ provider, account }, [
+      await (currentReaders ? store.chats : store).saveChats({ provider, account }, [
         {
           id: "7",
           title: "Synthetic planning",
@@ -108,7 +111,12 @@ const addMessages = async (number) => {
           participantsCount: null,
         },
       ])
-      await store.saveMessages({ provider, account }, "7", [message(String(number))], { via: "history" })
+      await (currentReaders ? store.messages : store).saveMessages(
+        { provider, account },
+        "7",
+        [message(String(number))],
+        { via: "history" },
+      )
     }
   } finally {
     await store.close()
@@ -125,12 +133,21 @@ const guard = fileURLToPath(new URL("./guard.mjs", import.meta.url))
 const checks = []
 const versions = {}
 const artifacts = {}
-const lock = JSON.parse(readFileSync(join(resolve(prefix), "package-lock.json"), "utf8"))
-const run = async (app, args) => {
+const run = async (app, args, expectedExit = 0) => {
   const name = app === "tg" ? "tg-cli" : app === "max" ? "max-cli" : app === "memo" ? "cli-memo" : "drive-cli"
-  const pkg = join(modules, name)
+  const pkg = packageRoot(app, name)
+  const lock = JSON.parse(
+    readFileSync(join(resolve(prefix), ...(currentReaders ? [app] : []), "package-lock.json"), "utf8"),
+  )
   versions[app] = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8")).version
   const installed = lock.packages[`node_modules/@wirecat/${name}`]
+  if (currentReaders) {
+    assert.ok(
+      installed.resolved?.startsWith("https://registry.npmjs.org/"),
+      "current reader must be a registry artifact",
+    )
+    assert.ok(installed.integrity, "registry integrity must be recorded")
+  }
   artifacts[app] = {
     type: installed.resolved?.startsWith("https://registry.npmjs.org/") ? "registry" : "packed consumer candidate",
     integrity: installed.integrity,
@@ -139,7 +156,7 @@ const run = async (app, args) => {
       .digest("hex"),
   }
   const readerCore = createRequire(join(pkg, "package.json")).resolve("@wirecat/cli-core/store")
-  if (!publishedReaders)
+  if (!publishedReaders && !currentReaders)
     assert.equal(readerCore, require.resolve("@wirecat/cli-core/store"), "one physical released Core")
   artifacts[app].core = JSON.parse(
     readFileSync(join(resolve(dirname(readerCore), "../.."), "package.json"), "utf8"),
@@ -164,9 +181,11 @@ const run = async (app, args) => {
     child.on("error", reject)
     child.on("close", (code) => {
       clearTimeout(timer)
-      assert.equal(code, 0, `${app} ${args.join(" ")}: ${stderr.slice(0, 500)}`)
-      const data = JSON.parse(stdout)
-      assert.equal(data.meta?.complete, true, `${app} ${args.join(" ")}: ${JSON.stringify(data.meta)}`)
+      assert.equal(code, expectedExit, `${app} ${args.join(" ")}: ${stderr.slice(0, 500)}`)
+      const data = JSON.parse(expectedExit === 0 ? stdout : stderr)
+      if (expectedExit !== 0) assert.equal(stdout, "", "validation failures belong on stderr")
+      if (expectedExit === 0)
+        assert.equal(data.meta?.complete, true, `${app} ${args.join(" ")}: ${JSON.stringify(data.meta)}`)
       checks.push({ app, args, exit: code })
       resolve(data)
     })
@@ -249,9 +268,40 @@ for (const app of publishedReaders ? ["tg"] : ["tg", "max"]) {
   assert.equal(chat.items.length, 2)
   assert.ok(chat.items.every((item) => item.in_store && item.title === "Zebra harbor budget"))
 }
-await run("drive", ["synthetic", "--offline", "documents", "show", id])
+if (currentReaders) {
+  for (const app of ["tg", "max"]) {
+    const excluded = await run(
+      app,
+      ["synthetic", "--offline", "search", "notes", "zebra", "--source", "drive:other-synthetic", "--exact"],
+      2,
+    )
+    assert.equal(excluded.error.code, "validation_error")
+    assert.equal(excluded.error.reason, "input.invalid")
+    assert.ok(!excluded.items, "an unknown source must refuse rather than return unfiltered results")
+    const retained = await run(app, [
+      "synthetic",
+      "--offline",
+      "search",
+      "notes",
+      "tag:shared-proof",
+      "--source",
+      "drive:synthetic",
+      "--exact",
+    ])
+    assert.equal(retained.items.length, 1, "later syncs must retain the tag after newer Core readers open the database")
+    assert.equal(retained.items[0].url, url)
+  }
+  const tagged = await run("memo", ["search", "all", "tag:shared-proof", "--only", "notes", "--exact"])
+  assert.equal(tagged.items.length, 1)
+  assert.equal(tagged.items[0].url, url)
+}
+const cached = await run("drive", ["synthetic", "--offline", "documents", "show", id])
+if (currentReaders) {
+  assert.equal(cached.item.text, "zebra harbor budget approved at 120 units")
+  assert.equal(cached.item.metadata.id, id)
+}
 writeFileSync(
   resolve(output),
-  `${JSON.stringify({ status: "passed", date: new Date().toISOString(), runtime: process.version, core: core.version, versions, artifacts, ...(publishedReaders ? { not_run: [{ app: "max", command: "chats documents list", reason: "Published MAX 0.56.0 does not mount this shared command; the merged adoption is tested in the candidate run" }] } : {}), synthetic_source_syncs: 3, source_content_reads: reads, checks }, null, 2)}\n`,
+  `${JSON.stringify({ status: "passed", date: new Date().toISOString(), runtime: process.version, ...(currentReaders ? { dependency_layout: "separate unmodified registry graphs sharing one database" } : {}), core: core.version, versions, artifacts, ...(publishedReaders ? { not_run: [{ app: "max", command: "chats documents list", reason: "Published MAX 0.56.0 does not mount this shared command; the merged adoption is tested in the candidate run" }] } : {}), synthetic_source_syncs: 3, source_content_reads: reads, checks }, null, 2)}\n`,
 )
 process.stdout.write(`${checks.length} executable checks passed across Drive, Telegram, MAX and Memo\n`)

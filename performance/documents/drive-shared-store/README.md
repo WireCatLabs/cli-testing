@@ -6,7 +6,7 @@ checks that workflow through packaged executables and one shared temporary datab
 
 ## Reproduce
 
-Install the reviewed Drive, Telegram, MAX and Memo packages into one isolated prefix. They must
+For the original candidate experiment, install the reviewed Drive, Telegram, MAX and Memo packages into one isolated prefix. They must
 resolve the same physical Core package, including its document search provenance support. Run:
 
 ```sh
@@ -74,3 +74,45 @@ To reproduce with exactly those four registry packages in the prefix, append `--
 to the runner command. The ordinary mode still requires one physical Core package, provenance
 fields and both messengers' chat-document commands; it passed again after adding this compatibility
 mode. Public recipes deliberately avoid reader profile filters that need the later adoption.
+
+## Current published readers — 17 October 2026
+
+The earlier compatibility run did not establish that enhanced document provenance and MAX chat
+links had reached npm. A fresh run against the current releases passes **17 executable checks**,
+including both readers' source-profile selection, typed Google provenance, stored-message links,
+shared tags and Memo retrieval. No reader release or Drive change was needed.
+
+| Published package | Version | Its original Core | Result |
+| --- | --- | --- | --- |
+| Drive | 0.16.0 | 0.307.0 | Import, tag, repeated sync and cached text |
+| Telegram | 0.69.0 | 0.321.0 | Source-filtered search, chat links, retained tags |
+| MAX | 0.58.0 | 0.315.0 | Source-filtered search, chat links, retained tags |
+| Memo | 0.61.0 | 0.320.0 | Document and tag retrieval with Google URL |
+
+[Exact results](results-current-readers-2026-10-17.json) record registry integrity, executable hashes,
+arguments, exit codes and resolved Core versions. Each tool has a separate npm installation and its
+unmodified dependency graph; only the temporary database is shared. This is deliberately different
+from the historical candidate mode's single physical Core requirement.
+
+Three synthetic Drive syncs read the source content once. After newer readers open the database,
+Drive can still add a tag, sync unchanged content and return the exact cached text. Both messenger
+readers retain that tag and show both sharing messages without duplicate links. An unknown source
+profile is refused with `validation_error` / `input.invalid` on stderr (exit 2), rather than silently
+returning unfiltered results. Memo also finds the tag after the repeated syncs. Fifteen commands
+succeed; two commands verify that expected refusal. Every successful answer reports complete results.
+
+To reproduce these exact releases, create four independent installations and run the current mode:
+
+```sh
+P=$(mktemp -d -p /var/tmp)
+for spec in drive:@wirecat/drive-cli@0.16.0 tg:@wirecat/tg-cli@0.69.0 max:@wirecat/max-cli@0.58.0 memo:@wirecat/cli-memo@0.61.0; do
+  T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix "$P/${spec%%:*}" --ignore-scripts --no-audit --no-fund "${spec#*:}" || break
+done
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/drive-shared-store/run.mjs "$P" "$P/results.json" --current-readers
+```
+
+Measured on Linux x64 with Node 24.19.0, one invented document and two messages in each messenger.
+Sockets, browser launch, keyring and subprocess helpers are refused in reader processes. No owner
+profile, Google connection, messenger session, AI model or real store is involved. This bounded run
+does not establish compatibility for every migration, edited-message linking, document-only search
+or transferring annotations between databases; those remain separate work.
