@@ -114,3 +114,28 @@ The fixture proves request encoding, command execution, permission routing and c
 changes; it is not a Google formula/reference engine, table detector or formatting-fidelity test.
 No live Google write or shared-project API enablement was performed. Dedicated live fixture,
 registry release and reviewed multilingual portal publication remain separate launch checks.
+
+## Shared vocabulary adoption
+
+Drive's two remaining Sheets verb exceptions needed the published shared vocabulary rather than
+permanent local overrides. [Drive#109](https://github.com/WireCatLabs/drive-cli/pull/109) pins Base
+0.40.3 exactly with compatible Core 0.307.0. Candidate
+`e69130ec2da8d6042c194328f082dd75bba3a234` repeats the same external checks after that adoption;
+the earlier result files remain unchanged historical evidence.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/run.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-base-0403-cli.json e69130ec2da8d6042c194328f082dd75bba3a234 --structure
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-base-0403-client.json --structure
+```
+
+| Check | Result |
+| --- | --- |
+| [Compiled CLI acceptance](results-base-0403-cli.json) | Ten checks, 27 guarded processes pass |
+| [Public-client SDK roundtrips](results-base-0403-client.json) | Eight checks, 18 in-memory SDK requests pass |
+| Command naming | Zero new violations; 20 unchanged baseline entries and one pre-existing fact-verb override |
+| Source and compatibility checks | 290 tests, 90.38% lines; ten CLI/MCP contracts and five prior-store upgrade checks pass |
+| Installed tarball | Node and Bun acceptance pass; one physical Base instance |
+
+All Sheets vocabulary exceptions are removed. This rerun verifies the actual published shared
+dependency pin and retains synthetic fixtures, refused sockets and the same live-validation
+limits. It does not establish a new Drive npm release, live Google behavior or API enablement.
