@@ -2,6 +2,8 @@
 
 Measurements of document conversion, shared retrieval and source-backed memories.
 
+- [annotation-transfer](annotation-transfer/README.md): packaged old/new SDK copy, reference and identity collisions, interruption/replay and retention of source annotations.
+
 - [drive-sheets](drive-sheets/README.md): guarded executable acceptance for native spreadsheet ranges, cell writes and generated Sheets methods.
 
 - [drive-release-polish](drive-release-polish/README.md): isolated executable setup, validation, profiles and legacy settings checks before public-release polish.

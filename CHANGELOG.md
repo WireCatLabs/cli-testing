@@ -10,6 +10,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A packaged document-transfer check uses an older registry SDK to verify safe annotation copying, source preservation, reference collisions and retries with the new Core API.
+
 - The shared-document runner tests current registry readers in separate installations, preserving each dependency graph while checking provenance, message links and retained tags across one temporary store.
 
 - A deterministic Zoom/Memo workflow check covers alias discovery, reviewed cited findings and repeat reads against pinned published tools, without owner data or a language model.
