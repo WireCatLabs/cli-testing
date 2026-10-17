@@ -6,7 +6,6 @@ await checkPortal({
   output,
   source,
   release: "0.17.0",
-  sourceRef: "v0.17.0",
   markers: {
     recipes: [
       "store.selected",

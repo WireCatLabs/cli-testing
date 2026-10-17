@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { writeFileSync } from "node:fs"
 
-export async function checkPortal({ base, output, source, release, markers, sourceRef }) {
+export async function checkPortal({ base, output, source, release, markers }) {
   assert.equal(new URL(base).protocol, "https:")
   assert.ok(output)
   assert.match(source, /^[a-f0-9]{40}$/)
@@ -37,7 +37,6 @@ export async function checkPortal({ base, output, source, release, markers, sour
         for (const marker of required)
           assert.ok(body.includes(marker) || text.includes(marker), `${path}: missing ${marker}`)
         if (page === "commands") assert.equal(text.includes("drive schema"), false, `${path}: retired schema hint`)
-        if (sourceRef) assert.ok(body.includes(`/blob/${sourceRef}/`), `${path}: missing reviewed source ref`)
         checks.push({ path, format, passed: true })
       }
     }

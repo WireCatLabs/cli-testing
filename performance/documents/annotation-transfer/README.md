@@ -38,6 +38,38 @@ Reproduce the compiled acceptance after installing exact registry Drive 0.17.0 i
 T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/annotation-transfer/cli.mjs DRIVE_PREFIX SOURCE_PREFIX OUTPUT_JSON
 ```
 
+## Published documentation
+
+[Portal #303](https://github.com/WireCatLabs/cli-docs/pull/303) updates the existing EN/RU/ES
+recipes, storage explanation, recovery, generated reference and changelog. Deployment
+[39072422039](https://github.com/WireCatLabs/cli-docs/actions/runs/39072422039) passes security,
+Windows installation, full export and all four browser shards at
+**559141ef9d42e0f8fb675d76f85a36ce7538aeb1**. Its
+[reviewed source pin](https://github.com/WireCatLabs/cli-docs/blob/559141ef9d42e0f8fb675d76f85a36ce7538aeb1/tools.json)
+is Drive v0.17.0. Local portal validation separately passes 309 unit, seven smoke and 24 Drive
+browser cases, with 1,379 command references and zero gaps/invalid examples.
+
+[Thirty live HTML/Markdown checks](results-live-portal-0170.json) verify five changed pages in
+all three languages, including the commands, copy/retry results, conflict fields and limits.
+The checker shares its HTTP implementation with the existing Sheets evidence; that checker still
+passes 36 checks after extraction. An initial source-link assertion failed because these pages do
+not render a GitHub release ref. Source provenance comes from the successful deployment and pinned
+configuration above; live checks establish served content, rather than a nonexistent source link.
+
+[Six live browser paths pass](results-live-browser-0170.json). `browser.mjs` checks the reader's
+storage → copy recipe → recovery path with keyboard navigation,
+retained executable commands and overflow checks at widths 390 and 1,280. It uses a fresh browser
+context per locale/width, with no account or command execution. Use Playwright 1.63.0 in a separate
+installation prefix and its Chromium cache:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null node performance/documents/annotation-transfer/portal.mjs https://wirecat.dev OUTPUT_JSON 559141ef9d42e0f8fb675d76f85a36ce7538aeb1
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state NPM_CONFIG_USERCONFIG=/dev/null PLAYWRIGHT_BROWSERS_PATH=BROWSER_CACHE node performance/documents/annotation-transfer/browser.mjs PLAYWRIGHT_PREFIX https://wirecat.dev 559141ef9d42e0f8fb675d76f85a36ce7538aeb1 OUTPUT_JSON
+```
+
+These production checks concern public pages and navigation; they do not repeat Google consent,
+conversion or remote-write validation. The command acceptance above uses entirely synthetic stores.
+
 ## Candidate result
 
 [Nine packaged checks pass](results-core-candidate-2026-10-17.json) on Linux x64 / Node 24.19.0.
