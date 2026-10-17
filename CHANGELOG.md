@@ -10,6 +10,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A deterministic Zoom/Memo workflow check covers alias discovery, reviewed cited findings and repeat reads against pinned published tools, without owner data or a language model.
+
 - Audit regression guidance covers opaque credential output, inherited relay locks, newly executable apps, pinned fallback resolution and actual useful A7 read evidence.
 
 - Security audit instructions include the WhatsApp Go engine, supported CodeQL build mode,
