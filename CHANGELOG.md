@@ -6,6 +6,14 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- Security audit instructions include the WhatsApp Go engine, supported CodeQL build mode,
+  module verification and symbol-level vulnerability evidence. JSON checker exit codes and
+  credential-shaped upstream references are handled explicitly before a run is called complete.
+
 ## 0.5.2 — 17.10.2026
 
 ### Added
