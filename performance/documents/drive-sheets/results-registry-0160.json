@@ -1,0 +1,16 @@
+{
+  "artifact_kind": "npm_registry_release",
+  "package": "@wirecat/drive-cli",
+  "version": "0.16.0",
+  "release_source": "d12765e7ca660245108ad5fcfb793b08bbd92056",
+  "release_workflow": 39031723019,
+  "registry_integrity": "sha512-MgpPIcWgYVkJQWBAdyFhSP2tLwr/KtDLeyHsmJ6GoLGLS42WJAfudEkoJI0HnTkhbxu9nPy9yrPgcfMG3ZijOw==",
+  "dependencies": {
+    "@googleapis/sheets": "18.1.1",
+    "@wirecat/cli-base": "0.40.3",
+    "@wirecat/cli-core": "0.307.0"
+  },
+  "base_physical_instances": 1,
+  "cli_result": "results-registry-0160-cli.json",
+  "client_result": "results-registry-0160-client.json"
+}
