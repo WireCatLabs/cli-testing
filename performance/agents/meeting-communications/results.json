@@ -1,14 +1,14 @@
 {
-  "candidate": true,
-  "source_commit": "fede662715071328e1d35223bd8e7f6465782889",
-  "artifact_sha256": "919f15b3e6891de6498e0727f8e4397e42c5d36d6ee9d3c1cad4bde9cf250c2a",
+  "candidate": false,
+  "source_commit": "5a891e9ff71250963a278c83558a513ef00ff15d",
+  "artifact_sha256": "e5237af71260f3160a72126ea3293469a6123b219046dbcd9b94e38420be523a",
   "node": "v24.19.0",
   "platform": "linux",
   "arch": "x64",
   "packages": {
-    "zoom": "0.23.2",
-    "core": "0.326.0",
-    "base": "0.43.1"
+    "zoom": "0.24.0",
+    "core": "0.332.0",
+    "base": "0.43.2"
   },
   "checks": {
     "cited_communications": true,
