@@ -7,7 +7,7 @@ folder the caller names — for the owner's CLIs, `security/runs/<YYYY-MM-DD>/` 
 `security/FINDINGS.md`. Step-by-step commands: [`RUNBOOK.md`](RUNBOOK.md). What the tools taught
 us: [`LESSONS.md`](LESSONS.md).
 
-Repositories: every WireCatLabs repository — `max-cli`, `tg-cli`, `cli-core` (the shared messaging
+Repositories: every WireCatLabs repository — `max-cli`, `tg-cli`, `whatsapp-cli`, `cli-core` (the shared messaging
 core, with `packages/sqlite` and `packages/onnx`), `cli-base`, `cli-memo`, `drive-cli`, `zoom-cli`,
 `cli-docs`, `cli-testing`, `community` and `.github`, all public. The private `cli-private` is
 checked with gitleaks only and is never given to a hosted scanner. A repository left out of a run is
@@ -54,6 +54,21 @@ those warnings refuses automatic fixed-observation claims, even when scanner nam
    private register.
 7. Compare with the previous run: new findings, findings fixed, findings that came back. The
    comparison is the last section of `REPORT.md`.
+
+## Go engines
+
+A repository with a Go engine needs Go coverage in addition to the JavaScript and Actions scans.
+Record `go.mod`, `go.sum`, the compiler/toolchain and module verification. The shared source-check
+workflow must support Go autobuild: select `go` in `languages` and set `go-version-file` for a nested
+module such as `engine/go.mod`. Interpreted-language `build-mode: none` does not analyze Go.
+Use a reviewed immutable workflow revision with this support, such as the implementation in
+[cli-base PR185](https://github.com/WireCatLabs/cli-base/pull/185).
+
+Supplement the ordinary Semgrep packs with `p/golang` for the exported engine. Record the extra
+pack and its own errors/coverage. Run the pinned Go vulnerability checker against the exact source
+and toolchain as described in RUNBOOK; distinguish whole-module, imported-package and called-symbol
+findings, and distinguish the shipped engine from development probes. A JSON checker exit of zero
+is not a clean vulnerability result. Retain findings without silently changing publication policy.
 
 ## Tools
 

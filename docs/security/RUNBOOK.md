@@ -43,7 +43,7 @@ P="$HOME/Projects/AI"
 TESTING="$P/cli-testing"
 PRIVATE="$P/max-cli/docs_ai"
 RUN="$PRIVATE/security/runs/$(date +%F)"
-C=("$P/max-cli" "$P/tg-cli" "$P/cli-core" "$P/cli-base" "$P/cli-memo" "$P/drive-cli" "$P/zoom-cli" "$P/cli-docs"
+C=("$P/max-cli" "$P/tg-cli" "$P/whatsapp-cli" "$P/cli-core" "$P/cli-base" "$P/cli-memo" "$P/drive-cli" "$P/zoom-cli" "$P/cli-docs"
   "$P/cli-testing" "$P/community" "$P/wirecat-github")
 cd "$TESTING"
 pnpm install --frozen-lockfile
@@ -192,3 +192,37 @@ completion ledger. Include the accepted-risk input and exact source/release boun
 `REPORT.md` in the run folder: scanner results, verdict per checklist item with its basis, finding
 details, what this run did not cover, and the comparison with the previous run. Each finding into
 the private register. Fixes go in as pull requests, one per repository and theme.
+
+## Go source and dependencies
+
+Use this supplement when the source scope contains a Go engine. Work on the exact public export,
+never a checkout with device keys or a live account. Select the toolchain declared by its reviewed
+module; record the actual `go version` and module metadata. The normal recursive OSV scan covers
+Go locks, while these controls add language-specific source and symbol reachability evidence.
+
+```sh
+semgrep scan --config p/golang --metrics=off --disable-version-check --json \
+  --output "$RUN/go-semgrep.json" "$SNAPSHOT/engine"
+cd "$SNAPSHOT/engine"
+go version > "$RUN/go-version.txt"
+go mod verify > "$RUN/go-mod-verify.txt"
+go list -m -json all > "$RUN/go-modules.jsonstream"
+go run golang.org/x/vuln/cmd/govulncheck@v1.1.4 -json ./... > "$RUN/govulncheck.jsonstream"
+go list -deps ./cmd/wa-engine > "$RUN/engine-imports.txt"
+```
+
+The pinned checker is older than two weeks; retain its module version/checksum and the actual
+compiler version separately. Its JSON output is a stream of multiline objects. Decode each object
+and inspect finding traces: JSON mode may exit zero with findings. A module-only advisory for an
+unused package is different from a called production symbol, and a development probe is different
+from the shipped engine. Keep both the dependency observation and the source-backed disposition.
+
+Upstream advisory descriptions/references can themselves contain credential-shaped examples.
+Scan result artifacts before committing them. Keep protected local originals and hashes, and redact
+only the identified upstream references in review copies; do not add a broad scanner ignore or
+hide affected versions, symbols or finding identifiers. Never move actual owner keys into results.
+
+The caller's release/monthly source workflow must include Go and use its supported autobuild path;
+read back a completed Go analysis with a nonzero rule count at the recorded commit. A successful
+JavaScript analysis or a 404 from a new repository is not Go coverage. Go source analysis remains
+on release/manual/monthly runs under the existing publication policy, not on ordinary PR edits.
