@@ -10,6 +10,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A compiled Drive regression checks document URLs introduced by saved-message edits, including older SDK writers and repair of pre-upgrade link checkpoints.
+
 - Packaged document-transfer checks verify Core 0.327.0 and Drive 0.17.0 registry artifacts against an older SDK, covering safe annotation copying, source preservation, reference collisions and retries. Shared public-page checks cover the localized recovery/recipe publication.
 
 - The shared-document runner tests current registry readers in separate installations, preserving each dependency graph while checking provenance, message links and retained tags across one temporary store.
