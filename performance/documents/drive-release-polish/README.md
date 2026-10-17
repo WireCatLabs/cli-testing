@@ -124,3 +124,28 @@ HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/doc
 This runner refuses a preexisting report and non-temporary workspace. It never starts sign-in,
 selects an account, fetches Google data or chooses an import root. Its cached success does not
 certify semantic model quality, a complete selected tree, or Google's app verification.
+
+
+### Production documentation
+
+[Deployment 38982937641](https://github.com/WireCatLabs/cli-docs/actions/runs/38982937641)
+passed platform installation, security, production export/assets/links/SEO and all four browser
+shards on `b04d3cb652e31b1af4ff14921264aad3e0ba847c`.
+The [live checker](live-docs.mjs) then verified 60 HTML/Markdown routes across EN/RU/ES:
+overview, installation, import, search, recipes, settings, troubleshooting, security, commands
+and changelog. It requires the 0.15.1 changelog and the explicit Sheets import/editing boundary.
+[Route results](results-live-docs-0.15.1.json) contain only public paths and pass flags.
+
+The initial checker hit Node's default 1 MiB child-output buffer on the existing large command
+reference. It was rerun with a bounded 8 MiB transport buffer; content checks were unchanged.
+This is a verification-tool correction, not a product performance measurement. The script writes
+its public aggregate result to `/var/tmp/drive-0151-live-results.json`:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-release-polish/live-docs.mjs
+```
+
+Local portal validation passed 1,336 command-reference entries with zero gaps/invalid examples,
+matching release notes and seven smoke browser cases. A cold development-server attempt failed
+its readiness deadline before assertions; the prepared-cache run passed with the same limits.
+The successful deployment is separate evidence from local development readiness.
