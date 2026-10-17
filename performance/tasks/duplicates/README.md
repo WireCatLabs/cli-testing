@@ -388,3 +388,46 @@ dates with cli-core's own functions? The answer decided whether the copy could g
   251 tasks.
 - What it showed: the copy matched cli-core exactly, so it was removed. The runtime is lower mainly because this
   run had a load near 5, not near 50; it was not measured apart from that.
+
+## Follow-up: real chats (2026-10-17)
+
+The synthetic set gave "likely the same" 75% precision. The owner asked whether that holds on real conversations,
+on a small first run of about 1,000 messages. The answer decides whether the scoring needs changing before agents
+create tasks on every sync.
+
+- Data: the owner's own store, copied; the real one was never written. The newest 1,104 messages of 7 chats where
+  the owner writes: 4 Telegram dialogs, 2 MAX dialogs, 1 MAX group. Channels left out. Only totals are here; titles,
+  chat names and per-pair rows are in the owner's private repository.
+- Tasks: an agent read each chat one day at a time, without memory of earlier days, as separate syncs would, and
+  drafted 148 tasks (63 promises, 44 questions, 37 requests, 4 mentions). It never saw the check's answers.
+- Check: [`real-chats/replay.mjs`](real-chats/replay.mjs) adds the drafts oldest first with `tasks add` (tg and max
+  main on cli-core 0.305.0, `MESSAGING_STORE` and `WIRECAT_CONFIG_DIR` pointing at the copy), records each answer, and
+  keeps a refused draft with `--new` so later drafts are compared against all of them.
+- Labels: 85 pairs, by an agent reading the conversation around both messages, blind to the check's answer; the
+  4 it was unsure of were answered by the owner. 50 pairs first (every "likely", 18 "maybe" across scores, 10
+  unflagged pairs from the same chat and category within 7 days), then the 35 pairs only the second run flagged.
+- Machine: Linux x86_64, Node v24.19.0.
+
+| Run | Drafts refused | "likely": same job | "maybe": same job | Known repeats found |
+|---|---|---|---|---|
+| as replayed | 74 of 148 | 6 of 22 (27%) | 13 of 52 labelled (25%) | 19 of 20 |
+| compared by message send time | 36 of 148 | 5 of 10 (50%) | 10 of 36 (28%) | 15 of 20 |
+
+What it showed:
+
+- **The first run measured a bug, not only the scorer.** It created all 148 tasks within minutes, and the check
+  compared tasks by when they were written: every pair looked "created together" (+2), and "tomorrow" in each
+  meant the same day (+4). The same happens in real use whenever tasks are written from history (`tasks apply`,
+  an agent going through a backlog). Comparing by the source message's send time halved the refusals and doubled
+  the precision of "likely" (cli-core fix: compare by message time). On the synthetic set a task has one time, so
+  the fix cannot change those results.
+- **Three signals still mislead on real chats** (in the second run's flagged pairs, wrong / right): titles alike
+  letter by letter 24 / 11 (an agent writes titles to one pattern: "Получить …", "Созвониться …"), same person
+  14 / 1 (in a dialog the other person is always the same), one reply chain 8 / 2. Not changed: 85 labels are too
+  few to retune weights without fitting noise.
+- **The rules find little here.** On two dialogs, 300 messages each, the task rules (unanswered questions,
+  mentions) would open no task, while the agent drafted 40 from the same messages. Real tasks come from agents.
+
+Not measured: recall over all pairs (only flagged pairs and a 10-pair unflagged sample were labelled); groups
+beyond one; Russian-only titles vs other languages; agents other than the one that drafted; the effect of the three
+signals above once changed.
