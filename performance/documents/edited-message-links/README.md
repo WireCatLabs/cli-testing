@@ -22,6 +22,34 @@ edit timestamps can be absent or older than the local checkpoint. No schema chan
 The source regression cases reproduce the old behavior and pass after the fix; released Drive
 acceptance is recorded separately once it adopts the SDK.
 
+## Fixed SDK and packaged consumer
+
+Core **0.331.0** is published from
+[5ce8004d8f47dd499c1ea1019b57e2f488f61772](https://github.com/WireCatLabs/cli-core/commit/5ce8004d8f47dd499c1ea1019b57e2f488f61772).
+[Release 39074709286](https://github.com/WireCatLabs/cli-core/actions/runs/39074709286) passes,
+including Telegram/MAX/WhatsApp main parity. The launcher watcher briefly lost its GitHub API
+connection; the existing run was followed without redispatch. Final local coverage at the feature
+head passes 5,161 tests at 95.08% lines. An earlier full attempt exposed a sandbox-path test
+assumption; its isolation assertion was corrected and the full run repeated successfully.
+
+Drive's packed candidate from
+[07f29b7def781be69e09ac59921c5eb8b67d371d](https://github.com/WireCatLabs/drive-cli/commit/07f29b7def781be69e09ac59921c5eb8b67d371d)
+uses actual registry Core 0.331.0 / Base 0.43.2 in its normal dependency graph. It still reports
+Drive 0.17.0 before release preparation; **this is not a registry Drive 0.17.0 feature claim**.
+
+| Run | Result | Syncs | Content reads |
+| --- | --- | --- | --- |
+| [Registry baseline](results-drive-0170-baseline.json) | Expected missing links reproduced | 2 | 1 |
+| [Packed fresh profile](results-candidate-fresh.json) | Five groups pass | 5 | 1 |
+| [Packed upgrade from registry Drive 0.17.0](results-candidate-upgrade.json) | Six groups pass; already-missed URLs repaired | 6 | 1 |
+
+Drive's host marker is saved only after historical and recent passes succeed. Existing checkpoints
+without the marker get one historical local pass. Failure leaves retry state; later successful
+runs return to incremental linking. The source suite passes 312 tests / 91.01% lines, ten CLI/MCP
+contracts, five older-store cases and Node/Bun installed acceptance. Exact registry consumer
+results remain a separate delivery check. The checker initially used a removed top-level reader
+alias; it was corrected to the public messages store area before recording passing results.
+
 ## Reproduce
 
 Install the Drive release in `DRIVE_PREFIX` and registry Core 0.307.0 / Base 0.40.4 in a separate

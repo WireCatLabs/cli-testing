@@ -138,7 +138,7 @@ try {
     } else {
       assert.deepEqual(links.map((link) => link.from).sort(), ["msg:max/synthetic/7/1", "msg:telegram/synthetic/7/1"])
       for (const account of accounts)
-        assert.equal((await store.documentLinkMessages(account, "7"))[0].documents[0].fileId, id)
+        assert.equal((await store.messages.documentLinkMessages(account, "7"))[0].documents[0].fileId, id)
       checks.push("older SDK text edits link both same-ID messages in separate provider accounts")
       await sync()
       assert.equal((await store.notes.links({ to: reference })).length, 2)
@@ -147,12 +147,12 @@ try {
       await writer.messages.saveMessages(accounts[0], "7", [message(`opaque id ${id}`)], { via: "events" })
       await writer.messages.markDeleted(accounts[1], ["1"], { chatId: "7" })
       await sync()
-      for (const account of accounts) assert.equal((await store.documentLinkMessages(account, "7")).length, 0)
+      for (const account of accounts) assert.equal((await store.messages.documentLinkMessages(account, "7")).length, 0)
       checks.push("current chat readers omit removed URLs and deleted messages")
       clock = Date.parse(checkpoint().linkedThrough) + 1
       await writer.messages.saveMessages(accounts[0], "7", [message(url)], { via: "events" })
       await sync()
-      assert.equal((await store.documentLinkMessages(accounts[0], "7"))[0].documents[0].fileId, id)
+      assert.equal((await store.messages.documentLinkMessages(accounts[0], "7"))[0].documents[0].fileId, id)
       assert.equal((await store.notes.links({ to: reference })).length, 2)
       assert.equal(contentReads, 1)
       checks.push("re-added URL remains readable without duplicate links or content downloads")
@@ -184,6 +184,10 @@ writeFileSync(
         ),
       ).version,
       integrity: lock.packages["node_modules/@wirecat/drive-cli"].integrity,
+      artifact: lock.packages["node_modules/@wirecat/drive-cli"].resolved?.startsWith("https://registry.npmjs.org/")
+        ? "registry"
+        : "packed source candidate",
+      core_integrity: lock.packages["node_modules/@wirecat/cli-core"]?.integrity,
       bin_sha256: createHash("sha256")
         .update(readFileSync(join(drive, "dist/bin/drive.js")))
         .digest("hex"),
