@@ -8,6 +8,7 @@ candidate `1e3e41a3a9a22c579684ed25428fa7079e59160c`.
 The later [live acceptance](#live-google-acceptance) section records eight successful checks
 against a new synthetic Google spreadsheet. Earlier candidate results below remain historical.
 Drive 0.16.0 is now published; [registry acceptance](#published-0160) verifies its installed artifact.
+The [deployed documentation check](#deployed-documentation) covers EN/RU/ES HTML and Markdown.
 
 ## Setup and command
 
@@ -222,3 +223,30 @@ T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR
 requests pass. Full release validation passes 304 source tests, 90.68% lines, CLI/MCP and
 prior-store contracts, Node/Bun package acceptance and configured security gates. Google OAuth
 scope verification remains separate; publication does not mean unrestricted account eligibility.
+
+## Deployed documentation
+
+The public guides must describe the installed release and preserve agent-readable examples.
+Portal [#289](https://github.com/WireCatLabs/cli-docs/pull/289) updates the reviewed release,
+setup, live Sheets recipes, generated reference and API recovery in EN/RU/ES. Manual review also
+found a stale `drive schema` hint outside the generated reference; portal
+[#290](https://github.com/WireCatLabs/cli-docs/pull/290) corrects it to `drive api show`, uses
+explicit profiles and clarifies terminal versus MCP confirmations.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/portal.mjs https://wirecat.dev performance/documents/drive-sheets/results-live-portal-0160.json 1695190ada68e5f8c4edaec5b341986dcfdf89ee
+```
+
+[Production result](results-live-portal-0160.json): **36 HTML/Markdown routes pass**, covering
+six affected pages in three languages and both formats. The checker requires Sheets recipe
+links/actions, API enablement, current schema discovery, permission guidance and the release
+entry. It refuses the retired schema hint. It reads public HTTP content, not Google account data.
+
+Deployments [39032444341](https://github.com/WireCatLabs/cli-docs/actions/runs/39032444341) and
+[39032977828](https://github.com/WireCatLabs/cli-docs/actions/runs/39032977828) pass security,
+platform, export and all four browser shards. Local validation passes 309 unit tests, seven
+browser smoke cases and six targeted Drive cases. Strict docs validation covers 1,376 reference
+entries with zero reference gaps/invalid examples; 144 generic illustrations remain marked for
+manual review. That validator did not cover the old helper hint; HTTP checks and manual review
+verify its correction separately. HTML/Markdown markers alone do not certify interaction,
+accessibility, Google consent or the correctness of every prose claim.
