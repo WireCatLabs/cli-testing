@@ -1,7 +1,8 @@
 # cli-testing — working rules
 
-Test suites for the WireCat CLIs, published as `@wirecat/cli-testing` and used by max-cli and tg-cli
-as a development dependency. Start with the one page that covers what you are about to touch:
+Test suites for the WireCat CLIs, published as `@wirecat/cli-testing` and used by tg-cli, max-cli, drive-cli,
+zoom-cli and whatsapp-cli as a development dependency. Start with the one page that covers what you are about
+to touch:
 
 - [`docs/dev/ARCHITECTURE.md`](docs/dev/ARCHITECTURE.md) — the suite groups and how a CLI plugs in.
 - [`docs/dev/BACKLOG.md`](docs/dev/BACKLOG.md) — what comes next, in order.

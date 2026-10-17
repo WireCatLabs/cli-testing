@@ -38,13 +38,13 @@ jobs:
           node-version: 24
       - name: clone the CLIs
         run: |
-          for repo in cli-core max-cli tg-cli cli-memo drive-cli zoom-cli; do
+          for repo in cli-core max-cli tg-cli cli-memo drive-cli zoom-cli whatsapp-cli; do
             git clone -q --depth=1 "https://github.com/WireCatLabs/$repo.git" "$RUNNER_TEMP/$repo"
           done
       - name: measure
         run: |
           args=()
-          for repo in cli-core max-cli tg-cli cli-memo drive-cli zoom-cli; do args+=(--repo "$repo=$RUNNER_TEMP/$repo"); done
+          for repo in cli-core max-cli tg-cli cli-memo drive-cli zoom-cli whatsapp-cli; do args+=(--repo "$repo=$RUNNER_TEMP/$repo"); done
           node performance/engineering/architecture-checks/measure.mjs --date "$(date -u +%F)" "${args[@]}" > "$RUNNER_TEMP/table.md"
           cat "$RUNNER_TEMP/table.md" >> "$GITHUB_STEP_SUMMARY"
       # A run summary expires; the issue keeps the month's table until it is copied into the record.
