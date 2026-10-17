@@ -189,7 +189,10 @@ gh api orgs/WireCatLabs/code-security/configurations/defaults --jq '.[] |
 - **S9 · CI, release and deploy.** Job permissions, `pull_request_target`, expressions in `run:`,
   cache poisoning, workflows that run an AI agent, where deploy and publish secrets live.
 - **S10 · Third-party tree.** Advisories, behaviour, abandoned upstreams. Source reading only for
-  packages S1–S9 point at.
+  packages S1–S9 point at. Inventory development tools alongside the production/optional closure:
+  a clean production-only audit does not cover local servers, parsers or CI tools. Verify that a
+  suggested patched version is actually published before selecting it; retain unavailable fixes
+  as explicit upstream limitations. Record compatible parent-scoped updates and their checks.
 
 ### A · Safety for AI agents using the tools
 

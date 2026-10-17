@@ -29,6 +29,7 @@ read credential files, install a real user timer or send a messenger message as 
 | MCP text boundaries | Incoming text is framed as data and hidden controls are visible where the released contract promises it | Original Unicode writes and ordinary machine JSON follow the accepted compatibility policy |
 | File creation | A pre-existing target/symlink refuses an exclusive temporary/output write and retains sentinel contents | A new target succeeds; normal valid output is not truncated or overwritten |
 | Deployment/publishing | Actual secret-name metadata and environment branch rules match the intended credential boundary | The authorized main deployment/publisher succeeds with those scoped credentials; workflow text alone is insufficient |
+| Dependency scope | Full development-inclusive advisory inventory accompanies the production/optional closure; missing edges, integrity and unpublished patch suggestions remain visible | Compatible published patches preserve parser, local-server and build behavior; never infer consumer delivery from workspace overrides or hide an advisory with an ignore |
 | Audit tooling | Wrong pins, missing source analysis, failed scanners and incomplete/mismatched comparison coverage remain failures or explicit gaps | Canonical symlinks work, supported scanner exit codes retain observations, and a new baseline needs no invented previous run |
 
 Check the scanner report's actual version, including supplemental controls. Put the pinned environment
