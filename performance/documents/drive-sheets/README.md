@@ -139,3 +139,24 @@ T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR
 All Sheets vocabulary exceptions are removed. This rerun verifies the actual published shared
 dependency pin and retains synthetic fixtures, refused sockets and the same live-validation
 limits. It does not establish a new Drive npm release, live Google behavior or API enablement.
+
+## Disabled API recovery
+
+During launch preparation, a disabled API was indistinguishable from a file/consent denial.
+That could send a user toward granting broader access without fixing the application setup.
+[Drive#111](https://github.com/WireCatLabs/drive-cli/pull/111), candidate
+`9e19760d8143aa1931fae42033e7fa3be9c2962f`, recognizes Google's legacy and structured disabled-API
+errors while keeping unrelated/malformed access failures separate.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/api-setup.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-api-setup.json 9e19760d8143aa1931fae42033e7fa3be9c2962f
+```
+
+[Result](results-api-setup.json): **five checks, five in-memory SDK requests**, using the public
+compiled command and Google SDK adapters with sockets refused. The runner checks the thrown
+registered reason and excludes a synthetic private marker from errors/output. It does not render
+the CLI/MCP failure envelope; Drive's new source cases cover that boundary, debug diagnostics and
+malformed provider fields. Source validation passes 304 tests at 90.68% lines.
+
+This verifies failure classification and safe diagnostics. It does not enable an API, certify
+live Google access or complete the spreadsheet write/readback launch checks.
