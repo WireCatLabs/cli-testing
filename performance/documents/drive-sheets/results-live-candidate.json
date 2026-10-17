@@ -1,0 +1,55 @@
+{
+  "artifact_kind": "compiled_live_candidate",
+  "source_commit": "9e19760d8143aa1931fae42033e7fa3be9c2962f",
+  "package_version": "0.15.1",
+  "node": "v24.19.0",
+  "dependencies": {
+    "base": "0.40.3",
+    "core": "0.307.0"
+  },
+  "bin_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828",
+  "cli_invocations": 29,
+  "remote_write_command_invocations": 13,
+  "checks": [
+    {
+      "name": "only a newly created marked synthetic spreadsheet is selected",
+      "passed": true
+    },
+    {
+      "name": "inspect and rename the initial tab with stable identity",
+      "passed": true
+    },
+    {
+      "name": "literal updates have independent readback and preserve neighbors",
+      "passed": true
+    },
+    {
+      "name": "Google calculates explicit formulas while raw strings remain literal",
+      "passed": true
+    },
+    {
+      "name": "append reports the observed destination and clear preserves neighbors",
+      "passed": true
+    },
+    {
+      "name": "formatting a leaf preserves values, italic style and number format",
+      "passed": true
+    },
+    {
+      "name": "row and column insertion shift cells and Google adjusts formula references",
+      "passed": true
+    },
+    {
+      "name": "create and rename a second tab while retaining the first",
+      "passed": true
+    }
+  ],
+  "fixture_retained": true,
+  "scope": "Only a new marked synthetic spreadsheet; existing files were not edited",
+  "limits": [
+    "A single Google account, application and spreadsheet; not universal conversion or formatting fidelity",
+    "HTTP authorization/token requests are not counted as CLI invocations",
+    "No induced uncertain response or automatic retry was tested live",
+    "No Google data-access verification approval is implied"
+  ]
+}

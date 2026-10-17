@@ -5,6 +5,9 @@ polish. XLSX import/search did not provide live range operations. This check ver
 compiled candidate's public command path before shipping it, without using a Google account. Source: [Drive #105](https://github.com/WireCatLabs/drive-cli/pull/105),
 candidate `1e3e41a3a9a22c579684ed25428fa7079e59160c`.
 
+The later [live acceptance](#live-google-acceptance) section records eight successful checks
+against a new synthetic Google spreadsheet. Earlier candidate results below remain historical.
+
 ## Setup and command
 
 The candidate adds Google's pinned `@googleapis/sheets` 18.1.1 SDK, a SHA-256-verified Sheets v4
@@ -160,3 +163,41 @@ malformed provider fields. Source validation passes 304 tests at 90.68% lines.
 
 This verifies failure classification and safe diagnostics. It does not enable an API, certify
 live Google access or complete the spreadsheet write/readback launch checks.
+
+## Live Google acceptance
+
+After the application owner enabled Sheets API, the next release decision needed independent
+Google readback rather than only SDK fixtures. Candidate
+`9e19760d8143aa1931fae42033e7fa3be9c2962f` passes **eight checks across 29 CLI invocations**,
+including **13 remote-write command invocations**. All changes target one newly created synthetic
+spreadsheet with a unique application-property marker; the file is retained for inspection.
+
+[Aggregate results](results-live-candidate.json) contain no account name, file ID, URL or cell
+captures. Raw outputs remain private in `2026-10-17-sheets-live-private`. The candidate still
+reports package version 0.15.1; this is not a claim that registry 0.15.1 has Sheets editing.
+
+| Live boundary | Result |
+| --- | --- |
+| Create and independently verify the marked fixture | Pass; existing files are not selected |
+| Inspect and rename the initial tab | Stable numeric tab ID |
+| Literal cell updates and separate readback | Values and neighboring cells match |
+| Explicit formulas and raw strings beginning with `=` | Google calculates the formula; raw text stays literal |
+| Append then clear | Returned destination agrees with readback; neighbors remain |
+| Set only bold after italic/number formatting | Cell value, italic style and number format remain |
+| Insert rows and a column | Cells shift and Google adjusts the formula's reference |
+| Create/rename a second tab | Both tab identities and the first tab's cells remain |
+
+`live.mjs` is opt-in and creates its own fixture; it accepts no preexisting spreadsheet ID.
+Supply the explicit profile and configuration home containing that account's connection. It uses
+temporary state/store/cache paths and never automatically repeats a failed write or deletes the
+fixture. Its private output directory must not exist and must stay outside public Git paths:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/live.mjs /absolute/path/to/drive-candidate EXPLICIT_PROFILE /absolute/path/to/config-home /absolute/private/new-run-directory --allow-live-writes
+```
+
+The source package and live run use Base 0.40.3 / Core 0.307.0 and Node 24.19.0. This checks one
+account, application and spreadsheet; it does not establish universal formatting/conversion
+fidelity, all Google API methods or approval of restricted scopes. Uncertain responses and
+retry suppression remain synthetic checks; no live failure was deliberately induced. The CLI
+invocation count does not count its separate OAuth/token-info HTTP requests.
