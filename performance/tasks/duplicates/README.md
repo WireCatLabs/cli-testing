@@ -431,3 +431,97 @@ What it showed:
 Not measured: recall over all pairs (only flagged pairs and a 10-pair unflagged sample were labelled); groups
 beyond one; Russian-only titles vs other languages; agents other than the one that drafted; the effect of the three
 signals above once changed.
+
+## Follow-up: a second labelled set (2026-10-17)
+
+The owner's duplicate list still shows false matches. The first real-chats run found three signals that mislead:
+titles alike letter by letter, the same person in a one-to-one chat, and one reply chain. 85 labels were too few to
+retune them. The question: with more labels, does a new weight or rule for those three fix the false matches? The
+answer decides whether cli-core changes the scoring module before agents create tasks on every sync.
+
+### Setup
+
+- Machine: AMD Ryzen AI 9 HX 470, Linux 7.0, Node v24.19.0. Tool: `tg` 0.70.0 on `@wirecat/cli-core` 0.323.0, the
+  version that compares tasks by their messages' send time. Profile passed explicitly (`tg personal`).
+- Data: a copy of the owner's store; the real one was checked before and after and never written. The only messages
+  the first run had not read: the older parts of two one-to-one Telegram chats, 1,331 messages (700 + 631), from
+  2026-04-30 to 2026-09-16. No group chat. Only totals are here; titles and per-pair rows are in the owner's private
+  repository.
+- Drafts: one fresh model call per chat and day (105 calls, [`prompt.txt`](real-chats/labelled-2/prompt.txt),
+  [`draft-one.sh`](real-chats/labelled-2/draft-one.sh)), no memory of other days, never shown the check: 227 drafts.
+- Check: [`replay.mjs`](real-chats/labelled-2/replay.mjs) adds them oldest first with
+  `tg personal --offline tasks add`, keeps a refused one with `--new`, then asks `tasks related <key> --limit 40` for
+  every task. 14 drafts were certain matches, 42 were refused, 213 tasks were stored, and the candidate pool is
+  4,473 pairs. [`score.mjs`](real-chats/labelled-2/score.mjs), which calls cli-core's own scorer, gives the same
+  score and levels as `tasks related` on all 4,468 pairs that `tasks related` listed.
+- Sample: 129 pairs, seed 20261017. 99 targeted: every flagged pair (50), every reply-chain pair (9), every pair
+  whose text level comes from trigrams (63), every same-person pair with text ≥ 0.3 (40); these overlap. 30 random
+  from the rest of the pool.
+- Labels: a blind first pass, one fresh model call per pair with both tasks and the messages around them, no score
+  or levels ([`labelprompt.txt`](real-chats/labelled-2/labelprompt.txt)), then a reviewer read every reason and
+  changed 3 (2 flipped, 1 to unsure). 29 same, 99 different, 1 unsure (left out). The random 30: all different.
+- Old pairs: the first run's drafts and levels were deleted. Each old task's source message was found again from
+  its title ([`oldprompt.txt`](real-chats/labelled-2/oldprompt.txt); 70 of 90 found with confidence) and scored
+  with the same scorer, without the description and category, which were lost. The rebuilt band matches the first
+  run's band on 60 of 85 pairs, so "old" is approximate.
+- Command: `node replay.mjs <dir>`, `node features.mjs <cli-core> new-in.json new-feat.json`, then
+  `python3 report.py` and `python3 holdout.py` ([output](real-chats/labelled-2/results.txt)).
+
+### Results
+
+Each signal over the labelled pairs: wrong / right, precision, and the weight that counting would give it
+(`log2(m/u)`, +0.5 smoothing). The sample is chosen around these signals, so m and u are biased; the precision is
+what the owner sees.
+
+| Signal (weight now) | old, 85 pairs | new, 128 pairs | all, 213 pairs |
+|---|---|---|---|
+| titles alike letter by letter (text +5) | 21 / 6 (22%), −0.1 | 44 / 18 (29%), +0.5 | 65 / 24 (27%), +0.3 |
+| same person (+1) | 10 / 1 (9%), −1.2 | 41 / 15 (27%), +0.3 | 51 / 16 (24%), +0.1 |
+| one reply chain (+6) | 3 / 2 (40%), +1.2 | 8 / 1 (11%), −0.8 | 11 / 3 (21%), 0.0 |
+| "same" among all labelled | 20 / 85 (24%) | 29 / 128 (23%) | 49 / 213 (23%) |
+
+The bands as shipped, on the new set (every flagged pair is labelled): "likely" 5 of 11 right, "maybe" or "likely"
+21 of 49 right (43%), finding 21 of the 29 same pairs.
+
+Changes tried, "maybe" or "likely": right / shown, and same pairs found:
+
+| Change | old | new | all |
+|---|---|---|---|
+| none | 13 / 25 · 13 of 20 | 21 / 49 · 21 of 29 | 34 / 74 · 34 of 49 |
+| reply chain +6 → +2 | 12 / 21 · 12 | 20 / 43 · 20 | 32 / 64 · 32 |
+| same person 0 in a one-to-one chat | 13 / 25 · 13 | 19 / 46 · 19 | 32 / 71 · 32 |
+| text from stems only, no trigrams | 11 / 19 · 11 | 15 / 39 · 15 | 26 / 58 · 26 |
+| trigrams count only when stems ≥ 0.2 | 13 / 24 · 13 | 17 / 44 · 17 | 30 / 68 · 30 |
+| trigrams of the title without its first word | 11 / 21 · 11 | 17 / 43 · 17 | 28 / 64 · 28 |
+| reply +2, person 0, trigram floor together | 12 / 20 · 12 | 16 / 38 · 16 | 28 / 58 · 28 |
+
+How well the score puts "same" above "different" (AUC): shipped weights 0.75 on old and 0.80 on new. All weights
+counted on new give 0.65 on old; counted on old, 0.67 on new. Reply +2 gives 0.73 on old and 0.82 on new.
+
+### What it showed
+
+- **The three signals cannot be fixed by weights on this data.** Each one fires on "same" pairs about as often as
+  "same" pairs occur at all (21–29% against 23%), so it adds almost nothing. But lowering it removes right pairs
+  about as fast as wrong ones. The wrong pairs agree on every field: the same contact, the same verb-first title
+  pattern ("Получить от … …"), the same category, a few days apart. They differ in the object: which audit, which
+  payment, which call. No field sees that.
+- **Counting new weights overfits.** Weights counted on one set order the other set worse than the shipped ones.
+- **Reply chain +6 → +2 is the only change that helped both sets at the band.** "Maybe" or "likely" precision went
+  from 52% to 57% on old and from 43% to 47% on new, losing one right pair on each. AUC moved the other way on old.
+  On these counts it is a candidate, not a proven fix.
+- Outside the three: due date "within 2 days" (+4) counts to about +1.2, and "4–14 days apart" (−2) to about +0.3.
+  Both come from the biased sample.
+
+Proposal for a follow-up in cli-core: reply chain `yes` from +6 to +2. Leave the same-person and trigram weights as
+they are. The real fix is the judge: `tasks add` already asks the agent that writes the task, and that agent can read
+the object.
+
+### Not measured
+
+- Group chats: the new set is two one-to-one chats only. Same person fires on most pairs there.
+- Reply chains: only 9 new pairs, 14 in all.
+- Recall over the whole pool: the 30 random pairs had no same pair, so misses outside the targeted pairs are not
+  estimated.
+- The old pairs' exact levels: rebuilt without description or category.
+- Labels from the owner: the labels come from a model and a reviewer, not from the owner.
+- Agents other than the one that drafted; languages other than Russian.
