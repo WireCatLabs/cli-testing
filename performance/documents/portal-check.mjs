@@ -34,7 +34,8 @@ export async function checkPortal({ base, output, source, release, markers }) {
           .replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "")
           .replace(/<style\b[^>]*>[\s\S]*?<\/style>/g, "")
         const text = body.replace(/<[^>]*>/g, "").replace(/\s+/g, " ")
-        for (const marker of required)
+        const expected = Array.isArray(required) ? required : required[lang]
+        for (const marker of expected)
           assert.ok(body.includes(marker) || text.includes(marker), `${path}: missing ${marker}`)
         if (page === "commands") assert.equal(text.includes("drive schema"), false, `${path}: retired schema hint`)
         checks.push({ path, format, passed: true })

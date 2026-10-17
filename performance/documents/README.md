@@ -25,3 +25,5 @@ Measurements of document conversion, shared retrieval and source-backed memories
   public HTML pages (2026-10-13).
 
 - [offline-catalog](offline-catalog/README.md): synthetic Drive hierarchy, metadata queries, folder context, account isolation and released JSON/MCP contracts, including [0.11.1 list-query acceptance](offline-catalog/README.md#released-0111-list-queries); includes a [standards gap review](offline-catalog/standards.md) and an [isolated Google checker and unrun live checklist](offline-catalog/live-checklist.md).
+
+- [Links introduced by message edits](edited-message-links/README.md): compiled sync, old SDK writers and upgrade repair.
