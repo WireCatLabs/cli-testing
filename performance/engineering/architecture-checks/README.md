@@ -132,7 +132,8 @@ Over 1000 lines:
   ([cli-core #1212](https://github.com/WireCatLabs/cli-core/pull/1212)) and the file has grown back
   since. Biome counts it under 1000, so it has no cap.
 
-Split since 2026-10-14, and capped at their new size so they do not grow back:
+Split since 2026-10-14. The first three are capped at their new size so they do not grow back; zoom's
+`program.ts` is held by zoom's 500-line limit:
 
 - cli-core `src/store/store.ts` 2042 → 301 (cap 438): the store split into areas
   ([cli-core #1389](https://github.com/WireCatLabs/cli-core/pull/1389)).
@@ -182,7 +183,8 @@ category list and its trigger words), `services/tasks.ts` 796, `services/message
 `search/lucene/registry.ts` 537, `services/archive.ts` 530, `store/sqlite/lucene-fields.ts` 524,
 `store/sqlite/work-tasks.ts` 520, `kit/contract.ts` 516, `mcp/tools/tasks.ts` 514; max-cli
 `scripts/test-matrix-untested.ts` 997 (a table), `domain/map.ts` 535; tg-cli
-`scripts/test-matrix-untested.ts` 796 (a table), `telegram/adapter.ts` 625, `telegram/map.ts` 576,
+`scripts/test-matrix-untested.ts` 796 (a table), `telegram/adapter.ts` 625 (re-judged after the split: the
+adapter class, which hands each feature to its own module), `telegram/map.ts` 576,
 `telegram/messages.ts` 501; cli-memo `mail/import.ts` 739 (the mail import loop); zoom-cli
 `scripts/installed-platform.mjs` 710.
 
@@ -199,7 +201,7 @@ Tests over 1000 lines (exempt from the lint rule, listed to keep them visible): 
   loops through `src/store` or `src/services`, and skips dynamic imports.
 - On 2026-10-17, 3 source files are over 1000 lines, all in cli-core; 1 of them holds several jobs.
   43 files are between 500 and 1000; 13 of those hold several jobs. Four of the seven files over 1000
-  on 2026-10-14 were split along the seams named then.
+  on 2026-10-14 were split.
 - The six CLIs pin five different cli-core versions (0.307.0 to 0.324.0) while cli-core is at
   0.324.0. drive-cli is 17 minor versions behind.
 - cli-core's services no longer import `cli/`
