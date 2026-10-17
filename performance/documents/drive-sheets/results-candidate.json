@@ -1,0 +1,55 @@
+{
+  "package_version": "0.15.1",
+  "artifact_kind": "compiled_candidate",
+  "source_commit": "1e3e41a3a9a22c579684ed25428fa7079e59160c",
+  "compiled_sha256": [
+    {
+      "path": "commands/sheets.js",
+      "sha256": "29a13b1795a1ca6b937fba507ed697ceb46f284d5e9d2c2e2048872104ff528e"
+    },
+    {
+      "path": "google-api.js",
+      "sha256": "f9a520e44b7c7677d71316d62dea98be4f338a68fe750b348d5f1a348fa9cbce"
+    },
+    {
+      "path": "generated/manifest.js",
+      "sha256": "3526cb9f4d96a71fe0ab8e8053a8a1dd1df14e51ff1e641b9036e48e0d45e1d4"
+    }
+  ],
+  "node": "v24.19.0",
+  "bin_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828",
+  "invocations": 17,
+  "checks": [
+    {
+      "name": "configuration-free Sheets discovery and generated method effects",
+      "passed": true
+    },
+    {
+      "name": "every account action requires an explicit profile",
+      "passed": true
+    },
+    {
+      "name": "native live reads preview their IDs and exact ranges",
+      "passed": true
+    },
+    {
+      "name": "updates, row insertion and clear preview as writes",
+      "passed": true
+    },
+    {
+      "name": "invalid ranges, overflow, unsafe numbers and nested cells are refused",
+      "passed": true
+    },
+    {
+      "name": "offline, read-only and unknown arguments stop execution",
+      "passed": true
+    },
+    {
+      "name": "raw writes need explicit acknowledgment and generated bodies retain validation",
+      "passed": true
+    }
+  ],
+  "live_google_requests": 0,
+  "live_google_writes": 0,
+  "limits": ["Synthetic CLI previews/refusals only; no live Google or cell readback"]
+}
