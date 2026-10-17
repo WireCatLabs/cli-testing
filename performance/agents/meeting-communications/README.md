@@ -9,11 +9,11 @@ benchmark or an evaluation of an AI agent's reasoning.
 ## Setup and run
 
 The recorded candidate is Zoom PR [#156](https://github.com/WireCatLabs/zoom-cli/pull/156), source
-`50ead227b0147701ac73e2016f153ebe8cd727b7`, packed after a clean build on Linux x64/Node 24.19.0.
+`fede662715071328e1d35223bd8e7f6465782889`, packed after a clean build on Linux x64/Node 24.19.0.
 Its package metadata still says 0.23.2; this is an unreleased candidate, not the registry 0.23.2
 release. The artifact SHA-256 is
-`816749cd16c24c864e3c806ed80adb78bb09ad41d759676a57fdfac6923bb1f5`.
-It installs actual registry Core 0.324.0 and Base 0.40.4, with one runtime Base identity. The
+`919f15b3e6891de6498e0727f8e4397e42c5d36d6ee9d3c1cad4bde9cf250c2a`.
+It installs actual registry Core 0.326.0 and Base 0.43.1, with one runtime Base identity. The
 [install lock](install-lock.json) retains dependency integrity; only the candidate's local tarball
 location is normalized to `candidate.tgz` beside it.
 
@@ -32,8 +32,8 @@ HOME=$T MESSAGING_STORE="$T/store" WIRECAT_STATE_DIR="$T/state" TMPDIR=$T \
   MEETING_BENCH_LOADED="$T/loaded" MEETING_BENCH_DENIED="$T/denied" \
   node --require ./performance/agents/meeting-workflows/guard.cjs \
   performance/agents/meeting-communications/run.mjs "$T" "$T/results" \
-  50ead227b0147701ac73e2016f153ebe8cd727b7 \
-  816749cd16c24c864e3c806ed80adb78bb09ad41d759676a57fdfac6923bb1f5
+  fede662715071328e1d35223bd8e7f6465782889 \
+  919f15b3e6891de6498e0727f8e4397e42c5d36d6ee9d3c1cad4bde9cf250c2a
 ```
 
 Verify the supplied tarball against the recorded hash before installing it. The runner records
@@ -64,5 +64,19 @@ configuration mutation and native read-only opener intent.
 
 This run does not prove live Zoom authorization, real archive completeness, installed Windows/Bun
 behavior, narrower chat/sender grants, or AI interpretation quality. It does not refresh indexes or
-save facts/tasks. Final release adoption still needs the shared vocabulary/source-label updates and
-must be rechecked against the dependency versions actually published.
+save facts/tasks. The candidate uses the actual published vocabulary/source-label fixes and compatible dependency pair.
+The final versioned Zoom artifact and platform validation remain separate release gates.
+
+
+## Registry-pair follow-up
+
+The captured run adopts published Core 0.326.0/Base 0.43.1 and the shared test sandbox rebase. Its
+packed production bytes are identical to the independently installed proof before that source-only
+rebase. The source suite additionally passes 499 cases, 98.42% lines/93.67% branches and the complete
+command matrix (252 tested, one existing interactive exception, zero missing); the registry-pair
+SDK/MCP run above checks the installed public boundary without repeating the source suite.
+
+The runner accepts an optional fifth argument, `candidate` (default) or `published`, and refuses
+other statuses or extra arguments. This records the supplied artifact's status; it does not verify
+npm publication itself. Use `published` only after separately verifying registry, tag and captured
+release source. Versioned release acceptance must retain its own source/hash/dependency receipt.

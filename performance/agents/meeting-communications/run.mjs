@@ -6,10 +6,15 @@ import { dirname, join, resolve } from "node:path"
 import { pathToFileURL } from "node:url"
 import { checkPreparationCommunications } from "./checks.mjs"
 
-const [installArg, outputArg, sourceCommit, artifactSha256] = process.argv.slice(2)
+const [installArg, outputArg, sourceCommit, artifactSha256, artifactStatus = "candidate", ...extra] =
+  process.argv.slice(2)
 assert.ok(
   installArg && outputArg && /^[a-f0-9]{40}$/.test(sourceCommit ?? "") && /^[a-f0-9]{64}$/.test(artifactSha256 ?? ""),
-  "usage: run.mjs INSTALL NEW_OUTPUT SOURCE_COMMIT ARTIFACT_SHA256",
+  "usage: run.mjs INSTALL NEW_OUTPUT SOURCE_COMMIT ARTIFACT_SHA256 [candidate|published]",
+)
+assert.ok(
+  extra.length === 0 && ["candidate", "published"].includes(artifactStatus),
+  "artifact status must be candidate or published",
 )
 assert.equal(readFileSync(process.env.MEETING_BENCH_LOADED, "utf8"), "loaded")
 const install = resolve(installArg),
@@ -85,7 +90,7 @@ const checks = await checkPreparationCommunications({
 assert.equal(requests, 2)
 assert.ok(!existsSync(process.env.MEETING_BENCH_DENIED), "external IO attempted")
 const result = {
-  candidate: true,
+  candidate: artifactStatus === "candidate",
   source_commit: sourceCommit,
   artifact_sha256: artifactSha256,
   node: process.version,
