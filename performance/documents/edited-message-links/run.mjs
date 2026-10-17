@@ -126,7 +126,7 @@ try {
     let links = await store.notes.links({ to: reference })
     if (upgrade) {
       assert.deepEqual(links, [])
-      assert.ok(Date.parse(checkpoint().linkedThrough) >= clock)
+      assert.ok(Date.parse(checkpoint().linkedThrough) > clock, "the old checkpoint is strictly past the missed edit")
       await sync()
       assert.equal(checkpoint().linksVersion, 1)
       links = await store.notes.links({ to: reference })

@@ -18,7 +18,7 @@ shapes are synthetic; no existing store is accepted as input.
 [Core#1496](https://github.com/WireCatLabs/cli-core/pull/1496) uses the existing local text-revision
 time and revision-by-message index. Older SDKs capture text revisions without advancing the message
 row's update timestamp, so checking that timestamp alone would still miss their writes. Provider
-edit timestamps can be absent or older than the local checkpoint. No schema change is required.
+edit timestamps can be absent or older than the local checkpoint. The query needs no new table or index; Drive uses the adopted SDK's normal store upgrade.
 The source regression cases reproduce the old behavior and pass after the fix; released Drive
 acceptance is recorded separately once it adopts the SDK.
 
@@ -49,6 +49,22 @@ runs return to incremental linking. The source suite passes 312 tests / 91.01% l
 contracts, five older-store cases and Node/Bun installed acceptance. Exact registry consumer
 results remain a separate delivery check. The checker initially used a removed top-level reader
 alias; it was corrected to the public messages store area before recording passing results.
+
+## Registry Drive release
+
+Drive **0.17.1** is published from
+[388b9efa0e4cea4322385c2d9e2c5f569bc0f68b](https://github.com/WireCatLabs/drive-cli/commit/388b9efa0e4cea4322385c2d9e2c5f569bc0f68b).
+[Release 39076294318](https://github.com/WireCatLabs/drive-cli/actions/runs/39076294318) passes every
+required job. A fresh npm installation with registry Core 0.331.0 / Base 0.43.2 repeats the passing
+[fresh-profile run](results-registry-fresh-0171.json) and
+[upgrade from registry Drive 0.17.0](results-registry-upgrade-0171.json). The upgrade fixture requires
+the old checkpoint to be strictly later than the missed edit, so merely extending the recent query
+cannot repair it. Five/six syncs respectively read document content once; all five/six groups pass.
+
+The JSON records the exact Drive/Core registry integrity and one physical Base/Commander in the
+consumer graph. The installed command reports 0.17.1. The message writer remains the separate
+registry Core 0.307.0 graph; existing SDKs can continue storing edits against the upgraded store.
+These checks do not require an account login or a new Google grant.
 
 ## Reproduce
 
