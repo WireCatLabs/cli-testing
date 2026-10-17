@@ -7,6 +7,7 @@ candidate `1e3e41a3a9a22c579684ed25428fa7079e59160c`.
 
 The later [live acceptance](#live-google-acceptance) section records eight successful checks
 against a new synthetic Google spreadsheet. Earlier candidate results below remain historical.
+Drive 0.16.0 is now published; [registry acceptance](#published-0160) verifies its installed artifact.
 
 ## Setup and command
 
@@ -201,3 +202,23 @@ account, application and spreadsheet; it does not establish universal formatting
 fidelity, all Google API methods or approval of restricted scopes. Uncertain responses and
 retry suppression remain synthetic checks; no live failure was deliberately induced. The CLI
 invocation count does not count its separate OAuth/token-info HTTP requests.
+
+## Published 0.16.0
+
+The live launch gate above is complete. Release workflow
+[39031723019](https://github.com/WireCatLabs/drive-cli/actions/runs/39031723019) publishes Drive
+0.16.0 from `d12765e7ca660245108ad5fcfb793b08bbd92056`. A fresh exact npm installation repeats
+the existing offline checks against the registry package, with Base 0.40.3 / Core 0.307.0 and
+one physical Base instance. [Registry metadata](results-registry-0160.json) records integrity
+and source binding separately from the older compiled candidates.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/run.mjs /absolute/path/to/npm-installed-drive performance/documents/drive-sheets/results-registry-0160-cli.json d12765e7ca660245108ad5fcfb793b08bbd92056 --structure
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/npm-installed-drive performance/documents/drive-sheets/results-registry-0160-client.json --structure
+```
+
+[CLI acceptance](results-registry-0160-cli.json): ten checks / 27 guarded CLI invocations pass.
+[Public-client acceptance](results-registry-0160-client.json): eight checks / 18 in-memory SDK
+requests pass. Full release validation passes 304 source tests, 90.68% lines, CLI/MCP and
+prior-store contracts, Node/Bun package acceptance and configured security gates. Google OAuth
+scope verification remains separate; publication does not mean unrestricted account eligibility.
