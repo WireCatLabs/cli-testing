@@ -46,7 +46,7 @@ Sparse, and only *why*. No comment restating the line, no banners, no narrating 
 
 ## Deletions
 
-Never delete or clean up mid-task. Append a line to [`CLEANUP.md`](CLEANUP.md) — the path, why, the
+Never delete or clean up mid-task. Append a line to `CLEANUP.md` (git-ignored, local only) — the path, why, the
 date — and do the removals in one batch after the owner confirms. Never kill a process by name —
 find the PID, confirm it is yours, kill that PID.
 
