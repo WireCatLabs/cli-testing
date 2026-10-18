@@ -1,0 +1,22 @@
+{
+  "candidate": false,
+  "source_commit": "a087a544cf5c203c0250238e9990016c601ffda1",
+  "artifact_sha256": "9c14d03a0d7e6a84aa7a5cd9e05a484f381451f521b0d91f8dccc9dfb1a30d2f",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "packages": {
+    "zoom": "0.26.0",
+    "core": "0.336.0",
+    "base": "0.44.2"
+  },
+  "checks": {
+    "inventory_installed_cli": true,
+    "inventory_installed_mcp": true,
+    "inventory_strict_arguments": true,
+    "inventory_no_store": true,
+    "inventory_offline_boundary": true,
+    "inventory_unverified_hints": true
+  },
+  "external_io_attempts": 0
+}
