@@ -106,8 +106,7 @@ Coverage is the same to the line: 93.47 / 85.67 / 94.16 / 95.28 %.
 
 ## What was not measured
 
-- tg-cli, max-cli and whatsapp-cli. Their checks take 2 min 44 s, 3 min 4 s and 2 min 39 s (engine). They use
-  cli-core from `dist`, where Drizzle is already bundled, but probably pay the same migration for each new store.
+- tg-cli, max-cli and whatsapp-cli: measured on [consumer-test-speed](../consumer-test-speed/README.md).
 - A cache of transformed modules across CI runs (vitest's `experimental.fsModuleCache`): that is a change to
   cli-base's shared workflow.
 - A tmpfs `TMPDIR` on CI. Locally one run wrote about 8 GB to disk, but migrating in memory is only 15 % faster
