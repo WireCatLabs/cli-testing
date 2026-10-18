@@ -45,3 +45,6 @@ coverage/
 
 # Offline Python research bytecode remains local.
 **/__pycache__/
+
+# Internal working file: kept on the machine, not published.
+/CLEANUP.md
