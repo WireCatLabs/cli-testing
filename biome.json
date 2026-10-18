@@ -88,6 +88,21 @@
       "assist": {
         "enabled": false
       }
+    },
+    {
+      "includes": ["performance/tasks/duplicates/generate.mjs"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noExcessiveLinesPerFile": {
+              "level": "error",
+              "options": {
+                "maxLines": 1650
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }
