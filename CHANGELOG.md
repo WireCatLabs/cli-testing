@@ -10,6 +10,11 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A registry-only Zoom0.25 project-discovery replay checks cited existing-project aliases, strict MCP arguments, connection closure and unchanged database bytes behind the shared external-I/O guard.
+
+
+### Added
+
 - A compiled Drive regression checks document URLs introduced by saved-message edits, including older SDK writers and repair of pre-upgrade link checkpoints.
 
 - Packaged document-transfer checks verify Core 0.327.0 and Drive 0.17.0 registry artifacts against an older SDK, covering safe annotation copying, source preservation, reference collisions and retries. Shared public-page checks cover the localized recovery/recipe publication.

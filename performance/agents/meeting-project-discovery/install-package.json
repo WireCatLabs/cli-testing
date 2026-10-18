@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@wirecat/zoom-cli": "0.25.0"
+  }
+}

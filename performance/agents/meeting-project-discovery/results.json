@@ -1,0 +1,20 @@
+{
+  "candidate": false,
+  "source_commit": "55956cc2c3fe36fed7b6a721c22c28ab19acf091",
+  "artifact_sha256": "80b59c4370096d370d11a6e7d88f9146d71582b93eeab11b6f3688ad0306e21b",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "packages": {
+    "zoom": "0.25.0",
+    "core": "0.334.0",
+    "base": "0.44.1"
+  },
+  "checks": {
+    "project_candidates_installed_sdk": true,
+    "project_candidates_no_writes": true,
+    "project_candidates_strict_arguments": true,
+    "project_candidates_close_before_output": true
+  },
+  "external_io_attempts": 0
+}
