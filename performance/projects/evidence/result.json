@@ -1,0 +1,106 @@
+{
+  "memo": "0.72.0",
+  "node": "v24.19.0",
+  "searches": ["Harbour Bureau (project)", "Харбор (alias)", "bank tracker (keyword)", "Rita Example (person)"],
+  "fresh_store": {
+    "found": 4,
+    "relevant_found": 3,
+    "irrelevant_found": ["t-rita-garden"],
+    "precision": 0.75,
+    "precision_project_context": 1,
+    "recall_all": 0.38,
+    "recall_reachable": 0.5,
+    "missed": ["t-alias-latin", "t-reply", "m-tracker", "d-method", "n-own"],
+    "person_only_ok": true,
+    "two_searches_ok": false,
+    "document_time": null,
+    "items": [
+      "t-name project l1",
+      "t-alias-cyrillic project l2",
+      "t-rita-garden person-only l4",
+      "t-rita-dm person-only l4"
+    ],
+    "units_index_pending": 8,
+    "units": 12
+  },
+  "sixty_days": {
+    "found": 6,
+    "relevant_found": 5,
+    "irrelevant_found": ["t-rita-garden"],
+    "precision": 0.83,
+    "precision_project_context": 1,
+    "recall_all": 0.63,
+    "recall_reachable": 0.83,
+    "missed": ["t-alias-latin", "t-reply", "n-own"],
+    "person_only_ok": true,
+    "two_searches_ok": false,
+    "document_time": "stored-update",
+    "items": [
+      "t-name project l1",
+      "d-method project l1",
+      "t-alias-cyrillic project l2",
+      "m-tracker project l3",
+      "t-rita-garden person-only l4",
+      "t-rita-dm person-only l4"
+    ],
+    "reads": 12,
+    "read_bytes": 471,
+    "units": 12
+  },
+  "year": {
+    "found": 7,
+    "relevant_found": 6,
+    "irrelevant_found": ["t-rita-garden"],
+    "precision": 0.86,
+    "precision_project_context": 1,
+    "recall_all": 0.67,
+    "recall_reachable": 0.86,
+    "missed": ["t-alias-latin", "t-reply", "n-own"],
+    "person_only_ok": true,
+    "two_searches_ok": false,
+    "document_time": "stored-update",
+    "items": [
+      "t-name project l1",
+      "d-method project l1",
+      "t-alias-cyrillic project l2",
+      "m-tracker project l3",
+      "t-rita-garden person-only l4",
+      "t-rita-dm person-only l4",
+      "t-old project l1"
+    ]
+  },
+  "key_as_search": {
+    "found": 9,
+    "relevant_found": 6,
+    "irrelevant_found": ["t-alias-noise", "m-newsletter", "t-rita-garden"],
+    "precision": 0.67,
+    "precision_project_context": 0.71,
+    "recall_all": 0.75,
+    "recall_reachable": 1,
+    "missed": ["t-reply", "n-own"],
+    "person_only_ok": true,
+    "two_searches_ok": true,
+    "document_time": "stored-update",
+    "items": [
+      "t-name project l1",
+      "d-method project l1",
+      "t-alias-cyrillic project l2",
+      "m-tracker project l3+l4",
+      "t-alias-noise project l4",
+      "t-alias-latin project l4",
+      "m-newsletter project l4",
+      "t-rita-garden person-only l5",
+      "t-rita-dm person-only l5"
+    ]
+  },
+  "all_sources": {
+    "sources": 3,
+    "unread": ["notes"]
+  },
+  "resume_two_pages": {
+    "invocations": 6,
+    "references": 6,
+    "duplicates": 0,
+    "same_as_one_run": true
+  }
+}

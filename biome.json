@@ -55,6 +55,7 @@
       "includes": [
         "performance/search/message-search/**",
         "performance/search/everywhere/**",
+        "performance/projects/evidence/**",
         "performance/documents/html-readers/**"
       ],
       "formatter": {
