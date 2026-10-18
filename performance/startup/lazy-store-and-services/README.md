@@ -3,8 +3,15 @@
 Measured 2026-10-18. Follows [what-the-cli-entry-loads](../what-the-cli-entry-loads/README.md) and
 [consumer-test-speed](../../ci/consumer-test-speed/README.md).
 
+**Outcome: measured, not merged.** [cli-core#1590](https://github.com/WireCatLabs/cli-core/pull/1590), the change
+measured here, was closed. It saved about 30 ms on the bare import, but the start of `tg` and `max` and their test
+steps did not change beyond the noise. That gain did not justify a moved store file and imports that load later
+(the first version of the change made `serve` hang in a test). The page stays as a negative result, so the same
+cut is not tried again without a new reason.
+
 ## Why we ran it
 
+The owner asked to make the CI and test steps of the CLIs faster.
 [consumer-test-speed](../../ci/consumer-test-speed/README.md) found that importing `@wirecat/cli-core/cli` costs
 about 500 ms and 700 modules in each test file of tg-cli, max-cli and whatsapp-cli: 18–31 % of their test CPU, and
 probably 25–30 s of max-cli's 102 s CI test step. It suggested loading the heavy command groups on first use. Each
@@ -15,8 +22,8 @@ action bodies would not pay without rewriting the command modules, and moved the
 instead (913 → 801 files). Today the entry loads 882 modules, counted by a different hook, so the two numbers
 compare only roughly. The questions: what does it load now, and why? Is
 there a cut short of rewriting the command modules, and what does it save in the import, in a consumer command's
-start, and in a consumer's test step? The answer decided what goes into the cli-core pull request and what is
-reported as a design instead.
+start, and in a consumer's test step? The answer decided whether cli-core#1590 merges. It did not: the pull request
+was closed.
 
 ## Setup
 
@@ -76,7 +83,7 @@ store modules load in a consumer whatever the `cli` entry does. Without `cli`, t
 
 ### The change
 
-[cli-core#1590](https://github.com/WireCatLabs/cli-core/pull/1590) defers what a command needs only when it runs:
+[cli-core#1590](https://github.com/WireCatLabs/cli-core/pull/1590) (closed, not merged) defers what a command needs only when it runs:
 
 - `openStore` (in `store/store.ts`) imports the store's implementation, now in `store/message-store.ts`, on the
   first open.
@@ -122,6 +129,8 @@ cli-core after the 0.342.0 both consumers pin. One extra base run of max-cli als
 - **The test steps did not measurably change.** tg-cli was within noise; max-cli's median went from 43.7 s to
   40.4 s, but the spread of each side (41–47 s, 40–44 s) overlaps. Most consumer tests run a command, and a
   command that builds services loads them then.
+- **So the change was not merged.** About 30 ms on the import, and nothing a user or a CI run would notice, is not
+  worth the moved code and the risk of imports that load later.
 - **It confirms [what-the-cli-entry-loads](../what-the-cli-entry-loads/README.md):** lazy action bodies alone do
   not pay. What paid here was cutting hubs: `openStore`'s import of the whole store, and `servicesFor`.
 - **What is left is mostly needed or is a design question:**
@@ -135,6 +144,10 @@ cli-core after the 0.342.0 both consumers pin. One extra base run of max-cli als
     done: about 60 files and 10 new modules for a few percent of a command's start.
   - On the consumer side, tg-cli's 700 mtcute modules are as many as all of cli-core's, and both consumers could
     import `openCache` and `openStore` without loading the whole store barrel.
+
+  - Publishing the `cli` entry as one bundled file, the other change
+    [consumer-test-speed](../../ci/consumer-test-speed/README.md) suggested, attacks the loader cost directly: it
+    cuts the number of modules, not which ones load. Not tried here.
 
 ## What was not measured
 

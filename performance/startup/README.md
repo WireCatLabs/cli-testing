@@ -12,4 +12,5 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
   two builds of max: 6 fewer files and 87 KB less at every start, 7 standards files instead of 13 (2026-10-18).
 - [lazy-store-and-services](lazy-store-and-services/README.md): `openStore` and `servicesFor` loaded on first use:
   the `cli` entry loads 618 of cli-core's modules instead of 704 and imports in about 400 ms instead of 430–450;
-  tg and max start within noise of before, and their test steps did not measurably change (2026-10-18).
+  tg and max start within noise of before, and their test steps did not measurably change, so the change was not
+  merged (2026-10-18).

@@ -110,7 +110,9 @@ cli-core's own (of 822 in `dist`). A CPU profile of that import spends over 80 %
 
 ## What was not measured
 
-- How much a lazier or bundled `cli` entry would actually save: it needs a cli-core change and a release.
+- How much a bundled `cli` entry would actually save: it needs a cli-core change and a release. A lazier entry was
+  measured later in [lazy-store-and-services](../../startup/lazy-store-and-services/README.md): about 30 ms on the
+  import, no measurable change in the test steps, not merged.
 - `@mtcute/node` in tg-cli (229 ms per file, 13.5 s CPU): mtcute's own module graph, not looked into.
 - The consumers' CI with cli-core 0.343.0: none of the three had moved to it yet.
 - Repeated runs, except the four coverage runs of max-cli above; the machine was shared.
