@@ -10,3 +10,4 @@
 - [tasks](tasks/README.md): tasks found in messages — duplicate detection.
 - [startup](startup/README.md): install size and cold start of the five CLIs, and which packages a simple
   command loads.
+- [ci](ci/README.md): how long the pull-request checks take, and where the time goes.
