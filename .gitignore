@@ -26,6 +26,8 @@ coverage/
 /.mcp.json
 /.idea
 /.vscode
+/CLEANUP.md
+/HANDOFF.md
 /.claude/.cc-writes
 /.claude/agents
 /.claude/commands

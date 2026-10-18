@@ -20,7 +20,7 @@ consumer are different subjects. The future name cli-core refers to cli-messagin
 Run the inventory with explicit checkout paths:
 
 ```sh
-python3 inventory.py --repo max=/home/leemour/Projects/AI/max-cli --repo messaging=/home/leemour/Projects/AI/cli-messaging --repo base=/home/leemour/Projects/AI/cli-base
+python3 inventory.py --repo max="$HOME"/Projects/AI/max-cli --repo messaging="$HOME"/Projects/AI/cli-messaging --repo base="$HOME"/Projects/AI/cli-base
 ```
 
 The script reads package.json and TypeScript source only. It excludes tests, generated modules,
