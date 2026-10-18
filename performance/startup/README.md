@@ -8,3 +8,5 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
   start, the MCP server moved out of the `cli` entry, and Node's compile cache in tg (2026-10-16).
 - [standards-split-before](standards-split-before/README.md): what cli-base's `standards` entry costs `max --version`
   and `--help`, and what a runtime-only entry would leave (2026-10-18).
+- [standards-split-after](standards-split-after/README.md): the real split (cli-base 0.45.0, cli-core 0.342.0) on
+  two builds of max: 6 fewer files and 87 KB less at every start, 7 standards files instead of 13 (2026-10-18).

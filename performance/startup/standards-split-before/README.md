@@ -76,3 +76,5 @@ cli-private) states the saving as these numbers.
 - The real split. "After" is a hook that swaps the index; `FIELD_RULES` still loads inside `output.js`.
 - Other CLIs (tg, memo, drive, zm), a cold operating system file cache, macOS, Windows and Bun.
 - `max mcp`, which loads the MCP agent and would read `VOCABULARY` from wherever the split puts it.
+
+The split shipped in cli-base 0.45.0; the real numbers are in [standards-split-after](../standards-split-after/README.md).
