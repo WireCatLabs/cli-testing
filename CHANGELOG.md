@@ -10,10 +10,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A registry-only Zoom0.26 inventory replay checks installed CLI/MCP, unverified recurring hints, strict caller scope, offline refusal and zero store/network access.
+
 - A registry-only Zoom0.25 project-discovery replay checks cited existing-project aliases, strict MCP arguments, connection closure and unchanged database bytes behind the shared external-I/O guard.
-
-
-### Added
 
 - A compiled Drive regression checks document URLs introduced by saved-message edits, including older SDK writers and repair of pre-upgrade link checkpoints.
 
