@@ -45,8 +45,8 @@ saving of at least 15 s on CI.
 | max-cli ([39153927122](https://github.com/WireCatLabs/max-cli/actions/runs/39153927122), [39150849647](https://github.com/WireCatLabs/max-cli/actions/runs/39150849647)) | 176–183 s | 102–103 s | `contracts:upgrade` 15–16 s, setup 13 s, other checks 40 s |
 | whatsapp-cli ([39153065756](https://github.com/WireCatLabs/whatsapp-cli/actions/runs/39153065756), [39150996766](https://github.com/WireCatLabs/whatsapp-cli/actions/runs/39150996766)) | 56–63 s | 22–24 s | `checks` 15–16 s |
 
-whatsapp-cli's 2 min 39 s is its `validation / engine` job (Go formatting check 38 s, cross-build 75 s), not the
-test job. The test suite cannot shorten that pull-request check.
+whatsapp-cli's long check is its `validation / engine` job (175–181 s in the two runs above: Go formatting check
+49 s, cross-build 95 s), not the test job. The test suite cannot shorten that pull-request check.
 
 ### The suite, locally
 
@@ -66,7 +66,7 @@ test job. The test suite cannot shorten that pull-request check.
 | migrating them | 56 ms each, 2.8 s CPU | 48 ms each, 3.4 s CPU | 48 ms each, 6.3 s CPU |
 | reopening a store | 499 times, 2.6 ms | 592 times, 2.4 ms | 1,076 times, 2.5 ms |
 
-About one new store per test file. cli-core's fix still migrates once per test file, so a copy of a migrated
+About one new store per test file (two in whatsapp-cli). cli-core's fix still migrates once per test file, so a copy of a migrated
 store would save almost nothing here. Even removing all migration time would save at most 6.3 s of CPU in
 max-cli: about 1.6 s of wall time on 4 workers, about 4 s on CI.
 
