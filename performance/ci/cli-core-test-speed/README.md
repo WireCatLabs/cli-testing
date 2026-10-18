@@ -1,6 +1,6 @@
 # Where cli-core's 7-minute pull-request check spent its time
 
-Measured 2026-10-18. The fix is [cli-core#1566](https://github.com/WireCatLabs/cli-core/pull/1566).
+Measured 2026-10-18. The fix is [cli-core#1566](https://github.com/WireCatLabs/cli-core/pull/1566), not yet merged when this was written.
 
 ## Why we ran it
 
@@ -72,8 +72,9 @@ The suite runs once, with coverage. No step runs it a second time.
 | 4 | 145 s (load 4) | 121 s (load 13) |
 
 The suite scales close to linearly with workers, and 4 workers already keep 4 CPUs busy (468 % CPU unpinned).
-Other sessions raised the load during the "after" column, so it understates the gain. The cleaner comparison is
-the run with no pinning, at load 7–12:
+The "after" column is noisy and is not a clean measurement of the fix: other sessions kept the load at 13–27 and
+the machine rebooted during the series. Read it as a rough direction only. The cleaner comparison is the run with
+no pinning, at load 7–12:
 
 | | wall | user CPU |
 |---|---|---|

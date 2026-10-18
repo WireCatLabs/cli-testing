@@ -22,8 +22,8 @@ for run in $runs; do
   start=$(date +%s.%N)
   env "${env[@]}" "${pin[@]}" "${args[@]}" > "$out/$run.log" 2>&1 && status=ok || status=failed
   wall=$(echo "$(date +%s.%N) - $start" | bc)
-  summary=$(grep -E "Test Files" "$out/$run.log" | tail -1 | sed 's/\x1b\[[0-9;]*m//g' | xargs)
+  summary=$(grep -E "Test Files" "$out/$run.log" | tail -1 | sed 's/\x1b\[[0-9;]*m//g' | xargs || true)
   refused=$(grep -c "a test tried to reach" "$out/$run.log" || true)
   printf '%s\twall=%.1fs\tload=%s\t%s\tnetwork-refusals=%s\t%s\n' "$run" "$wall" "$load" "$status" "$refused" "$summary" | tee -a "$out/summary.tsv"
-  [ "$run" = shm ] && rm -rf "$d"
+  if [ "$run" = shm ]; then rm -rf "$d"; fi
 done
