@@ -10,6 +10,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A pinned synthetic Drive-to-Memo project-context check verifies the existing shared-store ingestion path,
+  source dates, principal scope, incremental changes and real CLI/MCP results without remote accounts.
+
 - A registry-only Zoom0.26 inventory replay checks installed CLI/MCP, unverified recurring hints, strict caller scope, offline refusal and zero store/network access.
 
 - A registry-only Zoom0.25 project-discovery replay checks cited existing-project aliases, strict MCP arguments, connection closure and unchanged database bytes behind the shared external-I/O guard.
