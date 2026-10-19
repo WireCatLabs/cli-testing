@@ -4,3 +4,5 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
 
 - [folded-filters](folded-filters/README.md) — list filters on names in any script: `lower()` against a stored
   `fold()`ed copy (2026-10-14).
+- [stored-chat-ids](stored-chat-ids/README.md) — reading every chat id of one account in one call, as
+  `storedChats` gets them (2026-10-19).
