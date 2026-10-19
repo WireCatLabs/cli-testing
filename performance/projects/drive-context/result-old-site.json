@@ -1,0 +1,29 @@
+{
+  "node": "v24.19.0",
+  "artifacts": {
+    "drive-cli": {
+      "version": "0.18.0",
+      "core": "0.348.0",
+      "integrity": "sha512-BUIp199Diw9DFMpxsaWoM6js/KUc25IICdCvahh/VKzC+I8hjL+oB+Pz1cwkBkj3WzfB9d8bJnRNpKq06PiUpA=="
+    },
+    "cli-memo": {
+      "version": "0.73.0",
+      "core": "0.348.0",
+      "integrity": "sha512-OsibQc+C8Nf9s2oFtMz3JfuBTWC9JaucNx+lmKN2r6GEzfdlUEtqljGM1AUAsGBrSzZv74/yvU8d1wruFGTmeA=="
+    }
+  },
+  "result": "failed",
+  "assertion": "Drive public sync adapter feeds Memo project gathering",
+  "expected_items": 1,
+  "actual_items": 0,
+  "unread_sources": 0,
+  "units": [
+    {
+      "state": "done",
+      "issue": "index-pending",
+      "pages": 1
+    }
+  ],
+  "read_bytes": 0,
+  "limitations": "Stops at first assertion; no remaining check counted as passing. Temporary harness differs only in pinned expected versions, plus diagnostic serialization of first gather."
+}

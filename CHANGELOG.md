@@ -10,6 +10,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- The Drive-to-Memo project-context check accepts explicit pinned version pairs, retaining its defaults
+  and original result; a reviewed release comparison records first-run indexing failure and recovery.
+
 - A pinned synthetic Drive-to-Memo project-context check verifies the existing shared-store ingestion path,
   source dates, principal scope, incremental changes and real CLI/MCP results without remote accounts.
 
