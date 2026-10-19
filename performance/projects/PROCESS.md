@@ -20,6 +20,7 @@ retained bytes; it does not run the applications or establish that a historical 
 | [Old site pair](drive-context/result-old-site.json) | First gather assertion failed with `index-pending` | Registry Drive 0.18.0 and Memo 0.73.0; diagnostic metadata retained | Results of later checks, which were not measured |
 | [Reviewed Drive context](drive-context/result-reviewed-pair.json) | Same ten checks pass after the reviewed Memo upgrade | Registry Drive 0.18.0 and Memo 0.76.0, original dependency graphs | Complete archive coverage or a real project benchmark |
 | [Isolated annotations](isolated-state/README.md) | Eleven logical reconstruction checks on two independently seeded targets | Registry Core 0.358.0 and Base 0.47.1; integrities retained | A production project exporter/resetter, retrieval score or complete history |
+| [Large document](large-document/README.md) | Known limitation: five lanes return no hits across initial call and two resumes; separate tiny control returns one | Registry Memo 0.76.0 / Core 0.358.0 / Base 0.47.1; integrities retained | Successful large-document retrieval, infinite execution or all recovery options |
 
 ### Historical evidence version ambiguity
 
@@ -63,6 +64,12 @@ mapping is not cryptographic proof that a historical candidate used the registry
 - **Reconstruction equality:** the isolated-state proof compares logical bound annotations and keeps
   proposed states/shared records intact. Its maximum of eight items per supported area and
   `supported-subset-only` coverage do not mean a whole project was exported.
+- **Oversized-page non-progress:** the large-document diagnostic seeds a 95,200-byte document against
+  a 65,536-byte page allowance. Across its initial call and two resumes, all five lanes remain at zero
+  pages/hits with checkpoints. Cumulative charged read bytes reach 983,040 while returned excerpt bytes
+  remain zero. Conservative failed-read reservations are not hydrated source bytes or JSON output size.
+  A one-hit small control rules out broken basic seeding/retrieval in that store. A successful diagnostic
+  exit reproduces the limitation; it does not certify acceptable retrieval behavior or an infinite loop.
 
 None of these results measures real-project relevance, entity-extraction accuracy, automatic identity
 merging, AI interpretation, model cost or agent review time. Keep such later measurements in separate
@@ -100,6 +107,10 @@ The existing study READMEs own their exact installation commands and bounds:
    installed store module. Preserve that interface and fixture. A new known artifact can produce a new
    comparison, but missing historical build provenance prevents a byte-for-byte replay claim. The
    existing runner does not use the Drive external-I/O guard; no live-source coverage should be inferred.
+4. [Large document](large-document/README.md#setup): install the exact registry packages in an isolated
+   prefix. The public SDK seeds invented documents; actual CLI subprocesses run under the existing
+   external-I/O guard. Keep the bound of one initial call and two resumes plus the separate tiny control.
+   Record the result as a known-limitation reproduction, not a passing retrieval-quality measurement.
 
 For example, after creating the reviewed isolated package prefix as the Drive guide describes:
 

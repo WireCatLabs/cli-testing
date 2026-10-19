@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "WireCatLabs/cli-testing",
   "audited_at": "2026-10-19",
-  "snapshot_commit": "88677a548d64d341921a3911efcc0f3b13fba57b",
+  "snapshot_commit": "481d9cdc2f90b1d47752064db6cca223c74fd781",
   "purpose": "Reference-only provenance for existing synthetic project studies; no raw fixture copies or owner data",
   "artifacts": [
     {
@@ -204,6 +204,36 @@
       "sha256": "ee10bcb81f3019acd9495b03cbba03bae0ccda7792cd95d29bd4fbb2e53745cf",
       "working_copy": true,
       "url": "https://github.com/WireCatLabs/cli-testing/blob/88677a548d64d341921a3911efcc0f3b13fba57b/performance/projects/isolated-state/README.md"
+    },
+    {
+      "id": "large-document-runner",
+      "role": "inline-fixture-runner",
+      "path": "performance/projects/large-document/run.mjs",
+      "commit": "481d9cdc2f90b1d47752064db6cca223c74fd781",
+      "bytes": 5961,
+      "sha256": "71b13767ee1a01139bc6b0b568cf1c6687066655a10bff4907378f63326816e2",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/481d9cdc2f90b1d47752064db6cca223c74fd781/performance/projects/large-document/run.mjs"
+    },
+    {
+      "id": "large-document-readme",
+      "role": "method-and-limitations",
+      "path": "performance/projects/large-document/README.md",
+      "commit": "481d9cdc2f90b1d47752064db6cca223c74fd781",
+      "bytes": 4374,
+      "sha256": "ff2278a500c1362acec6d06e5974a3c9487438fa711dcf663f4dfb6f61ab5748",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/481d9cdc2f90b1d47752064db6cca223c74fd781/performance/projects/large-document/README.md"
+    },
+    {
+      "id": "large-document-result",
+      "role": "known-limitation-result",
+      "path": "performance/projects/large-document/result.json",
+      "commit": "481d9cdc2f90b1d47752064db6cca223c74fd781",
+      "bytes": 6194,
+      "sha256": "99690fbed0ef557a9378051e10d22f32ad9b771f2caba4aa1f55d8f605563dbd",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/481d9cdc2f90b1d47752064db6cca223c74fd781/performance/projects/large-document/result.json"
     }
   ],
   "packages": [
@@ -393,6 +423,30 @@
       "packages": ["@wirecat/cli-core@0.358.0", "@wirecat/cli-base@0.47.1"],
       "passed_checks": 11,
       "qualification": "Limited existing annotation subset and explicit bindings; no retrieval/AI score, production export/reset, atomic rollback or complete history; manifest digest is run-specific"
+    },
+    {
+      "id": "large-document",
+      "kind": "known-limitation-reproduction",
+      "artifacts": [
+        "large-document-runner",
+        "large-document-readme",
+        "large-document-result",
+        "drive-external-io-guard"
+      ],
+      "reproduction_runner": "large-document-runner",
+      "reported_node": "v24.19.0",
+      "packages": ["@wirecat/cli-memo@0.76.0", "@wirecat/cli-core@0.358.0", "@wirecat/cli-base@0.47.1"],
+      "classification": "known-limitation-reproduced",
+      "source_bytes": 95200,
+      "page_budget_bytes": 65536,
+      "matching_lanes": 5,
+      "invocations": 3,
+      "resumes": 2,
+      "returned_hits": 0,
+      "returned_excerpt_bytes": 0,
+      "cumulative_charged_read_bytes": 983040,
+      "control_hits": 1,
+      "qualification": "Bounded diagnostic, not passing large-document retrieval: initial call and two resumes keep all five lanes at zero pages/read-limited with checkpoints. Failed-read reservations are conservatively charged, not proof of hydration; small control works. Registry integrities retained, no complete transitive lock/platform manifest; no infinite-run or universal recovery claim"
     }
   ],
   "gaps": [

@@ -23,6 +23,9 @@ const allowed = new Set([
   "performance/projects/isolated-state/fixture.mjs",
   "performance/projects/isolated-state/annotations.mjs",
   "performance/projects/isolated-state/result.json",
+  "performance/projects/large-document/README.md",
+  "performance/projects/large-document/run.mjs",
+  "performance/projects/large-document/result.json",
 ])
 const read = (path) => {
   const stat = lstatSync(path)
