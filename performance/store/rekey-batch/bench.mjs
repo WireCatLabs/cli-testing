@@ -1,6 +1,6 @@
 // Usage: node bench.mjs <cli-core checkout with dist> [chat counts, comma-separated] [messages per chat] [merge share]
 // Synthetic data only. Times the re-keys the first `wa serve` after upgrading saves: every phone-form chat the store
-// holds is re-keyed to a LID, through cli-core's own `stored` wrapper, one store write per re-key.
+// holds is re-keyed to a LID, through cli-core's own `stored` wrapper.
 import { fork } from "node:child_process"
 import { copyFileSync, mkdtempSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"

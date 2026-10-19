@@ -83,5 +83,7 @@ under their phone-form ids. The raw tables the script prints are in [`results.md
 - Making each rename cheaper, for example by renaming every pair's cursors and locators in one statement per pass.
   That would cut the total. It was not needed to fix the lock, and it would rewrite logic that an exact,
   pair-by-pair rename depends on (for example, a chain where one pair renames a→b and the next renames b→c).
+- `serve` shutting down during a run. Its close waits 5 s for pending saves, less than the 10,000-chat run takes;
+  what happens to the rest is WireCatLabs/cli-core#1647.
 - Another process holding the lock while the re-keys wait. `serve`'s side then waits up to `busy_timeout` per
   pass, as it did per re-key before.
