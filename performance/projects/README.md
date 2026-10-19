@@ -18,3 +18,5 @@
 
 - [evidence](evidence/README.md): what `memo projects evidence` finds and misses on a synthetic store against a
   frozen baseline — the project's names, extra words and people, the 60-day window, resume, unread sources.
+- [review](review/README.md): what reviewing an agent's proposals costs with and without context, and how a changed
+  cited text and agent decisions are handled.

@@ -23,7 +23,7 @@ reading.
 
 - AMD Ryzen AI 9 HX 470, Linux 7.0, Node v24.19.0. memo 0.72.0 built from `main` at `65822ca`, with
   `@wirecat/cli-core` 0.345.0. The store is in a fresh temporary folder.
-- Synthetic store, made by [`evidence.ts`](evidence.ts) through the build's store module. It holds 8 Telegram
+- Synthetic store, made by [`../fixture.ts`](../fixture.ts) (shared with [the review measurement](../review/README.md)) through the build's store module. It holds 8 Telegram
   messages in 3 chats, 2 emails, 2 imported documents and 1 of the owner's own notes, and a project
   "Harbour Bureau" with the key `HBB` and the alias `Харбор`. No real message or account is used.
 - The right answers are in [`baseline.json`](baseline.json), written before the first run: 13 texts, each labelled

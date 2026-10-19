@@ -1,0 +1,56 @@
+{
+  "memo": "0.77.0",
+  "node": "v24.19.0",
+  "staged": {
+    "findings": 6,
+    "wrong_on_purpose": 2
+  },
+  "list": {
+    "items": 2,
+    "bytes_with_context": 4093,
+    "bytes_brief": 1937,
+    "neighbour_messages_shown": 13,
+    "bytes_per_finding_with_context": 682,
+    "bytes_per_finding_brief": 323
+  },
+  "changed_text": {
+    "states_after_edit": [
+      "pilot:unchanged",
+      "accountant:unchanged",
+      "landing:changed",
+      "tracker:unchanged",
+      "cable:unchanged",
+      "sale:unchanged"
+    ],
+    "confirm_refused_as": "evidence-findings.stale"
+  },
+  "restaged_after_edit": {
+    "findings": 6,
+    "outcome": {
+      "pilot": "accepted",
+      "accountant": "accepted",
+      "landing": "accepted",
+      "tracker": "accepted",
+      "cable": "rejected",
+      "sale": "rejected"
+    },
+    "decided_by": {
+      "by": "agent",
+      "bot": "synthetic-reviewer",
+      "model": null,
+      "reason": "each text states it about the bureau"
+    },
+    "first_batch_still_decidable": false,
+    "first_batch_refused_as": "evidence-findings.stale"
+  },
+  "decisions": {
+    "agent_without_reason": "input.invalid",
+    "key_document_by_agent": {
+      "confirmed": true,
+      "decided_by": {
+        "bot": "synthetic-reviewer",
+        "reason": "it describes how the bureau works"
+      }
+    }
+  }
+}
