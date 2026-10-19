@@ -1,5 +1,8 @@
 # Projects
 
+- [Extraction contract](extraction-contract/README.md): fake-completion checks of released SDK schema,
+  exact quotes and size bounds, including accepted contradictory claims and attribution risks.
+
 - [Large documents](large-document/README.md): published Memo reproduction of stalled document lanes and
   repeated budget charges across two resumes, with a working small-document control.
 

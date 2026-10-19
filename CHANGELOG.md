@@ -10,6 +10,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A synthetic extraction-contract study records released SDK quote/schema limits and accepted semantic
+  contradictions using fake completions, without treating structural validation as model quality.
+
 - A synthetic published-Memo reproduction records oversized document lanes that keep returning checkpoints
   without progress; a small-document control separates that limitation from broken source setup.
 

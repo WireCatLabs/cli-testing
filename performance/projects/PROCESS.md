@@ -43,6 +43,10 @@ mapping is not cryptographic proof that a historical candidate used the registry
 
 ## Keep these measurements separate
 
+- **Extraction contract:** the [fake-completion study](extraction-contract/README.md) checks structured
+  response/quote bounds on released Core 0.358.0, including accepted contradictions and stripped unknown
+  fields. Its 33 cases are deterministic contract observations, not LLM accuracy, semantic entailment or
+  source-attribution scores. It does not exercise the proposal persistence or review workflow.
 - **Primary-hit precision:** relevant primary hits divided by all primary hits. Neighbouring context is
   not an additional primary hit. The historical scorer rounds fractions to two decimals.
 - **Project-context precision:** relevant hits labelled `context: project` divided by all such hits.
