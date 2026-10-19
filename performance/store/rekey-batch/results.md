@@ -13,7 +13,7 @@ re-keys, so the per-re-key columns of the second table time passes, not re-keys;
 | 10,000 | 200,000 | 5,000 (500) | none | 11813 ms | 1.48 ms / 3.79 ms | 6.91 ms / 17 ms | 3965 ms | 69 ms | 530 ms / 3433 ms (13 writes, 0 gave up) | 0 | 100 of 100 |
 | 10,000 | 200,000 | 5,000 (500) | 200 ids | 13813 ms | 1.70 ms / 5.14 ms | 8.04 ms / 30 ms | 4557 ms | 77 ms | 80 ms / 2533 ms (33 writes, 0 gave up) | 0 | 100 of 100 |
 
-## After (`perf/rekey-batch` at `36360b8b`, WireCatLabs/cli-core#1646)
+## After (`59505797` with WireCatLabs/cli-core#1646 on top)
 
 | chats | messages | re-keys (merges) | recipient list | total | rename median / p99 | merge median / p99 | time in merges | longest gap between saved re-keys | neighbour writes: median / worst wait | phone-form left | other account kept |
 |---|---|---|---|---|---|---|---|---|---|---|---|

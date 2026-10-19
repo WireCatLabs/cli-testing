@@ -14,8 +14,10 @@ re-keys.
 ## Setup
 
 - Machine: AMD Ryzen AI 9 HX 470, 30 GB RAM, NVMe disk, Linux 7.0, Node 24.19.0.
-- Code: cli-core `main` at `59505797` ("before"), and `perf/rekey-batch` at `36360b8b` ("after",
-  WireCatLabs/cli-core#1646), each built with `pnpm build`.
+- Code: cli-core `main` at `59505797` ("before"), and the same commit with WireCatLabs/cli-core#1646's change on
+  top ("after"), each built with `pnpm build`. The branch was then rebased as `36360b8b`; the rebase brought in
+  meeting-evidence code only, nothing on the timed path. A later commit on the branch changes only what happens
+  when a whole pass fails, which these runs never hit.
 - Data: synthetic only, in a temporary directory. [`bench.mjs`](bench.mjs) opens an empty store through the
   build's `openStore` and writes N one-to-one chats for one account: half under phone-form ids, half under LIDs. Each
   chat gets 20 messages and two sync cursors (`history_start:` and `fetched:`), as a chat an archive run has walked
@@ -46,7 +48,8 @@ Before: one transaction per re-key.
 | 10,000 | 200,000 | 5,000 (500) | 200 ids | 13,813 ms | 1.70 / 5.14 ms | 8.04 / 30 ms | 33 | 2,533 ms |
 
 After: one transaction per pass. A pass stops after 50 ms of re-keys, and a 25 ms pause follows it. The longest
-pass includes the end-of-transaction work that recomputes search stems and involvements.
+pass includes the end-of-transaction work that recomputes search stems and involvements. The 2,000-chat rows ran
+while the test suite and the linter were running on the same machine, so their totals may be a little high.
 
 | chats | re-keys (merges) | recipient list | total | longest pass | neighbour writes | neighbour worst wait |
 |---|---|---|---|---|---|---|
