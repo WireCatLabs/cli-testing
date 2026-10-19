@@ -2,7 +2,9 @@
 
 Measured 2026-10-19 for [cli-memo #324](https://github.com/WireCatLabs/cli-memo/pull/324) (`memo projects evidence`,
 MCP `project_evidence`) and [cli-core #1591](https://github.com/WireCatLabs/cli-core/pull/1591)
-(`gatherProjectEvidence`).
+(`gatherProjectEvidence`), then again after the fixes it led to:
+[cli-core #1611](https://github.com/WireCatLabs/cli-core/pull/1611) (0.349.0) and
+[cli-memo #328](https://github.com/WireCatLabs/cli-memo/pull/328).
 
 ## Why we ran it
 
@@ -31,7 +33,9 @@ reading.
   was stored, and an own note.
 - The request: `memo projects evidence HBB --source telegram:100,email:me@example.com,notes:<folder>
   --context-query "bank tracker" --contact "Rita Example" --json`, then with `--since-time 365d`, then with
-  `--context-query HBB` added, then `--source all`, then with `--max-pages 2` and `--cursor` until it finishes.
+  `--context-query HBB` added, then `--source all`, then with `--max-pages 2` and `--cursor` until it finishes. The
+  script in this folder now runs the current options (`--no-catch-up` first); the first run used one `memo search`
+  in its place.
 - Run from this folder: `node evidence.ts <cli-memo checkout with dist/ and node_modules/>`. The run's output is
   [`result.json`](result.json).
 
@@ -58,7 +62,32 @@ which has no context reader yet.
 - The imported document came back with `time_kind: stored-update`: its time is when it was stored, not when its
   content happened.
 
+## After the fixes
+
+memo built from [cli-memo #328](https://github.com/WireCatLabs/cli-memo/pull/328) (`feat/evidence-index-alias`), on
+`@wirecat/cli-core` 0.349.0 and `@wirecat/cli-base` 0.47.1, same machine, same fixture and labels. The command now
+fills the search index before reading (`--no-catch-up` skips it), searches the project key, and shows 2 messages
+before and after each message hit as context. The fresh-store run uses `--no-catch-up`; every other run is the
+default. The `memo search` step is gone from the script.
+
+| Run | Found | Precision | Precision, project items | Recall, all relevant | Recall, reachable | Missed |
+|---|---:|---:|---:|---:|---:|---|
+| Fresh store, `--no-catch-up`, 60 days | 6 | 0.67 | 0.75 | 0.50 | 0.67 | reply, mail, document, own note |
+| Default, 60 days | 9 | 0.67 | 0.71 | 0.75 | 1.00 | reply, own note |
+| Default, 365 days | 10 | 0.70 | 0.75 | 0.78 | 1.00 | reply, own note |
+
+- The default run filled the index first (`index: updated`, 4 mail and 3 document rows) and took 15 reads (5
+  searches × 3 sources), 720 bytes of text plus 493 bytes of context.
+- The reply that names nothing is not a hit, but it is now in the context of the hit next to it; so is the
+  200-day-old message, marked as not a hit.
+- The key `HBB` found the last missing project message and the mail by two searches. It also brought in the TV cable
+  and the newsletter: precision on project items is 0.71, as the first run predicted.
+- With `--max-pages 2` the run continued 7 times with `--cursor` and returned the same 9 references, with no
+  duplicates.
+
 ## What it showed
+
+The numbered points are from the first run; the section above says which of them the fixes closed (1, 2, 3).
 
 1. **On a store just synced, new mail and imported documents are missed without a word.** Their units report
    `index-pending`, and the command reads only what the word index already holds. A `memo search` fills the mail
@@ -76,6 +105,7 @@ which has no context reader yet.
 
 ## What was not measured
 
+- Whether the context around a hit is enough to read it; no reader judged it.
 - Meetings and transcripts: the command does not read them yet. On 2026-10-18 they were a main source.
 - Messages that are not in the store (server search, history not yet synced), and Drive documents not imported.
 - Speed at scale: the store has 13 texts. Reads and bytes are counted; time is not.

@@ -1,5 +1,6 @@
 // Project evidence against a frozen baseline: a synthetic store seeded through a build's store module, then the
-// built memo binary's `projects evidence --json`, scored against baseline.json.
+// built memo binary's `projects evidence --json`, scored against baseline.json: first with --no-catch-up on the
+// fresh store, then by default, which fills the search index before reading.
 //
 //   node evidence.ts <cli-memo checkout with dist/ and node_modules/>
 //
@@ -142,7 +143,9 @@ const ask = ["--source", source, "--context-query", "bank tracker", "--contact",
 const keyOf = Object.fromEntries(Object.entries(refs).map(([key, ref]) => [ref, key]))
 const labels = baseline.labels as Record<string, { label: string }>
 const score = (
-  run: { items: { ref: string; lanes: string[]; context: string; time_kind: string }[] },
+  run: {
+    items: { ref: string; lanes: string[]; context: string; time_kind: string; around?: { ref: string }[] | null }[]
+  },
   window: number,
 ) => {
   const found = run.items.map((item) => keyOf[item.ref] ?? `unknown:${item.ref}`)
@@ -163,6 +166,9 @@ const score = (
     recall_all: +(hits.length / relevant.length).toFixed(2),
     recall_reachable: +(hits.length / reachable.length).toFixed(2),
     missed: relevant.filter((key) => !found.includes(key)),
+    in_context_only: [
+      ...new Set(run.items.flatMap((item) => (item.around ?? []).map((one) => keyOf[one.ref] ?? one.ref))),
+    ].filter((key) => !found.includes(key)),
     person_only_ok: baseline.expect.person_only.every((key: string) => byKey[key]?.context === "person-only"),
     two_searches_ok: baseline.expect.two_searches.every((key: string) => (byKey[key]?.lanes.length ?? 0) >= 2),
     document_time: byKey["d-method"]?.time_kind ?? null,
@@ -170,12 +176,8 @@ const score = (
   }
 }
 
-const fresh = evidence(...ask)
+const fresh = evidence(...ask, "--no-catch-up")
 const pending = fresh.units.filter((unit: { issue: string | null }) => unit.issue === "index-pending").length
-execFileSync(process.execPath, [join(memo, "dist/bin/memo.js"), "search", "all", "tracker", "--json"], {
-  env,
-  encoding: "utf8",
-})
 const sixty = evidence(...ask)
 const year = evidence(...ask, "--since-time", "365d")
 const withKey = evidence(...ask, "--context-query", "HBB")
@@ -202,11 +204,13 @@ console.log(
       searches: sixty.lanes.map(
         (lane: { query: string; kinds: string[] }) => `${lane.query} (${lane.kinds.join(",")})`,
       ),
-      fresh_store: { ...score(fresh, 60), units_index_pending: pending, units: fresh.units.length },
+      fresh_store_no_catch_up: { ...score(fresh, 60), units_index_pending: pending, units: fresh.units.length },
       sixty_days: {
         ...score(sixty, 60),
         reads: sixty.usage.reads,
         read_bytes: sixty.usage.read_bytes,
+        around_bytes: sixty.usage.around_bytes,
+        index: sixty.index,
         units: sixty.units.length,
       },
       year: score(year, 365),
