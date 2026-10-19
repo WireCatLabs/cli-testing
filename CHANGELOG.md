@@ -10,6 +10,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A synthetic project-annotation reconstruction proof checks explicit entity bindings, proposed states and
+  unchanged shared records through published SDKs, without copying or resetting an owner store.
+
 - The Drive-to-Memo project-context check accepts explicit pinned version pairs, retaining its defaults
   and original result; a reviewed release comparison records first-run indexing failure and recovery.
 

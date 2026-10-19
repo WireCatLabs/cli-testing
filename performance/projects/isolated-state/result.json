@@ -1,0 +1,50 @@
+{
+  "node": "v24.19.0",
+  "artifacts": {
+    "cli-core": {
+      "version": "0.358.0",
+      "integrity": "sha512-AdnFXfVwPP4Bs5GA3rjs9tFYP9jNeEt+OHJdd4JxzEmuqD77n3ylz+0yD8U+P61zHr3I6SgsyrX0lOdbL207LA=="
+    },
+    "cli-base": {
+      "version": "0.47.1",
+      "integrity": "sha512-v6hQV0tKr9FkJenqALpMG9b06H8ZZdDCxZPhpBLAZgr/kKyy1beJBQSCQ4V3jRhRAeM0RQFv1jUlytY/BM0qeA=="
+    }
+  },
+  "manifest_sha256": "56c171a37d58b777f315bc4c75339be9e76d686f6b1dd1e03fcae9a43f8fda6a",
+  "checks": [
+    "manifest excludes source bodies and declares its supported subset",
+    "target 1: missing bindings fail before annotation writes",
+    "target 1: logical derived state survives remapped references",
+    "target 1: shared person, source and unrelated state are unchanged",
+    "target 1: proposed facts and links stay unconfirmed",
+    "target 2: missing bindings fail before annotation writes",
+    "target 2: logical derived state survives remapped references",
+    "target 2: shared person, source and unrelated state are unchanged",
+    "target 2: proposed facts and links stay unconfirmed",
+    "source annotations and shared records remain unchanged",
+    "an over-bound subset is refused instead of silently truncated"
+  ],
+  "receipt": {
+    "reused_entities": 3,
+    "aliases_restored": 1,
+    "links_restored": 2,
+    "facts_restored": 1
+  },
+  "coverage": {
+    "truncated": false,
+    "max_per_area": 8,
+    "completeness": "supported-subset-only"
+  },
+  "excluded": [
+    "raw-source-bodies",
+    "tasks",
+    "findings",
+    "tags",
+    "memories",
+    "history",
+    "derived-record-ids",
+    "timestamps",
+    "ownership-inference"
+  ],
+  "qualification": "Synthetic explicit-binding reconstruction only; no production importer, atomic rollback, history fidelity, retrieval benchmark, AI, owner data or destructive reset."
+}
