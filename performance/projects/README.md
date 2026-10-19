@@ -3,6 +3,10 @@
 - [Large documents](large-document/README.md): published Memo reproduction of stalled document lanes and
   repeated budget charges across two resumes, with a working small-document control.
 
+- [Process and metric definitions](PROCESS.md), [provenance ledger](provenance.json) and
+  [offline verification](verify-provenance.mjs): immutable artifact references, hashes, release provenance
+  and explicit historical build gaps across these separate synthetic studies.
+
 - [Isolated annotations](isolated-state/README.md): synthetic reconstruction of a limited project annotation
   subset through exact published SDKs, with explicit reference bindings and unchanged shared records.
 
