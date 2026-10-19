@@ -15,6 +15,7 @@ pages, or a new store query that selects ids only? It decided that #1615 reuses 
 
 - Machine: AMD Ryzen AI 9 HX 470, 30 GB RAM, NVMe disk, Linux 7.0, Node 24.19.0.
 - Code: cli-core `feat/stored-chats-hook` at `24a881df` (WireCatLabs/cli-core#1615), built with `pnpm build`.
+  The branch was rebased before merging; the read it times is unchanged in the merge commit `ddfb89a1`.
 - Data: synthetic only. [`bench.mjs`](bench.mjs) opens an empty store through the build's `openStore`, writes N
   dialogs for one account (phone-form ids, a title, a last-message time, about 100 bytes of `providerMetadata`)
   and 100 for a second account, then reads the first account's chat ids 5 times. The median and the fastest are
