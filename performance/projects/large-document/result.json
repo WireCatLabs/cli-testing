@@ -1,0 +1,243 @@
+{
+  "classification": "known-limitation-reproduced",
+  "node": "v24.19.0",
+  "artifacts": {
+    "cli-memo": {
+      "version": "0.76.0",
+      "integrity": "sha512-iwSszKoa8kKYZBHRXL34it6aBB9Ju+/BnaFouyWVGtq7zKzASa2bzndXidjQhZDayBhd7+eeiIpxlFh+1gZ3NQ=="
+    },
+    "cli-core": {
+      "version": "0.358.0",
+      "integrity": "sha512-AdnFXfVwPP4Bs5GA3rjs9tFYP9jNeEt+OHJdd4JxzEmuqD77n3ylz+0yD8U+P61zHr3I6SgsyrX0lOdbL207LA=="
+    },
+    "cli-base": {
+      "version": "0.47.1",
+      "integrity": "sha512-v6hQV0tKr9FkJenqALpMG9b06H8ZZdDCxZPhpBLAZgr/kKyy1beJBQSCQ4V3jRhRAeM0RQFv1jUlytY/BM0qeA=="
+    }
+  },
+  "source_bytes": 95200,
+  "page_budget_bytes": 65536,
+  "control": {
+    "items": 1,
+    "usage": {
+      "reads": 2,
+      "read_bytes": 184,
+      "around_bytes": 0,
+      "items": 1,
+      "elapsed_ms": 17
+    }
+  },
+  "attempts": [
+    {
+      "invocation": 1,
+      "resumed": false,
+      "items": 0,
+      "returned_excerpt_bytes": 0,
+      "output_bytes": 3637,
+      "usage": {
+        "reads": 5,
+        "read_bytes": 327680,
+        "around_bytes": 0,
+        "items": 0,
+        "elapsed_ms": 5
+      },
+      "totals": {
+        "reads": 5,
+        "read_bytes": 327680,
+        "items": 0,
+        "invocations": 1
+      },
+      "units": [
+        {
+          "lane": "l1",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l2",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l3",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l4",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l5",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        }
+      ],
+      "checkpoint_present": true,
+      "complete": false,
+      "stopped": null
+    },
+    {
+      "invocation": 2,
+      "resumed": true,
+      "items": 0,
+      "returned_excerpt_bytes": 0,
+      "output_bytes": 3638,
+      "usage": {
+        "reads": 5,
+        "read_bytes": 327680,
+        "around_bytes": 0,
+        "items": 0,
+        "elapsed_ms": 4
+      },
+      "totals": {
+        "reads": 10,
+        "read_bytes": 655360,
+        "items": 0,
+        "invocations": 2
+      },
+      "units": [
+        {
+          "lane": "l1",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l2",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l3",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l4",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l5",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        }
+      ],
+      "checkpoint_present": true,
+      "complete": false,
+      "stopped": null
+    },
+    {
+      "invocation": 3,
+      "resumed": true,
+      "items": 0,
+      "returned_excerpt_bytes": 0,
+      "output_bytes": 3638,
+      "usage": {
+        "reads": 5,
+        "read_bytes": 327680,
+        "around_bytes": 0,
+        "items": 0,
+        "elapsed_ms": 4
+      },
+      "totals": {
+        "reads": 15,
+        "read_bytes": 983040,
+        "items": 0,
+        "invocations": 3
+      },
+      "units": [
+        {
+          "lane": "l1",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l2",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l3",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l4",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        },
+        {
+          "lane": "l5",
+          "source": 0,
+          "after": 1787222650130,
+          "before": 1792406650130,
+          "state": "read-limited",
+          "pages": 0,
+          "issue": "validation_error"
+        }
+      ],
+      "checkpoint_present": true,
+      "complete": false,
+      "stopped": null
+    }
+  ],
+  "limits": "Synthetic single-source CLI replay, initial invocation plus two resumes; no owner data, remote calls, timing benchmark, producer fix, whole-document hydration proof or successful large-document retrieval claim. Charged bytes are reservations on failed reads, not returned or proven hydrated source bytes."
+}

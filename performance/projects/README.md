@@ -1,5 +1,8 @@
 # Projects
 
+- [Large documents](large-document/README.md): published Memo reproduction of stalled document lanes and
+  repeated budget charges across two resumes, with a working small-document control.
+
 - [Isolated annotations](isolated-state/README.md): synthetic reconstruction of a limited project annotation
   subset through exact published SDKs, with explicit reference bindings and unchanged shared records.
 
