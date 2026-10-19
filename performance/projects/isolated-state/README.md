@@ -13,7 +13,7 @@ Node 24.19.0, exact registry Core 0.358.0 and Base 0.47.1. No checkout imports, 
 The runner checks package versions and records registry integrity. Install the SDK in an isolated prefix:
 
 ```sh
-S=$(mktemp -d -p /var/tmp isolated-state-sdk-XXXXXX) && HOME=$S XDG_CONFIG_HOME=$S/config XDG_DATA_HOME=$S/data XDG_CACHE_HOME=$S/cache MESSAGING_STORE=$S/store WIRECAT_STATE_DIR=$S/state TMPDIR=$S npm install --prefix "$S/prefix" --ignore-scripts --no-audit --no-fund --save-exact @wirecat/cli-core@0.358.0 @wirecat/cli-base@0.47.1
+S=$(mktemp -d -p /var/tmp isolated-state-sdk-XXXXXX) && HOME=$S XDG_CONFIG_HOME=$S/config XDG_DATA_HOME=$S/data XDG_CACHE_HOME=$S/cache MESSAGING_STORE=$S/store WIRECAT_STATE_DIR=$S/state TMPDIR=$S NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix "$S/prefix" --ignore-scripts --no-audit --no-fund --save-exact @wirecat/cli-core@0.358.0 @wirecat/cli-base@0.47.1
 T=$(mktemp -d -p /var/tmp isolated-state-run-XXXXXX) && HOME=$T XDG_CONFIG_HOME=$T/config XDG_DATA_HOME=$T/data XDG_CACHE_HOME=$T/cache MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state TMPDIR=$T node performance/projects/isolated-state/run.mjs "$S/prefix" "$T/result.json"
 ```
 
