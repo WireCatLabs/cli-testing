@@ -13,6 +13,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 - A synthetic published-Memo reproduction records oversized document lanes that keep returning checkpoints
   without progress; a small-document control separates that limitation from broken source setup.
 
+- A project-benchmark provenance ledger and offline verifier retain artifact hashes, source references,
+  metric definitions and historical build gaps without changing frozen fixtures or results.
+
 - A synthetic project-annotation reconstruction proof checks explicit entity bindings, proposed states and
   unchanged shared records through published SDKs, without copying or resetting an owner store.
 

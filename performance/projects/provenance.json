@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "repository": "WireCatLabs/cli-testing",
+  "audited_at": "2026-10-19",
+  "snapshot_commit": "88677a548d64d341921a3911efcc0f3b13fba57b",
+  "purpose": "Reference-only provenance for existing synthetic project studies; no raw fixture copies or owner data",
+  "artifacts": [
+    {
+      "id": "evidence-initial-runner",
+      "role": "inline-fixture-runner",
+      "path": "performance/projects/evidence/evidence.ts",
+      "commit": "2c821aac468c280a24e0d3a7e806e76a8adc67ca",
+      "bytes": 9100,
+      "sha256": "d29f4249977dd0662c056bbdceeb226c41f22fcc88217e09788a8b7f86e39cef",
+      "working_copy": false,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/2c821aac468c280a24e0d3a7e806e76a8adc67ca/performance/projects/evidence/evidence.ts"
+    },
+    {
+      "id": "evidence-initial-result",
+      "role": "result",
+      "path": "performance/projects/evidence/result.json",
+      "commit": "2c821aac468c280a24e0d3a7e806e76a8adc67ca",
+      "bytes": 2888,
+      "sha256": "902ddb9c3f88e08c65398e1fce708b44660270baafe96c804ca0303ec824fdf2",
+      "working_copy": false,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/2c821aac468c280a24e0d3a7e806e76a8adc67ca/performance/projects/evidence/result.json"
+    },
+    {
+      "id": "evidence-baseline",
+      "role": "labels-and-request",
+      "path": "performance/projects/evidence/baseline.json",
+      "commit": "2c821aac468c280a24e0d3a7e806e76a8adc67ca",
+      "bytes": 1786,
+      "sha256": "0792e010519b361be771ba2f2b3e1f3f25f2816247cd942cc1cfcb20981fcbc6",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/2c821aac468c280a24e0d3a7e806e76a8adc67ca/performance/projects/evidence/baseline.json"
+    },
+    {
+      "id": "evidence-initial-readme",
+      "role": "reported-provenance",
+      "path": "performance/projects/evidence/README.md",
+      "commit": "2c821aac468c280a24e0d3a7e806e76a8adc67ca",
+      "bytes": 5773,
+      "sha256": "45408ead4db0d18f328ce82ee112c6d4834d11daed4086ec807f8a6e16466a66",
+      "working_copy": false,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/2c821aac468c280a24e0d3a7e806e76a8adc67ca/performance/projects/evidence/README.md"
+    },
+    {
+      "id": "evidence-fixed-runner",
+      "role": "inline-fixture-runner",
+      "path": "performance/projects/evidence/evidence.ts",
+      "commit": "10cf8aea8a04612997587690e20087c5a4bf60c5",
+      "bytes": 9397,
+      "sha256": "89e78aa73b14ee6058d29bda56cd5e2c7d187c412b8ef5845ed623dea3f86542",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/10cf8aea8a04612997587690e20087c5a4bf60c5/performance/projects/evidence/evidence.ts"
+    },
+    {
+      "id": "evidence-fixed-result",
+      "role": "result",
+      "path": "performance/projects/evidence/result.json",
+      "commit": "10cf8aea8a04612997587690e20087c5a4bf60c5",
+      "bytes": 3801,
+      "sha256": "f1cb022bfccee35202e3bd776792e60a4583cd3a602752137fae84739cf010c5",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/10cf8aea8a04612997587690e20087c5a4bf60c5/performance/projects/evidence/result.json"
+    },
+    {
+      "id": "evidence-fixed-readme",
+      "role": "reported-provenance",
+      "path": "performance/projects/evidence/README.md",
+      "commit": "10cf8aea8a04612997587690e20087c5a4bf60c5",
+      "bytes": 7869,
+      "sha256": "b6999800d8b2e04b426bb016587208916bf6a16ce1a99249058c7dcfb53d1b99",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/10cf8aea8a04612997587690e20087c5a4bf60c5/performance/projects/evidence/README.md"
+    },
+    {
+      "id": "drive-initial-runner",
+      "role": "inline-fixture-runner",
+      "path": "performance/projects/drive-context/run.mjs",
+      "commit": "dc041b98b892d88aa7e1c2d1fbbc8749e1e19f52",
+      "bytes": 8593,
+      "sha256": "87aa66047c56602f4131607d8ccb631af0d19db8fc2da50eb28920491ff3e281",
+      "working_copy": false,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/dc041b98b892d88aa7e1c2d1fbbc8749e1e19f52/performance/projects/drive-context/run.mjs"
+    },
+    {
+      "id": "drive-mcp-client",
+      "role": "protocol-helper",
+      "path": "performance/projects/drive-context/mcp.mjs",
+      "commit": "dc041b98b892d88aa7e1c2d1fbbc8749e1e19f52",
+      "bytes": 2582,
+      "sha256": "01e40336a8ccd41ecb66d524a13c7d77b9deb939a1644570fd38cfa1f54e7d02",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/dc041b98b892d88aa7e1c2d1fbbc8749e1e19f52/performance/projects/drive-context/mcp.mjs"
+    },
+    {
+      "id": "drive-initial-result",
+      "role": "result",
+      "path": "performance/projects/drive-context/result.json",
+      "commit": "dc041b98b892d88aa7e1c2d1fbbc8749e1e19f52",
+      "bytes": 1421,
+      "sha256": "42b4623a765fda85ddf25e5d26f6122ccc790b1abedbcb466169f495fd8984bb",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/dc041b98b892d88aa7e1c2d1fbbc8749e1e19f52/performance/projects/drive-context/result.json"
+    },
+    {
+      "id": "drive-current-runner",
+      "role": "inline-fixture-runner",
+      "path": "performance/projects/drive-context/run.mjs",
+      "commit": "46fd7ec73ef921477a96957b7ad777ad4e0f80d2",
+      "bytes": 9400,
+      "sha256": "69191d27e6821b67ee2342b3202005e7c9dd957d8f475671f2a113534e8ee2d6",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/46fd7ec73ef921477a96957b7ad777ad4e0f80d2/performance/projects/drive-context/run.mjs"
+    },
+    {
+      "id": "drive-current-readme",
+      "role": "reported-provenance",
+      "path": "performance/projects/drive-context/README.md",
+      "commit": "46fd7ec73ef921477a96957b7ad777ad4e0f80d2",
+      "bytes": 7696,
+      "sha256": "9699fcdb9f1b25b0ca823c856179be709ff48f06cc7d48ae6e2e37dce6327102",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/46fd7ec73ef921477a96957b7ad777ad4e0f80d2/performance/projects/drive-context/README.md"
+    },
+    {
+      "id": "drive-old-site-result",
+      "role": "partial-diagnostic",
+      "path": "performance/projects/drive-context/result-old-site.json",
+      "commit": "46fd7ec73ef921477a96957b7ad777ad4e0f80d2",
+      "bytes": 910,
+      "sha256": "fe185e89eb2dc19810f8145520adc029434b09c2e9df3bf6d33f6aaecc41c4ef",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/46fd7ec73ef921477a96957b7ad777ad4e0f80d2/performance/projects/drive-context/result-old-site.json"
+    },
+    {
+      "id": "drive-reviewed-result",
+      "role": "result",
+      "path": "performance/projects/drive-context/result-reviewed-pair.json",
+      "commit": "46fd7ec73ef921477a96957b7ad777ad4e0f80d2",
+      "bytes": 1421,
+      "sha256": "bc48ba28b78b3f6f7ae66fae17ba4e2b562d250a85c1c4456cbebdeed0477990",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/46fd7ec73ef921477a96957b7ad777ad4e0f80d2/performance/projects/drive-context/result-reviewed-pair.json"
+    },
+    {
+      "id": "drive-external-io-guard",
+      "role": "external-io-guard",
+      "path": "performance/documents/drive-shared-store/guard.mjs",
+      "commit": "42e2e38e487afb1215581175f26931eca7c80bd2",
+      "bytes": 590,
+      "sha256": "729d521b0e33d15767c7b62b3443b0871d12295347df66957147c6bd8342eb37",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/42e2e38e487afb1215581175f26931eca7c80bd2/performance/documents/drive-shared-store/guard.mjs"
+    },
+    {
+      "id": "isolated-runner",
+      "role": "runner",
+      "path": "performance/projects/isolated-state/run.mjs",
+      "commit": "88677a548d64d341921a3911efcc0f3b13fba57b",
+      "bytes": 6127,
+      "sha256": "1fdc06f37e6021c0d95148b74f6765bd5fe7f05301199aba66095cc8cfde96d7",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/88677a548d64d341921a3911efcc0f3b13fba57b/performance/projects/isolated-state/run.mjs"
+    },
+    {
+      "id": "isolated-fixture",
+      "role": "fixture",
+      "path": "performance/projects/isolated-state/fixture.mjs",
+      "commit": "88677a548d64d341921a3911efcc0f3b13fba57b",
+      "bytes": 3225,
+      "sha256": "36981504a57baa4c096dedc3bd122631272c3b6e910e9b7bcf2677e91840afca",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/88677a548d64d341921a3911efcc0f3b13fba57b/performance/projects/isolated-state/fixture.mjs"
+    },
+    {
+      "id": "isolated-annotations",
+      "role": "subset-adapter",
+      "path": "performance/projects/isolated-state/annotations.mjs",
+      "commit": "88677a548d64d341921a3911efcc0f3b13fba57b",
+      "bytes": 4063,
+      "sha256": "4646605f29765df61ab94d7a24c7ff146f21d474e20cce1efe23d93190af36d8",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/88677a548d64d341921a3911efcc0f3b13fba57b/performance/projects/isolated-state/annotations.mjs"
+    },
+    {
+      "id": "isolated-result",
+      "role": "result",
+      "path": "performance/projects/isolated-state/result.json",
+      "commit": "88677a548d64d341921a3911efcc0f3b13fba57b",
+      "bytes": 1833,
+      "sha256": "c60127acdcabb51f9baac47192a32274023cc0ef61cbb5d05c660b23fc6c1b7f",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/88677a548d64d341921a3911efcc0f3b13fba57b/performance/projects/isolated-state/result.json"
+    },
+    {
+      "id": "isolated-readme",
+      "role": "reported-provenance",
+      "path": "performance/projects/isolated-state/README.md",
+      "commit": "88677a548d64d341921a3911efcc0f3b13fba57b",
+      "bytes": 5800,
+      "sha256": "ee10bcb81f3019acd9495b03cbba03bae0ccda7792cd95d29bd4fbb2e53745cf",
+      "working_copy": true,
+      "url": "https://github.com/WireCatLabs/cli-testing/blob/88677a548d64d341921a3911efcc0f3b13fba57b/performance/projects/isolated-state/README.md"
+    }
+  ],
+  "packages": [
+    {
+      "name": "@wirecat/cli-memo",
+      "version": "0.72.0",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fcli-memo/0.72.0",
+      "registry_integrity": "sha512-uCHiFuu/Aq+EI7cwQiuQFuKyZwB1+yv3GNaDMX1f4zLv8JfeJO7owWeBzS9pNr+AxPzFOY0XcUzwr8h7SUCINg==",
+      "registry_git_head": null,
+      "declared_core": "0.345.0",
+      "declared_base": "0.46.0",
+      "source_repository": "WireCatLabs/cli-memo",
+      "source_tag": "v0.72.0",
+      "source_commit": "9d8b094ea3e5e4088b424e92e4575b4002c8bc75",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    },
+    {
+      "name": "@wirecat/cli-memo",
+      "version": "0.73.0",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fcli-memo/0.73.0",
+      "registry_integrity": "sha512-OsibQc+C8Nf9s2oFtMz3JfuBTWC9JaucNx+lmKN2r6GEzfdlUEtqljGM1AUAsGBrSzZv74/yvU8d1wruFGTmeA==",
+      "registry_git_head": null,
+      "declared_core": "0.348.0",
+      "declared_base": "0.47.0",
+      "source_repository": "WireCatLabs/cli-memo",
+      "source_tag": "v0.73.0",
+      "source_commit": "7b4ffc8a2ec21b07217f823a6c9c3ae1f3744a99",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    },
+    {
+      "name": "@wirecat/cli-memo",
+      "version": "0.75.0",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fcli-memo/0.75.0",
+      "registry_integrity": "sha512-odoUjY5BoWm/9LbadSFYT2VBFPBu5w67VMKAdSd3sc2kxji1aEQxUEiJqXnZC1YBHxob/mcQvwu+TnEUp7qVHw==",
+      "registry_git_head": null,
+      "declared_core": "0.351.0",
+      "declared_base": "0.47.1",
+      "source_repository": "WireCatLabs/cli-memo",
+      "source_tag": "v0.75.0",
+      "source_commit": "93cc5fb65cf567e4c51033a29a3bc0844189e12a",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    },
+    {
+      "name": "@wirecat/cli-memo",
+      "version": "0.76.0",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fcli-memo/0.76.0",
+      "registry_integrity": "sha512-iwSszKoa8kKYZBHRXL34it6aBB9Ju+/BnaFouyWVGtq7zKzASa2bzndXidjQhZDayBhd7+eeiIpxlFh+1gZ3NQ==",
+      "registry_git_head": null,
+      "declared_core": "0.358.0",
+      "declared_base": "0.47.1",
+      "source_repository": "WireCatLabs/cli-memo",
+      "source_tag": "v0.76.0",
+      "source_commit": "6ca60b8f8ab975f3ead3807853be57fcf7cdf4ed",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    },
+    {
+      "name": "@wirecat/drive-cli",
+      "version": "0.17.1",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fdrive-cli/0.17.1",
+      "registry_integrity": "sha512-iBzH1DPELIoUVC5cshW+OJK3F2my+y9hFTucxFVL7Qoztd0ZcB7efVWOHpLOrywhF/LMj+ctMJKQ9ZXeajWtkw==",
+      "registry_git_head": null,
+      "declared_core": "0.331.0",
+      "declared_base": "0.43.2",
+      "source_repository": "WireCatLabs/drive-cli",
+      "source_tag": "v0.17.1",
+      "source_commit": "388b9efa0e4cea4322385c2d9e2c5f569bc0f68b",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    },
+    {
+      "name": "@wirecat/drive-cli",
+      "version": "0.18.0",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fdrive-cli/0.18.0",
+      "registry_integrity": "sha512-BUIp199Diw9DFMpxsaWoM6js/KUc25IICdCvahh/VKzC+I8hjL+oB+Pz1cwkBkj3WzfB9d8bJnRNpKq06PiUpA==",
+      "registry_git_head": null,
+      "declared_core": "0.348.0",
+      "declared_base": "0.47.0",
+      "source_repository": "WireCatLabs/drive-cli",
+      "source_tag": "v0.18.0",
+      "source_commit": "9b9eac27bb71cdc59e059f753c4b86d2b54c9cd8",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    },
+    {
+      "name": "@wirecat/cli-core",
+      "version": "0.358.0",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fcli-core/0.358.0",
+      "registry_integrity": "sha512-AdnFXfVwPP4Bs5GA3rjs9tFYP9jNeEt+OHJdd4JxzEmuqD77n3ylz+0yD8U+P61zHr3I6SgsyrX0lOdbL207LA==",
+      "registry_git_head": null,
+      "declared_core": null,
+      "declared_base": null,
+      "source_repository": "WireCatLabs/cli-core",
+      "source_tag": "v0.358.0",
+      "source_commit": "447e6140fd9a248641fa8facca73264ee9ca4b66",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    },
+    {
+      "name": "@wirecat/cli-base",
+      "version": "0.47.1",
+      "registry_url": "https://registry.npmjs.org/@wirecat%2fcli-base/0.47.1",
+      "registry_integrity": "sha512-v6hQV0tKr9FkJenqALpMG9b06H8ZZdDCxZPhpBLAZgr/kKyy1beJBQSCQ4V3jRhRAeM0RQFv1jUlytY/BM0qeA==",
+      "registry_git_head": null,
+      "declared_core": null,
+      "declared_base": null,
+      "source_repository": "WireCatLabs/cli-base",
+      "source_tag": "v0.47.1",
+      "source_commit": "611505bb116b704edbc0a2cbba65260c93d5d3f4",
+      "source_mapping": "GitHub tag observed during this ledger audit; npm gitHead is absent, not a historical build attestation"
+    }
+  ],
+  "studies": [
+    {
+      "id": "evidence-initial",
+      "kind": "retrieval-quality",
+      "artifacts": [
+        "evidence-initial-runner",
+        "evidence-initial-result",
+        "evidence-baseline",
+        "evidence-initial-readme"
+      ],
+      "reported_node": "v24.19.0",
+      "reported_memo": "0.72.0",
+      "reported_core": "0.345.0",
+      "reported_source": {
+        "repository": "WireCatLabs/cli-memo",
+        "commit": "65822ca36e4c738bae66c04644c23845701e9df4"
+      },
+      "artifact_integrity_recorded": false,
+      "qualification": "A built checkout was reported, not a registry install; source/package version is corroborated but binary hash, tarball and lock are absent"
+    },
+    {
+      "id": "evidence-after-fix",
+      "kind": "retrieval-quality-candidate",
+      "artifacts": ["evidence-fixed-runner", "evidence-fixed-result", "evidence-baseline", "evidence-fixed-readme"],
+      "reported_node": "v24.19.0",
+      "reported_memo": "0.72.0",
+      "readme_core": "0.349.0",
+      "readme_base": "0.47.1",
+      "candidate_reference": {
+        "url": "https://github.com/WireCatLabs/cli-memo/pull/328",
+        "observed_head": "92ea226afdcb4c37db94c439d08ecb7bd3b42141",
+        "observed_package_version": "0.73.0",
+        "observed_core": "0.349.0",
+        "observed_base": "0.47.1"
+      },
+      "artifact_integrity_recorded": false,
+      "qualification": "Conflicting version evidence retained: result --version says 0.72.0, README names PR328 candidate/Core 0.349, observed PR head manifest says 0.73.0. Exact measured build/head is unrecorded; do not substitute published Memo 0.72/Core 0.345 or relabel the frozen result"
+    },
+    {
+      "id": "drive-original",
+      "kind": "cross-app-acceptance",
+      "artifacts": ["drive-initial-runner", "drive-mcp-client", "drive-external-io-guard", "drive-initial-result"],
+      "reported_node": "v24.19.0",
+      "packages": ["@wirecat/drive-cli@0.17.1", "@wirecat/cli-memo@0.75.0"],
+      "passed_checks": 10,
+      "qualification": "Registry integrities/Core versions/bin entry hashes retained; full npm lock and platform/native dependency identity are not committed"
+    },
+    {
+      "id": "drive-old-site",
+      "kind": "first-assertion-diagnostic",
+      "artifacts": ["drive-old-site-result", "drive-external-io-guard"],
+      "reproduction_runner": "drive-current-runner",
+      "packages": ["@wirecat/drive-cli@0.18.0", "@wirecat/cli-memo@0.73.0"],
+      "expected_items": 1,
+      "actual_items": 0,
+      "issue": "index-pending",
+      "qualification": "Original diagnostic serialized the first synthetic result in a temporary runner copy; later checks unmeasured, and current runner intentionally exits before final success report on this pair"
+    },
+    {
+      "id": "drive-reviewed",
+      "kind": "cross-app-acceptance",
+      "artifacts": ["drive-current-runner", "drive-mcp-client", "drive-external-io-guard", "drive-reviewed-result"],
+      "reported_node": "v24.19.0",
+      "packages": ["@wirecat/drive-cli@0.18.0", "@wirecat/cli-memo@0.76.0"],
+      "passed_checks": 10,
+      "qualification": "Same synthetic scenario with explicit stable version options; no manual index warm-up; entry hashes are only bootstrap-file hashes, not complete package hashes"
+    },
+    {
+      "id": "isolated-annotations",
+      "kind": "logical-annotation-reconstruction",
+      "artifacts": [
+        "isolated-runner",
+        "isolated-fixture",
+        "isolated-annotations",
+        "isolated-result",
+        "isolated-readme"
+      ],
+      "reported_node": "v24.19.0",
+      "packages": ["@wirecat/cli-core@0.358.0", "@wirecat/cli-base@0.47.1"],
+      "passed_checks": 11,
+      "qualification": "Limited existing annotation subset and explicit bindings; no retrieval/AI score, production export/reset, atomic rollback or complete history; manifest digest is run-specific"
+    }
+  ],
+  "gaps": [
+    "No evidence candidate binary/package-lock/tarball hash was retained; historical byte-for-byte build identity cannot be reconstructed from a version label",
+    "Published package integrity and current tag/source mapping are not proof that an earlier candidate run used that registry artifact",
+    "Current package metadata/tag mappings were observed for this audit, not recorded retroactively as original measurements",
+    "Reruns use fresh random IDs and/or a moving Date.now window; compare logical assertions/metrics, not report byte equality",
+    "No complete transitive npm lock/platform/native-engine manifest is committed for these historical runs; declared_core/base fields inspect dependencies only, not the full peer/optional graph",
+    "The evidence baseline freeze date is not an execution as_of: its result does not retain the exact computed cutoff or request fingerprint",
+    "No study measures real-project recall, full archive coverage, model interpretation quality or agent/manual effort end-to-end"
+  ]
+}
