@@ -9,6 +9,7 @@ that research workflow was an explicit bounded Drive sync, rather than another d
 
 Use Node 24 and an isolated install containing exactly Drive 0.17.1 and Memo 0.75.0. Keep npm's original
 dependency graphs: Drive uses Core 0.331.0 and Memo uses Core 0.351.0. No dependency override is needed.
+Those versions remain the runner's defaults; its original recorded result is unchanged.
 
 ```sh
 T=$(mktemp -d -p /var/tmp) && HOME=$T XDG_CONFIG_HOME=$T/config XDG_DATA_HOME=$T/data XDG_CACHE_HOME=$T/cache MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state TMPDIR=$T NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix $T/packages --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.17.1 @wirecat/cli-memo@0.75.0
@@ -32,6 +33,24 @@ sync, Core ingestion, saved checkpoints and indexing execute, rather than a fixt
 document rows. Memo's compiled executable then creates the project and gathers evidence. A real stdio
 MCP process runs `project_evidence` against the same store.
 
+To reproduce another reviewed pair, install those exact stable versions in a separate prefix, then
+pass `--drive-version` and `--memo-version`. The runner checks both installed manifests against that
+selection and passes the expected pair to synthetic sync children through its environment allowlist.
+Inherited version-selection environment variables cannot change the top-level defaults. For example:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T XDG_CONFIG_HOME=$T/config XDG_DATA_HOME=$T/data XDG_CACHE_HOME=$T/cache MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state TMPDIR=$T NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix $T/packages --ignore-scripts --no-audit --no-fund @wirecat/drive-cli@0.18.0 @wirecat/cli-memo@0.76.0
+```
+
+Keep that separate prefix and run:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T XDG_CONFIG_HOME=$T/config XDG_DATA_HOME=$T/data XDG_CACHE_HOME=$T/cache MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state TMPDIR=$T node performance/projects/drive-context/run.mjs /absolute/install/prefix /absolute/result.json --drive-version 0.18.0 --memo-version 0.76.0
+```
+
+Version options change only the expected artifacts. The synthetic scenario, assertions and external-I/O
+guard remain the same. The result records the actual versions, Core dependencies and npm integrities.
+
 ## Results
 
 [The pinned registry run](result.json), on Node v24.19.0, passed ten checks:
@@ -52,6 +71,30 @@ MCP process runs `project_evidence` against the same store.
 The first primary-profile sync fetched two synthetic bodies; its unchanged repeat fetched zero.
 The report records exact package versions, original Core versions, npm artifact integrities and executable
 SHA-256 hashes. Checks group related assertions; table rows and assertion counts are not test-case counts.
+
+## Reviewed release comparison
+
+The documentation release review found that a syntactically valid gather command could still miss a
+just-imported document. Comparing the exact reviewed pairs established whether the missing piece was
+Drive ingestion or Memo's search-index catch-up.
+
+| Drive / Core | Memo / Core | Outcome | Measurement |
+| --- | --- | --- | --- |
+| 0.17.1 / 0.331.0 | 0.75.0 / 0.351.0 | Pass | Original ten-check [result](result.json); default pair rerun also passes |
+| 0.18.0 / 0.348.0 | 0.73.0 / 0.348.0 | Fails first assertion | [Diagnostic record](result-old-site.json): expected one hit, got zero, `index-pending`; later checks were not measured |
+| 0.18.0 / 0.348.0 | 0.76.0 / 0.358.0 | Pass | Ten checks on the unchanged scenario with explicit version options: [reviewed-pair result](result-reviewed-pair.json) |
+
+The old-site diagnostic came from a temporary copy of the original runner with only its two expected
+versions changed and serialization of the first result added. It resolved the registered Drive folder
+correctly, had no unread sources, and read zero bytes because the index was pending. Its failure does
+not establish anything about the remaining checks. To reproduce that assertion failure with this runner,
+install the old pair and pass `--drive-version 0.18.0 --memo-version 0.73.0`; the process exits nonzero
+before producing its final success report.
+
+Memo's reviewed upgrade resolves the first-run index gap without manually warming the fixture. The
+final pair fetches two synthetic bodies initially and zero on unchanged sync, while preserving source
+dates, document references and explicit account scope. Both successful pairs use their original
+dependency graphs. No result claims live Google behavior or completeness of a real project archive.
 
 ## What this means for the workflow
 

@@ -6,17 +6,30 @@ import { createRequire } from "node:module"
 import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
+import { parseArgs } from "node:util"
 import { checkMcp } from "./mcp.mjs"
 
-const [prefix, output, worker, profile = "primary", phase = "initial"] = process.argv.slice(2)
-assert.ok(prefix && output, "run.mjs INSTALLED_PREFIX OUTPUT_JSON")
+const { values, positionals } = parseArgs({
+  allowPositionals: true,
+  options: { "drive-version": { type: "string" }, "memo-version": { type: "string" } },
+})
+const [prefix, output, worker, profile = "primary", phase = "initial"] = positionals
+assert.ok(prefix && output, "run.mjs INSTALLED_PREFIX OUTPUT_JSON [--drive-version VERSION --memo-version VERSION]")
+const expectedDrive =
+  worker === "sync" ? process.env.DRIVE_CONTEXT_DRIVE_VERSION : (values["drive-version"] ?? "0.17.1")
+const expectedMemo = worker === "sync" ? process.env.DRIVE_CONTEXT_MEMO_VERSION : (values["memo-version"] ?? "0.75.0")
+for (const [field, version] of [
+  ["drive-version", expectedDrive],
+  ["memo-version", expectedMemo],
+])
+  assert.match(version ?? "", /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/, `${field}: use an exact stable version`)
 const packages = join(resolve(prefix), "node_modules/@wirecat")
 const drive = join(packages, "drive-cli")
 const memo = join(packages, "cli-memo")
 const guard = fileURLToPath(new URL("../../documents/drive-shared-store/guard.mjs", import.meta.url))
 for (const [name, directory, expected] of [
-  ["drive-cli", drive, "0.17.1"],
-  ["cli-memo", memo, "0.75.0"],
+  ["drive-cli", drive, expectedDrive],
+  ["cli-memo", memo, expectedMemo],
 ]) {
   const manifest = JSON.parse(readFileSync(join(directory, "package.json"), "utf8"))
   assert.equal(manifest.version, expected, `${name}: this acceptance run pins its measured version`)
@@ -95,6 +108,8 @@ if (worker === "sync") {
     DRIVE_CACHE_DIR: join(root, "drive-cache"),
     MEMO_CONFIG_DIR: join(root, "memo-config"),
     FIXTURE_NOW: String(Date.now()),
+    DRIVE_CONTEXT_DRIVE_VERSION: expectedDrive,
+    DRIVE_CONTEXT_MEMO_VERSION: expectedMemo,
     NO_COLOR: "1",
   }
   mkdirSync(env.DRIVE_CONFIG_DIR, { recursive: true })
