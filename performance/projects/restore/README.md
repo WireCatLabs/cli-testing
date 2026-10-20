@@ -40,3 +40,32 @@ links. Notes, specialized meeting memberships, tasks, memories, labels and findi
 It does not measure retrieval quality, model extraction, performance, connector authorization,
 full project backup, injected mid-transaction rollback or concurrent processes. Those require
 separate fixtures; no live source was reset. Memo CLI/MCP acceptance is a separate host check.
+
+## Check the Memo command boundary
+
+A working SDK does not establish that the CLI publishes a private file, enforces its caller policy
+or transports validation errors through MCP. The [Memo0.83 result](result-memo083.json) records a fresh
+npm installation with Core0.374, Base0.47.4 and MCP client2.2.0. Its registry tarball matches release
+validation, SHA-256 `8df6a8f5c2d290c32e88a21b65f92f30f4bfa29446f3f033164078912d728852`.
+
+Use the retained [manifest](package-memo083.json) and [lock](lock-memo083.json) to reproduce the same
+dependency graph rather than resolving newer transitive packages:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && mkdir "$T/package" && cp performance/projects/restore/package-memo083.json "$T/package/package.json" && cp performance/projects/restore/lock-memo083.json "$T/package/package-lock.json" && HOME=$T XDG_CONFIG_HOME=$T/c XDG_DATA_HOME=$T/d XDG_CACHE_HOME=$T/k MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/s TMPDIR=$T NPM_CONFIG_USERCONFIG=/dev/null npm ci --prefix "$T/package" --ignore-scripts --no-audit --no-fund && HOME=$T XDG_CONFIG_HOME=$T/c XDG_DATA_HOME=$T/d XDG_CACHE_HOME=$T/k MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/s TMPDIR=$T node performance/projects/restore/check-memo.mjs "$T/package/node_modules/@wirecat/cli-core/dist/store/index.js" "$T/package/node_modules/@wirecat/cli-memo/dist/bin/memo.js" "$T/package/node_modules/@modelcontextprotocol/client" 0.83.0
+```
+
+The driver creates both stores through the shared invented fixture; it accepts no existing store.
+Export/check/restore run as real CLI processes. Snapshot/preview run through an actual stdio MCP
+client, including read-only mode, unknown-field errors and semantic snapshot refusal. It verifies
+private export permissions on Unix, preview target bytes, agent restore refusal, repeated restore
+refusal, preserved proposed facts and unrelated records. CLI error JSON is on stderr with empty
+stdout; successful CLI and MCP answers keep their standard envelopes.
+
+Owner-labelled and agent-labelled processes are exercised only on newly created synthetic stores.
+Caller environment labels are a CLI policy, not operating-system isolation. MCP calls retain their
+normal audit writes, so only the export's source bytes and the preview's target bytes are compared.
+The driver never claims the entire source remains byte-identical after MCP auditing.
+
+The shared fixture was extracted without changing the earlier SDK assertions or frozen results.
+This host check adds no retrieval/extraction quality, OAuth, live-source or full-project backup claim.

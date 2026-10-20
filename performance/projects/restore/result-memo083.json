@@ -1,0 +1,53 @@
+{
+  "purpose": "Independent installed Memo selected annotation CLI/stdio acceptance; not extraction quality or full backup",
+  "package": {
+    "name": "@wirecat/cli-memo",
+    "version": "0.83.0",
+    "source_commit": "5a2a5b2b594bbf9454ac27e1eb43721d036f8c9e",
+    "release_run": 39454675571,
+    "tarball_sha256": "8df6a8f5c2d290c32e88a21b65f92f30f4bfa29446f3f033164078912d728852",
+    "integrity": "sha512-zM3fE0+VvBxaNnJ0/P9bSrLCdbkMP6oMYYLDLkJ96231hITf2kJEfUvGJuqlK82yt83Un910MZTsvm1UIqv4mw==",
+    "registry_matches_validated": true,
+    "entry_sha256": "984b1191cef8c4c3e62f76bc7004d89d269254adbe9a6ba791afb1e10274d602"
+  },
+  "dependencies": {
+    "@wirecat/cli-core": {
+      "version": "0.374.0",
+      "integrity": "sha512-mwgahiGauzF44DPrbq5V2hF4st/BBNQ9IerqWC3qdryV639tS5GLBX/2D0Qed6G5Dyfi1JhCyrK865bD9MhnWQ=="
+    },
+    "@wirecat/cli-base": {
+      "version": "0.47.4",
+      "integrity": "sha512-fCXD9LpggfKVLGsfkMVFbTNp0IcwHwl+e9U1gq3ZOrT94fuSghxqGV9CxFPGLRF0IkMqbRFSMhd7nf8QIDzkMg=="
+    },
+    "@modelcontextprotocol/client": {
+      "version": "2.2.0",
+      "integrity": "sha512-LxCou/CSYQ6dwEnjhLZY0KnEuc8V4UJ3IEQCl/uR2yHobSQIEdJKUlKLRYRF5i5FqRGHy1eK7une3aAWDHLtig=="
+    }
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "lock_sha256": "80c2235f586be7fc45771d6200b05e6c787bea4d4c14f26c912724057ee34644",
+  "checks": {
+    "memo_version": "0.83.0",
+    "cli_export_check_restore": true,
+    "stdio_snapshot_preview": true,
+    "standard_envelopes": true,
+    "unknown_field_named": true,
+    "semantic_validation_preserved": true,
+    "no_restore_tool": true,
+    "agent_restore_refused": true,
+    "repeat_refused": true,
+    "proposed_state_preserved": true,
+    "unrelated_facts_preserved": true,
+    "implicit_store_created": false,
+    "owner_data_used": false
+  },
+  "reproduction": {
+    "frozen_manifest": true,
+    "npm_ci_scripts_disabled": true,
+    "checks_match": true
+  }
+}

@@ -10,6 +10,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- **`performance/projects/restore/check-memo.mjs`** exercises published Memo0.83 through real CLI
+  processes and stdio MCP, with an exact retained dependency lock. It checks private export, explicit
+  target preview, owner/agent restore policy and historical proposed state using invented stores.
+
 - **`performance/projects/restore/check.mjs`** verifies selected annotation reconstruction against
   published Core0.374 with independent IDs, stale-preview refusal and proposed state preserved.
   It records release provenance and does not reset a live project or claim full backup coverage.

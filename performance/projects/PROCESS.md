@@ -13,7 +13,8 @@ retained bytes; it does not run the applications or establish that a historical 
 ## Existing evidence and its limits
 
 The [published selected restore check](restore/README.md) uses independent synthetic stores and explicit
-bindings. It verifies a stale preview and repeat refusal, not a complete project backup or live reset.
+bindings. Its Memo CLI/stdio check retains the installed dependency lock and exercises caller policy.
+These verify selected restoration, not a complete project backup or live reset.
 
 The [published snapshot check](snapshot/README.md) exercises a selected annotation read with invented
 data. It is functional release acceptance, separate from retrieval and extraction scores. It does
