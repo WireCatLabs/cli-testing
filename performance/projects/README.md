@@ -1,5 +1,9 @@
 # Projects
 
+- [Installed observation](installed-observation/README.md): allowlisted totals from a private fixed-window
+  gathering rerun after the document pagination fix; finished pagination remains separate from archive
+  completeness, relevance and interpretation.
+
 - [Extraction contract](extraction-contract/README.md): fake-completion checks of released SDK schema,
   exact quotes and size bounds, including accepted contradictory claims and attribution risks.
 
