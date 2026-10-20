@@ -12,6 +12,10 @@ retained bytes; it does not run the applications or establish that a historical 
 
 ## Existing evidence and its limits
 
+The [installed post-fix observation](installed-observation/README.md) is a separate mutable-archive
+measurement. It publishes totals through an allowlisted projection; cases, source references and
+per-item rows remain private. Do not combine it with the frozen synthetic precision/recall scores.
+
 | Study | What is measured | Runtime provenance | What it does not establish |
 | --- | --- | --- | --- |
 | [Initial evidence](https://github.com/WireCatLabs/cli-testing/tree/2c821aac468c280a24e0d3a7e806e76a8adc67ca/performance/projects/evidence) | Primary-hit retrieval against 13 invented labels, scoped windows and continuation | Reported built Memo 0.72.0 source 65822ca, Core 0.345.0; no retained build hash/lock | Published-package identity, live-source recall or interpretation |
