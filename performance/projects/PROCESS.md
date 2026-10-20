@@ -127,6 +127,10 @@ The existing study READMEs own their exact installation commands and bounds:
    prefix. The public SDK seeds invented documents; actual CLI subprocesses run under the existing
    external-I/O guard. Keep the bound of one initial call and two resumes plus the separate tiny control.
    Record the result as a known-limitation reproduction, not a passing retrieval-quality measurement.
+5. [Evidence on large documents](evidence-large-document/README.md#setup): a separate test beside the frozen
+   historical evidence, which stays unchanged. The runner takes a built Memo checkout like the historical one,
+   but runs its CLI under the external-I/O guard and refuses unless every state folder is inside one fresh
+   `/var/tmp` directory. Labels are in its own `baseline.json`.
 
 For example, after creating the reviewed isolated package prefix as the Drive guide describes:
 
