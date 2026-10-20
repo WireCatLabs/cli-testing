@@ -1,5 +1,7 @@
 # Projects
 
+- [Detailed gathering audit](gathering-audit/README.md): command/read costs, exclusions, passage coverage, provisional judgment sample and an industry-grounded evaluation protocol.
+
 - [Published selected restore](restore/README.md): independent destination bindings, stale preview refusal,
   proposed-state preservation and repeat refusal against the released SDK and Memo CLI/stdio MCP.
 

@@ -1,5 +1,7 @@
 # How to reproduce and interpret project-context measurements
 
+The [detailed gathering audit](gathering-audit/README.md) separates measured commands/cost, source and passage coverage, provisional judgments and unknown accuracy. Its [method](gathering-audit/METHOD.md) defines the proposed multi-approach evaluation protocol.
+
 Use this process when comparing project gathering, cross-tool ingestion or retained annotations. The
 goal is to keep the request, fixture, labels, tool artifact and measured result together, so an
 improvement can be separated from a changed dataset or an incomplete source. These studies answer
