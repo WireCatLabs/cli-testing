@@ -70,3 +70,37 @@ imports, reading complete relevant passages, project attribution, contradictory 
 proposal review remain separate work. Agent reading/reasoning, manual tool calls, remote imports,
 model accuracy and token costs were not timed. The repeated phase returns evidence again; it does
 not establish an incremental AI-analysis cache.
+
+## Follow-up: import coverage and the newer runtime
+
+A native selected-folder import finished outside the timed phases, and selected missing messages
+were retrieved. A new observation reused the request on Memo 0.79.0/Core 0.367.0, then another used
+published Memo 0.81.0/Core 0.370.0. The archive and index remain mutable. The three phases in each
+observation returned the same direct reference and excerpt-hash sets.
+
+| State | Direct / combined refs | Calls per phase | Pagination | No-progress stop |
+| --- | ---: | ---: | --- | --- |
+| Earlier 0.79 observation above | 67 / 144 | 1 | Finished | No |
+| After source import, 0.79 | 92 / 92 | 3 | Incomplete | Yes |
+| After source import, 0.81 | 93 / 170 | 1 | Finished | No |
+
+The 0.79 follow-up adds 25 documents and retains all previous direct references, but one search
+unit remains partial with a validation error. Empty continuations stop after unchanged progress.
+An initial attempt failed before writing a completed measurement and is retained privately too.
+The 0.81 observation retains all 92 direct references and their excerpts, adding one document;
+no unit stalls. Source imports are separate from pagination, and a larger direct count alone does
+not establish better surrounding context or answer quality.
+
+The 0.81 phases took 1,020.28 / 1,063.35 / 1,131.05 ms, including their single CLI invocation.
+Those timings are observations, not a controlled version comparison or end-to-end workflow cost.
+The registry package matches its validated release artifact (SHA-256
+`e88a1b8290435b37e2175d5d1931980bf0d77dab26a2336dfa996cccbb08e8d1`), and packaged/installed
+CLI and stdio MCP smoke checks pass on invented data with temporary state. Initial registry tarball
+404s resolved before the registry bytes were compared. Runtime fingerprints match within each trial.
+
+[0.79 after import](post-import-079-totals.json) and [0.81 after import](post-import-081-totals.json)
+are produced by the unchanged aggregate projector above. Each includes its private measurement
+checksum, three phase totals and qualifications. Neither includes the project's name, query,
+source references, source text, per-question answers or labels. Original totals remain unchanged.
+Finished pagination still leaves remote completeness and semantic interpretation unknown; source
+review and proposed-finding decisions are separate from this measurement.
