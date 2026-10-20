@@ -10,6 +10,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- **`performance/projects/snapshot/check.mjs`** checks the public read-only snapshot SDK with invented
+  data, preserving proposed state and alias provenance while omitting source bodies. It does not reset
+  or restore a project.
+
 - **`performance/projects/large-document/result-read-once.json`**: the same run on Memo 0.80.0 / Core 0.369.0 charges
   95,260 bytes, the document once (476,300 on 0.79.0). `after-fix.mjs` now pins those versions.
 
