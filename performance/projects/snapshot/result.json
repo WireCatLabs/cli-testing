@@ -1,0 +1,30 @@
+{
+  "purpose": "Published selected-annotation snapshot acceptance, not a retrieval or restore score",
+  "package": {
+    "name": "@wirecat/cli-core",
+    "version": "0.373.0",
+    "source_commit": "73d84265481aa3662f91337986b8194ef883646b",
+    "release_run": 39432002556,
+    "tarball_sha256": "d7fcf5d3f355095e723bfd2d80cca0d3c6435a6d4ad6f69dfb0bd037cc07ada3",
+    "integrity": "sha512-+2Hn6NgUYqMaL0dnrlnTx6ACtKIMBRZ36MlSK0WvDtKQjp1/C1HidMPCoukN6+mPD4XqshiDel+0DtqpWKm0QQ==",
+    "registry_matches_validated": true,
+    "entry_sha256": "929011e1be283c8b15d7b1fc627fb0c33d809a76710517cc65eb300e438b2e61"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "checks": {
+    "public_sdk": true,
+    "snapshot_version": 2,
+    "stable_repeat": true,
+    "proposed_state_preserved": true,
+    "alias_provenance_preserved": true,
+    "external_bodies_omitted": true,
+    "unknown_field_refused": true,
+    "missing_store_not_created": true,
+    "implicit_store_created": false,
+    "owner_data_used": false
+  }
+}

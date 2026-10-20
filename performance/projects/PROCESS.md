@@ -12,6 +12,10 @@ retained bytes; it does not run the applications or establish that a historical 
 
 ## Existing evidence and its limits
 
+The [published snapshot check](snapshot/README.md) exercises a selected annotation read with invented
+data. It is functional release acceptance, separate from retrieval and extraction scores. It does
+not establish a complete project backup or a safe reset/restore path.
+
 The [installed post-fix observation](installed-observation/README.md) is a separate mutable-archive
 measurement. It publishes totals through an allowlisted projection; cases, source references and
 per-item rows remain private. Do not combine it with the frozen synthetic precision/recall scores.
