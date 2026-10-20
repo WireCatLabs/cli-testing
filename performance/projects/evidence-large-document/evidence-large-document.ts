@@ -97,6 +97,8 @@ type Item = {
   lanes: string[]
   text: string
   around?: { ref: string; text: string; found?: boolean }[] | null
+  moreMatches?: number
+  more_matches?: number
 }
 const marker = (text: string) => Number(/^p(\d{3})/.exec(text)?.[1] ?? Number.NaN)
 const summarise = (run: {
@@ -123,6 +125,9 @@ const summarise = (run: {
   )
   return {
     found,
+    more_matches: Object.fromEntries(
+      run.items.map((item) => [keyOf[item.ref], item.moreMatches ?? item.more_matches ?? null]),
+    ),
     lanes_per_document: Object.fromEntries(run.items.map((item) => [keyOf[item.ref], item.lanes])),
     around,
     oversized: run.oversized.map((one) => ({
