@@ -1,0 +1,405 @@
+{
+  "protocol": 1,
+  "baseline": {
+    "first_emission_contexts": {
+      "project": 80
+    },
+    "reconciled_contexts": {
+      "project": 80
+    },
+    "context_promotions_after_continuation": 0,
+    "private_input_sha256": "371455fc81a2e78cfa8d51d5d8a0e448283b585f0c902a6c882e8b11ab1fdd12",
+    "versions": {
+      "memo": "0.84.0",
+      "core": "0.377.0",
+      "base": "0.47.4",
+      "node": "v24.19.0"
+    },
+    "scope": "private-case identifiers and source bodies omitted",
+    "phases": [
+      {
+        "phase": "index_as_is",
+        "evidence_cli_calls": 2,
+        "wall_ms": 2220.24,
+        "per_call_wall_ms": [1586.51, 633.73],
+        "app_reported_service_ms": 1330,
+        "process_and_other_ms": 890.24,
+        "local_reader_calls": 88,
+        "charged_primary_bytes": 2944014,
+        "charged_around_bytes": 53672,
+        "cli_json_bytes": 179999,
+        "direct_refs": 80,
+        "around_refs": 64,
+        "around_only_refs": 0,
+        "combined_refs": 80,
+        "kinds": {
+          "document": 70,
+          "message": 10
+        },
+        "message_providers": {
+          "max": 7,
+          "telegram": 3
+        },
+        "truncated": 76,
+        "truncated_fraction": 0.95,
+        "around_issues": {
+          "read-bytes": 11
+        },
+        "around_issue_items": 11,
+        "oversized_refs": 4,
+        "oversized_also_returned": 0,
+        "oversized_not_returned": 4,
+        "unit_states": {
+          "done": 28
+        },
+        "resolved_sources": 14,
+        "unread_source_count": 1,
+        "pagination_finished": true,
+        "archive_completeness": "unknown",
+        "duplicate_direct_refs": 0,
+        "excerpt_hashes_unique": 79,
+        "reference_set_sha256": "a71b26d203c928cd1bc2c46c403b045243e650f5289a3dd0aef26df3e7533cf7",
+        "content_set_sha256": "626c23bdfc704e5c511271d84a5f27a0104ff169e870ee8a801b9ffdbe32bc83"
+      },
+      {
+        "phase": "default_first",
+        "evidence_cli_calls": 2,
+        "wall_ms": 2638.03,
+        "per_call_wall_ms": [1977.28, 660.75],
+        "app_reported_service_ms": 1788,
+        "process_and_other_ms": 850.03,
+        "local_reader_calls": 88,
+        "charged_primary_bytes": 2944014,
+        "charged_around_bytes": 53672,
+        "cli_json_bytes": 180003,
+        "direct_refs": 80,
+        "around_refs": 64,
+        "around_only_refs": 0,
+        "combined_refs": 80,
+        "kinds": {
+          "document": 70,
+          "message": 10
+        },
+        "message_providers": {
+          "max": 7,
+          "telegram": 3
+        },
+        "truncated": 76,
+        "truncated_fraction": 0.95,
+        "around_issues": {
+          "read-bytes": 11
+        },
+        "around_issue_items": 11,
+        "oversized_refs": 4,
+        "oversized_also_returned": 0,
+        "oversized_not_returned": 4,
+        "unit_states": {
+          "done": 28
+        },
+        "resolved_sources": 14,
+        "unread_source_count": 1,
+        "pagination_finished": true,
+        "archive_completeness": "unknown",
+        "duplicate_direct_refs": 0,
+        "excerpt_hashes_unique": 79,
+        "reference_set_sha256": "a71b26d203c928cd1bc2c46c403b045243e650f5289a3dd0aef26df3e7533cf7",
+        "content_set_sha256": "626c23bdfc704e5c511271d84a5f27a0104ff169e870ee8a801b9ffdbe32bc83"
+      },
+      {
+        "phase": "default_repeat",
+        "evidence_cli_calls": 2,
+        "wall_ms": 1791.54,
+        "per_call_wall_ms": [1097.23, 694.31],
+        "app_reported_service_ms": 940,
+        "process_and_other_ms": 851.54,
+        "local_reader_calls": 88,
+        "charged_primary_bytes": 2944014,
+        "charged_around_bytes": 53672,
+        "cli_json_bytes": 180001,
+        "direct_refs": 80,
+        "around_refs": 64,
+        "around_only_refs": 0,
+        "combined_refs": 80,
+        "kinds": {
+          "document": 70,
+          "message": 10
+        },
+        "message_providers": {
+          "max": 7,
+          "telegram": 3
+        },
+        "truncated": 76,
+        "truncated_fraction": 0.95,
+        "around_issues": {
+          "read-bytes": 11
+        },
+        "around_issue_items": 11,
+        "oversized_refs": 4,
+        "oversized_also_returned": 0,
+        "oversized_not_returned": 4,
+        "unit_states": {
+          "done": 28
+        },
+        "resolved_sources": 14,
+        "unread_source_count": 1,
+        "pagination_finished": true,
+        "archive_completeness": "unknown",
+        "duplicate_direct_refs": 0,
+        "excerpt_hashes_unique": 79,
+        "reference_set_sha256": "a71b26d203c928cd1bc2c46c403b045243e650f5289a3dd0aef26df3e7533cf7",
+        "content_set_sha256": "626c23bdfc704e5c511271d84a5f27a0104ff169e870ee8a801b9ffdbe32bc83"
+      }
+    ],
+    "evidence_cli_calls": 6,
+    "context_cli_calls": 2,
+    "measured_evidence_wall_ms": 6649.81,
+    "full_runner_elapsed_ms": 8310,
+    "cutoff_after_runner_start_ms": 106450,
+    "duplicate_fraction": 0,
+    "stable_reference_sets": true,
+    "stable_excerpt_sets": true,
+    "project_review_view_unchanged": true,
+    "lanes": [
+      {
+        "lane": "l1",
+        "kinds": ["project"],
+        "observed_refs": 80,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      },
+      {
+        "lane": "l2",
+        "kinds": ["key"],
+        "observed_refs": 1,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      }
+    ],
+    "provider_api_calls_measured": null,
+    "provider_fetch_commands_requested": 0,
+    "app_model_calls": 0,
+    "agent_tokens_measured": null
+  },
+  "expanded": {
+    "first_emission_contexts": {
+      "person-only": 1,
+      "project": 114
+    },
+    "reconciled_contexts": {
+      "project": 115
+    },
+    "context_promotions_after_continuation": 1,
+    "private_input_sha256": "d379ab3145b686ad999cfd8e8fdf4edcbcb9b81ce1a316061bbe7978bea44722",
+    "versions": {
+      "memo": "0.84.0",
+      "core": "0.377.0",
+      "base": "0.47.4",
+      "node": "v24.19.0"
+    },
+    "scope": "private-case identifiers and source bodies omitted",
+    "phases": [
+      {
+        "phase": "index_as_is",
+        "evidence_cli_calls": 4,
+        "wall_ms": 3623.69,
+        "per_call_wall_ms": [924.31, 1130.59, 970.84, 597.95],
+        "app_reported_service_ms": 1902,
+        "process_and_other_ms": 1721.69,
+        "local_reader_calls": 232,
+        "charged_primary_bytes": 5547144,
+        "charged_around_bytes": 65763,
+        "cli_json_bytes": 309645,
+        "direct_refs": 115,
+        "around_refs": 144,
+        "around_only_refs": 52,
+        "combined_refs": 167,
+        "kinds": {
+          "document": 100,
+          "message": 15
+        },
+        "message_providers": {
+          "max": 9,
+          "telegram": 6
+        },
+        "truncated": 107,
+        "truncated_fraction": 0.9304,
+        "around_issues": {
+          "read-bytes": 3
+        },
+        "around_issue_items": 3,
+        "oversized_refs": 6,
+        "oversized_also_returned": 0,
+        "oversized_not_returned": 6,
+        "unit_states": {
+          "done": 84
+        },
+        "resolved_sources": 14,
+        "unread_source_count": 1,
+        "pagination_finished": true,
+        "archive_completeness": "unknown",
+        "duplicate_direct_refs": 0,
+        "excerpt_hashes_unique": 113,
+        "reference_set_sha256": "f6a0ca2641c13250afd52f970b420d81a6e7d903354cbdb948c74eed5f899b61",
+        "content_set_sha256": "c7caf6fb1da69387fca7d063bf016464f12524c670d5bc616e6bdbbe06e67656"
+      },
+      {
+        "phase": "default_first",
+        "evidence_cli_calls": 4,
+        "wall_ms": 3539.47,
+        "per_call_wall_ms": [791.31, 1120.81, 999.87, 627.48],
+        "app_reported_service_ms": 1845,
+        "process_and_other_ms": 1694.47,
+        "local_reader_calls": 232,
+        "charged_primary_bytes": 5547144,
+        "charged_around_bytes": 65763,
+        "cli_json_bytes": 309653,
+        "direct_refs": 115,
+        "around_refs": 144,
+        "around_only_refs": 52,
+        "combined_refs": 167,
+        "kinds": {
+          "document": 100,
+          "message": 15
+        },
+        "message_providers": {
+          "max": 9,
+          "telegram": 6
+        },
+        "truncated": 107,
+        "truncated_fraction": 0.9304,
+        "around_issues": {
+          "read-bytes": 3
+        },
+        "around_issue_items": 3,
+        "oversized_refs": 6,
+        "oversized_also_returned": 0,
+        "oversized_not_returned": 6,
+        "unit_states": {
+          "done": 84
+        },
+        "resolved_sources": 14,
+        "unread_source_count": 1,
+        "pagination_finished": true,
+        "archive_completeness": "unknown",
+        "duplicate_direct_refs": 0,
+        "excerpt_hashes_unique": 113,
+        "reference_set_sha256": "f6a0ca2641c13250afd52f970b420d81a6e7d903354cbdb948c74eed5f899b61",
+        "content_set_sha256": "c7caf6fb1da69387fca7d063bf016464f12524c670d5bc616e6bdbbe06e67656"
+      },
+      {
+        "phase": "default_repeat",
+        "evidence_cli_calls": 4,
+        "wall_ms": 3635.13,
+        "per_call_wall_ms": [787.21, 1163.52, 1013.11, 671.29],
+        "app_reported_service_ms": 1879,
+        "process_and_other_ms": 1756.13,
+        "local_reader_calls": 232,
+        "charged_primary_bytes": 5547144,
+        "charged_around_bytes": 65763,
+        "cli_json_bytes": 309653,
+        "direct_refs": 115,
+        "around_refs": 144,
+        "around_only_refs": 52,
+        "combined_refs": 167,
+        "kinds": {
+          "document": 100,
+          "message": 15
+        },
+        "message_providers": {
+          "max": 9,
+          "telegram": 6
+        },
+        "truncated": 107,
+        "truncated_fraction": 0.9304,
+        "around_issues": {
+          "read-bytes": 3
+        },
+        "around_issue_items": 3,
+        "oversized_refs": 6,
+        "oversized_also_returned": 0,
+        "oversized_not_returned": 6,
+        "unit_states": {
+          "done": 84
+        },
+        "resolved_sources": 14,
+        "unread_source_count": 1,
+        "pagination_finished": true,
+        "archive_completeness": "unknown",
+        "duplicate_direct_refs": 0,
+        "excerpt_hashes_unique": 113,
+        "reference_set_sha256": "f6a0ca2641c13250afd52f970b420d81a6e7d903354cbdb948c74eed5f899b61",
+        "content_set_sha256": "c7caf6fb1da69387fca7d063bf016464f12524c670d5bc616e6bdbbe06e67656"
+      }
+    ],
+    "evidence_cli_calls": 12,
+    "context_cli_calls": 2,
+    "measured_evidence_wall_ms": 10798.29,
+    "full_runner_elapsed_ms": 11954,
+    "cutoff_after_runner_start_ms": 89125,
+    "duplicate_fraction": 0,
+    "stable_reference_sets": true,
+    "stable_excerpt_sets": true,
+    "project_review_view_unchanged": true,
+    "lanes": [
+      {
+        "lane": "l1",
+        "kinds": ["project"],
+        "observed_refs": 80,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      },
+      {
+        "lane": "l2",
+        "kinds": ["key"],
+        "observed_refs": 1,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      },
+      {
+        "lane": "l3",
+        "kinds": ["alias"],
+        "observed_refs": 13,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      },
+      {
+        "lane": "l4",
+        "kinds": ["alias"],
+        "observed_refs": 20,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      },
+      {
+        "lane": "l5",
+        "kinds": ["alias"],
+        "observed_refs": 60,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      },
+      {
+        "lane": "l6",
+        "kinds": ["person"],
+        "observed_refs": 4,
+        "qualification": "Returned and matched-again metadata, not a rerun without this lane"
+      }
+    ],
+    "provider_api_calls_measured": null,
+    "provider_fetch_commands_requested": 0,
+    "app_model_calls": 0,
+    "agent_tokens_measured": null
+  },
+  "comparison": {
+    "retained": 80,
+    "added": 35,
+    "lost": 0,
+    "jaccard": 0.6957,
+    "result_increase_fraction": 0.4375,
+    "common_changed_excerpt_hash": 30,
+    "common_changed_context_label": 1,
+    "qualification": "Request changed on a mutable archive; added results are not measured recall gain"
+  },
+  "unknown": [
+    "precision",
+    "recall",
+    "false_negative_rate",
+    "nDCG",
+    "independent_judge_agreement",
+    "model_tokens",
+    "provider_HTTP_counts",
+    "cold_cache_latency",
+    "human_review_time"
+  ]
+}

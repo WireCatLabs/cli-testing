@@ -155,3 +155,10 @@ The exact executed source is retained privately as `measure-pmed084.mjs`, matchi
 runner checksum. The public runner differs only in sorted import names for repository lint.
 An isolated occupied-output check refused with EEXIST before any Memo invocation; the existing
 aggregate projection sentinel checks pass unchanged.
+
+## Detailed audit correction
+
+The [audit](../gathering-audit/README.md) reports previously omitted oversized exclusions (four/six),
+measured command totals and a provisional review. Its lane reconciliation corrects the first-emission
+114 project/one person-only count above: the later matched-again metadata gives all115 project lanes.
+That is search provenance, not accepted membership. Original measurements remain unchanged.
