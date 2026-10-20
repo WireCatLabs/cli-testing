@@ -25,5 +25,8 @@
 
 - [evidence](evidence/README.md): what `memo projects evidence` finds and misses on a synthetic store against a
   frozen baseline — the project's names, extra words and people, the 60-day window, resume, unread sources.
+- [evidence-large-document](evidence-large-document/README.md): the same command on large imported documents —
+  paragraphs found, paragraphs shown around a hit, pages, charged bytes, `oversized` and resume. A separate test: the
+  frozen one above is unchanged.
 - [review](review/README.md): what reviewing an agent's proposals costs with and without context, and how a changed
   cited text and agent decisions are handled.
