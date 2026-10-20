@@ -8,6 +8,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+- Add an opt-in installed Memo 0.84.0 observation runner and aggregate second-project name/contact results.
+
 ### Added
 
 - **`performance/projects/restore/check-memo.mjs`** exercises published Memo0.83 through real CLI
