@@ -104,3 +104,54 @@ checksum, three phase totals and qualifications. Neither includes the project's 
 source references, source text, per-question answers or labels. Original totals remain unchanged.
 Finished pagination still leaves remote completeness and semantic interpretation unknown; source
 review and proposed-finding decisions are separate from this measurement.
+
+## Second project on Memo 0.84.0
+
+The owner asked whether gathering works beyond the first project. A second existing project has a
+confirmed key document and person relationship. Its key document supplies alternative names and a
+warning that some matching documents were copied into another project. The test asks what ordinary
+name/key gathering finds, and how explicit name/contact hints change its candidate set.
+
+Linux x64, Node 24.19.0, installed registry Memo 0.84.0/Core 0.377.0/Base 0.47.4;
+[release run](https://github.com/WireCatLabs/cli-memo/actions/runs/39485604512) succeeded.
+A fixed exclusive cutoff and 60-day window are reused throughout. Each invocation allows 100 items
+and 96 reader pages; each phase permits at most four invocations. The expanded request adds three
+alternative names and one existing person reference without saving aliases or relationships.
+
+| Request | Direct refs | Messages / documents | Calls per phase | Phase wall times, ms | Pagination |
+| --- | ---: | ---: | ---: | --- | --- |
+| Existing name/key | 80 | 10 / 70 | 2 | 2,220.24 / 2,638.03 / 1,791.54 | Finished |
+| Added names/contact | 115 | 15 / 100 | 4 | 3,623.69 / 3,539.47 / 3,635.13 | Finished |
+
+All 80 original references remain; 35 are added. The expanded set labels 114 as project candidates
+and one as person-only. These labels explain matching lanes, not verified membership. Within each
+request, all three phases return identical direct reference/excerpt-hash sets and zero duplicates.
+The bounded project-review view is unchanged. Expanded-run before/after runtime fingerprints match;
+the baseline was not bracketed by a software fingerprint. No claim of whole-store immutability follows.
+
+Finished pagination is not finished reading: 76 baseline and 107 expanded excerpts are truncated.
+Eleven baseline and three expanded hits report surrounding-context issues. Internal notes are
+reported unread. No meetings matched; this does not establish complete meeting coverage.
+A bounded qualitative read found a document explicitly warning that its files describe another
+project: name matching usefully retrieves a warning but cannot decide the document's project membership.
+No semantic accuracy, blind recall, token savings, current business state or controlled speedup is measured.
+
+Re-run the exact retained private cases only against the installed released binary, using a new
+private result path. This intentionally reads the selected real archive; synthetic checks keep temporary
+HOME/store/state instead. The script requires explicit opt-in, pins package versions, refuses an existing
+output before any archive read, retains references/hashes/coverage, and never writes source bodies:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=/path/to/selected/home TMPDIR=$T node performance/projects/installed-observation/measure-local084.mjs --live-local /PRIVATE/case.json /PRIVATE/new-result.json /ABSOLUTE/installed/memo
+```
+
+Project public totals with the unchanged projector above. Cases, runtime fingerprints, source references,
+manual reading notes and results are private in `2026-10-20-second-project-gathering.md`.
+[Baseline totals](second-project084-base-totals.json) and
+[expanded totals](second-project084-expanded-totals.json) contain aggregate counts and input checksums only.
+The earlier measurements, cases and frozen synthetic benchmarks remain unchanged.
+
+The exact executed source is retained privately as `measure-pmed084.mjs`, matching each recorded
+runner checksum. The public runner differs only in sorted import names for repository lint.
+An isolated occupied-output check refused with EEXIST before any Memo invocation; the existing
+aggregate projection sentinel checks pass unchanged.

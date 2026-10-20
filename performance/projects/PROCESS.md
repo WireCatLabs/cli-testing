@@ -21,7 +21,7 @@ data. It is functional release acceptance, separate from retrieval and extractio
 not establish a complete project backup or a safe reset/restore path.
 
 The [installed post-fix observation](installed-observation/README.md) is a separate mutable-archive
-measurement. It publishes totals through an allowlisted projection; cases, source references and
+measurement, including a second project on Memo 0.84.0 with explicit name/contact hints. It publishes totals through an allowlisted projection; cases, source references and
 per-item rows remain private. Do not combine it with the frozen synthetic precision/recall scores.
 
 | Study | What is measured | Runtime provenance | What it does not establish |

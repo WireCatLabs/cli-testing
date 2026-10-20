@@ -6,7 +6,7 @@
 - [Published snapshots](snapshot/README.md): invented-data checks of the released read-only annotation SDK; selected scope, source-body omission and proposed-state preservation.
 
 - [Installed observation](installed-observation/README.md): allowlisted totals from a private fixed-window
-  gathering rerun after the document pagination fix; finished pagination remains separate from archive
+  gathering rerun after the document pagination fix and a second-project name/contact trial; finished pagination remains separate from archive
   completeness, relevance and interpretation.
 
 - [Extraction contract](extraction-contract/README.md): fake-completion checks of released SDK schema,

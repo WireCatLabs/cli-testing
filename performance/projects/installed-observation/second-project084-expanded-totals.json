@@ -1,0 +1,78 @@
+{
+  "memo": "0.84.0",
+  "core": "0.377.0",
+  "base": "0.47.4",
+  "node": "v24.19.0",
+  "private_measurement_sha256": "d379ab3145b686ad999cfd8e8fdf4edcbcb9b81ce1a316061bbe7978bea44722",
+  "phases": [
+    {
+      "phase": "index_as_stored",
+      "invocations": 4,
+      "wall_ms": 3623.69,
+      "direct_references": 115,
+      "surrounding_references": 144,
+      "combined_references": 167,
+      "direct_by_kind": {
+        "message": 15,
+        "document": 100,
+        "meeting": 0
+      },
+      "direct_excerpt_bytes": 51328,
+      "distinct_surrounding_excerpt_bytes": 65261,
+      "distinct_surrounding_excerpts": 360,
+      "charged_read_budget_bytes": 5547144,
+      "charged_surrounding_budget_bytes": 65763,
+      "pagination_finished": true,
+      "no_progress_stop": false,
+      "oversized_references": 6,
+      "resolved_sources": 14
+    },
+    {
+      "phase": "default_catch_up",
+      "invocations": 4,
+      "wall_ms": 3539.47,
+      "direct_references": 115,
+      "surrounding_references": 144,
+      "combined_references": 167,
+      "direct_by_kind": {
+        "message": 15,
+        "document": 100,
+        "meeting": 0
+      },
+      "direct_excerpt_bytes": 51328,
+      "distinct_surrounding_excerpt_bytes": 65261,
+      "distinct_surrounding_excerpts": 360,
+      "charged_read_budget_bytes": 5547144,
+      "charged_surrounding_budget_bytes": 65763,
+      "pagination_finished": true,
+      "no_progress_stop": false,
+      "oversized_references": 6,
+      "resolved_sources": 14
+    },
+    {
+      "phase": "default_repeat",
+      "invocations": 4,
+      "wall_ms": 3635.13,
+      "direct_references": 115,
+      "surrounding_references": 144,
+      "combined_references": 167,
+      "direct_by_kind": {
+        "message": 15,
+        "document": 100,
+        "meeting": 0
+      },
+      "direct_excerpt_bytes": 51328,
+      "distinct_surrounding_excerpt_bytes": 65261,
+      "distinct_surrounding_excerpts": 360,
+      "charged_read_budget_bytes": 5547144,
+      "charged_surrounding_budget_bytes": 65763,
+      "pagination_finished": true,
+      "no_progress_stop": false,
+      "oversized_references": 6,
+      "resolved_sources": 14
+    }
+  ],
+  "app_model_calls": 0,
+  "model_tokens": null,
+  "qualified_as": "Mutable local archive observation; not complete remote coverage, semantic recall, model quality, agent time, actual I/O or cold-cache speedup."
+}
