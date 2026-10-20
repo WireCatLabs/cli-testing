@@ -186,3 +186,17 @@ same retained private first-project v6 result for both input arguments and selec
 object. No cross-request comparison is inferred. This makes existing exclusions/passage metrics
 visible without relabeling the old run as a current-version result. The 42-command total above concerns
 the second-project workflow and follow-ups, not every historical source import or test in this session.
+
+To recreate the isolated released installation from the retained private manifest/lock, copy them to
+new paths named `package.json` and `package-lock.json`, then run:
+
+```sh
+task_lab=$(mktemp -d -p /var/tmp memo084-lab-XXXXXX)
+cp /PRIVATE/manifest.json "$task_lab/package.json"
+cp /PRIVATE/lock.json "$task_lab/package-lock.json"
+T=$(mktemp -d -p /var/tmp) && HOME=$T XDG_CONFIG_HOME=$T/c XDG_CACHE_HOME=$T/k MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/s NPM_CONFIG_USERCONFIG=/dev/null npm ci --prefix "$task_lab" --ignore-scripts --no-audit --no-fund
+```
+
+Use `$task_lab/node_modules/.bin/memo` as the explicit binary path in the live runner. The install
+itself has temporary state and opens no owner archive. The subsequent live command intentionally uses
+selected real HOME. Prefer `npm ci` to resolving the dependency graph again with `npm install`.
