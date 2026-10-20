@@ -1,0 +1,100 @@
+{
+  "classification": "large-document-read-after-fix",
+  "node": "v24.19.0",
+  "artifacts": {
+    "cli-memo": {
+      "version": "0.79.0",
+      "integrity": "sha512-vsZq+ehtOMtTDgYIdVHJD7yEqfrSDs010PVIJdXBNuFUj6I45CKlUX5UJXRR+DQyeLAsWL195M2czkajfy1//Q=="
+    },
+    "cli-core": {
+      "version": "0.367.0",
+      "integrity": "sha512-H/hbbU0YIj4jLTBPeVBozhj+9cQTalAhoGsdXfRaFsjhYGRJUM3eXFzSqVqB/mqofSCgN/vSpGJEKQgMujyORA=="
+    },
+    "cli-base": {
+      "version": "0.47.1",
+      "integrity": "sha512-v6hQV0tKr9FkJenqALpMG9b06H8ZZdDCxZPhpBLAZgr/kKyy1beJBQSCQ4V3jRhRAeM0RQFv1jUlytY/BM0qeA=="
+    }
+  },
+  "source_bytes": 95200,
+  "page_budget_bytes": 65536,
+  "control": {
+    "items": 1,
+    "usage": {
+      "reads": 2,
+      "read_bytes": 184,
+      "around_bytes": 0,
+      "items": 1,
+      "elapsed_ms": 14
+    }
+  },
+  "attempts": [
+    {
+      "invocation": 1,
+      "items": 1,
+      "lanes_matching_the_document": 5,
+      "matched_again": 0,
+      "returned_excerpt_bytes": 303,
+      "around_entries": 0,
+      "output_bytes": 3271,
+      "usage": {
+        "reads": 10,
+        "read_bytes": 476300,
+        "around_bytes": 0,
+        "items": 1,
+        "elapsed_ms": 14
+      },
+      "units": [
+        {
+          "lane": "l1",
+          "source": 0,
+          "after": 1787305314979,
+          "before": 1792489314979,
+          "state": "done",
+          "pages": 1,
+          "issue": null
+        },
+        {
+          "lane": "l2",
+          "source": 0,
+          "after": 1787305314979,
+          "before": 1792489314979,
+          "state": "done",
+          "pages": 1,
+          "issue": null
+        },
+        {
+          "lane": "l3",
+          "source": 0,
+          "after": 1787305314979,
+          "before": 1792489314979,
+          "state": "done",
+          "pages": 1,
+          "issue": null
+        },
+        {
+          "lane": "l4",
+          "source": 0,
+          "after": 1787305314979,
+          "before": 1792489314979,
+          "state": "done",
+          "pages": 1,
+          "issue": null
+        },
+        {
+          "lane": "l5",
+          "source": 0,
+          "after": 1787305314979,
+          "before": 1792489314979,
+          "state": "done",
+          "pages": 1,
+          "issue": null
+        }
+      ],
+      "checkpoint_present": false,
+      "complete": true,
+      "stopped": null,
+      "oversized": 0
+    }
+  ],
+  "limits": "Same synthetic fixture as run.mjs, one CLI invocation on the fixed release; no owner data, remote calls, timing benchmark, memory measurement or claim about documents above 256 KiB (listed under oversized, covered by Core tests)."
+}
