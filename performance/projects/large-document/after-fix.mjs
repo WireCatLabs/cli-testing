@@ -31,8 +31,8 @@ const artifact = (name, expected) => {
   return { version }
 }
 const artifacts = {
-  "cli-memo": artifact("cli-memo", "0.79.0"),
-  "cli-core": artifact("cli-core", "0.367.0"),
+  "cli-memo": artifact("cli-memo", "0.80.0"),
+  "cli-core": artifact("cli-core", "0.369.0"),
   "cli-base": artifact("cli-base", "0.47.1"),
 }
 const sourceText = "Copper Chronicle CCL Orchard review Planning digest Budget context. ".repeat(1400)
