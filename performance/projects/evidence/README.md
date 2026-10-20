@@ -111,3 +111,33 @@ The numbered points are from the first run; the section above says which of them
 - Speed at scale: the store has 13 texts. Reads and bytes are counted; time is not.
 - Any real project or account: no owner data was used.
 - Interpretation: whether a found text supports a fact, a task or a decision. That is the next stage.
+
+## 2026-10-20 rerun
+
+Same machine (AMD Ryzen AI 9 HX 470, Linux 7.0.0-38), Node v24.19.0, same fixture, labels and script. memo 0.82.0
+built from `main` at `a461598` (a detached checkout, `pnpm build`), with `@wirecat/cli-core` 0.371.0. The store is in a
+fresh temporary folder. The run exited 0; its output is [`result-2026-10-20.json`](result-2026-10-20.json).
+
+| Run | Found | Precision | Precision, project items | Recall, all relevant | Recall, reachable | Missed |
+|---|---:|---:|---:|---:|---:|---|
+| Fresh store, `--no-catch-up`, 60 days | 6 | 0.67 | 0.75 | 0.50 | 0.67 | reply, mail, document, own note |
+| Default, 60 days | 9 | 0.67 | 0.71 | 0.75 | 1.00 | reply, own note |
+| Default, 365 days | 10 | 0.70 | 0.75 | 0.78 | 1.00 | reply, own note |
+
+- The default 60-day run took 15 reads (5 searches × 3 sources), 720 bytes of text plus 493 bytes of context. The
+  index step reported `index: updated` (4 mail and 3 document rows).
+- With `--max-pages 2` the run continued 7 times with `--cursor` and returned the same 9 references, with no
+  duplicates.
+- `--source all` read 3 sources and listed the own notes as unread.
+
+What changed since "After the fixes": Core 0.349.0 to 0.371.0 and memo 0.72/0.328 to 0.82.0, which bring paging of
+large documents and document paragraphs in `around`. Nothing moved: every number in the table, the reads, the bytes
+and the references found are the same as before, and the two missed texts are the same.
+
+That is expected, not evidence the new code works. The two imported documents in the fixture are a few lines long, so
+they fit in one page and paging never starts. The context of a message hit holds messages, and no document hit has
+paragraphs worth showing. The rerun shows only that the changes did not break or shift the small case.
+
+Not measured in this rerun: a large document (paging), the paragraphs around a document hit, time or speed, any
+real project, and whether the context is enough to read a hit. The fixture and labels were not changed to cover them;
+a case for them would need a new labelled fixture, kept apart from the frozen baseline.
