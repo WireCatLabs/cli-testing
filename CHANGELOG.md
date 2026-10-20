@@ -10,6 +10,9 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- **`performance/projects/large-document/after-fix.mjs`** reruns the stalled large-document reproduction on Memo 0.79.0 and Core
+  0.367.0 and asserts progress: the 95,200-byte document is found in one invocation and the run completes. The
+  result also shows each matching lane reading the whole document again (476,300 charged bytes).
 - A synthetic extraction-contract study records released SDK quote/schema limits and accepted semantic
   contradictions using fake completions, without treating structural validation as model quality.
 

@@ -1,4 +1,4 @@
-# Large project documents: stalled resume reproduction
+# Large project documents: stalled resume reproduction and fix
 
 ## Why we ran it
 
@@ -58,3 +58,38 @@ evidence, an explicit bounded alternative, or a terminal actionable condition. T
 no fix and does not alter orchestration, byte budgets, indexing policy or proposal semantics. A page with
 many smaller matching records may behave differently; this fixture isolates one oversized matching document.
 It does not claim complete project coverage, full history, semantic extraction or successful recovery.
+
+## After the fix (2026-10-20)
+
+**Why:** the reproduction above was handed to the evidence-command owner as BUG-328. Core 0.367.0
+([cli-core#1668](https://github.com/WireCatLabs/cli-core/pull/1668)) changed the reader: a page holds the records that
+fit together, a record larger than the page is read alone up to 256 KiB, and one larger still is listed under
+`oversized` and skipped. The question: does the released Memo now read this same document and finish?
+
+**Setup:** Node 24.19.0, exact registry Memo 0.79.0, Core 0.367.0 and Base 0.47.1, the same seeding, guard and
+invented document as `run.mjs`. [`after-fix.mjs`](after-fix.mjs) asserts progress instead of the stall:
+
+```sh
+S=$(mktemp -d -p /var/tmp large-doc-sdk-XXXXXX) && HOME=$S XDG_CONFIG_HOME=$S/config XDG_DATA_HOME=$S/data XDG_CACHE_HOME=$S/cache MESSAGING_STORE=$S/store WIRECAT_STATE_DIR=$S/state TMPDIR=$S NPM_CONFIG_USERCONFIG=/dev/null npm install --prefix "$S/prefix" --ignore-scripts --no-audit --no-fund --save-exact @wirecat/cli-memo@0.79.0 @wirecat/cli-core@0.367.0 @wirecat/cli-base@0.47.1
+T=$(mktemp -d -p /var/tmp large-doc-run-XXXXXX) && HOME=$T XDG_CONFIG_HOME=$T/config XDG_DATA_HOME=$T/data XDG_CACHE_HOME=$T/cache MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state TMPDIR=$T node performance/projects/large-document/after-fix.mjs "$S/prefix" "$T/result.json"
+```
+
+**Results** ([`result-after-fix.json`](result-after-fix.json)):
+
+| | Memo 0.76.0 (three invocations) | Memo 0.79.0 (one invocation) |
+| --- | --- | --- |
+| References found | 0 | 1 (the large document, matched by all five lanes) |
+| Units | five `read-limited`, 0 pages | five `done`, 1 page each |
+| Checkpoint / `complete` | present / false | none / true |
+| Charged bytes | 983,040 | 476,300 |
+| Reads | — | 10 |
+
+The small control still returns one reference for 184 bytes.
+
+**What it showed:** the stall is gone; the run ends in one invocation without a resume. It also showed waste:
+every lane reads the whole document again (two reads per lane: the refused page, then the record alone), and only
+then drops it as already found. 476,300 bytes is five times the document. Skipping the read of a record the run
+already holds would charge it once.
+
+**Not measured:** timing, memory, a document above 256 KiB through the CLI (covered by Core tests), many
+medium documents on one page, or owner data.

@@ -4,7 +4,8 @@
   exact quotes and size bounds, including accepted contradictory claims and attribution risks.
 
 - [Large documents](large-document/README.md): published Memo reproduction of stalled document lanes and
-  repeated budget charges across two resumes, with a working small-document control.
+  repeated budget charges across two resumes, with a working small-document control; after the fix (Memo 0.79.0)
+  the same document is found in one invocation, at five times its size in charged bytes.
 
 - [Process and metric definitions](PROCESS.md), [provenance ledger](provenance.json) and
   [offline verification](verify-provenance.mjs): immutable artifact references, hashes, release provenance
