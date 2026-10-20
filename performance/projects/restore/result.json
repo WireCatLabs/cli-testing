@@ -1,0 +1,38 @@
+{
+  "purpose": "Published selected-annotation restore acceptance, not a retrieval or extraction score",
+  "package": {
+    "name": "@wirecat/cli-core",
+    "version": "0.374.0",
+    "source_commit": "48c2ea40d3923908be9804ed1ca04b902ed699e1",
+    "release_run": 39440238477,
+    "tarball_sha256": "3cb5bb585803c28420f9a31588fdc4dfd7bf96c6a70d5363531fa815d241be79",
+    "integrity": "sha512-mwgahiGauzF44DPrbq5V2hF4st/BBNQ9IerqWC3qdryV639tS5GLBX/2D0Qed6G5Dyfi1JhCyrK865bD9MhnWQ==",
+    "registry_matches_validated": true,
+    "entry_sha256": "897f6881365236ebcf085f67ae86d11b74a0dad18e60db4cdc9c75572bbd6834"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "checks": {
+    "public_sdk": true,
+    "snapshot_version": 2,
+    "independent_ids": true,
+    "source_unchanged": true,
+    "preview_target_unchanged": true,
+    "stale_preview_refused": true,
+    "proposed_state_preserved": true,
+    "author_binding_preserved": true,
+    "unrelated_facts_preserved": true,
+    "repeat_refused_without_duplicates": true,
+    "external_bodies_omitted": true,
+    "implicit_store_created": false,
+    "owner_data_used": false,
+    "restored_counts": {
+      "aliases": 1,
+      "facts": 1,
+      "links": 1
+    }
+  }
+}

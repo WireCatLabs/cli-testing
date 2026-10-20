@@ -1,5 +1,8 @@
 # Projects
 
+- [Published selected restore](restore/README.md): independent destination bindings, stale preview refusal,
+  proposed-state preservation and repeat refusal against the released SDK.
+
 - [Published snapshots](snapshot/README.md): invented-data checks of the released read-only annotation SDK; selected scope, source-body omission and proposed-state preservation.
 
 - [Installed observation](installed-observation/README.md): allowlisted totals from a private fixed-window

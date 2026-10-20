@@ -12,6 +12,9 @@ retained bytes; it does not run the applications or establish that a historical 
 
 ## Existing evidence and its limits
 
+The [published selected restore check](restore/README.md) uses independent synthetic stores and explicit
+bindings. It verifies a stale preview and repeat refusal, not a complete project backup or live reset.
+
 The [published snapshot check](snapshot/README.md) exercises a selected annotation read with invented
 data. It is functional release acceptance, separate from retrieval and extraction scores. It does
 not establish a complete project backup or a safe reset/restore path.

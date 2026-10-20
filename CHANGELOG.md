@@ -10,6 +10,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- **`performance/projects/restore/check.mjs`** verifies selected annotation reconstruction against
+  published Core0.374 with independent IDs, stale-preview refusal and proposed state preserved.
+  It records release provenance and does not reset a live project or claim full backup coverage.
+
 - **`performance/projects/snapshot/check.mjs`** checks the public read-only snapshot SDK with invented
   data, preserving proposed state and alias provenance while omitting source bodies. It does not reset
   or restore a project.
