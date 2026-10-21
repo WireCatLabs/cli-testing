@@ -153,3 +153,5 @@ provenance, actual binary/build hashes, commands, counts, coverage and failures 
 build as a new run. Do not overwrite frozen evidence or infer relationships from names to improve a score.
 Public records use invented data or aggregates only; owner requests, source bodies, entity references,
 per-item relevance labels and blog planning stay in the private delivery trail.
+
+[Question-level semantic pilot](gathering-audit/QUESTION-PILOT.md): lexical discovery versus actual local E5, support/ranking scores and source/index gaps.

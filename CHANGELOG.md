@@ -8,6 +8,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+- Add a question-level lexical/discovery/E5 comparison with support metrics and explicit source/index coverage.
+
 - Add detailed gathering cost/coverage analysis, metadata-only sample review tools and an evaluation protocol.
 
 - Add an opt-in installed Memo 0.84.0 observation runner and aggregate second-project name/contact results.

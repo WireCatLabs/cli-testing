@@ -200,3 +200,5 @@ T=$(mktemp -d -p /var/tmp) && HOME=$T XDG_CONFIG_HOME=$T/c XDG_CACHE_HOME=$T/k M
 Use `$task_lab/node_modules/.bin/memo` as the explicit binary path in the live runner. The install
 itself has temporary state and opens no owner archive. The subsequent live command intentionally uses
 selected real HOME. Prefer `npm ci` to resolving the dependency graph again with `npm install`.
+
+[Question-level semantic pilot](QUESTION-PILOT.md): lexical discovery versus actual local E5, support/ranking scores and source/index gaps.
