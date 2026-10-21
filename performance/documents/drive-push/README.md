@@ -170,3 +170,41 @@ the API. Output: [tick-results-2026-10-21.jsonl](tick-results-2026-10-21.jsonl).
 - **Writing a tick works only through Drive's Markdown import**, which creates or replaces a whole document. No
   Docs API request and no Apps Script method sets a tick on an existing Doc.
 - Strikethrough is a rendering of a tick, not the tick itself.
+
+## Acceptance of `drive mirrors sync` (2026-10-22)
+
+### Why
+
+The checks above shaped `drive <profile> mirrors`: Docs written by drive's own writer with native formatting and
+edited block by block, Sheets updated only in the mirrored range, a Google edit stopping the file. This run checks
+the built command against real Google before release.
+
+### Setup
+
+drive-cli branch `feat/mirrors-push` built against the packed cli-core branch `feat/documents-push` (the push
+engine). The owner's profile with the write grant; its `config.json` backed up and restored byte for byte; a new
+marked synthetic folder, trashed at the end. [mirror-acceptance.mjs](mirror-acceptance.mjs) runs the real CLI
+(`mirrors add`, `mirrors sync`) and reads results with the Docs, Drive and Sheets APIs. Output, ids removed:
+[mirror-results-2026-10-22.jsonl](mirror-results-2026-10-22.jsonl) (run 4; runs 1–3 found the writer bugs below).
+
+### Results
+
+| Step | Result |
+|---|---|
+| First sync of a Markdown file (headings, marks, nested bullets, numbered, checklist, code, quote, table, rule) and a CSV | Doc and Sheet created |
+| Doc read back as blocks vs the Markdown's blocks | all 14 equal |
+| Sync with nothing changed | nothing written (`unchanged: 2`) |
+| One local line changed | Doc updated; blocks equal the new file |
+| Item struck in Google (how drive marks a tick), then two local edits and syncs | no conflict; item still checked after both |
+| Text inserted in Google, then a local edit | conflict reported; the Google text kept |
+| Tab added and a cell written beside the range in Google, then a shorter CSV | range rewritten, stale row cleared, the tab and the cell kept |
+
+Runs 1–3 found three writer bugs, fixed before run 4: text inserted before a list paragraph joined that list (so
+every list became one bulleted list and nesting tabs stayed in the text); the empty paragraph Docs puts before an
+inserted table took the next paragraph's border (an extra rule); a bold table header never compared equal to
+Markdown. Each is a request-order detail that the unit tests' fake could not show.
+
+### Not measured
+
+- Ticks clicked in the editor (the API cannot click; strike stands in), comments anchored to edited paragraphs,
+  numbering continuity when an item is inserted into an existing list, Shared Drives, large Docs.
