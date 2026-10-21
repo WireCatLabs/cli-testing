@@ -50,6 +50,26 @@ query stem with the beginning of each stored word first, and stemming only the n
 above. The first version also allowed two edits on a stem of seven letters or more; on the synthetic text
 «проверка» then widened to «провела» and similar words in 677 cues, so the rule became one edit.
 
+## The owner's store: noise, and a dictionary as the filter
+
+The synthetic text cannot say how many widened hits are wrong, so the rules ran on a read-only backup copy of the
+owner's store (`sqlite3 .backup`; the real file was only read). Totals only; the queries and words are private.
+
+- 119 meetings, 72,225 different words. 130 queries: 10 from the task, the 40 most frequent words of five
+  letters or more, and 80 picked evenly from the rest.
+- First rules (one stem edit, a stem one side extends, ztx's "a stored word that begins the query word"):
+  10,271 widened word matches. 84 % were words found in more than 10 passages, that is real other words one
+  stem edit away; 15 % came from the ztx rule. Real garbled spellings were found in one to three passages each.
+- Filter: widen a stem edit only to a word the Hunspell Russian dictionary (`dictionary-ru` 3.0.0) does not know;
+  drop the ztx rule. 1,157 widened word matches (−89 %), every target spelling of the task still found.
+  Median 110 ms a query, 95th percentile 165 ms.
+- Loading the dictionary through nspell takes 1.4 s and 172 MB, because it expands 146,269 entries into 1.44
+  million forms. Checking a word as Hunspell does, an ending at a time, loads in 141–176 ms and agreed with nspell
+  on all 64,858 Cyrillic words of the store; the 676 words it knows and nspell does not are names and
+  abbreviations the dictionary writes in capitals.
+- A dictionary does not separate «устав» from «устал»: Snowball, Hunspell, pymorphy3 and Az.js all read «устав»
+  also as a form of «устать». Ranking the typed form first does.
+
 ## What it showed
 
 - Reading the word list at query time costs about 0.15 s a query at this size, and needs no migration, no
@@ -60,6 +80,5 @@ above. The first version also allowed two edits on a stem of seven letters or mo
 
 ## What was not measured
 
-- The owner's store. The synthetic syllable text has more near neighbours than Russian speech, so the widened
-  counts above say little about noise in real transcripts; that check is the acceptance run on the owner's store.
+- Whether each of the 1,157 remaining widened matches is right: no passage was labelled by hand.
 - Memory use, and stores above 120 meetings.
