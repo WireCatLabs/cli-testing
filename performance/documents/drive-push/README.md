@@ -63,9 +63,11 @@ an `https` image is embedded.
 - Re-pushing into the same Doc or Sheet works with a plain media update; the URL and comments survive.
 - **`version` and `modifiedTime` cannot detect edits to a Doc.** They move on comments and sharing (false
   conflicts), and did not move on a Docs API text edit (a missed conflict). The last revision id and the export
-  hash moved only on content changes. A push should compare the last revision id, or the export hash.
-- **Re-pushing a CSV wipes a Sheet's other tabs and formatting.** A Sheet that people work in should not be a
-  CSV push target; the push should warn, or refuse when the Sheet has more than one tab.
+  hash moved only on content changes.
+- **Re-pushing a CSV wipes a Sheet's other tabs and formatting.**
+- Both results led drive-cli away from re-uploading: updates go through the Docs and Sheets editing APIs, and a
+  change in Google is detected by comparing the document's content with what the last push wrote (see the
+  formatting check below), not by Drive metadata.
 - Local images in Markdown need uploading separately, or a warning.
 
 ## Not measured
@@ -75,3 +77,59 @@ an `https` image is embedded.
 - Comments anchored to text: an API comment is unanchored, so whether anchors survive a re-push is unknown.
 - Suggestions, multi-tab Docs, large files, Shared Drives, and how `revisions.list` pages on long histories.
 - The resumable upload path (this used the client library's simple upload).
+
+## Formatting check (2026-10-21)
+
+### Why
+
+Updating by re-upload breaks Docs and Sheets, so drive-cli writes Docs through its own Markdown → Docs API
+writer, with Google's native formatting (real lists, checklists, headings, tables). That works only if every kind
+of formatting reads back from Google exactly as written; otherwise an unchanged paragraph looks changed on every
+push.
+
+### Setup
+
+Same machine, account and terms as above. A new marked synthetic folder and Doc; the owner then ticked one
+checkbox, commented on one phrase and made one suggestion by hand, because the API cannot do these. Scripts:
+[format-spike.mjs](format-spike.mjs) (write, read back), [format-reread.mjs](format-reread.mjs) (read only),
+[format-edit.mjs](format-edit.mjs) (one edit elsewhere, comments read). Raw output, ids removed:
+[format-results-2026-10-21.jsonl](format-results-2026-10-21.jsonl).
+
+### Results
+
+| Written through `batchUpdate` | Read back by `documents.get` |
+|---|---|
+| `HEADING_1`, `HEADING_2` | same `namedStyleType` |
+| bold, italic, strikethrough, link | same text style on the exact runs |
+| inline code: Roboto Mono | same font on the run |
+| bullets `BULLET_DISC_CIRCLE_SQUARE`, nesting by a leading tab | one list id, nesting 0/1/0, tabs removed |
+| numbered `NUMBERED_DECIMAL_ALPHA_ROMAN` | list with `DECIMAL` glyphs |
+| checklist `BULLET_CHECKBOX` | list with `GLYPH_TYPE_UNSPECIFIED` and no glyph symbol |
+| code block: shading + Roboto Mono | shading and font present |
+| quote: `indentStart` + left border | both present |
+| rule: empty paragraph with a bottom border | border present |
+| 2×2 table, cells filled in reverse order | table with the cell text |
+| `insertInlineImage` from an `https` URL | inline object |
+
+- 15 requests in one `batchUpdate` succeeded.
+- `writeControl.requiredRevisionId` with a stale id: refused, HTTP 400 "does not match the latest revision".
+- A paragraph inserted into the middle of a numbered list stays in the same list.
+- Creating bullets removes the leading tabs, so indices after the list shift: an insert computed before that
+  landed one character early.
+- **A ticked checkbox is not visible in the API.** The ticked and unticked items return identical paragraph JSON
+  (style, bullet, runs).
+- A suggestion appears as `suggestedInsertionIds` on its run; `PREVIEW_WITHOUT_SUGGESTIONS` hides it.
+- A comment anchored to a phrase keeps its anchor and quoted text after an edit to another paragraph.
+
+### What it showed
+
+- Native formatting round-trips for every block kind tried, so a Docs writer can compare blocks safely.
+- Checklist tick state is lost both ways: it cannot be read, and there is no request to set it. A tool can
+  create checklists but cannot sync ticks.
+- Suggestions are detectable; a writer can refuse to edit a Doc with pending suggestions.
+- Editing one block leaves anchored comments on other blocks in place.
+
+### Not measured
+
+- Edits made in the editor to the same block a push rewrites (the comment on that block is expected to detach).
+- Multi-tab Docs, headings 3–6, numbered lists nested under bullets, a horizontal rule made in the editor.
