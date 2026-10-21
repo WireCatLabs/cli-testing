@@ -21,6 +21,9 @@ Measurements of document conversion, shared retrieval and source-backed memories
 - [drive-complex](drive-complex/README.md): seven read-only multi-tab Google Docs plus compiled
   SDK-fixture checks for nested content, edit/move/trash recovery, scope exit/re-entry and context retention.
 
+- [drive-push](drive-push/README.md): live check (2026-10-21) that Markdown, DOCX, CSV and XLSX convert into
+  existing native Docs and Sheets, and which Drive field detects a real edit (revision id, not `version`).
+
 - [html-readers](html-readers/README.md): regex reader, defuddle and Readability with Turndown compared on 30
   public HTML pages (2026-10-13).
 
