@@ -133,3 +133,40 @@ checkbox, commented on one phrase and made one suggestion by hand, because the A
 
 - Edits made in the editor to the same block a push rewrites (the comment on that block is expected to detach).
 - Multi-tab Docs, headings 3–6, numbered lists nested under bullets, a horizontal rule made in the editor.
+
+## Checklist ticks (2026-10-21)
+
+### Why
+
+The formatting check found that the Docs API returns identical JSON for a ticked and an unticked checklist item.
+Other tools report the same gap
+([gws-axi #84](https://github.com/JarvusInnovations/gws-axi/issues/84),
+[Latenode thread](https://community.latenode.com/t/is-there-a-way-to-detect-checkbox-status-in-google-docs-api/7820)),
+and the Apps Script [ListItem](https://developers.google.com/apps-script/reference/document/list-item) has no
+checked-state method either. This check looks for another route to read and write ticks.
+
+### Setup
+
+Same terms. [export-check.mjs](export-check.mjs) exported the owner-ticked test Doc in five formats;
+[tick-spike.mjs](tick-spike.mjs) imported Markdown with `- [x]` and set strikethrough on a checklist item through
+the API. Output: [tick-results-2026-10-21.jsonl](tick-results-2026-10-21.jsonl).
+
+### Results
+
+| Route | Ticked item comes out as |
+|---|---|
+| Docs API `documents.get` | same as unticked |
+| Drive export, Markdown | `- [x] ~~task done~~` |
+| Drive export, HTML | `<li>` with `text-decoration:line-through`, no checkbox markup |
+| Drive export, DOCX | run with `<w:strike>`, no checkbox element |
+| Drive export, plain text | `* task done`, same as unticked |
+| Drive import of Markdown `- [x] done item` | ticked: exports back as `- [x] done item` |
+| Docs API strikethrough on an unticked item | still unticked: exports as `- [ ] ~~struck item~~` |
+
+### What it showed
+
+- **Reading ticks works through the Markdown export.** A tool can match the export's checklist lines to the
+  Docs API's checklist paragraphs in order.
+- **Writing a tick works only through Drive's Markdown import**, which creates or replaces a whole document. No
+  Docs API request and no Apps Script method sets a tick on an existing Doc.
+- Strikethrough is a rendering of a tick, not the tick itself.
