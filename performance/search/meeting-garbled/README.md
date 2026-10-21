@@ -8,7 +8,7 @@ lines. The owner ruled that meeting search always widens a query word to such sp
 word each widened hit matched. Widening needs the list of stored words. The question: read that list at query
 time from the index that already exists (`meeting_words_vocab`, no migration), or keep a trigram table of the
 words (a migration, and upkeep on every write)? The answer chose the first for cli-core
-[`feat/meeting-garbled-words`](https://github.com/WireCatLabs/cli-core/tree/feat/meeting-garbled-words).
+[cli-core#1703](https://github.com/WireCatLabs/cli-core/pull/1703).
 
 ## Setup
 
@@ -19,7 +19,7 @@ words (a migration, and upkeep on every write)? The answer chose the first for c
 - `node vocabulary.mjs` — a bare `meeting_words`-shaped FTS5 table: reading the word list, and the same lookup
   through a trigram table. Twenty runs each, the mean.
 - `node bench.mjs <cli-core checkout, built>` — the real store through `openStore`, `saveMeeting`,
-  `indexSearch` and `searchHits` of cli-core `feat/meeting-garbled-words`. Seven runs per query, the median.
+  `indexSearch` and `searchHits` of [cli-core#1703](https://github.com/WireCatLabs/cli-core/pull/1703). Seven runs per query, the median.
 
 ## Results
 
