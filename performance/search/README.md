@@ -110,3 +110,6 @@ path was rejected before staging or inference. All transferred scripts, fixtures
 historical JSON reports matched the original hashes in `migration.json`. Documentation was
 updated separately. Package lint, typechecking, coverage and document checks passed in both
 repositories; no new model weights were downloaded during the migration.
+
+[Meeting garbled words](meeting-garbled/README.md): widening a query word to the spellings speech recognition
+made of it, and the cost of reading the stored word list at query time instead of keeping a trigram table.
