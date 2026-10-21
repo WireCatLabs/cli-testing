@@ -35,3 +35,5 @@
   frozen one above is unchanged.
 - [review](review/README.md): what reviewing an agent's proposals costs with and without context, and how a changed
   cited text and agent decisions are handled.
+
+[Question-level semantic pilot](gathering-audit/QUESTION-PILOT.md): lexical discovery versus actual local E5, support/ranking scores and source/index gaps.
