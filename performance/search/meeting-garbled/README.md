@@ -70,6 +70,24 @@ owner's store (`sqlite3 .backup`; the real file was only read). Totals only; the
 - A dictionary does not separate «устав» from «устал»: Snowball, Hunspell, pymorphy3 and Az.js all read «устав»
   also as a form of «устать». Ranking the typed form first does.
 
+## Parity with ztx, the trial import, and proximity on the owner's store
+
+Same read-only copy, totals only. The scripts read private data and stay outside this repository; what they do is
+described here.
+
+- **Trial import of the `.txt` archive** (zoom-cli with cli-core main, on a second copy): 119 meetings before, 119
+  files imported with no warning. A first run gave 127 meetings: the files' time was the end of each recording, not
+  its start (all seven meetings the API also held were apart by exactly the transcript's length), so the API copies
+  were not matched. With the start derived from the end: 120 meetings, every API copy merged, no meeting with two
+  current transcripts; the one new meeting had no earlier copy.
+- **Parity with ztx**, 45 queries over April–September (the task's words, 20 frequent words, 20 picked evenly from
+  the rest): ztx found 45,833 lines, zm 50,232. zm missed 1,112 of ztx's: 755 in three meetings where zm holds the
+  API's transcript, which splits lines differently (747 of them on a day zm has hits for that query), and 357 found
+  only by ztx's rule "a stored word that begins the query word" — about 280 real other words and about 70 words
+  recognition cut off. The rule came back behind the dictionary, which keeps the second kind and drops the first.
+  With it, the 130-query noise check widened 1,321 passages instead of 1,157; median query 160 ms instead of 110.
+- **Proximity** (`"a b"~N`, N in transcript lines): about 150 ms a query, 20 lines included.
+
 ## What it showed
 
 - Reading the word list at query time costs about 0.15 s a query at this size, and needs no migration, no
