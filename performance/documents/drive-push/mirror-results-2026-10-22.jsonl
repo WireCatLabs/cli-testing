@@ -1,0 +1,10 @@
+{"step":"add","ok":true,"id":true}
+{"step":"push-1","ok":true,"created":["budget.csv","plan.md"],"errors":[]}
+{"step":"doc-roundtrip","equal":true,"got":14,"expected":14,"diff":[]}
+{"step":"push-unchanged","ok":true,"updated":[],"unchanged":2}
+{"step":"push-edit","ok":true,"updated":["plan.md"],"equal":true,"revisionChanged":true}
+{"step":"tick-kept","ok":true,"conflicts":[],"checked":true}
+{"step":"tick-kept-second-push","ok":true,"checked":true}
+{"step":"google-edit-conflict","ok":false,"conflicts":["the Doc changed in Google since the last push"],"googleEditKept":true}
+{"step":"sheet-update","ok":false,"updated":["budget.csv"],"conflicts":[{"path":"plan.md","url":"(removed)","reason":"the Doc changed in Google since the last push"}],"values":[["item","amount","","added in Google"],["rent",1000]],"tabs":["budget","Notes"]}
+{"step":"cleanup","trashed":true,"configRestored":true}

@@ -1,0 +1,4 @@
+{"step":"import-export","markdown":"- [ ] open item  \n- [x] done item"}
+{"step":"import-lists","glyphs":["GLYPH_TYPE_UNSPECIFIED"]}
+{"step":"import-html-strike","lineThrough":0}
+{"step":"api-strike-export","markdown":"- [ ] open item  \n- [ ] ~~struck item~~\n\n"}
