@@ -113,3 +113,7 @@ repositories; no new model weights were downloaded during the migration.
 
 [Meeting garbled words](meeting-garbled/README.md): widening a query word to the spellings speech recognition
 made of it, and the cost of reading the stored word list at query time instead of keeping a trigram table.
+
+[Meeting words, meaning, or both](meeting-hybrid/README.md): combined meeting search against words-only and
+meaning-only on invented Russian and English meetings. Combined keeps every literal hit, but loses questions that the
+question detector misses and passages under the e5-small similarity floor.
