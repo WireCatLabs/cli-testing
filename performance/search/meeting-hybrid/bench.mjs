@@ -4,7 +4,7 @@ import { createRequire } from "node:module"
 import { join } from "node:path"
 import { performance } from "node:perf_hooks"
 import { pathToFileURL } from "node:url"
-import { buildCorpus } from "./corpus.mjs"
+import { buildCorpus, OFF_TOPIC } from "./corpus.mjs"
 
 const [checkout, work, runsArg = "5"] = process.argv.slice(2)
 if (!checkout || !work) throw new Error("usage: node bench.mjs <cli-core checkout> <work directory> [runs]")
@@ -205,6 +205,18 @@ for (const query of queries) {
 }
 process.stderr.write("\n")
 
+const offTopic = []
+for (const text of OFF_TOPIC) {
+  const all = await rankedAll(text)
+  const combined = await modes.combined({ text })
+  offTopic.push({
+    text,
+    topScore: all.items[0]?.score ?? null,
+    aboveFloor: all.items.filter(({ score }) => score > floor).length,
+    combined: Array.isArray(combined) ? combined.length : combined.error,
+  })
+}
+
 const classes = ["literal", "paraphrase", "question"]
 const summary = {}
 for (const mode of Object.keys(modes)) {
@@ -250,6 +262,7 @@ const report = {
   firstWordSearchMs: indexMs,
   summary,
   timing,
+  offTopic,
   rows,
 }
 await embedder.close()
@@ -269,3 +282,4 @@ for (const [mode, byKind] of Object.entries(summary))
       .join(" | "),
   )
 say(JSON.stringify(timing))
+say(JSON.stringify(offTopic))

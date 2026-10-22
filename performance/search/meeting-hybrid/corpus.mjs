@@ -345,6 +345,15 @@ export const FACTS = [
   },
 ]
 
+// Nothing in the corpus answers these: what the floor is for.
+export const OFF_TOPIC = [
+  "рецепт борща со сметаной",
+  "результаты футбольного матча",
+  "что посадить на даче весной?",
+  "how to repair a bicycle chain",
+  "best pizza place in Naples",
+]
+
 const MONTHS = ["январь", "февраль", "март", "апрель", "май", "июнь"]
 const DAYS = ["понедельник", "среду", "пятницу", "четверг"]
 const EN_MONTHS = ["January", "February", "March", "April"]

@@ -263,7 +263,9 @@ The owner asks meetings both literal words and natural questions, and recognitio
 ranks word hits and passage vectors together. On 48 invented meetings and 62 queries, combined found every literal fact
 line first, as words did, where meaning alone missed 4 of 15 Russian literal queries. On questions it reached 67 %
 against 96 % for meaning alone: a question the detector misses fails the whole search on its `?`, and the 0.8 floor
-for e5-small drops correct passages that score 0.77–0.80. [meeting-hybrid/](meeting-hybrid/README.md).
+for e5-small drops correct passages that score 0.77–0.80. A probe showed the literal result is luck of the corpus: a
+word hit whose passage the floor drops ties with the first meaning passage and loses the tie.
+[meeting-hybrid/](meeting-hybrid/README.md).
 
 ## What we concluded
 

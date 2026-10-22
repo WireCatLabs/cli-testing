@@ -27,8 +27,9 @@ it does.
 - 19 facts, one line each, planted in one meeting each. Seven fact lines are garbled; their queries spell the word
   right. 134 passages; the longest is 369 tokens, so e5-small (512 tokens) cut none.
 - 62 queries, three per fact plus five more questions: 19 **literal** (the fact's words), 19 **paraphrase** (other words
-  for the same thing, none of the fact's words), 24 **questions** in Russian and English. Five questions use forms the
-  question detector does not know («почему», «зачем», «что-то», "did", "is"), on purpose.
+  for the same thing; word search finds no fact line for any of them), 24 **questions** in Russian and English. Five questions use forms the
+  question detector does not know («почему», «зачем», «что-то», "did", "is"), on purpose. Five more queries have no
+  answer in the corpus, to see what the similarity floor keeps.
 - Modes, top 10 each:
   - **words**: `searchMeetingHits(query)`, the meeting query language as typed.
   - **words (question words)**: the same with the question's content words (`questionTerms`), which is what the combined
@@ -42,6 +43,7 @@ it does.
 - Latency: after one untimed run, each query 5 times one after another (310 runs per mode), index refresh on as in the
   product.
 - `node bench.mjs <cli-core checkout, built> <work directory> [runs=5]` writes `results.json` to the work directory.
+  `node tie-probe.mjs <cli-core checkout, built> <work directory>` runs the tie check described below.
 
 ## Results
 
@@ -58,16 +60,27 @@ On Russian queries only: literal — words 15/15, meaning 11/15, combined 15/15;
 
 | latency, warm | p50 | p95 |
 |---|---|---|
-| words | 4.8 ms | 9.1 ms |
-| words (question words) | 5.7 ms | 11.0 ms |
-| meaning | 12.9 ms | 19.4 ms |
-| combined | 18.9 ms | 27.3 ms |
+| words | 4.1 ms | 6.9 ms |
+| words (question words) | 4.8 ms | 7.0 ms |
+| meaning | 11.5 ms | 13.7 ms |
+| combined | 17.2 ms | 23.6 ms |
 
-Once per store: opening the model 1.2 s; embedding 134 passages 8.2 s (about 16 a second); the first word search, which
-builds the word index, 59–164 ms.
+An earlier run of the same script on the same machine gave 10–30 % higher times (combined 18.9 / 27.3 ms) and the same
+quality numbers. Once per store: opening the model 0.8–1.2 s; embedding 134 passages 6.8–8.2 s (16–20 a second); the
+first word search, which builds the word index, 59–164 ms.
 
 Similarity of e5-small: the passage holding the fact scored 0.768–0.867 (median 0.823); the best passage per query
 0.775–0.876. Passages above the 0.8 floor per query: 0 to 114 of 134 (median 52).
+
+Queries with no answer in the corpus:
+
+| query | best score | passages above 0.8 | combined items |
+|---|---|---|---|
+| рецепт борща со сметаной | 0.809 | 18 | 10 |
+| результаты футбольного матча | 0.793 | 0 | 0 |
+| что посадить на даче весной? | 0.782 | 0 | 0 |
+| how to repair a bicycle chain | 0.799 | 0 | 0 |
+| best pizza place in Naples | 0.735 | 0 | 0 |
 
 Per query: the rank of the first item that holds the fact line; `(n)` when only another line of the right meeting was
 found, at rank n; `–` nothing in the top 10; `error` the search failed.
@@ -139,9 +152,16 @@ found, at rank n; `–` nothing in the top 10; `error` the search failed.
 
 ## What it showed
 
-- **Combined does not lose to words on literal Russian queries.** It found all 15, and the word hit on the fact line
-  came first every time (line MRR 1.00), including the 7 garbled fact lines. Meaning alone missed 4 of 15: the fact
-  passage ranked 11th to 52nd because other meetings on the same topic scored as high.
+- **Combined did not lose to words on literal Russian queries here — but it can, and this corpus could not show it.**
+  It found all 15, and the word hit on the fact line came first every time (line MRR 1.00), including the 7 garbled
+  fact lines. Meaning alone missed 4 of 15: the fact passage ranked 11th to 52nd because other meetings on the same
+  topic scored as high. Every literal query here had exactly one word hit, and every literal fact passage scored above
+  the floor (the lowest 0.801), so the word hit always joined a passage the meaning side kept. When it does not — the
+  passage is under the floor, or past the meaning side's 200 — the word hit stands alone with the same fused score as
+  the first meaning passage (1/61), and the tie goes to the item with a similarity score, so an unrelated passage ranks
+  above the exact word. [tie-probe.mjs](tie-probe.mjs) shows it: one meeting with «Залог за склад вернут…» scored 0.7,
+  one unrelated meeting scored 0.9; «залог склад» put the unrelated one first. Here 5 of 62 fact passages scored
+  under 0.8, so on real queries this will happen.
 - **Paraphrases are meaning's job.** Words found none, as built. Combined equals meaning above the floor; the floor cost
   one English paraphrase whose correct passage scored 0.794.
 - **Questions are where combined falls behind meaning: 67 % against 96 %.** Eight misses:
@@ -155,17 +175,22 @@ found, at rank n; `–` nothing in the top 10; `error` the search failed.
 - **The question word side rarely helps.** A question's content words must all match one line, and a question uses other
   verbs than the answer («дали», «решили», «отправим», "cost", "now"). Words found 8 of 24 questions; in all 8 meaning
   found the fact too.
-- **The 0.8 floor does not separate good from bad on e5-small.** Correct and best passages all sit between 0.77 and
-  0.88. For one query the floor keeps 114 of 134 passages, for another none. It dropped the correct passage in 5 of 62
-  queries and filtered nothing useful in the rest.
+- **The 0.8 floor is a trade-off on e5-small, not a separator.** Correct passages scored 0.77–0.87; the best passage
+  for a query with no answer scored 0.74–0.81. The floor dropped the correct passage in 5 of 62 queries, and it blanked
+  4 of 5 queries with no answer (the fifth kept 18 passages). For queries with answers it kept anywhere from 0 to 114
+  of 134 passages. A lower floor would let the unanswerable queries through; no single number does both jobs.
 - **Cost:** combined is about 19 ms at the median against 5 ms for words, on 134 passages. Meaning reads every vector,
   so the gap grows with the store.
 
-What this suggests for [#1738](https://github.com/WireCatLabs/cli-core/pull/1738), in order of effect: when the word
-side refuses the text, rank by meaning alone instead of failing; treat any text ending in `?` as a question, and add the
-missing forms («какую», «почему», «зачем», "did", "is", "are", "do"); drop or lower the e5-small floor. With the first
-two, combined would have answered the six failed questions as meaning did, and kept 100 % on literal words. Those
-changes were not run here.
+What this suggests for [#1738](https://github.com/WireCatLabs/cli-core/pull/1738), in order of effect:
+
+1. When the word side refuses the text, rank by meaning alone instead of failing. Treat any text ending in `?` as a
+   question, and add the missing forms («какую», «почему», «зачем», "did", "is", "are", "do"). Derived from the rows
+   above, not run: the six failed questions would return what meaning above the floor returns, which finds 4 of them,
+   so questions would reach 20 of 24 (83 %) and literal words stay at 100 %.
+2. Keep an exact word hit above meaning-only passages, or at least break the tie for it, so a passage under the floor
+   cannot push the only word hit down.
+3. Leave the floor as it is until there is a larger set of queries with no answer; this one is too small to move it.
 
 ## What was not measured
 
@@ -175,3 +200,4 @@ changes were not run here.
 - More than one relevant meeting per query, so recall here is a hit rate.
 - Larger stores: latency and the meaning side's ranking at hundreds of meetings. EmbeddingGemma and remote models.
 - Memory use.
+- Whether the floor's choice holds on more than five unanswerable queries.
