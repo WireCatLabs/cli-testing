@@ -27,9 +27,9 @@ it does.
 - 19 facts, one line each, planted in one meeting each. Seven fact lines are garbled; their queries spell the word
   right. 134 passages; the longest is 369 tokens, so e5-small (512 tokens) cut none.
 - 62 queries, three per fact plus five more questions: 19 **literal** (the fact's words), 19 **paraphrase** (other words
-  for the same thing; word search finds no fact line for any of them), 24 **questions** in Russian and English. Five questions use forms the
-  question detector does not know («почему», «зачем», «что-то», "did", "is"), on purpose. Five more queries have no
-  answer in the corpus, to see what the similarity floor keeps.
+  for the same thing; word search finds no fact line for any of them), 24 **questions** in Russian and English. Five
+  questions use forms the question detector does not know («почему», «зачем», «что-то», "did", "is"), on purpose.
+  Five more queries have no answer in the corpus, to see what the similarity floor keeps.
 - Modes, top 10 each:
   - **words**: `searchMeetingHits(query)`, the meeting query language as typed.
   - **words (question words)**: the same with the question's content words (`questionTerms`), which is what the combined
