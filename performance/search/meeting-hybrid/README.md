@@ -192,6 +192,49 @@ What this suggests for [#1738](https://github.com/WireCatLabs/cli-core/pull/1738
    cannot push the only word hit down.
 3. Leave the floor as it is until there is a larger set of queries with no answer; this one is too small to move it.
 
+## After fixes (2026-10-22)
+
+cli-core#1738 took the three suggestions above in `5b6d38cc`: text the query language refuses skips the word side
+(`words.refused` says why) and meaning still answers; `questionTerms` treats text as a question when it ends with `?` or
+starts with a question word, with more forms (какую, почему, зачем, did, is, are…) and more filler dropped; on equal
+fused scores a line with the words ranks above a meaning-only passage. Same corpus, same script, same machine, cli-core
+rebuilt at `5b6d38cc`. Everything above this section is the first run, at `d2f3f5d6`.
+
+| mode | literal R@10 · MRR | paraphrase R@10 · MRR | question R@10 · MRR | all R@10 · MRR | line R@10 · MRR, all |
+|---|---|---|---|---|---|
+| words | 100 % · 1.00 | 0 % · 0.00 | 0 % · 0.00 (24 errors) | 31 % · 0.31 | 31 % · 0.31 |
+| words (question words) | 100 % · 1.00 | 0 % · 0.00 | 33 % · 0.33 (0 errors) | 44 % · 0.44 | 44 % · 0.44 |
+| meaning | 79 % · 0.79 | 84 % · 0.51 | 96 % · 0.75 | 87 % · 0.69 | 84 % · 0.63 |
+| meaning ≥ floor | 79 % · 0.79 | 79 % · 0.45 | 83 % · 0.72 | 81 % · 0.66 | 76 % · 0.60 |
+| combined, first run | 100 % · 1.00 | 79 % · 0.45 | 67 % · 0.67 (6 errors) | 81 % · 0.70 | 76 % · 0.65 |
+| **combined, after fixes** | **100 % · 1.00** | 79 % · 0.45 | **83 % · 0.80 (0 errors)** | **87 % · 0.75** | **82 % · 0.70** |
+
+Plain word search (`words`) still refuses a trailing `?`; only the combined search changed. Latency p50 / p95: words
+4.0 / 7.8 ms, meaning 11.7 / 15.9 ms, combined 17.5 / 27.6 ms. The five queries with no answer gave the same results as
+before.
+
+The questions, with the content words the detector now takes, and the combined rank before and after:
+
+| question | content words | combined before | combined after |
+|---|---|---|---|
+| какую скидку дадим студентам? | скидку дадим студентам | error | 1 |
+| is the Lisbon trip booked? | lisbon trip booked | error | – |
+| почему перенесли релиз? | перенесли релиз | error | 7 |
+| зачем платить залог за склад? | платить залог за склад | error | 1 |
+| одобрили что-то по ипотеке? | одобрили то ипотеке | error | – |
+| did we agree on the enterprise price? | agree enterprise price | error | 1 |
+
+The other 18 questions ranked as before. Combined now answers 20 of 24 questions, as the first run predicted, and
+equals meaning above the floor on questions (83 %) while beating it on MRR (0.80 against 0.72). On all 62 queries it
+ties meaning without the floor at 87 % and ranks better (MRR 0.75 against 0.69).
+
+The four questions it still misses: the right passage is under the floor for three (an English question about a
+Russian line at 0.768, «когда выйдет релиз…» at 0.774, «под какой процент…» at 0.799), and for «одобрили что-то по
+ипотеке?» meaning alone does not find it either. «что-то» leaves «то» as a content word; it changed nothing here.
+
+Tie probe: [tie-probe.mjs](tie-probe.mjs) now puts the word hit first («Залог за склад вернут…», `by: ["words"]`), with
+the unrelated 0.9 passage second.
+
 ## What was not measured
 
 - Real meetings. The same author wrote the corpus, the queries and the labels, and the facts are one clear line each;
