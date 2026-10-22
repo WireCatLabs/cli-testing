@@ -16,6 +16,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- **Offline contracts isolate WhatsApp profiles too.** The harness sets `WA_CONFIG_DIR`, `WA_STATE_DIR` and
+  `WA_CACHE_DIR` inside its temporary directory and disables update checks, so upgrade fixtures use the same
+  paths as the CLI without inheriting the owner's state.
+
 - **`performance/projects/restore/check-memo.mjs`** exercises published Memo0.83 through real CLI
   processes and stdio MCP, with an exact retained dependency lock. It checks private export, explicit
   target preview, owner/agent restore policy and historical proposed state using invented stores.

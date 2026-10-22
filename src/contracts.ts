@@ -215,7 +215,7 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
     NODE_NO_WARNINGS: "1",
     WIRECAT_CONTRACT_DENIED: marker,
   }
-  for (const app of ["MAX", "TG", "ZM"]) {
+  for (const app of ["MAX", "TG", "WA", "ZM"]) {
     for (const directory of ["CONFIG", "STATE", "CACHE"]) env[`${app}_${directory}_DIR`] = join(root, app, directory)
     env[`${app}_NO_UPDATE_CHECK`] = "1"
   }
