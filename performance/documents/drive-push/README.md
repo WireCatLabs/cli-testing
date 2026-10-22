@@ -208,3 +208,49 @@ Markdown. Each is a request-order detail that the unit tests' fake could not sho
 
 - Ticks clicked in the editor (the API cannot click; strike stands in), comments anchored to edited paragraphs,
   numbering continuity when an item is inserted into an existing list, Shared Drives, large Docs.
+
+## Two-way sync: Google's edits back into local files (2026-10-22)
+
+### Why
+
+The owner asked for Google edits to come back into the local files, not only stop the sync (ASK-294,
+NEED-1618/1619 in the private journal). cli-core gained a three-way block merge and a Markdown splice that rewrites
+only the lines of changed blocks; drive's `mirrors sync` uses them and gains `--keep local|google|both`. The
+question: on real Docs and Sheets, does a Google edit land in the file without disturbing the rest of it, is a
+both-sides change reported with Google's time and author, and does `--keep both` keep both? The run gated the
+cli-core release.
+
+### Setup
+
+- Linux, Node 24.19.0; drive-cli branch `feat/mirrors-pull` built against cli-core branch `feat/documents-pull`
+  (unreleased, linked); the owner's personal profile, authorized for synthetic live writes.
+- A new folder marked `wirecat-pull-acceptance-… (synthetic, safe to delete)`, trashed at the end; the local
+  folder and the config change are removed and restored.
+- `node pull-acceptance.mjs <drive-cli checkout> <profile>`; results in `pull-results-2026-10-22.jsonl`.
+- The Markdown uses `*` bullets and a ```` ```js ```` fence, which a Doc cannot hold, to see whether a pull
+  keeps the file's own spelling. Google-side edits go through the Docs and Sheets APIs.
+
+### Results
+
+| Step | Result |
+|---|---|
+| First sync of a Markdown file and a CSV | Doc and Sheet created |
+| Text inserted into a paragraph and an item struck (a tick) in Google; file unchanged; sync | file pulled, nothing written to Google; 2 lines changed, `*` bullets and the `js` fence kept |
+| Sync again | nothing pulled or written |
+| Same paragraph changed in Google and in the file | conflict with the paragraph at the last sync, each side's text, the local time, Google's revision time and editor; file untouched |
+| `--keep both` | both paragraphs, local first, in the file and the Doc |
+| Cell edited and a row added in Google; CSV unchanged; sync | CSV pulled: `950.50` kept as written, `130` and the new row in |
+| Drive change feed read right after a Docs API edit | the Doc was not listed |
+
+### What it showed
+
+- A pull touches only the changed lines; the file keeps formatting the Doc cannot carry.
+- Conflict reports carry Google's last revision time and editor from the revision list.
+- The change feed did not list a Docs API edit when read straight after it. Whether it lists it later, or lists
+  edits made in the editor, is still open; a watcher cannot rely on it alone yet.
+
+### Not measured
+
+- Edits and ticks made by a person in the editor (the API stands in), suggestions, comments on rewritten
+  paragraphs, XLSX (pull is not supported; a Google edit stays a conflict), Windows and macOS line handling on a
+  live run (unit tests cover CRLF and the byte-order mark), large files.
