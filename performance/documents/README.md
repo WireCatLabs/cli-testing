@@ -23,7 +23,8 @@ Measurements of document conversion, shared retrieval and source-backed memories
 
 - [drive-push](drive-push/README.md): live check (2026-10-21) that Markdown, DOCX, CSV and XLSX convert into
   existing native Docs and Sheets, and which Drive field detects a real edit (revision id, not `version`); later
-  sections: formatting, ticks, `mirrors sync` acceptance and two-way sync (2026-10-22).
+  sections: formatting, ticks, `mirrors sync` acceptance and two-way sync (2026-10-22), Google Docs' own Markdown
+  editing and the change feed (2026-10-23).
 
 - [html-readers](html-readers/README.md): regex reader, defuddle and Readability with Turndown compared on 30
   public HTML pages (2026-10-13).
