@@ -113,3 +113,6 @@ repositories; no new model weights were downloaded during the migration.
 
 [Meeting garbled words](meeting-garbled/README.md): widening a query word to the spellings speech recognition
 made of it, and the cost of reading the stored word list at query time instead of keeping a trigram table.
+
+[Message garbled words](message-garbled/README.md): voice-note transcripts in message search found in any form of a
+word and widened to garbled spellings (store version 29), on a copy of one person's store, totals only.
