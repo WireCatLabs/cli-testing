@@ -254,3 +254,60 @@ cli-core release.
 - Edits and ticks made by a person in the editor (the API stands in), suggestions, comments on rewritten
   paragraphs, XLSX (pull is not supported; a Google edit stays a conflict), Windows and macOS line handling on a
   live run (unit tests cover CRLF and the byte-order mark), large files.
+
+## Google Docs' own Markdown editing (2026-10-23)
+
+### Why
+
+Google Docs now opens a `.md` file stored in Drive and edits it as Markdown, saving Markdown back into the same
+file. drive's `mirrors` turns each `.md` into a separate native Doc. If Google's own editing keeps the file
+Markdown, mirrors may be the wrong tool for plain notes, and the owner held images and a watcher until this was
+known. Two questions:
+
+1. What does a person's edit in Docs do to a `.md` file: does it stay `text/markdown`, which formatting changes,
+   and where do comments go?
+2. Does Drive's change feed list edits made by a person in the editor? The two-way sync run found that it did not
+   list a Docs API edit read right after it, and a watcher depends on the feed.
+
+### Setup
+
+- Linux, Node 24.19.0, drive-cli 0.23.0 built from source (its saved sign-in only); the owner's personal profile,
+  authorized for synthetic live writes.
+- `native-md-check.mjs` with four phases: `setup` makes a folder marked
+  `wirecat-native-md-check-… (synthetic, safe to delete)` holding `notes.md` (heading, bold, a link, two task
+  items, a table, a closing line) and an empty-ish Doc, and records a change-feed start token. Then, by hand in
+  the browser, the owner opened `notes.md` in Docs, commented on "Plain paragraph", edited the closing line and
+  ticked the open item, and typed into the Doc. `check` reads the feed, the file and the comments, then replaces
+  the file from outside as a local sync would. `inspect` counts what Docs wrote into the file without printing it.
+  `cleanup` trashes the folder.
+- `node native-md-check.mjs <drive-cli checkout> <profile> setup|check|inspect|cleanup <state.json>`; results in
+  [native-md-results-2026-10-23.jsonl](native-md-results-2026-10-23.jsonl), ids and links removed.
+
+### Results
+
+| Check | Result |
+|---|---|
+| File type after the hand edits | still `text/markdown`; every revision `text/markdown` |
+| Tick | `- [ ] open item` became `- [x] open item` followed by two trailing spaces |
+| Bold, link, table | kept; the table separator `\|---\|---\|` was rewritten as `\| :---- \| :---- \|` |
+| Comment in the Drive comments list | **none**, also with deleted comments included |
+| Comment in the file | inline markers `<!-- gdoc_comment_begin: c1 -->…<!-- gdoc_comment_end: c1 -->` around the quoted text, plus a `gdoc_comments:` block between `---` lines at the end holding status, an opaque token, the author's display name, the time, the comment text and the quote |
+| Change feed, hand edit in the Doc | listed |
+| Change feed, hand edit in the `.md` | listed |
+| Outside replacement keeping the text (a line appended after the block) | accepted; one more revision; the comment block stays in the file because the text kept it |
+
+### What it showed
+
+- Docs' own Markdown editing keeps the file Markdown and the tick as `[x]`, but rewrites some spelling (table
+  separator, trailing spaces). A sync of raw `.md` files would see those as changes.
+- **Comments live in the file.** A downloaded or synced `.md` carries commenters' names and comment text, and the
+  Drive comments API does not show them. A tool that copies the file into a git repository publishes the
+  comments; a tool that drops the block deletes them.
+- The change feed listed both editor edits, so a watcher can use the feed for edits a person makes. The earlier
+  miss was a Docs API edit read at once.
+
+### Not measured
+
+- Whether Docs still shows the comment after an outside replacement that moves or drops the block; how long the
+  feed takes to list an editor edit (the check ran about a minute after the edits); suggestions; images; a file
+  shared with a second person; how Docs handles Markdown it does not write itself (`*` bullets, fenced code).
