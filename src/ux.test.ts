@@ -161,9 +161,21 @@ it("routes the ux command and prints every row with a failing exit when needed",
   }
 })
 it("handles Windows prefix launchers and rejects shell expansion", () => {
-  vi.stubGlobal("process", { ...process, platform: "win32" })
+  vi.stubGlobal("process", {
+    ...process,
+    platform: "win32",
+    env: { ...process.env, OS: "Windows_NT", TG_API_HASH: "do-not-inherit" },
+  })
   const { plan, output } = fixture()
-  expect(runInstallSuite(plan, output, { run: success }).passed).toBe(true)
+  expect(
+    runInstallSuite(plan, output, {
+      run: (input) => {
+        expect(input.env.OS).toBe("Windows_NT")
+        expect(input.env.TG_API_HASH).toBeUndefined()
+        return success(input)
+      },
+    }).passed,
+  ).toBe(true)
   for (const command of ["bad%PATH%", "bad!name", 'bad"name', "bad\nname"]) {
     expect(() => installProcess({ command, args: [], cwd: output, env: {} })).toThrow("unsupported Windows")
   }

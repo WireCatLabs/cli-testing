@@ -98,7 +98,7 @@ function environment(home: string, bin: string): NodeJS.ProcessEnv {
     CI: "true",
     NO_COLOR: "1",
   }
-  for (const key of ["SystemRoot", "WINDIR", "ComSpec", "PATHEXT", "TEMP", "TMP", "TMPDIR"])
+  for (const key of ["OS", "SystemRoot", "WINDIR", "ComSpec", "PATHEXT", "TEMP", "TMP", "TMPDIR"])
     if (process.env[key]) env[key] = process.env[key]
   for (const prefix of ["MAX", "TG", "WA", "MEMO", "ZM", "DRIVE", "CLI_MESSAGING"])
     for (const kind of ["CONFIG", "STATE", "CACHE"]) env[`${prefix}_${kind}_DIR`] = join(home, prefix, kind)
