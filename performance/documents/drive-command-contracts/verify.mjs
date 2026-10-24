@@ -25,7 +25,7 @@ const config = join(env.DRIVE_CONFIG_DIR, "config.json")
 mkdirSync(dirname(config), { recursive: true })
 writeFileSync(
   config,
-  JSON.stringify({ profiles: { synthetic: { principal: "synthetic-principal", roots: [], storage: "keyring" } } }),
+  JSON.stringify({ profiles: { synthetic: { principal: "synthetic-principal", roots: [], storage: "file" } } }),
 )
 const run = (args, status = 0) => {
   const result = spawnSync(process.execPath, [entry, ...args], { env, encoding: "utf8", timeout: 30000 })
