@@ -95,3 +95,22 @@ The bounded [live runner](live.mjs) requires a binary, an explicitly chosen prof
 Run it only with the account owner's approval. It lists ID/type/size metadata inside selected folders,
 visits at most twelve folders, downloads a stored file and exports one Doc to PDF/DOCX. It prints
 counts and bytes, and sanitizes failures without printing command output or document identifiers.
+
+## 0.28.0 follow-up and alignment limits
+
+The same external probe passed all 15 checks against the isolated npm installation of
+[Drive 0.28.0](https://github.com/WireCatLabs/drive-cli/releases/tag/v0.28.0), with zero live requests.
+It was installed by the documentation contract capture; the owner's global CLI remained untouched.
+The release pins cli-core 0.406.0 and cli-base 0.50.3. This follow-up does not extend the earlier
+approved live observations to 0.28.0 or certify conversion fidelity.
+
+A focused check on source `b8bffc5` plus the documentation correction in
+[Drive PR 187](https://github.com/WireCatLabs/drive-cli/pull/187) passed `standards:check`,
+`lint:commands` and `docs:check`. Command lint reports 29 violations: 19 baseline entries and ten
+explicit overrides (budget ten), with zero new violations. The historical 20-entry result above
+belongs to 0.27.0; it is not the current count.
+
+Passing these checks does not certify complete alignment. The source backlog still tracks entity
+metadata, shared progress reporting, `bin/release --local`, a default command deadline and upgrades
+from an actual previous Drive release (DRV-31, DRV-33 through DRV-36), alongside further maintenance.
+The earlier shared-store upgrade fixtures are not evidence of an installed-Drive upgrade.
