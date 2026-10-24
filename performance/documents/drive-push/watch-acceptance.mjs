@@ -155,6 +155,7 @@ try {
     process.stderr.write(`\nEdit the Doc by hand now (add a word anywhere): ${doc.id}\n`)
     log("hand-edit-wait", { doc: `https://docs.google.com/document/d/${doc.id}/edit` })
     const before = read("notes.md")
+    const docBefore = await docText(doc.id)
     const asked = Date.now()
     const handPulled = await until(
       () => after(asked, (c) => c.data.results?.some((r) => r.pulled.length)).length > 0,
@@ -166,6 +167,8 @@ try {
       triggers: handCycle?.data.triggers,
       secondsFromAsk: handCycle ? (handCycle.at - asked) / 1000 : undefined,
       fileChanged: read("notes.md") !== before,
+      // Tells "nobody edited" apart from "edited, but the watch did not see it".
+      docChanged: (await docText(doc.id)) !== docBefore,
     })
   }
 

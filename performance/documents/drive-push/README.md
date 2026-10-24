@@ -326,23 +326,27 @@ cleanly. The answers gate the drive release of the command.
 
 - Linux, Node 24.19.0; drive-cli branch `feat/mirrors-watch` built against cli-core main after
   [cli-core#1869](https://github.com/WireCatLabs/cli-core/pull/1869) (unpublished, a private copy of the package);
-  the owner's personal profile, authorized for synthetic live writes.
+  the owner's personal profile, authorized for synthetic live writes. Runs 3 and 4: the published drive 0.27.0
+  code (cli-core 0.405.0).
 - A new folder marked `wirecat-watch-acceptance-… (synthetic, safe to delete)`, trashed at the end; the local
   folder and the config change are removed and restored.
 - `node watch-acceptance.mjs <drive-cli checkout> <profile> [--hand]` starts `drive <profile> mirrors watch <id>
   --every 10s --jsonl` as a child process and times its JSON lines. Google-side edits go through the Docs API.
-  Two runs; results in [watch-results-2026-10-24.jsonl](watch-results-2026-10-24.jsonl), ids removed.
+  With `--hand` it then prints the Doc's link, waits up to 15 minutes for the owner to type a word in the editor,
+  and finally reads the Doc to tell "not edited" from "edited but not seen".
+  Four runs; results in [watch-results-2026-10-24.jsonl](watch-results-2026-10-24.jsonl), ids removed.
 
 ### Results
 
-| Step | Run 1 | Run 2 |
-|---|---|---|
-| First cycle (Doc created) | 6.7 s | 7.1 s |
-| Local save → Doc (trigger `local`) | 5.5 s | 5.5 s |
-| Docs API edit → file (trigger `remote`) | 81 s | 160 s |
-| Cycles after the local save | 2: the send, then one empty `remote` cycle | same |
-| Cycles after the Google edit | 1: the pull | 2: the pull, then one empty `remote` cycle |
-| Ctrl-C | exit 0, end line `complete: true` | same |
+| Step | Run 1 | Run 2 | Run 3 | Run 4 |
+|---|---|---|---|---|
+| First cycle (Doc created) | 6.7 s | 7.1 s | 6.5 s | 7.6 s |
+| Local save → Doc (trigger `local`) | 5.5 s | 5.5 s | 5.7 s | 6.0 s |
+| Docs API edit → file (trigger `remote`) | 81 s | 160 s | 160 s | 130 s |
+| Cycles after the local save | 2: the send, then one empty `remote` cycle | same | same | same |
+| Cycles after the Google edit | 1: the pull | 2: the pull, then one empty `remote` cycle | 2, as run 2 | 2, as run 2 |
+| Editor edit by the owner → file (trigger `remote`) | — | none seen in 15 min (Doc not read back) | same as run 2 | 59 s from the link, typing included |
+| Ctrl-C | exit 0, end line `complete: true` | same | same | same |
 
 ### What it showed
 
@@ -350,11 +354,11 @@ cleanly. The answers gate the drive release of the command.
   trigger only syncs when files differ from the state).
 - A Docs API edit waits for Google's change feed: 1–3 minutes here, at a 10-second poll. The 30-minute full run is
   the backstop for edits the feed lists later still.
+- An edit typed in the editor reached the file through the change feed in under a minute (run 4), no slower than
+  the API edits. One edit, one run.
 - The watch's own Google write shows up in the feed and costs one empty cycle for that mirror; it does not loop.
 
 ### Not measured
 
-- An edit made by a person in the editor: run 2 waited 15 minutes and saw none (no edit was made, or none reached
-  the feed; the earlier native-Markdown check saw editor edits listed within about a minute).
 - Sheets, conflicts while watching, many mirrors, macOS and Windows file events (recursive `fs.watch`; pull
   request CI is Linux only), a watch left running for hours.
