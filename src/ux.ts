@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process"
 import { createHash } from "node:crypto"
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
-import { delimiter, join, resolve } from "node:path"
+import { delimiter, extname, join, resolve } from "node:path"
 
 export const INSTALL_PINS = { npm: "11.17.0", pnpm: "12.11.2", bun: "1.3.14", publint: "0.3.25" } as const
 export type InstallManager = "npm" | "pnpm" | "bun"
@@ -43,6 +43,15 @@ export function installProcess(input: InstallProcess): InstallOutput {
   let command = input.command
   let args = input.args
   if (process.platform === "win32") {
+    if (!/[\\/]/.test(command)) {
+      const extensions = extname(command) ? [""] : (input.env.PATHEXT ?? ".COM;.EXE;.BAT;.CMD").split(";")
+      command =
+        (input.env.PATH ?? "")
+          .split(delimiter)
+          .filter(Boolean)
+          .flatMap((directory) => extensions.map((extension) => join(directory, `${command}${extension}`)))
+          .find((candidate) => existsSync(candidate)) ?? command
+    }
     const quoted = [command, ...args].map((arg) => {
       if (/["\r\n%!]/.test(arg)) throw new Error("unsupported Windows command argument")
       return `"${arg}"`

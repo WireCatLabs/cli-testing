@@ -10,7 +10,7 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Fixed
 
-- Packed installation checks preserve Windows command quoting, so npm, pnpm and Bun launchers run instead of failing before installation.
+- Packed installation checks preserve Windows command quoting and resolve batch launchers from PATH, so npm, pnpm and Bun run from isolated install directories.
 
 ### Added
 

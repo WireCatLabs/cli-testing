@@ -171,3 +171,18 @@ it("handles Windows prefix launchers and rejects shell expansion", () => {
     installProcess({ command: "wirecat-missing-install-executable", args: [], cwd: output, env: {} }).exit,
   ).not.toBe(0)
 })
+
+it.skipIf(process.platform !== "win32")("resolves a PATH batch launcher before changing to the isolated row", () => {
+  const root = mkdtempSync(join(tmpdir(), "install batch "))
+  const cwd = join(root, "row")
+  mkdirSync(cwd)
+  writeFileSync(join(root, "fixture-launcher.cmd"), "@echo off\r\necho %~dp0\r\n")
+  const result = installProcess({
+    command: "fixture-launcher",
+    args: [],
+    cwd,
+    env: { ...process.env, PATH: `${root}${delimiter}${process.env.PATH}` },
+  })
+  expect(result.exit).toBe(0)
+  expect(result.stdout.trim()).toBe(`${root}\\`)
+})
