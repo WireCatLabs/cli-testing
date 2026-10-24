@@ -8,6 +8,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+### Fixed
+
+- Packed installation checks preserve Windows command quoting, so npm, pnpm and Bun launchers run instead of failing before installation.
+
 ### Added
 
 - A reproducible API cost estimator for the knowledge graph memory pilot, with explicit call/token

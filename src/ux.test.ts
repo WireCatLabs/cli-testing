@@ -136,11 +136,11 @@ describe("packed install suite", () => {
     expect(
       installProcess({
         command: process.execPath,
-        args: ["-e", "console.error('diagnostic'); process.exit(3)"],
+        args: ["-e", "console.error('diagnostic & text'); process.exit(3)"],
         cwd: output,
         env: process.env,
       }),
-    ).toMatchObject({ exit: 3, stderr: "diagnostic\n" })
+    ).toMatchObject({ exit: 3, stderr: "diagnostic & text\n" })
     expect(
       installProcess({ command: "wirecat-missing-install-executable", args: [], cwd: output, env: process.env }).exit,
     ).not.toBe(0)

@@ -54,6 +54,7 @@ export function installProcess(input: InstallProcess): InstallOutput {
     cwd: input.cwd,
     env: input.env,
     encoding: "utf8",
+    windowsVerbatimArguments: process.platform === "win32",
     timeout: 180_000,
     maxBuffer: 8 * 1024 * 1024,
     stdio: ["ignore", "pipe", "pipe"],
