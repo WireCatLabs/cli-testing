@@ -136,11 +136,11 @@ describe("packed install suite", () => {
     expect(
       installProcess({
         command: process.execPath,
-        args: ["-e", "console.error('diagnostic'); process.exit(3)"],
+        args: ["-e", "console.error('diagnostic & text'); process.exit(3)"],
         cwd: output,
         env: process.env,
       }),
-    ).toMatchObject({ exit: 3, stderr: "diagnostic\n" })
+    ).toMatchObject({ exit: 3, stderr: "diagnostic & text\n" })
     expect(
       installProcess({ command: "wirecat-missing-install-executable", args: [], cwd: output, env: process.env }).exit,
     ).not.toBe(0)
@@ -161,13 +161,40 @@ it("routes the ux command and prints every row with a failing exit when needed",
   }
 })
 it("handles Windows prefix launchers and rejects shell expansion", () => {
-  vi.stubGlobal("process", { ...process, platform: "win32" })
+  vi.stubGlobal("process", {
+    ...process,
+    platform: "win32",
+    env: { ...process.env, OS: "Windows_NT", TG_API_HASH: "do-not-inherit" },
+  })
   const { plan, output } = fixture()
-  expect(runInstallSuite(plan, output, { run: success }).passed).toBe(true)
+  expect(
+    runInstallSuite(plan, output, {
+      run: (input) => {
+        expect(input.env.OS).toBe("Windows_NT")
+        expect(input.env.TG_API_HASH).toBeUndefined()
+        return success(input)
+      },
+    }).passed,
+  ).toBe(true)
   for (const command of ["bad%PATH%", "bad!name", 'bad"name', "bad\nname"]) {
     expect(() => installProcess({ command, args: [], cwd: output, env: {} })).toThrow("unsupported Windows")
   }
   expect(
     installProcess({ command: "wirecat-missing-install-executable", args: [], cwd: output, env: {} }).exit,
   ).not.toBe(0)
+})
+
+it.skipIf(process.platform !== "win32")("resolves a PATH batch launcher before changing to the isolated row", () => {
+  const root = mkdtempSync(join(tmpdir(), "install batch "))
+  const cwd = join(root, "row")
+  mkdirSync(cwd)
+  writeFileSync(join(root, "fixture-launcher.cmd"), "@echo off\r\necho %~dp0\r\n")
+  const result = installProcess({
+    command: "fixture-launcher",
+    args: [],
+    cwd,
+    env: { ...process.env, PATH: `${root}${delimiter}${process.env.PATH}` },
+  })
+  expect(result.exit).toBe(0)
+  expect(result.stdout.trim()).toBe(`${root}\\`)
 })

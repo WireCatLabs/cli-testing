@@ -1,0 +1,115 @@
+{
+  "reason": "Validate the packed install suite on all configured platforms after correcting Windows launcher handling",
+  "source": {
+    "conclusion": "success",
+    "headSha": "ff45097159a7d82bfb3339d8cfd1ab03ff2982dd",
+    "status": "completed",
+    "url": "https://github.com/WireCatLabs/cli-testing/actions/runs/40110853350"
+  },
+  "pins": {
+    "npm": "11.17.0",
+    "pnpm": "12.11.2",
+    "bun": "1.3.14",
+    "publint": "0.3.25"
+  },
+  "tarballs": [
+    {
+      "tool": "max",
+      "package": "@wirecat/max-cli",
+      "version": "0.71.0",
+      "sha256": "09df5cc37e865bc0fa2ee29214581e70ab7e72504e3aa81449bef90f68054d35"
+    },
+    {
+      "tool": "tg",
+      "package": "@wirecat/tg-cli",
+      "version": "0.84.0",
+      "sha256": "f76ad70b4cf45189bf094a0ee41d362d8080dca15ac0c16df023c65e2d793ff8"
+    },
+    {
+      "tool": "memo",
+      "package": "@wirecat/cli-memo",
+      "version": "0.90.0",
+      "sha256": "8eb57951c003282b4e0eeef952959e10c458844538dae573d415cd8b07b619fb"
+    },
+    {
+      "tool": "wa",
+      "package": "@wirecat/whatsapp-cli",
+      "version": "0.6.0",
+      "sha256": "1223e0b259610b9901c442212e1afb9a0ef74e893760fb719dd93ac3cb287322"
+    },
+    {
+      "tool": "drive",
+      "package": "@wirecat/drive-cli",
+      "version": "0.26.0",
+      "sha256": "76fb69e7f55afc8f7bc8edcbbc1ce4c2f7befc04041dbead72cac8f3718eabd0"
+    },
+    {
+      "tool": "zm",
+      "package": "@wirecat/zoom-cli",
+      "version": "0.39.0",
+      "sha256": "7dc59ffa296cbb3527a8ac11b339e0a6ec04f80bcd49960fc135d9baaf5dc4a1"
+    }
+  ],
+  "rows": [
+    {
+      "artifact": "installs-macos-latest-node-22.16.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "node": "v22.16.0",
+      "startedAt": "2026-10-24T16:17:50.683Z",
+      "finishedAt": "2026-10-24T16:21:21.090Z",
+      "passed": 18,
+      "warnings": 59
+    },
+    {
+      "artifact": "installs-macos-latest-node-24",
+      "platform": "darwin",
+      "arch": "arm64",
+      "node": "v24.22.1",
+      "startedAt": "2026-10-24T16:17:47.780Z",
+      "finishedAt": "2026-10-24T16:21:17.455Z",
+      "passed": 18,
+      "warnings": 59
+    },
+    {
+      "artifact": "installs-ubuntu-latest-node-22.16.0",
+      "platform": "linux",
+      "arch": "x64",
+      "node": "v22.16.0",
+      "startedAt": "2026-10-24T16:17:47.016Z",
+      "finishedAt": "2026-10-24T16:20:36.852Z",
+      "passed": 18,
+      "warnings": 59
+    },
+    {
+      "artifact": "installs-ubuntu-latest-node-24",
+      "platform": "linux",
+      "arch": "x64",
+      "node": "v24.21.0",
+      "startedAt": "2026-10-24T16:17:41.894Z",
+      "finishedAt": "2026-10-24T16:19:53.493Z",
+      "passed": 18,
+      "warnings": 59
+    },
+    {
+      "artifact": "installs-windows-latest-node-22.16.0",
+      "platform": "win32",
+      "arch": "x64",
+      "node": "v22.16.0",
+      "startedAt": "2026-10-24T16:18:24.601Z",
+      "finishedAt": "2026-10-24T16:25:23.255Z",
+      "passed": 18,
+      "warnings": 59
+    },
+    {
+      "artifact": "installs-windows-latest-node-24",
+      "platform": "win32",
+      "arch": "x64",
+      "node": "v24.22.1",
+      "startedAt": "2026-10-24T16:18:05.014Z",
+      "finishedAt": "2026-10-24T16:22:26.747Z",
+      "passed": 18,
+      "warnings": 59
+    }
+  ]
+}

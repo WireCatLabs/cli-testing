@@ -8,6 +8,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+### Fixed
+
+- Packed installation checks run Windows batch launchers from isolated directories with the pinned managers and platform marker required by native installers.
+
 ### Added
 
 - A reproducible API cost estimator for the knowledge graph memory pilot, with explicit call/token
