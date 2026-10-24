@@ -33,16 +33,23 @@ const run = (args, status = 0) => {
   assert.equal(result.status, status, result.stderr)
   return JSON.parse((status ? result.stderr : result.stdout).trim())
 }
+// Drive 0.29 renamed --out to --output; without --canonical-output the probe keeps checking older releases.
+const canonical = process.argv.includes("--canonical-output")
 let checks = 0
 for (const [command, tail] of [
   ["download", []],
   ["export", ["--format", "pdf"]],
 ]) {
-  const args = ["files", command, "synthetic-file", "--out", join(root, "output.bin"), ...tail, "--json"]
+  const destination = (flag) => ["files", command, "synthetic-file", flag, join(root, "output.bin"), ...tail, "--json"]
+  const args = destination(canonical ? "--output" : "--out")
   assert.equal(run(["synthetic", "--dry-run", ...args]).item.dry_run, true)
   checks++
   assert.equal(run(["synthetic", "--read-only", ...args], 5).error.code, "permission_error")
   checks++
+  if (canonical) {
+    assert.equal(run(["synthetic", "--dry-run", ...destination("--out")], 2).error.code, "validation_error")
+    checks++
+  }
 }
 const state = join(env.DRIVE_STATE_DIR, "profiles", "synthetic", "state.json")
 mkdirSync(dirname(state), { recursive: true })

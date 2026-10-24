@@ -138,3 +138,26 @@ A production audit of the fresh npm resolution reported zero vulnerabilities. Th
 installation and Google accounts were untouched. The release's synthetic HTTP suite exercised
 loopback OAuth, permission checks and shutdown; this external probe does not certify an actual
 public tunnel or a ChatGPT/Claude connection, live conversion fidelity or a real installation upgrade.
+
+## Published 0.29.0 and canonical output flags
+
+The owner asked for the prepared shared-contract migration to be released. While it waited for the
+release lock, the local-image mirrors feature ([Drive PR 201](https://github.com/WireCatLabs/drive-cli/pull/201))
+merged to main; the owner chose to include it. [Drive 0.29.0](https://github.com/WireCatLabs/drive-cli/releases/tag/v0.29.0)
+was published from commit `ada9bc9` by the [release workflow](https://github.com/WireCatLabs/drive-cli/actions/runs/40137759756),
+with Core 0.411.0 and Base 0.51.0. Downloads and exports now take `--output <file>`; `--out` is refused.
+
+The probe gained a `--canonical-output` mode for this contract. It runs the same previews and
+read-only refusals with `--output`, and checks that the old `--out` spelling fails with a validation error:
+
+```sh
+node performance/documents/drive-command-contracts/verify.mjs /absolute/installation/node_modules/@wirecat/drive-cli/dist/bin/drive.js --availability --canonical-output
+```
+
+A fresh isolated npm installation of 0.29.0 (Node 24.19.0, npm 11.17.0, lifecycle scripts disabled)
+returned `{"checks":18,"passed":true,"live_requests":0}`. Without the new flag the probe still uses
+`--out`: it passed all 16 checks against a fresh 0.28.1 installation, and fails against 0.29.0 as
+expected, because of the renamed flag rather than a regression. A production audit of the 0.29.0 resolution reported zero vulnerabilities.
+
+Not measured: live Google access, the local-image tunnel with a real Google fetch, note `text:`
+queries against a populated store, or an upgrade of the owner's global installation (untouched).
