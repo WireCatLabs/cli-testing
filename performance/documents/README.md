@@ -33,5 +33,8 @@ Measurements of document conversion, shared retrieval and source-backed memories
 
 - [Links introduced by message edits](edited-message-links/README.md): compiled sync, old SDK writers and upgrade repair.
 
+- [memo-drive-source-selection](memo-drive-source-selection/README.md): which Memo `--source` values select only
+  Drive documents, with published Drive 0.28.0 and Memo 0.92.0 (2026-10-24).
+
 - [drive-command-contracts](drive-command-contracts/README.md): synthetic compiled-CLI download guards,
   status privacy and MCP command/argument checks before the 2026-10-24 candidate release.
