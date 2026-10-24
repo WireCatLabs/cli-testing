@@ -11,3 +11,17 @@
 {"run":2,"step":"hand-edit","pulled":false,"fileChanged":false}
 {"run":2,"step":"stop","exitCode":0,"endRecord":"end","complete":true,"cycles":5}
 {"run":2,"step":"cleanup","trashed":true,"configRestored":true}
+{"run":3,"step":"start","seconds":6.507,"triggers":["start"],"created":1,"sent":0,"pulled":0,"conflicts":0}
+{"run":3,"step":"local-save","sent":true,"seconds":5.732,"triggers":["local"],"inDoc":true}
+{"run":3,"step":"docs-api-edit","pulled":true,"seconds":160.363,"triggers":["remote"],"inFile":true}
+{"run":3,"step":"cycles-after-edits","afterLocalSave":[{"triggers":["local"],"created":0,"sent":1,"pulled":0,"conflicts":0},{"triggers":["remote"],"created":0,"sent":0,"pulled":0,"conflicts":0}],"afterGoogleEdit":[{"triggers":["remote"],"created":0,"sent":0,"pulled":1,"conflicts":0},{"triggers":["remote"],"created":0,"sent":0,"pulled":0,"conflicts":0}]}
+{"run":3,"step":"hand-edit","pulled":false,"fileChanged":false}
+{"run":3,"step":"stop","exitCode":0,"endRecord":"end","complete":true,"cycles":5}
+{"run":3,"step":"cleanup","trashed":true,"configRestored":true}
+{"run":4,"step":"start","seconds":7.645,"triggers":["start"],"created":1,"sent":0,"pulled":0,"conflicts":0}
+{"run":4,"step":"local-save","sent":true,"seconds":5.982,"triggers":["local"],"inDoc":true}
+{"run":4,"step":"docs-api-edit","pulled":true,"seconds":130.04,"triggers":["remote"],"inFile":true}
+{"run":4,"step":"cycles-after-edits","afterLocalSave":[{"triggers":["local"],"created":0,"sent":1,"pulled":0,"conflicts":0},{"triggers":["remote"],"created":0,"sent":0,"pulled":0,"conflicts":0}],"afterGoogleEdit":[{"triggers":["remote"],"created":0,"sent":0,"pulled":1,"conflicts":0},{"triggers":["remote"],"created":0,"sent":0,"pulled":0,"conflicts":0}]}
+{"run":4,"step":"hand-edit","pulled":true,"triggers":["remote"],"secondsFromAsk":59.385,"fileChanged":true,"docChanged":true}
+{"run":4,"step":"stop","exitCode":0,"endRecord":"end","complete":true,"cycles":7}
+{"run":4,"step":"cleanup","trashed":true,"configRestored":true}
