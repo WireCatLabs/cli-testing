@@ -20,10 +20,6 @@ the private `cli-private` repository, never here.
 
 ## Launch blockers (P1)
 
-- **UX-1 · P1** Install the packed tarball with npm, pnpm and bun (supported Node, Linux, macOS, Windows),
-  run the documented install line and one command after it, plus publint. npm 11.17+ blocks install scripts
-  by default and warns on max, tg, memo and wa (seen 2026-10-23). Start: `src/index.ts` (suite groups).
-
 ## Next (P2)
 
 - **SEC-5 · P2** A complete new audit over the current repository set, with explicit scanner,

@@ -47,3 +47,5 @@ coverage/
 
 # Offline Python research bytecode remains local.
 **/__pycache__/
+
+/.install-tooling/

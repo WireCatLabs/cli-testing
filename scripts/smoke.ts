@@ -11,6 +11,7 @@ import {
   findLeaks,
   redactTranscript,
   runContracts,
+  runInstallSuite,
   SUITE_GROUPS,
   scanLeaks,
   securityPreflight,
@@ -22,6 +23,7 @@ assert.deepEqual(compareRuns("security", empty, empty), { new: [], fixed: [], ca
 assert.equal(redactTranscript("/synthetic-root/file", ["/synthetic-root"]), "[ROOT]/file")
 assert.equal(contractToolSnapshot([]), "[]\n")
 assert.equal(typeof runContracts, "function")
+assert.equal(typeof runInstallSuite, "function")
 assert.deepEqual(findLeaks("ordinary diagnostic"), [])
 assert.equal(typeof scanLeaks, "function")
 assert.equal(typeof securityPreflight, "function")
