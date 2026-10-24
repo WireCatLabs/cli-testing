@@ -45,3 +45,18 @@ This is an offline contract check, not a speed benchmark or a live Google conver
 It does not certify PDF/DOCX/XLSX layout, CSV tab coverage, large downloads or Google Vids.
 It does not certify installed-package upgrades; the owner's global installation was untouched.
 The CLI version string alone cannot identify these candidate changes; use the commit and PR above.
+
+## Combined candidate acceptance
+
+After the implementation PRs merged, the external script passed all 15 checks again against the
+compiled 0.27.0 release candidate, commit `5bf4251` in
+[Drive release PR 177](https://github.com/WireCatLabs/drive-cli/pull/177). This remains an unpublished
+candidate; no live account was accessed. The fixture uses empty private-file credential storage
+inside its temporary home, so MCP scope discovery does not consult the OS keyring.
+
+The [final implementation CI run](https://github.com/WireCatLabs/drive-cli/actions/runs/40100277010)
+passed 405 tests with 90.75% line coverage, all CLI/MCP contracts, six historical-store upgrade cases,
+and Node/Bun installed-package checks. The command matrix recorded 215 tested command/options,
+953 explicit exemptions and zero missing entries. Command lint reported zero new violations;
+20 historical baseline entries and ten reviewed exceptions remain. These are synthetic checks,
+not evidence of live conversion fidelity or installation upgrades on the owner's machine.
