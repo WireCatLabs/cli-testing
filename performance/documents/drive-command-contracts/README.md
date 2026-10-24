@@ -19,7 +19,7 @@ node performance/documents/drive-command-contracts/verify.mjs /absolute/candidat
 ```
 
 The script drives the binary from outside. It creates a temporary home, configuration, cache, state
-and store with one synthetic profile. No real account, keyring credential or provider request is needed.
+and store with one synthetic profile using an empty private-file credential location. No real account, keyring credential or provider request is needed.
 It does not install or upgrade the owner's CLI.
 
 ## Results
