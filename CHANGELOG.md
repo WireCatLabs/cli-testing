@@ -11,6 +11,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 ### Added
 
 - `cli-testing ux install` checks packed tarballs with pinned npm, pnpm and Bun, validates global binaries and documented follow-up commands, and records install warnings and publint results in isolated run directories.
+- A synthetic knowledge graph memory benchmark fixture and scorer: 2,000 source records, 50 known-answer
+  questions, citation checks and stale-answer checks. Engine runs remain pending provider selection.
 
 ## 0.5.3 â€” 22.10.2026
 
