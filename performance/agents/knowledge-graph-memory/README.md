@@ -85,3 +85,61 @@ size or offline behavior has been measured. Record these during engine runs, wit
 token/cost totals reported separately from quality. This small English template corpus is a pilot, not
 LongMemEval, multilingual coverage or evidence that graph memory improves Memo. It needs broader wording
 and repeated runs before a product decision. No store export integration is justified by this self-check.
+
+## API cost plan (24 October 2026)
+
+The generated corpus contains 296,860 text characters. Tokenizing each body independently with
+`tiktoken==0.14.0`, encoding `o200k_base`, gives 60,175 tokens; the whole JSONL gives 147,426 tokens.
+This encoding is a proxy, not a guarantee of the selected model's billed token count.
+The source text is small; repeated system prompts, graph context and generated facts dominate cost.
+
+Use the standard-library estimator to reproduce the planning table:
+
+```sh
+python3 performance/agents/knowledge-graph-memory/estimate.py
+```
+
+| Scenario | Input tokens | Output tokens | GPT-6 Luna | GPT-6.1 Sol |
+|---|---:|---:|---:|---:|
+| Lean | 18,800,000 | 2,560,000 | $3.16 | $63.20 |
+| Higher overhead | 85,600,000 | 14,400,000 | $15.76 | $315.20 |
+
+These are assumptions, not engine measurements or upper bounds. The lean scenario assumes 1, 4 and 1
+completion calls per source record for Hindsight, Graphiti and Cognee; the higher-overhead scenario
+assumes 3, 8 and 3. Each call averages 1,500 input/200 output tokens or 3,000 input/500 output tokens.
+Both add 200 answer calls (50 questions across four systems), averaging 4,000 input/800 output tokens
+or 8,000 input/2,000 output tokens. Output includes any billed reasoning tokens.
+
+The rates are the short-context Standard prices from [OpenAI pricing](https://developers.openai.com/api/docs/pricing):
+Luna $0.10 input/$0.50 output and Sol $2 input/$10 output per million tokens. The table assumes no
+caching, Batch or Flex discounts and no cache writes. Regional uplifts, retries, extra consolidation,
+longer context and repeated full runs can increase the bill. Each new full ingest costs again.
+At [text-embedding-3-small's listed rate](https://developers.openai.com/api/docs/models/text-embedding-3-small),
+embedding all source bodies once for each graph engine is about $0.004; generated facts and repeated
+embedding add tokens. Local embedding models avoid that API line. Hosting and graph database costs
+are separate and are not estimated here.
+
+Why count extra completion calls? [Hindsight retain](https://hindsight.vectorize.io/developer/api/retain)
+extracts facts through an LLM, while [Graphiti's node processing](https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/node_operations.py)
+and [edge processing](https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/edge_operations.py)
+include extraction, deduplication, summaries and temporal resolution. A bulk API does not establish
+one model call for the whole corpus. The exact multiplier needs a metered pilot.
+
+Recommended sequence: a 100-record Hindsight pilot under a $1 cap, then update this estimate from
+actual input/output usage before authorizing the 2,000-record comparison. Start with a small model
+only after checking structured-output compatibility and extraction quality. A $20 cap is a reasonable
+planning allowance for the small-model full comparison, not a promise it will finish. The call path
+must reserve a request's maximum cost before dispatch, include retries, and stop before its cap.
+No paid request or credential access has occurred for this estimate.
+
+### Reusing the coding assistant
+
+Fixture design, adapter implementation and exact answer/citation scoring need no model API calls.
+The benchmark's scorer is deterministic, so it also avoids a paid LLM judge. A developer assistant
+can review failures, but should not answer a measured trial after seeing its answer key.
+
+[Cognee documents MCP sampling](https://docs.cognee.ai/setup-configuration/llm-providers): a server can
+request completions from a host that explicitly grants that capability. This could reuse a host's
+model, but host support has not been verified here, embeddings are still required, and it would be
+a separately recorded configuration. It is not evidence that Hindsight or Graphiti can use a chat
+subscription in place of their configured model clients.
