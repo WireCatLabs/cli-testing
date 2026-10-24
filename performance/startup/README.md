@@ -16,3 +16,5 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
   merged (2026-10-18).
 
 - [packed-install](packed-install/README.md): packed releases installed with npm, pnpm and Bun in isolated directories (2026-10-24).
+
+- [WhatsApp on npm 12](wa-npm12/README.md): whether an unapproved global install hook runs, and the scoped approval flag.
