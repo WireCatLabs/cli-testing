@@ -8,6 +8,8 @@ import { scanLeaks } from "./leaks.js"
 import { securityPreflight } from "./preflight.js"
 import { type ProcessRunner, runAgent, runSecurity } from "./runner.js"
 import { readRun } from "./runs.js"
+import type { InstallPlan, installProcess } from "./ux.js"
+import { runInstallSuite } from "./ux.js"
 
 export const HELP = `cli-testing security preflight <checkout>... [--previous <run>]
 cli-testing security scan <output> <checkout>... [--previous <run>]
@@ -15,17 +17,31 @@ cli-testing security socket <output> <checkout>...
 cli-testing security no-leak <root> <policy.json>
 cli-testing agent <output> <plan.json> --live [--previous <run>]
 cli-testing compare <suite> <run-a> <run-b>
+cli-testing ux install <output> <plan.json>
 
 Results belong in a private run directory. Agent runs require an approved test cast.
 `
 
-export const runCli = (argv: string[], deps: { run?: ProcessRunner; now?: () => Date } = {}) => {
+export const runCli = (
+  argv: string[],
+  deps: { run?: ProcessRunner; now?: () => Date; installRun?: typeof installProcess } = {},
+) => {
   const { values, positionals: args } = parseArgs({
     args: argv,
     allowPositionals: true,
     options: { help: { type: "boolean", short: "h" }, live: { type: "boolean" }, previous: { type: "string" } },
   })
   if (values.help || args.length === 0) return { exit: 0, output: HELP }
+  if (args[0] === "ux" && args[1] === "install" && args.length === 4) {
+    const plan = JSON.parse(readFileSync(resolve(args[3] as string), "utf8")) as InstallPlan
+    const report = runInstallSuite(plan, args[2] as string, { ...(deps.installRun ? { run: deps.installRun } : {}) })
+    return {
+      exit: report.passed ? 0 : 1,
+      output: `${report.rows
+        .map((row) => `${row.tool}\t${row.manager}\t${row.passed ? "PASS" : "FAIL"}\t${row.warnings.length} warnings`)
+        .join("\n")}\n`,
+    }
+  }
   if (args[0] === "security" && args[1] === "preflight") {
     const report = securityPreflight(args.slice(2), {
       ...deps,
@@ -71,6 +87,7 @@ export const main = (
   argv = process.argv.slice(2),
   deps: {
     run?: ProcessRunner
+    installRun?: typeof installProcess
     now?: () => Date
     stdout?: { write(text: string): unknown }
     stderr?: { write(text: string): unknown }

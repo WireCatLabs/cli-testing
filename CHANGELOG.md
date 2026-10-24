@@ -6,6 +6,12 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- `cli-testing ux install` checks packed tarballs with pinned npm, pnpm and Bun, validates global binaries and documented follow-up commands, and records install warnings and publint results in isolated run directories.
+
 ## 0.5.3 — 22.10.2026
 
 - Add a question-level lexical/discovery/E5 comparison with support metrics and explicit source/index coverage.

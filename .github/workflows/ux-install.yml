@@ -1,0 +1,45 @@
+name: Packed installation
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: ["22.16.0", "24"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install pinned development manager
+        run: npm install --global pnpm@11.20.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Install pinned test tools
+        run: npm install --global npm@11.17.0 pnpm@12.11.2 bun@1.3.14 publint@0.3.25
+      - name: Pack exact releases and write the plan
+        run: npm run ux:plan -- .install-tooling
+      - name: Install tarballs and check binaries
+        run: node dist/main.js ux install .install-tooling/run .install-tooling/plan.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: installs-${{ matrix.os }}-node-${{ matrix.node }}
+          path: |
+            .install-tooling/plan.json
+            .install-tooling/run/plan.json
+            .install-tooling/run/install.json
+            .install-tooling/run/*/stages.json
+          retention-days: 7

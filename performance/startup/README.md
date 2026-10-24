@@ -14,3 +14,5 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
   the `cli` entry loads 618 of cli-core's modules instead of 704 and imports in about 400 ms instead of 430–450;
   tg and max start within noise of before, and their test steps did not measurably change, so the change was not
   merged (2026-10-18).
+
+- [packed-install](packed-install/README.md): packed releases installed with npm, pnpm and Bun in isolated directories (2026-10-24).

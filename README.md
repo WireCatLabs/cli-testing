@@ -53,6 +53,13 @@ attempted a write and whether its answer contains the expected task-specific fra
 these are reported separately in its summary. Runtime failures leave a run incomplete.
 The owner's approval applies only to the test profiles, chats and payloads listed in the plan.
 
+## Installation checks
+
+`cli-testing ux install <run-dir> <plan.json>` checks packed tarballs with pinned npm, pnpm and Bun,
+publint, the installed executable and an account-free follow-up command. Warnings are recorded; failed
+commands or missing binaries fail the row. See the [install guide](docs/ci/INSTALL.md) for plans, isolation
+and the on-demand Linux/macOS/Windows workflow.
+
 ## Search experiments
 
 Offline synthetic search-quality benchmarks, model explanations and resource probes live in
