@@ -1,0 +1,351 @@
+{
+  "node": "v24.19.0",
+  "cpu": "AMD Ryzen AI 9 HX 470 w/ Radeon 890M",
+  "core_commit": "f2d64158ed2887b92afa35acaf1669b13d0deb20",
+  "rounds": 8,
+  "threads": 4,
+  "summary": {
+    "process": {
+      "wall_ms": {
+        "p50": 31.694220000000314,
+        "p95": 40.381395
+      }
+    },
+    "fresh-store": {
+      "wall_ms": {
+        "p50": 358.9624989999975,
+        "p95": 491.774999
+      },
+      "store_import_ms": {
+        "p50": 240.916576,
+        "p95": 326.360866
+      },
+      "store_open_ms": {
+        "p50": 64.649025,
+        "p95": 102.265443
+      },
+      "worker_total_ms": {
+        "p50": 318.659511,
+        "p95": 436.617037
+      }
+    },
+    "reopen-store": {
+      "wall_ms": {
+        "p50": 301.435191999999,
+        "p95": 321.1361959999995
+      },
+      "store_import_ms": {
+        "p50": 250.77788200000003,
+        "p95": 272.738736
+      },
+      "store_open_ms": {
+        "p50": 8.44500099999999,
+        "p95": 13.71090799999999
+      },
+      "worker_total_ms": {
+        "p50": 262.147439,
+        "p95": 282.104012
+      }
+    },
+    "model": {
+      "wall_ms": {
+        "p50": 1892.3375320000005,
+        "p95": 3527.2625970000004
+      },
+      "store_import_ms": {
+        "p50": 213.299373,
+        "p95": 287.741116
+      },
+      "store_open_ms": {
+        "p50": 7.826461000000023,
+        "p95": 11.531079000000034
+      },
+      "embed_import_ms": {
+        "p50": 2.8570589999999925,
+        "p95": 4.051098999999965
+      },
+      "model_open_ms": {
+        "p50": 1439.71903,
+        "p95": 3019.799121
+      },
+      "first_query_ms": {
+        "p50": 49.351780999999846,
+        "p95": 71.79756300000008
+      },
+      "warm_query_ms": {
+        "p50": 12.943667999999889,
+        "p95": 23.17425900000012
+      },
+      "worker_total_ms": {
+        "p50": 1728.4859,
+        "p95": 3393.3656819999997
+      }
+    }
+  },
+  "raw": [
+    {
+      "scenario": "process",
+      "round": 0,
+      "wall_ms": 40.381395
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 0,
+      "wall_ms": 491.774999,
+      "store_import_ms": 326.360866,
+      "store_open_ms": 102.265443,
+      "worker_total_ms": 436.617037
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 0,
+      "wall_ms": 303.4837749999999,
+      "store_import_ms": 250.77788200000003,
+      "store_open_ms": 10.85931899999997,
+      "worker_total_ms": 262.44662
+    },
+    {
+      "scenario": "model",
+      "round": 0,
+      "wall_ms": 3527.2625970000004,
+      "store_import_ms": 287.741116,
+      "store_open_ms": 11.531079000000034,
+      "embed_import_ms": 4.051098999999965,
+      "model_open_ms": 3019.799121,
+      "first_query_ms": 49.351780999999846,
+      "warm_query_ms": 12.943667999999889,
+      "worker_total_ms": 3393.3656819999997
+    },
+    {
+      "scenario": "process",
+      "round": 1,
+      "wall_ms": 31.694220000000314
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 1,
+      "wall_ms": 300.34723099999974,
+      "store_import_ms": 203.676343,
+      "store_open_ms": 56.323316999999975,
+      "worker_total_ms": 263.22998
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 1,
+      "wall_ms": 249.97219199999927,
+      "store_import_ms": 194.081666,
+      "store_open_ms": 13.71090799999999,
+      "worker_total_ms": 208.462921
+    },
+    {
+      "scenario": "model",
+      "round": 1,
+      "wall_ms": 1984.1068969999997,
+      "store_import_ms": 246.881764,
+      "store_open_ms": 10.521676000000014,
+      "embed_import_ms": 3.7446140000000128,
+      "model_open_ms": 1470.9757100000002,
+      "first_query_ms": 67.24461300000007,
+      "warm_query_ms": 23.17425900000012,
+      "worker_total_ms": 1835.272714
+    },
+    {
+      "scenario": "process",
+      "round": 2,
+      "wall_ms": 29.158865000000333
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 2,
+      "wall_ms": 384.3361020000002,
+      "store_import_ms": 242.62263599999997,
+      "store_open_ms": 91.30190800000003,
+      "worker_total_ms": 337.010042
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 2,
+      "wall_ms": 248.94021599999996,
+      "store_import_ms": 205.82101600000001,
+      "store_open_ms": 8.649894000000018,
+      "worker_total_ms": 215.151667
+    },
+    {
+      "scenario": "model",
+      "round": 2,
+      "wall_ms": 1892.3375320000005,
+      "store_import_ms": 188.4272,
+      "store_open_ms": 5.682519000000013,
+      "embed_import_ms": 1.9470420000000104,
+      "model_open_ms": 1439.71903,
+      "first_query_ms": 71.79756300000008,
+      "warm_query_ms": 13.675130999999965,
+      "worker_total_ms": 1728.4859
+    },
+    {
+      "scenario": "process",
+      "round": 3,
+      "wall_ms": 34.33706800000073
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 3,
+      "wall_ms": 369.89158899999893,
+      "store_import_ms": 240.916576,
+      "store_open_ms": 83.824883,
+      "worker_total_ms": 328.394181
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 3,
+      "wall_ms": 301.435191999999,
+      "store_import_ms": 253.235463,
+      "store_open_ms": 8.024070999999992,
+      "worker_total_ms": 262.147439
+    },
+    {
+      "scenario": "model",
+      "round": 3,
+      "wall_ms": 2276.607691000001,
+      "store_import_ms": 213.299373,
+      "store_open_ms": 7.826461000000023,
+      "embed_import_ms": 2.94538399999999,
+      "model_open_ms": 1843.5253530000002,
+      "first_query_ms": 36.89767000000029,
+      "warm_query_ms": 10.660204999999678,
+      "worker_total_ms": 2121.244781
+    },
+    {
+      "scenario": "process",
+      "round": 4,
+      "wall_ms": 25.530839000000924
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 4,
+      "wall_ms": 333.32858599999963,
+      "store_import_ms": 219.661106,
+      "store_open_ms": 64.38436800000002,
+      "worker_total_ms": 287.60316700000004
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 4,
+      "wall_ms": 317.895407,
+      "store_import_ms": 263.850974,
+      "store_open_ms": 8.102057000000002,
+      "worker_total_ms": 272.736371
+    },
+    {
+      "scenario": "model",
+      "round": 4,
+      "wall_ms": 1437.6857369999998,
+      "store_import_ms": 196.011275,
+      "store_open_ms": 5.654045999999994,
+      "embed_import_ms": 1.8469439999999793,
+      "model_open_ms": 1057.8094190000002,
+      "first_query_ms": 36.784557999999834,
+      "warm_query_ms": 11.987435000000005,
+      "worker_total_ms": 1315.3017360000001
+    },
+    {
+      "scenario": "process",
+      "round": 5,
+      "wall_ms": 26.21241799999916
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 5,
+      "wall_ms": 282.71216300000015,
+      "store_import_ms": 191.469697,
+      "store_open_ms": 55.28222499999998,
+      "worker_total_ms": 250.10178499999998
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 5,
+      "wall_ms": 321.1361959999995,
+      "store_import_ms": 272.738736,
+      "store_open_ms": 8.44500099999999,
+      "worker_total_ms": 282.104012
+    },
+    {
+      "scenario": "model",
+      "round": 5,
+      "wall_ms": 1796.052888000002,
+      "store_import_ms": 203.96358199999997,
+      "store_open_ms": 5.847197999999992,
+      "embed_import_ms": 2.6863790000000165,
+      "model_open_ms": 1389.4255229999999,
+      "first_query_ms": 50.325066000000106,
+      "warm_query_ms": 12.943908999999849,
+      "worker_total_ms": 1672.740407
+    },
+    {
+      "scenario": "process",
+      "round": 6,
+      "wall_ms": 31.806610999999975
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 6,
+      "wall_ms": 358.9624989999975,
+      "store_import_ms": 250.84631100000001,
+      "store_open_ms": 64.649025,
+      "worker_total_ms": 318.659511
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 6,
+      "wall_ms": 277.32337499999994,
+      "store_import_ms": 233.984643,
+      "store_open_ms": 7.561543999999998,
+      "worker_total_ms": 242.29608399999998
+    },
+    {
+      "scenario": "model",
+      "round": 6,
+      "wall_ms": 1630.8615229999996,
+      "store_import_ms": 233.124599,
+      "store_open_ms": 8.91231700000003,
+      "embed_import_ms": 2.8570589999999925,
+      "model_open_ms": 1167.5492920000002,
+      "first_query_ms": 36.788233999999875,
+      "warm_query_ms": 10.055531000000201,
+      "worker_total_ms": 1464.4901240000002
+    },
+    {
+      "scenario": "process",
+      "round": 7,
+      "wall_ms": 26.44419299999936
+    },
+    {
+      "scenario": "fresh-store",
+      "round": 7,
+      "wall_ms": 301.7637480000012,
+      "store_import_ms": 208.196511,
+      "store_open_ms": 59.40738300000004,
+      "worker_total_ms": 270.673401
+    },
+    {
+      "scenario": "reopen-store",
+      "round": 7,
+      "wall_ms": 287.8725030000023,
+      "store_import_ms": 247.88881400000002,
+      "store_open_ms": 5.276546999999994,
+      "worker_total_ms": 253.53266000000002
+    },
+    {
+      "scenario": "model",
+      "round": 7,
+      "wall_ms": 1287.3298280000017,
+      "store_import_ms": 168.80633500000002,
+      "store_open_ms": 5.229658999999998,
+      "embed_import_ms": 1.6845799999999826,
+      "model_open_ms": 959.6615400000001,
+      "first_query_ms": 39.891215999999986,
+      "warm_query_ms": 9.28747999999996,
+      "worker_total_ms": 1188.4374420000001
+    }
+  ]
+}

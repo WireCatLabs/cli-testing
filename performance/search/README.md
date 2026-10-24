@@ -39,6 +39,8 @@ person's images, totals only.
 [Mentions](mentions/README.md): how long finding phones, e-mail, links and documents by rules takes on one person's
 messages, and how many of each it finds, totals only.
 
+[Startup stages](startup/README.md) separates process start, built store import, empty-store opening and text-model loading.
+
 ## Layout
 
 | Path | Purpose |
