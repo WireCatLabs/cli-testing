@@ -94,11 +94,24 @@ for (const name of [
   )
   checks++
 }
-assert.equal(
-  tools.some((item) => item.command === "config set"),
-  false,
-)
+const setter = tools.find((item) => item.command === "config set")
+if (process.argv.includes("--availability")) {
+  assert.ok(setter)
+  assert.equal(setter.availability.available, false)
+  assert.equal(setter.availability.permission, "mcp.authority")
+  assert.ok(setter.availability.reason)
+} else assert.equal(setter, undefined)
 checks++
+if (process.argv.includes("--availability")) {
+  const mcp = registry.commands.find((command) => command.path.join(" ") === "mcp")
+  assert.ok(mcp)
+  for (const flag of ["--http", "--port", "--public-url", "--revoke"])
+    assert.ok(
+      mcp.options.some((option) => option.flags.split(" ")[0] === flag),
+      flag,
+    )
+  checks++
+}
 for (const tool of tools)
   for (const key of Object.keys(tool.input_schema.properties)) assert.equal(key.includes("-"), false)
 checks++

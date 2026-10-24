@@ -114,3 +114,27 @@ Passing these checks does not certify complete alignment. The source backlog sti
 metadata, shared progress reporting, `bin/release --local`, a default command deadline and upgrades
 from an actual previous Drive release (DRV-31, DRV-33 through DRV-36), alongside further maintenance.
 The earlier shared-store upgrade fixtures are not evidence of an installed-Drive upgrade.
+
+## Published 0.28.1 and discoverable denied commands
+
+[Drive 0.28.1](https://github.com/WireCatLabs/drive-cli/releases/tag/v0.28.1) includes HTTP MCP and
+permission-aware command discovery, using Core 0.408.0 and Base 0.50.3. The
+[release workflow](https://github.com/WireCatLabs/drive-cli/actions/runs/40130620975) passed full
+validation and platform checks before publishing its verified package.
+
+A fresh isolated npm installation passed 16 external checks with the current discovery mode:
+
+```sh
+node performance/documents/drive-command-contracts/verify.mjs /absolute/installation/node_modules/@wirecat/drive-cli/dist/bin/drive.js --availability
+```
+
+The result was `{"checks":16,"passed":true,"live_requests":0}`. The probe now verifies that the
+ungranted configuration setter stays discoverable with `available: false`, a reason and the
+`mcp.authority` key. It also checks the installed `--http`, `--port`, `--public-url` and `--revoke`
+options. Permission denial is still required; visibility is not authorization. The original mode
+without `--availability` was rerun against 0.27.0 and still passed all 15 historical checks.
+
+A production audit of the fresh npm resolution reported zero vulnerabilities. The owner's global
+installation and Google accounts were untouched. The release's synthetic HTTP suite exercised
+loopback OAuth, permission checks and shutdown; this external probe does not certify an actual
+public tunnel or a ChatGPT/Claude connection, live conversion fidelity or a real installation upgrade.
