@@ -32,3 +32,6 @@ Measurements of document conversion, shared retrieval and source-backed memories
 - [offline-catalog](offline-catalog/README.md): synthetic Drive hierarchy, metadata queries, folder context, account isolation and released JSON/MCP contracts, including [0.11.1 list-query acceptance](offline-catalog/README.md#released-0111-list-queries); includes a [standards gap review](offline-catalog/standards.md) and an [isolated Google checker and unrun live checklist](offline-catalog/live-checklist.md).
 
 - [Links introduced by message edits](edited-message-links/README.md): compiled sync, old SDK writers and upgrade repair.
+
+- [drive-command-contracts](drive-command-contracts/README.md): synthetic compiled-CLI download guards,
+  status privacy and MCP command/argument checks before the 2026-10-24 candidate release.
