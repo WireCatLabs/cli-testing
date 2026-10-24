@@ -60,3 +60,38 @@ and Node/Bun installed-package checks. The command matrix recorded 215 tested co
 953 explicit exemptions and zero missing entries. Command lint reported zero new violations;
 20 historical baseline entries and ten reviewed exceptions remain. These are synthetic checks,
 not evidence of live conversion fidelity or installation upgrades on the owner's machine.
+
+
+## Published package and approved live checks
+
+The package was published by the mirrors lane before the owner approved this lane's release gate.
+[Drive 0.27.0](https://github.com/WireCatLabs/drive-cli/releases/tag/v0.27.0) was published on
+24 October 2026 at 14:34 UTC through the [successful release run](https://github.com/WireCatLabs/drive-cli/actions/runs/40102720586).
+It includes the handoff changes and mirrors watch, with exact cli-core 0.405.0. Superseded release
+draft 177 was closed rather than publishing another version.
+
+A fresh isolated npm installation reported 0.27.0 and passed the 15 offline acceptance checks.
+Six relevant compiled modules matched the earlier candidate byte for byte: download, Google API,
+remote commands, imported documents, configuration and MCP. This comparison does not claim that
+every module or the shared-package pin was unchanged.
+
+The owner explicitly approved bounded read-only Google checks. The same checks passed against the
+candidate and the installed npm package. Only aggregate counts and byte sizes are retained here:
+
+| Check | npm package result |
+| --- | ---: |
+| Uploaded-file download | 3,048,724 bytes |
+| Native Doc as PDF | 116,793 bytes |
+| Native Doc as DOCX | 11,133 bytes |
+| Existing-output refusal | Passed |
+| Configured-scope folders inspected | 4 |
+| CLI commands | 9 |
+
+There were no Google mutations. These three artifacts come from two source files; they do not certify
+all documents, workbook exports, Google Vids, formatting fidelity or the owner's global upgrade path.
+The global installation was untouched. Source IDs, names, content and local output paths remain private.
+
+The bounded [live runner](live.mjs) requires a binary, an explicitly chosen profile and `--live`.
+Run it only with the account owner's approval. It lists ID/type/size metadata inside selected folders,
+visits at most twelve folders, downloads a stored file and exports one Doc to PDF/DOCX. It prints
+counts and bytes, and sanitizes failures without printing command output or document identifiers.
