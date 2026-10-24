@@ -273,3 +273,8 @@ The experiments now live in `cli-testing/performance/search`; implementation tes
 the SDK/client code. Public search and testing documentation were updated separately, keeping
 reader explanations simple and deeper benchmark details here. Historical reports remain available;
 this account does not replace their protocols or raw evidence.
+
+## Search startup stages
+
+The [startup measurement](startup/README.md) separates process, store and model costs on synthetic data.
+Model loading dominates this component run; end-to-end CLI versus long-lived MCP comparison remains next.
