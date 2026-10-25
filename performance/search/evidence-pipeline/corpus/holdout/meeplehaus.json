@@ -1,0 +1,2024 @@
+{
+ "project": {
+  "id": "meeplehaus",
+  "name": "Meeple Haus — crowdfunding for Northern Path",
+  "aliases": [
+   "Meeple Haus",
+   "Northern Path",
+   "Северный путь",
+   "кампания на Backerly"
+  ]
+ },
+ "sources": [
+  {
+   "id": "meeplehaus-chat-team",
+   "kind": "chat",
+   "title": "northern-path"
+  },
+  {
+   "id": "meeplehaus-chat-prod",
+   "kind": "chat",
+   "title": "production / производство"
+  },
+  {
+   "id": "meeplehaus-chat-factory",
+   "kind": "chat",
+   "title": "Qingmu Print ↔ Meeple Haus"
+  },
+  {
+   "id": "meeplehaus-chat-mkt",
+   "kind": "chat",
+   "title": "marketing"
+  },
+  {
+   "id": "meeplehaus-chat-art",
+   "kind": "chat",
+   "title": "арт"
+  },
+  {
+   "id": "meeplehaus-chat-play",
+   "kind": "chat",
+   "title": "плейтесты / playtests"
+  },
+  {
+   "id": "meeplehaus-chat-general",
+   "kind": "chat",
+   "title": "office"
+  },
+  {
+   "id": "meeplehaus-doc-plan",
+   "kind": "document",
+   "title": "Campaign plan v4"
+  },
+  {
+   "id": "meeplehaus-meet-0520",
+   "kind": "meeting",
+   "title": "Созвон по кампании 20 мая"
+  },
+  {
+   "id": "meeplehaus-meet-0611",
+   "kind": "meeting",
+   "title": "Pre-launch review 11 June"
+  }
+ ],
+ "units": [
+  {
+   "id": "mh-tm-001",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-04T09:30:00Z",
+   "text": "Hi all / всем привет! Channel for the Northern Path campaign on Backerly. Team: Kirill — producer, Daniel — marketing, Yulia — art, Mats — manufacturing. Пишем кто на чём удобно"
+  },
+  {
+   "id": "mh-tm-002",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-04T09:48:59Z",
+   "text": "Привет! Наконец-то запускаем"
+  },
+  {
+   "id": "mh-tm-003",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-04T10:26:42Z",
+   "text": "Hey! Excited. I'll need the rules PDF for the reviewers asap"
+  },
+  {
+   "id": "mh-tm-004",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-04T10:52:02Z",
+   "reply_to": "mh-tm-003",
+   "text": "Rules v0.9 are in the drive, Юля доделывает вёрстку"
+  },
+  {
+   "id": "mh-tm-005",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-05-04T11:23:13Z",
+   "text": "к пятнице будет красиво"
+  },
+  {
+   "id": "mh-tm-006",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-05-04T11:26:14Z",
+   "text": "Hi. I'll handle the factory and freight side"
+  },
+  {
+   "id": "mh-tm-007",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-05T11:15:00Z",
+   "text": "Напоминаю: в прошлый раз (Ice Harbour) собрали 41 тысячу при цели 28 000. Можем смелее"
+  },
+  {
+   "id": "mh-tm-008",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-05T11:37:01Z",
+   "text": "honestly the goal should be low so we fund on day one"
+  },
+  {
+   "id": "mh-tm-009",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-05T14:40:00Z",
+   "text": "Цель кампании ставим 35 000 € — чтобы точно собрать в первые 48 часов. Остальное — стретчи"
+  },
+  {
+   "id": "mh-tm-010",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-05T14:43:54Z",
+   "reply_to": "mh-tm-009",
+   "text": "👍 works for the \"funded in X hours\" banner"
+  },
+  {
+   "id": "mh-tm-011",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-05T15:00:24Z",
+   "text": "ок"
+  },
+  {
+   "id": "mh-tm-012",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-05-06T10:00:00Z",
+   "text": "Freight quote from Qingmu to Rotterdam: one 40ft container fits about 4,000 copies"
+  },
+  {
+   "id": "mh-tm-013",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-06T10:28:31Z",
+   "text": "нам столько не надо"
+  },
+  {
+   "id": "mh-tm-014",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-07T16:20:00Z",
+   "text": "Idea: a solo mode with a simple automa deck. Solo gamers are a huge chunk of Backerly backers, and reviewers always ask"
+  },
+  {
+   "id": "mh-tm-015",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-05-07T16:30:52Z",
+   "reply_to": "mh-tm-014",
+   "text": "а кто будет его тестить? у нас и так плейтесты раз в неделю"
+  },
+  {
+   "id": "mh-tm-016",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-07T16:37:27Z",
+   "reply_to": "mh-tm-014",
+   "text": "Интересно, но давай после кампании вернёмся. Сейчас не потянем"
+  },
+  {
+   "id": "mh-tm-017",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-07T16:39:55Z",
+   "text": "ok, but I'll keep bringing it up 😄"
+  },
+  {
+   "id": "mh-tm-018",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-08T12:30:00Z",
+   "text": "Mats, вопрос: до какого момента бэкеры могут менять адрес доставки после pledge manager?"
+  },
+  {
+   "id": "mh-tm-019",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-05-08T13:07:44Z",
+   "reply_to": "mh-tm-018",
+   "text": "No address changes later than 14 days after the pledge manager closes — the factory locks the shipping manifest then. Refunds are a separate policy, 30 days"
+  },
+  {
+   "id": "mh-tm-020",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-08T13:19:15Z",
+   "reply_to": "mh-tm-019",
+   "text": "понял, впишу в FAQ"
+  },
+  {
+   "id": "mh-tm-021",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-05-11T09:20:00Z",
+   "text": "Обложка v2 в папке «art/cover». Северное сияние сделала ярче"
+  },
+  {
+   "id": "mh-tm-022",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-11T09:40:17Z",
+   "text": "wow. that's the thumbnail for sure"
+  },
+  {
+   "id": "mh-tm-023",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-11T09:51:06Z",
+   "text": "😍"
+  },
+  {
+   "id": "mh-tm-024",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-12T15:10:00Z",
+   "text": "Плейтест в четверг в Риге, 6 человек. Кто может — приходите"
+  },
+  {
+   "id": "mh-tm-025",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-05-12T15:24:00Z",
+   "text": "can't, factory call"
+  },
+  {
+   "id": "mh-tm-026",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-14T18:40:00Z",
+   "text": "Плейтест: партия идёт 75 минут вместо 60. Сократим колоду погоды"
+  },
+  {
+   "id": "mh-tm-027",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-05-14T19:11:27Z",
+   "reply_to": "mh-tm-026",
+   "text": "тогда меньше карт печатать?"
+  },
+  {
+   "id": "mh-tm-028",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-14T19:12:54Z",
+   "text": "посмотрим"
+  },
+  {
+   "id": "mh-tm-029",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-18T10:05:00Z",
+   "text": "Созвон по кампании в среду 20-го, 11:00 CET. Повестка в доке"
+  },
+  {
+   "id": "mh-tm-030",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-18T10:29:43Z",
+   "text": "I'll bring the ad plan"
+  },
+  {
+   "id": "mh-tm-031",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T13:00:00Z",
+   "text": "Thanks for the call, transcript is in the folder. Главное — монеты как стретч, адреса, фигурки"
+  },
+  {
+   "id": "mh-tm-032",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-20T13:12:06Z",
+   "text": "and solo mode? 😇"
+  },
+  {
+   "id": "mh-tm-033",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T13:20:00Z",
+   "reply_to": "mh-tm-032",
+   "text": "Parking it, Daniel"
+  },
+  {
+   "id": "mh-tm-034",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-05-22T11:40:00Z",
+   "text": "FYI the Polish factory we talked to last year does a minimum of 1,000, but their card stock is worse"
+  },
+  {
+   "id": "mh-tm-035",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-22T11:53:56Z",
+   "reply_to": "mh-tm-034",
+   "text": "не надо, остаёмся с Qingmu"
+  },
+  {
+   "id": "mh-tm-036",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-26T09:00:00Z",
+   "text": "Фабрика всё одобрила, можно запускать предзаказ печати!"
+  },
+  {
+   "id": "mh-tm-037",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-05-26T09:21:24Z",
+   "text": "🎉"
+  },
+  {
+   "id": "mh-tm-038",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-05-26T09:27:09Z",
+   "reply_to": "mh-tm-037",
+   "text": "Kirill, careful — see the factory chat, not everything is approved"
+  },
+  {
+   "id": "mh-tm-039",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-05-26T09:40:25Z",
+   "text": "а, ок, понял"
+  },
+  {
+   "id": "mh-tm-040",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-28T14:30:00Z",
+   "text": "Backerly preview page is live for the team: backerly.example/preview/northern-path"
+  },
+  {
+   "id": "mh-tm-041",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-05-28T14:42:25Z",
+   "text": "Описание надо сократить, слишком длинно"
+  },
+  {
+   "id": "mh-tm-042",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-05-28T15:08:52Z",
+   "reply_to": "mh-tm-041",
+   "text": "on it"
+  },
+  {
+   "id": "mh-tm-043",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-06-01T10:10:00Z",
+   "text": "Неделя до pre-launch review. Что горит?"
+  },
+  {
+   "id": "mh-tm-044",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-06-01T10:21:29Z",
+   "reply_to": "mh-tm-043",
+   "text": "цветопроба и количество карт"
+  },
+  {
+   "id": "mh-tm-045",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-06-01T10:38:46Z",
+   "text": "and the price, Anna"
+  },
+  {
+   "id": "mh-tm-046",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-06-01T11:14:35Z",
+   "text": "и цена, да"
+  },
+  {
+   "id": "mh-tm-047",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-06-04T17:00:00Z",
+   "text": "Финальные шрифты на картах — Merriweather для текста, свой для заголовков"
+  },
+  {
+   "id": "mh-tm-048",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-06-04T17:22:00Z",
+   "text": "читается хорошо"
+  },
+  {
+   "id": "mh-tm-049",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-06-08T12:00:00Z",
+   "text": "Solo mode one more time: three backers in the preview comments asked for it"
+  },
+  {
+   "id": "mh-tm-050",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-06-08T12:36:44Z",
+   "reply_to": "mh-tm-049",
+   "text": "Daniel, after launch. Не сейчас"
+  },
+  {
+   "id": "mh-tm-051",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T16:30:00Z",
+   "text": "Pre-launch review done. Дата запуска не решена, Kirill and Daniel disagree"
+  },
+  {
+   "id": "mh-tm-052",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-06-11T17:05:29Z",
+   "text": "ads are booked, just saying"
+  },
+  {
+   "id": "mh-tm-053",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-06-11T17:18:15Z",
+   "text": "без цветопробы не запускаемся"
+  },
+  {
+   "id": "mh-tm-054",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-06-15T09:40:00Z",
+   "text": "Стенди героев готовы, все 8, в папке «art/standees»"
+  },
+  {
+   "id": "mh-tm-055",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-06-15T09:53:35Z",
+   "text": "Lin wants them as print-ready PDF with 3 mm bleed"
+  },
+  {
+   "id": "mh-tm-056",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-06-15T10:25:09Z",
+   "reply_to": "mh-tm-055",
+   "text": "сделаю"
+  },
+  {
+   "id": "mh-tm-057",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-06-18T13:20:00Z",
+   "text": "Max from Backerly says our page is approved for launch on their side"
+  },
+  {
+   "id": "mh-tm-058",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-06-18T13:22:05Z",
+   "text": "какой Макс? наш художник?"
+  },
+  {
+   "id": "mh-tm-059",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-06-18T13:57:37Z",
+   "reply_to": "mh-tm-058",
+   "text": "нет, Max Hollis, менеджер Backerly"
+  },
+  {
+   "id": "mh-tm-060",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-06-22T10:00:00Z",
+   "text": "Итак, что запускаем — 23-е или 7-е? Нужно решение"
+  },
+  {
+   "id": "mh-tm-061",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-06-22T10:02:19Z",
+   "reply_to": "mh-tm-060",
+   "text": "23rd, everything is booked"
+  },
+  {
+   "id": "mh-tm-062",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-06-22T10:31:45Z",
+   "text": "Обсудим завтра лично"
+  },
+  {
+   "id": "mh-tm-063",
+   "source": "meeplehaus-chat-team",
+   "author": "Kirill Zuev",
+   "at": "2026-06-24T11:00:00Z",
+   "text": "Обсуждение перенесли, Анна заболела"
+  },
+  {
+   "id": "mh-tm-064",
+   "source": "meeplehaus-chat-team",
+   "author": "Daniel Okafor",
+   "at": "2026-06-24T11:08:39Z",
+   "text": "get well soon Anna 🙏"
+  },
+  {
+   "id": "mh-tm-065",
+   "source": "meeplehaus-chat-team",
+   "author": "Mats Ek",
+   "at": "2026-06-29T15:00:00Z",
+   "text": "Lin says the colour proof will be done this week"
+  },
+  {
+   "id": "mh-tm-066",
+   "source": "meeplehaus-chat-team",
+   "author": "Yulia Brandt",
+   "at": "2026-06-29T15:30:13Z",
+   "text": "наконец"
+  },
+  {
+   "id": "mh-tm-067",
+   "source": "meeplehaus-chat-team",
+   "author": "Anna Liepa",
+   "at": "2026-07-02T10:30:00Z",
+   "text": "Я вернулась. Разбираю всё по порядку"
+  },
+  {
+   "id": "mh-pr-001",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-06T15:00:00Z",
+   "text": "Production channel. Factory: Qingmu Print (Dongguan), contact Lin Wei. Freight and fulfilment here too"
+  },
+  {
+   "id": "mh-pr-002",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-05-06T15:24:06Z",
+   "text": "👍"
+  },
+  {
+   "id": "mh-pr-003",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-07T10:20:00Z",
+   "text": "Basic numbers from Qingmu: their minimum order is 1,500 copies; at 2,000 the unit price drops by about 8%"
+  },
+  {
+   "id": "mh-pr-004",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-05-07T10:32:45Z",
+   "reply_to": "mh-pr-003",
+   "text": "начнём с 1 500, если кампания пойдёт — добьём"
+  },
+  {
+   "id": "mh-pr-005",
+   "source": "meeplehaus-chat-prod",
+   "author": "Anna Liepa",
+   "at": "2026-05-07T10:47:41Z",
+   "text": "мечтаю о 3 000, но да"
+  },
+  {
+   "id": "mh-pr-006",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-08T09:00:00Z",
+   "text": "EU shipping for backers goes through ShipNest from their Leipzig warehouse, included in the pledge price. They handle VAT and returns too"
+  },
+  {
+   "id": "mh-pr-007",
+   "source": "meeplehaus-chat-prod",
+   "author": "Anna Liepa",
+   "at": "2026-05-08T09:21:13Z",
+   "reply_to": "mh-pr-006",
+   "text": "супер, одна головная боль меньше"
+  },
+  {
+   "id": "mh-pr-008",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-05-12T11:00:00Z",
+   "text": "Фигурки героев делаем из пластика — 8 миниатюр, скульптор Ивар уже согласился, 3D-модели к июню"
+  },
+  {
+   "id": "mh-pr-009",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-12T11:33:49Z",
+   "reply_to": "mh-pr-008",
+   "text": "Qingmu can do minis, but the mould costs about €6,000"
+  },
+  {
+   "id": "mh-pr-010",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-05-12T11:55:07Z",
+   "text": "окупится"
+  },
+  {
+   "id": "mh-pr-011",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-15T14:20:00Z",
+   "text": "Qingmu quote is for 216 cards — 4 sheets of 54. That's what goes in the core box"
+  },
+  {
+   "id": "mh-pr-012",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-05-15T14:54:01Z",
+   "reply_to": "mh-pr-011",
+   "text": "Юля говорила 180, надо сверить"
+  },
+  {
+   "id": "mh-pr-013",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-19T10:00:00Z",
+   "text": "Box size confirmed: 30 × 30 × 7 cm, 2 mm board"
+  },
+  {
+   "id": "mh-pr-014",
+   "source": "meeplehaus-chat-prod",
+   "author": "Yulia Brandt",
+   "at": "2026-05-19T10:18:19Z",
+   "text": "шаблон коробки пришлите"
+  },
+  {
+   "id": "mh-pr-015",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-19T10:51:14Z",
+   "reply_to": "mh-pr-014",
+   "text": "sending dieline"
+  },
+  {
+   "id": "mh-pr-016",
+   "source": "meeplehaus-chat-prod",
+   "author": "Anna Liepa",
+   "at": "2026-05-21T16:40:00Z",
+   "reply_to": "mh-pr-008",
+   "text": "Минек не будет. Стенди."
+  },
+  {
+   "id": "mh-pr-017",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-05-21T17:08:49Z",
+   "reply_to": "mh-pr-016",
+   "text": "эх. ладно, форма дорогая"
+  },
+  {
+   "id": "mh-pr-018",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-21T17:38:10Z",
+   "text": "I'll tell Lin, standees it is"
+  },
+  {
+   "id": "mh-pr-019",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-25T12:10:00Z",
+   "text": "ShipNest price tiers: up to 2 kg — €9, 2–3 kg — €12, over 3 kg — €16"
+  },
+  {
+   "id": "mh-pr-020",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-05-25T12:20:36Z",
+   "text": "посчитаем, когда будет вес"
+  },
+  {
+   "id": "mh-pr-021",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-05-29T10:00:00Z",
+   "text": "Rotterdam freight: €3,100 per container, 5 weeks at sea"
+  },
+  {
+   "id": "mh-pr-022",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-06-02T15:30:00Z",
+   "reply_to": "mh-pr-006",
+   "text": "ShipNest отменяем. Берём Fulfilio, доставка оплачивается отдельно в pledge manager"
+  },
+  {
+   "id": "mh-pr-023",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-06-02T15:56:48Z",
+   "reply_to": "mh-pr-022",
+   "text": "Fulfilio it is. Why the change?"
+  },
+  {
+   "id": "mh-pr-024",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-06-02T16:32:12Z",
+   "text": "ShipNest поднял цены на 40% и не берёт Норвегию"
+  },
+  {
+   "id": "mh-pr-025",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-06-05T11:20:00Z",
+   "text": "Fulfilio contract draft in the drive. Warehouse in Poznań"
+  },
+  {
+   "id": "mh-pr-026",
+   "source": "meeplehaus-chat-prod",
+   "author": "Anna Liepa",
+   "at": "2026-06-05T11:24:59Z",
+   "text": "прочитаю"
+  },
+  {
+   "id": "mh-pr-027",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-06-09T09:45:00Z",
+   "text": "Сколько карт итоговое? Фабрика ждёт"
+  },
+  {
+   "id": "mh-pr-028",
+   "source": "meeplehaus-chat-prod",
+   "author": "Yulia Brandt",
+   "at": "2026-06-09T10:06:54Z",
+   "reply_to": "mh-pr-027",
+   "text": "я по-прежнему считаю 180"
+  },
+  {
+   "id": "mh-pr-029",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-06-09T10:33:53Z",
+   "text": "quote still says 216"
+  },
+  {
+   "id": "mh-pr-030",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-06-12T14:00:00Z",
+   "text": "Standee bases: 8 plastic bases, colour black"
+  },
+  {
+   "id": "mh-pr-031",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-06-12T14:31:00Z",
+   "text": "ок"
+  },
+  {
+   "id": "mh-pr-032",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-06-17T10:30:00Z",
+   "text": "Fulfilio confirmed Norway and Switzerland"
+  },
+  {
+   "id": "mh-pr-033",
+   "source": "meeplehaus-chat-prod",
+   "author": "Anna Liepa",
+   "at": "2026-06-17T10:38:05Z",
+   "text": "🙌"
+  },
+  {
+   "id": "mh-pr-034",
+   "source": "meeplehaus-chat-prod",
+   "author": "Kirill Zuev",
+   "at": "2026-06-23T13:00:00Z",
+   "text": "Lin спрашивает про финальное количество карт ещё раз"
+  },
+  {
+   "id": "mh-pr-035",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-06-23T13:13:18Z",
+   "reply_to": "mh-pr-034",
+   "text": "Anna needs to decide, I can't"
+  },
+  {
+   "id": "mh-pr-036",
+   "source": "meeplehaus-chat-prod",
+   "author": "Mats Ek",
+   "at": "2026-06-30T16:00:00Z",
+   "text": "Colour proof scheduled for 2 July"
+  },
+  {
+   "id": "mh-fc-001",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-05-07T08:00:00Z",
+   "text": "Hello Meeple Haus, Lin from Qingmu Print. I will support your project"
+  },
+  {
+   "id": "mh-fc-002",
+   "source": "meeplehaus-chat-factory",
+   "author": "Mats Ek",
+   "at": "2026-05-07T08:38:42Z",
+   "text": "Hi Lin, welcome"
+  },
+  {
+   "id": "mh-fc-003",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-05-11T07:30:00Z",
+   "text": "Please send the card count and box size for the formal quote"
+  },
+  {
+   "id": "mh-fc-004",
+   "source": "meeplehaus-chat-factory",
+   "author": "Mats Ek",
+   "at": "2026-05-11T08:01:32Z",
+   "reply_to": "mh-fc-003",
+   "text": "Card count to follow, box 30×30×7"
+  },
+  {
+   "id": "mh-fc-005",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-05-15T08:10:00Z",
+   "text": "Formal quote sent by email: 1,500 copies, 216 cards, rule book 24 pages"
+  },
+  {
+   "id": "mh-fc-006",
+   "source": "meeplehaus-chat-factory",
+   "author": "Mats Ek",
+   "at": "2026-05-15T08:44:20Z",
+   "text": "thanks"
+  },
+  {
+   "id": "mh-fc-007",
+   "source": "meeplehaus-chat-factory",
+   "author": "Mats Ek",
+   "at": "2026-05-22T09:00:00Z",
+   "text": "Lin, can you confirm the proofs are approved so we can plan the schedule?"
+  },
+  {
+   "id": "mh-fc-008",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-05-23T07:45:00Z",
+   "reply_to": "mh-fc-007",
+   "text": "Dieline and box template are approved on our side. The colour proof for the cards is not checked yet — our press operator is on leave until next Monday"
+  },
+  {
+   "id": "mh-fc-009",
+   "source": "meeplehaus-chat-factory",
+   "author": "Mats Ek",
+   "at": "2026-05-23T08:24:04Z",
+   "reply_to": "mh-fc-008",
+   "text": "Understood, thanks"
+  },
+  {
+   "id": "mh-fc-010",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-05-27T08:20:00Z",
+   "text": "Mini figures cancelled? Then no mould fee"
+  },
+  {
+   "id": "mh-fc-011",
+   "source": "meeplehaus-chat-factory",
+   "author": "Mats Ek",
+   "at": "2026-05-27T08:49:32Z",
+   "reply_to": "mh-fc-010",
+   "text": "yes, standees instead"
+  },
+  {
+   "id": "mh-fc-012",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-06-03T07:50:00Z",
+   "text": "Please send the standee files with 3 mm bleed"
+  },
+  {
+   "id": "mh-fc-013",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-06-10T08:30:00Z",
+   "text": "Colour proof delayed — new press arrives this month"
+  },
+  {
+   "id": "mh-fc-014",
+   "source": "meeplehaus-chat-factory",
+   "author": "Mats Ek",
+   "at": "2026-06-10T08:31:38Z",
+   "text": "any date?"
+  },
+  {
+   "id": "mh-fc-015",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-06-10T08:41:41Z",
+   "reply_to": "mh-fc-014",
+   "text": "end of June, I will confirm"
+  },
+  {
+   "id": "mh-fc-016",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-06-19T07:40:00Z",
+   "text": "Standee files received, OK"
+  },
+  {
+   "id": "mh-fc-017",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-06-26T08:00:00Z",
+   "text": "Colour proof planned for 2 July"
+  },
+  {
+   "id": "mh-fc-018",
+   "source": "meeplehaus-chat-factory",
+   "author": "Lin Wei",
+   "at": "2026-07-02T09:15:00Z",
+   "text": "Colour proof printed, photos tomorrow"
+  },
+  {
+   "id": "mh-mk-001",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-05T10:00:00Z",
+   "text": "Marketing channel. Plan: preview page, newsletter, reviewer copies, ads in the last 10 days before launch"
+  },
+  {
+   "id": "mh-mk-002",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Anna Liepa",
+   "at": "2026-05-05T10:30:23Z",
+   "text": "👍"
+  },
+  {
+   "id": "mh-mk-003",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-06T13:30:00Z",
+   "text": "Backer-exclusive promo cards: 6 cards, never sold in retail — a strong pledge driver, Backerly data says +12% conversion"
+  },
+  {
+   "id": "mh-mk-004",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Anna Liepa",
+   "at": "2026-05-06T13:42:57Z",
+   "reply_to": "mh-mk-003",
+   "text": "да, давай"
+  },
+  {
+   "id": "mh-mk-005",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-08T11:00:00Z",
+   "text": "Max Hollis from Backerly is our account manager. He'll join here for page questions"
+  },
+  {
+   "id": "mh-mk-006",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Max Hollis",
+   "at": "2026-05-08T11:07:58Z",
+   "text": "Hi team! Happy to help with the page and the launch slot"
+  },
+  {
+   "id": "mh-mk-007",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Max Hollis",
+   "at": "2026-05-13T15:20:00Z",
+   "text": "Page review on our side takes up to 5 working days — please submit by June 16 if you want to launch on the 23rd"
+  },
+  {
+   "id": "mh-mk-008",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-13T15:28:26Z",
+   "reply_to": "mh-mk-007",
+   "text": "noted"
+  },
+  {
+   "id": "mh-mk-009",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-19T09:40:00Z",
+   "text": "Reviewer copies: 5 prototypes, 3 to YouTube channels, 2 to blogs"
+  },
+  {
+   "id": "mh-mk-010",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Kirill Zuev",
+   "at": "2026-05-19T09:45:48Z",
+   "text": "прототипы будут к 1 июня"
+  },
+  {
+   "id": "mh-mk-011",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-21T12:00:00Z",
+   "text": "Core pledge should be €55 with EU shipping included — that's what converts. I've already told Max at Backerly"
+  },
+  {
+   "id": "mh-mk-012",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Anna Liepa",
+   "at": "2026-05-21T12:10:35Z",
+   "reply_to": "mh-mk-011",
+   "text": "Daniel, в плане стоит 49. Давай обсудим, не решай сам"
+  },
+  {
+   "id": "mh-mk-013",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-21T12:15:11Z",
+   "text": "sure, let's talk"
+  },
+  {
+   "id": "mh-mk-014",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Max Hollis",
+   "at": "2026-05-27T16:00:00Z",
+   "text": "I'll get back to you about the featured slot by May 30"
+  },
+  {
+   "id": "mh-mk-015",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-27T16:12:58Z",
+   "text": "🤞"
+  },
+  {
+   "id": "mh-mk-016",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Max Hollis",
+   "at": "2026-05-30T11:10:00Z",
+   "text": "Featured slot confirmed for launch week"
+  },
+  {
+   "id": "mh-mk-017",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-05-30T11:27:25Z",
+   "text": "amazing"
+  },
+  {
+   "id": "mh-mk-018",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Anna Liepa",
+   "at": "2026-06-03T10:30:00Z",
+   "reply_to": "mh-mk-003",
+   "text": "No exclusives after all — two retailers threatened to drop us. The promo pack goes to shops too"
+  },
+  {
+   "id": "mh-mk-019",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-06-03T10:48:26Z",
+   "reply_to": "mh-mk-018",
+   "text": "ugh, ok. I'll change the page"
+  },
+  {
+   "id": "mh-mk-020",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-06-06T14:00:00Z",
+   "text": "Newsletter: 2,300 subscribers, open rate 48%"
+  },
+  {
+   "id": "mh-mk-021",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Kirill Zuev",
+   "at": "2026-06-06T14:25:07Z",
+   "text": "неплохо"
+  },
+  {
+   "id": "mh-mk-022",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-06-09T10:00:00Z",
+   "text": "Ads booked: Meta + BGG banners, June 13–23"
+  },
+  {
+   "id": "mh-mk-023",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Anna Liepa",
+   "at": "2026-06-09T10:11:00Z",
+   "reply_to": "mh-mk-022",
+   "text": "а если запуск сдвинется?"
+  },
+  {
+   "id": "mh-mk-024",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-06-09T10:36:39Z",
+   "text": "then we lose most of it"
+  },
+  {
+   "id": "mh-mk-025",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-06-14T12:20:00Z",
+   "text": "Price is still open on the page draft — I put €55 as a placeholder"
+  },
+  {
+   "id": "mh-mk-026",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Anna Liepa",
+   "at": "2026-06-14T12:21:44Z",
+   "reply_to": "mh-mk-025",
+   "text": "не публикуй, пока не решили"
+  },
+  {
+   "id": "mh-mk-027",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Max Hollis",
+   "at": "2026-06-20T09:00:00Z",
+   "text": "Page approved on our side. Launch date is up to you"
+  },
+  {
+   "id": "mh-mk-028",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Daniel Okafor",
+   "at": "2026-06-27T15:30:00Z",
+   "text": "Reviewer videos: 2 out, both positive"
+  },
+  {
+   "id": "mh-mk-029",
+   "source": "meeplehaus-chat-mkt",
+   "author": "Yulia Brandt",
+   "at": "2026-06-27T15:50:19Z",
+   "text": "🎉"
+  },
+  {
+   "id": "mh-ar-001",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-05-05T12:00:00Z",
+   "text": "Чат по арту. Макс Руденко рисует карты событий, я — обложку, героев и вёрстку"
+  },
+  {
+   "id": "mh-ar-002",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-05-05T12:04:15Z",
+   "text": "Привет! Рад работать"
+  },
+  {
+   "id": "mh-ar-003",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-05-06T16:00:00Z",
+   "text": "По составу: в базовой коробке 180 карт — 120 событий, 40 героев, 20 погоды"
+  },
+  {
+   "id": "mh-ar-004",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-05-06T16:02:22Z",
+   "reply_to": "mh-ar-003",
+   "text": "значит, мне 120 событий. Ок"
+  },
+  {
+   "id": "mh-ar-005",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-05-09T11:30:00Z",
+   "text": "Стиль: акварель + тушь, пример в папке"
+  },
+  {
+   "id": "mh-ar-006",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-05-09T11:36:31Z",
+   "text": "🔥 супер"
+  },
+  {
+   "id": "mh-ar-007",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-05-13T14:00:00Z",
+   "text": "По срокам: черновики всех событий — к 29 мая, финальные арты карт событий сдам 12 июня"
+  },
+  {
+   "id": "mh-ar-008",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-05-13T14:25:50Z",
+   "reply_to": "mh-ar-007",
+   "text": "отлично, вёрстка как раз после"
+  },
+  {
+   "id": "mh-ar-009",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-05-18T10:40:00Z",
+   "text": "Kirill сократил погоду после плейтеста, но пока не сказал до скольки"
+  },
+  {
+   "id": "mh-ar-010",
+   "source": "meeplehaus-chat-art",
+   "author": "Kirill Zuev",
+   "at": "2026-05-18T11:14:33Z",
+   "reply_to": "mh-ar-009",
+   "text": "пока оставь 20"
+  },
+  {
+   "id": "mh-ar-011",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-05-29T18:00:00Z",
+   "text": "Черновики загрузил, 120 штук"
+  },
+  {
+   "id": "mh-ar-012",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-05-29T18:23:08Z",
+   "text": "смотрю"
+  },
+  {
+   "id": "mh-ar-013",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-06-02T12:00:00Z",
+   "text": "Правки по 14 картам, список в файле"
+  },
+  {
+   "id": "mh-ar-014",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-06-02T12:05:06Z",
+   "reply_to": "mh-ar-013",
+   "text": "сделаю за 3 дня"
+  },
+  {
+   "id": "mh-ar-015",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-06-12T20:30:00Z",
+   "text": "Финал карт событий загружен, все 120"
+  },
+  {
+   "id": "mh-ar-016",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-06-12T20:57:40Z",
+   "text": "спасибо, Макс! Вовремя"
+  },
+  {
+   "id": "mh-ar-017",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-06-16T11:00:00Z",
+   "text": "Вёрстка карт: 180 файлов, по шаблону фабрики"
+  },
+  {
+   "id": "mh-ar-018",
+   "source": "meeplehaus-chat-art",
+   "author": "Kirill Zuev",
+   "at": "2026-06-16T11:27:15Z",
+   "reply_to": "mh-ar-017",
+   "text": "фабрика считает 216, Юль"
+  },
+  {
+   "id": "mh-ar-019",
+   "source": "meeplehaus-chat-art",
+   "author": "Yulia Brandt",
+   "at": "2026-06-16T11:43:29Z",
+   "text": "я не знаю откуда 216"
+  },
+  {
+   "id": "mh-ar-020",
+   "source": "meeplehaus-chat-art",
+   "author": "Max Rudenko",
+   "at": "2026-06-25T15:00:00Z",
+   "text": "Если будут стретчи с новыми картами — я свободен в июле"
+  },
+  {
+   "id": "mh-pt-001",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-05-07T19:00:00Z",
+   "text": "Сюда пишем итоги плейтестов. Формат: дата, игроков, время, что сломалось"
+  },
+  {
+   "id": "mh-pt-002",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-05-07T19:21:13Z",
+   "text": "Hi! I run the Riga playtest group, happy to help"
+  },
+  {
+   "id": "mh-pt-003",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-05-07T19:52:18Z",
+   "reply_to": "mh-pt-002",
+   "text": "Ilze, спасибо! Четверги подходят?"
+  },
+  {
+   "id": "mh-pt-004",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-05-07T19:57:19Z",
+   "text": "Thursdays work"
+  },
+  {
+   "id": "mh-pt-005",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-05-14T21:30:00Z",
+   "text": "14.05: 4 игрока, 75 минут, колода погоды слишком злая — 3 шторма подряд"
+  },
+  {
+   "id": "mh-pt-006",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-05-14T21:31:39Z",
+   "text": "players loved the map tiles though"
+  },
+  {
+   "id": "mh-pt-007",
+   "source": "meeplehaus-chat-play",
+   "author": "Toms",
+   "at": "2026-05-14T22:07:03Z",
+   "text": "the hero \"Navigator\" is overpowered, he basically solves every fog"
+  },
+  {
+   "id": "mh-pt-008",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-05-14T22:08:52Z",
+   "reply_to": "mh-pt-007",
+   "text": "да, понерфим"
+  },
+  {
+   "id": "mh-pt-009",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-05-21T21:10:00Z",
+   "text": "21.05: 3 игрока, 62 минуты, шторма лучше"
+  },
+  {
+   "id": "mh-pt-010",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-05-21T21:19:18Z",
+   "text": "one group forgot the end-of-round step every time"
+  },
+  {
+   "id": "mh-pt-011",
+   "source": "meeplehaus-chat-play",
+   "author": "Yulia Brandt",
+   "at": "2026-05-21T21:40:04Z",
+   "reply_to": "mh-pt-010",
+   "text": "добавлю напоминалку на планшет игрока"
+  },
+  {
+   "id": "mh-pt-012",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-05-28T21:45:00Z",
+   "text": "28.05: 2 игрока, 50 минут. Вдвоём играется бодро"
+  },
+  {
+   "id": "mh-pt-013",
+   "source": "meeplehaus-chat-play",
+   "author": "Toms",
+   "at": "2026-05-28T22:01:25Z",
+   "text": "2-player felt tense in a good way"
+  },
+  {
+   "id": "mh-pt-014",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-05-28T22:16:53Z",
+   "text": "rule book page 7 confused everyone — \"explore\" vs \"scout\""
+  },
+  {
+   "id": "mh-pt-015",
+   "source": "meeplehaus-chat-play",
+   "author": "Anna Liepa",
+   "at": "2026-05-28T22:55:14Z",
+   "reply_to": "mh-pt-014",
+   "text": "переименуем scout в survey"
+  },
+  {
+   "id": "mh-pt-016",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-06-04T21:20:00Z",
+   "text": "04.06: 4 игрока, 68 минут. Navigator теперь норм"
+  },
+  {
+   "id": "mh-pt-017",
+   "source": "meeplehaus-chat-play",
+   "author": "Toms",
+   "at": "2026-06-04T21:39:44Z",
+   "text": "Healer is now the weakest"
+  },
+  {
+   "id": "mh-pt-018",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-06-04T22:09:45Z",
+   "text": "ок, посмотрим ещё неделю"
+  },
+  {
+   "id": "mh-pt-019",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-06-11T21:00:00Z",
+   "text": "no playtest today, half the group at a convention"
+  },
+  {
+   "id": "mh-pt-020",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-06-18T21:30:00Z",
+   "text": "18.06: blind test — правила без объяснений, 4 игрока, справились за 15 минут чтения"
+  },
+  {
+   "id": "mh-pt-021",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-06-18T21:54:02Z",
+   "text": "they only asked about the survey action once"
+  },
+  {
+   "id": "mh-pt-022",
+   "source": "meeplehaus-chat-play",
+   "author": "Anna Liepa",
+   "at": "2026-06-18T22:22:49Z",
+   "reply_to": "mh-pt-021",
+   "text": "🎉 значит правила работают"
+  },
+  {
+   "id": "mh-pt-023",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-06-25T21:15:00Z",
+   "text": "25.06: 3 игрока, 60 минут ровно. Healer подняли — баланс ок"
+  },
+  {
+   "id": "mh-pt-024",
+   "source": "meeplehaus-chat-play",
+   "author": "Toms",
+   "at": "2026-06-25T21:47:43Z",
+   "text": "we're close"
+  },
+  {
+   "id": "mh-pt-025",
+   "source": "meeplehaus-chat-play",
+   "author": "Ilze",
+   "at": "2026-07-02T20:40:00Z",
+   "text": "summer break for the group until August, good luck with the launch!"
+  },
+  {
+   "id": "mh-pt-026",
+   "source": "meeplehaus-chat-play",
+   "author": "Kirill Zuev",
+   "at": "2026-07-02T21:02:09Z",
+   "reply_to": "mh-pt-025",
+   "text": "спасибо огромное, Ilze! Копия игры с нас"
+  },
+  {
+   "id": "mh-of-001",
+   "source": "meeplehaus-chat-general",
+   "author": "Anna Liepa",
+   "at": "2026-05-04T08:30:00Z",
+   "text": "Офис на Brīvības закрыт в пятницу, работаем из дома"
+  },
+  {
+   "id": "mh-of-002",
+   "source": "meeplehaus-chat-general",
+   "author": "Mats Ek",
+   "at": "2026-05-04T08:35:38Z",
+   "text": "ok"
+  },
+  {
+   "id": "mh-of-003",
+   "source": "meeplehaus-chat-general",
+   "author": "Daniel Okafor",
+   "at": "2026-05-13T12:00:00Z",
+   "text": "Lunch at the Georgian place? 🥟"
+  },
+  {
+   "id": "mh-of-004",
+   "source": "meeplehaus-chat-general",
+   "author": "Yulia Brandt",
+   "at": "2026-05-13T12:38:05Z",
+   "text": "да!"
+  },
+  {
+   "id": "mh-of-005",
+   "source": "meeplehaus-chat-general",
+   "author": "Kirill Zuev",
+   "at": "2026-05-27T09:10:00Z",
+   "text": "Кто брал ламинатор? Верните плиз"
+  },
+  {
+   "id": "mh-of-006",
+   "source": "meeplehaus-chat-general",
+   "author": "Yulia Brandt",
+   "at": "2026-05-27T09:40:58Z",
+   "reply_to": "mh-of-005",
+   "text": "я, верну сегодня"
+  },
+  {
+   "id": "mh-of-007",
+   "source": "meeplehaus-chat-general",
+   "author": "Anna Liepa",
+   "at": "2026-06-05T17:00:00Z",
+   "text": "Ice Harbour допечатка пришла, 300 коробок на складе"
+  },
+  {
+   "id": "mh-of-008",
+   "source": "meeplehaus-chat-general",
+   "author": "Mats Ek",
+   "at": "2026-06-05T17:03:33Z",
+   "text": "I'll update the stock sheet"
+  },
+  {
+   "id": "mh-of-009",
+   "source": "meeplehaus-chat-general",
+   "author": "Daniel Okafor",
+   "at": "2026-06-19T10:00:00Z",
+   "text": "Midsummer on the 23rd–24th — is the office closed?"
+  },
+  {
+   "id": "mh-of-010",
+   "source": "meeplehaus-chat-general",
+   "author": "Anna Liepa",
+   "at": "2026-06-19T10:17:40Z",
+   "reply_to": "mh-of-009",
+   "text": "да, Līgo, все отдыхают"
+  },
+  {
+   "id": "mh-of-011",
+   "source": "meeplehaus-chat-general",
+   "author": "Daniel Okafor",
+   "at": "2026-06-19T10:28:45Z",
+   "text": "wait, the 23rd is our launch date in the plan 😅"
+  },
+  {
+   "id": "mh-of-012",
+   "source": "meeplehaus-chat-general",
+   "author": "Yulia Brandt",
+   "at": "2026-06-26T14:00:00Z",
+   "text": "Принтер опять жуёт бумагу"
+  },
+  {
+   "id": "mh-of-013",
+   "source": "meeplehaus-chat-general",
+   "author": "Mats Ek",
+   "at": "2026-06-26T14:14:53Z",
+   "text": "kicking it helps"
+  },
+  {
+   "id": "mh-cp-001",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:00:00Z",
+   "section": [
+    "Summary"
+   ],
+   "text": "Northern Path — cooperative exploration game for 1–4 players, 60 minutes. Crowdfunding on Backerly, fulfilment in Q1 2027."
+  },
+  {
+   "id": "mh-cp-002",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:01:03Z",
+   "section": [
+    "Campaign",
+    "Funding goal"
+   ],
+   "text": "Funding goal: €35,000. Campaign length: 30 days."
+  },
+  {
+   "id": "mh-cp-003",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:02:06Z",
+   "section": [
+    "Campaign",
+    "Launch date"
+   ],
+   "text": "Launch on Tuesday 23 June 2026, 16:00 CET, ending 23 July."
+  },
+  {
+   "id": "mh-cp-004",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:04:16Z",
+   "section": [
+    "Pledges",
+    "Core"
+   ],
+   "text": "Core pledge: €49, shipping charged separately."
+  },
+  {
+   "id": "mh-cp-005",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:07:08Z",
+   "section": [
+    "Pledges",
+    "Deluxe"
+   ],
+   "text": "Deluxe pledge: €79 — core box + upgraded components + art book."
+  },
+  {
+   "id": "mh-cp-006",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:09:46Z",
+   "section": [
+    "Stretch goals"
+   ],
+   "text": "€50,000 — extra scenario. €80,000 — linen finish cards. €120,000 — metal coins in the deluxe pledge."
+  },
+  {
+   "id": "mh-cp-007",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:13:18Z",
+   "section": [
+    "Components"
+   ],
+   "text": "Rule book 24 pages, cards, 8 hero miniatures, 1 board, tokens."
+  },
+  {
+   "id": "mh-cp-008",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:14:54Z",
+   "section": [
+    "Exclusives"
+   ],
+   "text": "Backer-exclusive promo pack (6 cards), not available in retail."
+  },
+  {
+   "id": "mh-cp-009",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:16:51Z",
+   "section": [
+    "Manufacturing"
+   ],
+   "text": "Qingmu Print, Dongguan. Mass production 8 weeks after proof approval."
+  },
+  {
+   "id": "mh-cp-010",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:18:41Z",
+   "section": [
+    "Shipping"
+   ],
+   "text": "EU: ShipNest from Leipzig, included in the pledge. UK, US, CA: partners TBD."
+  },
+  {
+   "id": "mh-cp-011",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:21:31Z",
+   "section": [
+    "Backer support",
+    "Address changes"
+   ],
+   "text": "Backers can change their shipping address until 14 days after the pledge manager closes, not later."
+  },
+  {
+   "id": "mh-cp-012",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:24:06Z",
+   "section": [
+    "Backer support",
+    "Refunds"
+   ],
+   "text": "Refunds within 30 days after the campaign ends."
+  },
+  {
+   "id": "mh-cp-013",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:27:50Z",
+   "section": [
+    "Marketing"
+   ],
+   "text": "Preview page, newsletter, 5 reviewer copies, paid ads in the 10 days before launch."
+  },
+  {
+   "id": "mh-cp-014",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:28:52Z",
+   "section": [
+    "Risks"
+   ],
+   "text": "Factory delays, freight prices, VAT changes. Buffer: 6 weeks."
+  },
+  {
+   "id": "mh-cp-015",
+   "source": "meeplehaus-doc-plan",
+   "author": "Anna Liepa",
+   "at": "2026-05-15T10:31:40Z",
+   "section": [
+    "Open questions"
+   ],
+   "text": "Final card count. Box weight for shipping tiers."
+  },
+  {
+   "id": "mh-m1-001",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:00:00Z",
+   "text": "Всем привет. Today: stretch goals, components, backer support. Говорим как удобно."
+  },
+  {
+   "id": "mh-m1-002",
+   "source": "meeplehaus-meet-0520",
+   "author": "Daniel Okafor",
+   "at": "2026-05-20T11:00:30Z",
+   "text": "Stretch goals first — backers want shiny things."
+  },
+  {
+   "id": "mh-m1-003",
+   "source": "meeplehaus-meet-0520",
+   "author": "Kirill Zuev",
+   "at": "2026-05-20T11:01:01Z",
+   "text": "Предлагаю: дополнительный сценарий на 50 000, льняная текстура карт на 80 000."
+  },
+  {
+   "id": "mh-m1-004",
+   "source": "meeplehaus-meet-0520",
+   "author": "Daniel Okafor",
+   "at": "2026-05-20T11:02:01Z",
+   "text": "And metal coins in the deluxe? Can we promise those?"
+  },
+  {
+   "id": "mh-m1-005",
+   "source": "meeplehaus-meet-0520",
+   "author": "Kirill Zuev",
+   "at": "2026-05-20T11:02:46Z",
+   "text": "Металлические монеты будут, только если доберёмся до 120 000 евро — это стретч. Не доберёмся — остаются картонные."
+  },
+  {
+   "id": "mh-m1-006",
+   "source": "meeplehaus-meet-0520",
+   "author": "Daniel Okafor",
+   "at": "2026-05-20T11:04:01Z",
+   "text": "Fair enough."
+  },
+  {
+   "id": "mh-m1-007",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:04:51Z",
+   "text": "Компоненты. Kirill, фигурки?"
+  },
+  {
+   "id": "mh-m1-008",
+   "source": "meeplehaus-meet-0520",
+   "author": "Kirill Zuev",
+   "at": "2026-05-20T11:05:47Z",
+   "text": "Пластиковые миниатюры, восемь героев, скульптор есть."
+  },
+  {
+   "id": "mh-m1-009",
+   "source": "meeplehaus-meet-0520",
+   "author": "Mats Ek",
+   "at": "2026-05-20T11:06:35Z",
+   "text": "Mould is about six thousand euro. I'd think twice."
+  },
+  {
+   "id": "mh-m1-010",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:07:45Z",
+   "text": "Подумаю до конца недели."
+  },
+  {
+   "id": "mh-m1-011",
+   "source": "meeplehaus-meet-0520",
+   "author": "Yulia Brandt",
+   "at": "2026-05-20T11:09:04Z",
+   "text": "Сколько карт в коробке? Я считаю сто восемьдесят."
+  },
+  {
+   "id": "mh-m1-012",
+   "source": "meeplehaus-meet-0520",
+   "author": "Mats Ek",
+   "at": "2026-05-20T11:10:04Z",
+   "text": "The factory quote says two hundred sixteen."
+  },
+  {
+   "id": "mh-m1-013",
+   "source": "meeplehaus-meet-0520",
+   "author": "Kirill Zuev",
+   "at": "2026-05-20T11:10:44Z",
+   "text": "Разберёмся потом."
+  },
+  {
+   "id": "mh-m1-014",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:11:41Z",
+   "text": "Backer support — адреса."
+  },
+  {
+   "id": "mh-m1-015",
+   "source": "meeplehaus-meet-0520",
+   "author": "Mats Ek",
+   "at": "2026-05-20T11:12:37Z",
+   "text": "Two weeks after the pledge manager closes, then the manifest is locked."
+  },
+  {
+   "id": "mh-m1-016",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:13:08Z",
+   "text": "Записала."
+  },
+  {
+   "id": "mh-m1-017",
+   "source": "meeplehaus-meet-0520",
+   "author": "Daniel Okafor",
+   "at": "2026-05-20T11:14:22Z",
+   "text": "Quick one — solo mode?"
+  },
+  {
+   "id": "mh-m1-018",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:14:42Z",
+   "text": "Daniel, после кампании."
+  },
+  {
+   "id": "mh-m1-019",
+   "source": "meeplehaus-meet-0520",
+   "author": "Daniel Okafor",
+   "at": "2026-05-20T11:16:06Z",
+   "text": "Okay, okay."
+  },
+  {
+   "id": "mh-m1-020",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:17:01Z",
+   "text": "Цена базовой коробки — сорок девять, как в плане."
+  },
+  {
+   "id": "mh-m1-021",
+   "source": "meeplehaus-meet-0520",
+   "author": "Daniel Okafor",
+   "at": "2026-05-20T11:18:15Z",
+   "text": "I'd still argue for fifty-five with shipping. Let's talk separately."
+  },
+  {
+   "id": "mh-m1-022",
+   "source": "meeplehaus-meet-0520",
+   "author": "Anna Liepa",
+   "at": "2026-05-20T11:19:08Z",
+   "text": "Хорошо. Всё, спасибо!"
+  },
+  {
+   "id": "mh-m2-001",
+   "source": "meeplehaus-meet-0611",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T15:00:00Z",
+   "text": "Pre-launch review. Пройдёмся по списку: страница, производство, дата."
+  },
+  {
+   "id": "mh-m2-002",
+   "source": "meeplehaus-meet-0611",
+   "author": "Daniel Okafor",
+   "at": "2026-06-11T15:00:37Z",
+   "text": "Page is ready on Backerly, Max approved the structure, reviewers have prototypes."
+  },
+  {
+   "id": "mh-m2-003",
+   "source": "meeplehaus-meet-0611",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T15:01:26Z",
+   "text": "Отлично."
+  },
+  {
+   "id": "mh-m2-004",
+   "source": "meeplehaus-meet-0611",
+   "author": "Mats Ek",
+   "at": "2026-06-11T15:02:33Z",
+   "text": "Production: standees instead of minis, factory accepted. Colour proof still not done, Lin's press is late."
+  },
+  {
+   "id": "mh-m2-005",
+   "source": "meeplehaus-meet-0611",
+   "author": "Kirill Zuev",
+   "at": "2026-06-11T15:03:11Z",
+   "text": "Поэтому запускаемся седьмого июля, после цветопробы. Раньше нельзя — не знаем, как выглядят карты."
+  },
+  {
+   "id": "mh-m2-006",
+   "source": "meeplehaus-meet-0611",
+   "author": "Daniel Okafor",
+   "at": "2026-06-11T15:04:29Z",
+   "text": "But all the ads are booked for the 23rd, and the featured slot is launch week."
+  },
+  {
+   "id": "mh-m2-007",
+   "source": "meeplehaus-meet-0611",
+   "author": "Kirill Zuev",
+   "at": "2026-06-11T15:06:03Z",
+   "text": "Рекламу можно перенести."
+  },
+  {
+   "id": "mh-m2-008",
+   "source": "meeplehaus-meet-0611",
+   "author": "Daniel Okafor",
+   "at": "2026-06-11T15:07:38Z",
+   "text": "Not without losing most of the money."
+  },
+  {
+   "id": "mh-m2-009",
+   "source": "meeplehaus-meet-0611",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T15:08:33Z",
+   "text": "Я пока не готова решить. Давайте ещё подумаем."
+  },
+  {
+   "id": "mh-m2-010",
+   "source": "meeplehaus-meet-0611",
+   "author": "Yulia Brandt",
+   "at": "2026-06-11T15:09:22Z",
+   "text": "Карты: вёрстка на 180, фабрика просит 216."
+  },
+  {
+   "id": "mh-m2-011",
+   "source": "meeplehaus-meet-0611",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T15:10:42Z",
+   "text": "Тоже открытый вопрос."
+  },
+  {
+   "id": "mh-m2-012",
+   "source": "meeplehaus-meet-0611",
+   "author": "Mats Ek",
+   "at": "2026-06-11T15:11:50Z",
+   "text": "Shipping: Fulfilio from Poznań, paid in the pledge manager."
+  },
+  {
+   "id": "mh-m2-013",
+   "source": "meeplehaus-meet-0611",
+   "author": "Kirill Zuev",
+   "at": "2026-06-11T15:12:51Z",
+   "text": "Да, ShipNest больше нет."
+  },
+  {
+   "id": "mh-m2-014",
+   "source": "meeplehaus-meet-0611",
+   "author": "Daniel Okafor",
+   "at": "2026-06-11T15:13:50Z",
+   "text": "Exclusives are gone from the page, promo pack goes to retail."
+  },
+  {
+   "id": "mh-m2-015",
+   "source": "meeplehaus-meet-0611",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T15:14:48Z",
+   "text": "Верно."
+  },
+  {
+   "id": "mh-m2-016",
+   "source": "meeplehaus-meet-0611",
+   "author": "Daniel Okafor",
+   "at": "2026-06-11T15:16:17Z",
+   "text": "Box weight for the shipping table?"
+  },
+  {
+   "id": "mh-m2-017",
+   "source": "meeplehaus-meet-0611",
+   "author": "Mats Ek",
+   "at": "2026-06-11T15:17:35Z",
+   "text": "Need the final card count first."
+  },
+  {
+   "id": "mh-m2-018",
+   "source": "meeplehaus-meet-0611",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T15:19:04Z",
+   "text": "Max Rudenko сдаёт карты 12-го, вёрстка сразу после."
+  },
+  {
+   "id": "mh-m2-019",
+   "source": "meeplehaus-meet-0611",
+   "author": "Anna Liepa",
+   "at": "2026-06-11T15:20:01Z",
+   "text": "Всё, спасибо. Дату решим на неделе."
+  }
+ ]
+}

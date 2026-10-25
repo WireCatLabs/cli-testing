@@ -29,6 +29,9 @@ parser.add_argument('--budgets', default='4096,8192,16384')
 parser.add_argument('--mmr-lambda', type=float, default=.7)
 parser.add_argument('--fixed-models', default='mmarco,bge-int8')
 parser.add_argument('--threads', type=int, default=4)
+parser.add_argument('--variants', default='', help='rerankers for the variant grid of PROTOCOL.md, e.g. mmarco,bge-int8')
+parser.add_argument('--taus', default='', help='newest-first cosine thresholds, e.g. 0.88,0.92')
+parser.add_argument('--cosines', action='store_true', help='print the E5 cosine spread among top hits and stop')
 args = parser.parse_args()
 assert not args.output.exists(), 'refuse to overwrite a run'
 root = Path(__file__).resolve().parent
@@ -102,6 +105,14 @@ sentence_vectors = {}
 def serialize(uid, text=None):
     unit = units[uid]
     return f"[{sources[unit['source']]['title']} · {unit['author']} · {unit['at']}]\n{text or text_of[uid]}"
+
+
+def pair_input(uid, rich):
+    before, _ = context_of(uid)
+    if rich:
+        return '\n'.join(f"[{sources[units[u]['source']]['title']} · {units[u]['author']} · {units[u]['at'][:10]}] "
+                         f"{text_of[u]}" for u in before[:1] + [uid])
+    return '\n'.join(text_of[u] for u in before[:1] + [uid])
 
 
 def passage(uid, qv):
@@ -305,7 +316,7 @@ def coverage(label, pool_units):
 
 
 mmarco = Encoder('mmarco')
-end_to_end, times = [], defaultdict(list)
+end_to_end, times, asked = [], defaultdict(list), []
 for question in questions:
     qid, text = question['id'], question['text']
     label = label_of.get(qid)
@@ -321,10 +332,10 @@ for question in questions:
     fused_full = rrf(lexical[:max(POOLS)], dense)
     fused_order = ranked(fused_full)[:max(POOLS)]
     for uid in fused_order:
-        before, _ = context_of(uid)
-        pair_scores[uid] = mmarco.pair(text, '\n'.join(text_of[u] for u in before[:1] + [uid]))
+        pair_scores[uid] = mmarco.pair(text, pair_input(uid, False))
     times['mmarco_pairs_ms'].append((time.perf_counter() - t) * 1000)
     times['mmarco_pairs'].append(len(fused_order))
+    asked.append((qid, text, label, qv, lexical, dense, pair_scores))
     for pool in POOLS:
         fused = rrf(lexical[:pool], dense[:pool])
         fused_hits = ranked(fused)[:pool]
@@ -357,6 +368,76 @@ for question in questions:
                 row['budgets'][budget] = score_items(label, items, texts, used, extras) if label else {
                     'items': items, 'bytes': used, **extras}
             end_to_end.append(row)
+
+
+
+def newest_first(hits, tau, window=30):
+    """A hit moves just above an earlier, similar and older hit; each hit moves once."""
+    hits, moved = list(hits), set()
+    position = 0
+    while position < min(window, len(hits)):
+        anchor = hits[position]
+        later = [u for u in hits[position + 1:window] if u not in moved and units[u]['at'] > units[anchor]['at']
+                 and float(matrix[row_of[u]] @ matrix[row_of[anchor]]) >= tau]
+        if later:
+            newest = max(later, key=lambda u: units[u]['at'])
+            hits.remove(newest)
+            hits.insert(position, newest)
+            moved.add(newest)
+        else:
+            position += 1
+    return hits
+
+
+def scaled(values):
+    values = np.array(values, dtype=float)
+    span = values.max() - values.min()
+    return (values - values.min()) / span if span else np.ones(len(values))
+
+
+if args.cosines:
+    spread = defaultdict(list)
+    for qid, text, label, qv, lexical, dense, _ in asked:
+        top = ranked(rrf(lexical[:100], dense[:100]))[:30]
+        vectors = matrix[[row_of[u] for u in top]]
+        cos = vectors @ vectors.T
+        values = cos[np.triu_indices(len(top), 1)]
+        spread['all'].extend(values.tolist())
+        if label:
+            useful = [i for i, u in enumerate(top) if label['grades'].get(u, 0) >= 2]
+            spread['graded'].extend(cos[i, j] for a, i in enumerate(useful) for j in useful[a + 1:])
+    print(json.dumps({key: {str(q): round(float(np.quantile(v, q)), 3) for q in (.5, .9, .95, .99)} | {'n': len(v)}
+                      for key, v in spread.items()}))
+    sys.exit()
+
+variants = []
+variant_models = [name for name in args.variants.split(',') if name and labels]
+taus = [None] + [float(value) for value in args.taus.split(',') if value]
+reranker_of = {name: mmarco if name == 'mmarco' else Encoder(name) for name in variant_models}
+for qid, text, label, qv, lexical, dense, plain_mmarco in asked:
+    fused = rrf(lexical[:100], dense[:100])
+    base = mmr(ranked(fused)[:100], fused, args.mmr_lambda)
+    orders = {('none', '-', 0, 0): base}
+    for name in variant_models:
+        for rich in (False, True):
+            t = time.perf_counter()
+            pairs = {uid: plain_mmarco[uid] if name == 'mmarco' and not rich and uid in plain_mmarco
+                     else reranker_of[name].pair(text, pair_input(uid, rich)) for uid in base}
+            times[f'variant_{name}_{"rich" if rich else "plain"}_ms'].append((time.perf_counter() - t) * 1000)
+            for depth in (20, 50, 100):
+                head = base[:depth]
+                fused_part, pair_part = scaled([fused[u] for u in head]), scaled([pairs[u] for u in head])
+                for alpha in (.3, .5, .7, 1):
+                    mixed = dict(zip(head, (1 - alpha) * fused_part + alpha * pair_part))
+                    orders[(name, 'rich' if rich else 'plain', depth, alpha)] = (
+                        mmr(ranked(mixed), mixed, args.mmr_lambda) + base[depth:])
+    for (name, form, depth, alpha), hits in orders.items():
+        for tau in taus:
+            final = newest_first(hits, tau) if tau else hits
+            items, texts, used, extras = evidence(final, True, True, 8192, qv)
+            scores = score_items(label, items, texts, used, extras)
+            variants.append({'question': qid, 'reranker': name, 'input': form, 'depth': depth, 'alpha': alpha,
+                             'tau': tau, **{key: value for key, value in scores.items() if key != 'units'}})
 
 fixed, fixed_models = [], [name for name in args.fixed_models.split(',') if name and labels]
 pair_models = {'mmarco': mmarco, **{name: Encoder(name) for name in fixed_models if name != 'mmarco'}}
@@ -409,7 +490,7 @@ result = {
     'units': len(units), 'questions': len(questions), 'stage_ms': dict(stage),
     'times': {key: summary(values) for key, values in {**times, **fixed_times}.items()},
     'clipped_pairs': {name: encoder.clipped for name, encoder in {'e5-small': e5, **pair_models}.items()},
-    'memory': memory(), 'end_to_end': end_to_end, 'fixed': fixed,
+    'memory': memory(), 'end_to_end': end_to_end, 'fixed': fixed, 'variants': variants,
 }
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(result, ensure_ascii=False, indent=1) + '\n')
