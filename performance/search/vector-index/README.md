@@ -290,3 +290,86 @@ also the fallback if upkeep turns out costly. Its row-by-row insert and delete (
 - Memory of the scan with many accounts at once; the cross-account search reads every account.
 - A quiet machine. The ranking of candidates held at both sizes and across repeats, but absolute numbers would be
   lower.
+
+## Core implementation (cli-core#2001)
+
+### Why it was run
+
+After this page, the owner chose the `vec0` index over packed blocks ("I'd better use index so we're scaleable",
+25.10.2026), inside `wirecat.db`, kept in step by the store itself, with the extension shipped in
+`@wirecat/cli-core-sqlite` ([cli-core#1996](https://github.com/WireCatLabs/cli-core/pull/1996)). The question here:
+does Core's implementation ([cli-core#2001](https://github.com/WireCatLabs/cli-core/pull/2001), store version 34)
+answer exactly what its scan answers, how much faster, and what does it cost on writes and on the first open of an
+older store?
+
+### Setup
+
+- Same machine as above, shared with other agents: load average 14–19 during the 100k run, 3.6–15 during the 600k run.
+- Node 24.19.0. cli-core branch `feat/vector-index` (commit `e98465ea`), built, with a local build of
+  `@wirecat/cli-core-sqlite` 1.1.0 (sqlite-vec 0.1.9, plain `-O3`, linux-x64-gnu).
+- [core-index.mjs](core-index.mjs) writes a synthetic store through Core's own `openStoreContext` (migrations and
+  triggers included): 4 accounts holding 55 / 25 / 15 / 5 % of the messages, 2,000 chats, 5 % of them hidden from
+  search, 2 % of messages deleted, one `message` chunk and one 384-dimension unit vector per message, around 1,500
+  centres. The vectors are first written with no index (as an older store holds them), then the store's one-time
+  fill runs, then 10,000 more messages are written with the index in place.
+- Each query is `nearestMessages` for account 1 (55 %), limit 100, as `--discover` asks: no filter, the newest 1 %
+  (`since`), and one chat. A new process per measurement, as the CLI starts one per command. Cold: the store's files
+  dropped from the page cache ([evict.py](evict.py)), 3 runs. Warm: 3 processes after one that fills the cache, 6
+  queries each. "Scan" is the same build with the model's index marked not ready, which sends the search to the scan.
+- 1M was not run: 20k messages took 85 MB and 100k 416 MB, so 1M would need about 4.2 GB, over the 3 GB this run was
+  allowed. 600k took 2.5 GB.
+
+```sh
+./core-index.sh 100000 /path/to/cli-core /var/tmp/core-vec/s100000   # appends to core-results-100000.jsonl
+./core-index.sh 600000 /path/to/cli-core /var/tmp/core-vec/s600000
+node core-summarize.mjs core-results-600000.jsonl
+```
+
+### Results
+
+Medians in ms; first = the first query of a new process, after the store is open.
+
+| 600k messages (330k in account 1) | Scan cold | Index cold | Scan warm | Index warm | Scan warm median | Index warm median | Answers |
+|---|---:|---:|---:|---:|---:|---:|---|
+| account 1, no filter | 1,901 | 606 | 1,195 | 218 | 1,208 | 201 | same |
+| account 1, newest 1 % | 1,152 | 345 | 79 | 45 | 77 | 44 | same |
+| one chat (287 messages) | 1,171 | 439 | 71 | 44 | 67 | 41 | same |
+
+| 100k messages | Scan cold | Index cold | Scan warm | Index warm | Scan warm median | Index warm median | Answers |
+|---|---:|---:|---:|---:|---:|---:|---|
+| account 1, no filter | 512 | 231 | 342 | 67 | 296 | 65 | same |
+| account 1, newest 1 % | 223 | 71 | 23 | 14 | 20 | 11 | same |
+| one chat (48 messages) | 230 | 89 | 23 | 15 | 16 | 13 | same |
+
+"Answers: same" — every query's 100 message ids, in order, were the same both ways.
+
+| Writes and upkeep | 100k | 600k |
+|---|---:|---:|
+| Write 1,000 messages with chunk and vector, no index | 131 ms | 73 ms |
+| The same with the index | 269 ms | 149 ms |
+| One-time fill of the vectors an older store held | 7.0 s | 25.7 s |
+| Delete 1,000 chunks (rows leave the index by trigger) | 83 ms | 72 ms |
+| Opening the store (cold / warm) | 52 / 13 ms | 221 / 32 ms |
+
+### What it showed
+
+- **Exact, and 3–6× faster on a broad search**: 1.2 s → 0.2 s warm and 1.9 s → 0.6 s cold at 600k. A narrow filter
+  (the newest 1 %, one chat) is about 3× faster cold and a little faster warm; the scan was already quick there
+  because SQLite filters first.
+- **The index costs about 0.08–0.14 ms per message written with a vector.** Syncing messages writes no chunk, so it
+  pays nothing; the embed path spends far longer in the model than in this.
+- **A plan bug, found here and fixed before these numbers**: the first version of the chunk-insert trigger let SQLite
+  read every vector for each new chunk (7 ms a chunk at 100k vectors, 6.9 s per 1,000 messages). It now looks the
+  vector up by model and hash (cli-core `e98465ea`).
+- The fill of an older store runs on the first writable open after the upgrade and blocks that command: 26 s at
+  600k, so about 45 s at 1M by the same rate.
+
+### Not measured
+
+- 1M (disk, above); Bun; macOS, Windows, Linux arm64, Alpine; Node on `@wirecat/cli-core-sqlite`'s library (the
+  restart path). The package's workflow probes each of those for loading the extension, not for speed.
+- Images and conversations: they use the same code path, and the cli-core tests check that they answer as the scan
+  does; their timings were not taken.
+- Ties: every synthetic text is unique, so the "same" column cannot show that a text shared by many messages is
+  ranked as the scan ranks it. A cli-core test covers that (300 messages sharing one text).
+- Real e5 vectors, which are anisotropic. vec0 is exact, so recall does not depend on them; speed should not either.
