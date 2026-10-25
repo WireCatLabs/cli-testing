@@ -24,8 +24,9 @@ discovery as the baseline. The decision it feeds: which stage becomes the next p
 4. **Diversity did nothing measurable.** MMR and exact-duplicate removal (A2 → A3) changed no eval question.
    λ from 0.5 to 1.0 changed nothing on calibration or on the real chat.
 5. **mMARCO reranking is a wash, so it stays a comparator.** A3 → A4: answer rank 5 better and 4 worse. It lifted
-   Answer@10 from 69% to 94%, but dropped both `revoked` questions out of the first three, and did not help on the
-   six real questions. That fails the "no regression on conflict evidence" gate.
+   Answer@10 from 69% to 94%, but pushed one of the two `revoked` questions out of the first three (rank 1 → 4: it
+   put the earlier, cancelled decision above the message that cancels it), and did not help on the six real
+   questions. That fails the "no regression on conflict evidence" gate.
 6. **Still unsolved in every arm:** both `conflict` questions miss Answer@3. At most half of the conflict/revoked
    questions get all their sides inside the budget. Roughly 89% of every budget is off-question bytes. Nothing
    abstains: every arm fills the budget for unanswerable questions too.
@@ -70,6 +71,15 @@ Details in [the decision table](#decision-table).
 Answer metrics count the 16 answerable questions, so one question is 6 points. Items are hits with their
 context.
 
+How to read it. Each row adds one stage to the row above. An "item" is one found message with its context.
+
+- **Answer among candidates:** the message with the answer is among the first 100 (or 300) results at all. If it
+  is not, no later step can show it.
+- **Answer@1 / @3 / @10:** share of questions whose answer is in the first 1, 3 or 10 items.
+- **Answer MRR:** the average of 1 / rank of the first answer. 1.0 means always first, 0.5 means about second.
+- **Complete evidence set:** every message needed for the full answer fits in the 8 KiB budget.
+- **All conflict sides:** for competing or cancelled decisions, both the old and the new version fit in the budget.
+
 | Arm | Answer among candidates (pool 100 / 300) | Answer@1 | Answer@3 | Answer@10 | Answer MRR | Complete evidence set | All conflict sides |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | A0 published | 62% / 75% | 12% | 31% | 44% | 0.24 | 38% | 0% |
@@ -85,6 +95,22 @@ Pool 100, 8 KiB. A1–A4 build on the fixed A0; on published A0 they follow the 
 
 **Per question** (pool 100, 8 KiB, answer rank better / worse): A0 → A1 7 / 0, A1 → A2 7 / 2, A2 → A3 0 / 0,
 A3 → A4 5 / 4.
+
+**Why mMARCO is a wash.** A cross-encoder reads the question and one message together and scores how well that
+message's text matches the question. Here it replaced the whole fused order with that score. It sees no date and
+does not know that a later message cancels an earlier one. Examples from eval:
+
+- Won: "How long did Andrei estimate for building the subscription checkout?" The answer is a Russian message.
+  Word search and E5 put it at rank 27, mMARCO at rank 1. It matches across languages better than E5.
+- Lost: «Через что клиника сейчас шлёт людям оповещения о предстоящем приёме?» A3 had the cancelling message
+  (17 September, "SMS and push only") first. mMARCO put the 10 September plan ("the messenger is the main
+  channel") and the 28 August spec above it, because they talk about channels more directly. The answer fell to 4.
+- Lost: "How old can the beans be, at most, when an order leaves us?" mMARCO put "beans rest 48h" and a message
+  with the number 22 above the "five days" rule. It matches words and numbers, not which number answers.
+
+Untested changes that may keep the wins and lose fewer: mix its score with the fused order instead of replacing
+it, give it the date and author with the text, and put the newest of competing decisions first in a separate step.
+Testing them needs a new sealed eval split; this one is now open.
 
 **Ordering only** (fixed pool of 100): BM25 Answer@3 12%, E5 38%, RRF 44%, mMARCO 50%, BGE 62% (MRR 0.13,
 0.36, 0.29, 0.43, 0.41). The 588 MB BGE export beats mMARCO at rank 3, not at rank 1 or by MRR, and costs about
@@ -106,7 +132,7 @@ bound.
 | E5 fusion (A2) | Answers lexical search never retrieves | 569 MB peak RSS with E5 alone; 3–5 ms per unit to index; 1.5 KB of index per unit (150 MB per 100k messages); 13 ms per query | Ship after context, opt-in where the E5 model is already downloaded; never auto-download |
 | Duplicates, MMR (A3) | Nothing measured | 2–6 ms | Don't ship; keep duplicate removal for real forwarded text |
 | Passages for long units (A3) | Long real messages crowding out the budget | E5 per sentence of long units | Promising on real data only; needs judged passages |
-| mMARCO (A4) | Answer@10 up, but `revoked` down | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Benchmark comparator only |
+| mMARCO (A4) | Answer@10 up, but one `revoked` question lost from the first three | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Benchmark comparator only |
 | BGE int8 | Best Answer@3 with fixed candidates | 588 MB; 3.4 s per question at pool 100 | Comparator only |
 
 ## What was not measured
