@@ -60,6 +60,7 @@ sqlite-vec, usearch, hnswlib and packed blocks of vectors, on synthetic stores o
 | [everywhere/](everywhere/README.md) | Latency of a bare word that also looks in transcripts, file names and file text (2026-10-13) |
 | [envelope-s4/](envelope-s4/README.md) | Ranking before and after search moved onto the list envelope: identical (2026-10-14) |
 | [vector-index/](vector-index/README.md) | Storage and index options for search by meaning, 100k and 1M chunks: packed blocks recommended (2026-10-25) |
+| [search-all-meaning/](search-all-meaning/README.md) | What searching messages by meaning adds to `search all`, and sharing the model with notes: 1.7 s → 0.9 s (2026-10-25) |
 | [local-documents/](local-documents/README.md) | qmd compared with memo and drive search on the owner's notes and Drive documents (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |
 | [migration.json](migration.json) | Original file hashes and source commit before the transfer |
