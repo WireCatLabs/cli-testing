@@ -6,7 +6,7 @@
       "**",
       "!**/dist",
       "!**/node_modules",
-      "!pnpm-lock.yaml",
+      "!**/pnpm-lock.yaml",
       "!.claude/settings.json",
       "!.worktrees",
       "!config/wirecat",
@@ -23,6 +23,14 @@
       "!performance/search/evidence-pipeline/results"
     ],
     "maxSize": 16777216
+  },
+  "markdown": {
+    "formatter": {
+      "enabled": false
+    },
+    "linter": {
+      "enabled": false
+    }
   },
   "overrides": [
     {
