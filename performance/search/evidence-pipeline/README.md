@@ -26,7 +26,9 @@ discovery as the baseline. The decision it feeds: which stage becomes the next p
 5. **mMARCO reranking is a wash, so it stays a comparator.** A3 → A4: answer rank 5 better and 4 worse. It lifted
    Answer@10 from 69% to 94%, but pushed one of the two `revoked` questions out of the first three (rank 1 → 4: it
    put the earlier, cancelled decision above the message that cancels it), and did not help on the six real
-   questions. That fails the "no regression on conflict evidence" gate.
+   questions. That fails the "no regression on conflict evidence" gate. Mixed with the fused order and given the
+   date and author, a reranker does help: on a fresh holdout split BGE int8 reached 85% Answer@3 against A3's 67%,
+   with no question lost ([reranker variants](#reranker-variants)).
 6. **Still unsolved in every arm:** both `conflict` questions miss Answer@3. At most half of the conflict/revoked
    questions get all their sides inside the budget. Roughly 89% of every budget is off-question bytes. Nothing
    abstains: every arm fills the budget for unanswerable questions too.
@@ -108,9 +110,7 @@ does not know that a later message cancels an earlier one. Examples from eval:
 - Lost: "How old can the beans be, at most, when an order leaves us?" mMARCO put "beans rest 48h" and a message
   with the number 22 above the "five days" rule. It matches words and numbers, not which number answers.
 
-Untested changes that may keep the wins and lose fewer: mix its score with the fused order instead of replacing
-it, give it the date and author with the text, and put the newest of competing decisions first in a separate step.
-Testing them needs a new sealed eval split; this one is now open.
+Three changes were then tuned and checked on a fresh split: see [reranker variants](#reranker-variants).
 
 **Ordering only** (fixed pool of 100): BM25 Answer@3 12%, E5 38%, RRF 44%, mMARCO 50%, BGE 62% (MRR 0.13,
 0.36, 0.29, 0.43, 0.41). The 588 MB BGE export beats mMARCO at rank 3, not at rank 1 or by MRR, and costs about
@@ -123,17 +123,56 @@ Off-question items among the first 30: A0 11, A2 8, A3 6, A4 8. The real chat ha
 trims long messages to passages. The trimmed passages were not judged, so A3's real numbers are an upper
 bound.
 
-## Decision table
+## Reranker variants
+
+**Why.** mMARCO alone was a wash on eval. The owner asked to test, and tune, three changes before any reranker
+reaches Core: mix its score with the fused order instead of replacing it, give it `[source · author · date]` with
+the text, and put the newest of two similar messages first. Rules and grid: [PROTOCOL.md](PROTOCOL.md), section
+"Reranker variants".
+
+**Setup.** Tuned on dev, calibration and eval together (38 answerable questions), which were all open by then
+([tuning table](results/variants-tuning.md)). 147 variants: mMARCO or BGE int8, plain or rich input, mix weight
+α 0.3–1, reranked depth 20/50/100, newest-first off or at cosine 0.87/0.90. The choice rule was written before
+the results: best mean of Answer@3 and MRR, losing no `revoked`/`conflict` question and at most one question
+overall against A3. Then a new `holdout` split, written by a separate agent (3 projects, 42 questions, 27
+answerable, 9 revoked, 9 conflict), was frozen unread with the two chosen variants
+([freeze-holdout.json](results/freeze-holdout.json)) and scored once ([holdout table](results/holdout/variants.md)).
+
+| Variant (pool 100, 8 KiB) | Tuning Answer@3 / MRR | Holdout Answer@3 / MRR | Holdout won / lost vs A3 | Time per question | Model |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| A3, no reranker | 50% / 0.44 | 67% / 0.61 | — | — | — |
+| A4: mMARCO replaces the order | 63% / 0.49 | 78% / 0.72 | 4 / 1 | ~0.4 s (100 pairs) | 136 MB |
+| mMARCO, rich input, top 50, α 0.7 | 66% / 0.52 | 81% / 0.72 | 5 / 1 | ~0.2 s (50 pairs) | 136 MB |
+| **BGE int8, rich input, top 50, α 0.7** | 68% / 0.54 | **85% / 0.82** | **5 / 0** | ~1.5 s (50 pairs) | 588 MB |
+
+One holdout question is 4 points. Time is the median over the tuning splits, 4 threads, batch 1. Peak memory with
+E5, mMARCO and BGE all loaded was 2.2 GB.
+
+What it showed:
+
+1. **The date and author in the input helped most.** mMARCO at depth 100 and α 1 went from 63% / 0.49 to
+   68% / 0.57 on the tuning set with nothing else changed.
+2. **Mixing at α 0.7 removed the losses** on the tuning set (0 lost against A3) for a smaller gain. Replacing the
+   order (α 1) won more and lost the clinic `revoked` question every time.
+3. **Newest-first failed.** At cosine 0.90 it fixed that `revoked` question but lost three others; at 0.87 it lost
+   ten. Two messages about the same thing are not the same decision, and cosine cannot tell them apart.
+4. **No variant changed the `revoked` result on holdout:** 6 of 9 in the first three for every arm, A3 included.
+   All 9 holdout `conflict` questions are unanswerable, and every arm kept all sides in 6 or 7 of them. The
+   rerankers' holdout gains are on `fact`, `same-name` and `approval` questions.
+5. **The ceiling is retrieval.** The answer was among the 100 candidates for 89% of holdout questions; the best
+   variant reaches 85% in the first three.
+
 
 | Stage | What it fixed | Cost measured here | Decision |
 | --- | --- | --- | --- |
 | "?" as punctuation in discovery | Natural questions returning nothing | none | Ship: cli-core#1935 |
 | Native context (A1) | Answers separated from their question; replies without their request | ~0 ms; uses stored reply links | Ship next; check `--discover --thread` with built conversations first |
-| E5 fusion (A2) | Answers lexical search never retrieves | 569 MB peak RSS with E5 alone; 3–5 ms per unit to index; 1.5 KB of index per unit (150 MB per 100k messages); 13 ms per query | Ship after context, opt-in where the E5 model is already downloaded; never auto-download |
+| E5 fusion (A2) | Answers lexical search never retrieves | 569 MB peak RSS with E5 alone; 3–5 ms per unit to index; 1.5 KB of index per unit (150 MB per 100k messages); 13 ms per query | Ship after context: on by itself when the E5 model is downloaded and the index built, noted in the result (owner, NEED-1799 A); never auto-download |
 | Duplicates, MMR (A3) | Nothing measured | 2–6 ms | Don't ship; keep duplicate removal for real forwarded text |
 | Passages for long units (A3) | Long real messages crowding out the budget | E5 per sentence of long units | Promising on real data only; needs judged passages |
-| mMARCO (A4) | Answer@10 up, but one `revoked` question lost from the first three | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Benchmark comparator only |
-| BGE int8 | Best Answer@3 with fixed candidates | 588 MB; 3.4 s per question at pool 100 | Comparator only |
+| mMARCO replacing the order (A4) | Answer@10 up, but one `revoked` question lost from the first three | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Don't ship in this form |
+| Reranker mixed at α 0.7, rich input, top 50 | Answer@3 on holdout: A3 67% → mMARCO 81%, BGE 85% (5 won, 0 lost) | mMARCO 136 MB, ~0.2 s; BGE 588 MB, ~1.5 s per question | Worth an opt-in stage after E5; pick the model after a search for small rerankers |
+| Newest-first by cosine | One `revoked` question fixed, three to ten others lost | ~0 ms | Don't ship; cancelled decisions need another approach |
 
 ## What was not measured
 
@@ -154,6 +193,15 @@ From cli-testing, with the models in `CACHE` and a Python environment from [requ
 ```sh
 (cd performance/search/evidence-pipeline/core && pnpm install --ignore-workspace)
 performance/search/evidence-pipeline/run.sh eval /var/tmp/new-eval CACHE PYTHON --question-mark-punctuation --mmr-lambda 0.9
+```
+
+Reranker variants (both rerankers in `CACHE`):
+
+```sh
+performance/search/evidence-pipeline/run.sh holdout /var/tmp/new-holdout CACHE PYTHON --question-mark-punctuation \
+  --pools 100 --budgets 8192 --mmr-lambda 0.9 --fixed-models '' --variants mmarco,bge-int8 --taus 0.87,0.90
+python3 performance/search/evidence-pipeline/variants_report.py /var/tmp/new-holdout/arms.json \
+  --frozen performance/search/evidence-pipeline/results/freeze-holdout.json
 ```
 
 [run.sh](run.sh) gives every step a fresh temporary HOME, store and state. A result path that exists is refused.

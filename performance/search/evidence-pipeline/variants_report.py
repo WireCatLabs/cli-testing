@@ -42,7 +42,7 @@ table.sort(key=lambda r: (-r['score'], cost[r['variant'][0]], r['variant'][2], r
 passing = [r for r in table if r['passes']]
 name = lambda v: 'A3, no reranker' + (f', newest-first τ {v[4]}' if v[4] else '') if v[0] == 'none' else (
     f'{v[0]} {v[1]} D={v[2]} α={v[3]}' + (f' τ={v[4]}' if v[4] else ''))
-print(f'Tuning set: {table[0]["questions"]} answerable questions; {len(table)} variants.\n')
+print(f'{"Holdout" if args.frozen else "Tuning set"}: {table[0]["questions"]} answerable questions; {len(table)} variants.\n')
 print('| Variant | Answer@3 | MRR | Won vs A3 | Lost vs A3 | Conflict/revoked lost | Passes |')
 print('| --- | ---: | ---: | ---: | ---: | --- | --- |')
 shown = table[:25] + [r for r in table[25:] if r['variant'][0] == 'none' or r['variant'][1:4] == ('plain', 100, 1)]

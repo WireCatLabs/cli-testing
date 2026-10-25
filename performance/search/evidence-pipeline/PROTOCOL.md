@@ -135,3 +135,6 @@ against A3). The best passing mMARCO variant, rich input, `D` 50, α 0.7 (66%, 0
 beside it, because it takes about a seventh of the time per question and a quarter of the model size. Newest-first failed on the tuning set
 (τ 0.9 lost 3 questions against A3, τ 0.87 lost 10) and is not carried forward. Holdout reports these two, A3
 and A4, nothing else.
+
+**After the holdout score.** `variants_report.py` changed only its header line, to say "Holdout" instead of
+"Tuning set" for a `--frozen` report. The hash in `freeze-holdout.json` is of the version before that line.
