@@ -303,7 +303,7 @@ off-question bytes and abstention remain open.
 The [25 October vector-index comparison](vector-index/README.md) measured Core's search by meaning on synthetic
 stores of 100k and 1M chunks. The current scan takes 2.9 s warm and over a minute cold for one account's 385k
 message chunks at 1M; joins and per-row reads cost more than the arithmetic. Packed blocks (1,024 vectors per row,
-per account and type) and sqlite-vec `vec0` both cut that to about 0.2 s warm and under a second cold, exactly.
-Packed blocks need no native library, so they are the recommendation, with the SQL scan kept for narrow filters,
-where every score-first layout loses results. ANN indexes were faster per query but cost an index open per process
+per account and type) and sqlite-vec `vec0` both cut the first query to about 0.2–0.4 s warm, exactly; cold, packed
+took 2.4–3.4 s and `vec0` 1.4 s. Packed blocks need no native library, so they are the recommendation, with the SQL
+scan kept for narrow filters, where every score-first layout loses results. ANN indexes were faster per query but cost an index open per process
 and a second store to keep in step.

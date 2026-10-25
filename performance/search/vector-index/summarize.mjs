@@ -18,7 +18,7 @@ for (const r of measured) {
     last.cold.variant === r.variant &&
     last.cold.runtime === r.runtime
   if (r.label === "warm" && same) last.warm = r
-  else pairs.push({ [r.label]: r })
+  else pairs.push({ [r.label === "warm" ? "warm" : "cold"]: r })
 }
 print(
   "| case | runtime | variant | cold first query, ms | warm first query, ms | warm median, ms | SQL / score / finish, ms | rows | recall@10 / @50 |",

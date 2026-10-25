@@ -23,11 +23,12 @@ it").
    Filtering on `chunks.account_id` gave about 20 %. Adding an index on `(account_id, chunkable_type)` made SQLite
    sort the whole account on every page: **150 s per query** at 1M. That index must not be added together with that
    filter.
-3. **Two layouts are 10–15 times faster, and both give exact results:**
+3. **Two layouts are about 10 times faster on a warm cache and 20–50 times faster on a cold one, and both give
+   exact results.** At 1M, first query of a new process:
    - **packed blocks**: an ordinary table holding 1,024 vectors per row, per account and type, scored in JavaScript.
-     196 ms warm and about 0.7–2.5 s cold at 1M. No native code.
-   - **sqlite-vec `vec0`**: the same layout inside a C extension. 175 ms (k = 100) to 302 ms (k = 400) warm and
-     0.6–0.9 s cold. Needs a native library per platform and has no Linux musl build.
+     260–340 ms warm (Node and Bun), 2.4–3.4 s cold. No native code.
+   - **sqlite-vec `vec0`**: the same layout inside a C extension. 200 ms (k = 100) to 420 ms (k = 400) warm,
+     1.4 s cold when measured next to packed. Needs a native library per platform and has no Linux musl build.
 4. **ANN indexes** (usearch, hnswlib) answer in 1–20 ms. But each process must first open its index file: 30 ms
    for usearch `view`, 240 ms for usearch `load`, about 400 ms for hnswlib at 1M. Recall depends on the data and the
    search width. They also need a second store kept in step with SQLite. At these sizes they are not needed.
@@ -36,7 +37,8 @@ it").
    existing SQL scan handles such filters quickly (105 ms at 1M) because SQLite filters before it joins.
 
 **Recommendation: packed blocks for broad searches, the existing SQL scan for narrow ones, and the no-copy `dot`
-now.** The reasons and the conditions are in [Recommendation](#recommendation).
+now.** Packed blocks equal `vec0` on a warm cache and are about 1 s slower on a cold one at 1M. They need no native
+library. The reasons and the conditions are in [Recommendation](#recommendation).
 
 ## Setup
 
@@ -65,6 +67,9 @@ now.** The reasons and the conditions are in [Recommendation](#recommendation).
   no root needed), then a new process runs. Warm: the same with the cache left full. Every measurement is a new
   process, because the CLI starts one per command.
 - Queries per process: 20 at 100k, 8 at 1M. So at 1M one missed item moves recall@10 by 1.25 points.
+- The shortlist kept in JavaScript (best 400 or so) takes the chunk id, not an object. A first version made an
+  object for every scored vector; Bun lost about 0.6 s a query to it. The packed rows were rerun after the fix. The
+  `shortlist*` and `embeddings-only` rows were measured with that first version; Node was barely affected.
 
 Commands, from this folder:
 
@@ -111,10 +116,22 @@ Full tables, query plans and build times: [results-100000.md](results-100000.md)
 | 6. usearch HNSW float, k = 400, ef = 1024, `view` | 12 | 59 | 8 | 688 | 100 / 100 |
 | 6. usearch HNSW int8, k = 400, ef = 1024, `view` | 6 | 46 | 4 | 374 | 85 / 92.5 |
 | 6. hnswlib HNSW, k = 400, ef = 1024 | 5 | 417 | 6 | 725 | 100 / 100 |
-| **Packed blocks, float (Node)** | **28** | **296–312** | **194–196** | **690–2,461** | **100 / 100** |
-| Packed blocks, float (Bun) | 30 | 1,100–1,614 | 248–320 | 1,569–3,056 | 100 / 100 |
+| **Packed blocks, float (Node)** | **24** | **340** | **246** | **2,466** | **100 / 100** |
+| **Packed blocks, float (Bun)** | **19** | **261** | **202** | **2,511** | **100 / 100** |
 
-All times in ms. Two packed rows at 1M ran twice; both values are shown.
+All times in ms. Cold runs repeated on a quiet machine (load average 2.4–2.6), alternating the two:
+
+| 1M, messages, cold first query | Run 1 | Run 2 | Run 3 |
+|---|---:|---:|---:|
+| Packed blocks (Node) | 3,401 | 2,520 | 2,443 |
+| `vec0` float, k = 100 (Node) | 1,403 | 1,471 | 1,370 |
+
+Both read about the same 590 MB. The difference was not traced; storing a 1.5 MB blob per row puts it on a chain of
+overflow pages that SQLite reads one page at a time.
+
+**Bun and the scoring loop.** With the dot product written inline in the search's callback, Bun ran the first one or
+two queries of each process about 0.7 s slower than later ones (Node did not), then caught up. Moved into a small
+function of its own, Bun's first query took 270–360 ms. The rows above use that function.
 
 At 100k, ANN recall was lower than at 1M: usearch at k = 400 and the default ef = 64 gave 89 % recall@50; ef = 1024
 gave 97.6 %. hnswlib at k = 100 and ef = 64 gave 75 %; at k = 400 and ef = 1024, 98 %. usearch's int8 mode stayed
@@ -129,7 +146,7 @@ at 85–95 % at any width.
 | 3. Filter on `k.account_id` | 32 | 259 | 14,523 | exact |
 | 5. `vec0` float, k = 100 | 4 | 14 | 132 | 100 / 100 |
 | 6. hnswlib, k = 400, ef = 1024 | 2 | 6 | 269 | 100 / 99 |
-| Packed blocks, float | 5 | 23–26 | 284–428 | 100 / 100 |
+| Packed blocks, float | 4 | 20 | 412 | 100 / 100 |
 
 ### Every type of one account (no type filter; Core has no such search yet)
 
@@ -138,7 +155,7 @@ at 85–95 % at any width.
 | Exact scan of `chunks` + `embeddings` | 2,582 | – | exact |
 | `vec0` float, k = 100 | 249 | 898 | 100 / 100 |
 | usearch, k = 400, ef = 1024, one index per type | 36 | 1,242 | 100 / 100 |
-| Packed blocks, float | 275–425 | 1,123–3,514 | 100 / 100 |
+| Packed blocks, float | 348 | 3,328 | 100 / 100 |
 
 ### Where the time goes (current scan, messages, 1M, warm, Node)
 
@@ -157,9 +174,9 @@ copy in `dot` buys nothing. Packed blocks avoid both of the first two lines: 376
 
 | Candidate | 1M, 10 %: warm median / recall@50 | 1M, 1 %: warm median / recall@50 |
 |---|---|---|
-| Current scan with the filter | 307 ms / exact | 105 ms / exact |
-| Packed, shortlist 400, filter after | 218 ms / 73.5 % | 197 ms / 6.8 % |
-| Packed, shortlist 4,000, filter after | 285 ms / 100 % | 327 ms / 69.5 % |
+| Current scan with the filter | 320 ms / exact | 107 ms / exact |
+| Packed, shortlist 400, filter after | 305 ms / 73.5 % | 272 ms / 6.8 % |
+| Packed, shortlist 4,000, filter after | 315 ms / 100 % | 288 ms / 69.5 % |
 
 100k gave the same picture (74 % and 7.3 % with a 400 shortlist).
 
@@ -221,13 +238,18 @@ Core would also have to open the store with `allowExtension: true` for `vec0`.
 
 1. **Now, at no risk: use a `Float32Array` view in `dot`** (`src/store/sqlite/vectors.ts`). Scoring drops from 884
    to 377 ms at 1M. Results do not change.
-2. **For broad searches, use packed blocks.** They match `vec0` (warm 196 ms against 175–302 ms at 1M, cold under
-   a second against 68 s) with no native library, no `allowExtension`, and no gap on Alpine, macOS-under-Bun or
-   Windows. Key the blocks by model, account and type.
+2. **For broad searches, use packed blocks.** On the first query of a warm process they match `vec0` (260–340 ms
+   against 200–420 ms at 1M). Cold, they take 2.4–3.4 s against `vec0`'s 1.4 s and the current 68 s. They need no
+   native library and no `allowExtension`, and have no gap on Alpine, macOS under Bun or Windows. Core already chose
+   WebAssembly over native code for its model runtime, and NEED-518 A named the per-platform extension as the
+   cost. Key the blocks by model, account and type. Keep the scoring loop in a small function of its own (see the
+   Bun note above).
 3. **Keep the SQL scan for narrow filters.** With `chatKey`, a short `since`/`before`, `conversations`, `personId`
-   or a project, the SQL path reads few rows and is exact. A shortlist scored first cannot promise that. One rule
-   covers it: estimate the matching chunks with a `count(*)` on the filtered `chunks`; when the share is small (for
-   example under 10 %), use SQL.
+   or a project, the SQL path reads few rows and is exact. A shortlist scored first cannot promise that. A rule that
+   fits both measured points: count the chunks that pass the filters (`share` of the partition). At or under 10 %,
+   use the SQL scan. Above it, use packed blocks with a shortlist of ⌈400 / share⌉. At 10 % that is 4,000, which
+   gave 100 % recall@50. With the default filters (share about 92 %) it is about 435; 400 gave 100 %. Shares between
+   10 % and 92 % were not measured.
 4. **Do not adopt an ANN index yet.** Its query time is not the bottleneck once packed blocks remove the per-row
    cost, and it adds a second store, an open cost per process and tuned recall.
 
@@ -243,7 +265,8 @@ Conditions before packed blocks ship:
 - **Shortlist size.** 400 kept recall at 100 % for 50 conversations with the default filters. Old builds that pile up
   would need a larger one, or compaction after a rebuild.
 
-`vec0` remains the fallback if upkeep turns out costly. Its row-by-row insert and delete (15 ms and 11 ms per
+`vec0` is the choice instead if cold start matters more than packaging: it was about 1 s faster cold at 1M. It is
+also the fallback if upkeep turns out costly. Its row-by-row insert and delete (15 ms and 11 ms per
 1,000) can sit in the same transaction as `chunks`. The price is the packaging gaps above.
 
 ## What it showed about earlier decisions
@@ -260,7 +283,8 @@ Conditions before packed blocks ship:
 - Real e5 vectors. Real ones are anisotropic: most pairs score high. The synthetic clusters have no common
   direction. int8 recall and ANN recall depend on this and must be checked on real vectors before relying on them.
 - macOS, Windows, Linux arm64, Alpine. Node or Bun running on the cli-core-sqlite library.
-- An int8 packed layout, which would read a quarter of the bytes. `vec0` with metadata columns for `occurred_at`.
+- An int8 packed layout, which would read a quarter of the bytes and should shorten the cold read. Smaller blocks
+  or a larger page size for packed blocks. `vec0` with metadata columns for `occurred_at`.
   sqlite-vec's DiskANN alpha.
 - Filters other than `since`: `chatKey`, `personId`, `scope`, `projectId`, `conversations`.
 - Memory of the scan with many accounts at once; the cross-account search reads every account.

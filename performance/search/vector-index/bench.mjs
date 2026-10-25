@@ -320,7 +320,8 @@ const dotInt8 = (query, blob) => {
 const topK = (k) => {
   const items = []
   return {
-    push(score, item) {
+    // Takes the id, not an object: an object per scored vector cost Bun about 0.6 s at 385k vectors.
+    push(score, id) {
       if (items.length === k && score <= items[k - 1].score) return
       let i = items.length === k ? k - 1 : items.length
       if (items.length < k) items.push(null)
@@ -328,7 +329,7 @@ const topK = (k) => {
         items[i] = items[i - 1]
         i--
       }
-      items[i] = { score, ...item }
+      items[i] = { score, id }
     },
     items,
   }
@@ -484,7 +485,7 @@ const scanShortlist = (db, kind, variant, query, split) => {
     const rows = kind === "account" ? db.all(sql, MODEL, ACCOUNT, after) : db.all(sql, MODEL, ACCOUNT, kind, after)
     split.sql += now() - t
     t = now()
-    for (const row of rows) best.push(dot(query, row.vector), { id: row.id })
+    for (const row of rows) best.push(dot(query, row.vector), row.id)
     split.score += now() - t
     split.rows += rows.length
     const last = rows.at(-1)
@@ -534,6 +535,7 @@ const measure = (kind, variant, run, extra = {}) => {
     answers.push(run(query, split))
     times.push(now() - t)
     splits.push(split)
+    if (opt.debug) process.stderr.write(`${JSON.stringify({ ms: round(times.at(-1)), ...split })}\n`)
   }
   if (variant.startsWith("current") && kind !== "account") writeFileSync(truthPath(kind), JSON.stringify(answers))
   if (variant === "exact" && kind === "account") writeFileSync(truthPath(kind), JSON.stringify(answers))
@@ -605,7 +607,7 @@ const scan = async () => {
       const rows = db.all("SELECT rowid AS id, vector FROM embeddings WHERE model = ?", MODEL)
       split.sql += now() - t
       t = now()
-      for (const row of rows) best.push(dotView(query, row.vector), { id: row.id })
+      for (const row of rows) best.push(dotView(query, row.vector), row.id)
       split.score += now() - t
       split.rows = rows.length
       return best.items.map((r) => r.id)
@@ -833,6 +835,15 @@ const ann = async () => {
 // so JavaScript gets a few hundred rows instead of one per chunk.
 const BLOCK = 1024
 
+const scoreBlock = (query, matrix, count, scores) => {
+  for (let i = 0; i < count; i++) {
+    let sum = 0
+    const offset = i * D
+    for (let j = 0; j < D; j++) sum += query[j] * matrix[offset + j]
+    scores[i] = sum
+  }
+}
+
 const packed = async () => {
   const db = await open(join(dir, "store.db"))
   applySince(db)
@@ -890,15 +901,14 @@ const packed = async () => {
     const blocks = kind === "account" ? db.all(sql, ACCOUNT) : db.all(sql, ACCOUNT, kind)
     split.sql += now() - t
     t = now()
+    // The arithmetic in a small function of its own: written inline in this callback, Bun ran the first one or two
+    // queries of a process about 0.7 s slower, before it compiled the loop.
+    const scores = new Float32Array(BLOCK)
     for (const { ids, vectors } of blocks) {
       const id = new Int32Array(ids.buffer, ids.byteOffset, ids.byteLength / 4)
       const matrix = new Float32Array(vectors.buffer, vectors.byteOffset, vectors.byteLength / 4)
-      for (let i = 0; i < id.length; i++) {
-        let sum = 0
-        const offset = i * D
-        for (let j = 0; j < D; j++) sum += query[j] * matrix[offset + j]
-        best.push(sum, { id: id[i] })
-      }
+      scoreBlock(query, matrix, id.length, scores)
+      for (let i = 0; i < id.length; i++) best.push(scores[i], id[i])
       split.rows += id.length
     }
     split.score += now() - t
