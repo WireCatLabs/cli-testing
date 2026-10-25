@@ -64,8 +64,15 @@ const sql = (query) => {
   }
 }
 
-// dbstat on the inner side of a join, the shape of the first implementation (its exact query was not kept).
-const DBSTAT_JOINED = `
+// The first implementation's exact query was not kept. Both joins put dbstat on the inner side: with the OR (a table
+// or one of its indexes) SQLite cannot hand dbstat the name, so it walks the whole file for every outer row.
+const DBSTAT_JOINED_OR = `
+  SELECT t.name, sum(d.pgsize) AS bytes
+  FROM pragma_table_list AS t JOIN dbstat AS d ON d.aggregate = 1 AND (d.name = t.name
+    OR d.name IN (SELECT name FROM sqlite_schema WHERE type = 'index' AND tbl_name = t.name))
+  WHERE t.schema = 'main'
+  GROUP BY t.name`
+const DBSTAT_JOINED_ON_NAME = `
   SELECT s.tbl_name AS name, sum(d.pgsize) AS bytes
   FROM sqlite_schema AS s CROSS JOIN dbstat AS d
   WHERE d.name = s.name AND d.aggregate = 1 AND s.type IN ('table', 'index')
@@ -96,13 +103,25 @@ try {
   }
   for (const pass of passes.slice(0, 2)) {
     record("dbstat read once (as --full does)", pass, (await timed(() => sql(DBSTAT_ONCE))).ms)
-    record("dbstat inside a join", pass, (await timed(() => sql(DBSTAT_JOINED))).ms)
+    record("dbstat joined on name only", pass, (await timed(() => sql(DBSTAT_JOINED_ON_NAME))).ms)
+    if (pass === "first") record("dbstat joined with OR", pass, (await timed(() => sql(DBSTAT_JOINED_OR))).ms)
     record("dbstat GROUP BY name", pass, (await timed(() => sql(DBSTAT_GROUPED))).ms)
     record("PRAGMA quick_check", pass, (await timed(() => sql("PRAGMA quick_check(20)"))).ms)
     record("PRAGMA integrity_check", pass, (await timed(() => sql("PRAGMA integrity_check(20)"))).ms)
     record("store check", pass, (await timed(() => cli(["store", "check"]))).ms)
   }
 
+  for (const [label, query] of [
+    ["read once", DBSTAT_ONCE],
+    ["joined on name only", DBSTAT_JOINED_ON_NAME],
+    ["joined with OR", DBSTAT_JOINED_OR],
+  ]) {
+    say(
+      `Plan, dbstat ${label}:\n${sql(`EXPLAIN QUERY PLAN ${query}`)
+        .map((row) => `  ${row.detail}`)
+        .join("\n")}`,
+    )
+  }
   const kinds = Object.groupBy(shape, (table) => table.kind)
   say(`Node ${process.versions.node}, SQLite ${process.versions.sqlite}`)
   say(`Store: ${(statSync(copy).size / 1e9).toFixed(2)} GB, ${shape.length} tables`)
