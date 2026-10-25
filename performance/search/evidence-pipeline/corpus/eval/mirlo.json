@@ -1,0 +1,2238 @@
+{
+ "project": {
+  "id": "mirlo",
+  "name": "Mirlo Coffee Roasters: autumn campaign and Club launch",
+  "aliases": [
+   "Mirlo",
+   "Mirlo Club",
+   "Мирло",
+   "Otoño campaign",
+   "coffee shop launch"
+  ]
+ },
+ "sources": [
+  {
+   "id": "mrl-chat-team",
+   "kind": "chat",
+   "title": "Mirlo team"
+  },
+  {
+   "id": "mrl-chat-launch",
+   "kind": "chat",
+   "title": "club-launch"
+  },
+  {
+   "id": "mrl-chat-ru",
+   "kind": "chat",
+   "title": "Olga / Andrei"
+  },
+  {
+   "id": "mrl-chat-cajapack",
+   "kind": "chat",
+   "title": "Mirlo × CajaPack boxes"
+  },
+  {
+   "id": "mrl-doc-plan",
+   "kind": "document",
+   "title": "Autumn campaign & Mirlo Club launch plan"
+  },
+  {
+   "id": "mrl-meet-0902",
+   "kind": "meeting",
+   "title": "Kickoff call 2 Sep"
+  },
+  {
+   "id": "mrl-meet-0929",
+   "kind": "meeting",
+   "title": "Launch go/no-go 29 Sep"
+  }
+ ],
+ "units": [
+  {
+   "id": "mrl-001",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-08-24T08:55:00Z",
+   "text": "Buenos días! Quick heads up: we're doing the autumn campaign AND launching the Club this year, both around 1 October. Kickoff call next Wednesday 2 Sep."
+  },
+  {
+   "id": "mrl-002",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-08-24T09:16:49Z",
+   "text": "Finally 🙌"
+  },
+  {
+   "id": "mrl-003",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-08-24T09:39:37Z",
+   "text": "Vamos! I'll start a moodboard"
+  },
+  {
+   "id": "mrl-004",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-08-24T09:56:13Z",
+   "text": "Do we have green coffee for that? The Huila lot arrives mid-September"
+  },
+  {
+   "id": "mrl-005",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-08-24T09:58:05Z",
+   "text": "Yes, Huila Lot 7 lands 14 Sep. Sidamo we have"
+  },
+  {
+   "id": "mrl-006",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-08-24T10:14:39Z",
+   "text": "I'll do numbers for the Club before the call, Andrei is asking what to build first"
+  },
+  {
+   "id": "mrl-007",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-08-24T10:21:30Z",
+   "text": "who is Andrei again?"
+  },
+  {
+   "id": "mrl-008",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-08-24T10:26:33Z",
+   "text": "Freelance dev, did our checkout fix in spring. He'll do the subscription part"
+  },
+  {
+   "id": "mrl-009",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-08-24T10:38:53Z",
+   "text": "ah right, the one who writes to you in Russian 😄"
+  },
+  {
+   "id": "mrl-010",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-08-25T11:30:00Z",
+   "text": "Moodboard is up in the drive. Warm browns, a bit of terracotta, the bird logo bigger"
+  },
+  {
+   "id": "mrl-011",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-08-25T11:47:40Z",
+   "text": "Love the terracotta"
+  },
+  {
+   "id": "mrl-012",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-08-25T11:55:53Z",
+   "text": "Hola! Lucía added me, I'm writing the copy. Where's the brief?"
+  },
+  {
+   "id": "mrl-013",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-08-25T12:10:46Z",
+   "text": "Will be in the plan doc after kickoff, for now the moodboard"
+  },
+  {
+   "id": "mrl-014",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-08-25T12:23:12Z",
+   "text": "perfecto"
+  },
+  {
+   "id": "mrl-015",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-08-27T16:10:00Z",
+   "text": "Random but useful: people who buy a subscription usually churn in month 2 or 3, so the second box matters more than the first"
+  },
+  {
+   "id": "mrl-016",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-08-27T16:20:25Z",
+   "text": "Good point for later"
+  },
+  {
+   "id": "mrl-017",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-08-27T16:23:58Z",
+   "text": "anyone want churros at the market tomorrow?"
+  },
+  {
+   "id": "mrl-018",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-08-27T16:44:42Z",
+   "text": "siempre"
+  },
+  {
+   "id": "mrl-019",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-08-31T09:20:00Z",
+   "text": "Roast schedule for September: Tuesdays and Thursdays, Saturday only if we're short"
+  },
+  {
+   "id": "mrl-020",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-08-31T09:38:17Z",
+   "text": "ok"
+  },
+  {
+   "id": "mrl-021",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-08-31T09:52:48Z",
+   "text": "Can we roast Huila on a Tuesday right after it lands so Carmen can shoot it?"
+  },
+  {
+   "id": "mrl-022",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-08-31T10:09:29Z",
+   "text": "15 Sep then"
+  },
+  {
+   "id": "mrl-023",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-03T10:00:00Z",
+   "text": "Thanks for yesterday everyone. Plan doc is in the drive: \"Autumn campaign & Mirlo Club launch plan\". Comments by Monday please"
+  },
+  {
+   "id": "mrl-024",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-03T10:20:12Z",
+   "text": "Reading it now"
+  },
+  {
+   "id": "mrl-025",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-03T10:32:37Z",
+   "text": "👍"
+  },
+  {
+   "id": "mrl-026",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-04T12:40:00Z",
+   "text": "For the ads — what can we actually promise about freshness? \"Roasted to order\" isn't true, right?"
+  },
+  {
+   "id": "mrl-027",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-04T12:54:55Z",
+   "reply_to": "mrl-026",
+   "text": "Not to order, no. But nothing leaves here more than five days after its roast date, that one's a hard rule. You can say that"
+  },
+  {
+   "id": "mrl-028",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-04T12:58:02Z",
+   "reply_to": "mrl-027",
+   "text": "\"Shipped within 5 days of roasting\" — ok I'll use that"
+  },
+  {
+   "id": "mrl-029",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-04T13:12:14Z",
+   "text": "Also the bags say best before 9 months, don't mix those up in copy"
+  },
+  {
+   "id": "mrl-030",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-04T13:36:00Z",
+   "text": "And beans rest 48h after roasting before we bag. That's degassing, not a promise"
+  },
+  {
+   "id": "mrl-031",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-07T17:05:00Z",
+   "text": "Went through the plan doc. I'm happy with the sections and their order — campaign, Club, newsletter sequence, ads, fulfilment, timeline, open questions — good that the newsletter sequence has its own section at all. I have NOT read the email drafts inside it yet, so Marta, this is not a yes on the copy."
+  },
+  {
+   "id": "mrl-032",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-09-07T17:21:09Z",
+   "reply_to": "mrl-031",
+   "text": "Got it 🙏"
+  },
+  {
+   "id": "mrl-033",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-07T17:25:52Z",
+   "text": "The ads section has 400€/week, is that final?"
+  },
+  {
+   "id": "mrl-034",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-07T17:32:14Z",
+   "text": "For now yes"
+  },
+  {
+   "id": "mrl-035",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-09-08T09:30:00Z",
+   "text": "Andrei says the subscription checkout needs a decision on the price before he can wire it. Lucía, Tom — price is in the doc, right?"
+  },
+  {
+   "id": "mrl-036",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-08T09:39:12Z",
+   "text": "Doc says 24"
+  },
+  {
+   "id": "mrl-037",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-09-08T09:53:09Z",
+   "text": "I'm re-checking margins, give me a day"
+  },
+  {
+   "id": "mrl-038",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-09-09T14:15:00Z",
+   "text": "Since Lucía approved the plan I'm scheduling the welcome emails from the doc as they are, first one goes out with the launch"
+  },
+  {
+   "id": "mrl-039",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-09T14:33:28Z",
+   "text": "Marta I think she only approved the structure? Check her message"
+  },
+  {
+   "id": "mrl-040",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-09-09T14:38:39Z",
+   "text": "Ugh ok, I'll keep them as drafts in the tool then"
+  },
+  {
+   "id": "mrl-041",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-10T11:00:00Z",
+   "text": "CTR on the teaser ad after 3 days: 1.9%. CPC 0.31€. Not bad for coffee"
+  },
+  {
+   "id": "mrl-042",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-10T11:01:00Z",
+   "text": "The latte art one or the bag one?"
+  },
+  {
+   "id": "mrl-043",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-10T11:05:32Z",
+   "text": "Bag one. Latte art is at 1.1"
+  },
+  {
+   "id": "mrl-044",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-09-11T18:30:00Z",
+   "text": "Lucía and I talked: we're killing the 15% code for newsletter signups. Margins can't take 15% on top of free shipping. Instead every newsletter signup gets a free 100g sample of Huila Lot 7 in their first order."
+  },
+  {
+   "id": "mrl-045",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-11T18:52:06Z",
+   "reply_to": "mrl-044",
+   "text": "Yes, confirmed. Marta, Carmen — please update anything that mentions OTONO15"
+  },
+  {
+   "id": "mrl-046",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-09-11T18:54:56Z",
+   "text": "Changing the popup copy now"
+  },
+  {
+   "id": "mrl-047",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-11T19:15:31Z",
+   "text": "Banner too, ok"
+  },
+  {
+   "id": "mrl-048",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-11T19:19:36Z",
+   "text": "Sad but makes sense. Samples are a nicer touch anyway"
+  },
+  {
+   "id": "mrl-049",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-14T08:45:00Z",
+   "text": "Huila Lot 7 arrived! 18 bags, 69 kg each. Smells like panela and red apple"
+  },
+  {
+   "id": "mrl-050",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-14T08:48:42Z",
+   "text": "😍"
+  },
+  {
+   "id": "mrl-051",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-14T09:05:27Z",
+   "text": "Shooting Tuesday after the roast, ok?"
+  },
+  {
+   "id": "mrl-052",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-14T09:19:29Z",
+   "text": "yes"
+  },
+  {
+   "id": "mrl-053",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-15T13:20:00Z",
+   "text": "Idea: a joint giveaway with Panadería La Espiga across the street. They post our Huila with their pan de masa madre, we post their bread with our coffee. Winner gets a month of Club + a bread basket"
+  },
+  {
+   "id": "mrl-054",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-15T13:23:03Z",
+   "reply_to": "mrl-053",
+   "text": "Could be fun, their IG is bigger than ours"
+  },
+  {
+   "id": "mrl-055",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-15T13:28:43Z",
+   "text": "I can ask them this week if we want"
+  },
+  {
+   "id": "mrl-056",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-16T10:05:00Z",
+   "text": "Ad results week 2: reach 41k, CTR 2.3%, 212 newsletter signups so far"
+  },
+  {
+   "id": "mrl-057",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-09-16T10:10:16Z",
+   "text": "How many bought?"
+  },
+  {
+   "id": "mrl-058",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-16T10:25:14Z",
+   "text": "Can't see orders from ads properly yet, Andrei is fixing the tracking"
+  },
+  {
+   "id": "mrl-059",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-17T15:30:00Z",
+   "text": "Courier question: RapidoEnvíos sent a new tariff for Q4, they want 4.60 per parcel instead of 4.10. They'll confirm \"by end of month\""
+  },
+  {
+   "id": "mrl-060",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-09-17T15:45:12Z",
+   "text": "That's a big jump for us"
+  },
+  {
+   "id": "mrl-061",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-17T15:51:31Z",
+   "text": "Let's talk at go/no-go"
+  },
+  {
+   "id": "mrl-062",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-18T09:10:00Z",
+   "text": "Lucía — ok to bump Instagram spend to 600€ for the last week of September (21–27)? CPC dropped to 0.24 and I want to ride it into the launch"
+  },
+  {
+   "id": "mrl-063",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-18T09:17:16Z",
+   "reply_to": "mrl-062",
+   "text": "sounds good"
+  },
+  {
+   "id": "mrl-064",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-18T09:34:56Z",
+   "reply_to": "mrl-063",
+   "text": "🙏 doing it now"
+  },
+  {
+   "id": "mrl-065",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-19T12:00:00Z",
+   "text": "Huila photos are in the drive. The one with the cup on the windowsill is my fav"
+  },
+  {
+   "id": "mrl-066",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-19T12:01:58Z",
+   "text": "Same"
+  },
+  {
+   "id": "mrl-067",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-09-19T12:20:54Z",
+   "text": "Writing the product page around that photo"
+  },
+  {
+   "id": "mrl-068",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-21T16:45:00Z",
+   "text": "About the Club price, since I keep getting asked: it's 24€ a month, that's what's in the plan. Please don't change it in places without asking me"
+  },
+  {
+   "id": "mrl-069",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-21T16:59:58Z",
+   "text": "Noted. Landing page already says 22 though, Olga told Andrei that"
+  },
+  {
+   "id": "mrl-070",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-21T17:01:25Z",
+   "text": "I'll talk to Olga"
+  },
+  {
+   "id": "mrl-071",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-22T10:30:00Z",
+   "text": "Shipping question from a customer in Mallorca: can she get the Club? I said I'd check"
+  },
+  {
+   "id": "mrl-072",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-22T10:31:57Z",
+   "text": "I thought we decided that?"
+  },
+  {
+   "id": "mrl-073",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-22T10:47:05Z",
+   "text": "Not that I saw"
+  },
+  {
+   "id": "mrl-074",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-23T14:00:00Z",
+   "text": "Does anyone know the ROAS number people keep asking about? The agency friend asked me"
+  },
+  {
+   "id": "mrl-075",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-09-23T14:17:23Z",
+   "text": "We don't have revenue per ad yet, tracking is still broken"
+  },
+  {
+   "id": "mrl-076",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-23T14:23:06Z",
+   "text": "ok so nobody knows"
+  },
+  {
+   "id": "mrl-077",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-24T11:15:00Z",
+   "text": "Printed boxes from CajaPack arrived 🎉 They look great. 500 pcs"
+  },
+  {
+   "id": "mrl-078",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-24T11:16:00Z",
+   "text": "Photos please!"
+  },
+  {
+   "id": "mrl-079",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-09-24T11:37:20Z",
+   "text": "Later, they're on a pallet in the hallway"
+  },
+  {
+   "id": "mrl-080",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-25T09:40:00Z",
+   "text": "Should I ask La Espiga about the giveaway or not? Nobody answered"
+  },
+  {
+   "id": "mrl-081",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-25T09:49:44Z",
+   "text": "Up to Lucía I guess"
+  },
+  {
+   "id": "mrl-082",
+   "source": "mrl-chat-team",
+   "author": "Andrei",
+   "at": "2026-09-26T17:20:00Z",
+   "text": "Hi all, subscription checkout is on staging. Card, address, delivery day. Please try to break it 🙂"
+  },
+  {
+   "id": "mrl-083",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-26T17:43:05Z",
+   "text": "Trying"
+  },
+  {
+   "id": "mrl-084",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-09-26T18:03:30Z",
+   "text": "It let me pick a Sunday delivery?"
+  },
+  {
+   "id": "mrl-085",
+   "source": "mrl-chat-team",
+   "author": "Andrei",
+   "at": "2026-09-26T18:25:50Z",
+   "text": "Fixed, thanks"
+  },
+  {
+   "id": "mrl-086",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-09-29T18:30:00Z",
+   "text": "Thanks for go/no-go. We're GO for 1 October. Details in the notes"
+  },
+  {
+   "id": "mrl-087",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-09-29T18:36:30Z",
+   "text": "🚀"
+  },
+  {
+   "id": "mrl-088",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-09-30T21:00:00Z",
+   "text": "Final checklist done. Popup, banner, emails, checkout. Sleeping now 😴"
+  },
+  {
+   "id": "mrl-089",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-10-01T08:00:00Z",
+   "text": "We're live! Club is open, Huila is on the shop"
+  },
+  {
+   "id": "mrl-090",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-10-01T08:18:23Z",
+   "text": "🎉🎉"
+  },
+  {
+   "id": "mrl-091",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-10-01T08:22:47Z",
+   "text": "First 14 Club orders overnight"
+  },
+  {
+   "id": "mrl-092",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-10-02T12:30:00Z",
+   "text": "Ad spend for the month total: I'll put the numbers in a sheet. Reach 118k in September, CTR average 2.1%"
+  },
+  {
+   "id": "mrl-093",
+   "source": "mrl-chat-team",
+   "author": "Olga",
+   "at": "2026-10-02T12:41:00Z",
+   "text": "Revenue from ads?"
+  },
+  {
+   "id": "mrl-094",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-10-02T12:56:51Z",
+   "text": "Still can't attribute, the tracking only works from 28 Sep"
+  },
+  {
+   "id": "mrl-095",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-10-05T10:10:00Z",
+   "text": "63 Club subscribers after 5 days. Boxes: 437 left"
+  },
+  {
+   "id": "mrl-096",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-10-05T10:27:30Z",
+   "text": "Wow"
+  },
+  {
+   "id": "mrl-097",
+   "source": "mrl-chat-team",
+   "author": "Marta",
+   "at": "2026-10-05T10:34:39Z",
+   "text": "Welcome email open rate 58%"
+  },
+  {
+   "id": "mrl-098",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-10-08T15:00:00Z",
+   "text": "La Espiga owner came in for coffee and asked about \"the collab\". Awkward, I never followed up"
+  },
+  {
+   "id": "mrl-099",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-10-08T15:16:14Z",
+   "text": "Let's talk about it next week, I'm drowning"
+  },
+  {
+   "id": "mrl-100",
+   "source": "mrl-chat-team",
+   "author": "Tom",
+   "at": "2026-10-14T09:30:00Z",
+   "text": "Week 2 of October: CPC back up to 0.33, I'm lowering spend to 300€/week"
+  },
+  {
+   "id": "mrl-101",
+   "source": "mrl-chat-team",
+   "author": "Lucía",
+   "at": "2026-10-14T09:35:42Z",
+   "text": "ok"
+  },
+  {
+   "id": "mrl-102",
+   "source": "mrl-chat-team",
+   "author": "Daniel",
+   "at": "2026-10-19T11:45:00Z",
+   "text": "Second roast of Huila done, 40 kg. It's going fast"
+  },
+  {
+   "id": "mrl-103",
+   "source": "mrl-chat-team",
+   "author": "Carmen",
+   "at": "2026-10-19T12:01:50Z",
+   "text": "Instagram post today then"
+  },
+  {
+   "id": "mrl-104",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-03T11:00:00Z",
+   "text": "Separate channel for the Club launch so the team chat stays sane"
+  },
+  {
+   "id": "mrl-105",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-03T11:04:12Z",
+   "text": "+"
+  },
+  {
+   "id": "mrl-106",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-03T11:25:59Z",
+   "text": "Hi, Andrei here, I'll be doing the checkout. My English is ok, Russian is better 🙂"
+  },
+  {
+   "id": "mrl-107",
+   "source": "mrl-chat-launch",
+   "author": "Lucía",
+   "at": "2026-09-03T11:27:58Z",
+   "text": "Welcome Andrei!"
+  },
+  {
+   "id": "mrl-108",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-03T11:43:04Z",
+   "text": "What do you need from us first?"
+  },
+  {
+   "id": "mrl-109",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-03T11:48:50Z",
+   "text": "Price, billing day, which countries. And if people can pause"
+  },
+  {
+   "id": "mrl-110",
+   "source": "mrl-chat-launch",
+   "author": "Lucía",
+   "at": "2026-09-03T11:57:29Z",
+   "text": "Pause yes, max 2 months. Billing on the 1st"
+  },
+  {
+   "id": "mrl-111",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-03T12:08:43Z",
+   "text": "ok"
+  },
+  {
+   "id": "mrl-112",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-04T09:15:00Z",
+   "text": "Small thing first: the theme fix for the mobile menu is 2 days, I do it this week"
+  },
+  {
+   "id": "mrl-113",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-04T09:32:31Z",
+   "text": "Go"
+  },
+  {
+   "id": "mrl-114",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-07T14:30:00Z",
+   "text": "Andrei, how long for the Club landing page? Carmen has the design"
+  },
+  {
+   "id": "mrl-115",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-07T14:51:47Z",
+   "text": "Landing is about 3 days if the design is final"
+  },
+  {
+   "id": "mrl-116",
+   "source": "mrl-chat-launch",
+   "author": "Carmen",
+   "at": "2026-09-07T15:09:41Z",
+   "text": "It's final-ish 😅"
+  },
+  {
+   "id": "mrl-117",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-09T10:20:00Z",
+   "text": "Discount code OTONO15 works on staging, 15% on first order, tested with 3 carts"
+  },
+  {
+   "id": "mrl-118",
+   "source": "mrl-chat-launch",
+   "author": "Marta",
+   "at": "2026-09-09T10:36:01Z",
+   "text": "Great, I'll put it in the popup"
+  },
+  {
+   "id": "mrl-119",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-10T16:00:00Z",
+   "text": "Andrei's question about countries: where does the Club ship? Portugal people DM us a lot"
+  },
+  {
+   "id": "mrl-120",
+   "source": "mrl-chat-launch",
+   "author": "Lucía",
+   "at": "2026-09-10T16:17:09Z",
+   "reply_to": "mrl-119",
+   "text": "For the Club we stay on the mainland only at launch. No Balearics, no Canaries, no Portugal — the courier rates for recurring parcels there make every box lose money. Regular shop orders keep shipping as now."
+  },
+  {
+   "id": "mrl-121",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-10T16:26:33Z",
+   "reply_to": "mrl-120",
+   "text": "Ok, I restrict postcodes for subscription products only"
+  },
+  {
+   "id": "mrl-122",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-10T16:49:49Z",
+   "text": "Portuguese followers will be sad 🇵🇹"
+  },
+  {
+   "id": "mrl-123",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-10T17:03:32Z",
+   "text": "Maybe next year"
+  },
+  {
+   "id": "mrl-124",
+   "source": "mrl-chat-launch",
+   "author": "Marta",
+   "at": "2026-09-11T19:00:00Z",
+   "text": "Removing OTONO15 from the popup per Olga's message in team chat. New line: \"Free 100g of Huila Lot 7 with your first order\""
+  },
+  {
+   "id": "mrl-125",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-11T19:08:38Z",
+   "text": "I disable the code on staging too"
+  },
+  {
+   "id": "mrl-126",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-12T11:40:00Z",
+   "text": "Question: the sample — I add it as a free product automatically or Daniel adds by hand?"
+  },
+  {
+   "id": "mrl-127",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-12T11:42:44Z",
+   "text": "Automatic please, Daniel has enough"
+  },
+  {
+   "id": "mrl-128",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-12T11:59:24Z",
+   "text": "ok, 1 day"
+  },
+  {
+   "id": "mrl-129",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-14T13:00:00Z",
+   "text": "General learning from other shops: subscription landing pages convert better with a \"pause anytime\" line near the price"
+  },
+  {
+   "id": "mrl-130",
+   "source": "mrl-chat-launch",
+   "author": "Carmen",
+   "at": "2026-09-14T13:02:27Z",
+   "text": "Adding it under the price block"
+  },
+  {
+   "id": "mrl-131",
+   "source": "mrl-chat-launch",
+   "author": "Carmen",
+   "at": "2026-09-15T15:30:00Z",
+   "text": "Landing design v3 uploaded. Price block says \"from 24€/month\" for now"
+  },
+  {
+   "id": "mrl-132",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-15T15:31:55Z",
+   "text": "ok"
+  },
+  {
+   "id": "mrl-133",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-16T09:50:00Z",
+   "text": "Price on landing is a variable, I take it from the product. Who sets the product price?"
+  },
+  {
+   "id": "mrl-134",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-16T09:55:40Z",
+   "text": "Olga or Lucía"
+  },
+  {
+   "id": "mrl-135",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-17T12:10:00Z",
+   "text": "Fwd from Daniel: \"RapidoEnvíos Q4 rate 4.60 instead of 4.10, confirm by end of month\". This matters for free shipping"
+  },
+  {
+   "id": "mrl-136",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-17T12:32:55Z",
+   "text": "I know. We decide at go/no-go"
+  },
+  {
+   "id": "mrl-137",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-18T17:45:00Z",
+   "text": "Landing is live on staging. Price shows 22€ because that's what is on the product now"
+  },
+  {
+   "id": "mrl-138",
+   "source": "mrl-chat-launch",
+   "author": "Carmen",
+   "at": "2026-09-18T18:00:23Z",
+   "text": "Oh, I designed it with 24"
+  },
+  {
+   "id": "mrl-139",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-18T18:12:44Z",
+   "text": "I just show what the product has"
+  },
+  {
+   "id": "mrl-140",
+   "source": "mrl-chat-launch",
+   "author": "Marta",
+   "at": "2026-09-20T10:00:00Z",
+   "text": "Copy for the Club page: \"Fresh beans at your door every month. Shipped within days of roasting. Pause anytime.\""
+  },
+  {
+   "id": "mrl-141",
+   "source": "mrl-chat-launch",
+   "author": "Lucía",
+   "at": "2026-09-20T10:03:39Z",
+   "text": "👍"
+  },
+  {
+   "id": "mrl-142",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-22T14:20:00Z",
+   "text": "Instagram last week spend is set to 600€, CPC 0.24. Looking good"
+  },
+  {
+   "id": "mrl-143",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-22T14:41:23Z",
+   "text": "Remember October budget is 1.200 total, not per week"
+  },
+  {
+   "id": "mrl-144",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-22T14:53:39Z",
+   "text": "Yes yes"
+  },
+  {
+   "id": "mrl-145",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-23T18:00:00Z",
+   "text": "Tracking fix: purchase events from Instagram now arrive, from 28 Sep they'll be complete. Before that the data is partial"
+  },
+  {
+   "id": "mrl-146",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-23T18:10:39Z",
+   "text": "So September revenue per ad is basically unknown"
+  },
+  {
+   "id": "mrl-147",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-23T18:12:09Z",
+   "text": "Partially, yes"
+  },
+  {
+   "id": "mrl-148",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-25T11:30:00Z",
+   "text": "Checklist for launch: popup, landing, checkout, sample product, postcode limit, emails. Who owns emails?"
+  },
+  {
+   "id": "mrl-149",
+   "source": "mrl-chat-launch",
+   "author": "Marta",
+   "at": "2026-09-25T11:51:16Z",
+   "text": "Me, but the welcome copy is still not approved by Lucía"
+  },
+  {
+   "id": "mrl-150",
+   "source": "mrl-chat-launch",
+   "author": "Lucía",
+   "at": "2026-09-25T12:13:33Z",
+   "text": "I'll read it this weekend, sorry"
+  },
+  {
+   "id": "mrl-151",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-27T20:15:00Z",
+   "text": "Load test on staging: 50 checkouts in a minute, all fine"
+  },
+  {
+   "id": "mrl-152",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-09-27T20:36:46Z",
+   "text": "Спасибо!"
+  },
+  {
+   "id": "mrl-153",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-28T09:00:00Z",
+   "text": "Reminder go/no-go tomorrow 17:00"
+  },
+  {
+   "id": "mrl-154",
+   "source": "mrl-chat-launch",
+   "author": "Carmen",
+   "at": "2026-09-28T09:01:53Z",
+   "text": "will be there"
+  },
+  {
+   "id": "mrl-155",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-09-30T16:30:00Z",
+   "text": "Everything is on production. Postcode limit for subscriptions is active: only mainland"
+  },
+  {
+   "id": "mrl-156",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-09-30T16:35:23Z",
+   "text": "🙏"
+  },
+  {
+   "id": "mrl-157",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-10-01T10:30:00Z",
+   "text": "First complaint: someone in Tenerife can't subscribe 😬"
+  },
+  {
+   "id": "mrl-158",
+   "source": "mrl-chat-launch",
+   "author": "Lucía",
+   "at": "2026-10-01T10:40:43Z",
+   "text": "Expected. Reply that we're mainland only for the Club for now, single bags ship to the islands as usual"
+  },
+  {
+   "id": "mrl-159",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-10-03T12:00:00Z",
+   "text": "Bug: pause button showed 3 months option. Fixed to 2"
+  },
+  {
+   "id": "mrl-160",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-10-03T12:09:39Z",
+   "text": "thanks"
+  },
+  {
+   "id": "mrl-161",
+   "source": "mrl-chat-launch",
+   "author": "Marta",
+   "at": "2026-10-06T15:00:00Z",
+   "text": "Did Lucía ever read the welcome email copy? It went out as drafted"
+  },
+  {
+   "id": "mrl-162",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-10-06T15:13:47Z",
+   "text": "No idea, ask her"
+  },
+  {
+   "id": "mrl-163",
+   "source": "mrl-chat-launch",
+   "author": "Andrei",
+   "at": "2026-10-09T10:40:00Z",
+   "text": "Small follow-up list: invoice PDF, address change in account, Sunday bug (done). Estimates later"
+  },
+  {
+   "id": "mrl-164",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-10-09T10:46:31Z",
+   "text": "ok"
+  },
+  {
+   "id": "mrl-165",
+   "source": "mrl-chat-launch",
+   "author": "Tom",
+   "at": "2026-10-15T13:30:00Z",
+   "text": "Instagram October so far: 640€ spent, reach 52k"
+  },
+  {
+   "id": "mrl-166",
+   "source": "mrl-chat-launch",
+   "author": "Olga",
+   "at": "2026-10-15T13:52:47Z",
+   "text": "Within the 1.200"
+  },
+  {
+   "id": "mrl-167",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-08-26T19:10:00Z",
+   "text": "Андрей, привет! Осенью делаем подписку на кофе, Mirlo Club. Возьмёшься за чекаут?"
+  },
+  {
+   "id": "mrl-168",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-08-26T19:23:01Z",
+   "text": "Привет! Да, интересно. Когда старт?"
+  },
+  {
+   "id": "mrl-169",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-08-26T19:34:04Z",
+   "text": "Запуск 1 октября. Подробности после созвона 2-го"
+  },
+  {
+   "id": "mrl-170",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-08-26T19:45:02Z",
+   "text": "Ок, держу сентябрь свободным"
+  },
+  {
+   "id": "mrl-171",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-08-28T10:30:00Z",
+   "text": "Сразу вопрос по оплате. У ПагоНубе рекуррентные платежи стоят 0,35 € сверху за списание. У KassaLink дешевле, 0,15. Может, переедем на них целиком?"
+  },
+  {
+   "id": "mrl-172",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-08-28T10:48:41Z",
+   "text": "Переезд всего магазина — это же долго?"
+  },
+  {
+   "id": "mrl-173",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-08-28T10:53:49Z",
+   "text": "Дня 4–5 плюс риски. Подумай"
+  },
+  {
+   "id": "mrl-174",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-03T09:00:00Z",
+   "text": "Андрей, после созвона: сколько тебе нужно на чекаут подписки? Люсия спрашивает, успеваем ли к 1-му"
+  },
+  {
+   "id": "mrl-175",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-03T09:12:02Z",
+   "reply_to": "mrl-174",
+   "text": "Чекаут подписки с автосписанием — 6 рабочих дней, если до понедельника будут цена, день списания и правила паузы. Плюс тема для мобильного меню отдельно, это 2 дня"
+  },
+  {
+   "id": "mrl-176",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-03T09:16:20Z",
+   "reply_to": "mrl-175",
+   "text": "Отлично, успеваем"
+  },
+  {
+   "id": "mrl-177",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-05T16:20:00Z",
+   "text": "По оплате решила: остаёмся на ПагоНубе. 0,20 € разницы на списание не стоят переезда за месяц до запуска. Переезд не делаем."
+  },
+  {
+   "id": "mrl-178",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-05T16:40:04Z",
+   "reply_to": "mrl-177",
+   "text": "Ок, делаю подписку на ПагоНубе"
+  },
+  {
+   "id": "mrl-179",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-08T12:00:00Z",
+   "text": "Цена подписки какая? В документе вижу 24 €"
+  },
+  {
+   "id": "mrl-180",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-08T12:18:35Z",
+   "text": "Подожди день, считаю маржу с учётом доставки"
+  },
+  {
+   "id": "mrl-181",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-09T13:40:00Z",
+   "text": "Андрей, цену подписки в магазине ставь 22 € в месяц, не 24. Я пересчитала: при 24 мы проигрываем конкурентам, а маржа при 22 нормальная."
+  },
+  {
+   "id": "mrl-182",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-09T14:02:42Z",
+   "reply_to": "mrl-181",
+   "text": "Поставил 22 на продукте"
+  },
+  {
+   "id": "mrl-183",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-11T20:00:00Z",
+   "text": "Видел в общем чате про семпл вместо скидки. Код OTONO15 отключать полностью?"
+  },
+  {
+   "id": "mrl-184",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-11T20:16:47Z",
+   "text": "Да, полностью"
+  },
+  {
+   "id": "mrl-185",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-12T09:30:00Z",
+   "text": "Счёт за август, 420 €, за правку меню и консультацию. Отправил на почту"
+  },
+  {
+   "id": "mrl-186",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-12T09:41:48Z",
+   "text": "Оплачу в пятницу"
+  },
+  {
+   "id": "mrl-187",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-15T18:10:00Z",
+   "text": "Про трекинг из инстаграма: события покупок не доходят с июля, похоже сломалось после обновления темы. Починю, но данные за сентябрь будут дырявые"
+  },
+  {
+   "id": "mrl-188",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-15T18:27:58Z",
+   "text": "Плохо. Том хочет считать окупаемость рекламы"
+  },
+  {
+   "id": "mrl-189",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-15T18:46:20Z",
+   "text": "За сентябрь точно не получится, только примерно"
+  },
+  {
+   "id": "mrl-190",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-17T11:00:00Z",
+   "text": "Андрей, если курьер поднимет тариф, бесплатную доставку первой коробки можно будет быстро выключить?"
+  },
+  {
+   "id": "mrl-191",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-17T11:10:47Z",
+   "text": "Да, это галочка в настройках доставки, 5 минут"
+  },
+  {
+   "id": "mrl-192",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-19T22:15:00Z",
+   "text": "Не по проекту: у соседей сверху третий день ремонт, работаю из кафе 😅"
+  },
+  {
+   "id": "mrl-193",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-19T22:27:17Z",
+   "text": "Приходи к нам в обжарочную, тут wifi нормальный"
+  },
+  {
+   "id": "mrl-194",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-19T22:31:22Z",
+   "text": "О, спасибо, может в четверг"
+  },
+  {
+   "id": "mrl-195",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-22T10:00:00Z",
+   "text": "Ольга, Люсия в общем чате пишет, что подписка 24 €, и просит без неё не менять. На продукте у меня 22. Что ставить?"
+  },
+  {
+   "id": "mrl-196",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-22T10:19:47Z",
+   "reply_to": "mrl-195",
+   "text": "Пока оставь 22. Мы с Люсией разберёмся, не трогай без меня"
+  },
+  {
+   "id": "mrl-197",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-22T10:22:51Z",
+   "text": "Понял, не трогаю"
+  },
+  {
+   "id": "mrl-198",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-24T15:30:00Z",
+   "text": "Перевёл подписку в боевой режим ПагоНубе, тестовое списание 1 € прошло и вернулось"
+  },
+  {
+   "id": "mrl-199",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-24T15:47:36Z",
+   "text": "Ура"
+  },
+  {
+   "id": "mrl-200",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-26T12:00:00Z",
+   "text": "Как тебе в обжарочной работалось?"
+  },
+  {
+   "id": "mrl-201",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-26T12:21:32Z",
+   "text": "Отлично, только теперь хочу кофе каждый час)"
+  },
+  {
+   "id": "mrl-202",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-09-30T23:40:00Z",
+   "text": "Всё на проде. Ограничение индексов работает, семпл добавляется сам, код отключён"
+  },
+  {
+   "id": "mrl-203",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-09-30T23:59:33Z",
+   "text": "Спасибо огромное!"
+  },
+  {
+   "id": "mrl-204",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-10-02T10:15:00Z",
+   "text": "Счёт за сентябрь: 1 850 €, детализация в письме"
+  },
+  {
+   "id": "mrl-205",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-10-02T10:30:34Z",
+   "text": "Получила"
+  },
+  {
+   "id": "mrl-206",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-10-07T14:00:00Z",
+   "text": "Андрей, сколько по времени PDF-счета для подписчиков и смена адреса в кабинете?"
+  },
+  {
+   "id": "mrl-207",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-10-07T14:15:30Z",
+   "text": "PDF — полтора дня, адрес — день. Могу на следующей неделе"
+  },
+  {
+   "id": "mrl-208",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-10-07T14:31:27Z",
+   "text": "Давай"
+  },
+  {
+   "id": "mrl-209",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-10-16T17:30:00Z",
+   "text": "PDF-счета на проде. Смена адреса тоже"
+  },
+  {
+   "id": "mrl-210",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-10-16T17:39:37Z",
+   "text": "👍"
+  },
+  {
+   "id": "mrl-211",
+   "source": "mrl-chat-ru",
+   "author": "Andrei",
+   "at": "2026-10-20T09:45:00Z",
+   "text": "Ольга, а цену подписки так и оставляем 22? В плане до сих пор 24"
+  },
+  {
+   "id": "mrl-212",
+   "source": "mrl-chat-ru",
+   "author": "Olga",
+   "at": "2026-10-20T10:01:18Z",
+   "text": "Пока да. Люсия в отпуске до конца месяца, решим после"
+  },
+  {
+   "id": "mrl-213",
+   "source": "mrl-chat-cajapack",
+   "author": "Lucía",
+   "at": "2026-08-28T12:00:00Z",
+   "text": "Hola Daniel, as discussed: 500 printed mailer boxes for our coffee subscription. Our Daniel (ops) is also here for logistics, sorry for the two Daniels 😄"
+  },
+  {
+   "id": "mrl-214",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-08-28T12:05:56Z",
+   "text": "Hola Lucía! No problem, I'm Daniel from CajaPack. Quote: 500 pcs, kraft, one colour print outside, 1.15€ per box + plate 90€ one-time"
+  },
+  {
+   "id": "mrl-215",
+   "source": "mrl-chat-cajapack",
+   "author": "Olga",
+   "at": "2026-08-28T12:27:31Z",
+   "text": "Can we get 1.05 if we commit to 1000 next year?"
+  },
+  {
+   "id": "mrl-216",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-08-28T12:50:19Z",
+   "text": "I can do 1.08 for 500 and 1.00 for the next 1000"
+  },
+  {
+   "id": "mrl-217",
+   "source": "mrl-chat-cajapack",
+   "author": "Olga",
+   "at": "2026-08-28T13:00:02Z",
+   "text": "Deal"
+  },
+  {
+   "id": "mrl-218",
+   "source": "mrl-chat-cajapack",
+   "author": "Carmen",
+   "at": "2026-09-02T10:30:00Z",
+   "text": "Artwork attached. Terracotta on kraft, bird logo on the lid"
+  },
+  {
+   "id": "mrl-219",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-02T10:52:15Z",
+   "text": "Received. Proof by Friday"
+  },
+  {
+   "id": "mrl-220",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-04T16:00:00Z",
+   "text": "Proof attached. Please check the logo position on the lid flap"
+  },
+  {
+   "id": "mrl-221",
+   "source": "mrl-chat-cajapack",
+   "author": "Carmen",
+   "at": "2026-09-04T16:03:40Z",
+   "text": "Can it move 5 mm to the left?"
+  },
+  {
+   "id": "mrl-222",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-04T16:09:28Z",
+   "text": "Sure, v2 tomorrow"
+  },
+  {
+   "id": "mrl-223",
+   "source": "mrl-chat-cajapack",
+   "author": "Lucía",
+   "at": "2026-09-05T11:10:00Z",
+   "text": "Proof v2 approved"
+  },
+  {
+   "id": "mrl-224",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-05T11:13:07Z",
+   "text": "Thanks! We're aiming to ship them from our plant around 15 September"
+  },
+  {
+   "id": "mrl-225",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-05T11:33:13Z",
+   "text": "Perfect, I'll be at the roastery that week"
+  },
+  {
+   "id": "mrl-226",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-10T09:20:00Z",
+   "text": "Bad news, sorry: the kraft board supplier is late. New date: the printed boxes leave our plant on Tuesday 22 September, you should have them 24th with the pallet carrier"
+  },
+  {
+   "id": "mrl-227",
+   "source": "mrl-chat-cajapack",
+   "author": "Lucía",
+   "at": "2026-09-10T09:30:33Z",
+   "reply_to": "mrl-226",
+   "text": "Still fine for 1 October, thanks for telling us early"
+  },
+  {
+   "id": "mrl-228",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-10T09:43:55Z",
+   "text": "Ok. I'll receive them and start packing Club boxes the 30th, first Club boxes go out to subscribers 1–2 October"
+  },
+  {
+   "id": "mrl-229",
+   "source": "mrl-chat-cajapack",
+   "author": "Olga",
+   "at": "2026-09-14T13:30:00Z",
+   "text": "Daniel (CajaPack), invoice to Mirlo Coffee SL please, same address as the quote"
+  },
+  {
+   "id": "mrl-230",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-14T13:37:34Z",
+   "text": "Will do"
+  },
+  {
+   "id": "mrl-231",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-22T17:00:00Z",
+   "text": "Pallet left today as planned 🚚 Tracking number by email"
+  },
+  {
+   "id": "mrl-232",
+   "source": "mrl-chat-cajapack",
+   "author": "Lucía",
+   "at": "2026-09-22T17:17:28Z",
+   "text": "🙏"
+  },
+  {
+   "id": "mrl-233",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-24T10:15:00Z",
+   "text": "Pallet arrived, 500 boxes, 2 slightly crushed on the corner, rest perfect"
+  },
+  {
+   "id": "mrl-234",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-09-24T10:29:23Z",
+   "text": "Sorry about those two, I'll add 5 extra in the next order"
+  },
+  {
+   "id": "mrl-235",
+   "source": "mrl-chat-cajapack",
+   "author": "Olga",
+   "at": "2026-10-12T11:00:00Z",
+   "text": "Daniel, we're at about 400 boxes left. Lead time for the next 1000?"
+  },
+  {
+   "id": "mrl-236",
+   "source": "mrl-chat-cajapack",
+   "author": "Daniel",
+   "at": "2026-10-12T11:03:25Z",
+   "text": "About 3 weeks from proof, plate we already have"
+  },
+  {
+   "id": "mrl-237",
+   "source": "mrl-chat-cajapack",
+   "author": "Olga",
+   "at": "2026-10-12T11:07:38Z",
+   "text": "Ok, I'll order early November"
+  },
+  {
+   "id": "mrl-238",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "1. Campaign: Otoño en Mirlo",
+    "Goal"
+   ],
+   "text": "Grow the newsletter list from 1,900 to 3,000 and sell the new single origin, Huila Lot 7, during September and October. The campaign also warms people up for the Club launch on 1 October."
+  },
+  {
+   "id": "mrl-239",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "1. Campaign: Otoño en Mirlo",
+    "Audience"
+   ],
+   "text": "Existing customers in Spain, home brewers aged 25–45, people who follow specialty coffee accounts. Secondary: gift buyers before Christmas."
+  },
+  {
+   "id": "mrl-240",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "1. Campaign: Otoño en Mirlo",
+    "Message"
+   ],
+   "text": "Autumn, slow mornings, freshly roasted coffee from a small roastery in Valencia. Warm colours, no stock photos."
+  },
+  {
+   "id": "mrl-241",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "2. Mirlo Club",
+    "What's in the box"
+   ],
+   "text": "One 250 g bag a month, rotating origin chosen by Daniel, a printed brew card and a small surprise from time to time. Whole bean or ground for filter."
+  },
+  {
+   "id": "mrl-242",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "2. Mirlo Club",
+    "Price and billing"
+   ],
+   "text": "24 € per month, billed on the 1st. Subscribers can pause for up to two months. No minimum commitment."
+  },
+  {
+   "id": "mrl-243",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "2. Mirlo Club",
+    "Delivery area"
+   ],
+   "text": "To be confirmed with the courier before launch. Andrei needs the list of allowed postcodes."
+  },
+  {
+   "id": "mrl-244",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "2. Mirlo Club",
+    "Shipping cost"
+   ],
+   "text": "Proposal: the first box ships free, following boxes 3.90 € shipping. Depends on the courier's Q4 rate."
+  },
+  {
+   "id": "mrl-245",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "3. Newsletter sequence",
+    "Overview"
+   ],
+   "text": "Three emails after signup: welcome (day 0), brewing guide (day 3), Club invite (day 7). Copy by Marta."
+  },
+  {
+   "id": "mrl-246",
+   "source": "mrl-doc-plan",
+   "author": "Marta",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "3. Newsletter sequence",
+    "Email 1 — Welcome"
+   ],
+   "text": "Subject: \"Welcome to slow mornings ☕\". Body: thanks for joining, a short story about how Mirlo started in a garage in Benimaclet, and your code OTONO15 for 15% off your first order, valid 14 days."
+  },
+  {
+   "id": "mrl-247",
+   "source": "mrl-doc-plan",
+   "author": "Marta",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "3. Newsletter sequence",
+    "Email 2 — Brewing guide"
+   ],
+   "text": "Subject: \"Three ways to brew Huila\". V60, AeroPress and moka pot recipes with ratios, plus a link to the grind size video."
+  },
+  {
+   "id": "mrl-248",
+   "source": "mrl-doc-plan",
+   "author": "Marta",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "3. Newsletter sequence",
+    "Email 3 — Club invite"
+   ],
+   "text": "Subject: \"Coffee that comes to you\". Explains the Club, pause anytime, first box story. Button to the Club page."
+  },
+  {
+   "id": "mrl-249",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "4. Ads",
+    "Budget"
+   ],
+   "text": "Instagram only. 400 € per week in September, re-evaluated weekly by Tom. October total to be decided after launch."
+  },
+  {
+   "id": "mrl-250",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "4. Ads",
+    "Creatives"
+   ],
+   "text": "Carmen produces three creatives: the bag, latte art, the roaster at work. Tom tests them for one week and keeps the best two."
+  },
+  {
+   "id": "mrl-251",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "4. Ads",
+    "Tracking"
+   ],
+   "text": "Purchase events from Instagram to the shop must work before we judge ads by revenue. Andrei to check."
+  },
+  {
+   "id": "mrl-252",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "5. Fulfilment",
+    "Roast days"
+   ],
+   "text": "Roasting on Tuesdays and Thursdays, Saturday as backup. Club orders are roasted in the last week of the month."
+  },
+  {
+   "id": "mrl-253",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "5. Fulfilment",
+    "Freshness rule"
+   ],
+   "text": "No bag leaves the roastery later than five days after the roast date printed on it. Beans rest at least 48 hours before bagging."
+  },
+  {
+   "id": "mrl-254",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "5. Fulfilment",
+    "Packaging"
+   ],
+   "text": "Printed kraft mailer boxes from CajaPack, 500 for the launch. Regular shop orders keep the plain boxes."
+  },
+  {
+   "id": "mrl-255",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "5. Fulfilment",
+    "Courier"
+   ],
+   "text": "RapidoEnvíos, currently 4.10 € per parcel for mainland Spain. Islands and Portugal priced separately."
+  },
+  {
+   "id": "mrl-256",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "6. Timeline"
+   ],
+   "text": "2 Sep kickoff · 7 Sep plan comments · 14 Sep Huila arrives · 15 Sep teaser ads · 29 Sep go/no-go · 1 Oct launch of the Club and Huila."
+  },
+  {
+   "id": "mrl-257",
+   "source": "mrl-doc-plan",
+   "author": "Lucía",
+   "at": "2026-09-03T09:30:00Z",
+   "section": [
+    "7. Open questions"
+   ],
+   "text": "Club delivery area; shipping cost after the first box; whether the second box gets a different brew card; October ad budget."
+  },
+  {
+   "id": "mrl-258",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:00:00Z",
+   "text": "Hola a todos. Goal for today: agree what we launch on 1 October and who does what."
+  },
+  {
+   "id": "mrl-259",
+   "source": "mrl-meet-0902",
+   "author": "Tom",
+   "at": "2026-09-02T10:00:35Z",
+   "text": "Campaign first. I'd run teaser ads from mid-September and push newsletter signups hard."
+  },
+  {
+   "id": "mrl-260",
+   "source": "mrl-meet-0902",
+   "author": "Carmen",
+   "at": "2026-09-02T10:01:25Z",
+   "text": "I need the Huila photos for that, so after it's roasted."
+  },
+  {
+   "id": "mrl-261",
+   "source": "mrl-meet-0902",
+   "author": "Daniel",
+   "at": "2026-09-02T10:01:51Z",
+   "text": "Huila arrives on the 14th, roasting on the 15th."
+  },
+  {
+   "id": "mrl-262",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:03:02Z",
+   "text": "Good. What do people get for signing up to the newsletter?"
+  },
+  {
+   "id": "mrl-263",
+   "source": "mrl-meet-0902",
+   "author": "Tom",
+   "at": "2026-09-02T10:03:40Z",
+   "text": "A discount works best in my experience. Fifteen percent on the first order."
+  },
+  {
+   "id": "mrl-264",
+   "source": "mrl-meet-0902",
+   "author": "Olga",
+   "at": "2026-09-02T10:04:50Z",
+   "text": "Fifteen is a lot for us. Ten?"
+  },
+  {
+   "id": "mrl-265",
+   "source": "mrl-meet-0902",
+   "author": "Tom",
+   "at": "2026-09-02T10:06:03Z",
+   "text": "Ten doesn't move anyone."
+  },
+  {
+   "id": "mrl-266",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:06:36Z",
+   "text": "Ok, decision: newsletter signups get a code, OTONO15, fifteen percent off the first order. Marta, put it in the welcome email."
+  },
+  {
+   "id": "mrl-267",
+   "source": "mrl-meet-0902",
+   "author": "Marta",
+   "at": "2026-09-02T10:06:53Z",
+   "text": "Will do."
+  },
+  {
+   "id": "mrl-268",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:07:40Z",
+   "text": "Club. Price I have at 24 a month. Olga?"
+  },
+  {
+   "id": "mrl-269",
+   "source": "mrl-meet-0902",
+   "author": "Olga",
+   "at": "2026-09-02T10:08:35Z",
+   "text": "I'll check margins with shipping and come back."
+  },
+  {
+   "id": "mrl-270",
+   "source": "mrl-meet-0902",
+   "author": "Andrei",
+   "at": "2026-09-02T10:09:18Z",
+   "text": "For the checkout I need the price, the billing day and the countries. And whether pause exists."
+  },
+  {
+   "id": "mrl-271",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:09:58Z",
+   "text": "Pause yes. Countries I want to think about."
+  },
+  {
+   "id": "mrl-272",
+   "source": "mrl-meet-0902",
+   "author": "Andrei",
+   "at": "2026-09-02T10:11:15Z",
+   "text": "Then I send my estimate for the checkout in writing tomorrow, to Olga."
+  },
+  {
+   "id": "mrl-273",
+   "source": "mrl-meet-0902",
+   "author": "Tom",
+   "at": "2026-09-02T10:11:52Z",
+   "text": "Budget for ads?"
+  },
+  {
+   "id": "mrl-274",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:12:55Z",
+   "text": "Four hundred a week in September, we look every Monday."
+  },
+  {
+   "id": "mrl-275",
+   "source": "mrl-meet-0902",
+   "author": "Daniel",
+   "at": "2026-09-02T10:14:00Z",
+   "text": "Boxes — CajaPack quoted, proof next week."
+  },
+  {
+   "id": "mrl-276",
+   "source": "mrl-meet-0902",
+   "author": "Carmen",
+   "at": "2026-09-02T10:14:38Z",
+   "text": "Can I also do a little stop-motion for reels? Beans falling into the box."
+  },
+  {
+   "id": "mrl-277",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:15:33Z",
+   "text": "If you have time, sure."
+  },
+  {
+   "id": "mrl-278",
+   "source": "mrl-meet-0902",
+   "author": "Marta",
+   "at": "2026-09-02T10:15:53Z",
+   "text": "Do we have a tone of voice doc?"
+  },
+  {
+   "id": "mrl-279",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:16:17Z",
+   "text": "Not really. Warm, a bit funny, not hipster."
+  },
+  {
+   "id": "mrl-280",
+   "source": "mrl-meet-0902",
+   "author": "Lucía",
+   "at": "2026-09-02T10:17:08Z",
+   "text": "Okay. I'll write the plan doc by tomorrow. Gracias a todos."
+  },
+  {
+   "id": "mrl-281",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:00:00Z",
+   "text": "Go/no-go. Let's go through the checklist. Andrei?"
+  },
+  {
+   "id": "mrl-282",
+   "source": "mrl-meet-0929",
+   "author": "Andrei",
+   "at": "2026-09-29T17:00:43Z",
+   "text": "Checkout works on staging, production deploy tomorrow night. Postcode limit, sample product, pause — all there."
+  },
+  {
+   "id": "mrl-283",
+   "source": "mrl-meet-0929",
+   "author": "Tom",
+   "at": "2026-09-29T17:01:39Z",
+   "text": "Ads: last week at 600, CPC 0.24, 1,240 newsletter signups since the start."
+  },
+  {
+   "id": "mrl-284",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:02:36Z",
+   "text": "Very good. Marta, emails?"
+  },
+  {
+   "id": "mrl-285",
+   "source": "mrl-meet-0929",
+   "author": "Marta",
+   "at": "2026-09-29T17:03:14Z",
+   "text": "Three emails are ready in the tool. Lucía, you still haven't told me if the welcome text is ok."
+  },
+  {
+   "id": "mrl-286",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:04:00Z",
+   "text": "I know, I haven't read it properly. Send me the link again, I'll do it tonight."
+  },
+  {
+   "id": "mrl-287",
+   "source": "mrl-meet-0929",
+   "author": "Daniel",
+   "at": "2026-09-29T17:05:07Z",
+   "text": "Boxes are here, 500, packing starts on the 30th."
+  },
+  {
+   "id": "mrl-288",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:05:56Z",
+   "text": "Free shipping. Daniel, did RapidoEnvíos confirm the new rate?"
+  },
+  {
+   "id": "mrl-289",
+   "source": "mrl-meet-0929",
+   "author": "Daniel",
+   "at": "2026-09-29T17:06:37Z",
+   "text": "Not yet. They say by the end of the week. Could stay 4.10, could be 4.60."
+  },
+  {
+   "id": "mrl-290",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:07:07Z",
+   "text": "Then let's say this: the first Club box ships free, as long as RapidoEnvíos keeps us at 4.10 per parcel. If they move us to 4.60, the first box pays normal shipping like every other box."
+  },
+  {
+   "id": "mrl-291",
+   "source": "mrl-meet-0929",
+   "author": "Olga",
+   "at": "2026-09-29T17:08:18Z",
+   "text": "Andrei says switching it off is five minutes, so we're safe either way."
+  },
+  {
+   "id": "mrl-292",
+   "source": "mrl-meet-0929",
+   "author": "Tom",
+   "at": "2026-09-29T17:09:06Z",
+   "text": "One more: landing shows 22 for the Club, the plan says 24. Which one?"
+  },
+  {
+   "id": "mrl-293",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:09:35Z",
+   "text": "Olga and I will sort it out this week. Leave it as it is for tomorrow."
+  },
+  {
+   "id": "mrl-294",
+   "source": "mrl-meet-0929",
+   "author": "Olga",
+   "at": "2026-09-29T17:10:17Z",
+   "text": "Yes, we'll talk."
+  },
+  {
+   "id": "mrl-295",
+   "source": "mrl-meet-0929",
+   "author": "Carmen",
+   "at": "2026-09-29T17:10:56Z",
+   "text": "And the La Espiga giveaway?"
+  },
+  {
+   "id": "mrl-296",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:11:28Z",
+   "text": "Not now. After launch."
+  },
+  {
+   "id": "mrl-297",
+   "source": "mrl-meet-0929",
+   "author": "Lucía",
+   "at": "2026-09-29T17:12:29Z",
+   "text": "Anything blocking? No? Then we're GO for 1 October."
+  },
+  {
+   "id": "mrl-298",
+   "source": "mrl-meet-0929",
+   "author": "Tom",
+   "at": "2026-09-29T17:13:29Z",
+   "text": "Vamos."
+  },
+  {
+   "id": "mrl-299",
+   "source": "mrl-meet-0929",
+   "author": "Andrei",
+   "at": "2026-09-29T17:14:25Z",
+   "text": "I'll be online tomorrow night for the deploy."
+  }
+ ]
+}

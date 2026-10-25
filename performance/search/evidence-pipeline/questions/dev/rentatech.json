@@ -1,0 +1,294 @@
+[
+  {
+    "id": "rentatech-q01",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Сколько времени нам разрешено держать снимки документов арендаторов?",
+    "kind": "negative",
+    "answerable": true,
+    "grades": {
+      "rt-cl-010": 3,
+      "rt-cl-009": 2,
+      "rt-dev-023": 3,
+      "rt-tz-018": 1,
+      "rt-tz-012": 1,
+      "rt-gen-006": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-cl-009",
+        "rt-cl-010"
+      ],
+      [
+        "rt-dev-023"
+      ]
+    ],
+    "note": "Answer is a denial ('бессрочно — нет, дольше 30 дней не держим'); traps: equipment photos 90 days, DB backups 30 days, generic agency advice on passports."
+  },
+  {
+    "id": "rentatech-q02",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Будем принимать залог картой онлайн при бронировании?",
+    "kind": "conditional",
+    "answerable": true,
+    "grades": {
+      "rt-m09-006": 3,
+      "rt-m09-005": 2,
+      "rt-dev-028": 3,
+      "rt-cl-039": 1,
+      "rt-tz-011": 1,
+      "rt-m10-002": 1,
+      "rt-m10-003": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-m09-005",
+        "rt-m09-006"
+      ],
+      [
+        "rt-dev-028"
+      ]
+    ],
+    "note": "Yes only if the bank can freeze (hold) the sum for at least a week; flag is off until then. Agency chat about another client's card prepayment is a trap."
+  },
+  {
+    "id": "rentatech-q03",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Клиент утвердил цены, которые мы прописали в ТЗ?",
+    "kind": "approval",
+    "answerable": true,
+    "grades": {
+      "rt-cl-016": 3,
+      "rt-cl-015": 2,
+      "rt-cl-017": 1,
+      "rt-m09-021": 1,
+      "rt-tz-007": 1,
+      "rt-site-034": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-cl-015",
+        "rt-cl-016"
+      ]
+    ],
+    "note": "Director approved the document structure only, not the tariff numbers; the internal 'Г.П. согласовал ТЗ 🎉' over-claims."
+  },
+  {
+    "id": "rentatech-q04",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Можно ли в субботу прийти в пункт и взять инструмент без записи?",
+    "kind": "approval",
+    "answerable": true,
+    "grades": {
+      "rt-cl-031": 3,
+      "rt-cl-030": 2,
+      "rt-site-086": 1,
+      "rt-m09-014": 1,
+      "rt-m09-015": 1,
+      "rt-cl-026": 1,
+      "rt-tz-013": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-cl-030",
+        "rt-cl-031"
+      ]
+    ],
+    "note": "The only proof is Olga's native request plus the director's bare '+' reply."
+  },
+  {
+    "id": "rentatech-q05",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Мы договорились делать бронирование через телеграм-бота?",
+    "kind": "unresolved",
+    "answerable": false,
+    "grades": {
+      "rt-site-021": 2,
+      "rt-site-023": 1,
+      "rt-site-025": 1,
+      "rt-site-099": 1,
+      "rt-site-100": 1,
+      "rt-m10-014": 1,
+      "rt-m10-015": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-site-021",
+        "rt-site-025"
+      ]
+    ],
+    "note": "Artyom's proposal was deferred again and again ('после запуска', 'в ноябре'), never accepted or rejected."
+  },
+  {
+    "id": "rentatech-q06",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Какую сумму клиент оставляет в залог за инструмент?",
+    "kind": "conflict",
+    "answerable": false,
+    "grades": {
+      "rt-tz-010": 2,
+      "rt-m10-007": 2,
+      "rt-m10-008": 1,
+      "rt-m10-009": 1,
+      "rt-m10-010": 1,
+      "rt-cl-021": 1,
+      "rt-dev-003": 1,
+      "rt-site-028": 1,
+      "rt-site-029": 1,
+      "rt-site-077": 1,
+      "rt-site-078": 1,
+      "rt-cl-045": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-tz-010",
+        "rt-m10-007"
+      ]
+    ],
+    "note": "ТЗ says 30% (min 3 000 ₽), the warehouse says a flat 10 000 ₽ (20 000 for generators); the director never came back, so both stand."
+  },
+  {
+    "id": "rentatech-q07",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Возим ли мы технику клиентам по Ярославлю бесплатно?",
+    "kind": "revoked",
+    "answerable": true,
+    "grades": {
+      "rt-cl-041": 3,
+      "rt-site-079": 3,
+      "rt-dev-026": 2,
+      "rt-m09-011": 2,
+      "rt-site-053": 1,
+      "rt-tz-014": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-cl-041"
+      ],
+      [
+        "rt-site-079"
+      ]
+    ],
+    "note": "Free delivery from 15 000 ₽ was agreed on 9 Sep and cancelled on 28 Sep (now 1 500 ₽ flat); the ТЗ and the meeting still show the old rule. Another client's 'убираем бесплатную консультацию' is a trap."
+  },
+  {
+    "id": "rentatech-q08",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Что Саша хотела видеть в бумаге, которую подписывают при сдаче инструмента?",
+    "kind": "same-name",
+    "answerable": true,
+    "grades": {
+      "rt-cl-033": 3,
+      "rt-cl-034": 1,
+      "rt-dev-029": 1,
+      "rt-tz-016": 1,
+      "rt-m09-019": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-cl-033"
+      ]
+    ],
+    "note": "Two Sashas: the client's accountant asked for the contract number and a damage column; the agency QA Sasha writes about act bugs (dates, Safari PDF, another client's act)."
+  },
+  {
+    "id": "rentatech-q09",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Когда нужно продлевать домен сайта?",
+    "kind": "missing",
+    "answerable": false,
+    "grades": {
+      "rt-tz-020": 1,
+      "rt-site-090": 1
+    },
+    "evidence_sets": [],
+    "note": "The domain, DNS and certificate are mentioned; the renewal date is never stated."
+  },
+  {
+    "id": "rentatech-q10",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Почему решили отказаться от интеграции с 1С?",
+    "kind": "premise",
+    "answerable": false,
+    "grades": {
+      "rt-m09-017": 2,
+      "rt-tz-003": 2,
+      "rt-cl-058": 2,
+      "rt-cl-057": 1,
+      "rt-site-053": 1,
+      "rt-dev-006": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-m09-017"
+      ],
+      [
+        "rt-tz-003"
+      ]
+    ],
+    "note": "False premise: 1С was postponed to phase 2 (November), not dropped. The summary '1С — не сейчас' can mislead."
+  },
+  {
+    "id": "rentatech-q11",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "На какое число в итоге назначили запуск сайта?",
+    "kind": "fact",
+    "answerable": true,
+    "grades": {
+      "rt-m10-006": 3,
+      "rt-m10-005": 3,
+      "rt-site-083": 3,
+      "rt-gen-021": 3,
+      "rt-m10-004": 2,
+      "rt-site-070": 1,
+      "rt-tz-002": 1,
+      "rt-m09-003": 1,
+      "rt-site-053": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-m10-006"
+      ],
+      [
+        "rt-m10-004",
+        "rt-m10-005"
+      ],
+      [
+        "rt-site-083"
+      ],
+      [
+        "rt-gen-021"
+      ]
+    ],
+    "note": "14 October, stated in the meeting and repeated in two chats; the old 30 Sep target and Artyom's joke 'звучит как 14 октября' are traps."
+  },
+  {
+    "id": "rentatech-q12",
+    "project": "rentatech",
+    "language": "ru",
+    "text": "Какой sms gateway выбрали для напоминаний клиентам?",
+    "kind": "fact",
+    "answerable": true,
+    "grades": {
+      "rt-dev-014": 3,
+      "rt-site-058": 1,
+      "rt-tz-017": 1
+    },
+    "evidence_sets": [
+      [
+        "rt-dev-014"
+      ]
+    ],
+    "note": "The choice is in the dev chat; the comparison message names both providers."
+  }
+]

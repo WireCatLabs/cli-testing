@@ -6,6 +6,10 @@ The [compact pipeline handoff and feasibility check](compact-pipeline/README.md)
 experiments, compares the existing multilingual reranker with a larger CPU export on synthetic
 diagnostics, and orders the next mathematical/context/model experiments within explicit budgets.
 
+The [evidence pipeline](evidence-pipeline/README.md) (25 October) then measured those stages on frozen
+synthetic splits with Core's published discovery as the baseline. It found discovery returning nothing for
+questions ending in "?", and showed native context and E5 fusion help while diversity and mMARCO do not.
+
 Start with [LIGHTWEIGHT-RANKING.md](LIGHTWEIGHT-RANKING.md) for the small-footprint options,
 then [MODELS.md](MODELS.md) for the plain-language model explanation, then
 [the evaluation guide](combined-search-evaluation.md) for the metrics. The

@@ -1,0 +1,1907 @@
+{
+ "project": {
+  "id": "devdays",
+  "name": "Rivergate DevDays 2026 conference",
+  "aliases": [
+   "DevDays",
+   "Rivergate DevDays",
+   "ДевДейс",
+   "конференция",
+   "conference Belgrade"
+  ]
+ },
+ "sources": [
+  {
+   "id": "ddy-chat-org",
+   "kind": "chat",
+   "title": "DevDays orgs"
+  },
+  {
+   "id": "ddy-chat-venue",
+   "kind": "chat",
+   "title": "Venue & catering"
+  },
+  {
+   "id": "ddy-chat-speakers",
+   "kind": "chat",
+   "title": "DevDays speakers"
+  },
+  {
+   "id": "ddy-doc-runbook",
+   "kind": "document",
+   "title": "DevDays 2026 runbook"
+  },
+  {
+   "id": "ddy-meet-0917",
+   "kind": "meeting",
+   "title": "Org sync 17 Sep"
+  },
+  {
+   "id": "ddy-chat-sponsors",
+   "kind": "chat",
+   "title": "Sponsors: Kestrel, Brightloop"
+  }
+ ],
+ "units": [
+  {
+   "id": "ddy-001",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-10T09:30:00Z",
+   "text": "Всем привет! Это основной чат оргкомитета Rivergate DevDays 2026. Даты фиксируем: 14–16 октября, Белград, площадка Hala Sava."
+  },
+  {
+   "id": "ddy-002",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-08-10T09:33:28Z",
+   "text": "Ура, наконец-то даты"
+  },
+  {
+   "id": "ddy-003",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-08-10T09:53:26Z",
+   "text": "Hi all! I'll write in English if that's ok, my Russian is \"spasibo\" level 😅"
+  },
+  {
+   "id": "ddy-004",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-10T10:02:45Z",
+   "text": "Of course. Mixed chat, everyone writes how they like"
+  },
+  {
+   "id": "ddy-005",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-08-10T10:18:09Z",
+   "text": "Привет. Я по спонсорам, как в прошлом году"
+  },
+  {
+   "id": "ddy-006",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-08-10T10:39:24Z",
+   "text": "Билеты и маркетинг на мне. Кассу заводим в TixHub?"
+  },
+  {
+   "id": "ddy-007",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-10T10:49:27Z",
+   "text": "Да, TixHub, как обычно"
+  },
+  {
+   "id": "ddy-008",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-08-10T11:00:33Z",
+   "text": "Hey, Marko here, local guy, I'll help with venue and food"
+  },
+  {
+   "id": "ddy-009",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-08-11T14:10:00Z",
+   "text": "Билеты: early bird 120 € до 31 августа, потом 160 €, на месте 190 €"
+  },
+  {
+   "id": "ddy-010",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-11T14:26:53Z",
+   "text": "Ок"
+  },
+  {
+   "id": "ddy-011",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-08-11T14:46:25Z",
+   "text": "Спонсорам даём по 4 бесплатных билета на пакет Silver и 8 на Gold"
+  },
+  {
+   "id": "ddy-012",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-08-11T15:06:43Z",
+   "text": "Учту в TixHub промокодами"
+  },
+  {
+   "id": "ddy-013",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-08-13T10:00:00Z",
+   "text": "Call for papers is open, deadline 31 August. 38 submissions already from last year's list"
+  },
+  {
+   "id": "ddy-014",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-13T10:15:53Z",
+   "text": "🔥"
+  },
+  {
+   "id": "ddy-015",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-08-13T10:28:10Z",
+   "text": "Мне нужно понять, сколько залов. Hala Sava даёт два зала и фойе, третий зал за доплату"
+  },
+  {
+   "id": "ddy-016",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-13T10:42:30Z",
+   "text": "Пока два, по третьему подумаем"
+  },
+  {
+   "id": "ddy-017",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-08-17T18:20:00Z",
+   "text": "Продали 74 early bird за неделю"
+  },
+  {
+   "id": "ddy-018",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-08-17T18:32:59Z",
+   "text": "Неплохо"
+  },
+  {
+   "id": "ddy-019",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-08-17T18:34:46Z",
+   "text": "Do people need visas for Serbia? Some ask in comments"
+  },
+  {
+   "id": "ddy-020",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-08-17T18:37:59Z",
+   "text": "Most EU and many others no, I'll write a FAQ"
+  },
+  {
+   "id": "ddy-021",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-08-20T11:45:00Z",
+   "text": "Hala Sava просит предоплату 30% до 1 сентября. Это 6 300 €"
+  },
+  {
+   "id": "ddy-022",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-20T11:46:07Z",
+   "text": "Оплачу на этой неделе"
+  },
+  {
+   "id": "ddy-023",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-08-20T11:56:21Z",
+   "text": "Спасибо"
+  },
+  {
+   "id": "ddy-024",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-08-24T09:15:00Z",
+   "text": "Speakers' travel: we cover hotel for 3 nights, flights up to 400 € for Europe"
+  },
+  {
+   "id": "ddy-025",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-24T09:16:29Z",
+   "text": "Да, как в бюджете"
+  },
+  {
+   "id": "ddy-026",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-08-27T16:30:00Z",
+   "text": "Вопрос по возвратам от покупателя: до 30 сентября возвращаем полную стоимость минус комиссия TixHub 3%. Так и пишу в FAQ?"
+  },
+  {
+   "id": "ddy-027",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-27T16:43:50Z",
+   "text": "Да"
+  },
+  {
+   "id": "ddy-028",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-08-31T22:00:00Z",
+   "text": "Early bird закрылся: 212 билетов"
+  },
+  {
+   "id": "ddy-029",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-08-31T22:06:03Z",
+   "text": "CFP closed: 96 submissions!"
+  },
+  {
+   "id": "ddy-030",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-08-31T22:21:56Z",
+   "text": "Отличный день"
+  },
+  {
+   "id": "ddy-031",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-09-02T12:00:00Z",
+   "text": "Kestrel Cloud хотят Gold, но спрашивают про стрим. Им важно, чтобы кейноуты были онлайн с их логотипом"
+  },
+  {
+   "id": "ddy-032",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-02T12:04:42Z",
+   "text": "У площадки есть пакет трансляции, 3 000 € за три дня"
+  },
+  {
+   "id": "ddy-033",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-09-02T12:11:45Z",
+   "text": "Попробую продать им этот пакет отдельно"
+  },
+  {
+   "id": "ddy-034",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-09-04T15:20:00Z",
+   "text": "Anna, can you approve the photographer? Dušan Petrović, 1,450 € for all three days, photos delivered within a week. Second quote was 2,100 € from an agency"
+  },
+  {
+   "id": "ddy-035",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-04T15:43:16Z",
+   "reply_to": "ddy-034",
+   "text": "+"
+  },
+  {
+   "id": "ddy-036",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-09-04T15:52:58Z",
+   "reply_to": "ddy-035",
+   "text": "Great, booking him"
+  },
+  {
+   "id": "ddy-037",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-04T15:57:46Z",
+   "text": "Можно я тоже его возьму на съёмку для соцсетей в первый день?"
+  },
+  {
+   "id": "ddy-038",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-09-04T16:13:11Z",
+   "text": "He's covering all days anyway"
+  },
+  {
+   "id": "ddy-039",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-07T10:10:00Z",
+   "text": "Прочитала ранбук. Оглавление и структура — ок, утверждаю: площадка, программа, кейтеринг, билеты, волонтёры, доступность, день-в-день, бюджет, после конференции. Цифры внутри кейтеринга я не проверяла, Marko, это не согласование порций."
+  },
+  {
+   "id": "ddy-040",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-09-07T10:33:27Z",
+   "reply_to": "ddy-039",
+   "text": "Got it, I'll wait for your numbers check"
+  },
+  {
+   "id": "ddy-041",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-08T13:30:00Z",
+   "text": "Продажи: 268 билетов всего. Цель 450"
+  },
+  {
+   "id": "ddy-042",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-08T13:31:03Z",
+   "text": "Мне для кейтеринга нужна оценка по людям к 25 сентября"
+  },
+  {
+   "id": "ddy-043",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-08T13:52:25Z",
+   "text": "Будет"
+  },
+  {
+   "id": "ddy-044",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-10T17:00:00Z",
+   "text": "Идея на закрытие: афтерпати на речном кораблике по Саве, 3 часа, вместимость 150. Аренда около 2 800 €"
+  },
+  {
+   "id": "ddy-045",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-09-10T17:08:45Z",
+   "text": "Boats are nice in October if it's not raining"
+  },
+  {
+   "id": "ddy-046",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-10T17:17:54Z",
+   "text": "Хм"
+  },
+  {
+   "id": "ddy-047",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-09-12T11:20:00Z",
+   "text": "Kestrel пока думают про стрим. Ответ обещали «на следующей неделе»"
+  },
+  {
+   "id": "ddy-048",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-12T11:41:07Z",
+   "text": "Ок"
+  },
+  {
+   "id": "ddy-049",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-14T09:40:00Z",
+   "text": "Анна, покупатели спрашивают: а если человек не может приехать в начале октября, вернём деньги?"
+  },
+  {
+   "id": "ddy-050",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-14T10:03:40Z",
+   "reply_to": "ddy-049",
+   "text": "После 1 октября деньги не возвращаем вообще. Можно только переоформить билет на другого человека бесплатно, до 13 октября."
+  },
+  {
+   "id": "ddy-051",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-14T10:18:32Z",
+   "reply_to": "ddy-050",
+   "text": "Поняла, добавлю в FAQ"
+  },
+  {
+   "id": "ddy-052",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-09-15T16:00:00Z",
+   "text": "General tip from other conferences: publish the schedule at least 3 weeks before, people plan travel around keynotes"
+  },
+  {
+   "id": "ddy-053",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-15T16:16:16Z",
+   "text": "Да, к 23 сентября публикуем"
+  },
+  {
+   "id": "ddy-054",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-18T10:30:00Z",
+   "text": "Протокол синка вчера — в папке. Главное: кейтеринг и стрим"
+  },
+  {
+   "id": "ddy-055",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-18T10:50:24Z",
+   "text": "👍"
+  },
+  {
+   "id": "ddy-056",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-19T14:00:00Z",
+   "text": "По кораблику: держат дату 16 октября до 25 сентября, потом отдают другим. Нужно решение"
+  },
+  {
+   "id": "ddy-057",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-09-19T14:09:42Z",
+   "text": "I'd go for it"
+  },
+  {
+   "id": "ddy-058",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-09-19T14:28:22Z",
+   "text": "Дорого для нас, но решать Анне"
+  },
+  {
+   "id": "ddy-059",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-21T10:30:00Z",
+   "text": "Ivana ответила по пандусу и лифту, а про количество мест для колясок в Hall A пока молчит"
+  },
+  {
+   "id": "ddy-060",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-21T10:36:03Z",
+   "text": "Напомни ей"
+  },
+  {
+   "id": "ddy-061",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-21T10:55:34Z",
+   "text": "Напомнил"
+  },
+  {
+   "id": "ddy-062",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-09-22T12:15:00Z",
+   "text": "Kestrel всё ещё молчат по стриму. Gold подписали, а стрим отдельно"
+  },
+  {
+   "id": "ddy-063",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-22T12:34:47Z",
+   "text": "Подождём"
+  },
+  {
+   "id": "ddy-064",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-09-23T18:00:00Z",
+   "text": "Schedule published on the site 🎉"
+  },
+  {
+   "id": "ddy-065",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-23T18:09:10Z",
+   "text": "Делаю пост"
+  },
+  {
+   "id": "ddy-066",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-25T12:00:00Z",
+   "text": "Кто-то спросил в комментах, будут ли места для колясочников в первом ряду. Что отвечать?"
+  },
+  {
+   "id": "ddy-067",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-25T12:19:54Z",
+   "text": "Пиши «да, есть доступные места, уточните при регистрации». Точное число пока не знаю"
+  },
+  {
+   "id": "ddy-068",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-09-26T09:00:00Z",
+   "text": "Кораблик ушёл другим, дату не продлили"
+  },
+  {
+   "id": "ddy-069",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-09-26T09:08:51Z",
+   "text": "Oh well"
+  },
+  {
+   "id": "ddy-070",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-09-29T11:30:00Z",
+   "text": "Продажи: 391 билет. Динамика хорошая"
+  },
+  {
+   "id": "ddy-071",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-09-29T11:53:55Z",
+   "text": "Супер"
+  },
+  {
+   "id": "ddy-072",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-10-01T10:00:00Z",
+   "text": "С сегодняшнего дня возвраты закрыты в TixHub, только переоформление"
+  },
+  {
+   "id": "ddy-073",
+   "source": "ddy-chat-org",
+   "author": "Max V.",
+   "at": "2026-10-03T15:40:00Z",
+   "text": "Слайды для спонсорской презентации отправил Анне, 12 слайдов, финал"
+  },
+  {
+   "id": "ddy-074",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-10-03T15:56:43Z",
+   "text": "Спасибо, Макс"
+  },
+  {
+   "id": "ddy-075",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-10-04T11:00:00Z",
+   "text": "Новость не по проекту: у меня кот научился открывать холодильник"
+  },
+  {
+   "id": "ddy-076",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-10-04T11:16:57Z",
+   "text": "😂 that's a security incident"
+  },
+  {
+   "id": "ddy-077",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-10-04T11:35:06Z",
+   "text": "Нужен code review холодильника"
+  },
+  {
+   "id": "ddy-078",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-10-06T13:00:00Z",
+   "text": "Продано 447 из 450. Почти sold out"
+  },
+  {
+   "id": "ddy-079",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-10-06T13:14:18Z",
+   "text": "Нужен лист ожидания"
+  },
+  {
+   "id": "ddy-080",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-10-06T13:19:21Z",
+   "text": "Включила"
+  },
+  {
+   "id": "ddy-081",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-10-09T17:30:00Z",
+   "text": "Кто ещё не прислал размеры футболок для волонтёров?"
+  },
+  {
+   "id": "ddy-082",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-10-09T17:49:25Z",
+   "text": "Me, sorry. L"
+  },
+  {
+   "id": "ddy-083",
+   "source": "ddy-chat-org",
+   "author": "Pavel",
+   "at": "2026-10-12T08:20:00Z",
+   "text": "Монтаж сцены завтра с 8:00, кто может прийти помочь?"
+  },
+  {
+   "id": "ddy-084",
+   "source": "ddy-chat-org",
+   "author": "Marko",
+   "at": "2026-10-12T08:29:18Z",
+   "text": "I can"
+  },
+  {
+   "id": "ddy-085",
+   "source": "ddy-chat-org",
+   "author": "Lena",
+   "at": "2026-10-12T08:48:15Z",
+   "text": "Я после обеда"
+  },
+  {
+   "id": "ddy-086",
+   "source": "ddy-chat-org",
+   "author": "Anna",
+   "at": "2026-10-17T12:00:00Z",
+   "text": "Всем спасибо, конференция прошла! Итоговые цифры на ретро"
+  },
+  {
+   "id": "ddy-087",
+   "source": "ddy-chat-org",
+   "author": "Jess",
+   "at": "2026-10-17T12:18:56Z",
+   "text": "What a week 💛"
+  },
+  {
+   "id": "ddy-088",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-08-12T10:00:00Z",
+   "text": "Marko, тут площадка и еда. Ivana из Hala Sava тоже здесь"
+  },
+  {
+   "id": "ddy-089",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-08-12T10:14:05Z",
+   "text": "Hello everyone! Ivana, events manager at Hala Sava. Happy to help"
+  },
+  {
+   "id": "ddy-090",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-08-12T10:29:26Z",
+   "text": "Hi Ivana! Can you send the floor plan?"
+  },
+  {
+   "id": "ddy-091",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-08-12T10:37:46Z",
+   "text": "Attached. Hall A 500 seats theatre, Hall B 180, foyer for coffee and sponsors"
+  },
+  {
+   "id": "ddy-092",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-08-12T10:55:02Z",
+   "text": "А зал C?"
+  },
+  {
+   "id": "ddy-093",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-08-12T11:16:38Z",
+   "text": "Hall C is 90 seats, extra 1,100 € per day"
+  },
+  {
+   "id": "ddy-094",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-08-14T12:30:00Z",
+   "text": "Catering options I collected: Zlatna Kašika (did the fintech meetup, good), Kuhinja 41 (more expensive, very good vegan), and the venue's own kitchen"
+  },
+  {
+   "id": "ddy-095",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-08-14T12:43:24Z",
+   "text": "Цены?"
+  },
+  {
+   "id": "ddy-096",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-08-14T12:54:14Z",
+   "text": "Zlatna 18 €/person/day lunch + 2 coffee breaks. Kuhinja 41 is 23 €. Venue 21 €"
+  },
+  {
+   "id": "ddy-097",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-08-19T15:15:00Z",
+   "text": "Reminder: outside catering needs to bring their own staff, we only provide tables"
+  },
+  {
+   "id": "ddy-098",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-08-19T15:17:22Z",
+   "text": "ok"
+  },
+  {
+   "id": "ddy-099",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-08-21T09:00:00Z",
+   "text": "Ivana, по доступности: пандус на главном входе есть? И лифт в зал B?"
+  },
+  {
+   "id": "ddy-100",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-08-21T09:20:31Z",
+   "reply_to": "ddy-099",
+   "text": "Yes, ramp at the main entrance, elevator to Hall B on the first floor, accessible toilets on both floors"
+  },
+  {
+   "id": "ddy-101",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-08-21T09:41:30Z",
+   "text": "Спасибо"
+  },
+  {
+   "id": "ddy-102",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-08-26T14:20:00Z",
+   "text": "Tasting at Zlatna Kašika on Thursday, who comes?"
+  },
+  {
+   "id": "ddy-103",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-08-26T14:38:13Z",
+   "text": "Я"
+  },
+  {
+   "id": "ddy-104",
+   "source": "ddy-chat-venue",
+   "author": "Lena",
+   "at": "2026-08-26T14:53:13Z",
+   "text": "Я тоже, если будет десерт 😄"
+  },
+  {
+   "id": "ddy-105",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-08-28T18:40:00Z",
+   "text": "Tasting report: Zlatna was solid, the ćevapi were great, vegan option a bit sad (just grilled veg)"
+  },
+  {
+   "id": "ddy-106",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-08-28T18:59:38Z",
+   "text": "Вегетарианцев у нас в прошлом году было 22%"
+  },
+  {
+   "id": "ddy-107",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-08-28T19:16:22Z",
+   "text": "Then we need a better vegan menu"
+  },
+  {
+   "id": "ddy-108",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-09-01T11:00:00Z",
+   "text": "Prepayment received, thank you!"
+  },
+  {
+   "id": "ddy-109",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-01T11:23:37Z",
+   "text": "🙏"
+  },
+  {
+   "id": "ddy-110",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-09-03T16:10:00Z",
+   "text": "Streaming package details: 3 cameras, director, YouTube or Vimeo output, 3,000 € for 3 days. Decide by 5 October"
+  },
+  {
+   "id": "ddy-111",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-03T16:17:35Z",
+   "text": "Передам Максу, он со спонсором"
+  },
+  {
+   "id": "ddy-112",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-09-09T10:30:00Z",
+   "text": "Kuhinja 41 tasting today. Vegan lasagne 10/10. Pricier but people will talk about it"
+  },
+  {
+   "id": "ddy-113",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-09T10:39:25Z",
+   "text": "Дорого. Обсудим на синке"
+  },
+  {
+   "id": "ddy-114",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-09-11T13:20:00Z",
+   "text": "Do you need the projector in Hall B or will you bring your own?"
+  },
+  {
+   "id": "ddy-115",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-11T13:38:26Z",
+   "text": "Ваш, пожалуйста"
+  },
+  {
+   "id": "ddy-116",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-16T09:45:00Z",
+   "text": "Завтра синк, решаем кейтеринг. Варианты: Zlatna 18 €, Kuhinja 41 23 €, площадка 21 €"
+  },
+  {
+   "id": "ddy-117",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-09-16T09:53:10Z",
+   "text": "My vote is Kuhinja but I understand the budget"
+  },
+  {
+   "id": "ddy-118",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-09-18T12:00:00Z",
+   "text": "After the sync I told Zlatna Kašika we're going with them for all three days, contract draft coming"
+  },
+  {
+   "id": "ddy-119",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-18T12:19:15Z",
+   "text": "Ок"
+  },
+  {
+   "id": "ddy-120",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-09-23T17:30:00Z",
+   "text": "Problem: Zlatna Kašika double-booked 15 October with a wedding. They can only do the 14th and 16th"
+  },
+  {
+   "id": "ddy-121",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-23T17:33:46Z",
+   "text": "Серьёзно? Мы же договорились"
+  },
+  {
+   "id": "ddy-122",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-09-23T17:36:31Z",
+   "text": "They apologised, but that's it"
+  },
+  {
+   "id": "ddy-123",
+   "source": "ddy-chat-venue",
+   "author": "Anna",
+   "at": "2026-09-24T10:05:00Z",
+   "text": "Тогда так: от Zlatna Kašika отказываемся совсем, делить кейтеринг на двух подрядчиков не будем. Берём Kuhinja 41 на все три дня, бюджет добираю из резерва."
+  },
+  {
+   "id": "ddy-124",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-09-24T10:21:34Z",
+   "reply_to": "ddy-123",
+   "text": "Calling Kuhinja 41 now"
+  },
+  {
+   "id": "ddy-125",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-24T10:34:22Z",
+   "text": "Хорошо, что дорогой вариант понравился всем 😅"
+  },
+  {
+   "id": "ddy-126",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-09-24T15:40:00Z",
+   "text": "Kuhinja 41 confirmed for 14–16 Oct. They need final headcount by 7 October"
+  },
+  {
+   "id": "ddy-127",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-24T15:51:45Z",
+   "text": "Лена даст цифры"
+  },
+  {
+   "id": "ddy-128",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-09-30T11:10:00Z",
+   "text": "Hall C — are you taking it for day 3? I need to know by Friday"
+  },
+  {
+   "id": "ddy-129",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-09-30T11:29:11Z",
+   "text": "Нет, workshop переносим в Hall B, зал C не берём"
+  },
+  {
+   "id": "ddy-130",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-09-30T11:46:03Z",
+   "text": "Noted"
+  },
+  {
+   "id": "ddy-131",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-10-02T14:00:00Z",
+   "text": "Streaming — any news? Our crew needs to know by the 5th"
+  },
+  {
+   "id": "ddy-132",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-10-02T14:20:38Z",
+   "text": "Макс ждёт спонсора"
+  },
+  {
+   "id": "ddy-133",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-10-07T09:30:00Z",
+   "text": "Финальные цифры для Kuhinja 41: 470 человек в день с учётом спикеров и волонтёров, веганских 24%"
+  },
+  {
+   "id": "ddy-134",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-10-07T09:38:30Z",
+   "text": "Sent to them"
+  },
+  {
+   "id": "ddy-135",
+   "source": "ddy-chat-venue",
+   "author": "Ivana",
+   "at": "2026-10-10T16:20:00Z",
+   "text": "Load-in on the 13th from 8:00, loading dock at the back"
+  },
+  {
+   "id": "ddy-136",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-10-10T16:30:24Z",
+   "text": "Спасибо, будем"
+  },
+  {
+   "id": "ddy-137",
+   "source": "ddy-chat-venue",
+   "author": "Marko",
+   "at": "2026-10-13T19:00:00Z",
+   "text": "Kuhinja 41 did a test run of the coffee station, all good"
+  },
+  {
+   "id": "ddy-138",
+   "source": "ddy-chat-venue",
+   "author": "Pavel",
+   "at": "2026-10-13T19:09:04Z",
+   "text": "Отлично"
+  },
+  {
+   "id": "ddy-139",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-05T10:00:00Z",
+   "text": "Welcome, speakers! This is the group for logistics: travel, slides, schedule. Congrats on being selected 🎉"
+  },
+  {
+   "id": "ddy-140",
+   "source": "ddy-chat-speakers",
+   "author": "Max O.",
+   "at": "2026-09-05T10:11:55Z",
+   "text": "Thanks Jess! Excited to be back in Belgrade"
+  },
+  {
+   "id": "ddy-141",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-09-05T10:19:24Z",
+   "text": "Hi all! Priya here, talking about on-call fatigue"
+  },
+  {
+   "id": "ddy-142",
+   "source": "ddy-chat-speakers",
+   "author": "Tomasz",
+   "at": "2026-09-05T10:25:09Z",
+   "text": "Cześć! Tomasz, talking about Postgres migrations"
+  },
+  {
+   "id": "ddy-143",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-05T10:48:40Z",
+   "text": "Travel form is in the pinned message, please fill by 15 Sep"
+  },
+  {
+   "id": "ddy-144",
+   "source": "ddy-chat-speakers",
+   "author": "Max O.",
+   "at": "2026-09-08T14:30:00Z",
+   "text": "Jess, quick one — do you have a projector with HDMI or USB-C?"
+  },
+  {
+   "id": "ddy-145",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-08T14:43:58Z",
+   "text": "Both, and clickers"
+  },
+  {
+   "id": "ddy-146",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-09-08T14:46:19Z",
+   "text": "Is there a confidence monitor?"
+  },
+  {
+   "id": "ddy-147",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-08T15:05:44Z",
+   "text": "Yes in Hall A, not in Hall B"
+  },
+  {
+   "id": "ddy-148",
+   "source": "ddy-chat-speakers",
+   "author": "Tomasz",
+   "at": "2026-09-12T09:10:00Z",
+   "text": "Flight booked: arriving 13 Oct at 21:40"
+  },
+  {
+   "id": "ddy-149",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-12T09:17:48Z",
+   "text": "Noted, hotel from the 13th"
+  },
+  {
+   "id": "ddy-150",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-15T16:45:00Z",
+   "text": "Max, confirming your slot: you open the conference — keynote on 14 October at 10:00 in Hall A, 45 minutes plus Q&A"
+  },
+  {
+   "id": "ddy-151",
+   "source": "ddy-chat-speakers",
+   "author": "Max O.",
+   "at": "2026-09-15T16:51:01Z",
+   "reply_to": "ddy-150",
+   "text": "Perfect, 10:00 works, I land the evening before"
+  },
+  {
+   "id": "ddy-152",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-09-17T11:00:00Z",
+   "text": "Can I get a 5-minute slot for a lightning demo too?"
+  },
+  {
+   "id": "ddy-153",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-17T11:01:55Z",
+   "text": "Lightning talks are on day 2 afternoon, I'll put you on the list"
+  },
+  {
+   "id": "ddy-154",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-21T13:20:00Z",
+   "text": "Reminder: slides due 7 October so the AV team can load them. Speaker folder link pinned"
+  },
+  {
+   "id": "ddy-155",
+   "source": "ddy-chat-speakers",
+   "author": "Tomasz",
+   "at": "2026-09-21T13:27:48Z",
+   "text": "ok 👍"
+  },
+  {
+   "id": "ddy-156",
+   "source": "ddy-chat-speakers",
+   "author": "Max O.",
+   "at": "2026-09-24T18:00:00Z",
+   "text": "The schedule on the site looks great. Will the keynote be recorded?"
+  },
+  {
+   "id": "ddy-157",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-24T18:04:02Z",
+   "text": "Recorded yes, streamed — still being decided"
+  },
+  {
+   "id": "ddy-158",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-09-28T10:30:00Z",
+   "text": "Can I bring my own laptop instead of uploading slides? I have live demos"
+  },
+  {
+   "id": "ddy-159",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-28T10:32:30Z",
+   "text": "Yes, but upload a PDF backup anyway"
+  },
+  {
+   "id": "ddy-160",
+   "source": "ddy-chat-speakers",
+   "author": "Tomasz",
+   "at": "2026-09-30T17:20:00Z",
+   "text": "Is the hotel walking distance from Hala Sava?"
+  },
+  {
+   "id": "ddy-161",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-30T17:21:41Z",
+   "text": "12 minutes on foot, or tram 7 two stops"
+  },
+  {
+   "id": "ddy-162",
+   "source": "ddy-chat-speakers",
+   "author": "Tomasz",
+   "at": "2026-09-30T17:39:28Z",
+   "text": "Walking it is"
+  },
+  {
+   "id": "ddy-163",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-09-30T18:01:25Z",
+   "text": "Is breakfast included at the hotel?"
+  },
+  {
+   "id": "ddy-164",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-09-30T18:05:28Z",
+   "text": "Yes, from 7:00"
+  },
+  {
+   "id": "ddy-165",
+   "source": "ddy-chat-speakers",
+   "author": "Tomasz",
+   "at": "2026-10-02T12:00:00Z",
+   "text": "Slides uploaded, 31 slides"
+  },
+  {
+   "id": "ddy-166",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-10-02T12:06:46Z",
+   "text": "Thanks Tomasz!"
+  },
+  {
+   "id": "ddy-167",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-10-06T09:40:00Z",
+   "text": "Still missing slides from Max and Priya. Deadline tomorrow 🙏"
+  },
+  {
+   "id": "ddy-168",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-10-06T09:43:39Z",
+   "text": "Uploading tonight"
+  },
+  {
+   "id": "ddy-169",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-10-07T22:10:00Z",
+   "text": "Done, PDF backup is in the folder"
+  },
+  {
+   "id": "ddy-170",
+   "source": "ddy-chat-speakers",
+   "author": "Max O.",
+   "at": "2026-10-08T08:30:00Z",
+   "text": "Sorry for the delay — my keynote deck is now in the speaker folder, final version, 42 slides. Video embedded on slide 17, a backup mp4 is next to it"
+  },
+  {
+   "id": "ddy-171",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-10-08T08:34:26Z",
+   "reply_to": "ddy-170",
+   "text": "Got it, thank you! Passing to AV"
+  },
+  {
+   "id": "ddy-172",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-10-09T15:00:00Z",
+   "text": "Speaker dinner on 14 Oct at 20:00, restaurant near the venue. Reply if you're coming"
+  },
+  {
+   "id": "ddy-173",
+   "source": "ddy-chat-speakers",
+   "author": "Tomasz",
+   "at": "2026-10-09T15:05:56Z",
+   "text": "+"
+  },
+  {
+   "id": "ddy-174",
+   "source": "ddy-chat-speakers",
+   "author": "Priya",
+   "at": "2026-10-09T15:19:02Z",
+   "text": "Yes!"
+  },
+  {
+   "id": "ddy-175",
+   "source": "ddy-chat-speakers",
+   "author": "Max O.",
+   "at": "2026-10-09T15:32:53Z",
+   "text": "Count me in"
+  },
+  {
+   "id": "ddy-176",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-10-11T11:30:00Z",
+   "text": "Final reminder: speaker check-in at the badge desk, green lanyards for speakers"
+  },
+  {
+   "id": "ddy-177",
+   "source": "ddy-chat-speakers",
+   "author": "Jess",
+   "at": "2026-10-16T18:00:00Z",
+   "text": "Thank you all for amazing talks 💛 Feedback form coming next week"
+  },
+  {
+   "id": "ddy-178",
+   "source": "ddy-chat-speakers",
+   "author": "Max O.",
+   "at": "2026-10-16T18:02:57Z",
+   "text": "Thank you, Jess, great organisation"
+  },
+  {
+   "id": "ddy-179",
+   "source": "ddy-doc-runbook",
+   "author": "Pavel",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "1. Площадка",
+    "Залы"
+   ],
+   "text": "Hala Sava, Белград. Hall A — 500 мест, театр. Hall B — 180 мест. Фойе — кофе-брейки и стенды спонсоров. Hall C — 90 мест, опционально, 1 100 € в день."
+  },
+  {
+   "id": "ddy-180",
+   "source": "ddy-doc-runbook",
+   "author": "Pavel",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "1. Площадка",
+    "Монтаж"
+   ],
+   "text": "Монтаж 13 октября с 8:00 через задний погрузочный вход. Демонтаж 16 октября после 19:00."
+  },
+  {
+   "id": "ddy-181",
+   "source": "ddy-doc-runbook",
+   "author": "Jess",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "2. Program",
+    "Day 1 — 14 October"
+   ],
+   "text": "09:00 doors and registration · 09:30 opening keynote, Max Ortega, Hall A · 10:30 coffee · 11:00 two tracks in Hall A and Hall B · 13:00 lunch · 18:00 end of day."
+  },
+  {
+   "id": "ddy-182",
+   "source": "ddy-doc-runbook",
+   "author": "Jess",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "2. Program",
+    "Day 2 — 15 October"
+   ],
+   "text": "Two tracks all day. 16:00 lightning talks in Hall B, 5 minutes each. 18:30 sponsor drinks in the foyer."
+  },
+  {
+   "id": "ddy-183",
+   "source": "ddy-doc-runbook",
+   "author": "Jess",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "2. Program",
+    "Day 3 — 16 October"
+   ],
+   "text": "Workshops, 3 hours each, morning and afternoon. Room to be confirmed: Hall B or optional Hall C."
+  },
+  {
+   "id": "ddy-184",
+   "source": "ddy-doc-runbook",
+   "author": "Marko",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "3. Кейтеринг",
+    "Объём"
+   ],
+   "text": "Lunch and two coffee breaks every day. Planned for 450 people per day, about 20% vegan, plus 30 portions for speakers and volunteers."
+  },
+  {
+   "id": "ddy-185",
+   "source": "ddy-doc-runbook",
+   "author": "Marko",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "3. Кейтеринг",
+    "Подрядчик"
+   ],
+   "text": "To be chosen at the sync on 17 September. Candidates: Zlatna Kašika, Kuhinja 41, venue kitchen."
+  },
+  {
+   "id": "ddy-186",
+   "source": "ddy-doc-runbook",
+   "author": "Lena",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "4. Билеты",
+    "Цены"
+   ],
+   "text": "Early bird 120 € до 31 августа, стандарт 160 €, на месте 190 €. Спонсорам — промокоды на бесплатные билеты."
+  },
+  {
+   "id": "ddy-187",
+   "source": "ddy-doc-runbook",
+   "author": "Lena",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "4. Билеты",
+    "Возвраты"
+   ],
+   "text": "До 30 сентября — полный возврат минус комиссия TixHub 3%. С 1 октября деньги за билеты не возвращаются; билет можно бесплатно переоформить на другого участника до 13 октября."
+  },
+  {
+   "id": "ddy-188",
+   "source": "ddy-doc-runbook",
+   "author": "Anna",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "5. Волонтёры"
+   ],
+   "text": "20 волонтёров, смены по полдня. Координатор — Lena. Брифинг 13 октября в 17:00 на площадке."
+  },
+  {
+   "id": "ddy-189",
+   "source": "ddy-doc-runbook",
+   "author": "Pavel",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "6. Доступность"
+   ],
+   "text": "Пандус на главном входе, лифт в Hall B, доступные туалеты на обоих этажах. Тихая комната на втором этаже. Субтитры на кейноутах — если будет трансляция."
+  },
+  {
+   "id": "ddy-190",
+   "source": "ddy-doc-runbook",
+   "author": "Anna",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "7. День-в-день",
+    "Чек-лист"
+   ],
+   "text": "Бейджи, ланъярды трёх цветов, стойка регистрации на 4 ноутбука, аптечка, запасные кликеры, вода на сцене."
+  },
+  {
+   "id": "ddy-191",
+   "source": "ddy-doc-runbook",
+   "author": "Pavel",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "7. День-в-день",
+    "Трансляция"
+   ],
+   "text": "Опционально. Пакет площадки 3 000 € за три дня. Решение до 5 октября."
+  },
+  {
+   "id": "ddy-192",
+   "source": "ddy-doc-runbook",
+   "author": "Lena",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "5. Волонтёры",
+    "Смены"
+   ],
+   "text": "Утренняя смена 8:00–13:00, дневная 13:00–18:30. Каждый волонтёр работает минимум две смены. Обед — вместе с участниками."
+  },
+  {
+   "id": "ddy-193",
+   "source": "ddy-doc-runbook",
+   "author": "Lena",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "6. Доступность",
+    "Регистрация"
+   ],
+   "text": "В форме TixHub есть поле «нужна помощь с доступом». Ответы получает Pavel за неделю до конференции."
+  },
+  {
+   "id": "ddy-194",
+   "source": "ddy-doc-runbook",
+   "author": "Anna",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "7. День-в-день",
+    "Контакты"
+   ],
+   "text": "Площадка — Ivana. Кейтеринг — Marko. Спикеры — Jess. Спонсоры — Max V. Билеты и волонтёры — Lena. Всё остальное — Anna."
+  },
+  {
+   "id": "ddy-195",
+   "source": "ddy-doc-runbook",
+   "author": "Anna",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "8. Бюджет",
+    "Основные статьи"
+   ],
+   "text": "Площадка 21 000 €, кейтеринг до 30 000 €, спикеры (перелёты и отели) 14 000 €, фото и видео 3 500 €, печать и мерч 4 000 €, резерв 6 000 €."
+  },
+  {
+   "id": "ddy-196",
+   "source": "ddy-doc-runbook",
+   "author": "Anna",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "8. Бюджет",
+    "Доходы"
+   ],
+   "text": "Билеты — цель 450 проданных. Спонсоры — минимум один Gold и три Silver."
+  },
+  {
+   "id": "ddy-197",
+   "source": "ddy-doc-runbook",
+   "author": "Anna",
+   "at": "2026-09-05T12:00:00Z",
+   "section": [
+    "9. После конференции"
+   ],
+   "text": "Ретро через неделю после события. Фото от фотографа — в течение 7 дней, рассылка участникам с опросом."
+  },
+  {
+   "id": "ddy-198",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:00:00Z",
+   "text": "Всем привет, давайте быстро. Кейтеринг, стрим, билеты, разное."
+  },
+  {
+   "id": "ddy-199",
+   "source": "ddy-meet-0917",
+   "author": "Lena",
+   "at": "2026-09-17T18:00:16Z",
+   "text": "Билеты — 290 продано. Темп нормальный, к октябрю будет около четырёхсот."
+  },
+  {
+   "id": "ddy-200",
+   "source": "ddy-meet-0917",
+   "author": "Marko",
+   "at": "2026-09-17T18:00:32Z",
+   "text": "Catering. Three options: Zlatna Kašika eighteen euro, Kuhinja 41 twenty-three, venue kitchen twenty-one."
+  },
+  {
+   "id": "ddy-201",
+   "source": "ddy-meet-0917",
+   "author": "Pavel",
+   "at": "2026-09-17T18:01:41Z",
+   "text": "Разница между Zlatna и Kuhinja — это больше шести тысяч на три дня."
+  },
+  {
+   "id": "ddy-202",
+   "source": "ddy-meet-0917",
+   "author": "Marko",
+   "at": "2026-09-17T18:02:20Z",
+   "text": "Kuhinja's vegan food is much better though."
+  },
+  {
+   "id": "ddy-203",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:03:35Z",
+   "text": "Я понимаю, но бюджет. Решение: кормит Zlatna Kašika все три дня. Marko, попроси их усилить веганское меню."
+  },
+  {
+   "id": "ddy-204",
+   "source": "ddy-meet-0917",
+   "author": "Marko",
+   "at": "2026-09-17T18:04:17Z",
+   "text": "Okay, I'll tell them tomorrow."
+  },
+  {
+   "id": "ddy-205",
+   "source": "ddy-meet-0917",
+   "author": "Max V.",
+   "at": "2026-09-17T18:05:30Z",
+   "text": "По стриму. Kestrel подписали Gold, но пакет трансляции пока не берут, думают."
+  },
+  {
+   "id": "ddy-206",
+   "source": "ddy-meet-0917",
+   "author": "Pavel",
+   "at": "2026-09-17T18:05:57Z",
+   "text": "Площадка ждёт ответа до пятого октября."
+  },
+  {
+   "id": "ddy-207",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:06:21Z",
+   "text": "Тогда фиксируем: кейноуты транслируем онлайн, только если Kestrel оплачивает пакет трансляции полностью, все три тысячи. Из нашего бюджета стрим не оплачиваем."
+  },
+  {
+   "id": "ddy-208",
+   "source": "ddy-meet-0917",
+   "author": "Max V.",
+   "at": "2026-09-17T18:07:06Z",
+   "text": "Понял, так им и скажу."
+  },
+  {
+   "id": "ddy-209",
+   "source": "ddy-meet-0917",
+   "author": "Jess",
+   "at": "2026-09-17T18:07:36Z",
+   "text": "Speakers: all confirmed, schedule goes live on the 23rd. Photographer is booked, Dušan, all three days."
+  },
+  {
+   "id": "ddy-210",
+   "source": "ddy-meet-0917",
+   "author": "Lena",
+   "at": "2026-09-17T18:07:51Z",
+   "text": "Можно в расписании подсветить кейноуты отдельно?"
+  },
+  {
+   "id": "ddy-211",
+   "source": "ddy-meet-0917",
+   "author": "Jess",
+   "at": "2026-09-17T18:08:21Z",
+   "text": "Sure."
+  },
+  {
+   "id": "ddy-212",
+   "source": "ddy-meet-0917",
+   "author": "Pavel",
+   "at": "2026-09-17T18:09:28Z",
+   "text": "И ещё кораблик на афтерпати. Его держат до двадцать пятого."
+  },
+  {
+   "id": "ddy-213",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:10:21Z",
+   "text": "Давайте подумаем. Не уверена, что мы это потянем, но не отказываюсь."
+  },
+  {
+   "id": "ddy-214",
+   "source": "ddy-meet-0917",
+   "author": "Marko",
+   "at": "2026-09-17T18:10:44Z",
+   "text": "I can ask if they give a discount."
+  },
+  {
+   "id": "ddy-215",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:11:20Z",
+   "text": "Спроси, да."
+  },
+  {
+   "id": "ddy-216",
+   "source": "ddy-meet-0917",
+   "author": "Max V.",
+   "at": "2026-09-17T18:11:52Z",
+   "text": "И ещё: Kestrel просят слот на сцене на пять минут."
+  },
+  {
+   "id": "ddy-217",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:12:07Z",
+   "text": "Пять минут перед кейноутом второго дня, не больше."
+  },
+  {
+   "id": "ddy-218",
+   "source": "ddy-meet-0917",
+   "author": "Lena",
+   "at": "2026-09-17T18:13:10Z",
+   "text": "Волонтёров пока восемнадцать, нужно двадцать."
+  },
+  {
+   "id": "ddy-219",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:13:35Z",
+   "text": "Добери через университет."
+  },
+  {
+   "id": "ddy-220",
+   "source": "ddy-meet-0917",
+   "author": "Pavel",
+   "at": "2026-09-17T18:14:07Z",
+   "text": "Кто отвечает за доступность? Нас спрашивают про места для колясок."
+  },
+  {
+   "id": "ddy-221",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:14:26Z",
+   "text": "Ты, Паша. Уточни у Иваны."
+  },
+  {
+   "id": "ddy-222",
+   "source": "ddy-meet-0917",
+   "author": "Pavel",
+   "at": "2026-09-17T18:15:41Z",
+   "text": "Хорошо."
+  },
+  {
+   "id": "ddy-223",
+   "source": "ddy-meet-0917",
+   "author": "Anna",
+   "at": "2026-09-17T18:16:36Z",
+   "text": "Всё, спасибо. Протокол завтра."
+  },
+  {
+   "id": "ddy-224",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-08-25T11:00:00Z",
+   "text": "Hi Rhea, hi Oskar — shared chat for DevDays sponsorship details. Anna is here too"
+  },
+  {
+   "id": "ddy-225",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-08-25T11:23:45Z",
+   "text": "Hi! Rhea from Kestrel Cloud, thanks for setting it up"
+  },
+  {
+   "id": "ddy-226",
+   "source": "ddy-chat-sponsors",
+   "author": "Oskar",
+   "at": "2026-08-25T11:37:53Z",
+   "text": "Hej, Oskar from Brightloop"
+  },
+  {
+   "id": "ddy-227",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-08-25T11:56:44Z",
+   "text": "Packages recap: Silver 3,500 € (booth 2×2, 4 tickets), Gold 8,000 € (booth 3×3, 8 tickets, logo on lanyards, 5 min on stage)"
+  },
+  {
+   "id": "ddy-228",
+   "source": "ddy-chat-sponsors",
+   "author": "Oskar",
+   "at": "2026-08-29T14:20:00Z",
+   "text": "Brightloop goes Silver. Invoice to our Malmö office please"
+  },
+  {
+   "id": "ddy-229",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-08-29T14:43:36Z",
+   "text": "Отлично, invoice today"
+  },
+  {
+   "id": "ddy-230",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-09-02T10:40:00Z",
+   "text": "Kestrel would like Gold, but our marketing wants the keynotes online with our logo. Is streaming included?"
+  },
+  {
+   "id": "ddy-231",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-09-02T10:45:45Z",
+   "text": "Not in Gold. The venue has a streaming package, 3,000 € for three days. You could cover it as an add-on"
+  },
+  {
+   "id": "ddy-232",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-09-02T11:02:48Z",
+   "text": "I'll check budget internally"
+  },
+  {
+   "id": "ddy-233",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-09-09T16:00:00Z",
+   "text": "Gold approved on our side! Streaming add-on still under discussion"
+  },
+  {
+   "id": "ddy-234",
+   "source": "ddy-chat-sponsors",
+   "author": "Anna",
+   "at": "2026-09-09T16:05:33Z",
+   "text": "Great news, welcome Kestrel 🎉"
+  },
+  {
+   "id": "ddy-235",
+   "source": "ddy-chat-sponsors",
+   "author": "Oskar",
+   "at": "2026-09-11T09:30:00Z",
+   "text": "Booth question — power sockets at the booth?"
+  },
+  {
+   "id": "ddy-236",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-09-11T09:31:19Z",
+   "text": "2 sockets per booth, extension cords bring your own"
+  },
+  {
+   "id": "ddy-237",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-09-16T13:15:00Z",
+   "text": "Rhea, any update on streaming? Venue needs to know by 5 October"
+  },
+  {
+   "id": "ddy-238",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-09-16T13:20:58Z",
+   "text": "Our CMO is travelling, I'll push next week"
+  },
+  {
+   "id": "ddy-239",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-09-19T10:00:00Z",
+   "text": "For transparency: without your add-on we don't stream, our budget doesn't cover it"
+  },
+  {
+   "id": "ddy-240",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-09-19T10:19:56Z",
+   "text": "Understood"
+  },
+  {
+   "id": "ddy-241",
+   "source": "ddy-chat-sponsors",
+   "author": "Oskar",
+   "at": "2026-09-23T12:30:00Z",
+   "text": "Can we bring a roll-up banner to Hall B too?"
+  },
+  {
+   "id": "ddy-242",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-09-23T12:39:52Z",
+   "text": "Only foyer, sorry, hall rules"
+  },
+  {
+   "id": "ddy-243",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-09-25T15:00:00Z",
+   "text": "Logo files for lanyards attached, SVG and PNG"
+  },
+  {
+   "id": "ddy-244",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-09-25T15:20:43Z",
+   "text": "Thanks, sent to print"
+  },
+  {
+   "id": "ddy-245",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-09-30T11:20:00Z",
+   "text": "Rhea, five days left for the streaming decision"
+  },
+  {
+   "id": "ddy-246",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-09-30T11:38:00Z",
+   "text": "I know, sorry. It's between us and another event budget"
+  },
+  {
+   "id": "ddy-247",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-10-03T16:40:00Z",
+   "text": "Our 5-minute stage slot — who from your side introduces us?"
+  },
+  {
+   "id": "ddy-248",
+   "source": "ddy-chat-sponsors",
+   "author": "Anna",
+   "at": "2026-10-03T16:52:42Z",
+   "text": "Я, перед кейноутом второго дня"
+  },
+  {
+   "id": "ddy-249",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-10-05T18:10:00Z",
+   "text": "Rhea, today is the deadline the venue gave us for streaming"
+  },
+  {
+   "id": "ddy-250",
+   "source": "ddy-chat-sponsors",
+   "author": "Rhea",
+   "at": "2026-10-05T18:21:22Z",
+   "text": "Still waiting for the CMO, I'll write tonight"
+  },
+  {
+   "id": "ddy-251",
+   "source": "ddy-chat-sponsors",
+   "author": "Oskar",
+   "at": "2026-10-08T09:00:00Z",
+   "text": "Our team arrives 13 Oct, 3 people for the booth"
+  },
+  {
+   "id": "ddy-252",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-10-08T09:14:28Z",
+   "text": "Badges will be at the sponsor desk"
+  },
+  {
+   "id": "ddy-253",
+   "source": "ddy-chat-sponsors",
+   "author": "Oskar",
+   "at": "2026-10-15T19:30:00Z",
+   "text": "Great day 1 and 2, lots of leads. Thanks Max!"
+  },
+  {
+   "id": "ddy-254",
+   "source": "ddy-chat-sponsors",
+   "author": "Max V.",
+   "at": "2026-10-15T19:51:53Z",
+   "text": "Рад слышать 🙌"
+  }
+ ]
+}
