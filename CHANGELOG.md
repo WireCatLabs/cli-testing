@@ -14,6 +14,8 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- A compact evidence-ranking handoff package with pinned model preparation, synthetic CPU diagnostics,
+  reproducible metrics and a staged comparison of mathematical, contextual and optional neural methods.
 - A reproducible API cost estimator for the knowledge graph memory pilot, with explicit call/token
   assumptions, current rate sources and a distinction between scenarios and metered engine usage.
 - `cli-testing ux install` checks packed tarballs with pinned npm, pnpm and Bun, validates global binaries and documented follow-up commands, and records install warnings and publint results in isolated run directories.
