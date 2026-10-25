@@ -5,8 +5,8 @@ import { createRequire } from "node:module"
 import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
 import { pathToFileURL } from "node:url"
-import { Client } from "@modelcontextprotocol/sdk/client/index.js"
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
+import { Client } from "@modelcontextprotocol/client"
+import { StdioClientTransport } from "@modelcontextprotocol/client/stdio"
 
 const [drivePath, corePath, effectsMode] = process.argv.slice(2)
 assert.ok(drivePath && corePath, "usage: node run.mjs <built-drive-package> <built-core-package> [--precise-effects]")

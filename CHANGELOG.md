@@ -8,6 +8,18 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+### Changed â€” may break callers
+
+- **The MCP client is `@modelcontextprotocol/client` 2.4 instead of `@modelcontextprotocol/sdk` 1.32.** The v1
+  package pulled Express, body-parser, Ajv and express-rate-limit into every install, and all of this package's
+  audit findings came through them. The contract suite now lets the SDK walk the tool list's pages: a server
+  whose pagination never ends fails after 64 pages ("exceeded listMaxPages") instead of "repeated a cursor".
+
+### Security
+
+- No known advisories in the dependency tree: the MCP SDK swap removes the fast-uri, Express and Ajv findings,
+  and the test runner now resolves Vite 8.3.5.
+
 ### Fixed
 
 - Packed installation checks run Windows batch launchers from isolated directories with the pinned managers and platform marker required by native installers.
