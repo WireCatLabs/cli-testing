@@ -1,0 +1,2227 @@
+{
+  "project": {
+    "id": "rentatech",
+    "name": "Сайт и онлайн-бронь РентаТех",
+    "aliases": [
+      "РентаТех",
+      "RentaTech",
+      "сайт проката",
+      "прокат инструмента"
+    ]
+  },
+  "sources": [
+    {
+      "id": "rentatech-chat-site",
+      "kind": "chat",
+      "title": "Сайт"
+    },
+    {
+      "id": "rentatech-chat-client",
+      "kind": "chat",
+      "title": "РентаТех ↔ Клён"
+    },
+    {
+      "id": "rentatech-chat-dev",
+      "kind": "chat",
+      "title": "dev-бронь"
+    },
+    {
+      "id": "rentatech-chat-general",
+      "kind": "chat",
+      "title": "Общий"
+    },
+    {
+      "id": "rentatech-doc-tz",
+      "kind": "document",
+      "title": "ТЗ сайт РентаТех v2"
+    },
+    {
+      "id": "rentatech-meet-0909",
+      "kind": "meeting",
+      "title": "Созвон с РентаТех 9 сентября"
+    },
+    {
+      "id": "rentatech-meet-1002",
+      "kind": "meeting",
+      "title": "Созвон по запуску 2 октября"
+    }
+  ],
+  "units": [
+    {
+      "id": "rt-site-001",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-04T10:02:00Z",
+      "text": "Всем привет! Завела чат по РентаТех. Клиент — прокат строительного и садового инструмента в Ярославле, два пункта выдачи. Нужен сайт-каталог + онлайн-бронь. Веду я, в команде Дима, Артём, Ксюша, Саша."
+    },
+    {
+      "id": "rt-site-002",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-04T10:05:00Z",
+      "text": "о, наконец-то не лендинг"
+    },
+    {
+      "id": "rt-site-003",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-08-04T10:06:00Z",
+      "text": "ура 🙌"
+    },
+    {
+      "id": "rt-site-004",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-04T10:15:00Z",
+      "text": "Бронь своя или прикручиваем что-то готовое?"
+    },
+    {
+      "id": "rt-site-005",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-04T10:21:00Z",
+      "reply_to": "rt-site-004",
+      "text": "Своя. Остатки у них в экселе, готовые сервисы не умеют их залоги и акты"
+    },
+    {
+      "id": "rt-site-006",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-04T10:22:00Z",
+      "text": "ок"
+    },
+    {
+      "id": "rt-site-007",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-05T09:40:00Z",
+      "text": "Бриф от клиента: https://disk.klen-studio.example/rentatech/brief.pdf — почитайте до четверга плиз"
+    },
+    {
+      "id": "rt-site-008",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-08-05T11:03:00Z",
+      "text": "прочитал. про доставку пол-страницы и ничего конкретного 🙃"
+    },
+    {
+      "id": "rt-site-009",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-05T11:10:00Z",
+      "reply_to": "rt-site-008",
+      "text": "да, по доставке будем с ними отдельно говорить"
+    },
+    {
+      "id": "rt-site-010",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-08-06T14:30:00Z",
+      "text": "Референсы по каталогу собрала, гляньте в фигме, страница «каталог v0»"
+    },
+    {
+      "id": "rt-site-011",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-06T14:44:00Z",
+      "text": "второй вариант огонь"
+    },
+    {
+      "id": "rt-site-012",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-06T14:45:00Z",
+      "text": "+"
+    },
+    {
+      "id": "rt-site-013",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-07T16:20:00Z",
+      "text": "Напоминаю: в пятницу знакомство с Геннадием Петровичем в 11, кто может — подключайтесь"
+    },
+    {
+      "id": "rt-site-014",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-10T10:12:00Z",
+      "text": "Стек предлагаю: Nuxt на фронт, Rails API, Postgres. Хостинг решу отдельно"
+    },
+    {
+      "id": "rt-site-015",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-10T10:30:00Z",
+      "reply_to": "rt-site-014",
+      "text": "Nuxt ок"
+    },
+    {
+      "id": "rt-site-016",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-10T10:31:00Z",
+      "text": "Дим, хостинг надо до конца августа, у них свой админ хочет знать где что лежит"
+    },
+    {
+      "id": "rt-site-017",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-08-12T13:05:00Z",
+      "text": "Вопрос: логотип у них только в джипеге 200px. Просить векторный?"
+    },
+    {
+      "id": "rt-site-018",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-12T13:07:00Z",
+      "reply_to": "rt-site-017",
+      "text": "попроси в клиентском чате"
+    },
+    {
+      "id": "rt-site-019",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-08-14T09:50:00Z",
+      "text": "тестовый стенд будет на нашем сервере или у них?"
+    },
+    {
+      "id": "rt-site-020",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-14T10:20:00Z",
+      "reply_to": "rt-site-019",
+      "text": "на нашем пока, stage.rentatech.klen.example"
+    },
+    {
+      "id": "rt-site-021",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-18T12:00:00Z",
+      "text": "Ребят, а давайте сделаем бота в телеге, чтобы бронировать прямо оттуда, без сайта? У них половина клиентов прорабы, они в телеге живут. Я за выходные прототип накидаю"
+    },
+    {
+      "id": "rt-site-022",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-08-18T12:03:00Z",
+      "reply_to": "rt-site-021",
+      "text": "за выходные 😂 классика"
+    },
+    {
+      "id": "rt-site-023",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-18T12:10:00Z",
+      "reply_to": "rt-site-021",
+      "text": "а поддерживать его кто будет? ну хз, это ещё одна точка входа в бронь, остатки синхронить в двух местах"
+    },
+    {
+      "id": "rt-site-024",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-18T12:25:00Z",
+      "reply_to": "rt-site-023",
+      "text": "так через тот же API!"
+    },
+    {
+      "id": "rt-site-025",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-18T12:40:00Z",
+      "reply_to": "rt-site-021",
+      "text": "Давай после запуска к этому вернёмся, сейчас не распыляемся"
+    },
+    {
+      "id": "rt-site-026",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-18T12:41:00Z",
+      "text": "ладно 😔"
+    },
+    {
+      "id": "rt-site-027",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-20T18:30:00Z",
+      "text": "ТЗ v2 выложила в папку, комментите прямо в доке. Клиенту тоже отправила"
+    },
+    {
+      "id": "rt-site-028",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-21T10:00:00Z",
+      "text": "в ТЗ залог 30% — это от суммы за весь срок или за сутки?"
+    },
+    {
+      "id": "rt-site-029",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-21T10:02:00Z",
+      "reply_to": "rt-site-028",
+      "text": "от суммы за весь срок, так в брифе было"
+    },
+    {
+      "id": "rt-site-030",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-08-21T15:40:00Z",
+      "text": "в ТЗ опечатка в разделе про акты, «подпеси» 🙂"
+    },
+    {
+      "id": "rt-site-031",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-21T15:44:00Z",
+      "reply_to": "rt-site-030",
+      "text": "спс, поправила"
+    },
+    {
+      "id": "rt-site-032",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-22T12:00:00Z",
+      "text": "кто-нибудь видел у них реальный прайс? в ТЗ цены из брифа, им года два"
+    },
+    {
+      "id": "rt-site-033",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-22T12:10:00Z",
+      "reply_to": "rt-site-032",
+      "text": "нет, попросим у бухгалтерии"
+    },
+    {
+      "id": "rt-site-034",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-24T15:00:00Z",
+      "text": "Г.П. согласовал ТЗ 🎉 можно двигаться"
+    },
+    {
+      "id": "rt-site-035",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-24T15:02:00Z",
+      "text": "🎉"
+    },
+    {
+      "id": "rt-site-036",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-08-24T15:02:00Z",
+      "text": "наконец-то"
+    },
+    {
+      "id": "rt-site-037",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-25T18:00:00Z",
+      "text": "а залог в карточке показываем суммой или процентом?"
+    },
+    {
+      "id": "rt-site-038",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-08-25T18:05:00Z",
+      "reply_to": "rt-site-037",
+      "text": "суммой конечно, процент никто не поймёт"
+    },
+    {
+      "id": "rt-site-039",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-08-25T18:06:00Z",
+      "reply_to": "rt-site-038",
+      "text": "ок, считаю на фронте из тарифа"
+    },
+    {
+      "id": "rt-site-040",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-08-26T11:11:00Z",
+      "text": "Начинаю тест-план. Акты где генерятся — на бэке?"
+    },
+    {
+      "id": "rt-site-041",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-26T11:30:00Z",
+      "reply_to": "rt-site-040",
+      "text": "да, PDF на бэке"
+    },
+    {
+      "id": "rt-site-042",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-08-28T17:45:00Z",
+      "text": "Макет карточки товара готов: фото, цена за сутки/неделю, залог, кнопка «Забронировать»"
+    },
+    {
+      "id": "rt-site-043",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-08-28T17:50:00Z",
+      "reply_to": "rt-site-042",
+      "text": "супер, покажу клиенту"
+    },
+    {
+      "id": "rt-site-044",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-08-31T10:00:00Z",
+      "text": "> фото техники храним 90 дней\nэто тоже автоудалением или руками?"
+    },
+    {
+      "id": "rt-site-045",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-08-31T10:20:00Z",
+      "reply_to": "rt-site-044",
+      "text": "тем же кроном, просто другой срок"
+    },
+    {
+      "id": "rt-site-046",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-01T09:15:00Z",
+      "text": "С первым сентября всех, у кого дети 🙂"
+    },
+    {
+      "id": "rt-site-047",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-09-01T09:20:00Z",
+      "text": "спасибо, мой в первый класс пошёл, я уже без сил"
+    },
+    {
+      "id": "rt-site-048",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-02T10:40:00Z",
+      "text": "Каталог свёрстан на стейдже, фильтры пока фейковые"
+    },
+    {
+      "id": "rt-site-049",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-03T14:05:00Z",
+      "text": "Дим, по хостингу что решили?"
+    },
+    {
+      "id": "rt-site-050",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-09-03T14:30:00Z",
+      "reply_to": "rt-site-049",
+      "text": "склоняюсь к VPS у «ОблакоЯр», у них дц в Ярославле. Ещё сравниваю с «Сервер-37», там дешевле, но бэкапы платные"
+    },
+    {
+      "id": "rt-site-051",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-03T14:31:00Z",
+      "text": "ок, к пятнице плиз"
+    },
+    {
+      "id": "rt-site-052",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-09-05T18:02:00Z",
+      "text": "взял ОблакоЯр, 4 ядра / 8 гигов, прод и стейдж на одной машине пока"
+    },
+    {
+      "id": "rt-site-053",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-09T13:00:00Z",
+      "text": "Итоги созвона с клиентом: запуск целимся на 30 сентября, онлайн-залог под вопросом (ждём банк), доставка по городу бесплатная от 15к, выходные — Г.П. подтвердит в чате, 1С — не сейчас."
+    },
+    {
+      "id": "rt-site-054",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-09-09T13:05:00Z",
+      "text": "30 сентября звучит страшно"
+    },
+    {
+      "id": "rt-site-055",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-09T13:06:00Z",
+      "reply_to": "rt-site-054",
+      "text": "звучит как 14 октября 😅"
+    },
+    {
+      "id": "rt-site-056",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-10T10:00:00Z",
+      "text": "Ксюш, нужна иконка для «доставка по городу» и для «самовывоз»"
+    },
+    {
+      "id": "rt-site-057",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-09-10T10:20:00Z",
+      "reply_to": "rt-site-056",
+      "text": "сделаю сегодня"
+    },
+    {
+      "id": "rt-site-058",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-09-11T11:15:00Z",
+      "text": "по смс-напоминаниям: смотрю «Смсок» и «СМС-Пульс». У первого дешевле, у второго нормальное API и статусы"
+    },
+    {
+      "id": "rt-site-059",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-11T11:20:00Z",
+      "reply_to": "rt-site-058",
+      "text": "решай сам, главное чтобы до запуска работало"
+    },
+    {
+      "id": "rt-site-060",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-09-12T11:00:00Z",
+      "text": "тут статья про конверсию форм бронирования, говорят меньше полей = больше заявок https://blog.example/booking-forms"
+    },
+    {
+      "id": "rt-site-061",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-12T11:05:00Z",
+      "reply_to": "rt-site-060",
+      "text": "капитан очевидность"
+    },
+    {
+      "id": "rt-site-062",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-14T09:00:00Z",
+      "text": "Напоминание: доставка за город в ТЗ всё ещё открытый вопрос, если кто увидит в чате ответ — скиньте"
+    },
+    {
+      "id": "rt-site-063",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-15T16:00:00Z",
+      "text": "Форма брони на стейдже, потыкайте"
+    },
+    {
+      "id": "rt-site-064",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-09-15T16:30:00Z",
+      "reply_to": "rt-site-063",
+      "text": "потыкал, даты в прошлом даёт выбрать"
+    },
+    {
+      "id": "rt-site-065",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-15T16:31:00Z",
+      "reply_to": "rt-site-064",
+      "text": "поправлю"
+    },
+    {
+      "id": "rt-site-066",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-09-18T12:10:00Z",
+      "text": "Нам обязательно поле email в брони? В макете у меня есть"
+    },
+    {
+      "id": "rt-site-067",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-09-18T12:30:00Z",
+      "reply_to": "rt-site-066",
+      "text": "Нет, только телефон. Email опционально, для чеков"
+    },
+    {
+      "id": "rt-site-068",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-19T09:30:00Z",
+      "text": "кто сегодня на созвоне по Лапе? это не наш проект, но Ника просила помочь с вёрсткой"
+    },
+    {
+      "id": "rt-site-069",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-19T09:35:00Z",
+      "reply_to": "rt-site-068",
+      "text": "я могу"
+    },
+    {
+      "id": "rt-site-070",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-22T10:05:00Z",
+      "text": "Ребята, плохие новости: 30-го не успеваем, банк тянет, плюс акты. Двигаемся. Новую дату утвердим на созвоне 2 октября"
+    },
+    {
+      "id": "rt-site-071",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-09-22T10:07:00Z",
+      "text": "логично"
+    },
+    {
+      "id": "rt-site-072",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-22T10:08:00Z",
+      "text": "я же говорил 😏"
+    },
+    {
+      "id": "rt-site-073",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-09-24T17:20:00Z",
+      "text": "Регресс по брони — 14 багов, 3 критичных. Список в трекере"
+    },
+    {
+      "id": "rt-site-074",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-24T17:25:00Z",
+      "reply_to": "rt-site-073",
+      "text": "критичные до пятницы, плиз"
+    },
+    {
+      "id": "rt-site-075",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-09-25T19:00:00Z",
+      "text": "банк опять молчит про срок заморозки 🙄"
+    },
+    {
+      "id": "rt-site-076",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-25T19:10:00Z",
+      "reply_to": "rt-site-075",
+      "text": "пингану их менеджера завтра"
+    },
+    {
+      "id": "rt-site-077",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-09-26T10:00:00Z",
+      "text": "залог на генераторы в карточке какой ставить? в ТЗ процент, Лёша говорит фикс"
+    },
+    {
+      "id": "rt-site-078",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-26T10:15:00Z",
+      "reply_to": "rt-site-077",
+      "text": "пока как в ТЗ, на созвоне спрошу"
+    },
+    {
+      "id": "rt-site-079",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-28T11:00:00Z",
+      "text": "Г.П. отменил бесплатную доставку, см. клиентский чат. Артём, убери с главной плашку «доставка бесплатно от 15 000»"
+    },
+    {
+      "id": "rt-site-080",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-09-28T11:20:00Z",
+      "reply_to": "rt-site-079",
+      "text": "убрал"
+    },
+    {
+      "id": "rt-site-081",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-09-29T14:00:00Z",
+      "text": "иконку бесплатной доставки тоже выкидываем?"
+    },
+    {
+      "id": "rt-site-082",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-09-29T14:05:00Z",
+      "reply_to": "rt-site-081",
+      "text": "да"
+    },
+    {
+      "id": "rt-site-083",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-10-02T14:00:00Z",
+      "text": "Итого: релиз 14.10, среда. Фриз кода 12-го вечером."
+    },
+    {
+      "id": "rt-site-084",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-10-02T14:02:00Z",
+      "text": "+"
+    },
+    {
+      "id": "rt-site-085",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-10-02T14:02:00Z",
+      "text": "ура, дата есть"
+    },
+    {
+      "id": "rt-site-086",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-10-05T13:10:00Z",
+      "text": "Плашку про выходные добавил, текст взял из клиентского чата"
+    },
+    {
+      "id": "rt-site-087",
+      "source": "rentatech-chat-site",
+      "author": "Саша",
+      "at": "2026-10-06T18:40:00Z",
+      "text": "смс приходят, проверил на своём номере: «Напоминаем: завтра до 18:00 вернуть…»"
+    },
+    {
+      "id": "rt-site-088",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-10-07T12:00:00Z",
+      "text": "всем кто ещё не заполнил таймшиты за сентябрь — Ника ругается"
+    },
+    {
+      "id": "rt-site-089",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-10-07T12:30:00Z",
+      "text": "заполнил"
+    },
+    {
+      "id": "rt-site-090",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-10-08T12:00:00Z",
+      "text": "Домен прикрепили к проду, сертификат выпустился"
+    },
+    {
+      "id": "rt-site-091",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-10-09T10:30:00Z",
+      "text": "Логи nginx храним 14 дней, больше не надо?"
+    },
+    {
+      "id": "rt-site-092",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-10-09T10:41:00Z",
+      "reply_to": "rt-site-091",
+      "text": "хватит"
+    },
+    {
+      "id": "rt-site-093",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-10-12T19:00:00Z",
+      "text": "фриз. Всё, ничего не мержим без меня"
+    },
+    {
+      "id": "rt-site-094",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-10-13T09:12:00Z",
+      "text": "у кого стейдж лёг? а, у всех"
+    },
+    {
+      "id": "rt-site-095",
+      "source": "rentatech-chat-site",
+      "author": "Дима",
+      "at": "2026-10-13T09:30:00Z",
+      "reply_to": "rt-site-094",
+      "text": "поднял, диск кончился, логи"
+    },
+    {
+      "id": "rt-site-096",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-10-14T09:00:00Z",
+      "text": "Сегодня запуск 🚀 Всем спасибо!"
+    },
+    {
+      "id": "rt-site-097",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-10-14T11:30:00Z",
+      "text": "Первая бронь пришла: виброплита на двое суток 🙂"
+    },
+    {
+      "id": "rt-site-098",
+      "source": "rentatech-chat-site",
+      "author": "Ксюша",
+      "at": "2026-10-14T11:31:00Z",
+      "text": "🔥"
+    },
+    {
+      "id": "rt-site-099",
+      "source": "rentatech-chat-site",
+      "author": "Артём",
+      "at": "2026-10-16T10:00:00Z",
+      "reply_to": "rt-site-021",
+      "text": "Ольга, а про бота в телеге можно теперь вернуться? 🙂"
+    },
+    {
+      "id": "rt-site-100",
+      "source": "rentatech-chat-site",
+      "author": "Ольга",
+      "at": "2026-10-16T10:12:00Z",
+      "reply_to": "rt-site-099",
+      "text": "в ноябре, когда разгребём пострелиз"
+    },
+    {
+      "id": "rt-cl-001",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-08-06T10:00:00Z",
+      "text": "Добрый день! Это рабочий чат по сайту. Сюда вопросы, файлы, согласования."
+    },
+    {
+      "id": "rt-cl-002",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-08-06T10:30:00Z",
+      "text": "Добрый. Добавил Сашу из бухгалтерии и Алексея со склада"
+    },
+    {
+      "id": "rt-cl-003",
+      "source": "rentatech-chat-client",
+      "author": "Саша",
+      "at": "2026-08-06T10:31:00Z",
+      "text": "Здравствуйте!"
+    },
+    {
+      "id": "rt-cl-004",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-08-06T10:40:00Z",
+      "text": "здрасьте"
+    },
+    {
+      "id": "rt-cl-005",
+      "source": "rentatech-chat-client",
+      "author": "Ксюша",
+      "at": "2026-08-07T11:00:00Z",
+      "text": "Геннадий Петрович, а логотип в векторе есть? У нас только jpg на 200 пикселей"
+    },
+    {
+      "id": "rt-cl-006",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-08-08T09:10:00Z",
+      "reply_to": "rt-cl-005",
+      "text": "Поищу, дизайнер давно делал"
+    },
+    {
+      "id": "rt-cl-007",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-08-12T15:00:00Z",
+      "text": "нашёл только pdf, подойдёт?"
+    },
+    {
+      "id": "rt-cl-008",
+      "source": "rentatech-chat-client",
+      "author": "Ксюша",
+      "at": "2026-08-12T15:05:00Z",
+      "reply_to": "rt-cl-007",
+      "text": "да, вытащу оттуда"
+    },
+    {
+      "id": "rt-cl-009",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-08-14T12:00:00Z",
+      "text": "Марина, вопрос по персональным данным: при выдаче клиент показывает паспорт, менеджер его фотографирует. Эти фото будут лежать в админке сайта. Сколько их можно там держать?"
+    },
+    {
+      "id": "rt-cl-010",
+      "source": "rentatech-chat-client",
+      "author": "Марина",
+      "at": "2026-08-14T13:25:00Z",
+      "reply_to": "rt-cl-009",
+      "text": "Бессрочно — нет. Дольше 30 дней после закрытия договора не держим, потом удаляем, вместе с копиями из почты. И никаких выгрузок в сторонние облака."
+    },
+    {
+      "id": "rt-cl-011",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-08-14T13:30:00Z",
+      "reply_to": "rt-cl-010",
+      "text": "Поняла, сделаем автоудаление"
+    },
+    {
+      "id": "rt-cl-012",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-08-15T08:40:00Z",
+      "text": "а фото самой техники до/после аренды? их храним?"
+    },
+    {
+      "id": "rt-cl-013",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-08-15T09:00:00Z",
+      "reply_to": "rt-cl-012",
+      "text": "фото техники храним 90 дней, на случай споров по повреждениям"
+    },
+    {
+      "id": "rt-cl-014",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-08-15T09:02:00Z",
+      "text": "👍"
+    },
+    {
+      "id": "rt-cl-015",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-08-20T18:35:00Z",
+      "text": "Геннадий Петрович, прислала ТЗ v2: https://docs.klen-studio.example/rentatech/tz-v2 . Посмотрите, пожалуйста, структуру и тарифы — особенно сетку цен на сутки и неделю"
+    },
+    {
+      "id": "rt-cl-016",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-08-24T14:40:00Z",
+      "reply_to": "rt-cl-015",
+      "text": "Ольга, структуру посмотрел — разделы все на месте, логика понятная, ок. В цифры по тарифам пока не вникал, это с Сашей отдельно, там половина устарела"
+    },
+    {
+      "id": "rt-cl-017",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-08-24T14:52:00Z",
+      "reply_to": "rt-cl-016",
+      "text": "Спасибо! Тогда по тарифам ждём от Саши актуальный прайс"
+    },
+    {
+      "id": "rt-cl-018",
+      "source": "rentatech-chat-client",
+      "author": "Саша",
+      "at": "2026-08-25T10:15:00Z",
+      "text": "Прайс пришлю на следующей неделе, сейчас закрываем месяц"
+    },
+    {
+      "id": "rt-cl-019",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-08-27T16:30:00Z",
+      "text": "а на сайте будет видно что техника на ремонте?"
+    },
+    {
+      "id": "rt-cl-020",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-08-27T16:45:00Z",
+      "reply_to": "rt-cl-019",
+      "text": "да, статус «в ремонте», забронировать будет нельзя"
+    },
+    {
+      "id": "rt-cl-021",
+      "source": "rentatech-chat-client",
+      "author": "Саша",
+      "at": "2026-09-02T11:00:00Z",
+      "text": "Высылаю прайс (rentatech_price_2026.xlsx). Залог по прайсу везде 10 000, кроме генераторов"
+    },
+    {
+      "id": "rt-cl-022",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-02T11:10:00Z",
+      "reply_to": "rt-cl-021",
+      "text": "Спасибо! Сверим с ТЗ"
+    },
+    {
+      "id": "rt-cl-023",
+      "source": "rentatech-chat-client",
+      "author": "Ксюша",
+      "at": "2026-09-03T12:00:00Z",
+      "text": "Посмотрите карточку товара: https://figma.example/rentatech-card"
+    },
+    {
+      "id": "rt-cl-024",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-03T12:40:00Z",
+      "text": "Красиво. Фото крупнее можно?"
+    },
+    {
+      "id": "rt-cl-025",
+      "source": "rentatech-chat-client",
+      "author": "Ксюша",
+      "at": "2026-09-03T12:42:00Z",
+      "reply_to": "rt-cl-024",
+      "text": "да, сделаем"
+    },
+    {
+      "id": "rt-cl-026",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-09-07T19:20:00Z",
+      "text": "по выходным у нас один человек на выдаче, если толпа без брони придёт — будет завал"
+    },
+    {
+      "id": "rt-cl-027",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-09T12:50:00Z",
+      "text": "Спасибо за созвон! Резюме отправлю в почту"
+    },
+    {
+      "id": "rt-cl-028",
+      "source": "rentatech-chat-client",
+      "author": "Дима",
+      "at": "2026-09-12T10:00:00Z",
+      "text": "Геннадий Петрович, банк спрашивает, какой лимит на одну операцию по карте ставить"
+    },
+    {
+      "id": "rt-cl-029",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-12T10:30:00Z",
+      "reply_to": "rt-cl-028",
+      "text": "50 000 хватит"
+    },
+    {
+      "id": "rt-cl-030",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-16T11:00:00Z",
+      "text": "Геннадий Петрович, фиксируем: в субботу и воскресенье выдаём только по брони, оформленной до пятницы 18:00? Без брони в выходные не выдаём."
+    },
+    {
+      "id": "rt-cl-031",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-16T11:47:00Z",
+      "reply_to": "rt-cl-030",
+      "text": "+"
+    },
+    {
+      "id": "rt-cl-032",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-09-16T11:50:00Z",
+      "text": "наконец 🙏"
+    },
+    {
+      "id": "rt-cl-033",
+      "source": "rentatech-chat-client",
+      "author": "Саша",
+      "at": "2026-09-19T10:05:00Z",
+      "text": "Здравствуйте, это Саша, бухгалтерия. В акт возврата добавьте, пожалуйста, номер договора и графу «повреждения / недокомплект» — без неё мы не можем удержать сумму из залога."
+    },
+    {
+      "id": "rt-cl-034",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-19T10:20:00Z",
+      "reply_to": "rt-cl-033",
+      "text": "Добавим, Саша, спасибо!"
+    },
+    {
+      "id": "rt-cl-035",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-09-20T08:30:00Z",
+      "text": "в выходные опять трое пришли без брони, я один, кошмар"
+    },
+    {
+      "id": "rt-cl-036",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-20T09:10:00Z",
+      "reply_to": "rt-cl-035",
+      "text": "плашку на сайте добавим к запуску"
+    },
+    {
+      "id": "rt-cl-037",
+      "source": "rentatech-chat-client",
+      "author": "Саша",
+      "at": "2026-09-21T09:40:00Z",
+      "text": "И ещё: в подвале сайта у вас старый ИНН, поменяйте на новый из реквизитов"
+    },
+    {
+      "id": "rt-cl-038",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-21T09:55:00Z",
+      "reply_to": "rt-cl-037",
+      "text": "поправим"
+    },
+    {
+      "id": "rt-cl-039",
+      "source": "rentatech-chat-client",
+      "author": "Дима",
+      "at": "2026-09-23T15:00:00Z",
+      "text": "По банку: холдирование они в принципе умеют, но на какой срок — пока не ответили. Ждём"
+    },
+    {
+      "id": "rt-cl-040",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-23T15:30:00Z",
+      "reply_to": "rt-cl-039",
+      "text": "ок"
+    },
+    {
+      "id": "rt-cl-041",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-28T10:15:00Z",
+      "text": "Коллеги, бесплатную доставку убираем совсем — водителей не хватает. Доставка по Ярославлю теперь 1 500 ₽ фиксом при любой сумме заказа."
+    },
+    {
+      "id": "rt-cl-042",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-28T10:40:00Z",
+      "reply_to": "rt-cl-041",
+      "text": "Принято, поправим на сайте и в ТЗ"
+    },
+    {
+      "id": "rt-cl-043",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-09-28T10:44:00Z",
+      "text": "а за город?"
+    },
+    {
+      "id": "rt-cl-044",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-28T11:00:00Z",
+      "reply_to": "rt-cl-043",
+      "text": "за город как было, договорная"
+    },
+    {
+      "id": "rt-cl-045",
+      "source": "rentatech-chat-client",
+      "author": "Саша",
+      "at": "2026-09-30T11:00:00Z",
+      "text": "Скажите, а залог на сайте будет как у нас в прайсе, 10 000? Клиенты уже спрашивают"
+    },
+    {
+      "id": "rt-cl-046",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-09-30T11:20:00Z",
+      "reply_to": "rt-cl-045",
+      "text": "обсудим на созвоне в пятницу"
+    },
+    {
+      "id": "rt-cl-047",
+      "source": "rentatech-chat-client",
+      "author": "Марина",
+      "at": "2026-10-01T16:00:00Z",
+      "text": "Политику обработки персональных данных согласовала, файл у Ольги в почте"
+    },
+    {
+      "id": "rt-cl-048",
+      "source": "rentatech-chat-client",
+      "author": "Саша",
+      "at": "2026-10-05T10:00:00Z",
+      "text": "Как будут выглядеть закрывающие документы для юрлиц?"
+    },
+    {
+      "id": "rt-cl-049",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-10-05T10:30:00Z",
+      "reply_to": "rt-cl-048",
+      "text": "Акт + счёт, шаблоны пришлю завтра"
+    },
+    {
+      "id": "rt-cl-050",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-10-09T14:10:00Z",
+      "text": "что делать если клиент бронирует, а техника в ремонте?"
+    },
+    {
+      "id": "rt-cl-051",
+      "source": "rentatech-chat-client",
+      "author": "Дима",
+      "at": "2026-10-09T14:30:00Z",
+      "reply_to": "rt-cl-050",
+      "text": "в админке ставите статус «в ремонте», бронь на неё не пройдёт"
+    },
+    {
+      "id": "rt-cl-052",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-13T18:00:00Z",
+      "text": "Завтра запускаемся? Почту на домене не сломаете?"
+    },
+    {
+      "id": "rt-cl-053",
+      "source": "rentatech-chat-client",
+      "author": "Дима",
+      "at": "2026-10-13T18:10:00Z",
+      "reply_to": "rt-cl-052",
+      "text": "Не сломаем, MX не трогаем"
+    },
+    {
+      "id": "rt-cl-054",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-14T12:00:00Z",
+      "text": "Видел первую бронь! Молодцы"
+    },
+    {
+      "id": "rt-cl-055",
+      "source": "rentatech-chat-client",
+      "author": "Лёша",
+      "at": "2026-10-15T08:30:00Z",
+      "text": "Клиент жалуется: смс пришло в 3 ночи"
+    },
+    {
+      "id": "rt-cl-056",
+      "source": "rentatech-chat-client",
+      "author": "Дима",
+      "at": "2026-10-15T09:00:00Z",
+      "reply_to": "rt-cl-055",
+      "text": "поправили, теперь шлём только с 9 до 21"
+    },
+    {
+      "id": "rt-cl-057",
+      "source": "rentatech-chat-client",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-16T17:00:00Z",
+      "text": "Ольга, а что там с 1С, когда начинаем?"
+    },
+    {
+      "id": "rt-cl-058",
+      "source": "rentatech-chat-client",
+      "author": "Ольга",
+      "at": "2026-10-16T17:20:00Z",
+      "reply_to": "rt-cl-057",
+      "text": "Как договаривались — в ноябре, пришлю оценку на следующей неделе"
+    },
+    {
+      "id": "rt-dev-001",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-08-25T10:00:00Z",
+      "text": "Завёл репо rentatech-api и rentatech-front, доступы раздал"
+    },
+    {
+      "id": "rt-dev-002",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-08-25T10:05:00Z",
+      "text": "+"
+    },
+    {
+      "id": "rt-dev-003",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-08-27T12:30:00Z",
+      "text": "Модели: Item, Booking, Deposit, Act. Залог пока считаю как тариф × дни × 0.3 по ТЗ, если поменяется — одна константа"
+    },
+    {
+      "id": "rt-dev-004",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-08-28T10:00:00Z",
+      "text": "Как тестить залог без банка?"
+    },
+    {
+      "id": "rt-dev-005",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-08-28T10:10:00Z",
+      "reply_to": "rt-dev-004",
+      "text": "мок, на стейдже всегда success"
+    },
+    {
+      "id": "rt-dev-006",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-04T17:00:00Z",
+      "text": "Остатки: пока импорт из экселя раз в час, 1С потом"
+    },
+    {
+      "id": "rt-dev-007",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-09-07T15:30:00Z",
+      "text": "в акте выдачи дата на день раньше, похоже таймзона"
+    },
+    {
+      "id": "rt-dev-008",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-07T15:45:00Z",
+      "reply_to": "rt-dev-007",
+      "text": "да, UTC, поправлю"
+    },
+    {
+      "id": "rt-dev-009",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-09-08T11:00:00Z",
+      "text": "Календарь занятости: занятые дни серым?"
+    },
+    {
+      "id": "rt-dev-010",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-08T11:05:00Z",
+      "reply_to": "rt-dev-009",
+      "text": "да"
+    },
+    {
+      "id": "rt-dev-011",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-11T18:00:00Z",
+      "text": "Кто-нибудь работал с холдированием? Как отменять холд, если бронь отменили?"
+    },
+    {
+      "id": "rt-dev-012",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-09-11T18:20:00Z",
+      "reply_to": "rt-dev-011",
+      "text": "не, только списания делал"
+    },
+    {
+      "id": "rt-dev-013",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-13T20:00:00Z",
+      "text": "тестовые смс от Смсок доходят с задержкой минут 10, у СМС-Пульса мгновенно"
+    },
+    {
+      "id": "rt-dev-014",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-14T13:00:00Z",
+      "text": "Подключил СМС-Пульс. Напоминание уходит за сутки до возврата и утром в день выдачи. «Смсок» отпал — у них нет статусов доставки."
+    },
+    {
+      "id": "rt-dev-015",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-09-14T13:10:00Z",
+      "reply_to": "rt-dev-014",
+      "text": "ок, а тексты шаблонов где править?"
+    },
+    {
+      "id": "rt-dev-016",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-14T13:15:00Z",
+      "reply_to": "rt-dev-015",
+      "text": "в админке, раздел «Уведомления»"
+    },
+    {
+      "id": "rt-dev-017",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-09-17T10:00:00Z",
+      "text": "Паспорт в форме брони не просим? Только при выдаче?"
+    },
+    {
+      "id": "rt-dev-018",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-17T10:05:00Z",
+      "reply_to": "rt-dev-017",
+      "text": "только при выдаче, в форме нет"
+    },
+    {
+      "id": "rt-dev-019",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-09-18T14:00:00Z",
+      "text": "форма брони: если не указать пункт выдачи — 500 ошибка"
+    },
+    {
+      "id": "rt-dev-020",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-09-18T14:10:00Z",
+      "reply_to": "rt-dev-019",
+      "text": "фикс в ветке"
+    },
+    {
+      "id": "rt-dev-021",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-09-20T12:00:00Z",
+      "text": "лайтхаус: 61 на мобилке, картинки тяжёлые"
+    },
+    {
+      "id": "rt-dev-022",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-09-20T12:01:00Z",
+      "text": "переведу в webp"
+    },
+    {
+      "id": "rt-dev-023",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-25T11:00:00Z",
+      "text": "Автоудаление фото паспортов готово: крон раз в сутки, удаляем через 30 дней после закрытия договора"
+    },
+    {
+      "id": "rt-dev-024",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-09-25T11:20:00Z",
+      "reply_to": "rt-dev-023",
+      "text": "проверю на стейдже, перемотаю время"
+    },
+    {
+      "id": "rt-dev-025",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-09-26T16:00:00Z",
+      "text": "автоудаление ок, на 31-й день фото нет"
+    },
+    {
+      "id": "rt-dev-026",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-09-29T10:00:00Z",
+      "text": "Доставку пересчитал: фикс 1500 по городу, без порога"
+    },
+    {
+      "id": "rt-dev-027",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-10-01T12:00:00Z",
+      "text": "Тест холда на проде не сделать, банк даёт только боевой терминал"
+    },
+    {
+      "id": "rt-dev-028",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-10-03T15:00:00Z",
+      "text": "Сделал фичефлаг online_deposit, выключен. Включим, когда банк подтвердит заморозку суммы хотя бы на неделю"
+    },
+    {
+      "id": "rt-dev-029",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-10-07T17:00:00Z",
+      "text": "акт возврата: номер договора есть, графа «повреждения / недокомплект» есть ✅"
+    },
+    {
+      "id": "rt-dev-030",
+      "source": "rentatech-chat-dev",
+      "author": "Артём",
+      "at": "2026-10-10T10:00:00Z",
+      "text": "мерж в main заблокирован до релиза?"
+    },
+    {
+      "id": "rt-dev-031",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-10-10T10:02:00Z",
+      "reply_to": "rt-dev-030",
+      "text": "да"
+    },
+    {
+      "id": "rt-dev-032",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-10-13T22:40:00Z",
+      "text": "Хотфикс: миграция залогов упала на старых тестовых бронях, откатил, перезапустил"
+    },
+    {
+      "id": "rt-dev-033",
+      "source": "rentatech-chat-dev",
+      "author": "Саша",
+      "at": "2026-10-15T10:30:00Z",
+      "text": "акт возврата PDF не открывается в сафари на iOS 16"
+    },
+    {
+      "id": "rt-dev-034",
+      "source": "rentatech-chat-dev",
+      "author": "Дима",
+      "at": "2026-10-15T11:00:00Z",
+      "reply_to": "rt-dev-033",
+      "text": "шрифт не встраивается, гляну"
+    },
+    {
+      "id": "rt-gen-001",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-08-03T09:30:00Z",
+      "text": "Кто брал зарядку от мака из переговорки?"
+    },
+    {
+      "id": "rt-gen-002",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-08-03T09:40:00Z",
+      "reply_to": "rt-gen-001",
+      "text": "я, верну"
+    },
+    {
+      "id": "rt-gen-003",
+      "source": "rentatech-chat-general",
+      "author": "Ольга",
+      "at": "2026-08-04T10:30:00Z",
+      "text": "Новый проект — РентаТех, прокат инструмента. Веду я, команда в чате «Сайт»"
+    },
+    {
+      "id": "rt-gen-004",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-08-11T12:00:00Z",
+      "text": "По Лапе: клиника хочет предоплату записи картой. Кто делал холдирование?"
+    },
+    {
+      "id": "rt-gen-005",
+      "source": "rentatech-chat-general",
+      "author": "Дима",
+      "at": "2026-08-11T12:20:00Z",
+      "reply_to": "rt-gen-004",
+      "text": "я нет, но на РентаТех тоже скоро понадобится"
+    },
+    {
+      "id": "rt-gen-006",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-08-19T10:00:00Z",
+      "text": "Напоминаю всем: паспортные данные в формах — только через наш шаблон согласия, иначе штрафы. И не храните сканы в общих папках"
+    },
+    {
+      "id": "rt-gen-007",
+      "source": "rentatech-chat-general",
+      "author": "Ольга",
+      "at": "2026-08-19T10:05:00Z",
+      "reply_to": "rt-gen-006",
+      "text": "+"
+    },
+    {
+      "id": "rt-gen-008",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-08-27T13:00:00Z",
+      "text": "Пицца в пятницу?"
+    },
+    {
+      "id": "rt-gen-009",
+      "source": "rentatech-chat-general",
+      "author": "Артём",
+      "at": "2026-08-27T13:01:00Z",
+      "text": "да, давай"
+    },
+    {
+      "id": "rt-gen-010",
+      "source": "rentatech-chat-general",
+      "author": "Ксюша",
+      "at": "2026-08-27T13:02:00Z",
+      "text": "+"
+    },
+    {
+      "id": "rt-gen-011",
+      "source": "rentatech-chat-general",
+      "author": "Саша",
+      "at": "2026-09-04T15:00:00Z",
+      "text": "Кто знает чем делать скриншот-тесты?"
+    },
+    {
+      "id": "rt-gen-012",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-09-04T15:30:00Z",
+      "reply_to": "rt-gen-011",
+      "text": "возьми наш старый скрипт на playwright, он в репо tools"
+    },
+    {
+      "id": "rt-gen-013",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-09-10T11:00:00Z",
+      "text": "Лапа: клиника передумала с бесплатной первой консультацией, убираем с сайта"
+    },
+    {
+      "id": "rt-gen-014",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-09-15T09:00:00Z",
+      "text": "Совет дня: не обещайте клиенту дату релиза до регресса 😅"
+    },
+    {
+      "id": "rt-gen-015",
+      "source": "rentatech-chat-general",
+      "author": "Артём",
+      "at": "2026-09-15T09:02:00Z",
+      "reply_to": "rt-gen-014",
+      "text": "поздно"
+    },
+    {
+      "id": "rt-gen-016",
+      "source": "rentatech-chat-general",
+      "author": "Ольга",
+      "at": "2026-09-22T10:30:00Z",
+      "text": "РентаТех переносим, 30-го не будет, новую дату скажу"
+    },
+    {
+      "id": "rt-gen-017",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-09-24T10:00:00Z",
+      "text": "Кто подскажет, у кого какой смс-сервис для уведомлений? Лапе нужен дешёвый"
+    },
+    {
+      "id": "rt-gen-018",
+      "source": "rentatech-chat-general",
+      "author": "Дима",
+      "at": "2026-09-24T10:05:00Z",
+      "reply_to": "rt-gen-017",
+      "text": "мы на РентаТех смотрели два, могу рассказать"
+    },
+    {
+      "id": "rt-gen-019",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-09-26T18:00:00Z",
+      "text": "Лапа: доставку анализов курьером делаем платной, клиент согласовал"
+    },
+    {
+      "id": "rt-gen-020",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-09-30T17:00:00Z",
+      "text": "Кто на конференцию в Казань? Есть 2 билета"
+    },
+    {
+      "id": "rt-gen-021",
+      "source": "rentatech-chat-general",
+      "author": "Ольга",
+      "at": "2026-10-02T15:00:00Z",
+      "text": "Для всех: запуск РентаТех — 14 октября"
+    },
+    {
+      "id": "rt-gen-022",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-10-02T15:05:00Z",
+      "text": "удачи!"
+    },
+    {
+      "id": "rt-gen-023",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-10-06T12:00:00Z",
+      "text": "Саша, глянь, пожалуйста, акт в Лапе, там печать съехала"
+    },
+    {
+      "id": "rt-gen-024",
+      "source": "rentatech-chat-general",
+      "author": "Саша",
+      "at": "2026-10-06T12:30:00Z",
+      "reply_to": "rt-gen-023",
+      "text": "гляну после обеда"
+    },
+    {
+      "id": "rt-gen-025",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-10-08T11:00:00Z",
+      "text": "У кого какие сроки хранения логов на проектах? Пишу общий регламент"
+    },
+    {
+      "id": "rt-gen-026",
+      "source": "rentatech-chat-general",
+      "author": "Дима",
+      "at": "2026-10-08T11:15:00Z",
+      "reply_to": "rt-gen-025",
+      "text": "на РентаТех nginx 14 дней, бэкапы 30"
+    },
+    {
+      "id": "rt-gen-027",
+      "source": "rentatech-chat-general",
+      "author": "Ника",
+      "at": "2026-10-14T12:30:00Z",
+      "text": "Поздравляю с запуском!"
+    },
+    {
+      "id": "rt-gen-028",
+      "source": "rentatech-chat-general",
+      "author": "Рома",
+      "at": "2026-10-20T10:00:00Z",
+      "text": "Ретро по РентаТех в четверг?"
+    },
+    {
+      "id": "rt-gen-029",
+      "source": "rentatech-chat-general",
+      "author": "Ольга",
+      "at": "2026-10-20T10:10:00Z",
+      "reply_to": "rt-gen-028",
+      "text": "да, в 16"
+    },
+    {
+      "id": "rt-tz-001",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:00:00Z",
+      "section": [
+        "Общее",
+        "Цель проекта"
+      ],
+      "text": "Сайт-каталог и онлайн-бронирование инструмента для РентаТех (Ярославль, два пункта выдачи: ул. Промышленная и Заволжский район). Клиенты — частные лица и прорабы небольших бригад."
+    },
+    {
+      "id": "rt-tz-002",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:01:00Z",
+      "section": [
+        "Общее",
+        "Сроки"
+      ],
+      "text": "Запуск — конец сентября 2026, ориентир 30.09. Детальный план — в отдельной таблице."
+    },
+    {
+      "id": "rt-tz-003",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:02:00Z",
+      "section": [
+        "Общее",
+        "Этапы"
+      ],
+      "text": "Этап 1 — каталог, бронь, акты, уведомления. Этап 2 — интеграция остатков с 1С, личный кабинет юрлиц, программа лояльности."
+    },
+    {
+      "id": "rt-tz-004",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:03:00Z",
+      "section": [
+        "Каталог",
+        "Структура"
+      ],
+      "text": "Категории: электроинструмент, садовая техника, строительное оборудование, генераторы, клининг. Внутри — подкатегории по типу."
+    },
+    {
+      "id": "rt-tz-005",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:04:00Z",
+      "section": [
+        "Каталог",
+        "Карточка товара"
+      ],
+      "text": "Карточка: фото, характеристики, цена за сутки и за неделю, размер залога, наличие по пунктам, календарь занятости, кнопка «Забронировать»."
+    },
+    {
+      "id": "rt-tz-006",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:05:00Z",
+      "section": [
+        "Каталог",
+        "Фильтры"
+      ],
+      "text": "Фильтры: категория, пункт выдачи, даты, цена, мощность (для генераторов)."
+    },
+    {
+      "id": "rt-tz-007",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:06:00Z",
+      "section": [
+        "Тарифы",
+        "Сетка цен"
+      ],
+      "text": "Посуточно — базовая цена; от 3 суток −10%; неделя −20%. Примеры: виброплита 1 800 ₽/сутки, бензопила 1 200 ₽/сутки, генератор 5 кВт 2 500 ₽/сутки."
+    },
+    {
+      "id": "rt-tz-008",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:07:00Z",
+      "section": [
+        "Тарифы",
+        "Минимальный срок"
+      ],
+      "text": "Минимальный срок аренды — 1 сутки. Почасовой аренды нет."
+    },
+    {
+      "id": "rt-tz-009",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:08:00Z",
+      "section": [
+        "Бронирование",
+        "Форма брони"
+      ],
+      "text": "Обязательные поля формы: имя, телефон, даты начала и конца, пункт выдачи или доставка. Email — по желанию. Паспорт в форме не запрашивается, предъявляется при выдаче."
+    },
+    {
+      "id": "rt-tz-010",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:09:00Z",
+      "section": [
+        "Бронирование",
+        "Залог"
+      ],
+      "text": "Залог — 30% от стоимости аренды за весь срок, минимум 3 000 ₽. Возвращается при сдаче техники без повреждений и в полной комплектации."
+    },
+    {
+      "id": "rt-tz-011",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:10:00Z",
+      "section": [
+        "Бронирование",
+        "Онлайн-оплата"
+      ],
+      "text": "Онлайн-предоплата залога картой — опционально, зависит от возможностей банка-эквайера. Решение — на созвоне с заказчиком."
+    },
+    {
+      "id": "rt-tz-012",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:11:00Z",
+      "section": [
+        "Бронирование",
+        "Выдача и возврат"
+      ],
+      "text": "Выдача в пункте по паспорту. Менеджер фотографирует паспорт и технику, фото прикрепляются к брони в админке."
+    },
+    {
+      "id": "rt-tz-013",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:12:00Z",
+      "section": [
+        "Бронирование",
+        "Выходные"
+      ],
+      "text": "Режим выдачи в выходные — уточнить у заказчика."
+    },
+    {
+      "id": "rt-tz-014",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:13:00Z",
+      "section": [
+        "Доставка",
+        "Условия"
+      ],
+      "text": "Доставка по Ярославлю — бесплатно при заказе от 15 000 ₽, иначе 1 000 ₽. За город — по договорённости."
+    },
+    {
+      "id": "rt-tz-015",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:14:00Z",
+      "section": [
+        "Документы",
+        "Акт выдачи"
+      ],
+      "text": "Акт выдачи формируется автоматически в PDF: техника, комплектация, состояние, дата, подписи."
+    },
+    {
+      "id": "rt-tz-016",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:15:00Z",
+      "section": [
+        "Документы",
+        "Акт возврата"
+      ],
+      "text": "Акт возврата: список техники, дата и время возврата, подписи сторон."
+    },
+    {
+      "id": "rt-tz-017",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:16:00Z",
+      "section": [
+        "Уведомления",
+        "SMS"
+      ],
+      "text": "SMS-напоминания: за сутки до окончания аренды. Провайдер выбирает исполнитель."
+    },
+    {
+      "id": "rt-tz-018",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:17:00Z",
+      "section": [
+        "Персональные данные",
+        "Хранение"
+      ],
+      "text": "Сроки хранения копий документов клиентов — согласовать с юристом заказчика. Хранение только на серверах в РФ."
+    },
+    {
+      "id": "rt-tz-019",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:18:00Z",
+      "section": [
+        "Инфраструктура",
+        "Хостинг"
+      ],
+      "text": "VPS в РФ, выбирает исполнитель до 31.08."
+    },
+    {
+      "id": "rt-tz-020",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:19:00Z",
+      "section": [
+        "Инфраструктура",
+        "Домен"
+      ],
+      "text": "Домен rentatech-yar.ru зарегистрирован на заказчика, доступ к DNS передаётся исполнителю."
+    },
+    {
+      "id": "rt-tz-021",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:20:00Z",
+      "section": [
+        "Инфраструктура",
+        "Логи и бэкапы"
+      ],
+      "text": "Логи веб-сервера — 14 дней. Бэкап базы — ежедневно, хранить 30 дней."
+    },
+    {
+      "id": "rt-tz-022",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:21:00Z",
+      "section": [
+        "Админка",
+        "Роли"
+      ],
+      "text": "Роли: администратор, менеджер пункта, бухгалтер (только просмотр актов и залогов)."
+    },
+    {
+      "id": "rt-tz-023",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:22:00Z",
+      "section": [
+        "Админка",
+        "Статусы техники"
+      ],
+      "text": "Статусы техники: доступна, забронирована, выдана, в ремонте, списана."
+    },
+    {
+      "id": "rt-tz-024",
+      "source": "rentatech-doc-tz",
+      "author": "Ольга",
+      "at": "2026-08-20T18:23:00Z",
+      "section": [
+        "Открытые вопросы"
+      ],
+      "text": "1) Залог для генераторов. 2) Режим выходных. 3) Возможности банка. 4) Доставка за город."
+    },
+    {
+      "id": "rt-m09-001",
+      "source": "rentatech-meet-0909",
+      "author": "Ольга",
+      "at": "2026-09-09T11:00:05Z",
+      "text": "Всем добрый день. Повестка: сроки, залог онлайн, доставка, выходные, 1С."
+    },
+    {
+      "id": "rt-m09-002",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:00:30Z",
+      "text": "Давайте."
+    },
+    {
+      "id": "rt-m09-003",
+      "source": "rentatech-meet-0909",
+      "author": "Ольга",
+      "at": "2026-09-09T11:01:10Z",
+      "text": "Сроки: целимся на тридцатое сентября, каталог и бронь уже на тестовом стенде."
+    },
+    {
+      "id": "rt-m09-004",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:02:00Z",
+      "text": "Хорошо бы успеть до конца сезона ремонтов. Хотя он уже кончается, ну ладно."
+    },
+    {
+      "id": "rt-m09-005",
+      "source": "rentatech-meet-0909",
+      "author": "Дима",
+      "at": "2026-09-09T11:03:15Z",
+      "text": "По онлайн-залогу. Брать залог картой на сайте можно двумя способами: списать и потом вернуть, или заморозить сумму на карте — холдирование."
+    },
+    {
+      "id": "rt-m09-006",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:04:20Z",
+      "text": "Списывать и возвращать — нет, комиссия всё съест, и клиенты будут ругаться. Делаем онлайн только если банк даст именно заморозку, хотя бы на неделю. Не даст — оставляем оплату на месте."
+    },
+    {
+      "id": "rt-m09-007",
+      "source": "rentatech-meet-0909",
+      "author": "Дима",
+      "at": "2026-09-09T11:05:00Z",
+      "text": "Понял, запрошу у банка."
+    },
+    {
+      "id": "rt-m09-008",
+      "source": "rentatech-meet-0909",
+      "author": "Лёша",
+      "at": "2026-09-09T11:05:30Z",
+      "text": "А если человек бронирует на две недели?"
+    },
+    {
+      "id": "rt-m09-009",
+      "source": "rentatech-meet-0909",
+      "author": "Дима",
+      "at": "2026-09-09T11:06:10Z",
+      "text": "Тогда либо продлевать заморозку, либо брать на месте. Уточню."
+    },
+    {
+      "id": "rt-m09-010",
+      "source": "rentatech-meet-0909",
+      "author": "Ольга",
+      "at": "2026-09-09T11:07:00Z",
+      "text": "Доставка."
+    },
+    {
+      "id": "rt-m09-011",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:07:40Z",
+      "text": "По городу бесплатно, если заказ от пятнадцати тысяч. Меньше — тысяча. За город — договорная."
+    },
+    {
+      "id": "rt-m09-012",
+      "source": "rentatech-meet-0909",
+      "author": "Ксюша",
+      "at": "2026-09-09T11:08:30Z",
+      "text": "Сделаем плашку на главной."
+    },
+    {
+      "id": "rt-m09-013",
+      "source": "rentatech-meet-0909",
+      "author": "Ольга",
+      "at": "2026-09-09T11:09:00Z",
+      "text": "Выходные. Алексей писал, что в выходные один человек на смене."
+    },
+    {
+      "id": "rt-m09-014",
+      "source": "rentatech-meet-0909",
+      "author": "Лёша",
+      "at": "2026-09-09T11:09:40Z",
+      "text": "Да, в выходные толпа без брони — это ад. Я бы вообще только по брони."
+    },
+    {
+      "id": "rt-m09-015",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:10:30Z",
+      "text": "Подумаем. Ольга, напишите мне в чат, я подтвержу."
+    },
+    {
+      "id": "rt-m09-016",
+      "source": "rentatech-meet-0909",
+      "author": "Ольга",
+      "at": "2026-09-09T11:11:00Z",
+      "text": "Хорошо. Теперь 1С."
+    },
+    {
+      "id": "rt-m09-017",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:11:50Z",
+      "text": "1С не сейчас. Сначала запуск, остатки пусть пока из экселя. Интеграцию — вторым этапом, в ноябре, бюджет под неё заложен."
+    },
+    {
+      "id": "rt-m09-018",
+      "source": "rentatech-meet-0909",
+      "author": "Дима",
+      "at": "2026-09-09T11:12:40Z",
+      "text": "Экселя хватит, импорт раз в час."
+    },
+    {
+      "id": "rt-m09-019",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:13:20Z",
+      "text": "И ещё, Саша просила что-то по актам — она вам напишет."
+    },
+    {
+      "id": "rt-m09-020",
+      "source": "rentatech-meet-0909",
+      "author": "Ольга",
+      "at": "2026-09-09T11:14:00Z",
+      "text": "Ждём. И тарифы."
+    },
+    {
+      "id": "rt-m09-021",
+      "source": "rentatech-meet-0909",
+      "author": "Геннадий Петрович",
+      "at": "2026-09-09T11:14:40Z",
+      "text": "Тарифы Саша пришлёт актуальные. На то, что в ТЗ, не опирайтесь."
+    },
+    {
+      "id": "rt-m09-022",
+      "source": "rentatech-meet-0909",
+      "author": "Лёша",
+      "at": "2026-09-09T11:15:20Z",
+      "text": "У меня ещё про залог на генераторы…"
+    },
+    {
+      "id": "rt-m09-023",
+      "source": "rentatech-meet-0909",
+      "author": "Ольга",
+      "at": "2026-09-09T11:15:50Z",
+      "text": "Давайте отдельно, время. Спасибо всем!"
+    },
+    {
+      "id": "rt-m10-001",
+      "source": "rentatech-meet-1002",
+      "author": "Ольга",
+      "at": "2026-10-02T11:00:10Z",
+      "text": "Цель — зафиксировать дату запуска и пройтись по хвостам."
+    },
+    {
+      "id": "rt-m10-002",
+      "source": "rentatech-meet-1002",
+      "author": "Дима",
+      "at": "2026-10-02T11:01:00Z",
+      "text": "Хвосты: банк так и не подтвердил заморозку, онлайн-залог спрятан под флагом, выключен."
+    },
+    {
+      "id": "rt-m10-003",
+      "source": "rentatech-meet-1002",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-02T11:01:40Z",
+      "text": "Пусть будет выключен, на месте возьмём."
+    },
+    {
+      "id": "rt-m10-004",
+      "source": "rentatech-meet-1002",
+      "author": "Ольга",
+      "at": "2026-10-02T11:02:30Z",
+      "text": "Предлагаю запуск четырнадцатого октября, в среду. Код замораживаем двенадцатого."
+    },
+    {
+      "id": "rt-m10-005",
+      "source": "rentatech-meet-1002",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-02T11:03:20Z",
+      "text": "Среда — хорошо, в начале недели у нас аврал с возвратами. Давайте четырнадцатое."
+    },
+    {
+      "id": "rt-m10-006",
+      "source": "rentatech-meet-1002",
+      "author": "Ольга",
+      "at": "2026-10-02T11:03:50Z",
+      "text": "Фиксируем: четырнадцатое октября."
+    },
+    {
+      "id": "rt-m10-007",
+      "source": "rentatech-meet-1002",
+      "author": "Лёша",
+      "at": "2026-10-02T11:04:30Z",
+      "text": "По залогу. У нас по факту залог фиксированный — десять тысяч на любой инструмент, кроме генераторов, там двадцать. Так и делайте на сайте, проценты никто не считает."
+    },
+    {
+      "id": "rt-m10-008",
+      "source": "rentatech-meet-1002",
+      "author": "Ольга",
+      "at": "2026-10-02T11:05:30Z",
+      "text": "Алексей, в ТЗ у нас тридцать процентов от стоимости. Геннадий Петрович, как правильно?"
+    },
+    {
+      "id": "rt-m10-009",
+      "source": "rentatech-meet-1002",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-02T11:06:10Z",
+      "text": "Хм. Давайте я с Сашей обсужу и вернусь."
+    },
+    {
+      "id": "rt-m10-010",
+      "source": "rentatech-meet-1002",
+      "author": "Дима",
+      "at": "2026-10-02T11:06:40Z",
+      "text": "Пока оставлю как в ТЗ, переключить — одна константа."
+    },
+    {
+      "id": "rt-m10-011",
+      "source": "rentatech-meet-1002",
+      "author": "Ольга",
+      "at": "2026-10-02T11:07:20Z",
+      "text": "Домен: DNS переключим тринадцатого вечером."
+    },
+    {
+      "id": "rt-m10-012",
+      "source": "rentatech-meet-1002",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-02T11:07:50Z",
+      "text": "Только почту на домене не сломайте."
+    },
+    {
+      "id": "rt-m10-013",
+      "source": "rentatech-meet-1002",
+      "author": "Дима",
+      "at": "2026-10-02T11:08:10Z",
+      "text": "MX-записи не трогаем."
+    },
+    {
+      "id": "rt-m10-014",
+      "source": "rentatech-meet-1002",
+      "author": "Лёша",
+      "at": "2026-10-02T11:08:40Z",
+      "text": "Ещё вопрос: что с ботом в телеге? Мне Артём рассказывал."
+    },
+    {
+      "id": "rt-m10-015",
+      "source": "rentatech-meet-1002",
+      "author": "Ольга",
+      "at": "2026-10-02T11:09:10Z",
+      "text": "Это идея, обсудим после запуска."
+    },
+    {
+      "id": "rt-m10-016",
+      "source": "rentatech-meet-1002",
+      "author": "Геннадий Петрович",
+      "at": "2026-10-02T11:09:40Z",
+      "text": "Сайт с телефона нормально открывается?"
+    },
+    {
+      "id": "rt-m10-017",
+      "source": "rentatech-meet-1002",
+      "author": "Дима",
+      "at": "2026-10-02T11:10:00Z",
+      "text": "Да, адаптив, проверяли на айфоне и андроиде."
+    },
+    {
+      "id": "rt-m10-018",
+      "source": "rentatech-meet-1002",
+      "author": "Ольга",
+      "at": "2026-10-02T11:10:40Z",
+      "text": "Спасибо, резюме кину в чат."
+    }
+  ]
+}

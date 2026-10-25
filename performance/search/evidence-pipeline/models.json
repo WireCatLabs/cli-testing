@@ -1,0 +1,102 @@
+{
+  "checked_at": "2026-10-25",
+  "models": [
+    {
+      "id": "e5-small",
+      "repository": "Xenova/multilingual-e5-small",
+      "revision": "761b726dd34fb83930e26aab4e9ac3899aa1fa78",
+      "licence": "mit",
+      "max_tokens": 512,
+      "asset_bytes": 135391358,
+      "note": "Same pinned files as cli-core TEXT_MODELS e5-small; copied from the existing local cache after sha256 check, not downloaded",
+      "files": [
+        {
+          "name": "onnx/model_quantized.onnx",
+          "bytes": 118308185,
+          "sha256": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193",
+          "url": "https://huggingface.co/Xenova/multilingual-e5-small/resolve/761b726dd34fb83930e26aab4e9ac3899aa1fa78/onnx/model_quantized.onnx"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 17082730,
+          "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "url": "https://huggingface.co/Xenova/multilingual-e5-small/resolve/761b726dd34fb83930e26aab4e9ac3899aa1fa78/tokenizer.json"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 443,
+          "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+          "url": "https://huggingface.co/Xenova/multilingual-e5-small/resolve/761b726dd34fb83930e26aab4e9ac3899aa1fa78/tokenizer_config.json"
+        }
+      ]
+    },
+    {
+      "id": "mmarco",
+      "repository": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+      "licence": "apache-2.0",
+      "max_tokens": 512,
+      "asset_bytes": 135704002,
+      "files": [
+        {
+          "name": "onnx/model_quint8_avx2.onnx",
+          "bytes": 118620016,
+          "sha256": "6c2513767fb63d008a4377bef7a7a3555433d9436342bb53e35a3a72ffc52d4b",
+          "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/onnx/model_quint8_avx2.onnx"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 17082660,
+          "sha256": "62c24cdc13d4c9952d63718d6c9fa4c287974249e16b7ade6d5a85e7bbb75626",
+          "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/tokenizer.json"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 435,
+          "sha256": "e7fbfbfa6347b4e414c1cee50d142e2c2f9a895dad68b068ae83a8b564c3837e",
+          "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json"
+        },
+        {
+          "name": "config.json",
+          "bytes": 891,
+          "sha256": "cc2cfe51aa3fd759d21d21acf5dfd6994aa67a3c9210636d22e143699d336c77",
+          "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/config.json"
+        }
+      ]
+    },
+    {
+      "id": "bge-int8",
+      "repository": "onnx-community/bge-reranker-v2-m3-ONNX",
+      "revision": "6f5ff65298512715a1e669753bc754d2bc8f367b",
+      "licence": "not declared in export metadata; inspect upstream BAAI Apache-2.0 and export provenance",
+      "max_tokens": 512,
+      "asset_bytes": 587812045,
+      "files": [
+        {
+          "name": "onnx/model_quantized.onnx",
+          "bytes": 570727094,
+          "sha256": "912fc1215c2dbff6499700534bd8d31253af01573861abbfc43afd1fab6cce5d",
+          "url": "https://huggingface.co/onnx-community/bge-reranker-v2-m3-ONNX/resolve/6f5ff65298512715a1e669753bc754d2bc8f367b/onnx/model_quantized.onnx"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 17082900,
+          "sha256": "8bf8afbfd11306bd872018c53bfdf2e160a56f8edbcf49933324404791c148d3",
+          "url": "https://huggingface.co/onnx-community/bge-reranker-v2-m3-ONNX/resolve/6f5ff65298512715a1e669753bc754d2bc8f367b/tokenizer.json"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 1203,
+          "sha256": "b87c8703482b0300d3da30e201519aa641f6a450f5eb5bf1e624afbf70c74d80",
+          "url": "https://huggingface.co/onnx-community/bge-reranker-v2-m3-ONNX/resolve/6f5ff65298512715a1e669753bc754d2bc8f367b/tokenizer_config.json"
+        },
+        {
+          "name": "config.json",
+          "bytes": 848,
+          "sha256": "122e922dcfed6503c8721e6fe1daf090340c3d95ca7f3aa3a72730b321a51cfd",
+          "url": "https://huggingface.co/onnx-community/bge-reranker-v2-m3-ONNX/resolve/6f5ff65298512715a1e669753bc754d2bc8f367b/config.json"
+        }
+      ]
+    }
+  ]
+}

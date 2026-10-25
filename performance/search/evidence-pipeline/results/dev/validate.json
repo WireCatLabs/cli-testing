@@ -1,0 +1,41 @@
+{
+ "split": "dev",
+ "files": {
+  "background.json": {
+   "sha256": "430e65c18f23af9650ce3446bd566b90eb8fdfbb3775f023b6b762afbc85a1cd",
+   "units": 1500,
+   "sources": {
+    "chat": 10
+   }
+  },
+  "rentatech.json": {
+   "sha256": "174f8e28e8fae860f4c49b4c47a724d3b8ac151e2db66fc9bcd46399e8a82b69",
+   "questions": 12
+  },
+  "stackyard.json": {
+   "sha256": "c2ba1cd692c8cdd539143a0b7bd5ec5597060e096a1eb427f64c790f3657c23e",
+   "questions": 12
+  }
+ },
+ "kinds": {
+  "negative": 2,
+  "conditional": 2,
+  "approval": 4,
+  "unresolved": 2,
+  "conflict": 2,
+  "revoked": 2,
+  "same-name": 2,
+  "missing": 2,
+  "premise": 2,
+  "fact": 4
+ },
+ "languages": {
+  "ru": 13,
+  "en": 11
+ },
+ "answerable": {
+  "True": 16,
+  "False": 8
+ },
+ "errors": []
+}
