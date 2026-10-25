@@ -138,3 +138,37 @@ and A4, nothing else.
 
 **After the holdout score.** `variants_report.py` changed only its header line, to say "Holdout" instead of
 "Tuning set" for a `--frozen` report. The hash in `freeze-holdout.json` is of the version before that line.
+
+## Meaning floor (25 October 2026, before any floor was scored)
+
+Core 0.432.0 (cli-core#1979) fuses discovery with up to 100 nearest messages by E5, with no minimum cosine, so a
+question that nothing answers still gets 100 meaning hits. Core's existing floor for E5, 0.80
+(`meaningFloor`), was measured on conversation chunks, not single messages. Question: should the per-message
+meaning list drop hits below a cosine before fusion, and at what value?
+
+- **Floors:** none, 0.80, 0.82, 0.84, 0.86, 0.88. The floor drops meaning hits below it from the 100 nearest,
+  then fusion runs as before (RRF, k = 60). Pool 100, 8 KiB.
+- **Arms:** A2 (discovery + E5 fusion, what Core ships) decides. A3 and the two frozen reranker mixes (mMARCO and
+  BGE int8, rich input, `D` 50, α 0.7) are reported beside it, to see whether a floor still matters after a
+  reranker.
+- **Word lists:** the stored discovery runs (Core 0.412.0 with the "?" fix applied to the input:
+  `results/dev-fixq`, `calibration-l0.9`, `eval-fixq`, `holdout`). The floor acts only on the meaning list, which
+  this harness computes.
+- **Reproduction gate:** with no floor, every arm must match the stored per-question rows (`results/variants-*`,
+  `results/holdout`) before any floor row is read.
+- **Measures:** Answer@3 and MRR on answerable questions; "all conflict sides" on `conflict` and `revoked`; on
+  `missing` and `premise` (nothing answers them) the number of off-topic (grade 0) items among the first five
+  that only meaning search found, and how many of those questions get words-only results. `conflict` and
+  `unresolved` questions have graded sides, so losing one is a loss, not a win. Query-to-message E5 cosines:
+  answers, other graded messages, ungraded messages in the meaning top 100, and the best hit's cosine per question
+  kind. (The 0.877 / 0.903 in "Reranker variants" are message-to-message cosines, a different quantity.)
+
+**Choice rule, fixed now.** On the tuning set (dev, calibration, eval), with A2: the highest floor that
+(1) loses no answerable question's Answer@3 against no floor, (2) loses no `conflict`/`revoked` question's
+"all conflict sides", (3) lowers mean MRR by at most 0.01, and (4) has strictly fewer off-topic meaning-only items
+in the first five on `missing`/`premise` questions than no floor. If no floor passes, the result is "no floor".
+
+**Holdout.** The holdout split was already opened once, for the reranker choice above, so it is no longer unseen
+data; its no-floor numbers are public. It is scored once more, with the chosen floor and every other floor
+beside it, after this section is committed. It has 3 `missing` and no `premise` questions, so it tests mostly
+"no answerable question lost"; the off-topic benefit rests on the tuning set.
