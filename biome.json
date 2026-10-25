@@ -58,6 +58,7 @@
       "includes": [
         "performance/search/message-search/**",
         "performance/search/everywhere/**",
+        "performance/search/search-all-meaning/**",
         "performance/projects/evidence/**",
         "performance/projects/review/**",
         "performance/projects/fixture.ts",
