@@ -10,6 +10,9 @@ Markdown folder into Google Docs and merge edits both ways. The question: when a
 what can a program still do with it, and when are mirrors still needed? The answer feeds drive's
 [mirroring guide](https://github.com/WireCatLabs/drive-cli/blob/main/docs/mirrors.md).
 
+It adds the program's side to the [2026-10-23 editor check](../drive-push/README.md#google-docs-own-markdown-editing-2026-10-23),
+which measured what a person's edit in Docs writes into the file.
+
 ## Setup
 
 - drive-cli built from `main` at 0.31.0 plus the sign-in refactor (PR 214/215), on Linux, Node 24.19.
@@ -26,7 +29,7 @@ what can a program still do with it, and when are mirrors still needed? The answ
 | Upload `sample.md` | Stored as `text/markdown`; `canEdit` and `canComment` true |
 | Docs API `documents.get` | Works: the file reads as a Doc |
 | Docs API `documents.batchUpdate` | HTTP 400 "This operation is not supported for this document. The document must not be an Office file." |
-| Drive comment on the file (no anchor) | Created and listed |
+| Drive comment on the file (API, no anchor) | Created and listed; unlike a comment made in the Docs editor, which is written into the file and not listed (2026-10-23) |
 | Replace the whole file (`files.update`, `uploadType=media`) | Same id, still `text/markdown`; the Docs view shows the new text; the comment stays |
 | Download (`alt=media`) | The bytes as uploaded |
 
@@ -50,14 +53,16 @@ How the Docs API sees the sample:
   replace the whole file. That keeps the file and its unanchored comments.
 - Google reads front matter the way cli-core's Markdown reader does (drive DRV-8): as a rule and a heading. That is
   the CommonMark reading of `---`, so front matter needs explicit handling on both paths.
-- So a native `.md` file is enough when people edit in Docs and programs only read or replace the whole file. A
-  mirror (a real Google Doc) is still needed when a program and people both edit the same document, because
-  only a Doc takes piece-by-piece edits next to a person's changes.
+- Comments split two ways: one made in the Docs editor is written into the `.md` file with the commenter's name
+  and text, invisible to the comments API (2026-10-23); one made through the API stays outside the file.
+- So a native `.md` file is enough when people edit in Docs, programs only read or replace the whole file, and
+  comments may travel inside the file. A mirror (a real Google Doc) is still needed when a program and people both
+  edit the same document, or when comments must stay out of the Markdown, for example in a git repository.
 
 ## Not measured
 
-- What Docs writes back into the `.md` file after a person edits in the Docs editor: whether it keeps front
-  matter, task boxes, footnotes and the original spacing. The browser was not available for this run.
+- Whether the Docs editor keeps front matter and footnotes when a person edits: the 2026-10-23 check covered ticks,
+  tables, bold, links and comments, not these. The browser was not available for this run.
 - Whether comments anchored to text in the Docs editor survive a whole-file replace (API comments have no anchor
   Docs shows).
 - Files larger than the sample, `.markdown` files, Workspace accounts and shared drives.
