@@ -94,3 +94,44 @@ to pick λ.
   both.
 - **λ = 0.9.** Calibration: λ 0.5, 0.7 and 0.9 gave the same Answer@3; 0.9 had the best A3 MRR (0.18 against
   0.15). The difference is one rank on one question.
+
+## Reranker variants (25 October 2026, after the eval was opened)
+
+The owner asked to test, and tune, three changes to A4 before any of them reaches Core. All three start from A3
+at pool 100 and an 8 KiB budget.
+
+- **Mix instead of replace.** Inside the first `D` A3 hits, the final score is
+  `(1 − α) · fused + α · reranker`, each min-max scaled over those `D` hits. Hits after `D` keep A3's order.
+  `α = 1` and `D = 100` is A4.
+- **Richer input.** The pair the reranker reads gets `[source · author · date]` in front of the hit and of its
+  reply parent, instead of the bare text.
+- **Newest decision first.** After ordering, a hit among the first 30 moves just above an earlier hit when
+  their E5 cosine is at least `τ` and it is newer. Each hit moves once. This also applies to A3 with no
+  reranker.
+
+Grid: rerankers mMARCO and BGE int8; input plain or rich; α 0.3, 0.5, 0.7, 1; `D` 20, 50, 100; `τ` off or two
+values set from the cosine distribution on dev before tuning.
+
+**Splits.** Dev, calibration and eval are all open now, so together they are the tuning set (58 questions, 40
+answerable; **correction:** 38 answerable). A new `holdout` split, three projects written by a separate agent with two `revoked` and two
+`conflict` questions each, stays sealed (hash and schema only) until the chosen variant is frozen in
+`results/freeze-holdout.json`. Holdout is then scored once, with A3 and A4 beside it.
+
+**Choice rule, fixed now.** On the tuning set: the highest mean of Answer@3 and MRR among variants that lose no
+`revoked` or `conflict` question's Answer@3 against A3 and lose no more than one question's Answer@3 in total.
+Ties go to the cheaper variant (no reranker, then mMARCO, then smaller `D`, then plain input). If no variant
+passes, the result is "no reranker".
+
+`τ` from dev before tuning: among the first 30 fused hits, the median E5 cosine of two units both graded ≥ 2 is
+0.877 (90th percentile 0.903); of any two units 0.841. So `τ` is 0.87 or 0.90.
+For a `conflict` or `revoked` question with no settled answer, losing "all conflict sides" against A3 counts as a
+loss too. The tuning report is [variants_report.py](variants_report.py).
+
+**Holdout as delivered.** The holdout author read "two more" as three `revoked` and three `conflict` questions per
+project: 42 questions, 27 answerable, 9 revoked, 9 conflict, no `premise`. Kept as written.
+
+**Frozen choice.** The rule picks BGE int8, rich input, `D` 50, α 0.7 (Answer@3 68%, MRR 0.54, 7 won, 0 lost
+against A3). The best passing mMARCO variant, rich input, `D` 50, α 0.7 (66%, 0.52, 6 won, 0 lost), is scored
+beside it, because it takes about a seventh of the time per question and a quarter of the model size. Newest-first failed on the tuning set
+(τ 0.9 lost 3 questions against A3, τ 0.87 lost 10) and is not carried forward. Holdout reports these two, A3
+and A4, nothing else.
