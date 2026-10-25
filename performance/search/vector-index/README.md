@@ -305,7 +305,7 @@ older store?
 ### Setup
 
 - Same machine as above, shared with other agents: load average 14–19 during the 100k run, 3.6–15 during the 600k run.
-- Node 24.19.0. cli-core branch `feat/vector-index` (commit `e98465ea`), built, with a local build of
+- Node 24.19.0. cli-core branch `feat/vector-index` (commit `fba30e6f`), built, with a local build of
   `@wirecat/cli-core-sqlite` 1.1.0 (sqlite-vec 0.1.9, plain `-O3`, linux-x64-gnu).
 - [core-index.mjs](core-index.mjs) writes a synthetic store through Core's own `openStoreContext` (migrations and
   triggers included): 4 accounts holding 55 / 25 / 15 / 5 % of the messages, 2,000 chats, 5 % of them hidden from
@@ -360,7 +360,7 @@ Medians in ms; first = the first query of a new process, after the store is open
   pays nothing; the embed path spends far longer in the model than in this.
 - **A plan bug, found here and fixed before these numbers**: the first version of the chunk-insert trigger let SQLite
   read every vector for each new chunk (7 ms a chunk at 100k vectors, 6.9 s per 1,000 messages). It now looks the
-  vector up by model and hash (cli-core `e98465ea`).
+  vector up by model and hash (cli-core `fba30e6f`).
 - The fill of an older store runs on the first writable open after the upgrade and blocks that command: 26 s at
   600k, so about 45 s at 1M by the same rate.
 
