@@ -173,10 +173,106 @@ What it showed:
 | mMARCO replacing the order (A4) | Answer@10 up, but one `revoked` question lost from the first three | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Don't ship in this form |
 | Reranker mixed at α 0.7, rich input, top 50 | Answer@3 on holdout: A3 67% → mMARCO 81%, BGE 85% (5 won, 0 lost) | mMARCO 136 MB, ~0.2 s; BGE 588 MB, ~1.5 s per question | Worth an opt-in stage after E5; pick the model after a search for small rerankers |
 | Newest-first by cosine | One `revoked` question fixed, three to ten others lost | ~0 ms | Don't ship; cancelled decisions need another approach |
+| Meaning floor before fusion (0.80–0.88) | Nothing at the top: no floor already lets no off-topic meaning-only item into the first five | ~0 ms | Don't add; no floor for per-message E5 ([meaning floor](#meaning-floor)) |
+
+## Meaning floor
+
+**Why.** Core 0.432.0 ([cli-core#1979](https://github.com/WireCatLabs/cli-core/pull/1979)) fuses discovery with
+up to 100 nearest messages by E5, and keeps all 100 even when nothing in the store answers the question. Core's
+existing E5 floor, 0.80 (`meaningFloor`), was measured on conversation chunks, not single messages. The question:
+should discovery drop meaning hits below a minimum cosine before fusion, and at what value? The choice rule was
+committed before any floor was scored ([PROTOCOL.md](PROTOCOL.md), section "Meaning floor").
+
+**Setup.**
+
+- Floors none, 0.80, 0.82, 0.84, 0.86, 0.88, applied to the 100 nearest messages; then the same fusion (RRF,
+  k = 60). Pool 100, 8 KiB.
+- A2 (discovery + E5, what Core ships) decides. A3 and the two frozen reranker mixes (rich input, `D` 50, α 0.7)
+  are scored beside it.
+- Word lists are the stored discovery runs (Core 0.412.0 with the "?" fix). The floor acts only on the meaning
+  list, which this harness computes like Core: float32 unit vectors, mean pooling, top 100. Two differences: a
+  document unit's text here starts with its section path (Core embeds the message text only), and the query is
+  the raw question (Core embeds `plainWords`, see point 6 below).
+- Tuning set: dev, calibration and eval (38 answerable, 10 `missing`/`premise`). Holdout: 27 answerable,
+  3 `missing`, no `premise`. **The holdout was opened once already, for the reranker choice**, so it is not unseen
+  data; it was scored once more, after the rule was committed.
+- With no floor, every arm matched the stored per-question rows on all four splits in Answer@3, reciprocal rank,
+  all conflict sides and item count (400 rows, 0 differences).
+- 1–3.5 minutes per split, peak 2.2 GB with E5, mMARCO and BGE loaded, same machine as above.
+
+"Off-topic meaning-only item": among the first five items, a hit that word search did not return and that holds
+no graded message. "Words only": no meaning hit is left that word search did not also find. No result was ever
+empty: every stored discovery run returned word hits for every question, so "empty or words only" is words only.
+
+**A2 by floor** (tuning · holdout):
+
+| Floor | Meaning hits kept (of 100) | Answer@3 | MRR | Answer@3 lost / won | Conflict sides lost | Answerable questions left words-only | `missing`/`premise` left words-only | `missing`/`premise` off-question bytes of 8 KiB |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| none | 100 · 100 | 50% · 67% | 0.44 · 0.61 | — | — | 0/38 · 0/27 | 0/10 · 0/3 | 7,498 · 7,749 |
+| 0.80 | 72 · 58 | 50% · 67% | 0.44 · 0.61 | 0/0 · 0/0 | 0 · 0 | 1/38 · 1/27 | 2/10 · 0/3 | 6,836 · 5,806 |
+| 0.82 | 34 · 28 | 55% · 70% | 0.46 · 0.63 | 0/2 · 0/1 | 0 · 0 | 7/38 · 9/27 | 3/10 · 1/3 | 6,822 · 5,737 |
+| 0.84 | 10 · 7 | 53% · 78% | 0.47 · 0.64 | 0/1 · 0/3 | 0 · 1 | 17/38 · 18/27 | 9/10 · 2/3 | 6,808 · 5,736 |
+| 0.86 | 2 · 2 | 50% · 70% | 0.38 · 0.66 | 2/2 · 2/3 | 0 · 2 | 34/38 · 25/27 | 9/10 · 2/3 | 6,839 · 5,733 |
+| 0.88 | 0 · 1 | 50% · 59% | 0.34 · 0.55 | 2/2 · 4/2 | 0 · 3 | 37/38 · 26/27 | 10/10 · 3/3 | 6,839 · 5,728 |
+
+Off-topic meaning-only items in the first five on `missing`/`premise`: **0 with no floor**, on every split.
+
+**With a reranker** (Answer@3 lost / won against the same reranker with no floor, tuning · holdout):
+
+| Floor | mMARCO, Answer@3 | mMARCO lost / won | mMARCO conflict sides lost | BGE int8, Answer@3 | BGE lost / won | BGE conflict sides lost |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| none | 66% · 81% | — | — | 68% · 85% | — | — |
+| 0.80 | 66% · 74% | 1/1 · 2/0 | 0 · 0 | 66% · 81% | 1/0 · 1/0 | 0 · 0 |
+| 0.82 | 61% · 70% | 3/1 · 3/0 | 0 · 0 | 66% · 81% | 3/2 · 1/0 | 0 · 0 |
+| 0.84 | 58% · 74% | 4/1 · 2/0 | 0 · 1 | 58% · 81% | 4/0 · 1/0 | 1 · 1 |
+| 0.86 | 61% · 74% | 4/2 · 2/0 | 0 · 2 | 58% · 78% | 4/0 · 2/0 | 1 · 2 |
+| 0.88 | 61% · 74% | 4/2 · 2/0 | 0 · 3 | 63% · 78% | 4/2 · 2/0 | 1 · 3 |
+
+**E5 cosine, query to message** (median, 10th–90th percentile):
+
+| Split | Answer messages | Other graded messages | Ungraded messages in the meaning top 100 | Best hit, answerable | Best hit, `missing`/`premise` |
+| --- | --- | --- | --- | --- | --- |
+| tuning | 0.819 (0.765–0.863) | 0.815 (0.765–0.861) | 0.811 (0.787–0.839) | 0.860 (0.836–0.890) | 0.848 (0.827–0.866) |
+| holdout | 0.816 (0.767–0.861) | 0.819 (0.748–0.876) | 0.805 (0.780–0.835) | 0.875 (0.837–0.905) | 0.860 (0.850–0.876) |
+| dev | 0.823 (0.770–0.866) | 0.822 (0.772–0.860) | 0.816 (0.792–0.843) | 0.862 (0.844–0.894) | 0.861 (0.844–0.888) |
+| calibration | 0.794 (0.718–0.827) | 0.783 (0.739–0.837) | 0.803 (0.781–0.833) | 0.847 (0.829–0.870) | 0.833 (0.821–0.844) |
+| eval | 0.837 (0.766–0.864) | 0.814 (0.767–0.868) | 0.811 (0.782–0.835) | 0.861 (0.840–0.884) | 0.839 (0.828–0.855) |
+
+Answer messages below each floor: 0.80 → 35% · 33%, 0.82 → 50% · 53%, 0.84 → 67% · 71%. The 0.877 / 0.903 in
+"Reranker variants" are cosines between two messages, a different quantity. All tables:
+[results/floor.md](results/floor.md).
+
+What it showed:
+
+1. **The rule picks no floor.** The harm a floor was meant to stop does not reach the top: with no floor, no
+   `missing` or `premise` question had an off-topic meaning-only item in the first five, on any split. Those
+   first five are messages both lists found, or word hits. Meaning-only hits sit lower down.
+2. **E5 cosine does not tell an answer from noise for single messages.** Answer messages (median 0.82) score like
+   the ungraded messages around them (0.81), and a third of them are below 0.80. The best hit for a question
+   nothing answers (0.85–0.86) overlaps the best hit for one that has an answer (0.86–0.88). At 0.84 the floor
+   leaves no meaning hit that word search did not also find for 9 of 10 unanswerable questions, and for 17 of 38
+   answerable ones.
+3. **0.80, Core's chunk floor, is neutral for A2 and harmful after a reranker.** Without a reranker it lost and won
+   nothing on either set and cut off-question bytes for `missing`/`premise` by 9% (tuning) and 25% (holdout). With
+   mMARCO or BGE it lost 1–2 answers on each set.
+4. **0.82–0.84 lift A2 by thinning the meaning list** (holdout Answer@3 67% → 78% at 0.84), but they leave about
+   half of the answerable questions with no meaning hit, lose a conflict side on holdout from 0.84, and lose 1–4
+   answers once a reranker is on. The reranker with no floor gets more (85%).
+5. **No floor value makes the result abstain.** Word hits fill the 8 KiB budget for unanswerable questions with or
+   without meaning hits: at 0.88 they still carry 5.7–6.8 KB of off-question text.
+6. **Core's query text differs slightly.** Core embeds `plainWords(question)`, which drops the "?". That moves the
+   best hit's cosine by a median of +0.010 on tuning and +0.003 on holdout (−0.017 to +0.034 per question), so a
+   floor here sits up to about 0.01 below the same number in Core.
+
+**Not measured:** real data; Core's exact message text (section paths are in the embedded text here); Core 0.432.0's own word lists (0.412.0 with the "?" fix was used); messages longer than
+one chunk (Core scores a message by its first chunk; synthetic units fit in one); a threshold on the reranker
+score as an abstention signal. Holdout has only 3 questions that nothing answers, so the abstention side rests
+on the tuning set (10).
 
 ## What was not measured
 
-- Abstention, answer generation, claim support.
+- Abstention, answer generation, claim support. A meaning floor is not an abstention signal
+  ([meaning floor](#meaning-floor)).
 - A learned feature ranker: it needs a broader dev set.
 - A 2–5 GB control model.
 - Core's own conversation-chunk E5 search: the E5 arm here embeds units directly.
@@ -207,3 +303,14 @@ python3 performance/search/evidence-pipeline/variants_report.py /var/tmp/new-hol
 [run.sh](run.sh) gives every step a fresh temporary HOME, store and state. A result path that exists is refused.
 [measure_e5.py](measure_e5.py) measures E5 alone. [validate.py](validate.py) checks a split and prints only
 counts and hashes.
+
+Meaning floor (stored discovery runs, both rerankers in `CACHE`):
+
+```sh
+cd performance/search/evidence-pipeline
+./floor.sh dev results/dev-fixq/discovery.json /var/tmp/new-floor-dev CACHE PYTHON
+PYTHON -I floor_report.py tuning=/var/tmp/new-floor-dev/floors.json
+```
+
+The other splits read `results/calibration-l0.9`, `results/eval-fixq` and `results/holdout`. `floor_report.py`
+takes `NAME=a.json,b.json` groups; [results/floor.md](results/floor.md) was made from `results/floor-*`.

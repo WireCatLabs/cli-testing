@@ -32,6 +32,8 @@ parser.add_argument('--threads', type=int, default=4)
 parser.add_argument('--variants', default='', help='rerankers for the variant grid of PROTOCOL.md, e.g. mmarco,bge-int8')
 parser.add_argument('--taus', default='', help='newest-first cosine thresholds, e.g. 0.88,0.92')
 parser.add_argument('--cosines', action='store_true', help='print the E5 cosine spread among top hits and stop')
+parser.add_argument('--floors', default='',
+                    help='minimum E5 cosines for the meaning list before fusion, e.g. 0.80,0.84; scores them and stops')
 args = parser.parse_args()
 assert not args.output.exists(), 'refuse to overwrite a run'
 root = Path(__file__).resolve().parent
@@ -252,7 +254,7 @@ def mmr(items, relevance, lam):
     return chosen
 
 
-def evidence(hits, with_context, dedupe, budget, qv=None):
+def evidence(hits, with_context, dedupe, budget, qv=None, shown=None):
     """Items in hit order while they fit the byte budget; an item that does not fit is skipped and counted.
     With a query vector, long units shrink to passages."""
     included, prints, items, texts, used = set(), set(), [], {}, 0
@@ -277,6 +279,8 @@ def evidence(hits, with_context, dedupe, budget, qv=None):
         included.update(item)
         texts.update(rendered)
         items.append(item)
+        if shown is not None:
+            shown.append(uid)
         used += size
     return items, texts, used, extras
 
@@ -408,6 +412,69 @@ if args.cosines:
             spread['graded'].extend(cos[i, j] for a, i in enumerate(useful) for j in useful[a + 1:])
     print(json.dumps({key: {str(q): round(float(np.quantile(v, q)), 3) for q in (.5, .9, .95, .99)} | {'n': len(v)}
                       for key, v in spread.items()}))
+    sys.exit()
+
+def plain_words(query):
+    """Core's plainWords (src/services/pictures.ts): the text the meaning lane embeds instead of the raw question."""
+    query = re.sub(r'\b(?:text|content|transcript|filename):("[^"]*"|\S+)', r'\1', query, flags=re.I)
+    query = re.sub(r'\b[a-z_]+:("[^"]*"|\[[^\]]*\]|\{[^}]*\}|\([^)]*\)|\S+)', ' ', query, flags=re.I)
+    query = re.sub(r'\b(?:AND|OR|NOT)\b', ' ', query)
+    return re.sub(r'\s+', ' ', re.sub(r'[()"+\-~^*?\\[\]{}!|&]', ' ', query)).strip()
+
+
+if args.floors:
+    floors = [None] + [float(value) for value in args.floors.split(',')]
+    rerankers = {'mmarco': mmarco, 'bge-int8': Encoder('bge-int8')}
+    floor_rows, cosines = [], []
+    for qid, text, label, qv, lexical, dense, _ in asked:
+        similarity = matrix @ qv
+        core_similarity = matrix @ e5.embed('query: ' + plain_words(text))
+        words = lexical[:100]
+        grades = {uid: int(grade) for uid, grade in label['grades'].items()}
+        cosines.append({'question': qid, 'kind': label['kind'], 'answerable': label['answerable'],
+                        'top1': float(similarity[row_of[dense[0]]]),
+                        'top1_core_query': float(core_similarity.max()),
+                        'graded': {uid: [grade, float(similarity[row_of[uid]])] for uid, grade in grades.items()
+                                   if uid in row_of},
+                        'ungraded_top100': [float(similarity[row_of[uid]]) for uid in dense[:100]
+                                            if grades.get(uid, 0) == 0]})
+        pairs = {name: {} for name in rerankers}
+        for floor in floors:
+            near = [uid for uid in dense[:100] if floor is None or similarity[row_of[uid]] >= floor]
+            meaning_only = set(near) - set(words)
+            fused = rrf(words, near)
+            a2 = ranked(fused)[:100]
+            base = mmr(a2, fused, args.mmr_lambda)
+            orders = {'A2': (a2, False), 'A3': (base, True)}
+            for name, encoder in rerankers.items():
+                head = base[:50]
+                for uid in head:
+                    if uid not in pairs[name]:
+                        pairs[name][uid] = encoder.pair(text, pair_input(uid, True))
+                mixed = dict(zip(head, .3 * scaled([fused[u] for u in head]) + .7 * scaled([pairs[name][u] for u in head])))
+                orders[f'{name} rich D=50 α=0.7'] = (mmr(ranked(mixed), mixed, args.mmr_lambda) + base[50:], True)
+            for arm, (hits, dedupe) in orders.items():
+                shown = []
+                items, texts, used, extras = evidence(hits, True, dedupe, 8192, qv if dedupe else None, shown)
+                scores = score_items(label, items, texts, used, extras)
+                top5 = list(zip(shown[:5], items[:5]))
+                floor_rows.append({
+                    'question': qid, 'kind': label['kind'], 'answerable': label['answerable'], 'floor': floor,
+                    'arm': arm, 'meaning_kept': len(near), 'meaning_only_kept': len(meaning_only),
+                    'meaning_only_top5': sum(hit in meaning_only for hit, _ in top5),
+                    'meaning_only_offtopic_top5': sum(hit in meaning_only and max(grades.get(u, 0) for u in item) == 0
+                                                      for hit, item in top5),
+                    'words_only': not meaning_only, 'empty': not hits,
+                    **{key: value for key, value in scores.items() if key != 'units'}})
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps({
+        'purpose': 'Meaning floor before fusion; see PROTOCOL.md "Meaning floor"', 'split': args.split,
+        'inputs': {str(path.relative_to(root)): sha(path) for path in corpus_paths + question_paths},
+        'discovery_run': {'path': str(args.discovery), 'sha256': sha(args.discovery)},
+        'worker_sha256': sha(Path(__file__)), 'settings': {'floors': floors, 'mmr_lambda': args.mmr_lambda,
+                                                          'rrf_k': RRF_K, 'meaning_depth': 100, 'budget': 8192},
+        'rows': floor_rows, 'cosines': cosines}, ensure_ascii=False, indent=1) + '\n')
+    print(json.dumps({'split': args.split, 'rows': len(floor_rows)}))
     sys.exit()
 
 variants = []
