@@ -24,14 +24,6 @@
     ],
     "maxSize": 16777216
   },
-  "markdown": {
-    "formatter": {
-      "enabled": false
-    },
-    "linter": {
-      "enabled": false
-    }
-  },
   "overrides": [
     {
       "includes": ["src/**"],
