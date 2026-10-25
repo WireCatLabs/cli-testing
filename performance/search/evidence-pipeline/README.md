@@ -269,6 +269,64 @@ one chunk (Core scores a message by its first chunk; synthetic units fit in one)
 score as an abstention signal. Holdout has only 3 questions that nothing answers, so the abstention side rests
 on the tuning set (10).
 
+## In Core
+
+**Why.** The owner decided to use the reranker by default, since it improves search (25 October 2026). cli-core
+[feat/discover-rerank](https://github.com/WireCatLabs/cli-core/tree/feat/discover-rerank) adds the winning variant
+to `search messages --discover`: top 50, rich input, α 0.7, mMARCO by default, BGE int8 by profile setting. The
+numbers above are native ONNX Runtime; Core runs every model through WebAssembly
+(`@wirecat/cli-core-onnx`, ONNX Runtime 1.30.0). The questions: do the scores survive the change of runtime, and
+does scoring fit discovery's 2 s?
+
+**Setup.** Same laptop (Ryzen AI 9 HX 470, Linux 7.0, Node 24.19), 8 threads, batch 1, the pinned files of
+[models.json](models.json). Synthetic data only, a fresh temporary state folder and store for every run.
+
+- Agreement: 9 holdout questions (3 per project), each with its graded units plus random units of the same
+  project to 50, as `[source · author · date] text`. [rerank_pairs.py](rerank_pairs.py) scores them natively,
+  [core/rerank-agreement.mjs](core/rerank-agreement.mjs) through Core's runtime and tokenizer.
+- Latency: [core/rerank-latency.mjs](core/rerank-latency.mjs) over cli-core's build, a synthetic store of
+  100,000 messages in 20 chats, 4 natural questions. `inprocess` is one CLI call: a fresh process per question.
+  `warm` is the MCP server: the reranker held in its own process, two rounds.
+- Memory: [core/rerank-memory.mjs](core/rerank-memory.mjs), one cold `--discover` on 1,000 messages with E5
+  vectors built, so E5 and then the reranker load into one process, as in the CLI.
+
+```sh
+python -I rerank_pairs.py . CACHE/mmarco onnx/model_quint8_avx2.onnx /var/tmp/pairs-mmarco.json
+(cd CLI_CORE && node "$OLDPWD/core/rerank-agreement.mjs" CACHE/mmarco onnx/model_quint8_avx2.onnx /var/tmp/pairs-mmarco.json 8)
+node core/rerank-latency.mjs CLI_CORE/dist CACHE mmarco inprocess 1 0    # question 0, one cold call
+node core/rerank-latency.mjs CLI_CORE/dist CACHE mmarco warm 2
+```
+
+**Results.**
+
+| | mMARCO | BGE int8 |
+| --- | ---: | ---: |
+| Token ids, Core vs Python `tokenizers` (450 pairs) | 450 identical | 450 identical |
+| Spearman, WebAssembly vs native scores, per question | 0.97–0.99 | 0.87–0.98 |
+| Questions whose first three stay the same | 7 of 9 | 8 of 9 |
+| Load, cold | 0.8–1.0 s | 1.0–1.3 s |
+| Scoring 50 hits, cold CLI call | 0.9–1.7 s | 6.7–9.8 s |
+| Scoring 50 hits, warm (MCP) | 0.83–1.0 s (first call 1.7 s) | 6.8–9.7 s |
+| Native, for comparison (table above) | ~0.2 s | ~1.5 s |
+| Word search of discovery itself | 0.15–0.3 s | 0.15–0.3 s |
+| Peak memory, cold `--discover` with E5 (without a reranker: 1.0 GB) | 1.6 GB | 2.8 GB |
+
+What it showed:
+
+1. **The scores survive.** Tokens are identical; the small score differences come from the int8 kernels, and
+   the order barely moves.
+2. **WebAssembly is 4–6× slower than native.** mMARCO alone takes about half of discovery's 2 s on a cold CLI
+   call, and with the word search it passed 2 s on one question in four. BGE never fits 2 s.
+3. **So scoring is not on the word search's clock in Core.** Loading and scoring both sit outside discovery's
+   2 s; scoring has 15 s of its own, and a reranking that would not finish is dropped, never the search. At a
+   10 s cap BGE was dropped on one question in four.
+4. **BGE as the default would make every `--discover` take 7–10 s** on this laptop. mMARCO stays the default.
+5. The x86 name of the mMARCO file (`quint8_avx2`) does not matter in Core: WebAssembly runs the same file on
+   any processor. The `qint8_arm64` file of the same revision gave the same agreement and speed here.
+
+Not measured: Answer@3 through Core's own discovery (the holdout above used the harness's fused order), Bun,
+arm64 and Apple silicon (inferred from WebAssembly, not run), slower processors, real messages.
+
 ## What was not measured
 
 - Abstention, answer generation, claim support. A meaning floor is not an abstention signal
