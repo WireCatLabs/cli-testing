@@ -36,7 +36,7 @@ discovery as the baseline. The decision it feeds: which stage becomes the next p
 Recommended next slice: merge and release the "?" fix, then make native context part of discovery's evidence
 (check first whether `--discover --thread` on a store with built conversations already does it). Next comes a
 per-message E5 index fused with discovery, behind the existing local-model choice. No new model download.
-Details in [the decision table](#decision-table).
+Details in [the results](#results-eval-fixed-discovery) and [reranker variants](#reranker-variants).
 
 ## Setup
 

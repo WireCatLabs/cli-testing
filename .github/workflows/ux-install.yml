@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install pinned development manager
-        run: npm install --global pnpm@11.20.0
+        run: npm install --global pnpm@11.28.8
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec vitest run src/ux.test.ts
       - run: pnpm build
