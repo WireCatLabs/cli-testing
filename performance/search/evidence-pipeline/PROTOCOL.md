@@ -172,3 +172,10 @@ in the first five on `missing`/`premise` questions than no floor. If no floor pa
 data; its no-floor numbers are public. It is scored once more, with the chosen floor and every other floor
 beside it, after this section is committed. It has 3 `missing` and no `premise` questions, so it tests mostly
 "no answerable question lost"; the off-topic benefit rests on the tuning set.
+
+**After the floor runs.** `pipeline.py` gained `--floors` and an optional record of which hit each evidence item
+came from; its other paths are unchanged, and the no-floor rows matched every stored row in Answer@3,
+reciprocal rank, all conflict sides and item count. The rule above was committed in 635a8e6, before any floor
+was scored. The rule picked no
+floor on the tuning set: with no floor, no `missing`/`premise` question had an off-topic meaning-only item in the
+first five, so condition (4) could not pass. Holdout agreed (results in the README, "Meaning floor").
