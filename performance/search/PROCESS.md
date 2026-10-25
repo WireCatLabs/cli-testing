@@ -278,3 +278,12 @@ this account does not replace their protocols or raw evidence.
 
 The [startup measurement](startup/README.md) separates process, store and model costs on synthetic data.
 Model loading dominates this component run; end-to-end CLI versus long-lived MCP comparison remains next.
+
+## Compact evidence pipeline handoff
+
+The [25 October feasibility check](compact-pipeline/README.md) inventories prior arithmetic/feature/
+neural results and prepares a next-agent experiment sequence. The existing 136 MB multilingual model
+and a 588 MB BGE export run on a small authored EN/RU diagnostic; the larger export does not improve
+rank-one answers there. This is feasibility evidence, not a new held-out ranking comparison or a model
+selection for shipping. Native context, candidate coverage, equal evidence budgets and cheap ranking
+remain first; optional larger controls have explicit download/runtime/index accounting.

@@ -2,6 +2,10 @@
 
 For the full sequence of ideas, experiments and conclusions, read [PROCESS.md](PROCESS.md).
 
+The [compact pipeline handoff and feasibility check](compact-pipeline/README.md) reuses these
+experiments, compares the existing multilingual reranker with a larger CPU export on synthetic
+diagnostics, and orders the next mathematical/context/model experiments within explicit budgets.
+
 Start with [LIGHTWEIGHT-RANKING.md](LIGHTWEIGHT-RANKING.md) for the small-footprint options,
 then [MODELS.md](MODELS.md) for the plain-language model explanation, then
 [the evaluation guide](combined-search-evaluation.md) for the metrics. The
