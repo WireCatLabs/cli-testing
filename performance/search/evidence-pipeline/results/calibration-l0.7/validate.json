@@ -1,0 +1,37 @@
+{
+ "split": "calibration",
+ "files": {
+  "background.json": {
+   "sha256": "a058ce7b1ded5383ea79e4bce880957cf463181eafca1a1ce0e570717d071ee1",
+   "units": 1500,
+   "sources": {
+    "chat": 10
+   }
+  },
+  "devdays.json": {
+   "sha256": "0f06aa76665d19b7a52cf49ce7cbf18b2ecb2408da06eb1701932fa49c8f6fbe",
+   "questions": 10
+  }
+ },
+ "kinds": {
+  "negative": 1,
+  "conditional": 1,
+  "approval": 1,
+  "fact": 1,
+  "unresolved": 1,
+  "conflict": 1,
+  "revoked": 1,
+  "same-name": 1,
+  "missing": 1,
+  "premise": 1
+ },
+ "languages": {
+  "en": 7,
+  "ru": 3
+ },
+ "answerable": {
+  "True": 6,
+  "False": 4
+ },
+ "errors": []
+}

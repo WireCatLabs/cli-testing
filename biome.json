@@ -6,7 +6,7 @@
       "**",
       "!**/dist",
       "!**/node_modules",
-      "!pnpm-lock.yaml",
+      "!**/pnpm-lock.yaml",
       "!.claude/settings.json",
       "!.worktrees",
       "!config/wirecat",
@@ -17,7 +17,10 @@
       "!performance/documents/html-readers/manifest.json",
       "!performance/startup/cold-start-and-install/results.json",
       "!performance/tasks/duplicates/results-*.json",
-      "!performance/tasks/categories/results.json"
+      "!performance/tasks/categories/results.json",
+      "!performance/search/evidence-pipeline/corpus",
+      "!performance/search/evidence-pipeline/questions",
+      "!performance/search/evidence-pipeline/results"
     ],
     "maxSize": 16777216
   },
@@ -55,6 +58,7 @@
       "includes": [
         "performance/search/message-search/**",
         "performance/search/everywhere/**",
+        "performance/search/search-all-meaning/**",
         "performance/projects/evidence/**",
         "performance/projects/review/**",
         "performance/projects/fixture.ts",

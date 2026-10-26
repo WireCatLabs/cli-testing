@@ -284,3 +284,37 @@ The experiments now live in `cli-testing/performance/search`; implementation tes
 the SDK/client code. Public search and testing documentation were updated separately, keeping
 reader explanations simple and deeper benchmark details here. Historical reports remain available;
 this account does not replace their protocols or raw evidence.
+
+## Search startup stages
+
+The [startup measurement](startup/README.md) separates process, store and model costs on synthetic data.
+Model loading dominates this component run; end-to-end CLI versus long-lived MCP comparison remains next.
+
+## Compact evidence pipeline handoff
+
+The [25 October feasibility check](compact-pipeline/README.md) inventories prior arithmetic/feature/
+neural results and prepares a next-agent experiment sequence. The existing 136 MB multilingual model
+and a 588 MB BGE export run on a small authored EN/RU diagnostic; the larger export does not improve
+rank-one answers there. This is feasibility evidence, not a new held-out ranking comparison or a model
+selection for shipping. Native context, candidate coverage, equal evidence budgets and cheap ranking
+remain first; optional larger controls have explicit download/runtime/index accounting.
+
+## Evidence pipeline: one cheap stage at a time
+
+The [25 October evidence pipeline](evidence-pipeline/README.md) ran that sequence on five synthetic projects,
+with sealed evaluation questions written by a separate agent. Published discovery found nothing for a quarter to
+half of natural questions, because a trailing "?" parsed as a wildcard
+([cli-core#1935](https://github.com/WireCatLabs/cli-core/pull/1935)). With that fixed, native context improved 7
+eval questions and worsened none, and E5 fusion put the answer among the candidates for 94% of them. Diversity
+changed nothing, and mMARCO was a wash (5 better, 4 worse, revocations lost), so it stays a comparator. Conflicts,
+off-question bytes and abstention remain open.
+
+## Vector search storage
+
+The [25 October vector-index comparison](vector-index/README.md) measured Core's search by meaning on synthetic
+stores of 100k and 1M chunks. The current scan takes 2.9 s warm and over a minute cold for one account's 385k
+message chunks at 1M; joins and per-row reads cost more than the arithmetic. Packed blocks (1,024 vectors per row,
+per account and type) and sqlite-vec `vec0` both cut the first query to about 0.2–0.4 s warm, exactly; cold, packed
+took 2.4–3.4 s and `vec0` 1.4 s. Packed blocks need no native library, so they are the recommendation, with the SQL
+scan kept for narrow filters, where every score-first layout loses results. ANN indexes were faster per query but cost an index open per process
+and a second store to keep in step.

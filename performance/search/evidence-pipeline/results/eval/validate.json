@@ -1,0 +1,41 @@
+{
+ "split": "eval",
+ "files": {
+  "background.json": {
+   "sha256": "e935de8efaeb2493cd6b0b9e8cffa75dd2f943d2e23dfebd6773890e27c5b44a",
+   "units": 1500,
+   "sources": {
+    "chat": 10
+   }
+  },
+  "dentavita.json": {
+   "sha256": "6d9aff77ff54249a8c701557a9cc434504facd38419fbb7f55e851e7dcf4a7d6",
+   "questions": 12
+  },
+  "mirlo.json": {
+   "sha256": "780c9062b3a3b61abd679ba411e3f8886c8815ccfd045245b5ca552225f0a991",
+   "questions": 12
+  }
+ },
+ "kinds": {
+  "negative": 2,
+  "conditional": 2,
+  "approval": 4,
+  "unresolved": 2,
+  "conflict": 2,
+  "revoked": 2,
+  "same-name": 2,
+  "missing": 2,
+  "premise": 2,
+  "fact": 4
+ },
+ "languages": {
+  "ru": 13,
+  "en": 11
+ },
+ "answerable": {
+  "True": 16,
+  "False": 8
+ },
+ "errors": []
+}

@@ -1,0 +1,8 @@
+{"step":"setup","mdMime":"text/markdown"}
+{"step":"change-feed","docListed":["2026-10-23T16:36:46.126Z"],"mdListed":["2026-10-23T16:37:12.891Z"],"since":"2026-10-23T15:23:29.104Z"}
+{"step":"md-after-hand-edit","mimeType":"text/markdown","stillMarkdown":true,"changedFromUpload":true,"tickLine":"- [x] open item  ","tableKept":true,"boldKept":true,"bytes":705}
+{"step":"md-comments","count":0,"anchored":0}
+{"step":"doc-after-hand-edit","handEditSeen":true}
+{"step":"md-comments-after-outside-edit","count":0,"stillThere":0}
+{"step":"md-inline-comments","markers":1,"trailer":true,"trailerHasAuthor":true,"trailerHasBody":true,"trailerHasToken":true,"commentsApiCount":0,"tableSeparator":"| :---- | :---- |","revisions":3,"revisionMimes":["text/markdown"]}
+{"step":"cleanup","trashed":true}

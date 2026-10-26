@@ -1,0 +1,24 @@
+load average at start: 6.9 11.6 15.5
+--version	pr	wall 629	cpu 910	exit 0
+--version	pr+core	wall 61	cpu 60	exit 0
+--version	bundle	wall 551	cpu 670	exit 0
+--help	pr	wall 619	cpu 880	exit 0
+--help	pr+core	wall 660	cpu 930	exit 0
+--help	bundle	wall 570	cpu 680	exit 0
+config show --json	pr	wall 630	cpu 940	exit 0
+config show --json	pr+core	wall 654	cpu 950	exit 0
+config show --json	bundle	wall 509	cpu 640	exit 0
+runs list --json	pr	wall 673	cpu 980	exit 0
+runs list --json	pr+core	wall 648	cpu 950	exit 0
+runs list --json	bundle	wall 610	cpu 740	exit 0
+load average at end: 6.4 10.4 14.7
+load average at start: 6.9 10.4 14.7
+--version	bundle	wall 610	cpu 720	exit 0
+--version	bundle+cache	wall 470	cpu 590	exit 0
+--help	bundle	wall 701	cpu 830	exit 0
+--help	bundle+cache	wall 576	cpu 720	exit 0
+config show --json	bundle	wall 680	cpu 810	exit 0
+config show --json	bundle+cache	wall 551	cpu 690	exit 0
+runs list --json	bundle	wall 586	cpu 710	exit 0
+runs list --json	bundle+cache	wall 468	cpu 600	exit 0
+load average at end: 8.8 10.4 14.5

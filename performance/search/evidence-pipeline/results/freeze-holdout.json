@@ -1,0 +1,35 @@
+{
+ "frozen_at": "2026-10-25T11:58:44+00:00",
+ "stage": "holdout",
+ "settings": {
+  "mmr_lambda": 0.9
+ },
+ "variants": [
+  "bge-int8 rich D=50 \u03b1=0.7",
+  "mmarco rich D=50 \u03b1=0.7"
+ ],
+ "code": {
+  "PROTOCOL.md": "dc0f6694a516e4e10c3ec0ffaed3fab479d2daf5b140bbcbbb1c88d1e8264843",
+  "CORPUS.md": "156388ceadda1512da09ae98130c7c1cfb9633366d99ee335c9c2ea03a6fdec7",
+  "pipeline.py": "1d3ddd9c6e17b3cde57b7a1d80fe5354eeca91916f0883de99f9a80b4314b1e4",
+  "core/discover.mjs": "05c45aa760eabe0967b161094bbe87e23aa2cdebd0011b3cbb64dbc374261ec5",
+  "core/package.json": "01168f72b235d9e404cf8821a73aad7accf89c1e9a31419893756398cf40a39d",
+  "core/pnpm-lock.yaml": "b1a972cc1667b8468c089759b52081d90ef3ef672d5063006470e0bcb32e33bb",
+  "background.py": "aa62133790c8e9e11db5680763fece750fc535d487da0b3ac1e15729b1aff7f7",
+  "validate.py": "a580a15ced72907673155257405f2d8391b0e005af3476bec40720b2c6e29a63",
+  "report.py": "ae29255d4291cd6774de5a6fcdd36c3f4f5fb77908d4c192243752d18709ebae",
+  "variants_report.py": "971cc5cfc15ee7f94c8a97a84b3f287b5987fc4c1b19a67e22af17a30ecb112c",
+  "run.sh": "96c92d0c6dd942ac3d6bc72eba42fceb864e9ad2da292ca82ccce0d15eb0ddc0",
+  "models.json": "fe013347449cd3ebec31d91d2293d388110fd4ae4835d0057cf3bff1dc1bc376",
+  "requirements.lock": "6d093289fc74137b7b508d9f0cdece09ad5d335da5175c1129991cd537a87e19"
+ },
+ "inputs": {
+  "corpus/holdout/background.json": "074e704ade90a8c6f5b9c82d084c9541eb75927fc6b93562748b1584bddebaf6",
+  "corpus/holdout/meeplehaus.json": "fcf5949caed3ed88ee59aae7d53d061987e9e8a57f64373a33f89868842cc12e",
+  "corpus/holdout/pulsefit.json": "d9460f1929a43e7df4f585409551a012445e17e4357b4b3008e4ef2e7e4d434b",
+  "corpus/holdout/zelenydvor.json": "24181b46abf46ba9c6a99683fccc0bf767d2212e86809c538b091dee4fa5f251",
+  "questions/holdout/meeplehaus.json": "e2e9f3d56ccb83b8de9c07943700fecc7f0d166b5b306dd40d8765b6476d6a4c",
+  "questions/holdout/pulsefit.json": "4e79cfafbb7e3a90ad812c9d7715808d8a3ca7475979331e9c4175075bf4340e",
+  "questions/holdout/zelenydvor.json": "b73fdb35830d8a2aa089570fb35daa4d9f7cbc035276da1aaea94862834c6190"
+ }
+}

@@ -2,8 +2,8 @@ import { spawnSync } from "node:child_process"
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { dirname, join, resolve } from "node:path"
-import { Client } from "@modelcontextprotocol/sdk/client/index.js"
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
+import { Client } from "@modelcontextprotocol/client"
+import { StdioClientTransport } from "@modelcontextprotocol/client/stdio"
 import {
   assertJson,
   type ContractFile,
@@ -92,19 +92,11 @@ export const readContractTools = async (process: ContractProcess): Promise<unkno
     }
   })
   const signal = AbortSignal.timeout(process.timeout)
-  const tools: unknown[] = []
+  let tools: unknown[] = []
   try {
     await client.connect(transport, { timeout: process.timeout, signal })
-    const seen = new Set<string>()
-    let cursor: string | undefined
-    do {
-      const page = await client.listTools(cursor ? { cursor } : {}, { timeout: process.timeout, signal })
-      tools.push(...page.tools)
-      cursor = page.nextCursor
-      if (cursor && seen.has(cursor)) throw new Error("MCP pagination repeated a cursor")
-      if (cursor) seen.add(cursor)
-      if (tools.length > 10000) throw new Error("MCP tool list exceeded its limit")
-    } while (cursor)
+    tools = (await client.listTools(undefined, { timeout: process.timeout, signal })).tools
+    if (tools.length > 10000) throw new Error("MCP tool list exceeded its limit")
   } finally {
     await client.close()
   }
@@ -215,7 +207,7 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
     NODE_NO_WARNINGS: "1",
     WIRECAT_CONTRACT_DENIED: marker,
   }
-  for (const app of ["MAX", "TG", "ZM"]) {
+  for (const app of ["MAX", "TG", "WA", "ZM"]) {
     for (const directory of ["CONFIG", "STATE", "CACHE"]) env[`${app}_${directory}_DIR`] = join(root, app, directory)
     env[`${app}_NO_UPDATE_CHECK`] = "1"
   }

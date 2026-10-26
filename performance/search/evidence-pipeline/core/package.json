@@ -1,0 +1,8 @@
+{
+  "name": "evidence-pipeline-core-arms",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@wirecat/cli-core": "0.412.0"
+  }
+}

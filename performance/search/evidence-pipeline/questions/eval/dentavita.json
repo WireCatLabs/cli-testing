@@ -1,0 +1,283 @@
+[
+ {
+  "id": "dentavita-q01",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Какие удостоверяющие документы пациента разрешено держать в карточке новой CRM?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "dvt-026": 3,
+   "dvt-024": 1,
+   "dvt-027": 1,
+   "dvt-126": 1,
+   "dvt-261": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-026"
+   ]
+  ],
+  "note": "Answer is a denial of scans plus one allowed field; the document's field list never says what is forbidden."
+ },
+ {
+  "id": "dentavita-q02",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Попадёт ли филиал на Ленинском в первую очередь открытия записи через сайт?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "dvt-296": 3,
+   "dvt-335": 2,
+   "dvt-292": 1,
+   "dvt-142": 1,
+   "dvt-155": 1,
+   "dvt-169": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-296"
+   ]
+  ],
+  "note": "Yes only if the full schedule incl. surgeons is in the MIS by launch; later progress reports never close the condition."
+ },
+ {
+  "id": "dentavita-q03",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Директор согласовала, что пациент в кабинете увидит суммы по этапам лечения?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "dvt-044": 3,
+   "dvt-134": 3,
+   "dvt-321": 3,
+   "dvt-269": 2,
+   "dvt-046": 1,
+   "dvt-095": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-044",
+    "dvt-269"
+   ],
+   [
+    "dvt-134"
+   ],
+   [
+    "dvt-321"
+   ]
+  ],
+  "note": "Only the table of contents was approved, not the section content; the agency lead misread it as full approval."
+ },
+ {
+  "id": "dentavita-q04",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Кто дал добро на оплату тарифа для смс-напоминаний и какой объём выбрали?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "dvt-070": 3,
+   "dvt-069": 2,
+   "dvt-071": 1,
+   "dvt-056": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-069",
+    "dvt-070"
+   ]
+  ],
+  "note": "The approval is a bare '+' reply; the request carries the package and price."
+ },
+ {
+  "id": "dentavita-q05",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Утвердили ли запись пациентов через автоматического помощника в мессенджере?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "dvt-060": 2,
+   "dvt-062": 2,
+   "dvt-326": 2,
+   "dvt-325": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-060",
+    "dvt-062"
+   ],
+   [
+    "dvt-060",
+    "dvt-326"
+   ]
+  ],
+  "note": "Proposal was deferred to after launch twice; never accepted or rejected."
+ },
+ {
+  "id": "dentavita-q06",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "С какого числа пациенты смогут сами записываться на сайте клиник?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "dvt-281": 2,
+   "dvt-330": 2,
+   "dvt-163": 2,
+   "dvt-252": 2,
+   "dvt-247": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-330",
+    "dvt-163",
+    "dvt-252"
+   ],
+   [
+    "dvt-330",
+    "dvt-281",
+    "dvt-252"
+   ]
+  ],
+  "note": "Agency fixed one date at the demo, the director later told staff the spec date; both stand and the agency says it is open."
+ },
+ {
+  "id": "dentavita-q07",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Через что клиника сейчас шлёт людям оповещения о предстоящем приёме?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "dvt-079": 3,
+   "dvt-148": 3,
+   "dvt-319": 3,
+   "dvt-288": 2,
+   "dvt-200": 1,
+   "dvt-272": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-288",
+    "dvt-079"
+   ],
+   [
+    "dvt-288",
+    "dvt-148"
+   ],
+   [
+    "dvt-288",
+    "dvt-319"
+   ]
+  ],
+  "note": "Messenger-first decision at the status meeting was revoked a week later; SMS plus push only."
+ },
+ {
+  "id": "dentavita-q08",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Пока Ирина из агентства отдыхает, к кому идти с вопросами по проекту?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "dvt-086": 3,
+   "dvt-103": 2
+  },
+  "evidence_sets": [
+   [
+    "dvt-086"
+   ]
+  ],
+  "note": "The clinic's admin Irina also has a vacation with a different stand-in; that is the trap."
+ },
+ {
+  "id": "dentavita-q09",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Какое время реакции на инциденты гарантирует подрядчик по договору сопровождения?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "dvt-074": 1,
+   "dvt-075": 1,
+   "dvt-107": 1,
+   "dvt-332": 1,
+   "dvt-333": 1
+  },
+  "evidence_sets": [],
+  "note": "Support terms were promised repeatedly but never sent; the SMS gateway's own response time is a distractor."
+ },
+ {
+  "id": "dentavita-q10",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Почему подрядчик увеличил стоимость второго этапа?",
+  "kind": "premise",
+  "answerable": false,
+  "grades": {
+   "dvt-093": 2,
+   "dvt-092": 2,
+   "dvt-282": 1,
+   "dvt-095": 1,
+   "dvt-203": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-092",
+    "dvt-093"
+   ]
+  ],
+  "note": "False premise: the stage-two estimate is explicitly unchanged; an unrelated optional add-on is the distractor."
+ },
+ {
+  "id": "dentavita-q11",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Как долго в новой системе живут записи телефонных разговоров?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "dvt-033": 3,
+   "dvt-276": 3,
+   "dvt-032": 2,
+   "dvt-180": 1,
+   "dvt-214": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-032",
+    "dvt-033"
+   ],
+   [
+    "dvt-276"
+   ]
+  ],
+  "note": "Stated as 'three months' in chat and as a day count in the spec; backup, SMS log and key-rotation periods are traps."
+ },
+ {
+  "id": "dentavita-q12",
+  "project": "dentavita",
+  "language": "ru",
+  "text": "Кто из сотрудников клиники отвечает за приёмочные испытания онлайн-записи и кто их формально закрывает?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "dvt-301": 3,
+   "dvt-300": 2,
+   "dvt-283": 1,
+   "dvt-146": 1,
+   "dvt-096": 1
+  },
+  "evidence_sets": [
+   [
+    "dvt-300",
+    "dvt-301"
+   ]
+  ],
+  "note": "Settled only in the status meeting; chats mention the tester without the signer."
+ }
+]

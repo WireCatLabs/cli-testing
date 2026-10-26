@@ -1,0 +1,2014 @@
+{
+  "project": {
+    "id": "stackyard",
+    "name": "StackYard cloud migration",
+    "aliases": [
+      "StackYard",
+      "Brindlemoor migration",
+      "WMS migration",
+      "Corvane to Nimbara"
+    ]
+  },
+  "sources": [
+    {
+      "id": "stackyard-chat-infra",
+      "kind": "chat",
+      "title": "infra"
+    },
+    {
+      "id": "stackyard-chat-war",
+      "kind": "chat",
+      "title": "migration-war-room"
+    },
+    {
+      "id": "stackyard-chat-general",
+      "kind": "chat",
+      "title": "general"
+    },
+    {
+      "id": "stackyard-chat-billing",
+      "kind": "chat",
+      "title": "billing"
+    },
+    {
+      "id": "stackyard-doc-runbook",
+      "kind": "document",
+      "title": "StackYard cutover runbook v3"
+    },
+    {
+      "id": "stackyard-doc-plan",
+      "kind": "document",
+      "title": "StackYard migration plan"
+    },
+    {
+      "id": "stackyard-meet-0916",
+      "kind": "meeting",
+      "title": "Weekly migration sync 16 Sep"
+    },
+    {
+      "id": "stackyard-meet-1007",
+      "kind": "meeting",
+      "title": "Ops review with warehouse leads 7 Oct"
+    }
+  ],
+  "units": [
+    {
+      "id": "sy-inf-001",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-03T09:05:00Z",
+      "text": "Morning all. Kicking off the StackYard move from Corvane to Nimbara. This channel is for the boring infra details, war-room is for go/no-go stuff."
+    },
+    {
+      "id": "sy-inf-002",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-03T09:07:00Z",
+      "text": "🚚☁️"
+    },
+    {
+      "id": "sy-inf-003",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-08-03T09:30:00Z",
+      "text": "Hi, Oleg here, contractor for the database side. Will be around 10-18 UK time"
+    },
+    {
+      "id": "sy-inf-004",
+      "source": "stackyard-chat-infra",
+      "author": "Priya Nair",
+      "at": "2026-08-03T09:32:00Z",
+      "reply_to": "sy-inf-003",
+      "text": "Welcome Oleg! Access requests go through me"
+    },
+    {
+      "id": "sy-inf-005",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-05T14:10:00Z",
+      "text": "Region shortlist on Nimbara: uk-west-2 and uk-south-1. eu-central-1 only as a backup target. Will decide this week"
+    },
+    {
+      "id": "sy-inf-006",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-05T14:20:00Z",
+      "reply_to": "sy-inf-005",
+      "text": "uk-south-1 was cheaper in their calculator btw"
+    },
+    {
+      "id": "sy-inf-007",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-08-05T15:00:00Z",
+      "text": "do we need a new VPN to the warehouses or does the old one just move?"
+    },
+    {
+      "id": "sy-inf-008",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-05T15:20:00Z",
+      "reply_to": "sy-inf-007",
+      "text": "new tunnels, the Corvane ones die with the account"
+    },
+    {
+      "id": "sy-inf-009",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-08-06T09:00:00Z",
+      "text": "latency from Leeds to uk-south-1 vs uk-west-2, anyone measured?"
+    },
+    {
+      "id": "sy-inf-010",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-06T09:30:00Z",
+      "reply_to": "sy-inf-009",
+      "text": "11ms vs 9ms from the Leeds office, basically the same"
+    },
+    {
+      "id": "sy-inf-011",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-07T11:00:00Z",
+      "text": "Decision: prod goes in uk-west-2. uk-south-1 is cheaper but has no managed postgres yet, not doing self-managed for this. Backups replicate to eu-central-1."
+    },
+    {
+      "id": "sy-inf-012",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-08-07T11:05:00Z",
+      "reply_to": "sy-inf-011",
+      "text": "+ for managed, I don't want to babysit patroni at 3am"
+    },
+    {
+      "id": "sy-inf-013",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-07T11:06:00Z",
+      "text": "lol"
+    },
+    {
+      "id": "sy-inf-014",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-08-10T10:15:00Z",
+      "text": "Corvane dashboard is down again, anyone else?"
+    },
+    {
+      "id": "sy-inf-015",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-10T10:20:00Z",
+      "reply_to": "sy-inf-014",
+      "text": "yep, their status page says 'degraded'. one more reason"
+    },
+    {
+      "id": "sy-inf-016",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-11T10:00:00Z",
+      "text": "does Nimbara have a managed redis? we use it for picklist caching"
+    },
+    {
+      "id": "sy-inf-017",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-11T10:20:00Z",
+      "reply_to": "sy-inf-016",
+      "text": "yes, in both regions"
+    },
+    {
+      "id": "sy-inf-018",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-11T10:21:00Z",
+      "text": "👍"
+    },
+    {
+      "id": "sy-inf-019",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-08-12T16:40:00Z",
+      "text": "Current prod DB on Corvane: postgres 13.11, 1.8 TB, ~400 tps peak. Biggest table is stock_movements, 900M rows"
+    },
+    {
+      "id": "sy-inf-020",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-12T16:45:00Z",
+      "reply_to": "sy-inf-019",
+      "text": "the stock_movements table is cursed"
+    },
+    {
+      "id": "sy-inf-021",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-08-13T11:00:00Z",
+      "text": "Corvane allows logical replication out of 13.x only with a support ticket, opened one"
+    },
+    {
+      "id": "sy-inf-022",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-13T11:10:00Z",
+      "reply_to": "sy-inf-021",
+      "text": "classic Corvane"
+    },
+    {
+      "id": "sy-inf-023",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-14T09:00:00Z",
+      "text": "Terraform repo is up: stackyard-infra. PRs only, no clickops on Nimbara please"
+    },
+    {
+      "id": "sy-inf-024",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-08-14T09:30:00Z",
+      "text": "+"
+    },
+    {
+      "id": "sy-inf-025",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-08-17T16:00:00Z",
+      "text": "handheld firmware vendor says the new image with the gateway client is 4.2.1, Doncaster already has it"
+    },
+    {
+      "id": "sy-inf-026",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-18T09:00:00Z",
+      "text": "reminder: the picker web app has its own db user, we should rotate creds as part of the move"
+    },
+    {
+      "id": "sy-inf-027",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-08-18T09:20:00Z",
+      "reply_to": "sy-inf-026",
+      "text": "yes, new users on Nimbara, old ones die with Corvane"
+    },
+    {
+      "id": "sy-inf-028",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-19T13:00:00Z",
+      "text": "17 has much nicer vacuum and logical replication improvements, might be worth jumping straight there?"
+    },
+    {
+      "id": "sy-inf-029",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-08-19T13:30:00Z",
+      "reply_to": "sy-inf-028",
+      "text": "let me check what Nimbara supports, I'll come back"
+    },
+    {
+      "id": "sy-inf-030",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-21T17:00:00Z",
+      "text": "Nimbara account limits raised, we can have up to 64 vCPU per instance"
+    },
+    {
+      "id": "sy-inf-031",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-22T12:00:00Z",
+      "text": "anyone else getting 'too many connections' on Corvane staging today?"
+    },
+    {
+      "id": "sy-inf-032",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-08-22T12:15:00Z",
+      "reply_to": "sy-inf-031",
+      "text": "me, someone left a load test running. killed it"
+    },
+    {
+      "id": "sy-inf-033",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-08-24T10:00:00Z",
+      "text": "is the staging env going to mirror prod sizing or smaller?"
+    },
+    {
+      "id": "sy-inf-034",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-24T10:10:00Z",
+      "reply_to": "sy-inf-033",
+      "text": "smaller, half everything"
+    },
+    {
+      "id": "sy-inf-035",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-08-27T10:00:00Z",
+      "text": "Nimbara support confirmed managed postgres versions available in uk-west-2: 15, 16, 17 (17 is 'preview')"
+    },
+    {
+      "id": "sy-inf-036",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-27T10:05:00Z",
+      "reply_to": "sy-inf-035",
+      "text": "preview = beta with a nicer name"
+    },
+    {
+      "id": "sy-inf-037",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-01T12:00:00Z",
+      "reply_to": "sy-inf-028",
+      "text": "Postgres on Nimbara: going with managed 16.4. Not 17 — pg_partman and our audit extension aren't certified on their 17 yet. Revisit next year."
+    },
+    {
+      "id": "sy-inf-038",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-01T12:10:00Z",
+      "reply_to": "sy-inf-037",
+      "text": "fair"
+    },
+    {
+      "id": "sy-inf-039",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-03T10:40:00Z",
+      "text": "quick q — once we're on Nimbara, do the handhelds keep their direct postgres connection? the old firmware image has the db string baked in"
+    },
+    {
+      "id": "sy-inf-040",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-03T11:15:00Z",
+      "reply_to": "sy-inf-039",
+      "text": "No. Nothing on the warehouse LAN talks to the database after the move — handhelds go through the gateway only. Any device that can't gets reflashed before its site moves."
+    },
+    {
+      "id": "sy-inf-041",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-03T11:17:00Z",
+      "reply_to": "sy-inf-040",
+      "text": "ok that's a lot of reflashing in Leeds"
+    },
+    {
+      "id": "sy-inf-042",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-03T11:40:00Z",
+      "text": "the BI reporting box still connects directly to the read replica though, that one stays as is"
+    },
+    {
+      "id": "sy-inf-043",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-04T09:00:00Z",
+      "text": "general question: are we keeping the same db connection string format for the api? some configs hardcode the host"
+    },
+    {
+      "id": "sy-inf-044",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-04T09:20:00Z",
+      "reply_to": "sy-inf-043",
+      "text": "api reads DATABASE_URL from secrets, it'll just change. handhelds are a separate story"
+    },
+    {
+      "id": "sy-inf-045",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-05T17:00:00Z",
+      "text": "article worth reading on zero-downtime postgres migrations, most of it applies to us https://blog.example/pg-zero-downtime"
+    },
+    {
+      "id": "sy-inf-046",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-08T15:00:00Z",
+      "text": "Proposal: while we're moving anyway, let's put label printing on a queue instead of the cron every 2 min. Fewer duplicate labels, retries for free, and we stop hammering the DB."
+    },
+    {
+      "id": "sy-inf-047",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-08T15:10:00Z",
+      "reply_to": "sy-inf-046",
+      "text": "duplicate labels are my #1 bug ticket, so yes from me"
+    },
+    {
+      "id": "sy-inf-048",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-08T15:30:00Z",
+      "reply_to": "sy-inf-046",
+      "text": "interesting. can we talk after cutover? I don't want more moving parts this month"
+    },
+    {
+      "id": "sy-inf-049",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-08T15:31:00Z",
+      "reply_to": "sy-inf-048",
+      "text": "sure"
+    },
+    {
+      "id": "sy-inf-050",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-09T10:00:00Z",
+      "text": "Logical replication Corvane -> Nimbara running since last night. Initial copy of stock_movements took 9h 40m"
+    },
+    {
+      "id": "sy-inf-051",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-09T10:05:00Z",
+      "reply_to": "sy-inf-050",
+      "text": "nice"
+    },
+    {
+      "id": "sy-inf-052",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-10T14:00:00Z",
+      "text": "gateway timing out on /picklists when I hit it from the Doncaster test handheld"
+    },
+    {
+      "id": "sy-inf-053",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-10T14:20:00Z",
+      "reply_to": "sy-inf-052",
+      "text": "idle timeout is 30s on the new LB, picklists for big orders take longer. bumping"
+    },
+    {
+      "id": "sy-inf-054",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-10T16:00:00Z",
+      "text": "label print service on Nimbara staging prints fine, tested with the Doncaster printer over VPN"
+    },
+    {
+      "id": "sy-inf-055",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-11T09:30:00Z",
+      "text": "replication lag overnight: avg 3.8s, max 41s during the 02:00 batch job"
+    },
+    {
+      "id": "sy-inf-056",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-11T09:40:00Z",
+      "reply_to": "sy-inf-055",
+      "text": "the 2am job is the stock recount, we can move it"
+    },
+    {
+      "id": "sy-inf-057",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-14T11:00:00Z",
+      "text": "anyone know why the Corvane bill has a 'premium support' line? we never asked"
+    },
+    {
+      "id": "sy-inf-058",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-14T11:10:00Z",
+      "reply_to": "sy-inf-057",
+      "text": "ask Ruth in billing"
+    },
+    {
+      "id": "sy-inf-059",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-15T10:00:00Z",
+      "text": "the gateway returns 502 when the handheld sends an empty barcode, logged a bug"
+    },
+    {
+      "id": "sy-inf-060",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-15T10:20:00Z",
+      "reply_to": "sy-inf-059",
+      "text": "will fix, low priority"
+    },
+    {
+      "id": "sy-inf-061",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-15T18:00:00Z",
+      "text": "connection pool on Nimbara set to 200, pgbouncer in transaction mode"
+    },
+    {
+      "id": "sy-inf-062",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-17T10:00:00Z",
+      "text": "label printer in Leeds dock 4 printed the same label 3 times again 🙃"
+    },
+    {
+      "id": "sy-inf-063",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-17T10:05:00Z",
+      "reply_to": "sy-inf-062",
+      "text": "cron overlap again. this is what a queue fixes"
+    },
+    {
+      "id": "sy-inf-064",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-17T10:30:00Z",
+      "reply_to": "sy-inf-063",
+      "text": "after cutover"
+    },
+    {
+      "id": "sy-inf-065",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-19T11:00:00Z",
+      "text": "should we move the print cron to every 5 min instead of 2 for now? fewer overlaps"
+    },
+    {
+      "id": "sy-inf-066",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-19T11:15:00Z",
+      "reply_to": "sy-inf-065",
+      "text": "fine as a stopgap, no architecture changes though"
+    },
+    {
+      "id": "sy-inf-067",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-19T11:16:00Z",
+      "reply_to": "sy-inf-066",
+      "text": "done, 5 min on Corvane prod"
+    },
+    {
+      "id": "sy-inf-068",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-21T09:00:00Z",
+      "text": "firewall: removed 5432 from all warehouse subnets on the Nimbara side, only the gateway and BI subnets can reach the db now"
+    },
+    {
+      "id": "sy-inf-069",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-21T09:30:00Z",
+      "text": "👍"
+    },
+    {
+      "id": "sy-inf-070",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-24T16:00:00Z",
+      "text": "Phoenix invoicing exports need to move to the new SFTP before decom, I'll take it"
+    },
+    {
+      "id": "sy-inf-071",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-24T16:05:00Z",
+      "reply_to": "sy-inf-070",
+      "text": "thanks"
+    },
+    {
+      "id": "sy-inf-072",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-26T10:00:00Z",
+      "text": "back. anything burning?"
+    },
+    {
+      "id": "sy-inf-073",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-26T10:05:00Z",
+      "reply_to": "sy-inf-072",
+      "text": "nope, quiet two days"
+    },
+    {
+      "id": "sy-inf-074",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-09-27T14:00:00Z",
+      "text": "could someone explain the BI replica on Nimbara — is it a separate box from the Corvane read replica?"
+    },
+    {
+      "id": "sy-inf-075",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-27T14:30:00Z",
+      "reply_to": "sy-inf-074",
+      "text": "yes, BI gets its own replica on Nimbara. the Corvane one is the old one"
+    },
+    {
+      "id": "sy-inf-076",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-28T12:00:00Z",
+      "text": "DNS TTLs for stackyard.brindlemoor.example lowered to 60s ahead of cutover"
+    },
+    {
+      "id": "sy-inf-077",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-30T10:00:00Z",
+      "text": "lag last 72h: avg 2.1s, max 4.4s after we moved the recount job"
+    },
+    {
+      "id": "sy-inf-078",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-09-30T10:10:00Z",
+      "reply_to": "sy-inf-077",
+      "text": "looking good for Leeds"
+    },
+    {
+      "id": "sy-inf-079",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-10-01T18:00:00Z",
+      "text": "Leeds wifi APs in dock 2 dropping handhelds every ~20 min, not related to us but will look like it is"
+    },
+    {
+      "id": "sy-inf-080",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-10-02T09:15:00Z",
+      "text": "fyi Hannah approved the runbook 👍"
+    },
+    {
+      "id": "sy-inf-081",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-10-02T09:20:00Z",
+      "text": "🎉"
+    },
+    {
+      "id": "sy-inf-082",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-10-04T11:00:00Z",
+      "text": "load test on Nimbara prod (dark): 1,100 tps sustained, p95 picklists 180ms"
+    },
+    {
+      "id": "sy-inf-083",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-10-04T11:10:00Z",
+      "reply_to": "sy-inf-082",
+      "text": "faster than Corvane on a good day"
+    },
+    {
+      "id": "sy-inf-084",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-10-05T13:00:00Z",
+      "text": "reflashed 38 of 52 Leeds handhelds, the rest are on the night shift"
+    },
+    {
+      "id": "sy-inf-085",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-10-08T11:00:00Z",
+      "text": "сорри, wrong chat 🙈"
+    },
+    {
+      "id": "sy-inf-086",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-10-08T11:01:00Z",
+      "text": "pg 16.4 minor update scheduled by Nimbara for 20 Oct, I asked them to postpone until after cutover"
+    },
+    {
+      "id": "sy-inf-087",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-10-08T11:10:00Z",
+      "reply_to": "sy-inf-086",
+      "text": "good call"
+    },
+    {
+      "id": "sy-inf-088",
+      "source": "stackyard-chat-infra",
+      "author": "Oleg Sidorenko",
+      "at": "2026-10-10T15:00:00Z",
+      "text": "pg_partman jobs running on Nimbara replica, partitions for Nov created"
+    },
+    {
+      "id": "sy-inf-089",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-10-11T09:00:00Z",
+      "text": "who owns the BI box connection string change?"
+    },
+    {
+      "id": "sy-inf-090",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-10-11T09:15:00Z",
+      "reply_to": "sy-inf-089",
+      "text": "me, after cutover"
+    },
+    {
+      "id": "sy-inf-091",
+      "source": "stackyard-chat-infra",
+      "author": "Jess Lindqvist",
+      "at": "2026-10-12T10:00:00Z",
+      "text": "terraform plan for prod is clean, 0 changes"
+    },
+    {
+      "id": "sy-inf-092",
+      "source": "stackyard-chat-infra",
+      "author": "Marcus Hale",
+      "at": "2026-10-13T17:00:00Z",
+      "text": "smoke tests on Nimbara staging: 212 passed, 3 flaky (print service)"
+    },
+    {
+      "id": "sy-inf-093",
+      "source": "stackyard-chat-infra",
+      "author": "Tom Becker",
+      "at": "2026-10-15T09:00:00Z",
+      "text": "monitoring dashboards for Nimbara prod are in grafana, folder 'stackyard-nb'"
+    },
+    {
+      "id": "sy-war-001",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-08-04T10:00:00Z",
+      "text": "War room for the StackYard migration. Decisions, risks, go/no-go. Hannah is here for the warehouse side."
+    },
+    {
+      "id": "sy-war-002",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-08-04T10:20:00Z",
+      "text": "Hi all. Main ask from ops: no downtime during picking hours, 06:00–22:00."
+    },
+    {
+      "id": "sy-war-003",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-08-04T10:25:00Z",
+      "reply_to": "sy-war-002",
+      "text": "Noted, cutover will be overnight"
+    },
+    {
+      "id": "sy-war-004",
+      "source": "stackyard-chat-war",
+      "author": "Tom Becker",
+      "at": "2026-08-11T09:00:00Z",
+      "text": "Draft migration plan is in the shared drive, waves and rough dates"
+    },
+    {
+      "id": "sy-war-005",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-08-11T11:00:00Z",
+      "text": "which site goes first?"
+    },
+    {
+      "id": "sy-war-006",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-08-11T11:30:00Z",
+      "reply_to": "sy-war-005",
+      "text": "we'll decide at the sync on the 16th of Sep, depends on replication results"
+    },
+    {
+      "id": "sy-war-007",
+      "source": "stackyard-chat-war",
+      "author": "Marcus Hale",
+      "at": "2026-08-20T15:00:00Z",
+      "text": "risk: handheld firmware in Leeds is two versions behind Doncaster"
+    },
+    {
+      "id": "sy-war-008",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-08-20T15:10:00Z",
+      "reply_to": "sy-war-007",
+      "text": "add it to the risk log pls"
+    },
+    {
+      "id": "sy-war-009",
+      "source": "stackyard-chat-war",
+      "author": "Marcus Hale",
+      "at": "2026-08-21T09:00:00Z",
+      "text": "risk log link? can't find it"
+    },
+    {
+      "id": "sy-war-010",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-08-21T09:05:00Z",
+      "reply_to": "sy-war-009",
+      "text": "https://drive.brindlemoor.example/stackyard-risks"
+    },
+    {
+      "id": "sy-war-011",
+      "source": "stackyard-chat-war",
+      "author": "Tom Becker",
+      "at": "2026-08-24T16:00:00Z",
+      "text": "proposal: we do a full dress rehearsal on staging the weekend before cutover"
+    },
+    {
+      "id": "sy-war-012",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-08-24T16:20:00Z",
+      "reply_to": "sy-war-011",
+      "text": "yes, let's"
+    },
+    {
+      "id": "sy-war-013",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-08-28T09:00:00Z",
+      "text": "Reminder that 12–23 Oct is the retail promo run-up and the promo itself, our busiest fortnight"
+    },
+    {
+      "id": "sy-war-014",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-08-28T09:10:00Z",
+      "reply_to": "sy-war-013",
+      "text": "thanks, will flag it to Tom"
+    },
+    {
+      "id": "sy-war-015",
+      "source": "stackyard-chat-war",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-02T10:00:00Z",
+      "text": "Can someone give me read access to the Corvane billing export? need to check storage numbers"
+    },
+    {
+      "id": "sy-war-016",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-09-02T10:15:00Z",
+      "reply_to": "sy-war-015",
+      "text": "done"
+    },
+    {
+      "id": "sy-war-017",
+      "source": "stackyard-chat-war",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-05T10:00:00Z",
+      "text": "is someone telling the Phoenix invoicing users about the decom? finance uses it daily"
+    },
+    {
+      "id": "sy-war-018",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-09-05T10:10:00Z",
+      "reply_to": "sy-war-017",
+      "text": "I'll talk to Ruth"
+    },
+    {
+      "id": "sy-war-019",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-09-09T14:00:00Z",
+      "text": "Are we still keeping the old system around for a bit after the switch in case something breaks? My shift leads keep asking"
+    },
+    {
+      "id": "sy-war-020",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-09-09T14:20:00Z",
+      "reply_to": "sy-war-019",
+      "text": "we'll settle fallback at the sync next week"
+    },
+    {
+      "id": "sy-war-021",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-09-16T12:00:00Z",
+      "text": "Notes from today's sync are in the doc. Short version: Leeds first if lag holds, Manchester in wave 2, fallback replica kept for 2 weeks."
+    },
+    {
+      "id": "sy-war-022",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-09-16T12:30:00Z",
+      "text": "thanks 👍"
+    },
+    {
+      "id": "sy-war-023",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-09-17T08:00:00Z",
+      "text": "my shift leads ask whether they need training for the new system"
+    },
+    {
+      "id": "sy-war-024",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-09-17T08:20:00Z",
+      "reply_to": "sy-war-023",
+      "text": "no, same app, different servers. nothing changes for them"
+    },
+    {
+      "id": "sy-war-025",
+      "source": "stackyard-chat-war",
+      "author": "Marcus Hale",
+      "at": "2026-09-18T10:00:00Z",
+      "text": "Leeds dock 2 has no wired network, handhelds there are wifi only. any issue for the gateway?"
+    },
+    {
+      "id": "sy-war-026",
+      "source": "stackyard-chat-war",
+      "author": "Tom Becker",
+      "at": "2026-09-18T10:20:00Z",
+      "reply_to": "sy-war-025",
+      "text": "no, same path, just slower"
+    },
+    {
+      "id": "sy-war-027",
+      "source": "stackyard-chat-war",
+      "author": "Tom Becker",
+      "at": "2026-09-25T12:00:00Z",
+      "text": "Runbook v3 is up, please read before the ops review"
+    },
+    {
+      "id": "sy-war-028",
+      "source": "stackyard-chat-war",
+      "author": "Marcus Hale",
+      "at": "2026-09-25T12:30:00Z",
+      "reply_to": "sy-war-027",
+      "text": "reading"
+    },
+    {
+      "id": "sy-war-029",
+      "source": "stackyard-chat-war",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-27T10:00:00Z",
+      "text": "dress rehearsal on staging done: 3h 50m end to end, one hiccup with DNS cache on the Leeds printers"
+    },
+    {
+      "id": "sy-war-030",
+      "source": "stackyard-chat-war",
+      "author": "Tom Becker",
+      "at": "2026-09-27T10:15:00Z",
+      "reply_to": "sy-war-029",
+      "text": "good, the printer restart step is already in there"
+    },
+    {
+      "id": "sy-war-031",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-10-01T09:00:00Z",
+      "text": "Hannah, could you review the cutover runbook? Mainly the rollback section — your shift leads have to execute part of it. https://drive.brindlemoor.example/runbook-v3"
+    },
+    {
+      "id": "sy-war-032",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-10-01T16:40:00Z",
+      "reply_to": "sy-war-031",
+      "text": "Had a look — the outline makes sense, the sections are what I'd expect. I haven't gone through the rollback steps properly yet, that'll be after the promo weekend."
+    },
+    {
+      "id": "sy-war-033",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-10-01T16:45:00Z",
+      "reply_to": "sy-war-032",
+      "text": "great, thanks. shout when you've done the rollback part"
+    },
+    {
+      "id": "sy-war-034",
+      "source": "stackyard-chat-war",
+      "author": "Oleg Sidorenko",
+      "at": "2026-10-06T10:00:00Z",
+      "text": "snapshot export script ready, tested on staging: 1.8 TB in 41 min to our own bucket on Nimbara"
+    },
+    {
+      "id": "sy-war-035",
+      "source": "stackyard-chat-war",
+      "author": "Tom Becker",
+      "at": "2026-10-06T10:10:00Z",
+      "reply_to": "sy-war-034",
+      "text": "🔥"
+    },
+    {
+      "id": "sy-war-036",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-10-06T18:00:00Z",
+      "text": "reminder: ops review tomorrow 14:00, Hannah + Kev joining"
+    },
+    {
+      "id": "sy-war-037",
+      "source": "stackyard-chat-war",
+      "author": "Jess Lindqvist",
+      "at": "2026-10-07T17:00:00Z",
+      "text": "after today's ops review — is the date moving or not?"
+    },
+    {
+      "id": "sy-war-038",
+      "source": "stackyard-chat-war",
+      "author": "Marcus Hale",
+      "at": "2026-10-09T11:00:00Z",
+      "text": "are we still on the 17th? the runbook says so and I'm booking the QA night shift"
+    },
+    {
+      "id": "sy-war-039",
+      "source": "stackyard-chat-war",
+      "author": "Tom Becker",
+      "at": "2026-10-10T09:00:00Z",
+      "text": "rollback drill on staging tomorrow 10:00, shift leads welcome but optional"
+    },
+    {
+      "id": "sy-war-040",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-10-10T09:30:00Z",
+      "reply_to": "sy-war-039",
+      "text": "can't, promo prep. maybe next week"
+    },
+    {
+      "id": "sy-war-041",
+      "source": "stackyard-chat-war",
+      "author": "Hannah Price",
+      "at": "2026-10-12T08:30:00Z",
+      "text": "Promo prep is starting, I'll be slow to reply this week"
+    },
+    {
+      "id": "sy-war-042",
+      "source": "stackyard-chat-war",
+      "author": "Priya Nair",
+      "at": "2026-10-14T10:00:00Z",
+      "text": "Go/no-go checklist updated, please tick your rows by Friday"
+    },
+    {
+      "id": "sy-war-043",
+      "source": "stackyard-chat-war",
+      "author": "Marcus Hale",
+      "at": "2026-10-14T10:30:00Z",
+      "text": "ticked mine"
+    },
+    {
+      "id": "sy-war-044",
+      "source": "stackyard-chat-war",
+      "author": "Oleg Sidorenko",
+      "at": "2026-10-14T11:00:00Z",
+      "text": "db rows ticked"
+    },
+    {
+      "id": "sy-gen-001",
+      "source": "stackyard-chat-general",
+      "author": "Lena Ward",
+      "at": "2026-08-03T08:30:00Z",
+      "text": "Morning! Coffee machine on floor 2 is fixed ☕"
+    },
+    {
+      "id": "sy-gen-002",
+      "source": "stackyard-chat-general",
+      "author": "Kev Moran",
+      "at": "2026-08-06T12:00:00Z",
+      "text": "Phoenix pilot kicked off in Doncaster — telemetry sensors fitted on 6 forklifts, first data in the ops dashboard tomorrow"
+    },
+    {
+      "id": "sy-gen-003",
+      "source": "stackyard-chat-general",
+      "author": "Hannah Price",
+      "at": "2026-08-06T12:10:00Z",
+      "reply_to": "sy-gen-002",
+      "text": "exciting!"
+    },
+    {
+      "id": "sy-gen-004",
+      "source": "stackyard-chat-general",
+      "author": "Priya Nair",
+      "at": "2026-08-07T09:00:00Z",
+      "text": "FYI StackYard is moving to a new cloud provider this autumn, details in #migration-war-room. You shouldn't notice anything 🤞"
+    },
+    {
+      "id": "sy-gen-005",
+      "source": "stackyard-chat-general",
+      "author": "Kev Moran",
+      "at": "2026-08-12T09:00:00Z",
+      "text": "Phoenix pilot vendor visiting Doncaster Thursday, please keep bay 3 clear"
+    },
+    {
+      "id": "sy-gen-006",
+      "source": "stackyard-chat-general",
+      "author": "Lena Ward",
+      "at": "2026-08-14T15:00:00Z",
+      "text": "Summer party is 29 Aug, sign up sheet in the kitchen"
+    },
+    {
+      "id": "sy-gen-007",
+      "source": "stackyard-chat-general",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-14T15:05:00Z",
+      "text": "is there vegan food this year"
+    },
+    {
+      "id": "sy-gen-008",
+      "source": "stackyard-chat-general",
+      "author": "Lena Ward",
+      "at": "2026-08-14T15:10:00Z",
+      "reply_to": "sy-gen-007",
+      "text": "yes!"
+    },
+    {
+      "id": "sy-gen-009",
+      "source": "stackyard-chat-general",
+      "author": "Kev Moran",
+      "at": "2026-08-21T10:00:00Z",
+      "text": "Doncaster forklift 3 sensor fell off, Phoenix team replacing it"
+    },
+    {
+      "id": "sy-gen-010",
+      "source": "stackyard-chat-general",
+      "author": "Tom Becker",
+      "at": "2026-08-25T17:00:00Z",
+      "text": "anyone selling a bike? mine got nicked outside the depot"
+    },
+    {
+      "id": "sy-gen-011",
+      "source": "stackyard-chat-general",
+      "author": "Marcus Hale",
+      "at": "2026-08-25T17:10:00Z",
+      "reply_to": "sy-gen-010",
+      "text": "ugh, sorry. try the noticeboard"
+    },
+    {
+      "id": "sy-gen-012",
+      "source": "stackyard-chat-general",
+      "author": "Lena Ward",
+      "at": "2026-08-30T10:00:00Z",
+      "text": "Thanks everyone for coming to the party! Photos in the shared album"
+    },
+    {
+      "id": "sy-gen-013",
+      "source": "stackyard-chat-general",
+      "author": "Jess Lindqvist",
+      "at": "2026-08-30T10:05:00Z",
+      "reply_to": "sy-gen-012",
+      "text": "the karaoke must never be spoken of"
+    },
+    {
+      "id": "sy-gen-014",
+      "source": "stackyard-chat-general",
+      "author": "Ruth Ames",
+      "at": "2026-09-04T09:00:00Z",
+      "text": "Expense reports for August due Friday please"
+    },
+    {
+      "id": "sy-gen-015",
+      "source": "stackyard-chat-general",
+      "author": "Kev Moran",
+      "at": "2026-09-10T14:00:00Z",
+      "text": "Manchester got the new dock doors installed, finally"
+    },
+    {
+      "id": "sy-gen-016",
+      "source": "stackyard-chat-general",
+      "author": "Hannah Price",
+      "at": "2026-09-15T08:00:00Z",
+      "text": "Leeds team: night shift handover moves to 21:30 from next week"
+    },
+    {
+      "id": "sy-gen-017",
+      "source": "stackyard-chat-general",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-18T12:00:00Z",
+      "text": "hi all, I'm away 25-26 Sep, Tom covers db questions"
+    },
+    {
+      "id": "sy-gen-018",
+      "source": "stackyard-chat-general",
+      "author": "Kev Moran",
+      "at": "2026-09-20T13:00:00Z",
+      "text": "Phoenix telemetry showed forklift 5 idling 3h a night, mystery solved: someone charges their phone on it"
+    },
+    {
+      "id": "sy-gen-019",
+      "source": "stackyard-chat-general",
+      "author": "Marcus Hale",
+      "at": "2026-09-20T13:05:00Z",
+      "reply_to": "sy-gen-018",
+      "text": "😂"
+    },
+    {
+      "id": "sy-gen-020",
+      "source": "stackyard-chat-general",
+      "author": "Lena Ward",
+      "at": "2026-09-22T11:00:00Z",
+      "text": "Fire drill Thursday 11:00"
+    },
+    {
+      "id": "sy-gen-021",
+      "source": "stackyard-chat-general",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-22T11:01:00Z",
+      "text": "again?"
+    },
+    {
+      "id": "sy-gen-022",
+      "source": "stackyard-chat-general",
+      "author": "Kev Moran",
+      "at": "2026-10-01T09:00:00Z",
+      "text": "Phoenix pilot update: 11% fewer idle hours on the instrumented forklifts. Pilot wraps up 31 Oct, report in November"
+    },
+    {
+      "id": "sy-gen-023",
+      "source": "stackyard-chat-general",
+      "author": "Priya Nair",
+      "at": "2026-10-01T09:20:00Z",
+      "reply_to": "sy-gen-022",
+      "text": "nice numbers Kev"
+    },
+    {
+      "id": "sy-gen-024",
+      "source": "stackyard-chat-general",
+      "author": "Tom Becker",
+      "at": "2026-10-03T12:00:00Z",
+      "text": "Weekend reading: our old Corvane post-mortems, so we don't repeat them https://wiki.brindlemoor.example/pm"
+    },
+    {
+      "id": "sy-gen-025",
+      "source": "stackyard-chat-general",
+      "author": "Ruth Ames",
+      "at": "2026-10-06T10:00:00Z",
+      "text": "Reminder: purchase orders over €1k need two approvals from now on"
+    },
+    {
+      "id": "sy-gen-026",
+      "source": "stackyard-chat-general",
+      "author": "Lena Ward",
+      "at": "2026-10-09T16:00:00Z",
+      "text": "Cake in the kitchen, it's Marcus's birthday 🎂"
+    },
+    {
+      "id": "sy-gen-027",
+      "source": "stackyard-chat-general",
+      "author": "Marcus Hale",
+      "at": "2026-10-09T16:05:00Z",
+      "text": "🙏"
+    },
+    {
+      "id": "sy-gen-028",
+      "source": "stackyard-chat-general",
+      "author": "Hannah Price",
+      "at": "2026-10-13T07:30:00Z",
+      "text": "Promo week stock arriving early, docks will be busy from Thursday"
+    },
+    {
+      "id": "sy-bil-001",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-08-10T10:00:00Z",
+      "text": "Opening this for the migration costs. Please post estimates here, not in DMs"
+    },
+    {
+      "id": "sy-bil-002",
+      "source": "stackyard-chat-billing",
+      "author": "Tom Becker",
+      "at": "2026-08-18T14:00:00Z",
+      "text": "Nimbara prod estimate: ~€6,800/month (db €3,900, compute €2,100, storage+egress €800). Backups to eu-central-1 another ~€350."
+    },
+    {
+      "id": "sy-bil-003",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-08-18T14:30:00Z",
+      "reply_to": "sy-bil-002",
+      "text": "thanks. and staging? and the DR bits?"
+    },
+    {
+      "id": "sy-bil-004",
+      "source": "stackyard-chat-billing",
+      "author": "Tom Becker",
+      "at": "2026-08-18T14:40:00Z",
+      "reply_to": "sy-bil-003",
+      "text": "will get you numbers"
+    },
+    {
+      "id": "sy-bil-005",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-08-25T09:00:00Z",
+      "text": "Corvane current spend for reference: €9,200/month incl. premium support we never use"
+    },
+    {
+      "id": "sy-bil-006",
+      "source": "stackyard-chat-billing",
+      "author": "Priya Nair",
+      "at": "2026-08-25T09:10:00Z",
+      "reply_to": "sy-bil-005",
+      "text": "premium support goes away with the account anyway"
+    },
+    {
+      "id": "sy-bil-007",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-09-01T10:00:00Z",
+      "text": "Can we get the Nimbara estimate split by environment? I need it for the Q4 forecast"
+    },
+    {
+      "id": "sy-bil-008",
+      "source": "stackyard-chat-billing",
+      "author": "Tom Becker",
+      "at": "2026-09-01T11:00:00Z",
+      "reply_to": "sy-bil-007",
+      "text": "prod is above, the rest by end of next week"
+    },
+    {
+      "id": "sy-bil-009",
+      "source": "stackyard-chat-billing",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-10T12:00:00Z",
+      "text": "Corvane egress during replication so far: ~€180, fine"
+    },
+    {
+      "id": "sy-bil-010",
+      "source": "stackyard-chat-billing",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-22T13:00:00Z",
+      "text": "Priya, ok to scale the primary to 16 vCPU / 128 GB for the migration week? ~€420 extra for 7 days, I'll scale it back right after"
+    },
+    {
+      "id": "sy-bil-011",
+      "source": "stackyard-chat-billing",
+      "author": "Priya Nair",
+      "at": "2026-09-22T13:41:00Z",
+      "reply_to": "sy-bil-010",
+      "text": "+"
+    },
+    {
+      "id": "sy-bil-012",
+      "source": "stackyard-chat-billing",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-22T13:42:00Z",
+      "text": "спасибо 👍"
+    },
+    {
+      "id": "sy-bil-013",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-09-24T09:00:00Z",
+      "text": "Nimbara invoice #1 arrived: €1,240 for September (mostly the replica + staging test instances)"
+    },
+    {
+      "id": "sy-bil-014",
+      "source": "stackyard-chat-billing",
+      "author": "Priya Nair",
+      "at": "2026-09-24T09:10:00Z",
+      "reply_to": "sy-bil-013",
+      "text": "as expected"
+    },
+    {
+      "id": "sy-bil-015",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-09-29T11:00:00Z",
+      "text": "Phoenix: when can we stop paying for it? The Corvane licence for Phoenix renews 1 Dec"
+    },
+    {
+      "id": "sy-bil-016",
+      "source": "stackyard-chat-billing",
+      "author": "Priya Nair",
+      "at": "2026-09-29T11:30:00Z",
+      "reply_to": "sy-bil-015",
+      "text": "Phoenix (the old invoicing module) gets switched off 30 Nov, right after the last month-end run on it. So no renewal."
+    },
+    {
+      "id": "sy-bil-017",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-09-29T11:32:00Z",
+      "reply_to": "sy-bil-016",
+      "text": "perfect"
+    },
+    {
+      "id": "sy-bil-018",
+      "source": "stackyard-chat-billing",
+      "author": "Priya Nair",
+      "at": "2026-10-05T15:00:00Z",
+      "text": "Change of plan: we're NOT keeping the Corvane read replica after cutover. Their egress quote came back at €3.1k for the two weeks. Oleg will take a final snapshot export instead."
+    },
+    {
+      "id": "sy-bil-019",
+      "source": "stackyard-chat-billing",
+      "author": "Tom Becker",
+      "at": "2026-10-05T15:10:00Z",
+      "reply_to": "sy-bil-018",
+      "text": "makes sense, I'll update the runbook"
+    },
+    {
+      "id": "sy-bil-020",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-10-05T15:20:00Z",
+      "reply_to": "sy-bil-018",
+      "text": "thank you, that would have blown the quarter"
+    },
+    {
+      "id": "sy-bil-021",
+      "source": "stackyard-chat-billing",
+      "author": "Oleg Sidorenko",
+      "at": "2026-10-06T09:00:00Z",
+      "text": "Corvane says the read replica can also be kept at €1.4k/week if we drop to a smaller size. I said no, plan is the snapshot"
+    },
+    {
+      "id": "sy-bil-022",
+      "source": "stackyard-chat-billing",
+      "author": "Priya Nair",
+      "at": "2026-10-06T09:10:00Z",
+      "reply_to": "sy-bil-021",
+      "text": "correct"
+    },
+    {
+      "id": "sy-bil-023",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-10-07T09:00:00Z",
+      "text": "Who approved the €420 db line on the Nimbara forecast? Need a name for the PO"
+    },
+    {
+      "id": "sy-bil-024",
+      "source": "stackyard-chat-billing",
+      "author": "Ruth Ames",
+      "at": "2026-10-09T14:00:00Z",
+      "text": "Still need staging numbers for the forecast btw"
+    },
+    {
+      "id": "sy-bil-025",
+      "source": "stackyard-chat-billing",
+      "author": "Tom Becker",
+      "at": "2026-10-09T14:30:00Z",
+      "reply_to": "sy-bil-024",
+      "text": "sorry, this week"
+    },
+    {
+      "id": "sy-bil-026",
+      "source": "stackyard-chat-billing",
+      "author": "Oleg Sidorenko",
+      "at": "2026-10-12T10:00:00Z",
+      "text": "fyi Nimbara support plan: we stay on 'standard', no premium"
+    },
+    {
+      "id": "sy-rb-001",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:00:00Z",
+      "section": [
+        "Overview",
+        "Window"
+      ],
+      "text": "Cutover window: Saturday 17 Oct 2026, 22:00–04:00 UTC. Freeze on StackYard deploys from Thursday 15 Oct."
+    },
+    {
+      "id": "sy-rb-002",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:01:00Z",
+      "section": [
+        "Overview",
+        "Scope"
+      ],
+      "text": "Scope: StackYard WMS (api, picker web, print service), Postgres primary, BI read replica. Not in scope: Phoenix invoicing (decommissioned separately)."
+    },
+    {
+      "id": "sy-rb-003",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:02:00Z",
+      "section": [
+        "Overview",
+        "Target environment"
+      ],
+      "text": "Target environment: Nimbara uk-west-2, managed Postgres 16.4, 3 app nodes behind the Nimbara load balancer. Backups replicate to eu-central-1."
+    },
+    {
+      "id": "sy-rb-004",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:03:00Z",
+      "section": [
+        "Overview",
+        "Roles"
+      ],
+      "text": "Roles: Tom (cutover lead), Oleg (database), Jess (application), Marcus (QA), Hannah's shift leads (warehouse checks), Priya (go/no-go)."
+    },
+    {
+      "id": "sy-rb-005",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:04:00Z",
+      "section": [
+        "Pre-cutover",
+        "Go/no-go criteria"
+      ],
+      "text": "Go criteria: replication lag < 5s for the last 72h, smoke tests green on Nimbara staging, all Leeds handhelds on gateway firmware."
+    },
+    {
+      "id": "sy-rb-006",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:04:30Z",
+      "section": [
+        "Pre-cutover",
+        "Rehearsal"
+      ],
+      "text": "Dress rehearsal on staging the weekend before cutover; results logged in #migration-war-room."
+    },
+    {
+      "id": "sy-rb-007",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:05:00Z",
+      "section": [
+        "Pre-cutover",
+        "T-24h checklist"
+      ],
+      "text": "T-24h: announce freeze, confirm on-call, check DNS TTL is 60s, final terraform plan."
+    },
+    {
+      "id": "sy-rb-008",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:06:00Z",
+      "section": [
+        "Pre-cutover",
+        "T-1h checklist"
+      ],
+      "text": "T-1h: stop label print cron, drain queues on Corvane api nodes, notify Leeds night shift."
+    },
+    {
+      "id": "sy-rb-009",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:07:00Z",
+      "section": [
+        "Cutover",
+        "Database switch"
+      ],
+      "text": "1. Put Corvane api in read-only mode. 2. Wait for replication lag 0. 3. Promote Nimbara primary. 4. Switch DNS. 5. Start api on Nimbara."
+    },
+    {
+      "id": "sy-rb-010",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:08:00Z",
+      "section": [
+        "Cutover",
+        "Warehouse network"
+      ],
+      "text": "Handheld traffic: HTTPS to the api gateway (gw.stackyard.internal) only. Warehouse subnets have no route to the database."
+    },
+    {
+      "id": "sy-rb-011",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:08:30Z",
+      "section": [
+        "Cutover",
+        "Printers"
+      ],
+      "text": "Restart Leeds label printers after DNS switch (printers cache DNS for 30 min)."
+    },
+    {
+      "id": "sy-rb-012",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:09:00Z",
+      "section": [
+        "Cutover",
+        "Warehouse checks"
+      ],
+      "text": "Shift leads scan 10 test pallets per site, print 5 labels, run one picklist end to end."
+    },
+    {
+      "id": "sy-rb-013",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:10:00Z",
+      "section": [
+        "Rollback",
+        "Steps"
+      ],
+      "text": "Trigger: any warehouse check fails, or error rate > 2% for 15 min. Steps: 1. Switch DNS back. 2. Take Corvane out of read-only. 3. Replay writes from the Nimbara audit log. Owner: Tom; shift leads confirm handhelds reconnect."
+    },
+    {
+      "id": "sy-rb-014",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:11:00Z",
+      "section": [
+        "Rollback",
+        "Point of no return"
+      ],
+      "text": "Rollback is possible until 03:00 UTC. After that we fix forward."
+    },
+    {
+      "id": "sy-rb-015",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:12:00Z",
+      "section": [
+        "Post-cutover",
+        "Fallback"
+      ],
+      "text": "Corvane read replica retained for 14 days after cutover as a fallback (decommission T+14)."
+    },
+    {
+      "id": "sy-rb-016",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:13:00Z",
+      "section": [
+        "Post-cutover",
+        "Monitoring"
+      ],
+      "text": "Monitoring: error rate, p95 latency of /picklists and /labels, replication off, db CPU."
+    },
+    {
+      "id": "sy-rb-017",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:14:00Z",
+      "section": [
+        "Post-cutover",
+        "Comms"
+      ],
+      "text": "Comms: Priya posts in #general at start and end. Hannah briefs shift leads."
+    },
+    {
+      "id": "sy-rb-018",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:14:30Z",
+      "section": [
+        "Post-cutover",
+        "Phoenix"
+      ],
+      "text": "Phoenix invoicing: last month-end run on Corvane, exports move to the new SFTP. Decommission tracked by Jess."
+    },
+    {
+      "id": "sy-rb-019",
+      "source": "stackyard-doc-runbook",
+      "author": "Tom Becker",
+      "at": "2026-09-25T10:15:00Z",
+      "section": [
+        "Open items"
+      ],
+      "text": "Open items: Phoenix SFTP exports, BI box connection string, label printing duplicates."
+    },
+    {
+      "id": "sy-pl-001",
+      "source": "stackyard-doc-plan",
+      "author": "Priya Nair",
+      "at": "2026-08-11T08:00:00Z",
+      "section": [
+        "Goal"
+      ],
+      "text": "Move StackYard and its database from Corvane Cloud to Nimbara before the Corvane contract ends on 31 Dec 2026."
+    },
+    {
+      "id": "sy-pl-002",
+      "source": "stackyard-doc-plan",
+      "author": "Priya Nair",
+      "at": "2026-08-11T08:01:00Z",
+      "section": [
+        "Timeline"
+      ],
+      "text": "Target cutover: mid-October, after replication has run stable for at least two weeks."
+    },
+    {
+      "id": "sy-pl-003",
+      "source": "stackyard-doc-plan",
+      "author": "Priya Nair",
+      "at": "2026-08-11T08:02:00Z",
+      "section": [
+        "Waves"
+      ],
+      "text": "Wave 1: first site (Leeds or Doncaster, decided at the September sync). Wave 2: Manchester, November, after the retail promo peak."
+    },
+    {
+      "id": "sy-pl-004",
+      "source": "stackyard-doc-plan",
+      "author": "Priya Nair",
+      "at": "2026-08-11T08:03:00Z",
+      "section": [
+        "Risks"
+      ],
+      "text": "Biggest risks: handheld firmware, replication lag on stock_movements, cutover during busy periods."
+    },
+    {
+      "id": "sy-pl-005",
+      "source": "stackyard-doc-plan",
+      "author": "Priya Nair",
+      "at": "2026-08-11T08:04:00Z",
+      "section": [
+        "Budget"
+      ],
+      "text": "Budget: Nimbara run-rate should stay below current Corvane spend (€9,200/month)."
+    },
+    {
+      "id": "sy-pl-006",
+      "source": "stackyard-doc-plan",
+      "author": "Priya Nair",
+      "at": "2026-08-11T08:05:00Z",
+      "section": [
+        "Out of scope"
+      ],
+      "text": "Out of scope: Phoenix forklift telemetry pilot (ops-owned, separate vendor)."
+    },
+    {
+      "id": "sy-m16-001",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:00:05Z",
+      "text": "OK, let's start. Three things: which site first, Manchester, and fallback."
+    },
+    {
+      "id": "sy-m16-002",
+      "source": "stackyard-meet-0916",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-16T10:00:40Z",
+      "text": "Replication status first, quickly: lag is mostly under four seconds, spikes during the two a.m. recount job."
+    },
+    {
+      "id": "sy-m16-003",
+      "source": "stackyard-meet-0916",
+      "author": "Tom Becker",
+      "at": "2026-09-16T10:01:30Z",
+      "text": "We're moving that job to five a.m., that should flatten it."
+    },
+    {
+      "id": "sy-m16-004",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:02:10Z",
+      "text": "Good. So, first site."
+    },
+    {
+      "id": "sy-m16-005",
+      "source": "stackyard-meet-0916",
+      "author": "Hannah Price",
+      "at": "2026-09-16T10:02:40Z",
+      "text": "Leeds is the one we care about most, it's the biggest. I'd rather it went first while everyone's fresh."
+    },
+    {
+      "id": "sy-m16-006",
+      "source": "stackyard-meet-0916",
+      "author": "Marcus Hale",
+      "at": "2026-09-16T10:03:20Z",
+      "text": "Leeds still has older firmware on some handhelds, but we're reflashing."
+    },
+    {
+      "id": "sy-m16-007",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:04:00Z",
+      "text": "Then Leeds goes first — but only if replication lag stays under five seconds for seventy-two hours straight. If it doesn't, Doncaster goes first, it's the smaller site."
+    },
+    {
+      "id": "sy-m16-008",
+      "source": "stackyard-meet-0916",
+      "author": "Tom Becker",
+      "at": "2026-09-16T10:04:40Z",
+      "text": "Works for me."
+    },
+    {
+      "id": "sy-m16-009",
+      "source": "stackyard-meet-0916",
+      "author": "Hannah Price",
+      "at": "2026-09-16T10:05:00Z",
+      "text": "Fine."
+    },
+    {
+      "id": "sy-m16-010",
+      "source": "stackyard-meet-0916",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-16T10:05:10Z",
+      "text": "Seventy-two hours is fine, I will post lag numbers in infra every morning."
+    },
+    {
+      "id": "sy-m16-011",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:05:30Z",
+      "text": "Manchester."
+    },
+    {
+      "id": "sy-m16-012",
+      "source": "stackyard-meet-0916",
+      "author": "Tom Becker",
+      "at": "2026-09-16T10:06:00Z",
+      "text": "Manchester is wave two, November, after the promo peak. Different network setup, we don't want to touch it in October."
+    },
+    {
+      "id": "sy-m16-013",
+      "source": "stackyard-meet-0916",
+      "author": "Hannah Price",
+      "at": "2026-09-16T10:06:40Z",
+      "text": "Agreed, Manchester is chaos in October anyway."
+    },
+    {
+      "id": "sy-m16-014",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:07:10Z",
+      "text": "Fallback after cutover?"
+    },
+    {
+      "id": "sy-m16-015",
+      "source": "stackyard-meet-0916",
+      "author": "Tom Becker",
+      "at": "2026-09-16T10:07:50Z",
+      "text": "After cutover we keep the Corvane read replica running for two weeks, so if something is badly wrong we still have the old data live."
+    },
+    {
+      "id": "sy-m16-016",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:08:20Z",
+      "text": "Agreed, two weeks."
+    },
+    {
+      "id": "sy-m16-017",
+      "source": "stackyard-meet-0916",
+      "author": "Jess Lindqvist",
+      "at": "2026-09-16T10:08:50Z",
+      "text": "While we're here — label printing on a queue, can we squeeze it in?"
+    },
+    {
+      "id": "sy-m16-018",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:09:20Z",
+      "text": "Let's park that, Tom's not keen. Next item."
+    },
+    {
+      "id": "sy-m16-019",
+      "source": "stackyard-meet-0916",
+      "author": "Oleg Sidorenko",
+      "at": "2026-09-16T10:09:50Z",
+      "text": "One more: I'll need a bigger instance for the migration week, will ask in billing."
+    },
+    {
+      "id": "sy-m16-020",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:10:20Z",
+      "text": "Sure, post the number there."
+    },
+    {
+      "id": "sy-m16-021",
+      "source": "stackyard-meet-0916",
+      "author": "Ruth Ames",
+      "at": "2026-09-16T10:10:50Z",
+      "text": "And please, someone give me the staging cost."
+    },
+    {
+      "id": "sy-m16-022",
+      "source": "stackyard-meet-0916",
+      "author": "Tom Becker",
+      "at": "2026-09-16T10:11:10Z",
+      "text": "Yes, yes."
+    },
+    {
+      "id": "sy-m16-023",
+      "source": "stackyard-meet-0916",
+      "author": "Priya Nair",
+      "at": "2026-09-16T10:11:40Z",
+      "text": "Thanks everyone."
+    },
+    {
+      "id": "sy-m07-001",
+      "source": "stackyard-meet-1007",
+      "author": "Priya Nair",
+      "at": "2026-10-07T14:00:10Z",
+      "text": "Thanks for joining. This is mainly to walk the warehouse leads through the cutover night."
+    },
+    {
+      "id": "sy-m07-002",
+      "source": "stackyard-meet-1007",
+      "author": "Tom Becker",
+      "at": "2026-10-07T14:01:00Z",
+      "text": "The plan in the runbook is a Saturday night window, twenty-two to four UTC. Shift leads run the warehouse checks at about one a.m."
+    },
+    {
+      "id": "sy-m07-003",
+      "source": "stackyard-meet-1007",
+      "author": "Hannah Price",
+      "at": "2026-10-07T14:02:10Z",
+      "text": "Before you go on — the seventeenth doesn't work for us. It's the Saturday before the retail promo, every dock is full. We need the twenty-fourth."
+    },
+    {
+      "id": "sy-m07-004",
+      "source": "stackyard-meet-1007",
+      "author": "Tom Becker",
+      "at": "2026-10-07T14:02:50Z",
+      "text": "Noted. I'll take that back to Priya and the team."
+    },
+    {
+      "id": "sy-m07-005",
+      "source": "stackyard-meet-1007",
+      "author": "Priya Nair",
+      "at": "2026-10-07T14:03:20Z",
+      "text": "Let's not decide it in this room, I need to check Oleg's availability."
+    },
+    {
+      "id": "sy-m07-006",
+      "source": "stackyard-meet-1007",
+      "author": "Kev Moran",
+      "at": "2026-10-07T14:04:00Z",
+      "text": "Can the Phoenix pilot dashboards stay up during all this? It's a different system, right?"
+    },
+    {
+      "id": "sy-m07-007",
+      "source": "stackyard-meet-1007",
+      "author": "Jess Lindqvist",
+      "at": "2026-10-07T14:04:30Z",
+      "text": "Yes, the forklift pilot isn't on StackYard at all. Only the old Phoenix invoicing is affected and that goes away end of November."
+    },
+    {
+      "id": "sy-m07-008",
+      "source": "stackyard-meet-1007",
+      "author": "Hannah Price",
+      "at": "2026-10-07T14:05:20Z",
+      "text": "And the handhelds — do my people need to do anything?"
+    },
+    {
+      "id": "sy-m07-009",
+      "source": "stackyard-meet-1007",
+      "author": "Marcus Hale",
+      "at": "2026-10-07T14:05:50Z",
+      "text": "Leeds handhelds are almost all reflashed. They'll just reconnect after the switch."
+    },
+    {
+      "id": "sy-m07-010",
+      "source": "stackyard-meet-1007",
+      "author": "Hannah Price",
+      "at": "2026-10-07T14:06:30Z",
+      "text": "What if something goes wrong in the middle of the night?"
+    },
+    {
+      "id": "sy-m07-011",
+      "source": "stackyard-meet-1007",
+      "author": "Tom Becker",
+      "at": "2026-10-07T14:07:10Z",
+      "text": "There's a rollback section, your shift leads confirm handhelds reconnect. Hannah, you were going to review that part."
+    },
+    {
+      "id": "sy-m07-012",
+      "source": "stackyard-meet-1007",
+      "author": "Hannah Price",
+      "at": "2026-10-07T14:07:40Z",
+      "text": "After the promo, yes."
+    },
+    {
+      "id": "sy-m07-013",
+      "source": "stackyard-meet-1007",
+      "author": "Kev Moran",
+      "at": "2026-10-07T14:07:55Z",
+      "text": "Will the label printers in Doncaster need anything?"
+    },
+    {
+      "id": "sy-m07-014",
+      "source": "stackyard-meet-1007",
+      "author": "Tom Becker",
+      "at": "2026-10-07T14:08:00Z",
+      "text": "A restart after the DNS switch, it's in the runbook."
+    },
+    {
+      "id": "sy-m07-015",
+      "source": "stackyard-meet-1007",
+      "author": "Kev Moran",
+      "at": "2026-10-07T14:08:10Z",
+      "text": "Doncaster docks are fine on any weekend, for what it's worth."
+    },
+    {
+      "id": "sy-m07-016",
+      "source": "stackyard-meet-1007",
+      "author": "Priya Nair",
+      "at": "2026-10-07T14:08:40Z",
+      "text": "Thanks, that's useful. We'll come back on the date by Friday."
+    },
+    {
+      "id": "sy-m07-017",
+      "source": "stackyard-meet-1007",
+      "author": "Hannah Price",
+      "at": "2026-10-07T14:09:10Z",
+      "text": "Please do."
+    }
+  ]
+}

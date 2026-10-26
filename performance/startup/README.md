@@ -14,3 +14,9 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
   the `cli` entry loads 618 of cli-core's modules instead of 704 and imports in about 400 ms instead of 430–450;
   tg and max start within noise of before, and their test steps did not measurably change, so the change was not
   merged (2026-10-18).
+- [fast-start](fast-start/README.md): a bare `--version` answered before the program loads (56–73 ms in tg, max
+  and wa, from 0.6–1.0 s), tg's mtcute and drive's Google libraries loaded on first use, what still loads, and a
+  bundle of tg (2026-10-25).
+- [packed-install](packed-install/README.md): packed releases installed with npm, pnpm and Bun in isolated directories (2026-10-24).
+
+- [WhatsApp on npm 12](wa-npm12/README.md): whether an unapproved global install hook runs, and the scoped approval flag.

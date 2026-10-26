@@ -8,6 +8,34 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ## Unreleased
 
+### Changed â€” may break callers
+
+- **The MCP client is `@modelcontextprotocol/client` 2.4 instead of `@modelcontextprotocol/sdk` 1.32.** The v1
+  package pulled Express, body-parser, Ajv and express-rate-limit into every install, and all of this package's
+  audit findings came through them. The contract suite now lets the SDK walk the tool list's pages: a server
+  whose pagination never ends fails after 64 pages ("exceeded listMaxPages") instead of "repeated a cursor".
+
+### Security
+
+- No known advisories in the dependency tree: the MCP SDK swap removes the fast-uri, Express and Ajv findings,
+  and the test runner now resolves Vite 8.3.5.
+
+### Fixed
+
+- Packed installation checks run Windows batch launchers from isolated directories with the pinned managers and platform marker required by native installers.
+
+### Added
+
+- A compact evidence-ranking handoff package with pinned model preparation, synthetic CPU diagnostics,
+  reproducible metrics and a staged comparison of mathematical, contextual and optional neural methods.
+- A reproducible API cost estimator for the knowledge graph memory pilot, with explicit call/token
+  assumptions, current rate sources and a distinction between scenarios and metered engine usage.
+- `cli-testing ux install` checks packed tarballs with pinned npm, pnpm and Bun, validates global binaries and documented follow-up commands, and records install warnings and publint results in isolated run directories.
+- A synthetic knowledge graph memory benchmark fixture and scorer: 2,000 source records, 50 known-answer
+  questions, citation checks and stale-answer checks. Engine runs remain pending provider selection.
+
+## 0.5.3 â€” 22.10.2026
+
 - Add a question-level lexical/discovery/E5 comparison with support metrics and explicit source/index coverage.
 
 - Add detailed gathering cost/coverage analysis, metadata-only sample review tools and an evaluation protocol.
@@ -15,6 +43,10 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 - Add an opt-in installed Memo 0.84.0 observation runner and aggregate second-project name/contact results.
 
 ### Added
+
+- **Offline contracts isolate WhatsApp profiles too.** The harness sets `WA_CONFIG_DIR`, `WA_STATE_DIR` and
+  `WA_CACHE_DIR` inside its temporary directory and disables update checks, so upgrade fixtures use the same
+  paths as the CLI without inheriting the owner's state.
 
 - **`performance/projects/restore/check-memo.mjs`** exercises published Memo0.83 through real CLI
   processes and stdio MCP, with an exact retained dependency lock. It checks private export, explicit

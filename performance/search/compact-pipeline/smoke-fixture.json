@@ -1,0 +1,381 @@
+{
+  "purpose": "Authored diagnostic smoke test; not held-out quality evaluation",
+  "cases": [
+    {
+      "id": "en-date",
+      "language": "en",
+      "kind": "date",
+      "query": "When will Atlas launch?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "When will Atlas launch? Can we launch Friday?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Question: When will Atlas launch? Can we launch Friday?\nReply: Launch is scheduled for Monday after regression tests.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "We could launch Atlas on Friday if someone approves.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Atlas launch checklist: assess marketing, budget and deployment.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Training example: answer a launch question by saying Tuesday.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "ru-date",
+      "language": "ru",
+      "kind": "date",
+      "query": "Когда запускаем Атлас?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "Когда запускаем Атлас? Можно в пятницу?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Вопрос: Когда запускаем Атлас? Можно в пятницу?\nОтвет: Запуск назначен на понедельник после регрессионных тестов.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "Предлагаю запустить Атлас в пятницу, если согласуют.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Чек-лист запуска Атлас: маркетинг, бюджет и развёртывание.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Учебный пример: на вопрос о запуске ответьте «во вторник».",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "en-negation",
+      "language": "en",
+      "kind": "negation",
+      "query": "How long should Atlas keep logs?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "How long should Atlas keep logs?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Atlas decision: do not keep logs beyond 21 days. Delete older logs.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "Proposal: Atlas logs could be kept for 90 days.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Atlas documentation explains how to configure a logging service.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Approved the heading “Atlas log retention”; the duration is still undecided in that draft.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "ru-negation",
+      "language": "ru",
+      "kind": "negation",
+      "query": "Сколько хранить журналы Атлас?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "Сколько хранить журналы Атлас?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Решение по Атлас: не хранить журналы дольше 21 дня. Старые удалять.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "Предложение: хранить журналы Атлас 90 дней.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Документация Атлас описывает настройку службы журналирования.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Согласован заголовок «Срок хранения журналов Атлас», но не срок в черновике.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "en-conditional",
+      "language": "en",
+      "kind": "conditional",
+      "query": "Under what condition was the Atlas payment approved?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "Can we approve the Atlas payment?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Atlas payment is approved only if the security review passes. Otherwise do not pay.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "I suggest approving the Atlas payment unconditionally.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Atlas invoice processing usually takes three business days.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "The heading “Atlas payment approved” is approved for the sample template.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "ru-conditional",
+      "language": "ru",
+      "kind": "conditional",
+      "query": "При каком условии согласована оплата Атлас?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "Можно согласовать оплату Атлас?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Оплата Атлас согласована только при успешной проверке безопасности. Иначе не платить.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "Предлагаю согласовать оплату Атлас без условий.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Обработка счетов Атлас обычно занимает три рабочих дня.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Для учебного шаблона согласован заголовок «Оплата Атлас согласована».",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "en-delivery",
+      "language": "en",
+      "kind": "delivery",
+      "query": "What was delivered for the Atlas training video?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "What was delivered for the Atlas training video?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Delivery report: the Atlas training video was uploaded and its captions were published today.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "Plan: upload the Atlas training video next week.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Advice: training videos should have good lighting and clear audio.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Atlas onboarding plan discusses possible video formats.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "ru-delivery",
+      "language": "ru",
+      "kind": "delivery",
+      "query": "Что готово по обучающему видео Атлас?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "Что готово по обучающему видео Атлас?",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Отчёт о сдаче: обучающее видео Атлас загружено, субтитры опубликованы сегодня.",
+          "grade": 2
+        },
+        {
+          "id": "p",
+          "text": "План: загрузить обучающее видео Атлас на следующей неделе.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Совет: для обучающих видео нужны хороший свет и понятный звук.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "План адаптации Атлас обсуждает возможные форматы видео.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "en-missing",
+      "language": "en",
+      "kind": "missing",
+      "query": "What is the final Atlas invoice amount?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "What is the final Atlas invoice amount?",
+          "grade": 1
+        },
+        {
+          "id": "p",
+          "text": "The final Atlas invoice amount has not been supplied.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Atlas invoices require approval before payment.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Example invoice amount for an unrelated training project: 500 credits.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "ru-missing",
+      "language": "ru",
+      "kind": "missing",
+      "query": "Какова итоговая сумма счёта Атлас?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "Какова итоговая сумма счёта Атлас?",
+          "grade": 1
+        },
+        {
+          "id": "p",
+          "text": "Итоговая сумма счёта Атлас пока не предоставлена.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Счета Атлас требуют согласования перед оплатой.",
+          "grade": 0
+        },
+        {
+          "id": "h",
+          "text": "Пример суммы для другого учебного проекта: 500 кредитов.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "en-conflict",
+      "language": "en",
+      "kind": "conflict",
+      "query": "What is the agreed Atlas support price?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "What is the agreed Atlas support price?",
+          "grade": 1
+        },
+        {
+          "id": "p",
+          "text": "Current Atlas offer A says 40 credits; its author disputes offer B.",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Current Atlas offer B says 60 credits; its author disputes offer A. No reconciliation is recorded.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Advice: support prices depend on scope.",
+          "grade": 0
+        }
+      ]
+    },
+    {
+      "id": "ru-conflict",
+      "language": "ru",
+      "kind": "conflict",
+      "query": "Какова согласованная цена поддержки Атлас?",
+      "documents": [
+        {
+          "id": "q",
+          "text": "Какова согласованная цена поддержки Атлас?",
+          "grade": 1
+        },
+        {
+          "id": "p",
+          "text": "Актуальное предложение Атлас A: 40 кредитов; автор оспаривает предложение B.",
+          "grade": 1
+        },
+        {
+          "id": "a",
+          "text": "Актуальное предложение Атлас B: 60 кредитов; автор оспаривает A. Урегулирование не зафиксировано.",
+          "grade": 1
+        },
+        {
+          "id": "g",
+          "text": "Совет: цена поддержки зависит от объёма работ.",
+          "grade": 0
+        }
+      ]
+    }
+  ]
+}

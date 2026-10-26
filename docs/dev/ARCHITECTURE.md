@@ -5,6 +5,7 @@ Published as `@wirecat/cli-testing`, a development dependency of max-cli and tg-
 | Path | What |
 |---|---|
 | [`src/index.ts`](../../src/index.ts) | suite groups and the public runner/comparison APIs |
+| [`src/ux.ts`](../../src/ux.ts) | packed installation plans, isolated package-manager runs and warning reports |
 | [`src/main.ts`](../../src/main.ts) | command parsing and stdout/stderr routing |
 | [`src/contracts.ts`](../../src/contracts.ts) | offline process contracts and MCP schema snapshots |
 | [`src/contract-state.ts`](../../src/contract-state.ts) | synthetic fixtures, JSON expectations and file preservation |
