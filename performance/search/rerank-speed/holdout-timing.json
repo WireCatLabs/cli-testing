@@ -1,0 +1,47 @@
+{
+  "pairs": "evidence-pipeline holdout, 9 questions x 50, one pair per run",
+  "runs": [
+    {
+      "runtime": "python onnxruntime 1.23.2",
+      "threads": 4,
+      "load_ms": 186,
+      "per_question_ms_median": 167,
+      "per_question_ms_range": [148, 240]
+    },
+    {
+      "runtime": "python onnxruntime 1.23.2",
+      "threads": 8,
+      "load_ms": 135,
+      "per_question_ms_median": 256,
+      "per_question_ms_range": [247, 297]
+    },
+    {
+      "runtime": "wasm",
+      "threads": 4,
+      "load_ms": 526,
+      "per_question_ms_median": 626,
+      "per_question_ms_range": [559, 808]
+    },
+    {
+      "runtime": "native",
+      "threads": 4,
+      "load_ms": 175,
+      "per_question_ms_median": 252,
+      "per_question_ms_range": [228, 289]
+    },
+    {
+      "runtime": "wasm",
+      "threads": 8,
+      "load_ms": 513,
+      "per_question_ms_median": 596,
+      "per_question_ms_range": [559, 812]
+    },
+    {
+      "runtime": "native",
+      "threads": 8,
+      "load_ms": 172,
+      "per_question_ms_median": 295,
+      "per_question_ms_range": [259, 333]
+    }
+  ]
+}
