@@ -58,7 +58,8 @@ message vectors.
 [Reranker speed](rerank-speed/README.md) splits `--discover`'s time after Core 0.435.0 (words 0.8 s, meaning 1.9 s,
 with mMARCO 5.1 s on one archive), shows that batching the reranker's pairs does not help in WebAssembly and changes
 the 8-bit model's scores, and measures onnxruntime-node: a real `--discover` 4.6 s → 3.2 s with the same answers,
-no build for Alpine or Intel Macs (2026-10-26).
+no build for Alpine or Intel Macs; and which reranker input keeps the answers on real long messages — the reply's
+parent cut to 300 characters (2026-10-26).
 
 ## Layout
 

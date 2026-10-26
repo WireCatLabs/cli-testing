@@ -154,3 +154,50 @@ Platforms in onnxruntime-node 1.30.0 (288 MB unpacked, all platforms in one pack
 - Windows, macOS and Linux arm64 at run time (only the files were listed).
 - Quality with a shorter input cap (256 tokens) and with the parent left out.
 - The MCP server, where models stay loaded and only scoring would get faster.
+
+## Reranker input: how much of the replied-to message
+
+### Why
+
+On real archives the reranker's pairs are long — median 153 tokens, 90th percentile 762 — because Core gives it the
+hit with the message it replies to, parent first, cut at the model's 512 tokens from the end. With a long parent
+the hit itself fell outside the window. The question: which shorter input keeps the answers and saves time? The
+synthetic evidence-pipeline corpus cannot answer it: none of its pairs is longer than 256 tokens (median 38).
+
+### Setup
+
+The six known questions on one real chat (totals only; queries and per-question rows stay private), max-cli with
+cli-core v0.439.0 patched only to switch the input form and the token cap by environment variables (not merged),
+native runtime, a copy of the owner's store, two runs. The machine was loaded by other work (load average 15–26), so
+the comparison is CPU time per call (all threads), not wall time. Answers graded with earlier judgments; hits no
+earlier method returned are "not graded".
+
+### Results
+
+| Input | Direct answer in top 5 | Direct / background / off / not graded | Top 5 shared with current (of 30) | CPU per call |
+| --- | ---: | --- | ---: | ---: |
+| Parent then hit, cut at 512 tokens (current) | 6 / 6 | 9 / 15 / 6 / 0 | 30 | 27.1 s |
+| Cut at 256 tokens | 6 / 6 | 9 / 14 / 5 / 2 | 27 | 16.3 s |
+| Cut at 128 tokens | 6 / 6 | 9 / 15 / 4 / 2 | 24 | 12.9 s |
+| Hit then parent | 6 / 6 | 10 / 15 / 5 / 0 | 29 | 22.6 s |
+| Hit then parent, 256 tokens | 6 / 6 | 10 / 14 / 4 / 2 | 26 | 15.5 s |
+| **Parent cut to 300 characters, then hit** | **6 / 6** | **10 / 16 / 4 / 0** | 27 | **16.0 s** |
+| Parent cut to 300 characters, 256 tokens | 6 / 6 | 10 / 15 / 3 / 2 | 24 | 15.3 s |
+| No parent | 5 / 6 | 10 / 13 / 6 / 1 | 22 | 14.9 s |
+| No parent, 256 tokens | 5 / 6 | 10 / 14 / 4 / 2 | 20 | 16.9 s |
+
+In 18 of the 119 pairs with a parent, the parent alone was longer than ~512 tokens: the reranker never saw the hit.
+
+### What it showed
+
+- **The parent is needed**: without it one question lost its answer.
+- **Cutting the parent to 300 characters kept every answer**, fixed the hidden-hit case and cost about 40% less CPU.
+  Core 0.447.0 does that (WireCatLabs/cli-core#2053).
+- Six questions on one chat is a small sample; a synthetic set with long messages and replies would test it better.
+
+### Release check
+
+The released change (parent cut) together with the native runtime (WireCatLabs/cli-core#2058), in max on the store
+copy, six questions × 2: native library loaded on 12 of 12 calls; direct answer in the top 5 for 6 of 6 with native
+and with WebAssembly; 29 of 30 hits shared; CPU per call 22 s native against 45 s WebAssembly (load average 17, wall
+times not comparable).
