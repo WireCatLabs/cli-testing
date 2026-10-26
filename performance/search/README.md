@@ -51,6 +51,9 @@ messages, and how many of each it finds, totals only.
 
 [Vector index](vector-index/README.md) compares Core's current vector scan with an index on chunks, int8 vectors,
 sqlite-vec, usearch, hnswlib and packed blocks of vectors, on synthetic stores of 100k and 1M chunks (2026-10-25).
+Its [Core implementation](vector-index/README.md#core-implementation-cli-core2001) section measures the `vec0` index
+Core adopted: the same answers as the scan, 1.2 s → 0.2 s warm and 1.9 s → 0.6 s cold for one account at 600k
+message vectors.
 
 ## Layout
 
@@ -59,7 +62,7 @@ sqlite-vec, usearch, hnswlib and packed blocks of vectors, on synthetic stores o
 | [message-search/](message-search/README.md) | Synthetic corpus, question supplement, benchmark runners, pinned model manifest and historical JSON reports |
 | [everywhere/](everywhere/README.md) | Latency of a bare word that also looks in transcripts, file names and file text (2026-10-13) |
 | [envelope-s4/](envelope-s4/README.md) | Ranking before and after search moved onto the list envelope: identical (2026-10-14) |
-| [vector-index/](vector-index/README.md) | Storage and index options for search by meaning, 100k and 1M chunks: packed blocks recommended (2026-10-25) |
+| [vector-index/](vector-index/README.md) | Storage and index options for search by meaning, 100k and 1M chunks: packed blocks recommended; then Core's `vec0` index measured at 100k and 600k (2026-10-25) |
 | [search-all-meaning/](search-all-meaning/README.md) | What searching messages by meaning adds to `search all`, and sharing the model with notes: 1.7 s → 0.9 s (2026-10-25) |
 | [local-documents/](local-documents/README.md) | qmd compared with memo and drive search on the owner's notes and Drive documents (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |
