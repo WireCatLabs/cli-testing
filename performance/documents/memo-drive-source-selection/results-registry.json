@@ -1,0 +1,238 @@
+{
+  "versions": {
+    "drive": "0.28.0",
+    "memo": "0.92.0",
+    "core": "0.406.0"
+  },
+  "results": [
+    {
+      "args": ["search", "all", "zebra harbor", "--exact"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "mail",
+          "kind": "mail",
+          "provider": "email",
+          "account": "owner@example.com",
+          "ref": "msg:email/owner%40example.com/synthetic-thread/synthetic-email",
+          "url": null,
+          "timestamp": "2026-01-03T00:00:00.000Z",
+          "source": null
+        },
+        {
+          "origin": "drive",
+          "kind": "document",
+          "provider": "drive",
+          "account": "synthetic",
+          "ref": "document:2",
+          "url": "https://docs.google.com/document/d/synthetic-drive-document/edit",
+          "timestamp": "2026-01-02T03:04:05Z",
+          "source": null
+        },
+        {
+          "origin": "internal",
+          "kind": "note",
+          "provider": "notes",
+          "account": "internal",
+          "ref": "note:1",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.693Z",
+          "source": null
+        },
+        {
+          "origin": "disk",
+          "kind": "note",
+          "provider": "notes",
+          "account": "2",
+          "ref": "document:3",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.696Z",
+          "source": null
+        }
+      ]
+    },
+    {
+      "args": ["search", "all", "zebra harbor", "--exact", "--only", "notes"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "drive",
+          "kind": "document",
+          "provider": "drive",
+          "account": "synthetic",
+          "ref": "document:2",
+          "url": "https://docs.google.com/document/d/synthetic-drive-document/edit",
+          "timestamp": "2026-01-02T03:04:05Z",
+          "source": null
+        },
+        {
+          "origin": "internal",
+          "kind": "note",
+          "provider": "notes",
+          "account": "internal",
+          "ref": "note:1",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.693Z",
+          "source": null
+        },
+        {
+          "origin": "disk",
+          "kind": "note",
+          "provider": "notes",
+          "account": "2",
+          "ref": "document:3",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.696Z",
+          "source": null
+        }
+      ]
+    },
+    {
+      "args": ["search", "notes", "zebra harbor", "--exact"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "drive",
+          "kind": "document",
+          "provider": "drive",
+          "account": "synthetic",
+          "ref": "document:2",
+          "url": "https://docs.google.com/document/d/synthetic-drive-document/edit",
+          "timestamp": "2026-01-02T03:04:05Z",
+          "source": "file"
+        },
+        {
+          "origin": "internal",
+          "kind": "note",
+          "provider": "notes",
+          "account": "internal",
+          "ref": "note:1",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.693Z",
+          "source": "internal"
+        },
+        {
+          "origin": "disk",
+          "kind": "note",
+          "provider": "notes",
+          "account": "2",
+          "ref": "document:3",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.696Z",
+          "source": "file"
+        }
+      ]
+    },
+    {
+      "args": ["search", "notes", "zebra harbor", "--exact", "--source", "drive"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "drive",
+          "kind": "document",
+          "provider": "drive",
+          "account": "synthetic",
+          "ref": "document:2",
+          "url": "https://docs.google.com/document/d/synthetic-drive-document/edit",
+          "timestamp": "2026-01-02T03:04:05Z",
+          "source": "file"
+        }
+      ]
+    },
+    {
+      "args": ["search", "notes", "zebra harbor", "--exact", "--source", "documents"],
+      "exit": 2,
+      "error": {
+        "code": "validation_error",
+        "reason": "input.invalid",
+        "message": "--source names nothing memo search notes reads: documents (no account in the store)",
+        "retry": {
+          "safe": false
+        }
+      },
+      "hits": []
+    },
+    {
+      "args": ["search", "notes", "zebra harbor", "--exact", "--source", "drive:synthetic"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "drive",
+          "kind": "document",
+          "provider": "drive",
+          "account": "synthetic",
+          "ref": "document:2",
+          "url": "https://docs.google.com/document/d/synthetic-drive-document/edit",
+          "timestamp": "2026-01-02T03:04:05Z",
+          "source": "file"
+        }
+      ]
+    },
+    {
+      "args": ["search", "notes", "zebra harbor source:file", "--exact"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "drive",
+          "kind": "document",
+          "provider": "drive",
+          "account": "synthetic",
+          "ref": "document:2",
+          "url": "https://docs.google.com/document/d/synthetic-drive-document/edit",
+          "timestamp": "2026-01-02T03:04:05Z",
+          "source": "file"
+        },
+        {
+          "origin": "disk",
+          "kind": "note",
+          "provider": "notes",
+          "account": "2",
+          "ref": "document:3",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.696Z",
+          "source": "file"
+        }
+      ]
+    },
+    {
+      "args": ["search", "notes", "zebra harbor", "--exact", "--source", "notes:internal"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "internal",
+          "kind": "note",
+          "provider": "notes",
+          "account": "internal",
+          "ref": "note:1",
+          "url": null,
+          "timestamp": "2026-10-24T18:00:27.693Z",
+          "source": "internal"
+        }
+      ]
+    },
+    {
+      "args": ["search", "notes", "zebra harbor", "--exact", "--source", "notes:<drive folder id>"],
+      "exit": 0,
+      "error": null,
+      "hits": [
+        {
+          "origin": "drive",
+          "kind": "document",
+          "provider": "drive",
+          "account": "synthetic",
+          "ref": "document:2",
+          "url": "https://docs.google.com/document/d/synthetic-drive-document/edit",
+          "timestamp": "2026-01-02T03:04:05Z",
+          "source": "file"
+        }
+      ]
+    }
+  ]
+}
