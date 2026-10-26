@@ -46,6 +46,9 @@ Run 2 had a coverage floor of 99 % on purpose; its time is still valid, the merg
 ([40248523621](https://github.com/WireCatLabs/tg-cli/actions/runs/40248523621)), with max-cli's run at the same
 time: whole run 326 s, longest shard 91 s, jobs waited 11–170 s for a runner.
 
+**2 shards** ([40249617246](https://github.com/WireCatLabs/tg-cli/actions/runs/40249617246)): shards 168 s and
+120 s, `coverage` 31 s, `check` 85 s, whole run 267 s, jobs waited 2–49 s for a runner.
+
 ### max-cli
 
 | | before | after |
@@ -94,9 +97,17 @@ untested with a reason, 0 missing".
 - **Both failures block the merge,** once `validation / ci / coverage` is a required check: a skipped required check
   would count as passed, and `coverage` fails instead of skipping.
 
+## What was decided
+
+- **tg-cli: 2 shards** ([tg-cli #735](https://github.com/WireCatLabs/tg-cli/pull/735)), with
+  `validation / ci / coverage` a required check on `main`. Its test step is by far its longest job, and 2 shards
+  take 2 extra runners, not 4.
+- **max-cli: no shards** ([max-cli #827](https://github.com/WireCatLabs/max-cli/pull/827), closed). 114 s of tests
+  does not pay for the extra jobs.
+
 ## What was not measured
 
 - A quiet account, with no other repository's jobs waiting for runners. The "after" gain there should be closer to
   the job times than to the whole-run times.
-- 2 or 3 shards instead of 4.
+- 3 shards, and 2 shards on more than one run.
 - How much the extra jobs slow other repositories' pull requests that wait for the same 20 runners.
