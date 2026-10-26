@@ -192,7 +192,7 @@ In 18 of the 119 pairs with a parent, the parent alone was longer than ~512 toke
 
 - **The parent is needed**: without it one question lost its answer.
 - **Cutting the parent to 300 characters kept every answer**, fixed the hidden-hit case and cost about 40% less CPU.
-  Core 0.447.0 does that (WireCatLabs/cli-core#2053).
+  Core does that from its next release (WireCatLabs/cli-core#2053, merged).
 - Six questions on one chat is a small sample; a synthetic set with long messages and replies would test it better.
 
 ### Release check
