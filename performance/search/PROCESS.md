@@ -257,6 +257,17 @@ rules over a 10 MB phone library: "looks like a phone" is enough. On one person'
 0.66 s and found 861 mentions in 256 kB; every phone found was a phone. Links written without `http` first caught
 method calls in pasted program code; one rule fixed it. [mentions/](mentions/README.md).
 
+## 11. Words and meaning together for meetings
+
+The owner asks meetings both literal words and natural questions, and recognition garbles Russian words. cli-core#1738
+ranks word hits and passage vectors together. On 48 invented meetings and 62 queries, combined found every literal fact
+line first, as words did, where meaning alone missed 4 of 15 Russian literal queries. On questions it reached 67 %
+against 96 % for meaning alone: a question the detector misses fails the whole search on its `?`, and the 0.8 floor
+for e5-small drops correct passages that score 0.77–0.80. A probe showed the literal result is luck of the corpus: a
+word hit whose passage the floor drops ties with the first meaning passage and loses the tie. After #1738 fixed all
+three, combined answered 20 of 24 questions (83 %), kept literal words at 100 %, and the word hit wins the tie.
+[meeting-hybrid/](meeting-hybrid/README.md).
+
 ## What we concluded
 
 The most useful shipped gains came from retrieving the right evidence: question planning,
