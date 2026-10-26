@@ -12,4 +12,5 @@
   command loads.
 - [projects](projects/README.md): gathering cited evidence about a project — what it finds against a frozen
   baseline.
+- [cli](cli/README.md): what the shared command layer costs every command — the shared-command check.
 - [ci](ci/README.md): how long the pull-request checks take, and where the time goes.
