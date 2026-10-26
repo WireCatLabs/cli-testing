@@ -1,0 +1,246 @@
+# Meeting search: words, meaning, or both
+
+## Why we ran it
+
+The owner searches Russian Zoom meetings. Speech recognition garbles words, and the owner types both literal words
+(«залог склад») and natural questions («что решили по цене?»). Word search finds exact words and their garbled
+spellings, but not a question or other words for the same thing.
+[cli-core#1738](https://github.com/WireCatLabs/cli-core/pull/1738) adds `searchMeetingsCombined`: word hits and passage
+vectors ranked together by reciprocal rank fusion, with a question searched by its content words.
+
+The question: does the combined search beat words-only and meaning-only, and does it lose to words on literal Russian
+queries? The answer decides whether combined search becomes the default meeting search, and what to fix in #1738 before
+it does.
+
+## Setup
+
+- AMD Ryzen AI 9 HX 470 (24 threads), Linux 7.0.0-38-generic x86_64, Node 24.19.0, `node:sqlite`.
+- cli-core at `d2f3f5d6` (branch `feat/meeting-hybrid-search`, #1738), built with `pnpm build`, imported from `dist/`.
+- Model: local e5-small (`multilingual-e5-small`, 8-bit), key `local:e5-small:384`, similarity floor (`meaningFloor`)
+  0.8.
+- Invented corpus ([corpus.mjs](corpus.mjs), fixed seed): 48 meetings (40 Russian, 8 English), 20–80 lines each, 2,409
+  lines, invented speakers (Алиса Пример, Bob Sample…). Eight topics: pricing, hiring, travel, a release, an office
+  lease, a mortgage, a realtor, marketing. Each meeting has topic talk, small talk and, in Russian, garbled spellings of
+  the kind recognition makes («релис», «ипатеку», «реелтор»; 30 % chance per word kind per line). Several meetings per
+  topic share the common words («цена», «скидки», «банк») without the fact, so a topic word alone does not find the
+  answer.
+- 19 facts, one line each, planted in one meeting each. Seven fact lines are garbled; their queries spell the word
+  right. 134 passages; the longest is 369 tokens, so e5-small (512 tokens) cut none.
+- 62 queries, three per fact plus five more questions: 19 **literal** (the fact's words), 19 **paraphrase** (other words
+  for the same thing; word search finds no fact line for any of them), 24 **questions** in Russian and English. Five
+  questions use forms the question detector does not know («почему», «зачем», «что-то», "did", "is"), on purpose.
+  Five more queries have no answer in the corpus, to see what the similarity floor keeps.
+- Modes, top 10 each:
+  - **words**: `searchMeetingHits(query)`, the meeting query language as typed.
+  - **words (question words)**: the same with the question's content words (`questionTerms`), which is what the combined
+    search's word side runs.
+  - **meaning**: `meetingVectors.ranked`, no floor.
+  - **meaning ≥ floor**: the same, passages above 0.8 only, which is what the combined search's meaning side keeps.
+  - **combined**: `searchMeetingsCombined(query, { limit: 10 })`.
+- Scores: **R@10** — the fact's meeting is among the top 10; **MRR** — 1 / rank of its first item. Each query has one
+  relevant meeting, so R@10 is a hit rate. **Line** — an item counts only if it cites the fact line or is a passage that
+  contains it; a passage gets credit for any line in its range, so line scores are lenient for meaning.
+- Latency: after one untimed run, each query 5 times one after another (310 runs per mode), index refresh on as in the
+  product.
+- `node bench.mjs <cli-core checkout, built> <work directory> [runs=5]` writes `results.json` to the work directory.
+  `node tie-probe.mjs <cli-core checkout, built> <work directory>` runs the tie check described below.
+
+## Results
+
+| mode | literal R@10 · MRR | paraphrase R@10 · MRR | question R@10 · MRR | all R@10 · MRR | line R@10 · MRR, all |
+|---|---|---|---|---|---|
+| words | **100 % · 1.00** | 0 % · 0.00 | 0 % · 0.00 (24 errors) | 31 % · 0.31 | 31 % · 0.31 |
+| words (question words) | **100 % · 1.00** | 0 % · 0.00 | 33 % · 0.33 (6 errors) | 44 % · 0.44 | 44 % · 0.44 |
+| meaning | 79 % · 0.79 | **84 % · 0.51** | **96 % · 0.75** | **87 % · 0.69** | **84 % · 0.63** |
+| meaning ≥ floor | 79 % · 0.79 | 79 % · 0.45 | 83 % · 0.72 | 81 % · 0.66 | 76 % · 0.60 |
+| combined | **100 % · 1.00** | 79 % · 0.45 | 67 % · 0.67 (6 errors) | 81 % · **0.70** | 76 % · **0.65** |
+
+On Russian queries only: literal — words 15/15, meaning 11/15, combined 15/15; paraphrase — meaning 12/15, combined
+12/15; questions (18) — meaning 17, meaning ≥ floor 15, combined 12.
+
+| latency, warm | p50 | p95 |
+|---|---|---|
+| words | 4.1 ms | 6.9 ms |
+| words (question words) | 4.8 ms | 7.0 ms |
+| meaning | 11.5 ms | 13.7 ms |
+| combined | 17.2 ms | 23.6 ms |
+
+An earlier run of the same script on the same machine gave 10–30 % higher times (combined 18.9 / 27.3 ms) and the same
+quality numbers. Once per store: opening the model 0.8–1.2 s; embedding 134 passages 6.8–8.2 s (16–20 a second); the
+first word search, which builds the word index, 59–164 ms.
+
+Similarity of e5-small: the passage holding the fact scored 0.768–0.867 (median 0.823); the best passage per query
+0.775–0.876. Passages above the 0.8 floor per query: 0 to 114 of 134 (median 52).
+
+Queries with no answer in the corpus:
+
+| query | best score | passages above 0.8 | combined items |
+|---|---|---|---|
+| рецепт борща со сметаной | 0.809 | 18 | 10 |
+| результаты футбольного матча | 0.793 | 0 | 0 |
+| что посадить на даче весной? | 0.782 | 0 | 0 |
+| how to repair a bicycle chain | 0.799 | 0 | 0 |
+| best pizza place in Naples | 0.735 | 0 | 0 |
+
+Per query: the rank of the first item that holds the fact line; `(n)` when only another line of the right meeting was
+found, at rank n; `–` nothing in the top 10; `error` the search failed.
+
+| class | query | words | meaning | meaning ≥ floor | combined | fact passage score |
+|---|---|---|---|---|---|---|
+| literal | подписка двенадцать евро | 1 | 1 | 1 | 1 | 0.847 |
+| paraphrase | новая месячная плата для клиентов | – | 1 | 1 | 1 | 0.864 |
+| question | сколько будет стоить подписка? | error | 1 | 1 | 1 | 0.851 |
+| literal | скидка студентов | 1 | 1 | 1 | 1 | 0.823 |
+| paraphrase | уступка в цене для учащихся | – | 1 | 1 | 1 | 0.834 |
+| question | какую скидку дадим студентам? | error | 1 | 1 | error | 0.817 |
+| literal · garbled line | собеседование оффер | 1 | 4 | 4 | 1 | 0.867 |
+| paraphrase · garbled line | приём на работу после интервью | – | 10 | 10 | 10 | 0.865 |
+| question · garbled line | кому решили сделать оффер? | error | 7 | (1) | (1) | 0.793 |
+| literal | испытательный срок | 1 | – | – | 1 | 0.825 |
+| paraphrase | проверочный период новых сотрудников | – | (2) | (2) | (2) | 0.837 |
+| question | какой испытательный срок у джунов? | error | 1 | 1 | 1 | 0.840 |
+| literal | билеты Лиссабон | 1 | 1 | 1 | 1 | 0.822 |
+| paraphrase | поездка в Португалию | – | 1 | 1 | 1 | 0.829 |
+| question | когда летим в Лиссабон? | error | 1 | 1 | 1 | 0.802 |
+| question (not detected) | is the Lisbon trip booked? | error | 6 | – | error | 0.768 |
+| literal · garbled line | суточные командировка | 1 | 1 | 1 | 1 | 0.822 |
+| paraphrase · garbled line | дневное пособие в поездке | – | 3 | 3 | 3 | 0.844 |
+| question · garbled line | сколько суточные в командировке? | error | 1 | 1 | 1 | 0.831 |
+| literal · garbled line | релиз переносим вторник | 1 | 1 | 1 | 1 | 0.825 |
+| paraphrase · garbled line | выпуск новой версии откладывается | – | – | – | – | 0.808 |
+| question · garbled line | когда выйдет релиз три ноль? | error | 2 | – | – | 0.774 |
+| question (not detected) · garbled line | почему перенесли релиз? | error | 7 | 7 | error | 0.818 |
+| literal | приложение ревью | 1 | 1 | 1 | 1 | 0.839 |
+| paraphrase | отправка программы на проверку в магазин | – | – | – | – | 0.826 |
+| question | когда приложение отправим на ревью? | error | 1 | 1 | 1 | 0.844 |
+| literal · garbled line | арендодатель аренда офиса | 1 | 1 | 1 | 1 | 0.855 |
+| paraphrase · garbled line | хозяин помещения уступает по оплате | – | 7 | 7 | 7 | 0.826 |
+| question · garbled line | что сказал арендодатель про аренду офиса? | error | 2 | 2 | 2 | 0.853 |
+| literal | залог склад | 1 | 1 | 1 | 1 | 0.809 |
+| paraphrase | депозит за хранилище | – | 1 | 1 | 1 | 0.808 |
+| question | когда вернут залог за склад? | error | 2 | 2 | 1 | 0.825 |
+| question (not detected) | зачем платить залог за склад? | error | 1 | 1 | error | 0.820 |
+| literal · garbled line | ипотека одобрил | 1 | – | – | 1 | 0.828 |
+| paraphrase · garbled line | кредит на жильё согласовали | – | 3 | 3 | 3 | 0.839 |
+| question · garbled line | под какой процент дали ипотеку? | error | 8 | – | – | 0.799 |
+| question (not detected) · garbled line | одобрили что-то по ипотеке? | error | – | – | error | 0.816 |
+| literal | первоначальный взнос | 1 | – | – | 1 | 0.818 |
+| paraphrase | собственные средства при покупке жилья | – | 7 | 7 | 7 | 0.823 |
+| question | какой нужен первоначальный взнос? | error | 6 | 6 | 1 | 0.810 |
+| literal · garbled line | риелтор балкон | 1 | – | – | 1 | 0.801 |
+| paraphrase · garbled line | агент по недвижимости нашёл жильё с лоджией | – | (7) | (7) | (7) | 0.807 |
+| question · garbled line | какие квартиры показал риелтор? | error | 2 | 2 | 1 | 0.824 |
+| literal | комиссия агентства | 1 | 1 | 1 | 1 | 0.843 |
+| paraphrase | вознаграждение посредника за сделку | – | – | – | – | 0.811 |
+| question | кто платит комиссию агентству? | error | 1 | 1 | 1 | 0.820 |
+| literal | бюджет реклама инстаграм | 1 | 1 | 1 | 1 | 0.854 |
+| paraphrase | тратим меньше на продвижение в соцсетях | – | 4 | 4 | 4 | 0.844 |
+| question | что решили с бюджетом на рекламу? | error | 1 | 1 | 1 | 0.819 |
+| literal | enterprise plan seat | 1 | 1 | 1 | 1 | 0.805 |
+| paraphrase | corporate tier cost increase | – | 1 | 1 | 1 | 0.813 |
+| question | how much will the enterprise plan cost? | error | 1 | 1 | 1 | 0.822 |
+| question (not detected) | did we agree on the enterprise price? | error | 1 | 1 | error | 0.819 |
+| literal | backend role postgres | 1 | 1 | 1 | 1 | 0.857 |
+| paraphrase | database engineer vacancy | – | 4 | 4 | 4 | 0.805 |
+| question | who are we hiring for the backend? | error | 1 | 1 | 1 | 0.832 |
+| literal | offsite seville | 1 | 1 | 1 | 1 | 0.814 |
+| paraphrase | team retreat location change | – | 1 | – | – | 0.794 |
+| question | where is the offsite now? | error | 1 | 1 | 1 | 0.804 |
+| literal | code freeze thursday | 1 | 1 | 1 | 1 | 0.805 |
+| paraphrase | stop merging before launch | – | 2 | 2 | 2 | 0.817 |
+| question | when is the code freeze? | error | 1 | 1 | 1 | 0.823 |
+
+## What it showed
+
+- **Combined did not lose to words on literal Russian queries here — but it can, and this corpus could not show it.**
+  It found all 15, and the word hit on the fact line came first every time (line MRR 1.00), including the 7 garbled
+  fact lines. Meaning alone missed 4 of 15: the fact passage ranked 11th to 52nd because other meetings on the same
+  topic scored as high. Every literal query here had exactly one word hit, and every literal fact passage scored above
+  the floor (the lowest 0.801), so the word hit always joined a passage the meaning side kept. When it does not — the
+  passage is under the floor, or past the meaning side's 200 — the word hit stands alone with the same fused score as
+  the first meaning passage (1/61), and the tie goes to the item with a similarity score, so an unrelated passage ranks
+  above the exact word. [tie-probe.mjs](tie-probe.mjs) shows it: one meeting with «Залог за склад вернут…» scored 0.7,
+  one unrelated meeting scored 0.9; «залог склад» put the unrelated one first. Here 5 of 62 fact passages scored
+  under 0.8, so on real queries this will happen.
+- **Paraphrases are meaning's job.** Words found none, as built. Combined equals meaning above the floor; the floor cost
+  one English paraphrase whose correct passage scored 0.794.
+- **Questions are where combined falls behind meaning: 67 % against 96 %.** Eight misses:
+  - Six searches failed outright with `validation_error` ("query.unsupported-operator"). When the detector does not see
+    a question, the text goes to the query language as typed, and a word ending in `?` is refused there. The error stops
+    the whole search, so meaning, which had the fact in its top 10 for five of the six (first for three), returns
+    nothing. The detector missed the five questions written to miss («почему…?», «зачем…?», «одобрили что-то…?»,
+    "did…?", "is…?") and one that was not: «какую скидку дадим студентам?» — the list has «какой/какая/какие/какое» but
+    not «какую».
+  - Two lost the only correct passage to the floor (0.774 and 0.799).
+- **The question word side rarely helps.** A question's content words must all match one line, and a question uses other
+  verbs than the answer («дали», «решили», «отправим», "cost", "now"). Words found 8 of 24 questions; in all 8 meaning
+  found the fact too.
+- **The 0.8 floor is a trade-off on e5-small, not a separator.** Correct passages scored 0.77–0.87; the best passage
+  for a query with no answer scored 0.74–0.81. The floor dropped the correct passage in 5 of 62 queries, and it blanked
+  4 of 5 queries with no answer (the fifth kept 18 passages). For queries with answers it kept anywhere from 0 to 114
+  of 134 passages. A lower floor would let the unanswerable queries through; no single number does both jobs.
+- **Cost:** combined is about 19 ms at the median against 5 ms for words, on 134 passages. Meaning reads every vector,
+  so the gap grows with the store.
+
+What this suggests for [#1738](https://github.com/WireCatLabs/cli-core/pull/1738), in order of effect:
+
+1. When the word side refuses the text, rank by meaning alone instead of failing. Treat any text ending in `?` as a
+   question, and add the missing forms («какую», «почему», «зачем», "did", "is", "are", "do"). Derived from the rows
+   above, not run: the six failed questions would return what meaning above the floor returns, which finds 4 of them,
+   so questions would reach 20 of 24 (83 %) and literal words stay at 100 %.
+2. Keep an exact word hit above meaning-only passages, or at least break the tie for it, so a passage under the floor
+   cannot push the only word hit down.
+3. Leave the floor as it is until there is a larger set of queries with no answer; this one is too small to move it.
+
+## After fixes (2026-10-22)
+
+cli-core#1738 took the three suggestions above in `5b6d38cc`: text the query language refuses skips the word side
+(`words.refused` says why) and meaning still answers; `questionTerms` treats text as a question when it ends with `?` or
+starts with a question word, with more forms (какую, почему, зачем, did, is, are…) and more filler dropped; on equal
+fused scores a line with the words ranks above a meaning-only passage. Same corpus, same script, same machine, cli-core
+rebuilt at `5b6d38cc`. Everything above this section is the first run, at `d2f3f5d6`.
+
+| mode | literal R@10 · MRR | paraphrase R@10 · MRR | question R@10 · MRR | all R@10 · MRR | line R@10 · MRR, all |
+|---|---|---|---|---|---|
+| words | 100 % · 1.00 | 0 % · 0.00 | 0 % · 0.00 (24 errors) | 31 % · 0.31 | 31 % · 0.31 |
+| words (question words) | 100 % · 1.00 | 0 % · 0.00 | 33 % · 0.33 (0 errors) | 44 % · 0.44 | 44 % · 0.44 |
+| meaning | 79 % · 0.79 | 84 % · 0.51 | 96 % · 0.75 | 87 % · 0.69 | 84 % · 0.63 |
+| meaning ≥ floor | 79 % · 0.79 | 79 % · 0.45 | 83 % · 0.72 | 81 % · 0.66 | 76 % · 0.60 |
+| combined, first run | 100 % · 1.00 | 79 % · 0.45 | 67 % · 0.67 (6 errors) | 81 % · 0.70 | 76 % · 0.65 |
+| **combined, after fixes** | **100 % · 1.00** | 79 % · 0.45 | **83 % · 0.80 (0 errors)** | **87 % · 0.75** | **82 % · 0.70** |
+
+Plain word search (`words`) still refuses a trailing `?`; only the combined search changed. Latency p50 / p95: words
+4.0 / 7.8 ms, meaning 11.7 / 15.9 ms, combined 17.5 / 27.6 ms. The five queries with no answer gave the same results as
+before.
+
+The questions, with the content words the detector now takes, and the combined rank before and after:
+
+| question | content words | combined before | combined after |
+|---|---|---|---|
+| какую скидку дадим студентам? | скидку дадим студентам | error | 1 |
+| is the Lisbon trip booked? | lisbon trip booked | error | – |
+| почему перенесли релиз? | перенесли релиз | error | 7 |
+| зачем платить залог за склад? | платить залог за склад | error | 1 |
+| одобрили что-то по ипотеке? | одобрили то ипотеке | error | – |
+| did we agree on the enterprise price? | agree enterprise price | error | 1 |
+
+The other 18 questions ranked as before. Combined now answers 20 of 24 questions, as the first run predicted, and
+equals meaning above the floor on questions (83 %) while beating it on MRR (0.80 against 0.72). On all 62 queries it
+ties meaning without the floor at 87 % and ranks better (MRR 0.75 against 0.69).
+
+The four questions it still misses: the right passage is under the floor for three (an English question about a
+Russian line at 0.768, «когда выйдет релиз…» at 0.774, «под какой процент…» at 0.799), and for «одобрили что-то по
+ипотеке?» meaning alone does not find it either. «что-то» leaves «то» as a content word; it changed nothing here.
+
+Tie probe: [tie-probe.mjs](tie-probe.mjs) now puts the word hit first («Залог за склад вернут…», `by: ["words"]`), with
+the unrelated 0.9 passage second.
+
+## What was not measured
+
+- Real meetings. The same author wrote the corpus, the queries and the labels, and the facts are one clear line each;
+  real answers are spread over several lines and speakers.
+- Words spread over neighbouring lines, chat and summaries, filters (`since`, `project`, `from:`), paging.
+- More than one relevant meeting per query, so recall here is a hit rate.
+- Larger stores: latency and the meaning side's ranking at hundreds of meetings. EmbeddingGemma and remote models.
+- Memory use.
+- Whether the floor's choice holds on more than five unanswerable queries.
