@@ -1,0 +1,44 @@
+{
+  "node": "v24.19.0",
+  "package": "@wirecat/drive-cli",
+  "version": "0.15.0",
+  "dependencies": {
+    "core": "0.301.0",
+    "base": "0.40.0"
+  },
+  "bin_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828",
+  "checks": [
+    {
+      "name": "help ignores invalid configuration",
+      "passed": true
+    },
+    {
+      "name": "version ignores invalid configuration",
+      "passed": true
+    },
+    {
+      "name": "discovery retains contract and effects without config",
+      "passed": true
+    },
+    {
+      "name": "profile is required even when one profile exists",
+      "passed": true
+    },
+    {
+      "name": "cached missing document refuses without network",
+      "passed": true
+    },
+    {
+      "name": "unknown arguments are refused",
+      "passed": true
+    },
+    {
+      "name": "legacy config migrates once with permissions retained",
+      "passed": true
+    },
+    {
+      "name": "bad config names key without value",
+      "passed": true
+    }
+  ]
+}

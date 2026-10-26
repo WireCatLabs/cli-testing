@@ -1,0 +1,186 @@
+{
+  "status": "passed",
+  "date": "2026-10-17T13:06:28.684Z",
+  "runtime": "v24.19.0",
+  "dependency_layout": "separate unmodified registry graphs sharing one database",
+  "core": "0.307.0",
+  "versions": {
+    "tg": "0.69.0",
+    "max": "0.58.0",
+    "memo": "0.61.0",
+    "drive": "0.16.0"
+  },
+  "artifacts": {
+    "tg": {
+      "type": "registry",
+      "integrity": "sha512-iYYNEhN/wqLf/fgSsovouzAL8hIHbtjY5zHe8rsElLv4pSSLADlCoVAiYrc+Nbduh7h/TNxeoeel8d+Q3ELxpg==",
+      "bin_sha256": "92b926512685ea7e349e131734579d202e491c3d189903b3038f60192388c59b",
+      "core": "0.321.0"
+    },
+    "max": {
+      "type": "registry",
+      "integrity": "sha512-CvVdQs3Y6qhiHzMa4DFmSkDl8Nl0jhf/9z6zxA021F1ZbB4I+TDmtPzEqW6L/Kq7Qfez379dn/oc6ZV/edJKJw==",
+      "bin_sha256": "f729ff04cc04cce66269538c29e6e719aaa71167301a9eb77bbf8f9d8a6a119a",
+      "core": "0.315.0"
+    },
+    "memo": {
+      "type": "registry",
+      "integrity": "sha512-YyVFDyAup0pXyOslf6AQbLOVSQ4NFJknkra1zroI8+coX1uOX2MfJ1PNqFdg5rK8m05aWjqvZnxA3cfdSEktcA==",
+      "bin_sha256": "34c12aa31f57b21d4bd72a43433ad6f9c50bcc98ad78ddf99578332062caaaaa",
+      "core": "0.320.0"
+    },
+    "drive": {
+      "type": "registry",
+      "integrity": "sha512-MgpPIcWgYVkJQWBAdyFhSP2tLwr/KtDLeyHsmJ6GoLGLS42WJAfudEkoJI0HnTkhbxu9nPy9yrPgcfMG3ZijOw==",
+      "bin_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828",
+      "core": "0.307.0"
+    }
+  },
+  "synthetic_source_syncs": 3,
+  "source_content_reads": 1,
+  "checks": [
+    {
+      "app": "tg",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "all",
+        "zebra",
+        "--only",
+        "notes",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "all",
+        "zebra",
+        "--only",
+        "notes",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "search", "all", "budget", "--only", "messages,notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "memo",
+      "args": ["search", "all", "zebra", "--only", "notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "drive",
+      "args": ["synthetic", "--offline", "tags", "add", "synthetic-shared-document", "shared-proof"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "notes",
+        "tag:shared-proof",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "notes",
+        "tag:shared-proof",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "search", "notes", "zebra", "--source", "drive:other-synthetic", "--exact"],
+      "exit": 2
+    },
+    {
+      "app": "tg",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "notes",
+        "tag:shared-proof",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": ["synthetic", "--offline", "search", "notes", "zebra", "--source", "drive:other-synthetic", "--exact"],
+      "exit": 2
+    },
+    {
+      "app": "max",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "notes",
+        "tag:shared-proof",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "memo",
+      "args": ["search", "all", "tag:shared-proof", "--only", "notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "drive",
+      "args": ["synthetic", "--offline", "documents", "show", "synthetic-shared-document"],
+      "exit": 0
+    }
+  ]
+}

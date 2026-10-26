@@ -1,6 +1,9 @@
+import { fileURLToPath } from "node:url"
 import { defineConfig } from "vitest/config"
 
 export default defineConfig({
+  // The build config excludes test/sandbox.ts; automatic discovery climbs into the parent checkout.
+  tsconfig: fileURLToPath(new URL("./tsconfig.json", import.meta.url)),
   test: {
     // Agents run suites side by side on 24 cores; one worker per core ran the machine out of memory (2026-10-11).
     maxWorkers: 4,

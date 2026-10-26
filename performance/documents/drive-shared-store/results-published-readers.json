@@ -1,0 +1,99 @@
+{
+  "status": "passed",
+  "date": "2026-10-16T17:27:46.934Z",
+  "runtime": "v24.19.0",
+  "core": "0.301.0",
+  "versions": {
+    "tg": "0.63.0",
+    "max": "0.56.0",
+    "memo": "0.52.1",
+    "drive": "0.15.0"
+  },
+  "artifacts": {
+    "tg": {
+      "type": "registry",
+      "integrity": "sha512-0V+4cIBNLTVBqIokGuqte55DbxtGjRerKeZlDoEQ6UJUE1ZcSdkPf0sX38SYd7oUy7Gp6ThvDvrwzJ5OnyrTBg==",
+      "bin_sha256": "92b926512685ea7e349e131734579d202e491c3d189903b3038f60192388c59b",
+      "core": "0.298.0"
+    },
+    "max": {
+      "type": "registry",
+      "integrity": "sha512-9TmSuWT9iOqKbBV/4T35xmg+wpyTSBxyXrCfICCw5t//ODq1SYNzrVrLGWxISrQHJGw42TUCuoeqEoQuCPcIFw==",
+      "bin_sha256": "ea086d6da1e3ef1d2af3fd852050a78a61e7e0eb1b4167dda69f8a709dce866b",
+      "core": "0.296.0"
+    },
+    "memo": {
+      "type": "registry",
+      "integrity": "sha512-qR6fxLwUgX8+GRxeON/t2A6op3ibRiJrSXsPTtmkwUsYSvsNT3ZWyrvqnGLN1mFRCZbN6SqgIwVDjCdRtT+LrA==",
+      "bin_sha256": "34c12aa31f57b21d4bd72a43433ad6f9c50bcc98ad78ddf99578332062caaaaa",
+      "core": "0.299.0"
+    },
+    "drive": {
+      "type": "registry",
+      "integrity": "sha512-jGnhUwPUYutnvFTm1JZ5rcsCd7+RfAt02MiXT9FLoj3N7XtzxWB7LxCFeMCeYe0MuMqVi46+HijPNbadp6DyZA==",
+      "bin_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828",
+      "core": "0.301.0"
+    }
+  },
+  "not_run": [
+    {
+      "app": "max",
+      "command": "chats documents list",
+      "reason": "Published MAX 0.56.0 does not mount this shared command; the merged adoption is tested in the candidate run"
+    }
+  ],
+  "synthetic_source_syncs": 3,
+  "source_content_reads": 1,
+  "checks": [
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "search", "all", "zebra", "--only", "notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": ["synthetic", "--offline", "search", "all", "zebra", "--only", "notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "search", "all", "budget", "--only", "messages,notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "memo",
+      "args": ["search", "all", "zebra", "--only", "notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "drive",
+      "args": ["synthetic", "--offline", "tags", "add", "synthetic-shared-document", "shared-proof"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "search", "notes", "tag:shared-proof", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": ["synthetic", "--offline", "search", "notes", "tag:shared-proof", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "drive",
+      "args": ["synthetic", "--offline", "documents", "show", "synthetic-shared-document"],
+      "exit": 0
+    }
+  ]
+}

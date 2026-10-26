@@ -1,0 +1,292 @@
+[
+ {
+  "id": "mirlo-q01",
+  "project": "mirlo",
+  "language": "en",
+  "text": "Where can customers have the monthly coffee subscription delivered?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "mrl-120": 3,
+   "mrl-158": 3,
+   "mrl-119": 2,
+   "mrl-155": 2,
+   "mrl-121": 1,
+   "mrl-243": 1,
+   "mrl-071": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-120"
+   ],
+   [
+    "mrl-158"
+   ]
+  ],
+  "note": "Answer is mostly exclusions (islands, Portugal); single-bag orders still ship there, which is the trap."
+ },
+ {
+  "id": "mirlo-q02",
+  "project": "mirlo",
+  "language": "en",
+  "text": "Is shipping on us for a newcomer's initial subscription parcel?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "mrl-290": 3,
+   "mrl-289": 2,
+   "mrl-244": 1,
+   "mrl-059": 1,
+   "mrl-190": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-290"
+   ]
+  ],
+  "note": "Free only while the courier keeps the old per-parcel rate; the rate was never confirmed in the corpus."
+ },
+ {
+  "id": "mirlo-q03",
+  "project": "mirlo",
+  "language": "en",
+  "text": "Has Lucía signed off on the actual wording of the welcome email?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "mrl-031": 3,
+   "mrl-149": 3,
+   "mrl-286": 3,
+   "mrl-285": 2,
+   "mrl-246": 2,
+   "mrl-161": 2,
+   "mrl-038": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-031",
+    "mrl-246"
+   ],
+   [
+    "mrl-285",
+    "mrl-286"
+   ],
+   [
+    "mrl-149"
+   ]
+  ],
+  "note": "She approved the plan's section structure only; copy approval never appears and the email went out as drafted."
+ },
+ {
+  "id": "mirlo-q04",
+  "project": "mirlo",
+  "language": "en",
+  "text": "Who OK'd the higher Instagram spend for the final week of September, and how much was it?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "mrl-063": 3,
+   "mrl-062": 2,
+   "mrl-064": 1,
+   "mrl-142": 1,
+   "mrl-249": 1,
+   "mrl-283": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-062",
+    "mrl-063"
+   ]
+  ],
+  "note": "Approval is a bare 'sounds good' reply to the request that carries the amount."
+ },
+ {
+  "id": "mirlo-q05",
+  "project": "mirlo",
+  "language": "en",
+  "text": "Are we running the joint prize draw with the neighbourhood bread shop?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "mrl-053": 2,
+   "mrl-296": 2,
+   "mrl-080": 2,
+   "mrl-098": 2,
+   "mrl-054": 1,
+   "mrl-295": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-053",
+    "mrl-296"
+   ]
+  ],
+  "note": "Proposed, liked, postponed; never accepted or declined."
+ },
+ {
+  "id": "mirlo-q06",
+  "project": "mirlo",
+  "language": "en",
+  "text": "What does the Club cost per month?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "mrl-242": 2,
+   "mrl-068": 2,
+   "mrl-181": 2,
+   "mrl-196": 2,
+   "mrl-211": 2,
+   "mrl-292": 1,
+   "mrl-293": 1,
+   "mrl-137": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-068",
+    "mrl-196",
+    "mrl-211"
+   ],
+   [
+    "mrl-242",
+    "mrl-181",
+    "mrl-211"
+   ]
+  ],
+  "note": "Owner insists on one price, co-founder told the developer another (in Russian); still open at corpus end."
+ },
+ {
+  "id": "mirlo-q07",
+  "project": "mirlo",
+  "language": "en",
+  "text": "What perk do people get for joining the mailing list at launch?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "mrl-044": 3,
+   "mrl-045": 3,
+   "mrl-124": 3,
+   "mrl-266": 2,
+   "mrl-246": 1,
+   "mrl-117": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-266",
+    "mrl-044"
+   ],
+   [
+    "mrl-266",
+    "mrl-124"
+   ]
+  ],
+  "note": "Kickoff discount code replaced by a free sample nine days later; the doc's email draft still shows the code."
+ },
+ {
+  "id": "mirlo-q08",
+  "project": "mirlo",
+  "language": "en",
+  "text": "When did Daniel at the box manufacturer dispatch the printed mailers?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "mrl-226": 3,
+   "mrl-231": 3,
+   "mrl-224": 1,
+   "mrl-233": 1,
+   "mrl-077": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-226"
+   ],
+   [
+    "mrl-231"
+   ]
+  ],
+  "note": "Two authors named Daniel in one chat; the ops Daniel's subscriber-shipping date is the trap, plus a superseded earlier aim."
+ },
+ {
+  "id": "mirlo-q09",
+  "project": "mirlo",
+  "language": "en",
+  "text": "What return on ad spend did the September Instagram campaign achieve?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "mrl-074": 1,
+   "mrl-075": 1,
+   "mrl-145": 1,
+   "mrl-187": 1,
+   "mrl-094": 1
+  },
+  "evidence_sets": [],
+  "note": "No figure exists; CTR, CPC and reach numbers are distractors."
+ },
+ {
+  "id": "mirlo-q10",
+  "project": "mirlo",
+  "language": "ru",
+  "text": "Почему в сентябре Андрей перевёл магазин на другой платёжный сервис?",
+  "kind": "premise",
+  "answerable": false,
+  "grades": {
+   "mrl-177": 2,
+   "mrl-198": 2,
+   "mrl-178": 1,
+   "mrl-171": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-177"
+   ],
+   [
+    "mrl-198"
+   ]
+  ],
+  "note": "False premise: switching was proposed and explicitly declined."
+ },
+ {
+  "id": "mirlo-q11",
+  "project": "mirlo",
+  "language": "en",
+  "text": "How old can the beans be, at most, when an order leaves us?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "mrl-027": 3,
+   "mrl-253": 3,
+   "mrl-026": 2,
+   "mrl-028": 2
+  },
+  "evidence_sets": [
+   [
+    "mrl-026",
+    "mrl-027"
+   ],
+   [
+    "mrl-253"
+   ]
+  ],
+  "note": "Best-before and resting-time numbers sit next to the answer as traps."
+ },
+ {
+  "id": "mirlo-q12",
+  "project": "mirlo",
+  "language": "en",
+  "text": "How long did Andrei estimate for building the subscription checkout?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "mrl-175": 3,
+   "mrl-174": 2,
+   "mrl-272": 1
+  },
+  "evidence_sets": [
+   [
+    "mrl-174",
+    "mrl-175"
+   ]
+  ],
+  "note": "Answer only in Russian; his English estimates for other tasks are traps."
+ }
+]

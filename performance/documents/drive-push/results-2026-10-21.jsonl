@@ -1,0 +1,27 @@
+{"step":"trashed-previous","folder":"(removed)"}
+{"step":"import-formats","text/markdown":["application/vnd.google-apps.document"],"text/csv":["application/vnd.google-apps.spreadsheet"],"application/vnd.openxmlformats-officedocument.wordprocessingml.document":["application/vnd.google-apps.document"],"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":["application/vnd.google-apps.spreadsheet"]}
+{"step":"folder","url":"(removed)"}
+{"step":"md-create","mimeType":"application/vnd.google-apps.document","version":"4","name":"push-test.md"}
+{"step":"md-export-after-create","markdown":"# Synthetic push test\n\nSome **bold**, *italic* and a [link](https://example.com).\n\n- one  \n- two  \n  - nested\n\n| col a | col b |\n| :---- | :---- |\n| 1 | 2 |\n\nconst x \\= 1\n\n![local image](./missing.png)\n\n![web image][image1]\n\n[image1]: <data:…>"}
+{"step":"find-by-origin","matches":1,"same":true}
+{"step":"doc-before-comment","version":"5","modifiedTime":"2026-10-21T20:30:46.923Z","revisions":1,"lastRevision":"1","hash":"194f17e024fb"}
+{"step":"doc-after-comment","version":"6","modifiedTime":"2026-10-21T20:30:46.923Z","revisions":1,"lastRevision":"1","hash":"194f17e024fb"}
+{"step":"doc-after-share","version":"7","modifiedTime":"2026-10-21T20:30:53.271Z","revisions":1,"lastRevision":"1","hash":"194f17e024fb"}
+{"step":"doc-after-unshare","version":"8","modifiedTime":"2026-10-21T20:30:56.671Z","revisions":1,"lastRevision":"1","hash":"194f17e024fb"}
+{"step":"doc-after-google-edit+0s","version":"8","modifiedTime":"2026-10-21T20:30:56.671Z","revisions":2,"lastRevision":"3","hash":"6dd1daecacda"}
+{"step":"doc-after-google-edit+10s","version":"8","modifiedTime":"2026-10-21T20:30:56.671Z","revisions":2,"lastRevision":"3","hash":"6dd1daecacda"}
+{"step":"doc-after-google-edit+30s","version":"8","modifiedTime":"2026-10-21T20:30:56.671Z","revisions":2,"lastRevision":"3","hash":"6dd1daecacda"}
+{"step":"doc-after-google-edit+60s","version":"8","modifiedTime":"2026-10-21T20:30:56.671Z","revisions":2,"lastRevision":"3","hash":"6dd1daecacda"}
+{"step":"md-replace-media-only","sameId":true,"mimeType":"application/vnd.google-apps.document","version":"9","modifiedTime":"2026-10-21T20:32:08.667Z","versionChanged":true}
+{"step":"md-export-after-replace","markdown":"# Synthetic push test v2\n\nSome **bold**, *italic* and a [link](https://example.com).\n\n- one  \n- two (changed)  \n  - nested\n\n| col a | col b |\n| :---- | :---- |\n| 1 | 2 |\n\nconst x \\= 1\n\n![local image](./missing.png)\n\n![web image][image1]\n\n[image1]: <data:…>"}
+{"step":"comments-after-replace","comments":[{"deleted":false}]}
+{"step":"revisions","before":2,"after":3}
+{"step":"doc-final","version":"9","modifiedTime":"2026-10-21T20:32:08.667Z","revisions":3,"lastRevision":"4","hash":"b38cccfe68a9"}
+{"step":"docx-create","mimeType":"application/vnd.google-apps.document","docxBytes":10021}
+{"step":"csv-create","mimeType":"application/vnd.google-apps.spreadsheet","version":"4"}
+{"step":"sheet-after-google-edit+15s","version":"6","modifiedTime":"2026-10-21T20:32:24.242Z","revisions":2,"lastRevision":"3","hash":"8f0d2aba6486"}
+{"step":"csv-replace-media-only","sameId":true,"mimeType":"application/vnd.google-apps.spreadsheet","versionChanged":true,"tabs":["push-test"],"values":[["name","qty","price"],["apple","4","1.5"],["pear","2","2.25"],["plum","7","0.5"]],"headerStillBold":false}
+{"step":"xlsx-create","mimeType":"application/vnd.google-apps.spreadsheet","tabs":["push-test"]}
+{"step":"xlsx-replace","sameId":true,"mimeType":"application/vnd.google-apps.spreadsheet"}
+{"step":"trashed","folder":"(removed)"}
+exit=0

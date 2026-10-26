@@ -13,6 +13,49 @@ const string = (value: unknown): string => {
   return value
 }
 
+const socketAlerts = (value: unknown): Record<string, unknown> => {
+  const response = object(value)
+  if (response.ok !== true) throw new Error("Socket did not report a successful scan")
+  const data = object(response.data)
+  const ecosystems = object(data.alerts)
+  if (Object.keys(ecosystems).length === 0 && data.healthy !== true)
+    throw new Error("Socket did not report an explicit empty result")
+  for (const [ecosystem, alerts] of Object.entries(ecosystems)) {
+    string(ecosystem)
+    object(alerts)
+  }
+  return ecosystems
+}
+
+export const scannerCoverage = (repo: string, tool: string, value: unknown): string[] => {
+  const keys = new Set([JSON.stringify([repo, tool])])
+  if (tool === "socket") {
+    socketAlerts(value)
+    keys.add(JSON.stringify([repo, tool, "all-ecosystems-v1"]))
+  }
+  if (tool !== "semgrep") return [...keys]
+  const report = object(value)
+  for (const item of list(report.coverageGaps ?? [])) {
+    const gap = object(item)
+    keys.add(JSON.stringify([repo, tool, "rule-gap", string(gap.rule), string(gap.path)]))
+  }
+  const point = (value: unknown) => {
+    const position = object(value)
+    if (!Number.isSafeInteger(position.line) || !Number.isSafeInteger(position.col))
+      throw new Error("invalid partial parsing position")
+    return [position.line, position.col]
+  }
+  for (const item of list(report.errors ?? [])) {
+    const type = object(item).type
+    if (!Array.isArray(type) || type[0] !== "PartialParsing") continue
+    for (const item of list(type[1])) {
+      const span = object(item)
+      keys.add(JSON.stringify([repo, tool, "partial", string(span.path), point(span.start), point(span.end)]))
+    }
+  }
+  return [...keys].sort()
+}
+
 /** These are scanner observations, not verdicts on whether a vulnerability is reachable. */
 export const scannerObservations = (repo: string, tool: string, value: unknown): Observation[] => {
   const ids: string[] = []
@@ -48,19 +91,15 @@ export const scannerObservations = (repo: string, tool: string, value: unknown):
       }
       break
     case "socket": {
-      const response = object(value)
-      if (response.ok !== true) throw new Error("Socket did not report a successful scan")
-      const data = object(response.data)
-      const ecosystems = object(data.alerts)
-      const alerts =
-        ecosystems.npm === undefined && data.healthy === true && Object.keys(ecosystems).length === 0
-          ? {}
-          : object(ecosystems.npm)
-      for (const [pkg, versions] of Object.entries(alerts))
-        for (const [version, details] of Object.entries(object(versions))) {
-          const rows = Array.isArray(details) ? details : [details]
-          for (const row of rows) add(pkg, version, string(object(row).type))
-        }
+      for (const [ecosystem, alerts] of Object.entries(socketAlerts(value)))
+        for (const [pkg, versions] of Object.entries(object(alerts)))
+          for (const [version, details] of Object.entries(object(versions))) {
+            const rows = Array.isArray(details) ? details : [details]
+            for (const row of rows) {
+              const parts = [string(pkg), string(version), string(object(row).type)]
+              add(...(ecosystem === "npm" ? parts : [ecosystem, ...parts]))
+            }
+          }
       break
     }
     default:

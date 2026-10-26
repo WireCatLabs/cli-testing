@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "data": "synthetic",
+  "real_model": false,
+  "drive": "0.12.0",
+  "core": "0.292.0",
+  "build": "local-candidate",
+  "code_hashes": {
+    "drive_extraction": "b39ace7774010e616deff2e5e985507f0cd1cef179cfda8ba90ada85efb77c2b",
+    "core_model_types": "8d058371f06f83d95bdee2656c5fb9f6b3520a7f2f2e6af782e2fb8163dc4cca"
+  },
+  "commands": 59,
+  "provider_requests": 12,
+  "quote_policy": "explicit-evidence-quotes",
+  "checks": [
+    "preview-does-not-persist-and-source-hash-is-retained",
+    "tab-selection-does-not-send-sibling-text",
+    "explicit-save-creates-reviewable-scoped-facts-and-memories",
+    "invalid-or-failed-provider-batches-save-nothing-and-leak-no-response-body",
+    "empty-proposal-batch-is-a-noop",
+    "offline-readonly-denied-policy-missing-tab-disabled-provider-and-dry-run-precede-network",
+    "real-sync-during-model-request-refuses-stale-proposals"
+  ]
+}

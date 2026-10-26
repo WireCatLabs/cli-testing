@@ -1,0 +1,20 @@
+{
+  "source": "fresh-npm-install",
+  "packages": [
+    {
+      "name": "@wirecat/drive-cli",
+      "version": "0.12.2",
+      "integrity": "sha512-bWe4R/v8V4lrcE3qZUFd5dqeF8v8gBWWat/ryIrZmW2B3cGdd/XekgdaxWVwMiu2F2xtbZFCRs4PY/iqMYCxUA=="
+    },
+    {
+      "name": "@wirecat/cli-core",
+      "version": "0.294.0",
+      "integrity": "sha512-ZvXtRuDQX92bEAeokp+BqhHXXnRSXw2yHNJozZ1NaAux8bh/VS9ThlHUtwDZJ5ybrKbjYlP+46v1AOhGn2eLrg=="
+    },
+    {
+      "name": "@wirecat/cli-base",
+      "version": "0.35.0",
+      "integrity": "sha512-3qmGMIspjz5f6YwzJ65/bEuS7J+PnpA+4uFUAVPJx6Lp9oxs0pTG63sEleflKo4lXfpzup8rcCWvIN8RBFNA2A=="
+    }
+  ]
+}

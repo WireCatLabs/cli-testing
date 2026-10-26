@@ -1,0 +1,14 @@
+{
+  "title": "Talk:Rust (programming language)",
+  "mustAppear": [
+    "In the spirit of being bold, I'm gonna go ahead and remove the paragraph",
+    "It would be nice to go through the syntax / semantics discussed by the main article and identify which ones would be more suitable for the Rust syntax article instead",
+    "If there's no Critics section, no drawbacks mentioned at all, it might look as if Rust were perfect",
+    "Compare the article with other programming languages"
+  ],
+  "mustNotAppear": [
+    "Random article",
+    "Learn to edit",
+    "Community portal"
+  ]
+}

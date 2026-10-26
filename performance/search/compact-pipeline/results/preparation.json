@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-10-25T01:43:48.185Z",
+  "cpu": "AMD Ryzen AI 9 HX 470",
+  "models": [
+    {
+      "model": "mmarco",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+      "asset_bytes": 135704002,
+      "downloaded_bytes": 135704002,
+      "elapsed_ms": 5785.006109,
+      "preparer_sha256": "f9bcd19d4ab2d8eacf0c36c1b746598e41e4501e456e80fdb213dd87eb07e560"
+    },
+    {
+      "model": "bge-int8",
+      "revision": "6f5ff65298512715a1e669753bc754d2bc8f367b",
+      "asset_bytes": 587812045,
+      "downloaded_bytes": 587812045,
+      "elapsed_ms": 18471.914841,
+      "preparer_sha256": "f9bcd19d4ab2d8eacf0c36c1b746598e41e4501e456e80fdb213dd87eb07e560"
+    }
+  ]
+}

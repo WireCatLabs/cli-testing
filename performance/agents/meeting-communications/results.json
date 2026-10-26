@@ -1,0 +1,21 @@
+{
+  "candidate": false,
+  "source_commit": "5a891e9ff71250963a278c83558a513ef00ff15d",
+  "artifact_sha256": "e5237af71260f3160a72126ea3293469a6123b219046dbcd9b94e38420be523a",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "packages": {
+    "zoom": "0.24.0",
+    "core": "0.332.0",
+    "base": "0.43.2"
+  },
+  "checks": {
+    "cited_communications": true,
+    "conflicting_statements_preserved": true,
+    "communications_projection": true,
+    "communications_no_writes": true
+  },
+  "requests": 2,
+  "external_io_attempts": 0
+}

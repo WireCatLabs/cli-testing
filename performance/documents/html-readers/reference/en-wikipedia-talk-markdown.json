@@ -1,0 +1,14 @@
+{
+  "title": "Talk:Markdown",
+  "mustAppear": [
+    "Similar articles do not feel the need to provide long lists of software that happen to use the underlying technology",
+    "I think a discussion of notable dialects of Markdown might be useful",
+    "Personally, I found this confusing",
+    "The former (which is clear English), rather than the latter"
+  ],
+  "mustNotAppear": [
+    "Random article",
+    "Learn to edit",
+    "Community portal"
+  ]
+}

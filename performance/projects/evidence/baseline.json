@@ -1,0 +1,34 @@
+{
+  "frozen": "2026-10-19",
+  "request": {
+    "project": "HBB",
+    "source": "telegram:100,email:me@example.com,notes:<folder>",
+    "context_query": ["bank tracker"],
+    "contact": ["Rita Example"],
+    "since_time": "60d"
+  },
+  "labels": {
+    "t-alias-latin": { "label": "relevant", "why": "names the project by its alias HBB" },
+    "t-alias-cyrillic": { "label": "relevant", "why": "names the project by its Cyrillic alias" },
+    "t-name": { "label": "relevant", "why": "names the project in full" },
+    "t-reply": { "label": "relevant", "why": "a reply in the project chat that names nothing; only context finds it" },
+    "t-rita-dm": { "label": "relevant", "why": "the person sends the project's bank tracker; found through her name" },
+    "t-rita-garden": { "label": "irrelevant", "why": "the same person on another project" },
+    "t-alias-noise": { "label": "irrelevant", "why": "HBB here is a TV cable, not the project" },
+    "t-old": { "label": "relevant", "why": "names the project, but 200 days ago: outside a 60-day window" },
+    "m-tracker": { "label": "relevant", "why": "mail about the bank tracker for HBB: found by two searches" },
+    "m-newsletter": { "label": "irrelevant", "why": "a shop newsletter that says HBB" },
+    "d-method": {
+      "label": "relevant",
+      "why": "an imported document about the project; its time is when it was stored"
+    },
+    "d-garden": { "label": "irrelevant", "why": "an imported document about another project" },
+    "n-own": { "label": "relevant", "why": "the owner's own note about HBB; no context reader reads own notes yet" }
+  },
+  "expect": {
+    "person_only": ["t-rita-dm", "t-rita-garden"],
+    "two_searches": ["m-tracker"],
+    "outside_window": ["t-old"],
+    "unreachable": ["t-reply", "n-own"]
+  }
+}

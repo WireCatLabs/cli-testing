@@ -1,0 +1,2764 @@
+{
+  "schema_version": 1,
+  "kind": "deterministic-published-cli-acceptance",
+  "created_at": "2026-10-17T10:33:10.352Z",
+  "node": "v24.19.0",
+  "packages": {
+    "node_modules/@wirecat/cli-base": {
+      "version": "0.40.1",
+      "integrity": "sha512-ClhbXBWTDc8JIcBJaFWyDMfGPYLFznESuj06k6CYwGyvCX5c53tgGfLdnpVaq/5vFJ3kK1uHswJSxa04ynpJcQ=="
+    },
+    "node_modules/@wirecat/cli-core": {
+      "version": "0.311.0",
+      "integrity": "sha512-ywQ5TRDObsr2/LlRV1RylHyPFP4Snr+0RsshtKSioxU6jxpO/fLzCVIGuuYnTt5Z+c2SQBKXGSsmR80BgYE+nA=="
+    },
+    "node_modules/@wirecat/cli-core-onnx": {
+      "version": "1.0.1",
+      "integrity": "sha512-4oLtnyhm8W69oCWYqCWYtUQEhaJYitivQmgLkKHAsPOCEJlZG8+IUzchEgGyq3X1rWFs66wRw6uVnKHjYRMyyQ=="
+    },
+    "node_modules/@wirecat/cli-core-sqlite": {
+      "version": "1.0.1",
+      "integrity": "sha512-dFkTE3+XdvZwrt7bZZEd2fzdqR2vFgnnGPOhmBKGNa7uKQHjOdqJL8Q9O5cajIjy5o8Gl0LVn0OZbYajhLvQ1A=="
+    },
+    "node_modules/@wirecat/cli-memo": {
+      "version": "0.59.0",
+      "integrity": "sha512-KOv+uNNRiLSN7V9DEaAWSZmP428IbqvcDLkWyvR5Icn3RT+cIutRPRU2TFtc+7JFelkdNORso0zDACDqT8ieOw=="
+    },
+    "node_modules/@wirecat/zoom-cli": {
+      "version": "0.23.1",
+      "integrity": "sha512-wJicWIXuuzvqbgn1uFty+8VSHPIf30uuSCYbte68IrCChOZLhewHXQv2zIpFHbtkqOnFVQYgkf+3lqe/duTCWw=="
+    },
+    "node_modules/@wirecat/zoom-cli/node_modules/@wirecat/cli-base": {
+      "version": "0.40.2",
+      "integrity": "sha512-UU15ashhk7ocErnbi0VL/KmkoPOXkNNDhTxTvoYoTR7jhXe7SoztEW1LV5N1F8j9UA2pHm25vNkIGLckGpIpsQ=="
+    },
+    "node_modules/@wirecat/zoom-cli/node_modules/@wirecat/cli-core": {
+      "version": "0.315.0",
+      "integrity": "sha512-H/cfFsHHAyZXOeOGiab3ZnIFR7r/umWlzIu76dUgr8SfD3EkG+8oEvEv/wg8dNjPuWaGekGfV14H8ptqlbd/uw=="
+    }
+  },
+  "checks": [
+    "canonical project resolved with two explicit aliases",
+    "paged alias discovery retains unknown coverage, excludes foreign account and creates no membership",
+    "nearby cues preserve the unapproved-expansion qualification and exact fingerprints",
+    "findings refuse unconfirmed meeting membership",
+    "staging and refused agent review create no accepted facts or tasks",
+    "stale preview cannot be reviewed",
+    "synthetic owner accepts supported fact/task and rejects unsupported expansion",
+    "fresh processes retrieve the accepted references and their exact receipt citations",
+    "review replay, staging replay and another batch preserve one fact/task and prior rejection"
+  ],
+  "fixture_sha256": "56dd0d5a3b08337d8d2235027b428613baf793d6f9b90f5b6a272aac7e8e52bc",
+  "source_sha256": {
+    "reviewed.mjs": "331ca0ae8841b6fc803e5954b1a6893e8bea0d2dcb72cd22e40150cfad3efa24",
+    "runtime.mjs": "414a378bcfcfe5733e712c5a6a182488865c993ffe8f60c2003541b5834109fe",
+    "guard.cjs": "e5e6af4564b86c58d2c2a00302b353e36e3d1069b39e9755a774ee7513b11523"
+  },
+  "calls": [
+    {
+      "command": ["projects", "add"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 917.5299600000001,
+      "stdout_bytes": 261,
+      "stdin_bytes": 0,
+      "stdout_sha256": "e70dcfa470b2fdeab111e90815f9f5327577d7414f88cc442585a6e4431156e4",
+      "argv_bytes": 63,
+      "complete": true
+    },
+    {
+      "command": ["vocabulary", "show"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 548.0972449999999,
+      "stdout_bytes": 349,
+      "stdin_bytes": 0,
+      "stdout_sha256": "f8551a75bb29b0da3cfdc465d2319f7f74fbbdee3f2661db74c39210c4d7da44",
+      "argv_bytes": 36,
+      "complete": true
+    },
+    {
+      "command": ["vocabulary", "aliases"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 560.8313739999999,
+      "stdout_bytes": 193,
+      "stdin_bytes": 0,
+      "stdout_sha256": "75275a952aa737c634c136d9ad6ec776906619ebeea0f50089ed0a2a6b808113",
+      "argv_bytes": 164,
+      "complete": true
+    },
+    {
+      "command": ["vocabulary", "show"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 489.3107869999999,
+      "stdout_bytes": 384,
+      "stdin_bytes": 0,
+      "stdout_sha256": "08e5630a8bd1bca9820ceb8e16844dd1e1b48e625b2439248f7fe9628bcc8c1b",
+      "argv_bytes": 36,
+      "complete": true
+    },
+    {
+      "command": ["vocabulary", "aliases"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 458.428989,
+      "stdout_bytes": 218,
+      "stdin_bytes": 0,
+      "stdout_sha256": "13d64c0751ef5efddace1b81f67dcead8023c6e5325853061cfe4eeba8e81cc7",
+      "argv_bytes": 189,
+      "complete": true
+    },
+    {
+      "command": ["vocabulary", "show"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 556.1118969999998,
+      "stdout_bytes": 447,
+      "stdin_bytes": 0,
+      "stdout_sha256": "b3465f49fc33a614be5df030e5d84b40f5ab6c4bec1f4ed2ee3b2f41a88c01a5",
+      "argv_bytes": 36,
+      "complete": true
+    },
+    {
+      "command": ["config", "set"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 663.1909580000001,
+      "stdout_bytes": 203,
+      "stdin_bytes": 0,
+      "stdout_sha256": "a78cfdc9af8b83756e68cb48916edf9bc40062d8dc9a014407b8d570236c3fde",
+      "argv_bytes": 65,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "import"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 476.86636199999975,
+      "stdout_bytes": 179,
+      "stdin_bytes": 0,
+      "stdout_sha256": "d017993163c2d0a4b24513ca1e15fb673e95966b6f2a2ac7aa88e8abf3f85bbb",
+      "argv_bytes": 116,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "list"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 485.9277780000002,
+      "stdout_bytes": 496,
+      "stdin_bytes": 0,
+      "stdout_sha256": "a82a22b841c64a49feff54bfd11584da3c0a354685f2b158b3179e596f63e576",
+      "argv_bytes": 40,
+      "complete": true
+    },
+    {
+      "command": ["config", "set"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 474.5987759999998,
+      "stdout_bytes": 213,
+      "stdin_bytes": 0,
+      "stdout_sha256": "62fd3366c1cdeff3b9acc7982725046051c3e69b727fef9351133e663b505075",
+      "argv_bytes": 75,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "import"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 522.3666739999999,
+      "stdout_bytes": 179,
+      "stdin_bytes": 0,
+      "stdout_sha256": "a8daf445c0c10fdbf6c8d019542b5411feca36d57b2683f2a5688ecac5beea66",
+      "argv_bytes": 108,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "list"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 457.16503699999976,
+      "stdout_bytes": 860,
+      "stdin_bytes": 0,
+      "stdout_sha256": "f11b45ad62d74defc358c0b21dd69a57fc35ca12e8ba1aece1eb0912a5f9ad05",
+      "argv_bytes": 40,
+      "complete": true
+    },
+    {
+      "command": ["projects", "meetings"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 532.5066749999996,
+      "stdout_bytes": 291,
+      "stdin_bytes": 0,
+      "stdout_sha256": "58d260148f9ed057f4a70a250bf15fe008c0a9ac20875726ef0907ffd35ad004",
+      "argv_bytes": 118,
+      "complete": true
+    },
+    {
+      "command": ["projects", "meetings"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 444.95417,
+      "stdout_bytes": 321,
+      "stdin_bytes": 0,
+      "stdout_sha256": "5c4a1562d0ff09e81e2f1e306a2b38bd0821d395754470fec585fdd8cd590853",
+      "argv_bytes": 114,
+      "complete": true
+    },
+    {
+      "command": ["search", "meetings"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 472.89932600000066,
+      "stdout_bytes": 680,
+      "stdin_bytes": 0,
+      "stdout_sha256": "2fc245ca6fdaf85f11fbe4946ab72fb1a2eb80e066f23dee3cf936a6e4ba2e10",
+      "argv_bytes": 67,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "projects"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 527.7199520000004,
+      "stdout_bytes": 1888,
+      "stdin_bytes": 0,
+      "stdout_sha256": "5ac6c1b98abc7c41c58306de86bff3e25bdb75acb4605e7a7f6f13e68fca83d7",
+      "argv_bytes": 102,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "projects"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 515.9205469999997,
+      "stdout_bytes": 1342,
+      "stdin_bytes": 0,
+      "stdout_sha256": "1fc387a1c84faba5f0d8210255354260ada9963b6be735936be79b40997b9d77",
+      "argv_bytes": 260,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "projects"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 506.2461110000004,
+      "stdout_bytes": 1634,
+      "stdin_bytes": 0,
+      "stdout_sha256": "518b7c175796c0bf4d06b06eabe0c6015ad4a7db6340a02fe7be2fafbb9145c8",
+      "argv_bytes": 260,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "projects"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 448.3257880000001,
+      "stdout_bytes": 1158,
+      "stdin_bytes": 0,
+      "stdout_sha256": "ad416c00bd840daa3d81664a502da2b9d668b220063476ee39dbd5e66ca0d251",
+      "argv_bytes": 260,
+      "complete": true
+    },
+    {
+      "command": ["projects", "meetings"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 530.9206990000002,
+      "stdout_bytes": 320,
+      "stdin_bytes": 0,
+      "stdout_sha256": "08a74f0c73af4ef11bb6f6964715ea14e5a4e6f354f35ae1ef1a890152c8d00a",
+      "argv_bytes": 114,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "evidence"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 516.1518610000003,
+      "stdout_bytes": 2235,
+      "stdin_bytes": 0,
+      "stdout_sha256": "8f66299d363fd62fb540e997539e7daa74fd9576b066d1b1f3be5257c97bb018",
+      "argv_bytes": 85,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "passage"],
+      "tool": "zoom",
+      "exit_code": 0,
+      "elapsed_ms": 470.67478100000153,
+      "stdout_bytes": 2320,
+      "stdin_bytes": 0,
+      "stdout_sha256": "39bf5bb347a2da96b9fafffb2eb513dc9ba311f2ed2f7954ae6b7025cf7aef69",
+      "argv_bytes": 94,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 2,
+      "elapsed_ms": 431.1977029999998,
+      "stdout_bytes": 0,
+      "stdin_bytes": 903,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "argv_bytes": 104
+    },
+    {
+      "command": ["projects", "meetings"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 439.1818579999999,
+      "stdout_bytes": 344,
+      "stdin_bytes": 0,
+      "stdout_sha256": "ab917b5cb8823ef448c3405fe2603f776c09396b55dc1deccc063abcb3662493",
+      "argv_bytes": 187,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 473.8942339999994,
+      "stdout_bytes": 1321,
+      "stdin_bytes": 903,
+      "stdout_sha256": "163d1b3e43b2eaea17503df7c728aaa36cab6477a138874f0dc1a77616b88d62",
+      "argv_bytes": 104,
+      "complete": true
+    },
+    {
+      "command": ["facts", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 456.43362499999967,
+      "stdout_bytes": 149,
+      "stdin_bytes": 0,
+      "stdout_sha256": "be07f57efc69aeac003056f93fefc3e12eb3db2cff941498eb7f6422f8329d7d",
+      "argv_bytes": 25,
+      "complete": true
+    },
+    {
+      "command": ["tasks", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 447.97067100000095,
+      "stdout_bytes": 150,
+      "stdin_bytes": 0,
+      "stdout_sha256": "0be68789db489db155c0f32b9d3ce6ca5ce156ffafa5af043b7f48dc6b03868c",
+      "argv_bytes": 39,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 2,
+      "elapsed_ms": 456.8877169999996,
+      "stdout_bytes": 0,
+      "stdin_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "argv_bytes": 212
+    },
+    {
+      "command": ["facts", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 464.7817520000008,
+      "stdout_bytes": 149,
+      "stdin_bytes": 0,
+      "stdout_sha256": "5eaa3b82af479a23fbc1797da32b00afd1e79c1ee888f0ab5677586c25de02f1",
+      "argv_bytes": 25,
+      "complete": true
+    },
+    {
+      "command": ["tasks", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 450.33137200000056,
+      "stdout_bytes": 150,
+      "stdin_bytes": 0,
+      "stdout_sha256": "d906489143798c7249a52b42f7bf51b72e46d7c88a275fe0c794a5ef01173300",
+      "argv_bytes": 39,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 2,
+      "elapsed_ms": 501.89531499999975,
+      "stdout_bytes": 0,
+      "stdin_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "argv_bytes": 212
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 355.69042400000035,
+      "stdout_bytes": 2424,
+      "stdin_bytes": 0,
+      "stdout_sha256": "f31233ceb254dfd8fdd5adad0a9efe79b69ff992e612384374da73d23237bd2a",
+      "argv_bytes": 212,
+      "complete": true
+    },
+    {
+      "command": ["facts", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 327.4474279999995,
+      "stdout_bytes": 592,
+      "stdin_bytes": 0,
+      "stdout_sha256": "dfd91290d90ef736af7a7648ee84471c61e12163346306db4af85d58f9d43d2a",
+      "argv_bytes": 25,
+      "complete": true
+    },
+    {
+      "command": ["tasks", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 341.98958100000164,
+      "stdout_bytes": 589,
+      "stdin_bytes": 0,
+      "stdout_sha256": "d78f9353b238b7fd7b931dd83b5bdaf11ef5e0308fd748da0ce5c26a18ad9bd3",
+      "argv_bytes": 39,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 339.05609500000355,
+      "stdout_bytes": 2423,
+      "stdin_bytes": 0,
+      "stdout_sha256": "e36c0772d52d68cc77374b649646aae6e1b9c815fb254375c91c9dc603cfa0f6",
+      "argv_bytes": 212,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 334.46884599999976,
+      "stdout_bytes": 2424,
+      "stdin_bytes": 903,
+      "stdout_sha256": "addd68498290357a5f7ccb0535ba896be1a5d2159fcad99b107e26af538cbb0b",
+      "argv_bytes": 104,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 340.78936899999826,
+      "stdout_bytes": 1788,
+      "stdin_bytes": 909,
+      "stdout_sha256": "103d013ea53fb276566eebe7df81b77b1c5d977999289555533218d4f80cfe65",
+      "argv_bytes": 104,
+      "complete": true
+    },
+    {
+      "command": ["facts", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 343.5408329999991,
+      "stdout_bytes": 592,
+      "stdin_bytes": 0,
+      "stdout_sha256": "f94c4cd3591e6536091e4a1b7bc231a51605163b89989844c91223b7a7a14d25",
+      "argv_bytes": 25,
+      "complete": true
+    },
+    {
+      "command": ["tasks", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 347.21056899999894,
+      "stdout_bytes": 589,
+      "stdin_bytes": 0,
+      "stdout_sha256": "59620c33e1701eb27eb9f6cd4163247b70944ff3795e2714c5972a2cb687a948",
+      "argv_bytes": 39,
+      "complete": true
+    },
+    {
+      "command": ["meetings", "actions"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 333.3381040000022,
+      "stdout_bytes": 2423,
+      "stdin_bytes": 0,
+      "stdout_sha256": "fc16f0f68d62587eb4eb3c4f83a4a28045647025a6f7edc4088f842b4e72ce2c",
+      "argv_bytes": 105,
+      "complete": true
+    },
+    {
+      "command": ["facts", "show"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 362.6118040000001,
+      "stdout_bytes": 537,
+      "stdin_bytes": 0,
+      "stdout_sha256": "0198066113cb33409fd423d58be0558f1f4494894d88c42fe526428a0f13542e",
+      "argv_bytes": 34,
+      "complete": true
+    },
+    {
+      "command": ["tasks", "list"],
+      "tool": "memo",
+      "exit_code": 0,
+      "elapsed_ms": 344.157269000003,
+      "stdout_bytes": 589,
+      "stdin_bytes": 0,
+      "stdout_sha256": "e51e3f079fe5be76d98e45516063522b8a220756b455bad4918315b574deda6d",
+      "argv_bytes": 39,
+      "complete": true
+    }
+  ],
+  "trace": [
+    {
+      "args": ["projects", "add", "Harbour Observatory", "--key", "HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "id": "1",
+          "ref": "project:1",
+          "key": "HOB",
+          "name": "Harbour Observatory",
+          "type": "other",
+          "organization_id": null,
+          "scope": "personal",
+          "created_at": "2026-10-17T10:32:51.701Z"
+        },
+        "meta": {
+          "run_id": "20261017T103251Z-process-0e9d03",
+          "duration_ms": 72,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["vocabulary", "show", "HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "query": "HOB",
+          "matches": [
+            {
+              "kind": "project",
+              "id": "1",
+              "name": "Harbour Observatory",
+              "key": "HOB",
+              "scope": "personal",
+              "aliases": [],
+              "usage_count": 0
+            }
+          ],
+          "ambiguous": false,
+          "fingerprint": "v1:all:all:029f6934492ba0db40705901c8dd912fee1bc17396c34219f2204280d37437f3"
+        },
+        "meta": {
+          "run_id": "20261017T103252Z-process-eef196",
+          "duration_ms": 14,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "vocabulary",
+        "aliases",
+        "add",
+        "project:1",
+        "Harbour Research",
+        "--fingerprint",
+        "v1:all:all:029f6934492ba0db40705901c8dd912fee1bc17396c34219f2204280d37437f3"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "target": {
+            "kind": "project",
+            "id": "1"
+          },
+          "alias": {
+            "id": "1",
+            "name": "Harbour Research"
+          },
+          "changed": true
+        },
+        "meta": {
+          "run_id": "20261017T103252Z-process-db932a",
+          "duration_ms": 15,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["vocabulary", "show", "HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "query": "HOB",
+          "matches": [
+            {
+              "kind": "project",
+              "id": "1",
+              "name": "Harbour Observatory",
+              "key": "HOB",
+              "scope": "personal",
+              "aliases": [
+                {
+                  "id": "1",
+                  "name": "Harbour Research"
+                }
+              ],
+              "usage_count": 0
+            }
+          ],
+          "ambiguous": false,
+          "fingerprint": "v1:all:all:ab4c9691dfee5a0450682dbcec63b0ae518b4151cf398114c4ce04ee81be8680"
+        },
+        "meta": {
+          "run_id": "20261017T103253Z-process-a74ffc",
+          "duration_ms": 9,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "vocabulary",
+        "aliases",
+        "add",
+        "project:1",
+        "Пристань Обсерватория",
+        "--fingerprint",
+        "v1:all:all:ab4c9691dfee5a0450682dbcec63b0ae518b4151cf398114c4ce04ee81be8680"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "target": {
+            "kind": "project",
+            "id": "1"
+          },
+          "alias": {
+            "id": "2",
+            "name": "Пристань Обсерватория"
+          },
+          "changed": true
+        },
+        "meta": {
+          "run_id": "20261017T103253Z-process-e2177d",
+          "duration_ms": 12,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["vocabulary", "show", "HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "query": "HOB",
+          "matches": [
+            {
+              "kind": "project",
+              "id": "1",
+              "name": "Harbour Observatory",
+              "key": "HOB",
+              "scope": "personal",
+              "aliases": [
+                {
+                  "id": "1",
+                  "name": "Harbour Research"
+                },
+                {
+                  "id": "2",
+                  "name": "Пристань Обсерватория"
+                }
+              ],
+              "usage_count": 0
+            }
+          ],
+          "ambiguous": false,
+          "fingerprint": "v1:all:all:13ec079e206c1ca6e923b51a2452b1cfc8a012b78e991f5e2180d23df3deb79b"
+        },
+        "meta": {
+          "run_id": "20261017T103254Z-process-5aaa52",
+          "duration_ms": 13,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["config", "set", "account.profile", "foreign"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "client_id": null,
+          "source": "api",
+          "files_folder": null,
+          "files_timezone": "UTC",
+          "account_profile": "foreign"
+        },
+        "meta": {
+          "run_id": "ef1dbe63-a320-4fea-b018-2c3a87585a12",
+          "duration_ms": 1,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "import", "/tmp/reviewed-meeting-workflow-cursor-proof-oct17/fixture/foreign-input"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "meetings": 1,
+          "participants": 0,
+          "transcript_rows": 1,
+          "summaries": 0,
+          "warnings": []
+        },
+        "meta": {
+          "run_id": "f251ff17-bf61-4021-8fd1-2c79b0e4abf7",
+          "duration_ms": 32,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "list"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "meeting:1/1",
+            "id": "1",
+            "provider": "zoom",
+            "account": "zm-profile:foreign",
+            "title": "foreign",
+            "description": null,
+            "location": null,
+            "url": null,
+            "started_at": "2026-10-01T09:00:00.000Z",
+            "ended_at": null,
+            "duration_ms": null,
+            "timezone": "UTC",
+            "participants_count": null,
+            "created_at": "2026-10-17T10:32:55.503Z",
+            "updated_at": "2026-10-17T10:32:55.503Z"
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "54d86776-3f01-431a-bb7c-51802f7f8cb6",
+          "duration_ms": 13,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["config", "set", "account.profile", "reviewed-workflow"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "client_id": null,
+          "source": "api",
+          "files_folder": null,
+          "files_timezone": "UTC",
+          "account_profile": "reviewed-workflow"
+        },
+        "meta": {
+          "run_id": "f11a11f9-b310-4430-9977-030c0f0362a3",
+          "duration_ms": 2,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "import", "/tmp/reviewed-meeting-workflow-cursor-proof-oct17/fixture/input"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "meetings": 2,
+          "participants": 0,
+          "transcript_rows": 5,
+          "summaries": 0,
+          "warnings": []
+        },
+        "meta": {
+          "run_id": "f954b38c-be79-4c90-b211-0cff7cfbc5b0",
+          "duration_ms": 42,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "list"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "meeting:2/2",
+            "id": "2",
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow",
+            "title": "confirmed",
+            "description": null,
+            "location": null,
+            "url": null,
+            "started_at": "2026-10-01T09:00:00.000Z",
+            "ended_at": null,
+            "duration_ms": null,
+            "timezone": "UTC",
+            "participants_count": null,
+            "created_at": "2026-10-17T10:32:56.984Z",
+            "updated_at": "2026-10-17T10:32:56.984Z"
+          },
+          {
+            "ref": "meeting:2/3",
+            "id": "3",
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow",
+            "title": "earlier",
+            "description": null,
+            "location": null,
+            "url": null,
+            "started_at": "2026-10-01T09:00:00.000Z",
+            "ended_at": null,
+            "duration_ms": null,
+            "timezone": "UTC",
+            "participants_count": null,
+            "created_at": "2026-10-17T10:32:56.984Z",
+            "updated_at": "2026-10-17T10:32:56.984Z"
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "cae36f7a-75dd-4bc0-8330-293d55bfe7a2",
+          "duration_ms": 13,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "projects",
+        "meetings",
+        "link",
+        "project:1",
+        "2",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "link": {
+            "id": "1",
+            "meeting": "meeting:2/2",
+            "project": "project:1",
+            "confirmed": true,
+            "provenance": null,
+            "fingerprint": "70be16486a5613a922b223fa945a8bd616d280af6af0e106560528a03e6f4f78"
+          },
+          "changed": true
+        },
+        "meta": {
+          "run_id": "20261017T103257Z-process-220d36",
+          "duration_ms": 12,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "projects",
+        "meetings",
+        "list",
+        "project:1",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "id": "1",
+            "meeting": "meeting:2/2",
+            "project": "project:1",
+            "confirmed": true,
+            "provenance": null,
+            "fingerprint": "70be16486a5613a922b223fa945a8bd616d280af6af0e106560528a03e6f4f78"
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 50,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103258Z-process-80aea4",
+          "duration_ms": 11,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["search", "meetings", "Harbour", "--limit", "20"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "meeting:2/2/2/0",
+            "meeting": "meeting:2/2",
+            "scope": "transcript",
+            "id": "2",
+            "excerpt": "Harbour Observatory keeps its twelve-unit budget.",
+            "offset_ms": 0,
+            "source": {
+              "ref": "meeting:2/2/2/0",
+              "title": "confirmed",
+              "started_at": "2026-10-01T09:00:00.000Z",
+              "url": null
+            }
+          },
+          {
+            "ref": "meeting:2/3/3/0",
+            "meeting": "meeting:2/3",
+            "scope": "transcript",
+            "id": "3",
+            "excerpt": "Harbour Research is our Harbour Observatory project.",
+            "offset_ms": 0,
+            "source": {
+              "ref": "meeting:2/3/3/0",
+              "title": "earlier",
+              "started_at": "2026-10-01T09:00:00.000Z",
+              "url": null
+            }
+          }
+        ],
+        "page": {
+          "mode": "cursor",
+          "limit": 20,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "e0e4a0fa-44fb-4af3-9245-37bfd8de1a91",
+          "duration_ms": 32,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "projects", "evidence", "HOB", "--limit", "2", "--max-read-bytes", "65536"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "schema_version": 1,
+          "kind": "meeting_project_evidence",
+          "account_id": "2",
+          "query": "HOB",
+          "project": {
+            "id": "1",
+            "name": "Harbour Observatory",
+            "key": "HOB"
+          },
+          "term": {
+            "name": "Harbour Observatory",
+            "kind": "canonical"
+          },
+          "hits": [
+            {
+              "ref": "meeting:2/2/2/0",
+              "meeting": "meeting:2/2",
+              "scope": "transcript",
+              "id": "2",
+              "excerpt": "Harbour Observatory keeps its twelve-unit budget.",
+              "offset_ms": 0,
+              "source": {
+                "ref": "meeting:2/2/2/0",
+                "title": "confirmed",
+                "started_at": "2026-10-01T09:00:00.000Z",
+                "url": null
+              }
+            },
+            {
+              "ref": "meeting:2/3/3/0",
+              "meeting": "meeting:2/3",
+              "scope": "transcript",
+              "id": "3",
+              "excerpt": "Harbour Research is our Harbour Observatory project.",
+              "offset_ms": 0,
+              "source": {
+                "ref": "meeting:2/3/3/0",
+                "title": "earlier",
+                "started_at": "2026-10-01T09:00:00.000Z",
+                "url": null
+              }
+            }
+          ],
+          "association": "unconfirmed-word-evidence",
+          "vocabulary_fingerprint": "v1:project:all:13ec079e206c1ca6e923b51a2452b1cfc8a012b78e991f5e2180d23df3deb79b",
+          "selection": {},
+          "limits": {
+            "limit": 2,
+            "max_read_bytes": 65536,
+            "max_vocabulary_read_bytes": 1048576,
+            "max_terms": 32
+          },
+          "page": {
+            "mode": "cursor",
+            "limit": 2,
+            "has_more": true,
+            "next_cursor": {
+              "sha256": "3db813a471ec0dfcb53c7a7804b4cb16dc66c187c03ba6602431fbb5635a9cf4",
+              "normalized": "ephemeral fixture cursor"
+            }
+          },
+          "coverage": {
+            "archive_completeness": "unknown",
+            "current_revisions": true,
+            "indexing": "ready",
+            "index_completeness": "unknown",
+            "term_index": 0,
+            "terms_total": 4,
+            "remaining_terms": 3,
+            "duplicates": "may-repeat-between-terms"
+          }
+        },
+        "next": [
+          {
+            "kind": "command",
+            "step": "page.next",
+            "command": "meetings projects evidence",
+            "args": {
+              "project": "HOB",
+              "query": "",
+              "cursor": {
+                "sha256": "3db813a471ec0dfcb53c7a7804b4cb16dc66c187c03ba6602431fbb5635a9cf4",
+                "normalized": "ephemeral fixture cursor"
+              },
+              "limit": 2,
+              "max_read_bytes": 65536
+            },
+            "why": "2 shown, more exist",
+            "safe_to_auto_execute": true
+          }
+        ],
+        "meta": {
+          "run_id": "e4fdb6a7-d812-4697-9f57-f0ba70fbed6b",
+          "duration_ms": 23,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "meetings",
+        "projects",
+        "evidence",
+        "HOB",
+        "--limit",
+        "2",
+        "--max-read-bytes",
+        "65536",
+        "--cursor",
+        {
+          "sha256": "3db813a471ec0dfcb53c7a7804b4cb16dc66c187c03ba6602431fbb5635a9cf4",
+          "normalized": "ephemeral fixture cursor"
+        }
+      ],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "schema_version": 1,
+          "kind": "meeting_project_evidence",
+          "account_id": "2",
+          "query": "HOB",
+          "project": {
+            "id": "1",
+            "name": "Harbour Observatory",
+            "key": "HOB"
+          },
+          "term": {
+            "name": "HOB",
+            "kind": "key"
+          },
+          "hits": [],
+          "association": "unconfirmed-word-evidence",
+          "vocabulary_fingerprint": "v1:project:all:13ec079e206c1ca6e923b51a2452b1cfc8a012b78e991f5e2180d23df3deb79b",
+          "selection": {},
+          "limits": {
+            "limit": 2,
+            "max_read_bytes": 65536,
+            "max_vocabulary_read_bytes": 1048576,
+            "max_terms": 32
+          },
+          "page": {
+            "mode": "cursor",
+            "limit": 2,
+            "has_more": true,
+            "next_cursor": {
+              "sha256": "c8469b193a7bf3a8af7feeaa0386b8b5a3f6e5b2eb220527db37685b47d7291e",
+              "normalized": "ephemeral fixture cursor"
+            }
+          },
+          "coverage": {
+            "archive_completeness": "unknown",
+            "current_revisions": true,
+            "indexing": "ready",
+            "index_completeness": "unknown",
+            "term_index": 1,
+            "terms_total": 4,
+            "remaining_terms": 2,
+            "duplicates": "may-repeat-between-terms"
+          }
+        },
+        "next": [
+          {
+            "kind": "command",
+            "step": "page.next",
+            "command": "meetings projects evidence",
+            "args": {
+              "project": "HOB",
+              "query": "",
+              "cursor": {
+                "sha256": "c8469b193a7bf3a8af7feeaa0386b8b5a3f6e5b2eb220527db37685b47d7291e",
+                "normalized": "ephemeral fixture cursor"
+              },
+              "limit": 2,
+              "max_read_bytes": 65536
+            },
+            "why": "0 shown, more exist",
+            "safe_to_auto_execute": true
+          }
+        ],
+        "meta": {
+          "run_id": "a477b8c5-ee1c-412c-ba96-4aa7a72e7630",
+          "duration_ms": 24,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "meetings",
+        "projects",
+        "evidence",
+        "HOB",
+        "--limit",
+        "2",
+        "--max-read-bytes",
+        "65536",
+        "--cursor",
+        {
+          "sha256": "c8469b193a7bf3a8af7feeaa0386b8b5a3f6e5b2eb220527db37685b47d7291e",
+          "normalized": "ephemeral fixture cursor"
+        }
+      ],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "schema_version": 1,
+          "kind": "meeting_project_evidence",
+          "account_id": "2",
+          "query": "HOB",
+          "project": {
+            "id": "1",
+            "name": "Harbour Observatory",
+            "key": "HOB"
+          },
+          "term": {
+            "name": "Harbour Research",
+            "kind": "alias",
+            "alias_id": "1"
+          },
+          "hits": [
+            {
+              "ref": "meeting:2/3/3/0",
+              "meeting": "meeting:2/3",
+              "scope": "transcript",
+              "id": "3",
+              "excerpt": "Harbour Research is our Harbour Observatory project.",
+              "offset_ms": 0,
+              "source": {
+                "ref": "meeting:2/3/3/0",
+                "title": "earlier",
+                "started_at": "2026-10-01T09:00:00.000Z",
+                "url": null
+              }
+            }
+          ],
+          "association": "unconfirmed-word-evidence",
+          "vocabulary_fingerprint": "v1:project:all:13ec079e206c1ca6e923b51a2452b1cfc8a012b78e991f5e2180d23df3deb79b",
+          "selection": {},
+          "limits": {
+            "limit": 2,
+            "max_read_bytes": 65536,
+            "max_vocabulary_read_bytes": 1048576,
+            "max_terms": 32
+          },
+          "page": {
+            "mode": "cursor",
+            "limit": 2,
+            "has_more": true,
+            "next_cursor": {
+              "sha256": "41ecb4475a2cb0f8e3971dda974bfab714fe3c9c9340ff170207657e78772ff9",
+              "normalized": "ephemeral fixture cursor"
+            }
+          },
+          "coverage": {
+            "archive_completeness": "unknown",
+            "current_revisions": true,
+            "indexing": "ready",
+            "index_completeness": "unknown",
+            "term_index": 2,
+            "terms_total": 4,
+            "remaining_terms": 1,
+            "duplicates": "may-repeat-between-terms"
+          }
+        },
+        "next": [
+          {
+            "kind": "command",
+            "step": "page.next",
+            "command": "meetings projects evidence",
+            "args": {
+              "project": "HOB",
+              "query": "",
+              "cursor": {
+                "sha256": "41ecb4475a2cb0f8e3971dda974bfab714fe3c9c9340ff170207657e78772ff9",
+                "normalized": "ephemeral fixture cursor"
+              },
+              "limit": 2,
+              "max_read_bytes": 65536
+            },
+            "why": "1 shown, more exist",
+            "safe_to_auto_execute": true
+          }
+        ],
+        "meta": {
+          "run_id": "fecb1da9-cf89-448a-b1cc-0b5f766c2d4e",
+          "duration_ms": 25,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "meetings",
+        "projects",
+        "evidence",
+        "HOB",
+        "--limit",
+        "2",
+        "--max-read-bytes",
+        "65536",
+        "--cursor",
+        {
+          "sha256": "41ecb4475a2cb0f8e3971dda974bfab714fe3c9c9340ff170207657e78772ff9",
+          "normalized": "ephemeral fixture cursor"
+        }
+      ],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "schema_version": 1,
+          "kind": "meeting_project_evidence",
+          "account_id": "2",
+          "query": "HOB",
+          "project": {
+            "id": "1",
+            "name": "Harbour Observatory",
+            "key": "HOB"
+          },
+          "term": {
+            "name": "Пристань Обсерватория",
+            "kind": "alias",
+            "alias_id": "2"
+          },
+          "hits": [
+            {
+              "ref": "meeting:2/3/3/1",
+              "meeting": "meeting:2/3",
+              "scope": "transcript",
+              "id": "4",
+              "excerpt": "Пристань Обсерватория budget is capped at twelve units.",
+              "offset_ms": 1000,
+              "source": {
+                "ref": "meeting:2/3/3/1",
+                "title": "earlier",
+                "started_at": "2026-10-01T09:00:00.000Z",
+                "url": null
+              }
+            }
+          ],
+          "association": "unconfirmed-word-evidence",
+          "vocabulary_fingerprint": "v1:project:all:13ec079e206c1ca6e923b51a2452b1cfc8a012b78e991f5e2180d23df3deb79b",
+          "selection": {},
+          "limits": {
+            "limit": 2,
+            "max_read_bytes": 65536,
+            "max_vocabulary_read_bytes": 1048576,
+            "max_terms": 32
+          },
+          "page": {
+            "mode": "cursor",
+            "limit": 2,
+            "has_more": false
+          },
+          "coverage": {
+            "archive_completeness": "unknown",
+            "current_revisions": true,
+            "indexing": "ready",
+            "index_completeness": "unknown",
+            "term_index": 3,
+            "terms_total": 4,
+            "remaining_terms": 0,
+            "duplicates": "may-repeat-between-terms"
+          }
+        },
+        "meta": {
+          "run_id": "ec67eaa3-5f83-433f-b3ac-cbac7bdfafc3",
+          "duration_ms": 22,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "projects",
+        "meetings",
+        "list",
+        "project:1",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "id": "1",
+            "meeting": "meeting:2/2",
+            "project": "project:1",
+            "confirmed": true,
+            "provenance": null,
+            "fingerprint": "70be16486a5613a922b223fa945a8bd616d280af6af0e106560528a03e6f4f78"
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 50,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103301Z-process-34a28e",
+          "duration_ms": 8,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "evidence", "meeting:2/3", "--max-read-bytes", "65536"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "schema_version": 1,
+          "kind": "meeting",
+          "source": "meeting:2/3",
+          "limits": {
+            "cues": 100,
+            "bytes": 65536,
+            "max_read_bytes": 65536,
+            "max_transcript_pages": 100
+          },
+          "content_bytes": 1582,
+          "coverage": {
+            "provided": 4,
+            "included": 4,
+            "omitted": 0,
+            "provided_exact": true,
+            "has_more": false,
+            "next_reference": null,
+            "next_transcript_id": null,
+            "transcript_pages": 1,
+            "skipped_unavailable": 0,
+            "truncated_by": null,
+            "input": "bounded-meeting-pages",
+            "archive_completeness": "unknown"
+          },
+          "items": [
+            {
+              "reference": "meeting:2/3/3/0",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 0,
+              "start_ms": 0,
+              "end_ms": 1000,
+              "speaker_participant_id": null,
+              "speaker_name": "Alex Example",
+              "text": "Harbour Research is our Harbour Observatory project.",
+              "fingerprint": "3aac3291061c1371d4d4a920f4bfcd66088cd997b11aa95025ad0121637cb7d7",
+              "revision": "current"
+            },
+            {
+              "reference": "meeting:2/3/3/1",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 1,
+              "start_ms": 1000,
+              "end_ms": 2000,
+              "speaker_participant_id": null,
+              "speaker_name": "Casey Example",
+              "text": "Пристань Обсерватория budget is capped at twelve units.",
+              "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea",
+              "revision": "current"
+            },
+            {
+              "reference": "meeting:2/3/3/2",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 2,
+              "start_ms": 2000,
+              "end_ms": 3000,
+              "speaker_participant_id": null,
+              "speaker_name": "Casey Example",
+              "text": "Prepare the safety checklist.",
+              "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd",
+              "revision": "current"
+            },
+            {
+              "reference": "meeting:2/3/3/3",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 3,
+              "start_ms": 3000,
+              "end_ms": 4000,
+              "speaker_participant_id": null,
+              "speaker_name": "Alex Example",
+              "text": "A twenty-unit expansion is only a proposal and remains unapproved.",
+              "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344",
+              "revision": "current"
+            }
+          ],
+          "fingerprint": "131feecf3ace0e11f504cb665db62c156e00e29935daaf2ec2bed8ba0fb0c3d0"
+        },
+        "meta": {
+          "run_id": "80369c61-07c6-4011-a44d-a2851973ae73",
+          "duration_ms": 18,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "passage", "meeting:2/3/3/1", "--before-n", "1", "--after-n", "2"],
+      "tool": "zoom",
+      "agent": false,
+      "answer": {
+        "item": {
+          "schema_version": 1,
+          "kind": "meeting_context",
+          "source": "meeting:2/3/3/1",
+          "target_ref": "meeting:2/3/3/1",
+          "target_fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea",
+          "revision": "current",
+          "limits": {
+            "before": 1,
+            "after": 2,
+            "bytes": 65536,
+            "max_read_bytes": 4194304
+          },
+          "content_bytes": 1586,
+          "coverage": {
+            "included": 4,
+            "before": 1,
+            "after": 2,
+            "has_before": false,
+            "has_after": false,
+            "truncated_by": null,
+            "before_ref": null,
+            "after_ref": null,
+            "continuation": "anchor-inclusive",
+            "archive_completeness": "unknown",
+            "input": "bounded-meeting-context"
+          },
+          "items": [
+            {
+              "ref": "meeting:2/3/3/0",
+              "fingerprint": "3aac3291061c1371d4d4a920f4bfcd66088cd997b11aa95025ad0121637cb7d7",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 0,
+              "start_ms": 0,
+              "end_ms": 1000,
+              "speaker_participant_id": null,
+              "speaker_name": "Alex Example",
+              "text": "Harbour Research is our Harbour Observatory project.",
+              "revision": "current"
+            },
+            {
+              "ref": "meeting:2/3/3/1",
+              "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 1,
+              "start_ms": 1000,
+              "end_ms": 2000,
+              "speaker_participant_id": null,
+              "speaker_name": "Casey Example",
+              "text": "Пристань Обсерватория budget is capped at twelve units.",
+              "revision": "current"
+            },
+            {
+              "ref": "meeting:2/3/3/2",
+              "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 2,
+              "start_ms": 2000,
+              "end_ms": 3000,
+              "speaker_participant_id": null,
+              "speaker_name": "Casey Example",
+              "text": "Prepare the safety checklist.",
+              "revision": "current"
+            },
+            {
+              "ref": "meeting:2/3/3/3",
+              "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344",
+              "transcript_id": 3,
+              "content_hash": "51c0a823a2703f9de1d7c52141c5b6fa77a1ac8dbfe13ecd2546a17f69642b31",
+              "position": 3,
+              "start_ms": 3000,
+              "end_ms": 4000,
+              "speaker_participant_id": null,
+              "speaker_name": "Alex Example",
+              "text": "A twenty-unit expansion is only a proposal and remains unapproved.",
+              "revision": "current"
+            }
+          ],
+          "fingerprint": "5c6b410ed1780196ae333f17658df66ee8d86d4f6d33f937b1f80b7de83ece67"
+        },
+        "meta": {
+          "run_id": "6b631dc9-7551-43bb-ab91-d7760131226a",
+          "duration_ms": 12,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "actions", "add", "-", "--provider", "zoom", "--account", "zm-profile:reviewed-workflow"],
+      "tool": "memo",
+      "agent": true,
+      "answer": {
+        "error": {
+          "code": "validation_error",
+          "reason": "input.invalid",
+          "message": "each cited meeting needs confirmed membership in the finding's project",
+          "retry": {
+            "safe": false
+          }
+        }
+      }
+    },
+    {
+      "args": [
+        "projects",
+        "meetings",
+        "link",
+        "project:1",
+        "3",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow",
+        "--reason",
+        "Synthetic owner reviewed the explicit project-name cue."
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "link": {
+            "id": "2",
+            "meeting": "meeting:2/3",
+            "project": "project:1",
+            "confirmed": true,
+            "provenance": "Synthetic owner reviewed the explicit project-name cue.",
+            "fingerprint": "e0166413bab8f2e5364959c22b927f8645b41a02ae682986abd65b354b6fc018"
+          },
+          "changed": true
+        },
+        "meta": {
+          "run_id": "20261017T103303Z-process-73bd9d",
+          "duration_ms": 17,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "actions", "add", "-", "--provider", "zoom", "--account", "zm-profile:reviewed-workflow"],
+      "tool": "memo",
+      "agent": true,
+      "answer": {
+        "item": {
+          "id": "1",
+          "account": {
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow"
+          },
+          "input": {
+            "schema_version": 1,
+            "key": "reviewed-workflow",
+            "extractor": "synthetic-workflow-v1",
+            "findings": [
+              {
+                "id": "budget",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/1",
+                    "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "Budget is capped at twelve units."
+              },
+              {
+                "id": "checklist",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/2",
+                    "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd"
+                  }
+                ],
+                "kind": "task",
+                "type": "chore",
+                "title": "Prepare the safety checklist",
+                "reason": "The call explicitly requests the checklist.",
+                "commitment": "explicit"
+              },
+              {
+                "id": "expansion",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/3",
+                    "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "A twenty-unit expansion is approved."
+              }
+            ]
+          },
+          "fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+          "status": "proposed",
+          "author": {
+            "type": "bot",
+            "id": "3",
+            "name": "meeting-workflow-fixture"
+          },
+          "decided_by": null,
+          "decided_at": null,
+          "previous": [],
+          "receipt": null
+        },
+        "meta": {
+          "run_id": "20261017T103303Z-process-1b2c87",
+          "duration_ms": 19,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["facts", "list"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103304Z-process-f184d5",
+          "duration_ms": 9,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["tasks", "list", "project:HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103304Z-process-70e2c5",
+          "duration_ms": 11,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "meetings",
+        "actions",
+        "confirm",
+        "1",
+        "budget",
+        "checklist",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow",
+        "--fingerprint",
+        "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0"
+      ],
+      "tool": "memo",
+      "agent": true,
+      "answer": {
+        "error": {
+          "code": "validation_error",
+          "reason": "input.invalid",
+          "message": "findings confirmation and rejection belong to the owner; agents must leave proposals for review",
+          "retry": {
+            "safe": false
+          }
+        }
+      }
+    },
+    {
+      "args": ["facts", "list"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103305Z-process-2d45b1",
+          "duration_ms": 8,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["tasks", "list", "project:HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103306Z-process-480cef",
+          "duration_ms": 11,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "meetings",
+        "actions",
+        "confirm",
+        "1",
+        "budget",
+        "checklist",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow",
+        "--fingerprint",
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "error": {
+          "code": "validation_error",
+          "reason": "meeting-findings.stale",
+          "message": "meeting findings changed since they were read; stage a new batch",
+          "retry": {
+            "safe": false
+          }
+        }
+      }
+    },
+    {
+      "args": [
+        "meetings",
+        "actions",
+        "confirm",
+        "1",
+        "budget",
+        "checklist",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow",
+        "--fingerprint",
+        "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "id": "1",
+          "account": {
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow"
+          },
+          "input": {
+            "schema_version": 1,
+            "key": "reviewed-workflow",
+            "extractor": "synthetic-workflow-v1",
+            "findings": [
+              {
+                "id": "budget",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/1",
+                    "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "Budget is capped at twelve units."
+              },
+              {
+                "id": "checklist",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/2",
+                    "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd"
+                  }
+                ],
+                "kind": "task",
+                "type": "chore",
+                "title": "Prepare the safety checklist",
+                "reason": "The call explicitly requests the checklist.",
+                "commitment": "explicit"
+              },
+              {
+                "id": "expansion",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/3",
+                    "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "A twenty-unit expansion is approved."
+              }
+            ]
+          },
+          "fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+          "status": "reviewed",
+          "author": {
+            "type": "bot",
+            "id": "3",
+            "name": "meeting-workflow-fixture"
+          },
+          "decided_by": {
+            "type": "person",
+            "id": "1"
+          },
+          "decided_at": "2026-10-17T10:33:06.894Z",
+          "previous": [
+            {
+              "id": "budget",
+              "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+              "status": "accepted",
+              "reference": "fact:1",
+              "reused": false
+            },
+            {
+              "id": "checklist",
+              "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+              "status": "accepted",
+              "reference": "task:HOB-1",
+              "reused": false
+            },
+            {
+              "id": "expansion",
+              "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+              "status": "rejected",
+              "reference": null,
+              "reused": false
+            }
+          ],
+          "receipt": {
+            "preview_fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+            "accepted": ["budget", "checklist"],
+            "items": [
+              {
+                "id": "budget",
+                "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+                "status": "accepted",
+                "reference": "fact:1",
+                "reused": false
+              },
+              {
+                "id": "checklist",
+                "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+                "status": "accepted",
+                "reference": "task:HOB-1",
+                "reused": false
+              },
+              {
+                "id": "expansion",
+                "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+                "status": "rejected",
+                "reference": null,
+                "reused": false
+              }
+            ]
+          }
+        },
+        "meta": {
+          "run_id": "20261017T103306Z-process-96ebbc",
+          "duration_ms": 21,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["facts", "list"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "fact:1",
+            "id": "1",
+            "kind": "decision",
+            "text": "Budget is capped at twelve units.",
+            "status": "accepted",
+            "project": "project:1",
+            "subject": null,
+            "occurred_at": null,
+            "supersedes": null,
+            "author": {
+              "type": "bot",
+              "id": "3",
+              "name": "meeting-workflow-fixture"
+            },
+            "model": null,
+            "scope": null,
+            "origin": "agent",
+            "evidence": ["meeting:2/3/3/1"],
+            "created_at": "2026-10-17T10:33:06.892Z",
+            "updated_at": "2026-10-17T10:33:06.893Z",
+            "confirmed_by": {
+              "type": "person",
+              "id": "1"
+            }
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103307Z-process-c27e32",
+          "duration_ms": 7,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["tasks", "list", "project:HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "task:HOB-1",
+            "id": "HOB-1",
+            "key": "HOB-1",
+            "title": "Prepare the safety checklist",
+            "description": "explicit: The call explicitly requests the checklist.",
+            "kind": "chore",
+            "state": "open",
+            "project": "project:1",
+            "source_message": null,
+            "priority": null,
+            "parent": null,
+            "due_at": null,
+            "closed_at": null,
+            "reason": null,
+            "category": null,
+            "claimed_by": null,
+            "claimed_until": null,
+            "created_at": "2026-10-17T10:33:06.893Z",
+            "updated_at": "2026-10-17T10:33:06.893Z"
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103307Z-process-7cb2f0",
+          "duration_ms": 9,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "actions", "show", "1", "--provider", "zoom", "--account", "zm-profile:reviewed-workflow"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "id": "1",
+          "account": {
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow"
+          },
+          "input": {
+            "schema_version": 1,
+            "key": "reviewed-workflow",
+            "extractor": "synthetic-workflow-v1",
+            "findings": [
+              {
+                "id": "budget",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/1",
+                    "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "Budget is capped at twelve units."
+              },
+              {
+                "id": "checklist",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/2",
+                    "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd"
+                  }
+                ],
+                "kind": "task",
+                "type": "chore",
+                "title": "Prepare the safety checklist",
+                "reason": "The call explicitly requests the checklist.",
+                "commitment": "explicit"
+              },
+              {
+                "id": "expansion",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/3",
+                    "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "A twenty-unit expansion is approved."
+              }
+            ]
+          },
+          "fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+          "status": "reviewed",
+          "author": {
+            "type": "bot",
+            "id": "3",
+            "name": "meeting-workflow-fixture"
+          },
+          "decided_by": {
+            "type": "person",
+            "id": "1"
+          },
+          "decided_at": "2026-10-17T10:33:06.894Z",
+          "previous": [
+            {
+              "id": "budget",
+              "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+              "status": "accepted",
+              "reference": "fact:1",
+              "reused": false
+            },
+            {
+              "id": "checklist",
+              "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+              "status": "accepted",
+              "reference": "task:HOB-1",
+              "reused": false
+            },
+            {
+              "id": "expansion",
+              "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+              "status": "rejected",
+              "reference": null,
+              "reused": false
+            }
+          ],
+          "receipt": {
+            "preview_fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+            "accepted": ["budget", "checklist"],
+            "items": [
+              {
+                "id": "budget",
+                "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+                "status": "accepted",
+                "reference": "fact:1",
+                "reused": false
+              },
+              {
+                "id": "checklist",
+                "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+                "status": "accepted",
+                "reference": "task:HOB-1",
+                "reused": false
+              },
+              {
+                "id": "expansion",
+                "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+                "status": "rejected",
+                "reference": null,
+                "reused": false
+              }
+            ]
+          }
+        },
+        "meta": {
+          "run_id": "20261017T103307Z-process-39a39b",
+          "duration_ms": 8,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["facts", "show", "fact:1"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "ref": "fact:1",
+          "id": "1",
+          "kind": "decision",
+          "text": "Budget is capped at twelve units.",
+          "status": "accepted",
+          "project": "project:1",
+          "subject": null,
+          "occurred_at": null,
+          "supersedes": null,
+          "author": {
+            "type": "bot",
+            "id": "3",
+            "name": "meeting-workflow-fixture"
+          },
+          "model": null,
+          "scope": null,
+          "origin": "agent",
+          "evidence": ["meeting:2/3/3/1"],
+          "created_at": "2026-10-17T10:33:06.892Z",
+          "updated_at": "2026-10-17T10:33:06.893Z",
+          "confirmed_by": {
+            "type": "person",
+            "id": "1"
+          }
+        },
+        "meta": {
+          "run_id": "20261017T103308Z-process-c1a6eb",
+          "duration_ms": 7,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["tasks", "list", "project:HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "task:HOB-1",
+            "id": "HOB-1",
+            "key": "HOB-1",
+            "title": "Prepare the safety checklist",
+            "description": "explicit: The call explicitly requests the checklist.",
+            "kind": "chore",
+            "state": "open",
+            "project": "project:1",
+            "source_message": null,
+            "priority": null,
+            "parent": null,
+            "due_at": null,
+            "closed_at": null,
+            "reason": null,
+            "category": null,
+            "claimed_by": null,
+            "claimed_until": null,
+            "created_at": "2026-10-17T10:33:06.893Z",
+            "updated_at": "2026-10-17T10:33:06.893Z"
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103308Z-process-dc44b9",
+          "duration_ms": 8,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": [
+        "meetings",
+        "actions",
+        "confirm",
+        "1",
+        "budget",
+        "checklist",
+        "--provider",
+        "zoom",
+        "--account",
+        "zm-profile:reviewed-workflow",
+        "--fingerprint",
+        "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0"
+      ],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "item": {
+          "id": "1",
+          "account": {
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow"
+          },
+          "input": {
+            "schema_version": 1,
+            "key": "reviewed-workflow",
+            "extractor": "synthetic-workflow-v1",
+            "findings": [
+              {
+                "id": "budget",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/1",
+                    "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "Budget is capped at twelve units."
+              },
+              {
+                "id": "checklist",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/2",
+                    "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd"
+                  }
+                ],
+                "kind": "task",
+                "type": "chore",
+                "title": "Prepare the safety checklist",
+                "reason": "The call explicitly requests the checklist.",
+                "commitment": "explicit"
+              },
+              {
+                "id": "expansion",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/3",
+                    "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "A twenty-unit expansion is approved."
+              }
+            ]
+          },
+          "fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+          "status": "reviewed",
+          "author": {
+            "type": "bot",
+            "id": "3",
+            "name": "meeting-workflow-fixture"
+          },
+          "decided_by": {
+            "type": "person",
+            "id": "1"
+          },
+          "decided_at": "2026-10-17T10:33:06.894Z",
+          "previous": [
+            {
+              "id": "budget",
+              "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+              "status": "accepted",
+              "reference": "fact:1",
+              "reused": false
+            },
+            {
+              "id": "checklist",
+              "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+              "status": "accepted",
+              "reference": "task:HOB-1",
+              "reused": false
+            },
+            {
+              "id": "expansion",
+              "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+              "status": "rejected",
+              "reference": null,
+              "reused": false
+            }
+          ],
+          "receipt": {
+            "preview_fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+            "accepted": ["budget", "checklist"],
+            "items": [
+              {
+                "id": "budget",
+                "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+                "status": "accepted",
+                "reference": "fact:1",
+                "reused": false
+              },
+              {
+                "id": "checklist",
+                "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+                "status": "accepted",
+                "reference": "task:HOB-1",
+                "reused": false
+              },
+              {
+                "id": "expansion",
+                "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+                "status": "rejected",
+                "reference": null,
+                "reused": false
+              }
+            ]
+          }
+        },
+        "meta": {
+          "run_id": "20261017T103308Z-process-72a45c",
+          "duration_ms": 7,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "actions", "add", "-", "--provider", "zoom", "--account", "zm-profile:reviewed-workflow"],
+      "tool": "memo",
+      "agent": true,
+      "answer": {
+        "item": {
+          "id": "1",
+          "account": {
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow"
+          },
+          "input": {
+            "schema_version": 1,
+            "key": "reviewed-workflow",
+            "extractor": "synthetic-workflow-v1",
+            "findings": [
+              {
+                "id": "budget",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/1",
+                    "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "Budget is capped at twelve units."
+              },
+              {
+                "id": "checklist",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/2",
+                    "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd"
+                  }
+                ],
+                "kind": "task",
+                "type": "chore",
+                "title": "Prepare the safety checklist",
+                "reason": "The call explicitly requests the checklist.",
+                "commitment": "explicit"
+              },
+              {
+                "id": "expansion",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/3",
+                    "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "A twenty-unit expansion is approved."
+              }
+            ]
+          },
+          "fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+          "status": "reviewed",
+          "author": {
+            "type": "bot",
+            "id": "3",
+            "name": "meeting-workflow-fixture"
+          },
+          "decided_by": {
+            "type": "person",
+            "id": "1"
+          },
+          "decided_at": "2026-10-17T10:33:06.894Z",
+          "previous": [
+            {
+              "id": "budget",
+              "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+              "status": "accepted",
+              "reference": "fact:1",
+              "reused": false
+            },
+            {
+              "id": "checklist",
+              "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+              "status": "accepted",
+              "reference": "task:HOB-1",
+              "reused": false
+            },
+            {
+              "id": "expansion",
+              "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+              "status": "rejected",
+              "reference": null,
+              "reused": false
+            }
+          ],
+          "receipt": {
+            "preview_fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+            "accepted": ["budget", "checklist"],
+            "items": [
+              {
+                "id": "budget",
+                "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+                "status": "accepted",
+                "reference": "fact:1",
+                "reused": false
+              },
+              {
+                "id": "checklist",
+                "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+                "status": "accepted",
+                "reference": "task:HOB-1",
+                "reused": false
+              },
+              {
+                "id": "expansion",
+                "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+                "status": "rejected",
+                "reference": null,
+                "reused": false
+              }
+            ]
+          }
+        },
+        "meta": {
+          "run_id": "20261017T103309Z-process-6b9978",
+          "duration_ms": 10,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["meetings", "actions", "add", "-", "--provider", "zoom", "--account", "zm-profile:reviewed-workflow"],
+      "tool": "memo",
+      "agent": true,
+      "answer": {
+        "item": {
+          "id": "2",
+          "account": {
+            "provider": "zoom",
+            "account": "zm-profile:reviewed-workflow"
+          },
+          "input": {
+            "schema_version": 1,
+            "key": "reviewed-workflow-again",
+            "extractor": "synthetic-workflow-v1",
+            "findings": [
+              {
+                "id": "budget",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/1",
+                    "fingerprint": "48a16bb2f5c06b60d073fe7e693fe811795b5845c7fc110f8d7acae8e4f2ebea"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "Budget is capped at twelve units."
+              },
+              {
+                "id": "checklist",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/2",
+                    "fingerprint": "9e60052d07584e1850ac3755804544fd009a2fc3a0f247ace30460af17cddedd"
+                  }
+                ],
+                "kind": "task",
+                "type": "chore",
+                "title": "Prepare the safety checklist",
+                "reason": "The call explicitly requests the checklist.",
+                "commitment": "explicit"
+              },
+              {
+                "id": "expansion",
+                "project": "project:1",
+                "evidence": [
+                  {
+                    "reference": "meeting:2/3/3/3",
+                    "fingerprint": "a61dabe4ebaa07f91afc8a9565f596e20d47064d2661845a46255977b39d3344"
+                  }
+                ],
+                "kind": "fact",
+                "type": "decision",
+                "statement": "A twenty-unit expansion is approved."
+              }
+            ]
+          },
+          "fingerprint": "84d75fb1ebdf25ce8f3880bef6d6df74fcad472c75b1bedecbbea0342da3c91f",
+          "status": "proposed",
+          "author": {
+            "type": "bot",
+            "id": "3",
+            "name": "meeting-workflow-fixture"
+          },
+          "decided_by": null,
+          "decided_at": null,
+          "previous": [
+            {
+              "id": "budget",
+              "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+              "status": "accepted",
+              "reference": "fact:1",
+              "reused": true
+            },
+            {
+              "id": "checklist",
+              "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+              "status": "accepted",
+              "reference": "task:HOB-1",
+              "reused": true
+            },
+            {
+              "id": "expansion",
+              "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+              "status": "rejected",
+              "reference": null,
+              "reused": true
+            }
+          ],
+          "receipt": null
+        },
+        "meta": {
+          "run_id": "20261017T103309Z-process-a6cee3",
+          "duration_ms": 19,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["facts", "list"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "fact:1",
+            "id": "1",
+            "kind": "decision",
+            "text": "Budget is capped at twelve units.",
+            "status": "accepted",
+            "project": "project:1",
+            "subject": null,
+            "occurred_at": null,
+            "supersedes": null,
+            "author": {
+              "type": "bot",
+              "id": "3",
+              "name": "meeting-workflow-fixture"
+            },
+            "model": null,
+            "scope": null,
+            "origin": "agent",
+            "evidence": ["meeting:2/3/3/1"],
+            "created_at": "2026-10-17T10:33:06.892Z",
+            "updated_at": "2026-10-17T10:33:06.893Z",
+            "confirmed_by": {
+              "type": "person",
+              "id": "1"
+            }
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103309Z-process-8fdce2",
+          "duration_ms": 6,
+          "complete": true
+        }
+      }
+    },
+    {
+      "args": ["tasks", "list", "project:HOB"],
+      "tool": "memo",
+      "agent": false,
+      "answer": {
+        "items": [
+          {
+            "ref": "task:HOB-1",
+            "id": "HOB-1",
+            "key": "HOB-1",
+            "title": "Prepare the safety checklist",
+            "description": "explicit: The call explicitly requests the checklist.",
+            "kind": "chore",
+            "state": "open",
+            "project": "project:1",
+            "source_message": null,
+            "priority": null,
+            "parent": null,
+            "due_at": null,
+            "closed_at": null,
+            "reason": null,
+            "category": null,
+            "claimed_by": null,
+            "claimed_until": null,
+            "created_at": "2026-10-17T10:33:06.893Z",
+            "updated_at": "2026-10-17T10:33:06.893Z"
+          }
+        ],
+        "page": {
+          "mode": "page",
+          "limit": 100,
+          "has_more": false
+        },
+        "meta": {
+          "run_id": "20261017T103310Z-process-9f0e33",
+          "duration_ms": 9,
+          "complete": true
+        }
+      }
+    }
+  ],
+  "trace_normalization": "Ephemeral fixture cursors are replaced by SHA-256 objects; stdout hashes retain the original answers.",
+  "accepted": {
+    "preview_fingerprint": "ee8c2c067eb5dc58d1627a19d5c4f3f32eb4cb93a63e8d1c44e54d280dff29d0",
+    "accepted": ["budget", "checklist"],
+    "items": [
+      {
+        "id": "budget",
+        "fingerprint": "b163a99cac863f4316dd7a548a172b9fcfd07311892610f22ff066871f327a4f",
+        "status": "accepted",
+        "reference": "fact:1",
+        "reused": false
+      },
+      {
+        "id": "checklist",
+        "fingerprint": "cbbae4bb5bd99447b3e774672314fafbba8549d2aab335410d8c8bd6e92edc35",
+        "status": "accepted",
+        "reference": "task:HOB-1",
+        "reused": false
+      },
+      {
+        "id": "expansion",
+        "fingerprint": "90515c3764aac25df407e65a6e4aa036c2d23034a9c0a78d9eed760c124b841d",
+        "status": "rejected",
+        "reference": null,
+        "reused": false
+      }
+    ]
+  },
+  "discovery_pages": 4,
+  "network_attempts": 0,
+  "limits": "Synthetic local CLI paths only; no LLM reasoning, live Zoom schedule, provider login, embeddings, real data or timing claims. Project tasks are retrieved through tasks list project:HOB; receipt retains their meeting citations."
+}

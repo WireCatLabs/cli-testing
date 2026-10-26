@@ -28,6 +28,10 @@ describe("offline CLI contracts", () => {
         expect(invocation.env.MAX_CONFIG_DIR).toContain(directory)
         expect(invocation.env.TG_CONFIG_DIR).toContain(directory)
         expect(invocation.env.ZM_CONFIG_DIR).toContain(directory)
+        expect(invocation.env.WA_CONFIG_DIR).toBe(join(directory, "WA", "CONFIG"))
+        expect(invocation.env.WA_STATE_DIR).toBe(join(directory, "WA", "STATE"))
+        expect(invocation.env.WA_CACHE_DIR).toBe(join(directory, "WA", "CACHE"))
+        expect(invocation.env.WA_NO_UPDATE_CHECK).toBe("1")
         expect(invocation.env).not.toHaveProperty("MAX_TOKEN")
         expect(invocation.env).not.toHaveProperty("DBUS_SESSION_BUS_ADDRESS")
         expect(invocation.env.NODE_OPTIONS).toContain("--no-addons")
@@ -206,7 +210,7 @@ describe("synthetic Node process boundaries", () => {
     ).toThrow("process failed")
   })
 
-  it("lists tools through real stdio, handles pagination, rejects cycles and always closes the server", async () => {
+  it("lists tools through real stdio, handles pagination, rejects endless pages and always closes the server", async () => {
     const server = join(tmpdir(), "synthetic-mcp.mjs")
     writeFileSync(
       server,
@@ -216,14 +220,16 @@ const rl = createInterface({ input: process.stdin });
 rl.on('line', line => {
  const m = JSON.parse(line); if (!('id' in m)) return;
  const result = m.method === 'initialize' ? { protocolVersion: m.params.protocolVersion, capabilities: { tools: {} }, serverInfo: { name: 'synthetic', version: '1' } } :
- { tools: [{ name: m.params?.cursor ? 'second' : 'first', inputSchema: { type: 'object' } }], ...(mode === 'cycle' || (mode === 'pages' && !m.params?.cursor) ? { nextCursor: 'next' } : {}) };
+ { tools: [{ name: m.params?.cursor ? 'second' : 'first', inputSchema: { type: 'object' } }], ...(mode === 'endless' ? { nextCursor: String(Number(m.params?.cursor ?? 0) + 1) } : mode === 'pages' && !m.params?.cursor ? { nextCursor: 'next' } : {}) };
  process.stdout.write(JSON.stringify({jsonrpc:'2.0',id:m.id,result})+'\\n');
 });`,
     )
     const invocation = { command: process.execPath, args: [server], cwd: tmpdir(), env: {}, timeout: 1000 }
     expect(await readContractTools(invocation)).toHaveLength(1)
     expect(await readContractTools({ ...invocation, args: [server, "pages"] })).toHaveLength(2)
-    await expect(readContractTools({ ...invocation, args: [server, "cycle"] })).rejects.toThrow("repeated a cursor")
+    await expect(readContractTools({ ...invocation, args: [server, "endless"] })).rejects.toThrow(
+      "exceeded listMaxPages",
+    )
     await expect(readContractTools({ ...invocation, args: ["-e", "process.exit(2)"] })).rejects.toThrow()
   })
 })

@@ -35,7 +35,7 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: WireCatLabs/cli-base/.github/workflows/release-checks.yml@1183bfb970330989ad8acec917b14b7e6187de15
+    uses: WireCatLabs/cli-base/.github/workflows/release-checks.yml@03341651a008f77abb8172f86d6df652321b4ce5 # v0.31.0
     with:
       languages: '["actions","javascript-typescript","python"]'
 
@@ -69,10 +69,12 @@ jobs:
 
       - name: version not yet on npm
         id: version
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
           version=$(node -p 'require("./package.json").version')
           echo "version=$version" >> "$GITHUB_OUTPUT"
-          if [ "${{ inputs.dry_run }}" != "true" ] && npm view "@wirecat/cli-testing@$version" version --prefer-online >/dev/null 2>&1; then
+          if [ "$DRY_RUN" != "true" ] && npm view "@wirecat/cli-testing@$version" version --prefer-online >/dev/null 2>&1; then
             echo "::error::$version is already on npm — raise the version first"
             exit 1
           fi
@@ -124,7 +126,7 @@ jobs:
 
       # npm, not pnpm: npm's trusted publishing is the documented path. A tarball runs no
       # lifecycle scripts, and nothing is installed here.
-      - run: npm publish "wirecat-cli-testing-$VERSION.tgz" --access public ${{ inputs.dry_run && '--dry-run --loglevel verbose' || '' }}
+      - run: npm publish "wirecat-cli-testing-$VERSION.tgz" --access public
 
       - name: wait for npm to show the version
         if: ${{ !inputs.dry_run }}

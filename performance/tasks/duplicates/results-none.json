@@ -1,0 +1,2490 @@
+{
+  "generated": "2026-10-16",
+  "environment": {
+    "node": "v24.19.0",
+    "sqlite": "3.53.3",
+    "cliCore": "0.303.0",
+    "cliCoreIntegrity": "sha512-uBOSOaFttYyHEzcKPdPLm3mJ8Ua0qIBePkv7LZf3M0MEL06TXkCa9KUHz4urWxXE5okiE7AF/yIwx8PFmJtWJQ==",
+    "snowball": "3.1.1 (vendored in cli-core dist/search/snowball)",
+    "timeZone": "Europe/Madrid",
+    "splitSeed": "tasks-duplicates-1"
+  },
+  "data": {
+    "tasks": 251,
+    "groups": 180,
+    "duplicatePairs": 80,
+    "halves": {
+      "A": {
+        "scenarios": 75,
+        "tasks": 129,
+        "duplicatePairs": 46
+      },
+      "B": {
+        "scenarios": 76,
+        "tasks": 122,
+        "duplicatePairs": 34
+      }
+    }
+  },
+  "extraction": {
+    "amount": {
+      "right": 65,
+      "wrong": 0,
+      "missed": 4,
+      "extra": 0
+    },
+    "due": {
+      "right": 96,
+      "wrong": 0,
+      "missed": 0,
+      "extra": 0
+    }
+  },
+  "certain": {
+    "total": 0,
+    "right": 0,
+    "wrong": [],
+    "byRule": {
+      "reply": {
+        "right": 0,
+        "wrong": 0
+      },
+      "title+person": {
+        "right": 0,
+        "wrong": 0
+      }
+    }
+  },
+  "candidates": {
+    "arrivals": 251,
+    "median": 20,
+    "p95": 32,
+    "max": 36,
+    "duplicatesFoundBy": {
+      "category+person+words": 71,
+      "words": 1,
+      "category+person+reply+words": 6,
+      "person+words": 2
+    }
+  },
+  "runtime": {
+    "totalMs": 106.9,
+    "perTaskMedianMs": 0.295,
+    "perTaskP95Ms": 0.621,
+    "perTaskMaxMs": 16.155
+  },
+  "certainRules": [],
+  "tuning": {
+    "A": {
+      "duplicatePairs": 46,
+      "otherPairs": 2507,
+      "counts": {
+        "text": {
+          "high": {
+            "duplicates": 6,
+            "others": 9
+          },
+          "middle": {
+            "duplicates": 29,
+            "others": 57
+          },
+          "low": {
+            "duplicates": 11,
+            "others": 2441
+          }
+        },
+        "person": {
+          "same": {
+            "duplicates": 46,
+            "others": 1193
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 1210
+          },
+          "unknown": {
+            "duplicates": 0,
+            "others": 104
+          }
+        },
+        "amount": {
+          "equal": {
+            "duplicates": 7,
+            "others": 0
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 328
+          },
+          "missing": {
+            "duplicates": 39,
+            "others": 2179
+          }
+        },
+        "category": {
+          "same": {
+            "duplicates": 46,
+            "others": 1399
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 1108
+          }
+        },
+        "due": {
+          "near": {
+            "duplicates": 19,
+            "others": 62
+          },
+          "far": {
+            "duplicates": 3,
+            "others": 439
+          },
+          "missing": {
+            "duplicates": 24,
+            "others": 2006
+          }
+        },
+        "reply": {
+          "yes": {
+            "duplicates": 6,
+            "others": 4
+          },
+          "no": {
+            "duplicates": 40,
+            "others": 2503
+          }
+        },
+        "time": {
+          "0-3": {
+            "duplicates": 41,
+            "others": 435
+          },
+          "4-14": {
+            "duplicates": 4,
+            "others": 1357
+          },
+          "15+": {
+            "duplicates": 1,
+            "others": 715
+          }
+        }
+      },
+      "weights": {
+        "text": {
+          "high": 5.175265819130856,
+          "middle": 4.759906612850815,
+          "low": -2.007236492147102
+        },
+        "person": {
+          "same": 1.0409295744596039,
+          "different": -5.518633749565588,
+          "unknown": -1.984605517647534
+        },
+        "amount": {
+          "equal": 9.629644210041867,
+          "different": -3.6369959458889807,
+          "missing": -0.06324712574354562
+        },
+        "category": {
+          "same": 0.8261958206595181,
+          "different": -5.376660273742906
+        },
+        "due": {
+          "near": 4.04237154863351,
+          "far": -1.249610818652451,
+          "missing": -0.6330019822314381
+        },
+        "reply": {
+          "yes": 6.2682474978231815,
+          "no": -0.2121479560747287
+        },
+        "time": {
+          "0-3": 2.3312641371814093,
+          "4-14": -2.5140578668160627,
+          "15+": -3.1750918415721623
+        }
+      }
+    },
+    "B": {
+      "duplicatePairs": 34,
+      "otherPairs": 2106,
+      "counts": {
+        "text": {
+          "high": {
+            "duplicates": 5,
+            "others": 9
+          },
+          "middle": {
+            "duplicates": 25,
+            "others": 45
+          },
+          "low": {
+            "duplicates": 4,
+            "others": 2052
+          }
+        },
+        "person": {
+          "same": {
+            "duplicates": 34,
+            "others": 956
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 1083
+          },
+          "unknown": {
+            "duplicates": 0,
+            "others": 67
+          }
+        },
+        "amount": {
+          "equal": {
+            "duplicates": 13,
+            "others": 13
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 521
+          },
+          "missing": {
+            "duplicates": 21,
+            "others": 1572
+          }
+        },
+        "category": {
+          "same": {
+            "duplicates": 34,
+            "others": 1268
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 838
+          }
+        },
+        "due": {
+          "near": {
+            "duplicates": 7,
+            "others": 64
+          },
+          "far": {
+            "duplicates": 1,
+            "others": 268
+          },
+          "missing": {
+            "duplicates": 26,
+            "others": 1774
+          }
+        },
+        "reply": {
+          "yes": {
+            "duplicates": 0,
+            "others": 1
+          },
+          "no": {
+            "duplicates": 34,
+            "others": 2105
+          }
+        },
+        "time": {
+          "0-3": {
+            "duplicates": 28,
+            "others": 453
+          },
+          "4-14": {
+            "duplicates": 4,
+            "others": 1099
+          },
+          "15+": {
+            "duplicates": 2,
+            "others": 554
+          }
+        }
+      },
+      "weights": {
+        "text": {
+          "high": 5.103073901518474,
+          "middle": 5.056200498097562,
+          "low": -2.941671708898092
+        },
+        "person": {
+          "same": 1.098473094756819,
+          "different": -5.189913641768911,
+          "unknown": -1.1852458007260682
+        },
+        "amount": {
+          "equal": 5.891569796324762,
+          "different": -4.134953646195003,
+          "missing": -0.3010097507397912
+        },
+        "category": {
+          "same": 0.7113082345865697,
+          "different": -4.799975391692007
+        },
+        "due": {
+          "near": 2.787233136510027,
+          "far": -1.5922459809394938,
+          "missing": -0.17370660817298275
+        },
+        "reply": {
+          "yes": 4.326729081151184,
+          "no": -0.019731121518585196
+        },
+        "time": {
+          "0-3": 1.8995010699609818,
+          "4-14": -2.041137091087893,
+          "15+": -1.901545758949585
+        }
+      }
+    },
+    "all": {
+      "duplicatePairs": 80,
+      "otherPairs": 4613,
+      "counts": {
+        "text": {
+          "high": {
+            "duplicates": 11,
+            "others": 18
+          },
+          "middle": {
+            "duplicates": 54,
+            "others": 102
+          },
+          "low": {
+            "duplicates": 15,
+            "others": 4493
+          }
+        },
+        "person": {
+          "same": {
+            "duplicates": 80,
+            "others": 2149
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 2293
+          },
+          "unknown": {
+            "duplicates": 0,
+            "others": 171
+          }
+        },
+        "amount": {
+          "equal": {
+            "duplicates": 20,
+            "others": 13
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 849
+          },
+          "missing": {
+            "duplicates": 60,
+            "others": 3751
+          }
+        },
+        "category": {
+          "same": {
+            "duplicates": 80,
+            "others": 2667
+          },
+          "different": {
+            "duplicates": 0,
+            "others": 1946
+          }
+        },
+        "due": {
+          "near": {
+            "duplicates": 26,
+            "others": 126
+          },
+          "far": {
+            "duplicates": 4,
+            "others": 707
+          },
+          "missing": {
+            "duplicates": 50,
+            "others": 3780
+          }
+        },
+        "reply": {
+          "yes": {
+            "duplicates": 6,
+            "others": 5
+          },
+          "no": {
+            "duplicates": 74,
+            "others": 4608
+          }
+        },
+        "time": {
+          "0-3": {
+            "duplicates": 69,
+            "others": 888
+          },
+          "4-14": {
+            "duplicates": 8,
+            "others": 2456
+          },
+          "15+": {
+            "duplicates": 3,
+            "others": 1269
+          }
+        }
+      },
+      "weights": {
+        "text": {
+          "high": 5.137339055274106,
+          "middle": 4.911934690117524,
+          "low": -2.3561971115500624
+        },
+        "person": {
+          "same": 1.084361947977358,
+          "different": -6.340104727235918,
+          "unknown": -2.5988343013267694
+        },
+        "amount": {
+          "equal": 6.425894967300658,
+          "different": -4.907239672338178,
+          "missing": -0.13115814078148866
+        },
+        "category": {
+          "same": 0.7815966082011876,
+          "different": -6.094714343548925
+        },
+        "due": {
+          "near": 3.568157344714932,
+          "far": -1.4734308714308892,
+          "missing": -0.4029193915678677
+        },
+        "reply": {
+          "yes": 6.072960385302153,
+          "no": -0.11896072912008879
+        },
+        "time": {
+          "0-3": 2.1469435715408722,
+          "4-14": -2.351695217654636,
+          "15+": -2.6794592927438585
+        }
+      }
+    }
+  },
+  "weights": {
+    "start": {
+      "text": {
+        "high": 4,
+        "middle": 2,
+        "low": -2
+      },
+      "person": {
+        "same": 3,
+        "different": -3,
+        "unknown": 0
+      },
+      "amount": {
+        "equal": 3,
+        "different": -4,
+        "missing": 0
+      },
+      "category": {
+        "same": 1,
+        "different": -1
+      },
+      "due": {
+        "near": 1,
+        "far": -1,
+        "missing": 0
+      },
+      "reply": {
+        "yes": 6,
+        "no": 0
+      },
+      "time": {
+        "0-3": 1,
+        "4-14": 0,
+        "15+": -1
+      }
+    },
+    "fromA": {
+      "text": {
+        "high": 5,
+        "middle": 5,
+        "low": -2
+      },
+      "person": {
+        "same": 1,
+        "different": -6,
+        "unknown": -2
+      },
+      "amount": {
+        "equal": 10,
+        "different": -4,
+        "missing": 0
+      },
+      "category": {
+        "same": 1,
+        "different": -5
+      },
+      "due": {
+        "near": 4,
+        "far": -1,
+        "missing": -1
+      },
+      "reply": {
+        "yes": 6,
+        "no": 0
+      },
+      "time": {
+        "0-3": 2,
+        "4-14": -3,
+        "15+": -3
+      }
+    },
+    "fromB": {
+      "text": {
+        "high": 5,
+        "middle": 5,
+        "low": -3
+      },
+      "person": {
+        "same": 1,
+        "different": -5,
+        "unknown": -1
+      },
+      "amount": {
+        "equal": 6,
+        "different": -4,
+        "missing": 0
+      },
+      "category": {
+        "same": 1,
+        "different": -5
+      },
+      "due": {
+        "near": 3,
+        "far": -2,
+        "missing": 0
+      },
+      "reply": {
+        "yes": 4,
+        "no": 0
+      },
+      "time": {
+        "0-3": 2,
+        "4-14": -2,
+        "15+": -2
+      }
+    },
+    "proposed": {
+      "text": {
+        "high": 5,
+        "middle": 5,
+        "low": -2
+      },
+      "person": {
+        "same": 1,
+        "different": -6,
+        "unknown": -3
+      },
+      "amount": {
+        "equal": 6,
+        "different": -5,
+        "missing": 0
+      },
+      "category": {
+        "same": 1,
+        "different": -6
+      },
+      "due": {
+        "near": 4,
+        "far": -1,
+        "missing": 0
+      },
+      "reply": {
+        "yes": 6,
+        "no": 0
+      },
+      "time": {
+        "0-3": 2,
+        "4-14": -2,
+        "15+": -3
+      }
+    },
+    "recommended": {
+      "text": {
+        "high": 5,
+        "middle": 5,
+        "low": -2
+      },
+      "person": {
+        "same": 1,
+        "different": -3,
+        "unknown": 0
+      },
+      "amount": {
+        "equal": 6,
+        "different": -4,
+        "missing": 0
+      },
+      "category": {
+        "same": 1,
+        "different": -1
+      },
+      "due": {
+        "near": 4,
+        "far": -1,
+        "missing": 0
+      },
+      "reply": {
+        "yes": 6,
+        "no": 0
+      },
+      "time": {
+        "0-3": 2,
+        "4-14": -2,
+        "15+": -3
+      }
+    }
+  },
+  "configs": {
+    "start weights, plan bands": {
+      "bands": {
+        "same": 8,
+        "maybe": 3
+      },
+      "A": {
+        "pairs": 2553,
+        "positives": 46,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 24,
+            "false": 7
+          },
+          "maybe": {
+            "true": 22,
+            "false": 68
+          },
+          "different": {
+            "true": 0,
+            "false": 2432
+          }
+        },
+        "same": {
+          "precision": 0.7741935483870968,
+          "recall": 0.5217391304347826
+        },
+        "sameOrMaybe": {
+          "precision": 0.38016528925619836,
+          "recall": 1
+        },
+        "tasks": {
+          "duplicateTop": {
+            "same right": 22,
+            "maybe right": 16,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 1,
+            "different": 51,
+            "maybe": 31,
+            "same": 7
+          }
+        }
+      },
+      "B": {
+        "pairs": 2140,
+        "positives": 34,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 17,
+            "false": 4
+          },
+          "maybe": {
+            "true": 17,
+            "false": 52
+          },
+          "different": {
+            "true": 0,
+            "false": 2050
+          }
+        },
+        "same": {
+          "precision": 0.8095238095238095,
+          "recall": 0.5
+        },
+        "sameOrMaybe": {
+          "precision": 0.37777777777777777,
+          "recall": 1
+        },
+        "tasks": {
+          "duplicateTop": {
+            "same right": 16,
+            "maybe right": 15,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 3,
+            "different": 58,
+            "maybe": 25,
+            "same": 4
+          }
+        }
+      },
+      "all": {
+        "pairs": 4693,
+        "positives": 80,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 41,
+            "false": 11
+          },
+          "maybe": {
+            "true": 39,
+            "false": 120
+          },
+          "different": {
+            "true": 0,
+            "false": 4482
+          }
+        },
+        "same": {
+          "precision": 0.7884615384615384,
+          "recall": 0.5125
+        },
+        "sameOrMaybe": {
+          "precision": 0.3791469194312796,
+          "recall": 1
+        },
+        "tasks": {
+          "duplicateTop": {
+            "same right": 38,
+            "maybe right": 31,
+            "maybe wrong task": 2
+          },
+          "freshTop": {
+            "no candidate": 4,
+            "different": 109,
+            "maybe": 56,
+            "same": 11
+          }
+        }
+      }
+    },
+    "start weights, bands picked on A": {
+      "bands": {
+        "same": 14,
+        "maybe": 4
+      },
+      "A": {
+        "pairs": 2553,
+        "positives": 46,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 0,
+            "false": 0
+          },
+          "maybe": {
+            "true": 42,
+            "false": 43
+          },
+          "different": {
+            "true": 4,
+            "false": 2464
+          }
+        },
+        "same": {
+          "precision": null,
+          "recall": 0
+        },
+        "sameOrMaybe": {
+          "precision": 0.49411764705882355,
+          "recall": 0.9130434782608695
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 35,
+            "different right": 3,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 1,
+            "different": 65,
+            "maybe": 24
+          }
+        }
+      },
+      "B": {
+        "pairs": 2140,
+        "positives": 34,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 0,
+            "false": 0
+          },
+          "maybe": {
+            "true": 33,
+            "false": 35
+          },
+          "different": {
+            "true": 1,
+            "false": 2071
+          }
+        },
+        "same": {
+          "precision": null,
+          "recall": 0
+        },
+        "sameOrMaybe": {
+          "precision": 0.4852941176470588,
+          "recall": 0.9705882352941176
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 31,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 3,
+            "different": 65,
+            "maybe": 22
+          }
+        }
+      },
+      "all": {
+        "pairs": 4693,
+        "positives": 80,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 0,
+            "false": 0
+          },
+          "maybe": {
+            "true": 75,
+            "false": 78
+          },
+          "different": {
+            "true": 5,
+            "false": 4535
+          }
+        },
+        "same": {
+          "precision": null,
+          "recall": 0
+        },
+        "sameOrMaybe": {
+          "precision": 0.49019607843137253,
+          "recall": 0.9375
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 66,
+            "different right": 3,
+            "maybe wrong task": 2
+          },
+          "freshTop": {
+            "no candidate": 4,
+            "different": 130,
+            "maybe": 46
+          }
+        }
+      }
+    },
+    "estimated on A, bands picked on A": {
+      "bands": {
+        "same": 18,
+        "maybe": 3
+      },
+      "A": {
+        "pairs": 2553,
+        "positives": 46,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 6,
+            "false": 0
+          },
+          "maybe": {
+            "true": 36,
+            "false": 41
+          },
+          "different": {
+            "true": 4,
+            "false": 2466
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.13043478260869565
+        },
+        "sameOrMaybe": {
+          "precision": 0.5060240963855421,
+          "recall": 0.9130434782608695
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 31,
+            "different right": 3,
+            "same right": 5
+          },
+          "freshTop": {
+            "no candidate": 1,
+            "different": 67,
+            "maybe": 22
+          }
+        }
+      },
+      "B": {
+        "pairs": 2140,
+        "positives": 34,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 11,
+            "false": 3
+          },
+          "maybe": {
+            "true": 22,
+            "false": 35
+          },
+          "different": {
+            "true": 1,
+            "false": 2068
+          }
+        },
+        "same": {
+          "precision": 0.7857142857142857,
+          "recall": 0.3235294117647059
+        },
+        "sameOrMaybe": {
+          "precision": 0.4647887323943662,
+          "recall": 0.9705882352941176
+        },
+        "tasks": {
+          "duplicateTop": {
+            "same right": 11,
+            "maybe right": 20,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 3,
+            "different": 64,
+            "maybe": 20,
+            "same": 3
+          }
+        }
+      },
+      "all": {
+        "pairs": 4693,
+        "positives": 80,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 17,
+            "false": 3
+          },
+          "maybe": {
+            "true": 58,
+            "false": 76
+          },
+          "different": {
+            "true": 5,
+            "false": 4534
+          }
+        },
+        "same": {
+          "precision": 0.85,
+          "recall": 0.2125
+        },
+        "sameOrMaybe": {
+          "precision": 0.487012987012987,
+          "recall": 0.9375
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 51,
+            "same right": 16,
+            "different right": 3,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 4,
+            "different": 131,
+            "maybe": 42,
+            "same": 3
+          }
+        }
+      }
+    },
+    "estimated on B, bands picked on B": {
+      "bands": {
+        "same": 18,
+        "maybe": 5
+      },
+      "A": {
+        "pairs": 2553,
+        "positives": 46,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 2,
+            "false": 0
+          },
+          "maybe": {
+            "true": 36,
+            "false": 36
+          },
+          "different": {
+            "true": 8,
+            "false": 2471
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.043478260869565216
+        },
+        "sameOrMaybe": {
+          "precision": 0.5135135135135135,
+          "recall": 0.8260869565217391
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 30,
+            "different right": 6,
+            "same right": 2,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 1,
+            "different": 68,
+            "maybe": 21
+          }
+        }
+      },
+      "B": {
+        "pairs": 2140,
+        "positives": 34,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 1,
+            "false": 0
+          },
+          "maybe": {
+            "true": 30,
+            "false": 27
+          },
+          "different": {
+            "true": 3,
+            "false": 2079
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.029411764705882353
+        },
+        "sameOrMaybe": {
+          "precision": 0.5344827586206896,
+          "recall": 0.9117647058823529
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 28,
+            "same right": 1,
+            "different right": 2,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 3,
+            "different": 70,
+            "maybe": 17
+          }
+        }
+      },
+      "all": {
+        "pairs": 4693,
+        "positives": 80,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 3,
+            "false": 0
+          },
+          "maybe": {
+            "true": 66,
+            "false": 63
+          },
+          "different": {
+            "true": 11,
+            "false": 4550
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.0375
+        },
+        "sameOrMaybe": {
+          "precision": 0.5227272727272727,
+          "recall": 0.8625
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 58,
+            "same right": 3,
+            "different right": 8,
+            "maybe wrong task": 2
+          },
+          "freshTop": {
+            "no candidate": 4,
+            "different": 138,
+            "maybe": 38
+          }
+        }
+      }
+    },
+    "estimated on all, bands picked on all (in-sample)": {
+      "bands": {
+        "same": 19,
+        "maybe": 5
+      },
+      "A": {
+        "pairs": 2553,
+        "positives": 46,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 2,
+            "false": 0
+          },
+          "maybe": {
+            "true": 39,
+            "false": 22
+          },
+          "different": {
+            "true": 5,
+            "false": 2485
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.043478260869565216
+        },
+        "sameOrMaybe": {
+          "precision": 0.6507936507936508,
+          "recall": 0.8913043478260869
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 33,
+            "different right": 4,
+            "same right": 2
+          },
+          "freshTop": {
+            "no candidate": 1,
+            "different": 72,
+            "maybe": 17
+          }
+        }
+      },
+      "B": {
+        "pairs": 2140,
+        "positives": 34,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 1,
+            "false": 0
+          },
+          "maybe": {
+            "true": 30,
+            "false": 23
+          },
+          "different": {
+            "true": 3,
+            "false": 2083
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.029411764705882353
+        },
+        "sameOrMaybe": {
+          "precision": 0.5740740740740741,
+          "recall": 0.9117647058823529
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 28,
+            "same right": 1,
+            "maybe wrong task": 1,
+            "different right": 2
+          },
+          "freshTop": {
+            "no candidate": 3,
+            "different": 73,
+            "maybe": 14
+          }
+        }
+      },
+      "all": {
+        "pairs": 4693,
+        "positives": 80,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 3,
+            "false": 0
+          },
+          "maybe": {
+            "true": 69,
+            "false": 45
+          },
+          "different": {
+            "true": 8,
+            "false": 4568
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.0375
+        },
+        "sameOrMaybe": {
+          "precision": 0.6153846153846154,
+          "recall": 0.9
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 61,
+            "same right": 3,
+            "different right": 6,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 4,
+            "different": 145,
+            "maybe": 31
+          }
+        }
+      }
+    },
+    "recommended: estimated on all, plan weights where no duplicate showed the level": {
+      "bands": {
+        "same": 19,
+        "maybe": 5
+      },
+      "A": {
+        "pairs": 2553,
+        "positives": 46,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 2,
+            "false": 0
+          },
+          "maybe": {
+            "true": 39,
+            "false": 23
+          },
+          "different": {
+            "true": 5,
+            "false": 2484
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.043478260869565216
+        },
+        "sameOrMaybe": {
+          "precision": 0.640625,
+          "recall": 0.8913043478260869
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 33,
+            "different right": 4,
+            "same right": 2
+          },
+          "freshTop": {
+            "no candidate": 1,
+            "different": 71,
+            "maybe": 18
+          }
+        }
+      },
+      "B": {
+        "pairs": 2140,
+        "positives": 34,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 1,
+            "false": 0
+          },
+          "maybe": {
+            "true": 30,
+            "false": 30
+          },
+          "different": {
+            "true": 3,
+            "false": 2076
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.029411764705882353
+        },
+        "sameOrMaybe": {
+          "precision": 0.5081967213114754,
+          "recall": 0.9117647058823529
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 28,
+            "same right": 1,
+            "maybe wrong task": 1,
+            "different right": 2
+          },
+          "freshTop": {
+            "no candidate": 3,
+            "different": 67,
+            "maybe": 20
+          }
+        }
+      },
+      "all": {
+        "pairs": 4693,
+        "positives": 80,
+        "notCandidates": 0,
+        "bands": {
+          "same": {
+            "true": 3,
+            "false": 0
+          },
+          "maybe": {
+            "true": 69,
+            "false": 53
+          },
+          "different": {
+            "true": 8,
+            "false": 4560
+          }
+        },
+        "same": {
+          "precision": 1,
+          "recall": 0.0375
+        },
+        "sameOrMaybe": {
+          "precision": 0.576,
+          "recall": 0.9
+        },
+        "tasks": {
+          "duplicateTop": {
+            "maybe right": 61,
+            "same right": 3,
+            "different right": 6,
+            "maybe wrong task": 1
+          },
+          "freshTop": {
+            "no candidate": 4,
+            "different": 138,
+            "maybe": 38
+          }
+        }
+      }
+    }
+  },
+  "subtypes": {
+    "start weights, plan bands": {
+      "b.date": {
+        "different (new task)": 3,
+        "maybe (new task)": 4,
+        "same (new task)": 1
+      },
+      "c.busy": {
+        "different (new task)": 51,
+        "maybe (new task)": 7
+      },
+      "a.three": {
+        "different (new task)": 3,
+        "same right": 8,
+        "maybe right": 4,
+        "maybe (new task)": 3
+      },
+      "a.digits": {
+        "different (new task)": 5,
+        "same right": 4,
+        "maybe wrong task": 1,
+        "maybe (new task)": 1,
+        "maybe right": 2
+      },
+      "a.lang": {
+        "maybe (new task)": 2,
+        "maybe right": 4,
+        "different (new task)": 3,
+        "same right": 1
+      },
+      "a.typo": {
+        "different (new task)": 4,
+        "maybe right": 3,
+        "maybe (new task)": 2,
+        "same right": 3
+      },
+      "a.synonym": {
+        "different (new task)": 5,
+        "same right": 4,
+        "maybe right": 2,
+        "maybe (new task)": 2,
+        "maybe wrong task": 1
+      },
+      "b.person": {
+        "different (new task)": 4,
+        "maybe (new task)": 4
+      },
+      "b.amount": {
+        "maybe (new task)": 4,
+        "different (new task)": 3,
+        "same (new task)": 3
+      },
+      "b.title": {
+        "different (new task)": 1,
+        "maybe (new task)": 2,
+        "same (new task)": 1
+      },
+      "a.forms": {
+        "different (new task)": 8,
+        "same right": 5,
+        "maybe right": 4
+      },
+      "a.late": {
+        "different (new task)": 2,
+        "maybe right": 3,
+        "maybe (new task)": 1
+      },
+      "c.cross": {
+        "maybe (new task)": 3,
+        "same right": 3,
+        "maybe right": 3,
+        "different (new task)": 3
+      },
+      "a.k": {
+        "different (new task)": 4,
+        "same right": 4,
+        "maybe (new task)": 1,
+        "maybe right": 1
+      },
+      "a.reminder": {
+        "different (new task)": 6,
+        "maybe right": 5,
+        "same right": 1
+      },
+      "b.job": {
+        "maybe (new task)": 13,
+        "different (new task)": 4,
+        "same (new task)": 3
+      },
+      "d.closed": {
+        "different (new task)": 1,
+        "same (new task)": 1
+      },
+      "d.reply": {
+        "maybe (new task)": 2,
+        "same right": 5,
+        "different (new task)": 2
+      },
+      "d.newtask": {
+        "maybe (new task)": 3,
+        "different (new task)": 1,
+        "same (new task)": 2
+      },
+      "d.otherperson": {
+        "maybe (new task)": 2
+      }
+    },
+    "estimated on all, bands picked on all (in-sample)": {
+      "b.date": {
+        "different (new task)": 5,
+        "maybe (new task)": 3
+      },
+      "c.busy": {
+        "different (new task)": 58
+      },
+      "a.three": {
+        "different (new task)": 6,
+        "maybe right": 11,
+        "same right": 1
+      },
+      "a.digits": {
+        "different (new task)": 6,
+        "maybe right": 6,
+        "maybe wrong task": 1
+      },
+      "a.lang": {
+        "maybe (new task)": 2,
+        "maybe right": 3,
+        "different right": 2,
+        "different (new task)": 3
+      },
+      "a.typo": {
+        "different (new task)": 5,
+        "maybe right": 6,
+        "maybe (new task)": 1
+      },
+      "a.synonym": {
+        "different (new task)": 7,
+        "same right": 1,
+        "maybe right": 5,
+        "different right": 1
+      },
+      "b.person": {
+        "maybe (new task)": 2,
+        "different (new task)": 6
+      },
+      "b.amount": {
+        "different (new task)": 7,
+        "maybe (new task)": 3
+      },
+      "b.title": {
+        "different (new task)": 2,
+        "maybe (new task)": 2
+      },
+      "a.forms": {
+        "different (new task)": 8,
+        "same right": 1,
+        "maybe right": 8
+      },
+      "a.late": {
+        "different (new task)": 2,
+        "different right": 3,
+        "maybe (new task)": 1
+      },
+      "c.cross": {
+        "different (new task)": 5,
+        "maybe right": 6,
+        "maybe (new task)": 1
+      },
+      "a.k": {
+        "different (new task)": 5,
+        "maybe right": 5
+      },
+      "a.reminder": {
+        "different (new task)": 6,
+        "maybe right": 6
+      },
+      "b.job": {
+        "different (new task)": 10,
+        "maybe (new task)": 10
+      },
+      "d.closed": {
+        "different (new task)": 1,
+        "maybe (new task)": 1
+      },
+      "d.reply": {
+        "different (new task)": 3,
+        "maybe right": 5,
+        "maybe (new task)": 1
+      },
+      "d.newtask": {
+        "different (new task)": 3,
+        "maybe (new task)": 3
+      },
+      "d.otherperson": {
+        "different (new task)": 1,
+        "maybe (new task)": 1
+      }
+    },
+    "recommended: estimated on all, plan weights where no duplicate showed the level": {
+      "b.date": {
+        "different (new task)": 4,
+        "maybe (new task)": 4
+      },
+      "c.busy": {
+        "different (new task)": 56,
+        "maybe (new task)": 2
+      },
+      "a.three": {
+        "different (new task)": 6,
+        "maybe right": 11,
+        "same right": 1
+      },
+      "a.digits": {
+        "different (new task)": 6,
+        "maybe right": 6,
+        "maybe wrong task": 1
+      },
+      "a.lang": {
+        "maybe (new task)": 2,
+        "maybe right": 3,
+        "different right": 2,
+        "different (new task)": 3
+      },
+      "a.typo": {
+        "different (new task)": 5,
+        "maybe right": 6,
+        "maybe (new task)": 1
+      },
+      "a.synonym": {
+        "different (new task)": 6,
+        "same right": 1,
+        "maybe right": 5,
+        "maybe (new task)": 1,
+        "different right": 1
+      },
+      "b.person": {
+        "maybe (new task)": 3,
+        "different (new task)": 5
+      },
+      "b.amount": {
+        "maybe (new task)": 4,
+        "different (new task)": 6
+      },
+      "b.title": {
+        "different (new task)": 2,
+        "maybe (new task)": 2
+      },
+      "a.forms": {
+        "different (new task)": 8,
+        "same right": 1,
+        "maybe right": 8
+      },
+      "a.late": {
+        "different (new task)": 2,
+        "different right": 3,
+        "maybe (new task)": 1
+      },
+      "c.cross": {
+        "different (new task)": 5,
+        "maybe right": 6,
+        "maybe (new task)": 1
+      },
+      "a.k": {
+        "different (new task)": 5,
+        "maybe right": 5
+      },
+      "a.reminder": {
+        "different (new task)": 6,
+        "maybe right": 6
+      },
+      "b.job": {
+        "different (new task)": 10,
+        "maybe (new task)": 10
+      },
+      "d.closed": {
+        "different (new task)": 1,
+        "maybe (new task)": 1
+      },
+      "d.reply": {
+        "different (new task)": 3,
+        "maybe right": 5,
+        "maybe (new task)": 1
+      },
+      "d.newtask": {
+        "different (new task)": 2,
+        "maybe (new task)": 4
+      },
+      "d.otherperson": {
+        "different (new task)": 1,
+        "maybe (new task)": 1
+      }
+    }
+  },
+  "sweep": {
+    "start": [
+      {
+        "threshold": 2,
+        "true": 80,
+        "false": 299,
+        "precision": 0.21108179419525067,
+        "recall": 1,
+        "newTasksFlagged": 93,
+        "newTasks": 180
+      },
+      {
+        "threshold": 3,
+        "true": 80,
+        "false": 131,
+        "precision": 0.3791469194312796,
+        "recall": 1,
+        "newTasksFlagged": 67,
+        "newTasks": 180
+      },
+      {
+        "threshold": 4,
+        "true": 75,
+        "false": 78,
+        "precision": 0.49019607843137253,
+        "recall": 0.9375,
+        "newTasksFlagged": 46,
+        "newTasks": 180
+      },
+      {
+        "threshold": 5,
+        "true": 69,
+        "false": 67,
+        "precision": 0.5073529411764706,
+        "recall": 0.8625,
+        "newTasksFlagged": 39,
+        "newTasks": 180
+      },
+      {
+        "threshold": 6,
+        "true": 67,
+        "false": 41,
+        "precision": 0.6203703703703703,
+        "recall": 0.8375,
+        "newTasksFlagged": 29,
+        "newTasks": 180
+      },
+      {
+        "threshold": 7,
+        "true": 61,
+        "false": 21,
+        "precision": 0.7439024390243902,
+        "recall": 0.7625,
+        "newTasksFlagged": 20,
+        "newTasks": 180
+      },
+      {
+        "threshold": 8,
+        "true": 41,
+        "false": 11,
+        "precision": 0.7884615384615384,
+        "recall": 0.5125,
+        "newTasksFlagged": 11,
+        "newTasks": 180
+      },
+      {
+        "threshold": 9,
+        "true": 32,
+        "false": 7,
+        "precision": 0.8205128205128205,
+        "recall": 0.4,
+        "newTasksFlagged": 7,
+        "newTasks": 180
+      },
+      {
+        "threshold": 10,
+        "true": 24,
+        "false": 5,
+        "precision": 0.8275862068965517,
+        "recall": 0.3,
+        "newTasksFlagged": 5,
+        "newTasks": 180
+      },
+      {
+        "threshold": 11,
+        "true": 9,
+        "false": 3,
+        "precision": 0.75,
+        "recall": 0.1125,
+        "newTasksFlagged": 3,
+        "newTasks": 180
+      },
+      {
+        "threshold": 12,
+        "true": 5,
+        "false": 2,
+        "precision": 0.7142857142857143,
+        "recall": 0.0625,
+        "newTasksFlagged": 2,
+        "newTasks": 180
+      },
+      {
+        "threshold": 13,
+        "true": 3,
+        "false": 1,
+        "precision": 0.75,
+        "recall": 0.0375,
+        "newTasksFlagged": 1,
+        "newTasks": 180
+      },
+      {
+        "threshold": 14,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 15,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 16,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 17,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 18,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 19,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 20,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 21,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 22,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      }
+    ],
+    "proposed": [
+      {
+        "threshold": 2,
+        "true": 80,
+        "false": 126,
+        "precision": 0.3883495145631068,
+        "recall": 1,
+        "newTasksFlagged": 63,
+        "newTasks": 180
+      },
+      {
+        "threshold": 3,
+        "true": 75,
+        "false": 75,
+        "precision": 0.5,
+        "recall": 0.9375,
+        "newTasksFlagged": 43,
+        "newTasks": 180
+      },
+      {
+        "threshold": 4,
+        "true": 75,
+        "false": 74,
+        "precision": 0.5033557046979866,
+        "recall": 0.9375,
+        "newTasksFlagged": 43,
+        "newTasks": 180
+      },
+      {
+        "threshold": 5,
+        "true": 72,
+        "false": 45,
+        "precision": 0.6153846153846154,
+        "recall": 0.9,
+        "newTasksFlagged": 31,
+        "newTasks": 180
+      },
+      {
+        "threshold": 6,
+        "true": 70,
+        "false": 27,
+        "precision": 0.7216494845360825,
+        "recall": 0.875,
+        "newTasksFlagged": 19,
+        "newTasks": 180
+      },
+      {
+        "threshold": 7,
+        "true": 64,
+        "false": 19,
+        "precision": 0.7710843373493976,
+        "recall": 0.8,
+        "newTasksFlagged": 14,
+        "newTasks": 180
+      },
+      {
+        "threshold": 8,
+        "true": 64,
+        "false": 19,
+        "precision": 0.7710843373493976,
+        "recall": 0.8,
+        "newTasksFlagged": 14,
+        "newTasks": 180
+      },
+      {
+        "threshold": 9,
+        "true": 58,
+        "false": 12,
+        "precision": 0.8285714285714286,
+        "recall": 0.725,
+        "newTasksFlagged": 11,
+        "newTasks": 180
+      },
+      {
+        "threshold": 10,
+        "true": 34,
+        "false": 5,
+        "precision": 0.8717948717948718,
+        "recall": 0.425,
+        "newTasksFlagged": 5,
+        "newTasks": 180
+      },
+      {
+        "threshold": 11,
+        "true": 34,
+        "false": 5,
+        "precision": 0.8717948717948718,
+        "recall": 0.425,
+        "newTasksFlagged": 5,
+        "newTasks": 180
+      },
+      {
+        "threshold": 12,
+        "true": 33,
+        "false": 4,
+        "precision": 0.8918918918918919,
+        "recall": 0.4125,
+        "newTasksFlagged": 4,
+        "newTasks": 180
+      },
+      {
+        "threshold": 13,
+        "true": 33,
+        "false": 4,
+        "precision": 0.8918918918918919,
+        "recall": 0.4125,
+        "newTasksFlagged": 4,
+        "newTasks": 180
+      },
+      {
+        "threshold": 14,
+        "true": 21,
+        "false": 4,
+        "precision": 0.84,
+        "recall": 0.2625,
+        "newTasksFlagged": 4,
+        "newTasks": 180
+      },
+      {
+        "threshold": 15,
+        "true": 19,
+        "false": 3,
+        "precision": 0.8636363636363636,
+        "recall": 0.2375,
+        "newTasksFlagged": 3,
+        "newTasks": 180
+      },
+      {
+        "threshold": 16,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 17,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 18,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 19,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 20,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 21,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 22,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      }
+    ],
+    "recommended": [
+      {
+        "threshold": 2,
+        "true": 80,
+        "false": 174,
+        "precision": 0.31496062992125984,
+        "recall": 1,
+        "newTasksFlagged": 79,
+        "newTasks": 180
+      },
+      {
+        "threshold": 3,
+        "true": 75,
+        "false": 102,
+        "precision": 0.423728813559322,
+        "recall": 0.9375,
+        "newTasksFlagged": 56,
+        "newTasks": 180
+      },
+      {
+        "threshold": 4,
+        "true": 75,
+        "false": 93,
+        "precision": 0.44642857142857145,
+        "recall": 0.9375,
+        "newTasksFlagged": 52,
+        "newTasks": 180
+      },
+      {
+        "threshold": 5,
+        "true": 72,
+        "false": 53,
+        "precision": 0.576,
+        "recall": 0.9,
+        "newTasksFlagged": 38,
+        "newTasks": 180
+      },
+      {
+        "threshold": 6,
+        "true": 70,
+        "false": 28,
+        "precision": 0.7142857142857143,
+        "recall": 0.875,
+        "newTasksFlagged": 20,
+        "newTasks": 180
+      },
+      {
+        "threshold": 7,
+        "true": 64,
+        "false": 22,
+        "precision": 0.7441860465116279,
+        "recall": 0.8,
+        "newTasksFlagged": 16,
+        "newTasks": 180
+      },
+      {
+        "threshold": 8,
+        "true": 64,
+        "false": 22,
+        "precision": 0.7441860465116279,
+        "recall": 0.8,
+        "newTasksFlagged": 16,
+        "newTasks": 180
+      },
+      {
+        "threshold": 9,
+        "true": 58,
+        "false": 16,
+        "precision": 0.7837837837837838,
+        "recall": 0.725,
+        "newTasksFlagged": 14,
+        "newTasks": 180
+      },
+      {
+        "threshold": 10,
+        "true": 34,
+        "false": 6,
+        "precision": 0.85,
+        "recall": 0.425,
+        "newTasksFlagged": 6,
+        "newTasks": 180
+      },
+      {
+        "threshold": 11,
+        "true": 34,
+        "false": 6,
+        "precision": 0.85,
+        "recall": 0.425,
+        "newTasksFlagged": 6,
+        "newTasks": 180
+      },
+      {
+        "threshold": 12,
+        "true": 33,
+        "false": 4,
+        "precision": 0.8918918918918919,
+        "recall": 0.4125,
+        "newTasksFlagged": 4,
+        "newTasks": 180
+      },
+      {
+        "threshold": 13,
+        "true": 33,
+        "false": 4,
+        "precision": 0.8918918918918919,
+        "recall": 0.4125,
+        "newTasksFlagged": 4,
+        "newTasks": 180
+      },
+      {
+        "threshold": 14,
+        "true": 21,
+        "false": 4,
+        "precision": 0.84,
+        "recall": 0.2625,
+        "newTasksFlagged": 4,
+        "newTasks": 180
+      },
+      {
+        "threshold": 15,
+        "true": 19,
+        "false": 3,
+        "precision": 0.8636363636363636,
+        "recall": 0.2375,
+        "newTasksFlagged": 3,
+        "newTasks": 180
+      },
+      {
+        "threshold": 16,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 17,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 18,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 19,
+        "true": 3,
+        "false": 0,
+        "precision": 1,
+        "recall": 0.0375,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 20,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 21,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      },
+      {
+        "threshold": 22,
+        "true": 0,
+        "false": 0,
+        "precision": null,
+        "recall": 0,
+        "newTasksFlagged": 0,
+        "newTasks": 180
+      }
+    ]
+  },
+  "falseSame": {
+    "start weights, plan bands": [
+      {
+        "arrival": "t118",
+        "candidate": "t089",
+        "half": "A",
+        "score": 8,
+        "levels": {
+          "text": "high",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "4-14"
+        }
+      },
+      {
+        "arrival": "t125",
+        "candidate": "t074",
+        "half": "A",
+        "score": 8,
+        "levels": {
+          "text": "high",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "4-14"
+        }
+      },
+      {
+        "arrival": "t134",
+        "candidate": "t099",
+        "half": "A",
+        "score": 12,
+        "levels": {
+          "text": "middle",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "yes",
+          "time": "4-14"
+        }
+      },
+      {
+        "arrival": "t182",
+        "candidate": "t120",
+        "half": "A",
+        "score": 8,
+        "levels": {
+          "text": "high",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "4-14"
+        }
+      },
+      {
+        "arrival": "t206",
+        "candidate": "t205",
+        "half": "B",
+        "score": 11,
+        "levels": {
+          "text": "high",
+          "person": "same",
+          "amount": "equal",
+          "category": "same",
+          "due": "far",
+          "reply": "no",
+          "time": "0-3"
+        }
+      },
+      {
+        "arrival": "t210",
+        "candidate": "t208",
+        "half": "A",
+        "score": 9,
+        "levels": {
+          "text": "low",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "yes",
+          "time": "0-3"
+        }
+      },
+      {
+        "arrival": "t221",
+        "candidate": "t212",
+        "half": "B",
+        "score": 10,
+        "levels": {
+          "text": "middle",
+          "person": "same",
+          "amount": "equal",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "0-3"
+        }
+      },
+      {
+        "arrival": "t231",
+        "candidate": "t218",
+        "half": "B",
+        "score": 9,
+        "levels": {
+          "text": "high",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "0-3"
+        }
+      },
+      {
+        "arrival": "t234",
+        "candidate": "t172",
+        "half": "A",
+        "score": 8,
+        "levels": {
+          "text": "high",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "4-14"
+        }
+      },
+      {
+        "arrival": "t238",
+        "candidate": "t224",
+        "half": "B",
+        "score": 10,
+        "levels": {
+          "text": "middle",
+          "person": "same",
+          "amount": "equal",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "0-3"
+        }
+      },
+      {
+        "arrival": "t245",
+        "candidate": "t243",
+        "half": "A",
+        "score": 13,
+        "levels": {
+          "text": "middle",
+          "person": "same",
+          "amount": "missing",
+          "category": "same",
+          "due": "missing",
+          "reply": "yes",
+          "time": "0-3"
+        }
+      }
+    ],
+    "start weights, bands picked on A": [],
+    "estimated on A, bands picked on A": [
+      {
+        "arrival": "t206",
+        "candidate": "t205",
+        "half": "B",
+        "score": 18,
+        "levels": {
+          "text": "high",
+          "person": "same",
+          "amount": "equal",
+          "category": "same",
+          "due": "far",
+          "reply": "no",
+          "time": "0-3"
+        }
+      },
+      {
+        "arrival": "t221",
+        "candidate": "t212",
+        "half": "B",
+        "score": 18,
+        "levels": {
+          "text": "middle",
+          "person": "same",
+          "amount": "equal",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "0-3"
+        }
+      },
+      {
+        "arrival": "t238",
+        "candidate": "t224",
+        "half": "B",
+        "score": 18,
+        "levels": {
+          "text": "middle",
+          "person": "same",
+          "amount": "equal",
+          "category": "same",
+          "due": "missing",
+          "reply": "no",
+          "time": "0-3"
+        }
+      }
+    ],
+    "estimated on B, bands picked on B": [],
+    "estimated on all, bands picked on all (in-sample)": [],
+    "recommended: estimated on all, plan weights where no duplicate showed the level": []
+  }
+}

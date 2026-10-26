@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   ci:
-    uses: WireCatLabs/cli-base/.github/workflows/node-ci.yml@4c78a803c460317fd40a38be6d1fb53278087741
+    uses: WireCatLabs/cli-base/.github/workflows/node-ci.yml@03341651a008f77abb8172f86d6df652321b4ce5 # v0.31.0
     with:
       pack: ${{ inputs.pack || false }}
       checks: |
@@ -27,6 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       # A warning, never a failure: bin/release takes the next free version itself.
       - name: version above main and npm
         continue-on-error: true

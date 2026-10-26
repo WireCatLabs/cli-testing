@@ -1,0 +1,14 @@
+{
+  "title": "Announcing Rust 1.99.0",
+  "mustAppear": [
+    "If you don't have it already, you can get rustup from the appropriate page on our website",
+    "you might consider updating locally to use the beta channel (rustup default beta)",
+    "What types can be read from a VaList is guarded by the VaArgSafe trait",
+    "This release also stabilizes support for defining naked variadic functions"
+  ],
+  "mustNotAppear": [
+    "Contact the Rust Team",
+    "Logo Policy and Media Guide",
+    "Security Disclosures"
+  ]
+}

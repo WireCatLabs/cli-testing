@@ -2,6 +2,14 @@
 
 For the full sequence of ideas, experiments and conclusions, read [PROCESS.md](PROCESS.md).
 
+The [compact pipeline handoff and feasibility check](compact-pipeline/README.md) reuses these
+experiments, compares the existing multilingual reranker with a larger CPU export on synthetic
+diagnostics, and orders the next mathematical/context/model experiments within explicit budgets.
+
+The [evidence pipeline](evidence-pipeline/README.md) (25 October) then measured those stages on frozen
+synthetic splits with Core's published discovery as the baseline. It found discovery returning nothing for
+questions ending in "?", and showed native context and E5 fusion help while diversity and mMARCO do not.
+
 Start with [LIGHTWEIGHT-RANKING.md](LIGHTWEIGHT-RANKING.md) for the small-footprint options,
 then [MODELS.md](MODELS.md) for the plain-language model explanation, then
 [the evaluation guide](combined-search-evaluation.md) for the metrics. The
@@ -33,12 +41,29 @@ poor ordering and records unsuccessful cheap rerankers. The
 bounded supplement design. The [supplement validation](supplement/README.md) adds crowded cases,
 byte limits and a stable merge, while keeping production model-free.
 
+The [image search levels](images/README.md) compare caption, context and picture models (CLIP, SigLIP2) on one
+person's images, totals only.
+
+[Mentions](mentions/README.md): how long finding phones, e-mail, links and documents by rules takes on one person's
+messages, and how many of each it finds, totals only.
+
+[Startup stages](startup/README.md) separates process start, built store import, empty-store opening and text-model loading.
+
+[Vector index](vector-index/README.md) compares Core's current vector scan with an index on chunks, int8 vectors,
+sqlite-vec, usearch, hnswlib and packed blocks of vectors, on synthetic stores of 100k and 1M chunks (2026-10-25).
+Its [Core implementation](vector-index/README.md#core-implementation-cli-core2001) section measures the `vec0` index
+Core adopted: the same answers as the scan, 1.2 s → 0.2 s warm and 1.9 s → 0.6 s cold for one account at 600k
+message vectors.
+
 ## Layout
 
 | Path | Purpose |
 |---|---|
 | [message-search/](message-search/README.md) | Synthetic corpus, question supplement, benchmark runners, pinned model manifest and historical JSON reports |
 | [everywhere/](everywhere/README.md) | Latency of a bare word that also looks in transcripts, file names and file text (2026-10-13) |
+| [envelope-s4/](envelope-s4/README.md) | Ranking before and after search moved onto the list envelope: identical (2026-10-14) |
+| [vector-index/](vector-index/README.md) | Storage and index options for search by meaning, 100k and 1M chunks: packed blocks recommended; then Core's `vec0` index measured at 100k and 600k (2026-10-25) |
+| [search-all-meaning/](search-all-meaning/README.md) | What searching messages by meaning adds to `search all`, and sharing the model with notes: 1.7 s → 0.9 s (2026-10-25) |
 | [local-documents/](local-documents/README.md) | qmd compared with memo and drive search on the owner's notes and Drive documents (2026-10-13) |
 | [vector-scan/](vector-scan/README.md) | Vector search time as the number of vectors grows: 10,000 to 300,000 (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |
@@ -104,3 +129,9 @@ path was rejected before staging or inference. All transferred scripts, fixtures
 historical JSON reports matched the original hashes in `migration.json`. Documentation was
 updated separately. Package lint, typechecking, coverage and document checks passed in both
 repositories; no new model weights were downloaded during the migration.
+
+[Meeting garbled words](meeting-garbled/README.md): widening a query word to the spellings speech recognition
+made of it, and the cost of reading the stored word list at query time instead of keeping a trigram table.
+
+[Message garbled words](message-garbled/README.md): voice-note transcripts in message search found in any form of a
+word and widened to garbled spellings (store version 29), on a copy of one person's store, totals only.

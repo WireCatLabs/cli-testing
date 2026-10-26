@@ -1,0 +1,13 @@
+{
+  "title": "Active Record Basics",
+  "mustAppear": [
+    "Active Record is part of the M in MVC - the model - which is the layer of the system responsible for representing data and business logic",
+    "What if you need to follow a different naming convention or need to use your Rails application with a legacy database",
+    "you can easily override the default conventions"
+  ],
+  "mustNotAppear": [
+    "Skip to main content",
+    "Back to top",
+    "Contribute on GitHub"
+  ]
+}

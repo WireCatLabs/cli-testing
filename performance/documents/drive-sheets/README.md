@@ -1,0 +1,252 @@
+# Native Sheets CLI acceptance
+
+The owner asked whether Drive can edit spreadsheet cells after the Google connector release
+polish. XLSX import/search did not provide live range operations. This check verifies the new
+compiled candidate's public command path before shipping it, without using a Google account. Source: [Drive #105](https://github.com/WireCatLabs/drive-cli/pull/105),
+candidate `1e3e41a3a9a22c579684ed25428fa7079e59160c`.
+
+The later [live acceptance](#live-google-acceptance) section records eight successful checks
+against a new synthetic Google spreadsheet. Earlier candidate results below remain historical.
+Drive 0.16.0 is now published; [registry acceptance](#published-0160) verifies its installed artifact.
+The [deployed documentation check](#deployed-documentation) covers EN/RU/ES HTML and Markdown.
+
+## Setup and command
+
+The candidate adds Google's pinned `@googleapis/sheets` 18.1.1 SDK, a SHA-256-verified Sheets v4
+Discovery snapshot (revision 20261014), 17 generated methods and five friendly commands. Shared
+pins are Core 0.307.0 and Base 0.40.0. The package still reports 0.15.1 because its source changes
+are unreleased; this is not evidence that npm 0.15.1 includes Sheets editing.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/run.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-candidate.json 1e3e41a3a9a22c579684ed25428fa7079e59160c
+```
+
+`run.mjs` starts the compiled executable with fresh config/state/store/cache paths and a preload
+that refuses sockets, HTTP, browser launch and keyring subprocesses. Inputs use only invented
+spreadsheet IDs and cell values. Results record Node, the executable hash and invocation count.
+
+## Results
+
+[Machine-readable result](results-candidate.json): **seven checks, 17 guarded CLI invocations**.
+
+| Boundary | Result |
+| --- | --- |
+| Account-independent discovery and generated read-only POST effects | Pass |
+| Explicit profile required | Pass |
+| Exact source/range and formula-render preview | Pass |
+| Update, append (`add`) and clear previews identify writes | Pass |
+| Unbounded ranges, overflowing rows, unsafe numbers and nested cell objects | Refused |
+| Offline/read-only/unknown arguments | Refused before remote execution |
+| Raw write acknowledgment and generated body validation | Enforced |
+
+Separate Drive source checks passed 257 unit tests (90.13% lines), 10 CLI/MCP contracts and five
+prior-store upgrade cases. The SDK seam tests inspect request URL/body, literal/formula mode,
+returned-value requests, repeated ranges and uncertain-write handling; MCP tests reject invalid
+cell dimensions and unknown arguments without invoking the provider. Those synthetic source
+checks complement this executable test; they are not live Google results.
+
+The command lint baseline stays unchanged. Six dated spreadsheet-domain vocabulary exceptions
+remain until the [central cli-base vocabulary](https://github.com/WireCatLabs/cli-base/pull/178) is adopted; zero new unhandled violations.
+
+## What this does not prove
+
+No live Google request, account authorization, cell write or independent live readback occurred.
+Enabling Sheets API in the shared OAuth project and testing a dedicated synthetic spreadsheet
+remain launch checks. Google data-access verification is independent of these tests.
+
+The friendly commands bound input to 10,000 supplied cells and finite A1 rectangles. Generated
+batch operations retain Google's broader request semantics. Append finds a table inside the
+search rectangle and can insert rows beyond it; this check does not claim otherwise. The report
+also does not measure extraction fidelity, latency or real-model quality.
+
+## Stateful public-client roundtrips
+
+The first executable checks stop at previews/refusals. They do not show a separate read after
+an SDK write. `client-roundtrip.mjs` exercises Drive's public compiled package exports
+(`createProgram` and `googleApi`) through the pinned Sheets SDK and OAuth transporter. A stateful
+in-memory provider responds while the same socket/browser/keyring-subprocess guard blocks real I/O.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-client-roundtrip.json
+```
+
+[Client result](results-client-roundtrip.json): **four checks, ten in-memory SDK requests**.
+Updates have separate readback and unchanged-neighbor assertions. Formula mode is explicit;
+null skips a cell. Append destinations are inspected and selected values cleared. An
+apply-then-503 append leaves one new row, returns `outcome_unknown` and is not replayed; a
+subsequent read observes that single row. Errors do not return the synthetic bearer or provider
+body. The source suite adds four equivalent command/SDK boundary cases in
+[Drive#107](https://github.com/WireCatLabs/drive-cli/pull/107).
+
+These are public-client integration checks, separate from the 17 actual CLI process invocations
+above. The provider fixture does not calculate formulas, reproduce Google's table detection or
+model cell formatting. No live Google write, dedicated fixture validation, Cloud project API
+setting or data-access approval is established. Published npm 0.15.1 still lacks these commands.
+
+## Bounded tab structure and formatting
+
+The structure candidate adds `sheets create`, `rename`, `insert` and `format`, and adopts exact
+Base 0.40.1 while retaining compatible Core 0.307.0. The original reports above remain separate;
+`--structure` explicitly enables the additional checks when reproducing the new candidate.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/run.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-structure-cli.json 2fb19bc8c06566856d51cb91a82f94fdca83dcf2 --structure
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-structure-client.json --structure
+```
+
+Source: [Drive#108](https://github.com/WireCatLabs/drive-cli/pull/108), candidate
+`2fb19bc8c06566856d51cb91a82f94fdca83dcf2`. Published npm 0.15.1 still lacks these additions.
+
+| Check | Evidence |
+| --- | --- |
+| Explicit structure command tree and dry-run mappings | [CLI result](results-structure-cli.json) |
+| Invalid insertion counts, oversized format ranges and value-writing format bodies | Refused before network access |
+| Friendly/raw/generated rename denial | Refused before SDK dispatch |
+| Create/rename and stable tab IDs with an unchanged neighboring tab | [Public-client result](results-structure-client.json) |
+| Format only one leaf while retaining the cell value, italic flag and number format | Independent grid-data readback in the fixture |
+| Row insertion with an apply-then-503 response | One request; one insertion; later metadata confirms row count |
+
+The CLI records **ten checks and 27 guarded process invocations**.
+The public client records **eight checks and 18 in-memory SDK requests**, including the original
+cell workflows. Source validation passed **290 tests, 90.38% lines**, ten CLI/MCP contracts, five
+prior-store upgrades, generation freshness, type/lint/Markdown/leak checks and Node/Bun installed
+acceptance with one Base instance. Shared A1 and JSON parsing remain in the Google adapter;
+provider-neutral storage and permission primitives remain shared. Six vocabulary exceptions are
+removed; baseline files are unchanged, with two dated new verb exceptions plus the existing fact
+verb exception.
+
+The fixture proves request encoding, command execution, permission routing and controlled state
+changes; it is not a Google formula/reference engine, table detector or formatting-fidelity test.
+No live Google write or shared-project API enablement was performed. Dedicated live fixture,
+registry release and reviewed multilingual portal publication remain separate launch checks.
+
+## Shared vocabulary adoption
+
+Drive's two remaining Sheets verb exceptions needed the published shared vocabulary rather than
+permanent local overrides. [Drive#109](https://github.com/WireCatLabs/drive-cli/pull/109) pins Base
+0.40.3 exactly with compatible Core 0.307.0. Candidate
+`e69130ec2da8d6042c194328f082dd75bba3a234` repeats the same external checks after that adoption;
+the earlier result files remain unchanged historical evidence.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/run.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-base-0403-cli.json e69130ec2da8d6042c194328f082dd75bba3a234 --structure
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-base-0403-client.json --structure
+```
+
+| Check | Result |
+| --- | --- |
+| [Compiled CLI acceptance](results-base-0403-cli.json) | Ten checks, 27 guarded processes pass |
+| [Public-client SDK roundtrips](results-base-0403-client.json) | Eight checks, 18 in-memory SDK requests pass |
+| Command naming | Zero new violations; 20 unchanged baseline entries and one pre-existing fact-verb override |
+| Source and compatibility checks | 290 tests, 90.38% lines; ten CLI/MCP contracts and five prior-store upgrade checks pass |
+| Installed tarball | Node and Bun acceptance pass; one physical Base instance |
+
+All Sheets vocabulary exceptions are removed. This rerun verifies the actual published shared
+dependency pin and retains synthetic fixtures, refused sockets and the same live-validation
+limits. It does not establish a new Drive npm release, live Google behavior or API enablement.
+
+## Disabled API recovery
+
+During launch preparation, a disabled API was indistinguishable from a file/consent denial.
+That could send a user toward granting broader access without fixing the application setup.
+[Drive#111](https://github.com/WireCatLabs/drive-cli/pull/111), candidate
+`9e19760d8143aa1931fae42033e7fa3be9c2962f`, recognizes Google's legacy and structured disabled-API
+errors while keeping unrelated/malformed access failures separate.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/api-setup.mjs /absolute/path/to/drive-candidate performance/documents/drive-sheets/results-api-setup.json 9e19760d8143aa1931fae42033e7fa3be9c2962f
+```
+
+[Result](results-api-setup.json): **five checks, five in-memory SDK requests**, using the public
+compiled command and Google SDK adapters with sockets refused. The runner checks the thrown
+registered reason and excludes a synthetic private marker from errors/output. It does not render
+the CLI/MCP failure envelope; Drive's new source cases cover that boundary, debug diagnostics and
+malformed provider fields. Source validation passes 304 tests at 90.68% lines.
+
+This verifies failure classification and safe diagnostics. It does not enable an API, certify
+live Google access or complete the spreadsheet write/readback launch checks.
+
+## Live Google acceptance
+
+After the application owner enabled Sheets API, the next release decision needed independent
+Google readback rather than only SDK fixtures. Candidate
+`9e19760d8143aa1931fae42033e7fa3be9c2962f` passes **eight checks across 29 CLI invocations**,
+including **13 remote-write command invocations**. All changes target one newly created synthetic
+spreadsheet with a unique application-property marker; the file is retained for inspection.
+
+[Aggregate results](results-live-candidate.json) contain no account name, file ID, URL or cell
+captures. Raw outputs remain private in `2026-10-17-sheets-live-private`. The candidate still
+reports package version 0.15.1; this is not a claim that registry 0.15.1 has Sheets editing.
+
+| Live boundary | Result |
+| --- | --- |
+| Create and independently verify the marked fixture | Pass; existing files are not selected |
+| Inspect and rename the initial tab | Stable numeric tab ID |
+| Literal cell updates and separate readback | Values and neighboring cells match |
+| Explicit formulas and raw strings beginning with `=` | Google calculates the formula; raw text stays literal |
+| Append then clear | Returned destination agrees with readback; neighbors remain |
+| Set only bold after italic/number formatting | Cell value, italic style and number format remain |
+| Insert rows and a column | Cells shift and Google adjusts the formula's reference |
+| Create/rename a second tab | Both tab identities and the first tab's cells remain |
+
+`live.mjs` is opt-in and creates its own fixture; it accepts no preexisting spreadsheet ID.
+Supply the explicit profile and configuration home containing that account's connection. It uses
+temporary state/store/cache paths and never automatically repeats a failed write or deletes the
+fixture. Its private output directory must not exist and must stay outside public Git paths:
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/live.mjs /absolute/path/to/drive-candidate EXPLICIT_PROFILE /absolute/path/to/config-home /absolute/private/new-run-directory --allow-live-writes
+```
+
+The source package and live run use Base 0.40.3 / Core 0.307.0 and Node 24.19.0. This checks one
+account, application and spreadsheet; it does not establish universal formatting/conversion
+fidelity, all Google API methods or approval of restricted scopes. Uncertain responses and
+retry suppression remain synthetic checks; no live failure was deliberately induced. The CLI
+invocation count does not count its separate OAuth/token-info HTTP requests.
+
+## Published 0.16.0
+
+The live launch gate above is complete. Release workflow
+[39031723019](https://github.com/WireCatLabs/drive-cli/actions/runs/39031723019) publishes Drive
+0.16.0 from `d12765e7ca660245108ad5fcfb793b08bbd92056`. A fresh exact npm installation repeats
+the existing offline checks against the registry package, with Base 0.40.3 / Core 0.307.0 and
+one physical Base instance. [Registry metadata](results-registry-0160.json) records integrity
+and source binding separately from the older compiled candidates.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/run.mjs /absolute/path/to/npm-installed-drive performance/documents/drive-sheets/results-registry-0160-cli.json d12765e7ca660245108ad5fcfb793b08bbd92056 --structure
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/client-roundtrip.mjs /absolute/path/to/npm-installed-drive performance/documents/drive-sheets/results-registry-0160-client.json --structure
+```
+
+[CLI acceptance](results-registry-0160-cli.json): ten checks / 27 guarded CLI invocations pass.
+[Public-client acceptance](results-registry-0160-client.json): eight checks / 18 in-memory SDK
+requests pass. Full release validation passes 304 source tests, 90.68% lines, CLI/MCP and
+prior-store contracts, Node/Bun package acceptance and configured security gates. Google OAuth
+scope verification remains separate; publication does not mean unrestricted account eligibility.
+
+## Deployed documentation
+
+The public guides must describe the installed release and preserve agent-readable examples.
+Portal [#289](https://github.com/WireCatLabs/cli-docs/pull/289) updates the reviewed release,
+setup, live Sheets recipes, generated reference and API recovery in EN/RU/ES. Manual review also
+found a stale `drive schema` hint outside the generated reference; portal
+[#290](https://github.com/WireCatLabs/cli-docs/pull/290) corrects it to `drive api show`, uses
+explicit profiles and clarifies terminal versus MCP confirmations.
+
+```sh
+T=$(mktemp -d -p /var/tmp) && HOME=$T MESSAGING_STORE=$T/store WIRECAT_STATE_DIR=$T/state node performance/documents/drive-sheets/portal.mjs https://wirecat.dev performance/documents/drive-sheets/results-live-portal-0160.json 1695190ada68e5f8c4edaec5b341986dcfdf89ee
+```
+
+[Production result](results-live-portal-0160.json): **36 HTML/Markdown routes pass**, covering
+six affected pages in three languages and both formats. The checker requires Sheets recipe
+links/actions, API enablement, current schema discovery, permission guidance and the release
+entry. It refuses the retired schema hint. It reads public HTTP content, not Google account data.
+
+Deployments [39032444341](https://github.com/WireCatLabs/cli-docs/actions/runs/39032444341) and
+[39032977828](https://github.com/WireCatLabs/cli-docs/actions/runs/39032977828) pass security,
+platform, export and all four browser shards. Local validation passes 309 unit tests, seven
+browser smoke cases and six targeted Drive cases. Strict docs validation covers 1,376 reference
+entries with zero reference gaps/invalid examples; 144 generic illustrations remain marked for
+manual review. That validator did not cover the old helper hint; HTTP checks and manual review
+verify its correction separately. HTML/Markdown markers alone do not certify interaction,
+accessibility, Google consent or the correctness of every prose claim.

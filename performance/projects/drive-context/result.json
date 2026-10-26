@@ -1,0 +1,32 @@
+{
+  "node": "v24.19.0",
+  "artifacts": {
+    "drive-cli": {
+      "version": "0.17.1",
+      "core": "0.331.0",
+      "integrity": "sha512-iBzH1DPELIoUVC5cshW+OJK3F2my+y9hFTucxFVL7Qoztd0ZcB7efVWOHpLOrywhF/LMj+ctMJKQ9ZXeajWtkw==",
+      "entry_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828"
+    },
+    "cli-memo": {
+      "version": "0.75.0",
+      "core": "0.351.0",
+      "integrity": "sha512-odoUjY5BoWm/9LbadSFYT2VBFPBu5w67VMKAdSd3sc2kxji1aEQxUEiJqXnZC1YBHxob/mcQvwu+TnEUp7qVHw==",
+      "entry_sha256": "984b1191cef8c4c3e62f76bc7004d89d269254adbe9a6ba791afb1e10274d602"
+    }
+  },
+  "checks": [
+    "Drive public sync adapter feeds Memo project gathering",
+    "stable canonical document reference",
+    "Google provenance and real source time",
+    "explicit profile excludes another principal",
+    "old source imported today remains outside default window",
+    "unchanged sync reads no source bodies and keeps identity",
+    "real stdio MCP returns the same cited document and complete envelope",
+    "MCP refuses unknown arguments naming the field",
+    "changed source retains reference and refreshes body",
+    "removed source stops matching; other principal remains"
+  ],
+  "source_reads_initial": 2,
+  "source_reads_unchanged": 0,
+  "coverage": "synthetic Drive source injection, real ingestion/index and Memo CLI/stdio MCP; no OAuth, live conversion, AI or project proposals"
+}

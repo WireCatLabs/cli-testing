@@ -1,8 +1,9 @@
 # Offline CLI contracts
 
 `cli-contract` drives built Node command-line tools and their MCP stdio servers from the outside.
-MAX, Telegram, and Zoom keep their plans and reviewed snapshots in `contracts/` in their own
-repositories. The shared runner is also exported as `runContracts` from `@wirecat/cli-testing`.
+Every WireCat CLI keeps its plans and reviewed snapshots in `contracts/` in its own repository: MAX, Telegram,
+WhatsApp, Zoom, Drive and Memo, and runs them in full validation. A CLI on cli-base `node-ci.yml` with `cli: true`
+runs them as the named steps `contracts:check`, `contracts:upgrade` and `security:no-leak`. The shared runner is also exported as `runContracts` from `@wirecat/cli-testing`.
 
 ## Toolkit distribution
 

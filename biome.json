@@ -6,10 +6,21 @@
       "**",
       "!**/dist",
       "!**/node_modules",
-      "!pnpm-lock.yaml",
+      "!**/pnpm-lock.yaml",
       "!.claude/settings.json",
-      "!**/.worktrees",
-      "!config/wirecat"
+      "!.worktrees",
+      "!config/wirecat",
+      "!performance/documents/html-readers/fixtures",
+      "!performance/documents/html-readers/reference",
+      "!performance/documents/html-readers/results.json",
+      "!performance/documents/html-readers/sizes.json",
+      "!performance/documents/html-readers/manifest.json",
+      "!performance/startup/cold-start-and-install/results.json",
+      "!performance/tasks/duplicates/results-*.json",
+      "!performance/tasks/categories/results.json",
+      "!performance/search/evidence-pipeline/corpus",
+      "!performance/search/evidence-pipeline/questions",
+      "!performance/search/evidence-pipeline/results"
     ],
     "maxSize": 16777216
   },
@@ -44,7 +55,15 @@
       }
     },
     {
-      "includes": ["performance/search/message-search/**", "performance/search/everywhere/**"],
+      "includes": [
+        "performance/search/message-search/**",
+        "performance/search/everywhere/**",
+        "performance/search/search-all-meaning/**",
+        "performance/projects/evidence/**",
+        "performance/projects/review/**",
+        "performance/projects/fixture.ts",
+        "performance/documents/html-readers/**"
+      ],
       "formatter": {
         "enabled": false
       },
@@ -75,6 +94,21 @@
       },
       "assist": {
         "enabled": false
+      }
+    },
+    {
+      "includes": ["performance/tasks/duplicates/generate.mjs"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noExcessiveLinesPerFile": {
+              "level": "error",
+              "options": {
+                "maxLines": 1650
+              }
+            }
+          }
+        }
       }
     }
   ]

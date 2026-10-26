@@ -1,0 +1,4 @@
+Each title below is a task an agent drafted from one message of this chat. For each title, find the message it
+was most likely drafted from (the request, promise or question the title describes). Prefer a message sent on the
+stated date. Answer with JSON lines only, no prose, no code fences: {"title": "<exact title>", "id": "<message id digits, or null>", "sure": true|false}
+

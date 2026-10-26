@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "date": "2026-10-16T16:46:44.533Z",
+  "runtime": "v24.19.0",
+  "core": "0.301.0",
+  "versions": {
+    "tg": "0.63.0",
+    "max": "0.56.0",
+    "memo": "0.52.1",
+    "drive": "0.14.1"
+  },
+  "synthetic_source_syncs": 3,
+  "source_content_reads": 1,
+  "checks": [
+    {
+      "app": "tg",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "all",
+        "zebra",
+        "--only",
+        "notes",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "all",
+        "zebra",
+        "--only",
+        "notes",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "search", "all", "budget", "--only", "messages,notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "memo",
+      "args": ["search", "all", "zebra", "--only", "notes", "--exact"],
+      "exit": 0
+    },
+    {
+      "app": "drive",
+      "args": ["synthetic", "--offline", "tags", "add", "synthetic-shared-document", "shared-proof"],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "notes",
+        "tag:shared-proof",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": [
+        "synthetic",
+        "--offline",
+        "search",
+        "notes",
+        "tag:shared-proof",
+        "--source",
+        "drive:synthetic",
+        "--exact"
+      ],
+      "exit": 0
+    },
+    {
+      "app": "tg",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "max",
+      "args": ["synthetic", "--offline", "chats", "documents", "list", "7"],
+      "exit": 0
+    },
+    {
+      "app": "drive",
+      "args": ["synthetic", "--offline", "documents", "show", "synthetic-shared-document"],
+      "exit": 0
+    }
+  ]
+}

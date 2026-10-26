@@ -1,0 +1,2078 @@
+{
+ "project": {
+  "id": "pulsefit",
+  "name": "PulseFit members app",
+  "aliases": [
+   "PulseFit",
+   "Pulse Fit",
+   "gym app",
+   "members app"
+  ]
+ },
+ "sources": [
+  {
+   "id": "pulsefit-chat-team",
+   "kind": "chat",
+   "title": "pulsefit-app"
+  },
+  {
+   "id": "pulsefit-chat-client",
+   "kind": "chat",
+   "title": "PulseFit × Brightloop"
+  },
+  {
+   "id": "pulsefit-chat-dev",
+   "kind": "chat",
+   "title": "dev-mobile"
+  },
+  {
+   "id": "pulsefit-chat-general",
+   "kind": "chat",
+   "title": "general"
+  },
+  {
+   "id": "pulsefit-doc-spec",
+   "kind": "document",
+   "title": "PulseFit app spec v2"
+  },
+  {
+   "id": "pulsefit-meet-0219",
+   "kind": "meeting",
+   "title": "Kickoff workshop 19 Feb"
+  },
+  {
+   "id": "pulsefit-meet-0318",
+   "kind": "meeting",
+   "title": "Sprint review 18 Mar"
+  }
+ ],
+ "units": [
+  {
+   "id": "pf-tm-001",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-02T09:05:00Z",
+   "text": "Morning all. New channel for PulseFit — gym chain, 7 clubs around Halden. They want a members app: class booking, QR check-in at the door, membership management. I'm PM. Theo iOS, Jamie P Android, Ravi backend, Ines design, Callum QA."
+  },
+  {
+   "id": "pf-tm-002",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-02-02T09:31:53Z",
+   "text": "finally something that isn't a loyalty card app"
+  },
+  {
+   "id": "pf-tm-003",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-02T09:44:21Z",
+   "text": "🙌"
+  },
+  {
+   "id": "pf-tm-004",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-02-02T10:16:40Z",
+   "text": "Do they have an API for members or are we scraping their gym software?"
+  },
+  {
+   "id": "pf-tm-005",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-02T10:21:32Z",
+   "reply_to": "pf-tm-004",
+   "text": "They run ClubDesk for members and Paystride for billing. ClubDesk has a REST API, Paystride too, docs coming"
+  },
+  {
+   "id": "pf-tm-006",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-02-02T10:26:26Z",
+   "text": "ok"
+  },
+  {
+   "id": "pf-tm-007",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-02T10:51:51Z",
+   "text": "Brief from Grace (their Head of Digital): https://files.brightloop.example/pulsefit/brief.pdf — read before Thursday please"
+  },
+  {
+   "id": "pf-tm-008",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-02-02T11:02:03Z",
+   "text": "read it. 4 pages about brand colours, half a page about booking 🙃"
+  },
+  {
+   "id": "pf-tm-009",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-02-02T11:27:02Z",
+   "text": "classic"
+  },
+  {
+   "id": "pf-tm-010",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-03T10:20:00Z",
+   "text": "First moodboard is in Figma, \"PulseFit / explore\". Dark theme because their brand is black + lime"
+  },
+  {
+   "id": "pf-tm-011",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-02-03T10:43:39Z",
+   "text": "lime on black, my eyes"
+  },
+  {
+   "id": "pf-tm-012",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-03T11:13:02Z",
+   "text": "Kickoff workshop with them on the 19th, on site at the Northside club. Grace, Martin (ops director) and a club manager will be there"
+  },
+  {
+   "id": "pf-tm-013",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-02-03T11:43:43Z",
+   "text": "do we need gym kit 😄"
+  },
+  {
+   "id": "pf-tm-014",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-03T12:15:52Z",
+   "text": "no"
+  },
+  {
+   "id": "pf-tm-015",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-02-04T14:02:00Z",
+   "text": "Quick maths for the door readers: 7 clubs × 2 readers each = 14 devices. Do we buy them or do they?"
+  },
+  {
+   "id": "pf-tm-016",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-04T14:23:43Z",
+   "reply_to": "pf-tm-015",
+   "text": "They buy, we only integrate. Hardware vendor is Gatewise"
+  },
+  {
+   "id": "pf-tm-017",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-02-04T14:28:47Z",
+   "text": "👍"
+  },
+  {
+   "id": "pf-tm-018",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-02-05T11:30:00Z",
+   "text": "Android min SDK — 26 ok? their member base skews older, lots of cheap phones"
+  },
+  {
+   "id": "pf-tm-019",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-02-05T11:49:29Z",
+   "reply_to": "pf-tm-018",
+   "text": "iOS 16+ on my side"
+  },
+  {
+   "id": "pf-tm-020",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-05T11:53:41Z",
+   "text": "26 fine, I'll put both in the spec"
+  },
+  {
+   "id": "pf-tm-021",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-09T09:40:00Z",
+   "text": "FYI contract signed: £48,500 fixed for v1, 9 weeks. Change requests billed separately"
+  },
+  {
+   "id": "pf-tm-022",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-02-09T10:12:10Z",
+   "text": "9 weeks for two native apps + backend. sure"
+  },
+  {
+   "id": "pf-tm-023",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-02-09T10:42:24Z",
+   "text": "we've done worse"
+  },
+  {
+   "id": "pf-tm-024",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-02-10T16:15:00Z",
+   "text": "Wild idea: a small Apple Watch companion — next class, check-in QR on the wrist, heart rate into the class history. Gyms love wearables in pitch decks"
+  },
+  {
+   "id": "pf-tm-025",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-10T16:18:53Z",
+   "reply_to": "pf-tm-024",
+   "text": "I'd use that tbh"
+  },
+  {
+   "id": "pf-tm-026",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-10T16:20:48Z",
+   "reply_to": "pf-tm-024",
+   "text": "Let's not open that before kickoff. Bring it up after launch maybe"
+  },
+  {
+   "id": "pf-tm-027",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-02-10T16:57:16Z",
+   "text": "noted 😔"
+  },
+  {
+   "id": "pf-tm-028",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-11T10:05:00Z",
+   "text": "Booking flow v0 in Figma: class list → class card → book → confirmation. 4 screens. Comments welcome"
+  },
+  {
+   "id": "pf-tm-029",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-02-11T10:39:02Z",
+   "text": "class card needs the instructor photo, people pick classes by instructor"
+  },
+  {
+   "id": "pf-tm-030",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-11T11:00:34Z",
+   "reply_to": "pf-tm-029",
+   "text": "good point, adding"
+  },
+  {
+   "id": "pf-tm-031",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-02-11T11:16:25Z",
+   "text": "what happens when a class is full? no state for it yet"
+  },
+  {
+   "id": "pf-tm-032",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-11T11:19:31Z",
+   "text": "waitlist state coming tomorrow"
+  },
+  {
+   "id": "pf-tm-033",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-12T13:22:00Z",
+   "text": "Waitlist + full class states added"
+  },
+  {
+   "id": "pf-tm-034",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-12T13:44:41Z",
+   "text": "nice"
+  },
+  {
+   "id": "pf-tm-035",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-16T09:12:00Z",
+   "text": "Agenda for Thursday's kickoff in the doc. Ravi, can you prepare questions on billing and data?"
+  },
+  {
+   "id": "pf-tm-036",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-02-16T09:39:24Z",
+   "reply_to": "pf-tm-035",
+   "text": "yes. Biggest unknown for me is what we're allowed to store and for how long"
+  },
+  {
+   "id": "pf-tm-037",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-16T10:03:11Z",
+   "text": "put it on the list"
+  },
+  {
+   "id": "pf-tm-038",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-19T17:40:00Z",
+   "text": "Kickoff done, notes in the transcript. Big ones: sign-in, freeze, PT bookings in v1. Spec v2 by Monday"
+  },
+  {
+   "id": "pf-tm-039",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-02-19T18:09:35Z",
+   "text": "their coffee was better than ours"
+  },
+  {
+   "id": "pf-tm-040",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-02-19T18:16:00Z",
+   "text": "the club manager guy Jamie had very specific opinions about the front desk 😄"
+  },
+  {
+   "id": "pf-tm-041",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-19T18:20:49Z",
+   "text": "two Jamies on this project now, I'll write Jamie H for theirs"
+  },
+  {
+   "id": "pf-tm-042",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T10:00:00Z",
+   "text": "Spec v2 is up: \"PulseFit app spec v2\". Please read the booking rules and notifications sections today"
+  },
+  {
+   "id": "pf-tm-043",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-02-23T10:34:07Z",
+   "text": "reading"
+  },
+  {
+   "id": "pf-tm-044",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-02-23T11:02:51Z",
+   "text": "2 hours cancellation window — that's from ClubDesk defaults, did ops actually confirm?"
+  },
+  {
+   "id": "pf-tm-045",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T11:07:05Z",
+   "reply_to": "pf-tm-044",
+   "text": "Grace said that's what the website says. Martin didn't object at kickoff"
+  },
+  {
+   "id": "pf-tm-046",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-25T15:31:00Z",
+   "text": "Plans screen designs: tier cards, comparison table, FAQ. Prices are dummy numbers from their website"
+  },
+  {
+   "id": "pf-tm-047",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-02-25T16:08:38Z",
+   "text": "website says Premium £39.99, Black £54.99. Is that current?"
+  },
+  {
+   "id": "pf-tm-048",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-02-25T16:22:33Z",
+   "reply_to": "pf-tm-047",
+   "text": "no idea, that's what's on the site"
+  },
+  {
+   "id": "pf-tm-049",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-02T11:10:00Z",
+   "text": "Martin sent a correction on guest passes in the client chat. Ines, don't change the screen yet — Grace wants to check"
+  },
+  {
+   "id": "pf-tm-050",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-03-02T11:35:38Z",
+   "text": "ok, leaving \"2 guest passes\" for now"
+  },
+  {
+   "id": "pf-tm-051",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-03-04T16:45:00Z",
+   "text": "Grace approved the plans screen 🎉 we can build it"
+  },
+  {
+   "id": "pf-tm-052",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-03-04T17:20:42Z",
+   "text": "🎉"
+  },
+  {
+   "id": "pf-tm-053",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-03-04T17:43:32Z",
+   "text": "with the prices?"
+  },
+  {
+   "id": "pf-tm-054",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-03-04T18:09:21Z",
+   "reply_to": "pf-tm-053",
+   "text": "she said approved, so I guess"
+  },
+  {
+   "id": "pf-tm-055",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-03-05T09:30:00Z",
+   "text": "Since sprint 2 is going fine — can we spike the Watch thing for a day? Just to show Grace"
+  },
+  {
+   "id": "pf-tm-056",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-05T09:33:33Z",
+   "reply_to": "pf-tm-055",
+   "text": "Not this sprint. Let's see in April"
+  },
+  {
+   "id": "pf-tm-057",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-03-06T12:00:00Z",
+   "text": "For the entry screen I'd add a big green tick animation when the scan is OK, red shake when not. Feels nice"
+  },
+  {
+   "id": "pf-tm-058",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-03-06T12:01:41Z",
+   "reply_to": "pf-tm-057",
+   "text": "love it, prototype?"
+  },
+  {
+   "id": "pf-tm-059",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-03-06T12:37:10Z",
+   "text": "tomorrow"
+  },
+  {
+   "id": "pf-tm-060",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-09T10:30:00Z",
+   "text": "Heads up: sign-in changes, see client chat. Ravi and Theo, please estimate magic links today"
+  },
+  {
+   "id": "pf-tm-061",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-03-09T10:37:43Z",
+   "text": "half a day backend"
+  },
+  {
+   "id": "pf-tm-062",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-03-09T10:53:05Z",
+   "text": "a day on iOS for universal links, the PIN keypad screen goes to the bin"
+  },
+  {
+   "id": "pf-tm-063",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-03-09T11:24:46Z",
+   "text": "same on Android, app links"
+  },
+  {
+   "id": "pf-tm-064",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-03-11T14:20:00Z",
+   "text": "Regression run on build 0.4: 31 tests, 3 fails (waitlist counter, dark mode on Plans, one crash on check-in Android)"
+  },
+  {
+   "id": "pf-tm-065",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-03-11T14:45:27Z",
+   "reply_to": "pf-tm-064",
+   "text": "the crash is mine, Pixel 6 only"
+  },
+  {
+   "id": "pf-tm-066",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-12T15:00:00Z",
+   "text": "Reminders change — Grace killed one channel. Ravi, remove the mail job from the scheduler"
+  },
+  {
+   "id": "pf-tm-067",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-03-12T15:01:22Z",
+   "reply_to": "pf-tm-066",
+   "text": "done in 20 min"
+  },
+  {
+   "id": "pf-tm-068",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-16T09:05:00Z",
+   "text": "Sprint review on Wednesday 18th, Martin and Grace join remotely. Demo booking + check-in please"
+  },
+  {
+   "id": "pf-tm-069",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-03-16T09:09:22Z",
+   "text": "I'll prepare test accounts"
+  },
+  {
+   "id": "pf-tm-070",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-17T13:40:00Z",
+   "text": "PT booking is out of v1, Martin's call (client chat). Ines, hide the trainers tab"
+  },
+  {
+   "id": "pf-tm-071",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-03-17T14:09:39Z",
+   "text": "hidden. sad, it was the prettiest screen"
+  },
+  {
+   "id": "pf-tm-072",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-03-17T14:17:38Z",
+   "text": "that frees two days for me"
+  },
+  {
+   "id": "pf-tm-073",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-18T18:05:00Z",
+   "text": "Review went ok. The cancellation window thing is open again, Martin and Grace disagree. I won't touch the code until they agree"
+  },
+  {
+   "id": "pf-tm-074",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-03-18T18:29:08Z",
+   "text": "so 2 hours stays in the build for now"
+  },
+  {
+   "id": "pf-tm-075",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-18T18:50:17Z",
+   "reply_to": "pf-tm-074",
+   "text": "stays in the build, but it's not decided"
+  },
+  {
+   "id": "pf-tm-076",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-20T16:30:00Z",
+   "text": "Grace wants the app live by the 1st. Our plan says 14 April. Thinking about what we can cut"
+  },
+  {
+   "id": "pf-tm-077",
+   "source": "pulsefit-chat-team",
+   "author": "Ravi Desai",
+   "at": "2026-03-20T16:55:19Z",
+   "text": "cut the stats screen?"
+  },
+  {
+   "id": "pf-tm-078",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-03-20T17:17:25Z",
+   "text": "App Store review alone can take 2–3 days"
+  },
+  {
+   "id": "pf-tm-079",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-20T17:19:43Z",
+   "text": "I'll talk to her Monday"
+  },
+  {
+   "id": "pf-tm-080",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-23T10:15:00Z",
+   "text": "Didn't reach Grace, she's off this week. Release date still open"
+  },
+  {
+   "id": "pf-tm-081",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-03-23T10:33:46Z",
+   "text": "and the Watch app? 👀"
+  },
+  {
+   "id": "pf-tm-082",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-23T10:43:15Z",
+   "reply_to": "pf-tm-081",
+   "text": "Theo 😄 not now"
+  },
+  {
+   "id": "pf-tm-083",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-03-25T11:00:00Z",
+   "text": "Build 0.7: all green except push on Android 13 silent mode"
+  },
+  {
+   "id": "pf-tm-084",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-03-25T11:11:00Z",
+   "text": "on it"
+  },
+  {
+   "id": "pf-tm-085",
+   "source": "pulsefit-chat-team",
+   "author": "Ines Fogg",
+   "at": "2026-03-27T17:20:00Z",
+   "text": "App icon final versions uploaded, both platforms"
+  },
+  {
+   "id": "pf-tm-086",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-27T17:59:39Z",
+   "text": "thanks!"
+  },
+  {
+   "id": "pf-tm-087",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-30T09:00:00Z",
+   "text": "Status: booking, check-in, plans, reminders done. Release date and cancellation window still waiting for the client"
+  },
+  {
+   "id": "pf-tm-088",
+   "source": "pulsefit-chat-team",
+   "author": "Callum Reyes",
+   "at": "2026-03-30T09:03:10Z",
+   "text": "and guest passes"
+  },
+  {
+   "id": "pf-tm-089",
+   "source": "pulsefit-chat-team",
+   "author": "Nora Quinn",
+   "at": "2026-03-30T09:26:05Z",
+   "reply_to": "pf-tm-088",
+   "text": "and guest passes, right"
+  },
+  {
+   "id": "pf-tm-090",
+   "source": "pulsefit-chat-team",
+   "author": "Theo Marsh",
+   "at": "2026-04-01T12:10:00Z",
+   "text": "TestFlight build 1.0 (12) out to PulseFit staff"
+  },
+  {
+   "id": "pf-tm-091",
+   "source": "pulsefit-chat-team",
+   "author": "Jamie Prentice",
+   "at": "2026-04-01T12:11:09Z",
+   "text": "Play internal track too"
+  },
+  {
+   "id": "pf-cl-001",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-03T09:30:00Z",
+   "text": "Hi Brightloop team, looking forward to this! I'll be your main contact. Martin Oduya (ops) joins for anything about the clubs"
+  },
+  {
+   "id": "pf-cl-002",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-02-03T09:33:18Z",
+   "text": "Hi Grace, welcome. We'll keep everything here, decisions summarised weekly"
+  },
+  {
+   "id": "pf-cl-003",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-02-03T09:51:45Z",
+   "text": "Hello all"
+  },
+  {
+   "id": "pf-cl-004",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-02-05T10:12:00Z",
+   "text": "Grace, could we get sandbox keys for ClubDesk and Paystride?"
+  },
+  {
+   "id": "pf-cl-005",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-05T10:26:34Z",
+   "reply_to": "pf-cl-004",
+   "text": "ClubDesk today, Paystride needs a form signed, maybe next week"
+  },
+  {
+   "id": "pf-cl-006",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-06T15:00:00Z",
+   "text": "ClubDesk sandbox credentials sent to Ravi by email"
+  },
+  {
+   "id": "pf-cl-007",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-02-06T15:36:48Z",
+   "text": "got them, thanks"
+  },
+  {
+   "id": "pf-cl-008",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-12T11:20:00Z",
+   "text": "Our marketing team plans a paid launch campaign (Meta + Google) — that's on our side, not in your scope. Just so you know the app will get traffic"
+  },
+  {
+   "id": "pf-cl-009",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-02-12T11:29:32Z",
+   "reply_to": "pf-cl-008",
+   "text": "Noted. We'll make sure there's a deep link for the campaign"
+  },
+  {
+   "id": "pf-cl-010",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-02-13T14:05:00Z",
+   "text": "For the kickoff: please plan 2 hours, our club managers can't stay longer"
+  },
+  {
+   "id": "pf-cl-011",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-02-13T14:27:02Z",
+   "text": "2 hours it is"
+  },
+  {
+   "id": "pf-cl-012",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-02-17T09:45:00Z",
+   "text": "Question before the kickoff: how long can we store members' check-in history? We'd like to keep it forever for visit stats"
+  },
+  {
+   "id": "pf-cl-013",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-17T09:52:29Z",
+   "reply_to": "pf-cl-012",
+   "text": "No — not longer than 18 months. Our DPO was very clear on that. Payment receipts are a separate thing, Paystride keeps those 7 years"
+  },
+  {
+   "id": "pf-cl-014",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-02-17T09:57:51Z",
+   "reply_to": "pf-cl-013",
+   "text": "Clear, thanks"
+  },
+  {
+   "id": "pf-cl-015",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-20T10:00:00Z",
+   "text": "Thanks for yesterday, very productive! Jamie (Northside) will send his front desk wishes separately"
+  },
+  {
+   "id": "pf-cl-016",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-02-20T10:07:54Z",
+   "text": "Thank you! Spec v2 on Monday"
+  },
+  {
+   "id": "pf-cl-017",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-24T12:30:00Z",
+   "text": "Confirming for class reminders: members get both a push notification and an email reminder 2 hours before the class starts, and an email when they move up from the waitlist"
+  },
+  {
+   "id": "pf-cl-018",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-02-24T13:02:36Z",
+   "reply_to": "pf-cl-017",
+   "text": "Got it, that's what spec v2 says"
+  },
+  {
+   "id": "pf-cl-019",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-02-26T09:15:00Z",
+   "text": "About the QR door readers: first wave is 5 clubs — all except Eastgate and Millbrook. Those two get readers in June, after the refit"
+  },
+  {
+   "id": "pf-cl-020",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-02-26T09:36:14Z",
+   "reply_to": "pf-cl-019",
+   "text": "So for Eastgate and Millbrook the app shows the QR but staff check manually?"
+  },
+  {
+   "id": "pf-cl-021",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-02-26T10:05:10Z",
+   "reply_to": "pf-cl-020",
+   "text": "Yes, staff scan it with the tablet like today"
+  },
+  {
+   "id": "pf-cl-022",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-02-27T16:00:00Z",
+   "text": "Paystride sandbox is ready, form signed"
+  },
+  {
+   "id": "pf-cl-023",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-02-27T16:25:14Z",
+   "text": "🙏"
+  },
+  {
+   "id": "pf-cl-024",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-03-02T10:40:00Z",
+   "text": "Correction to whatever is in the spec: Premium members get 1 guest visit a month, only Black gets 2. That's how the front desks run it"
+  },
+  {
+   "id": "pf-cl-025",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-02T10:49:49Z",
+   "reply_to": "pf-cl-024",
+   "text": "Hm, marketing promised 2 for Premium on the website. Let me check with Martin and come back to you"
+  },
+  {
+   "id": "pf-cl-026",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-02T10:53:07Z",
+   "text": "OK, we'll wait"
+  },
+  {
+   "id": "pf-cl-027",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-03T14:10:00Z",
+   "text": "Grace, could you approve the Plans section? Figma: https://figma.example/pulsefit/plans — tier cards, comparison table, FAQ"
+  },
+  {
+   "id": "pf-cl-028",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-04T11:25:00Z",
+   "reply_to": "pf-cl-027",
+   "text": "Structure of the Plans section is approved — tiers, comparison table, FAQ order all good. The prices are placeholders though, finance hasn't confirmed anything, please don't treat them as final"
+  },
+  {
+   "id": "pf-cl-029",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-04T12:04:35Z",
+   "reply_to": "pf-cl-028",
+   "text": "Thanks Grace!"
+  },
+  {
+   "id": "pf-cl-030",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-03-05T09:00:00Z",
+   "text": "Martin, waitlist size per class — 10 like in ClubDesk?"
+  },
+  {
+   "id": "pf-cl-031",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-03-05T09:36:03Z",
+   "reply_to": "pf-cl-030",
+   "text": "8. Above that nobody ever gets a spot and people get annoyed"
+  },
+  {
+   "id": "pf-cl-032",
+   "source": "pulsefit-chat-client",
+   "author": "Ravi Desai",
+   "at": "2026-03-05T09:37:26Z",
+   "text": "👍"
+  },
+  {
+   "id": "pf-cl-033",
+   "source": "pulsefit-chat-client",
+   "author": "Jamie Holt",
+   "at": "2026-03-06T08:50:00Z",
+   "text": "Hi, Jamie from Northside. Front desk wish list for when a member's code is scanned: member photo big, full name, and the membership end date in red if it ends within 7 days. Nothing else — my staff have 3 seconds per person at 6 am"
+  },
+  {
+   "id": "pf-cl-034",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-06T08:56:11Z",
+   "reply_to": "pf-cl-033",
+   "text": "Thanks Jamie, passing it to design"
+  },
+  {
+   "id": "pf-cl-035",
+   "source": "pulsefit-chat-client",
+   "author": "Jamie Holt",
+   "at": "2026-03-06T09:05:21Z",
+   "text": "Also please no sounds, the desk is next to the yoga studio"
+  },
+  {
+   "id": "pf-cl-036",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-09T09:20:00Z",
+   "text": "Scratch the PIN idea. Our DPO wants magic links by mail, no short numeric codes"
+  },
+  {
+   "id": "pf-cl-037",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-09T09:21:00Z",
+   "reply_to": "pf-cl-036",
+   "text": "Understood, we'll estimate and come back today"
+  },
+  {
+   "id": "pf-cl-038",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-09T09:57:09Z",
+   "text": "Estimate: about 2 days across apps and backend, fits in sprint 3"
+  },
+  {
+   "id": "pf-cl-039",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-09T10:15:43Z",
+   "text": "great"
+  },
+  {
+   "id": "pf-cl-040",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-03-10T13:00:00Z",
+   "text": "Members ask at the desks when the app comes. What do we tell them?"
+  },
+  {
+   "id": "pf-cl-041",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-10T13:27:40Z",
+   "reply_to": "pf-cl-040",
+   "text": "\"Spring\" for now"
+  },
+  {
+   "id": "pf-cl-042",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-12T10:05:00Z",
+   "reply_to": "pf-cl-017",
+   "text": "Change of plan — drop the mails, push only. Unsubscribe complaints from the newsletter are already bad"
+  },
+  {
+   "id": "pf-cl-043",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-12T10:15:50Z",
+   "reply_to": "pf-cl-042",
+   "text": "Done, the team is on it"
+  },
+  {
+   "id": "pf-cl-044",
+   "source": "pulsefit-chat-client",
+   "author": "Callum Reyes",
+   "at": "2026-03-13T15:40:00Z",
+   "text": "Grace, can your staff test on their own phones next week? We need some real Android devices"
+  },
+  {
+   "id": "pf-cl-045",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-13T15:51:38Z",
+   "reply_to": "pf-cl-044",
+   "text": "Yes, 6 people from Northside and Riverside"
+  },
+  {
+   "id": "pf-cl-046",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-03-17T11:15:00Z",
+   "text": "Pull personal trainers out of the first release — contracts with the freelance trainers aren't sorted. Phase 2"
+  },
+  {
+   "id": "pf-cl-047",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-17T11:20:03Z",
+   "reply_to": "pf-cl-046",
+   "text": "OK, PT goes to phase 2. We'll hide it in v1"
+  },
+  {
+   "id": "pf-cl-048",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-19T09:30:00Z",
+   "text": "Sorry I had to leave the review early. Anything I need to know?"
+  },
+  {
+   "id": "pf-cl-049",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-19T09:40:52Z",
+   "reply_to": "pf-cl-048",
+   "text": "Mainly the cancellation window — Martin wants 12 hours. You two need to agree"
+  },
+  {
+   "id": "pf-cl-050",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-19T09:55:55Z",
+   "text": "I'll talk to him"
+  },
+  {
+   "id": "pf-cl-051",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-20T14:50:00Z",
+   "text": "Just so we're clear, the app has to be in the stores for the spring campaign on 1 April. Posters are already printed with the store badges"
+  },
+  {
+   "id": "pf-cl-052",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-20T15:20:07Z",
+   "reply_to": "pf-cl-051",
+   "text": "That's two weeks before our plan (14 April). Let me check what we can cut and come back to you"
+  },
+  {
+   "id": "pf-cl-053",
+   "source": "pulsefit-chat-client",
+   "author": "Nora Quinn",
+   "at": "2026-03-24T10:10:00Z",
+   "text": "Grace, any news on guest passes and the cancellation window? We need both before the store listing"
+  },
+  {
+   "id": "pf-cl-054",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-03-24T10:23:06Z",
+   "reply_to": "pf-cl-053",
+   "text": "Grace is on holiday until 30 March"
+  },
+  {
+   "id": "pf-cl-055",
+   "source": "pulsefit-chat-client",
+   "author": "Martin Oduya",
+   "at": "2026-03-26T16:20:00Z",
+   "text": "Riverside staff found the check-in screen great, especially the red expiry date"
+  },
+  {
+   "id": "pf-cl-056",
+   "source": "pulsefit-chat-client",
+   "author": "Jamie Holt",
+   "at": "2026-03-26T16:38:45Z",
+   "text": "Northside too 👍"
+  },
+  {
+   "id": "pf-cl-057",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-03-31T09:00:00Z",
+   "text": "Back. Catching up on everything, give me a day"
+  },
+  {
+   "id": "pf-cl-058",
+   "source": "pulsefit-chat-client",
+   "author": "Grace Whitlow",
+   "at": "2026-04-02T11:00:00Z",
+   "text": "Store screenshots look great. Still need to sort a few things with Martin"
+  },
+  {
+   "id": "pf-dv-001",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-02-06T10:00:00Z",
+   "text": "Repo is up: brightloop/pulsefit-api. Rails API, Postgres, Sidekiq"
+  },
+  {
+   "id": "pf-dv-002",
+   "source": "pulsefit-chat-dev",
+   "author": "Theo Marsh",
+   "at": "2026-02-06T10:01:09Z",
+   "text": "monorepo for apps or separate?"
+  },
+  {
+   "id": "pf-dv-003",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-02-06T10:12:00Z",
+   "reply_to": "pf-dv-002",
+   "text": "separate, ios/ and android/ repos"
+  },
+  {
+   "id": "pf-dv-004",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-02-09T11:30:00Z",
+   "text": "ClubDesk sandbox works. Members endpoint is paginated by 50, no webhooks 🙄"
+  },
+  {
+   "id": "pf-dv-005",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-02-09T11:57:58Z",
+   "text": "polling then"
+  },
+  {
+   "id": "pf-dv-006",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-02-09T12:01:22Z",
+   "text": "every 10 min for class schedules, nightly full sync for members"
+  },
+  {
+   "id": "pf-dv-007",
+   "source": "pulsefit-chat-dev",
+   "author": "Theo Marsh",
+   "at": "2026-02-11T15:15:00Z",
+   "text": "Design tokens exported from Figma, both apps use the same JSON"
+  },
+  {
+   "id": "pf-dv-008",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-02-11T15:24:33Z",
+   "text": "👍"
+  },
+  {
+   "id": "pf-dv-009",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-02-17T12:00:00Z",
+   "text": "Crash and error logs: Sentry, 30 days retention on our plan"
+  },
+  {
+   "id": "pf-dv-010",
+   "source": "pulsefit-chat-dev",
+   "author": "Callum Reyes",
+   "at": "2026-02-17T12:24:26Z",
+   "text": "fine for QA"
+  },
+  {
+   "id": "pf-dv-011",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-02-24T09:40:00Z",
+   "text": "Started the auth module: membership number + PIN, bcrypt, 5 tries then lock 15 min"
+  },
+  {
+   "id": "pf-dv-012",
+   "source": "pulsefit-chat-dev",
+   "author": "Theo Marsh",
+   "at": "2026-02-24T09:59:06Z",
+   "text": "PIN keypad screen done on iOS"
+  },
+  {
+   "id": "pf-dv-013",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-02-26T17:10:00Z",
+   "text": "Purge job merged: check-ins older than 18 months get deleted nightly. Not 24 like my first draft said"
+  },
+  {
+   "id": "pf-dv-014",
+   "source": "pulsefit-chat-dev",
+   "author": "Callum Reyes",
+   "at": "2026-02-26T17:23:45Z",
+   "text": "I'll add a test with a fake old check-in"
+  },
+  {
+   "id": "pf-dv-015",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-02T10:15:00Z",
+   "text": "Freeze button is behind a flag until Paystride's pause API is live. Right now their sandbox returns 404 on /pause"
+  },
+  {
+   "id": "pf-dv-016",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-02T10:21:06Z",
+   "text": "so hide it in the app?"
+  },
+  {
+   "id": "pf-dv-017",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-02T10:50:14Z",
+   "reply_to": "pf-dv-016",
+   "text": "yes, the flag hides it"
+  },
+  {
+   "id": "pf-dv-018",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-03T14:00:00Z",
+   "text": "Booking API: POST /bookings returns 409 when the class is full, then the app offers the waitlist"
+  },
+  {
+   "id": "pf-dv-019",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-03T14:10:56Z",
+   "text": "correct"
+  },
+  {
+   "id": "pf-dv-020",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-05T11:00:00Z",
+   "text": "Waitlist cap set to 8 per class after Martin's answer. Weekly limit stays 10 bookings per member"
+  },
+  {
+   "id": "pf-dv-021",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-06T16:40:00Z",
+   "text": "Check-in screen crashes on Pixel 6 when the same QR is scanned twice within a second. Debouncing it"
+  },
+  {
+   "id": "pf-dv-022",
+   "source": "pulsefit-chat-dev",
+   "author": "Theo Marsh",
+   "at": "2026-03-06T17:08:58Z",
+   "text": "iOS is fine"
+  },
+  {
+   "id": "pf-dv-023",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-09T15:30:00Z",
+   "text": "Magic link endpoint done, PIN code removed. Links expire after 15 minutes"
+  },
+  {
+   "id": "pf-dv-024",
+   "source": "pulsefit-chat-dev",
+   "author": "Theo Marsh",
+   "at": "2026-03-09T15:35:16Z",
+   "text": "universal links working on iOS"
+  },
+  {
+   "id": "pf-dv-025",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-09T15:54:27Z",
+   "text": "app links on Android tomorrow"
+  },
+  {
+   "id": "pf-dv-026",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-10T10:20:00Z",
+   "text": "Android app links verified ✅"
+  },
+  {
+   "id": "pf-dv-027",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-12T15:25:00Z",
+   "text": "Reminder mail job removed from the scheduler. Push via Firebase stays, 2 hours before the class"
+  },
+  {
+   "id": "pf-dv-028",
+   "source": "pulsefit-chat-dev",
+   "author": "Callum Reyes",
+   "at": "2026-03-13T12:00:00Z",
+   "text": "Is the old reminder template used anywhere else?"
+  },
+  {
+   "id": "pf-dv-029",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-13T12:17:10Z",
+   "reply_to": "pf-dv-028",
+   "text": "waitlist promotion notice, I switched it to push too"
+  },
+  {
+   "id": "pf-dv-030",
+   "source": "pulsefit-chat-dev",
+   "author": "Theo Marsh",
+   "at": "2026-03-16T11:00:00Z",
+   "text": "Plans screen on iOS uses placeholder prices from a JSON, so finance can change them without a release"
+  },
+  {
+   "id": "pf-dv-031",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-16T11:12:48Z",
+   "text": "good idea, I'll serve that JSON from the API"
+  },
+  {
+   "id": "pf-dv-032",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-18T09:30:00Z",
+   "text": "Paystride still no pause endpoint. Their support says \"end of March, maybe\""
+  },
+  {
+   "id": "pf-dv-033",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-18T09:46:44Z",
+   "text": "so freeze stays hidden"
+  },
+  {
+   "id": "pf-dv-034",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-19T14:00:00Z",
+   "text": "Entry screen: removed the sound, kept the tick animation but smaller"
+  },
+  {
+   "id": "pf-dv-035",
+   "source": "pulsefit-chat-dev",
+   "author": "Callum Reyes",
+   "at": "2026-03-23T16:00:00Z",
+   "text": "Load test: 300 bookings/minute at class release time, p95 420 ms"
+  },
+  {
+   "id": "pf-dv-036",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-23T16:25:13Z",
+   "text": "ClubDesk is the bottleneck, not us"
+  },
+  {
+   "id": "pf-dv-037",
+   "source": "pulsefit-chat-dev",
+   "author": "Jamie Prentice",
+   "at": "2026-03-25T10:40:00Z",
+   "text": "Android 13 silent mode push fixed, notification channel importance was wrong"
+  },
+  {
+   "id": "pf-dv-038",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-30T13:00:00Z",
+   "text": "Release checklist in the repo wiki. App Store review 1–3 days usually"
+  },
+  {
+   "id": "pf-dv-039",
+   "source": "pulsefit-chat-dev",
+   "author": "Theo Marsh",
+   "at": "2026-03-30T13:18:47Z",
+   "text": "and the privacy labels, someone has to fill them"
+  },
+  {
+   "id": "pf-dv-040",
+   "source": "pulsefit-chat-dev",
+   "author": "Ravi Desai",
+   "at": "2026-03-30T13:27:36Z",
+   "reply_to": "pf-dv-039",
+   "text": "I'll do them"
+  },
+  {
+   "id": "pf-gn-001",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-02-02T08:30:00Z",
+   "text": "Coffee machine on 2nd floor is fixed!"
+  },
+  {
+   "id": "pf-gn-002",
+   "source": "pulsefit-chat-general",
+   "author": "Theo Marsh",
+   "at": "2026-02-02T08:48:03Z",
+   "text": "finally"
+  },
+  {
+   "id": "pf-gn-003",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-02-10T12:40:00Z",
+   "text": "Larkspur Pharmacy kickoff moved to Friday"
+  },
+  {
+   "id": "pf-gn-004",
+   "source": "pulsefit-chat-general",
+   "author": "Callum Reyes",
+   "at": "2026-02-10T13:10:46Z",
+   "text": "ok"
+  },
+  {
+   "id": "pf-gn-005",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-02-18T09:10:00Z",
+   "text": "Larkspur decided: reminders by email only, no push at all. Their pharmacists hate notifications"
+  },
+  {
+   "id": "pf-gn-006",
+   "source": "pulsefit-chat-general",
+   "author": "Nora Quinn",
+   "at": "2026-02-18T09:22:34Z",
+   "text": "lol opposite of what most clients want"
+  },
+  {
+   "id": "pf-gn-007",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-02-27T17:00:00Z",
+   "text": "Pizza Friday, lime-free 🍕"
+  },
+  {
+   "id": "pf-gn-008",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-03-03T10:00:00Z",
+   "text": "Reminder: timesheets by Monday"
+  },
+  {
+   "id": "pf-gn-009",
+   "source": "pulsefit-chat-general",
+   "author": "Callum Reyes",
+   "at": "2026-03-11T11:30:00Z",
+   "text": "Anyone has a spare Pixel 6 for testing?"
+  },
+  {
+   "id": "pf-gn-010",
+   "source": "pulsefit-chat-general",
+   "author": "Jamie Prentice",
+   "at": "2026-03-11T11:58:42Z",
+   "reply_to": "pf-gn-009",
+   "text": "in my drawer"
+  },
+  {
+   "id": "pf-gn-011",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-03-18T16:00:00Z",
+   "text": "Larkspur is cutting their app launch budget to £20k, their marketing is unhappy"
+  },
+  {
+   "id": "pf-gn-012",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-03-24T09:00:00Z",
+   "text": "Office closed on Good Friday, 3 April"
+  },
+  {
+   "id": "pf-gn-013",
+   "source": "pulsefit-chat-general",
+   "author": "Ines Fogg",
+   "at": "2026-03-27T15:20:00Z",
+   "text": "Design crit at 4, bring snacks"
+  },
+  {
+   "id": "pf-gn-014",
+   "source": "pulsefit-chat-general",
+   "author": "Ola Brenner",
+   "at": "2026-04-01T10:00:00Z",
+   "text": "Happy April 1st, no pranks please"
+  },
+  {
+   "id": "pf-sp-001",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:00:00Z",
+   "section": [
+    "Overview"
+   ],
+   "text": "PulseFit members app for iOS (16+) and Android (API 26+). Members book group classes, check in at the club door with a QR code and manage their membership. Backend: Brightloop API on top of ClubDesk (members, classes) and Paystride (billing)."
+  },
+  {
+   "id": "pf-sp-002",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:02:30Z",
+   "section": [
+    "Overview",
+    "Clubs"
+   ],
+   "text": "Door check-in by QR at all 7 PulseFit clubs: Northside, Riverside, Eastgate, Millbrook, Old Town, Harbour, Kingsway."
+  },
+  {
+   "id": "pf-sp-003",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:04:38Z",
+   "section": [
+    "Scope v1",
+    "Booking"
+   ],
+   "text": "Class timetable per club, class card with instructor and photo, booking, cancellation, waitlist. Bookings open 7 days ahead at 07:00."
+  },
+  {
+   "id": "pf-sp-004",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:07:31Z",
+   "section": [
+    "Scope v1",
+    "Check-in"
+   ],
+   "text": "Member shows a rotating QR code (changes every 30 s). The front desk tablet or a door reader scans it."
+  },
+  {
+   "id": "pf-sp-005",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:08:55Z",
+   "section": [
+    "Scope v1",
+    "Membership"
+   ],
+   "text": "Current plan, next payment date, payment history (from Paystride), freeze request, upgrade request."
+  },
+  {
+   "id": "pf-sp-006",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:11:00Z",
+   "section": [
+    "Scope v1",
+    "Personal training"
+   ],
+   "text": "PT session booking is in v1: list of trainers per club, free slots, book and pay in the app."
+  },
+  {
+   "id": "pf-sp-007",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:14:23Z",
+   "section": [
+    "Sign-in"
+   ],
+   "text": "Sign-in with membership number and a 4-digit PIN, same as the club kiosks. 5 wrong tries lock the account for 15 minutes."
+  },
+  {
+   "id": "pf-sp-008",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:16:32Z",
+   "section": [
+    "Notifications",
+    "Class reminders"
+   ],
+   "text": "Class reminders: push notification and email, 2 hours before the class starts. Waitlist promotion: email."
+  },
+  {
+   "id": "pf-sp-009",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:17:58Z",
+   "section": [
+    "Notifications",
+    "Marketing"
+   ],
+   "text": "No marketing pushes in v1. Opt-in screen comes in phase 2."
+  },
+  {
+   "id": "pf-sp-010",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:20:29Z",
+   "section": [
+    "Booking rules",
+    "Cancellation"
+   ],
+   "text": "Members can cancel a booked class free of charge up to 2 hours before the start. Later cancellations count as a no-show (£5 fee charged through Paystride)."
+  },
+  {
+   "id": "pf-sp-011",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:24:21Z",
+   "section": [
+    "Booking rules",
+    "Waitlist"
+   ],
+   "text": "Waitlist size: TBD with ops. When a spot opens, the first person on the waitlist gets it automatically."
+  },
+  {
+   "id": "pf-sp-012",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:27:44Z",
+   "section": [
+    "Booking rules",
+    "Weekly limit"
+   ],
+   "text": "A member can hold at most 10 future bookings per week. Class capacity comes from ClubDesk (usually 20–25)."
+  },
+  {
+   "id": "pf-sp-013",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:30:41Z",
+   "section": [
+    "Membership",
+    "Tiers"
+   ],
+   "text": "Tiers: Basic (off-peak only), Premium (all hours, all clubs, 2 guest passes per month), Black (Premium + towels, sauna, 4 guest passes per month)."
+  },
+  {
+   "id": "pf-sp-014",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:33:16Z",
+   "section": [
+    "Membership",
+    "Freeze"
+   ],
+   "text": "Freeze for 1–3 months, once per year. Needs Paystride pause support — see open questions."
+  },
+  {
+   "id": "pf-sp-015",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:36:59Z",
+   "section": [
+    "Data",
+    "Retention"
+   ],
+   "text": "Check-in history: kept for visit statistics, retention period to be confirmed by PulseFit DPO. Payment data stays in Paystride."
+  },
+  {
+   "id": "pf-sp-016",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:39:49Z",
+   "section": [
+    "Data",
+    "Analytics"
+   ],
+   "text": "Firebase Analytics with consent, no third-party ad SDKs."
+  },
+  {
+   "id": "pf-sp-017",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:42:38Z",
+   "section": [
+    "Release",
+    "Timeline"
+   ],
+   "text": "Sprint 1–4: 23 Feb – 10 April. Store submission 10 April, public release 14 April 2026 on the App Store and Google Play."
+  },
+  {
+   "id": "pf-sp-018",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:44:39Z",
+   "section": [
+    "Release",
+    "Marketing"
+   ],
+   "text": "Launch marketing is run by PulseFit's marketing team. Brightloop provides deep links and store assets."
+  },
+  {
+   "id": "pf-sp-019",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:47:47Z",
+   "section": [
+    "Release",
+    "Store accounts"
+   ],
+   "text": "PulseFit owns the Apple Developer account (£79 per year) and the Google Play account. Brightloop gets admin access."
+  },
+  {
+   "id": "pf-sp-020",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-02-23T09:49:48Z",
+   "section": [
+    "Open questions"
+   ],
+   "text": "1) Retention of check-ins. 2) Paystride pause API for freeze. 3) Waitlist size. 4) Which clubs get door readers first."
+  },
+  {
+   "id": "pf-sp-021",
+   "source": "pulsefit-doc-spec",
+   "author": "Nora Quinn",
+   "at": "2026-03-10T09:00:00Z",
+   "section": [
+    "Changelog"
+   ],
+   "text": "v2.1 (10 Mar): screenshots updated, waitlist size 8 noted in the API, sections otherwise unchanged."
+  },
+  {
+   "id": "pf-k-001",
+   "source": "pulsefit-meet-0219",
+   "author": "Nora Quinn",
+   "at": "2026-02-19T10:02:00Z",
+   "text": "Thanks for having us. Plan for today: goals, member journeys, then the hard questions — sign-in, billing, data."
+  },
+  {
+   "id": "pf-k-002",
+   "source": "pulsefit-meet-0219",
+   "author": "Grace Whitlow",
+   "at": "2026-02-19T10:03:31Z",
+   "text": "Great. Our goal is simple: fewer people queuing at the front desk at 6 am, and fewer phone calls about bookings."
+  },
+  {
+   "id": "pf-k-003",
+   "source": "pulsefit-meet-0219",
+   "author": "Martin Oduya",
+   "at": "2026-02-19T10:04:35Z",
+   "text": "And fewer no-shows. A full class with five empty mats is money lost."
+  },
+  {
+   "id": "pf-k-004",
+   "source": "pulsefit-meet-0219",
+   "author": "Jamie Holt",
+   "at": "2026-02-19T10:05:57Z",
+   "text": "From the desk side — most calls are \"am I booked\" and \"can I bring a friend\"."
+  },
+  {
+   "id": "pf-k-005",
+   "source": "pulsefit-meet-0219",
+   "author": "Ines Fogg",
+   "at": "2026-02-19T10:06:18Z",
+   "text": "So booking status and guest passes should be one tap from the home screen."
+  },
+  {
+   "id": "pf-k-006",
+   "source": "pulsefit-meet-0219",
+   "author": "Grace Whitlow",
+   "at": "2026-02-19T10:07:13Z",
+   "text": "Yes."
+  },
+  {
+   "id": "pf-k-007",
+   "source": "pulsefit-meet-0219",
+   "author": "Ravi Desai",
+   "at": "2026-02-19T10:08:39Z",
+   "text": "How do members log in today, on the kiosks?"
+  },
+  {
+   "id": "pf-k-008",
+   "source": "pulsefit-meet-0219",
+   "author": "Martin Oduya",
+   "at": "2026-02-19T10:09:22Z",
+   "text": "Members sign in with their membership number and a 4-digit PIN, same as on the kiosks. Let's keep that in the app, nobody remembers passwords."
+  },
+  {
+   "id": "pf-k-009",
+   "source": "pulsefit-meet-0219",
+   "author": "Ravi Desai",
+   "at": "2026-02-19T10:09:52Z",
+   "text": "OK, membership number plus PIN."
+  },
+  {
+   "id": "pf-k-010",
+   "source": "pulsefit-meet-0219",
+   "author": "Nora Quinn",
+   "at": "2026-02-19T10:10:45Z",
+   "text": "Personal training — in or out for v1?"
+  },
+  {
+   "id": "pf-k-011",
+   "source": "pulsefit-meet-0219",
+   "author": "Martin Oduya",
+   "at": "2026-02-19T10:11:07Z",
+   "text": "In. PT bookings must be in v1, trainers are our margin."
+  },
+  {
+   "id": "pf-k-012",
+   "source": "pulsefit-meet-0219",
+   "author": "Grace Whitlow",
+   "at": "2026-02-19T10:11:43Z",
+   "text": "Agreed."
+  },
+  {
+   "id": "pf-k-013",
+   "source": "pulsefit-meet-0219",
+   "author": "Grace Whitlow",
+   "at": "2026-02-19T10:12:36Z",
+   "text": "Can members freeze their membership from the app? That's the second biggest reason people call."
+  },
+  {
+   "id": "pf-k-014",
+   "source": "pulsefit-meet-0219",
+   "author": "Martin Oduya",
+   "at": "2026-02-19T10:13:44Z",
+   "text": "Yes, but only if Paystride ships their pause endpoint by 20 March. If not, freezing stays at the front desk for now."
+  },
+  {
+   "id": "pf-k-015",
+   "source": "pulsefit-meet-0219",
+   "author": "Ravi Desai",
+   "at": "2026-02-19T10:14:48Z",
+   "text": "I'll check with Paystride what their roadmap says."
+  },
+  {
+   "id": "pf-k-016",
+   "source": "pulsefit-meet-0219",
+   "author": "Jamie Holt",
+   "at": "2026-02-19T10:16:04Z",
+   "text": "Waitlists — today people sit on a list of thirty and never get in."
+  },
+  {
+   "id": "pf-k-017",
+   "source": "pulsefit-meet-0219",
+   "author": "Martin Oduya",
+   "at": "2026-02-19T10:17:15Z",
+   "text": "We'll give you a number for the cap later."
+  },
+  {
+   "id": "pf-k-018",
+   "source": "pulsefit-meet-0219",
+   "author": "Theo Marsh",
+   "at": "2026-02-19T10:18:25Z",
+   "text": "QR at the door — is that every club from day one?"
+  },
+  {
+   "id": "pf-k-019",
+   "source": "pulsefit-meet-0219",
+   "author": "Martin Oduya",
+   "at": "2026-02-19T10:19:21Z",
+   "text": "We'll confirm which clubs get readers first, there's a refit going on."
+  },
+  {
+   "id": "pf-k-020",
+   "source": "pulsefit-meet-0219",
+   "author": "Nora Quinn",
+   "at": "2026-02-19T10:19:46Z",
+   "text": "Notifications — reminders before class?"
+  },
+  {
+   "id": "pf-k-021",
+   "source": "pulsefit-meet-0219",
+   "author": "Grace Whitlow",
+   "at": "2026-02-19T10:20:33Z",
+   "text": "Yes, reminders. I'll confirm channels by email."
+  },
+  {
+   "id": "pf-k-022",
+   "source": "pulsefit-meet-0219",
+   "author": "Ravi Desai",
+   "at": "2026-02-19T10:21:37Z",
+   "text": "Data question: how long can we keep check-in history?"
+  },
+  {
+   "id": "pf-k-023",
+   "source": "pulsefit-meet-0219",
+   "author": "Grace Whitlow",
+   "at": "2026-02-19T10:22:06Z",
+   "text": "I need to ask our DPO, I'll come back in the chat."
+  },
+  {
+   "id": "pf-k-024",
+   "source": "pulsefit-meet-0219",
+   "author": "Nora Quinn",
+   "at": "2026-02-19T10:22:51Z",
+   "text": "Last thing, timeline: we aim for the stores in mid-April."
+  },
+  {
+   "id": "pf-k-025",
+   "source": "pulsefit-meet-0219",
+   "author": "Grace Whitlow",
+   "at": "2026-02-19T10:23:49Z",
+   "text": "Let me check that against our marketing calendar."
+  },
+  {
+   "id": "pf-k-026",
+   "source": "pulsefit-meet-0219",
+   "author": "Nora Quinn",
+   "at": "2026-02-19T10:24:52Z",
+   "text": "Great, spec v2 on Monday. Thank you all."
+  },
+  {
+   "id": "pf-r-001",
+   "source": "pulsefit-meet-0318",
+   "author": "Nora Quinn",
+   "at": "2026-03-18T14:00:00Z",
+   "text": "Welcome to the sprint 3 review. Demo first: booking, waitlist, check-in, plans."
+  },
+  {
+   "id": "pf-r-002",
+   "source": "pulsefit-meet-0318",
+   "author": "Theo Marsh",
+   "at": "2026-03-18T14:01:16Z",
+   "text": "Here's booking on iOS. Class list, card, book, done. If the class is full you get \"join waitlist\"."
+  },
+  {
+   "id": "pf-r-003",
+   "source": "pulsefit-meet-0318",
+   "author": "Martin Oduya",
+   "at": "2026-03-18T14:02:33Z",
+   "text": "Waitlist shows position?"
+  },
+  {
+   "id": "pf-r-004",
+   "source": "pulsefit-meet-0318",
+   "author": "Theo Marsh",
+   "at": "2026-03-18T14:03:34Z",
+   "text": "Yes, \"you're 3rd of 8\"."
+  },
+  {
+   "id": "pf-r-005",
+   "source": "pulsefit-meet-0318",
+   "author": "Martin Oduya",
+   "at": "2026-03-18T14:04:25Z",
+   "text": "Good."
+  },
+  {
+   "id": "pf-r-006",
+   "source": "pulsefit-meet-0318",
+   "author": "Jamie Prentice",
+   "at": "2026-03-18T14:04:50Z",
+   "text": "Check-in on Android: rotating QR, and on the desk tablet the photo, name and the red expiry date Jamie asked for."
+  },
+  {
+   "id": "pf-r-007",
+   "source": "pulsefit-meet-0318",
+   "author": "Jamie Holt",
+   "at": "2026-03-18T14:06:19Z",
+   "text": "That's exactly it. Thanks."
+  },
+  {
+   "id": "pf-r-008",
+   "source": "pulsefit-meet-0318",
+   "author": "Grace Whitlow",
+   "at": "2026-03-18T14:07:38Z",
+   "text": "I have to drop off in five minutes, sorry."
+  },
+  {
+   "id": "pf-r-009",
+   "source": "pulsefit-meet-0318",
+   "author": "Ines Fogg",
+   "at": "2026-03-18T14:08:47Z",
+   "text": "Plans screen: tiers, comparison, FAQ. Prices come from a JSON so finance can change them."
+  },
+  {
+   "id": "pf-r-010",
+   "source": "pulsefit-meet-0318",
+   "author": "Grace Whitlow",
+   "at": "2026-03-18T14:09:59Z",
+   "text": "Perfect. I'm off, Martin will stay."
+  },
+  {
+   "id": "pf-r-011",
+   "source": "pulsefit-meet-0318",
+   "author": "Callum Reyes",
+   "at": "2026-03-18T14:10:55Z",
+   "text": "Cancellation rules: right now the app allows free cancellation up to 2 hours before class."
+  },
+  {
+   "id": "pf-r-012",
+   "source": "pulsefit-meet-0318",
+   "author": "Martin Oduya",
+   "at": "2026-03-18T14:11:36Z",
+   "text": "The 2-hour rule doesn't work for us. It has to be 12 hours, or the waitlist never gets a chance to fill the spot."
+  },
+  {
+   "id": "pf-r-013",
+   "source": "pulsefit-meet-0318",
+   "author": "Nora Quinn",
+   "at": "2026-03-18T14:12:02Z",
+   "text": "Spec says 2 hours, and Grace said that's what the website promises."
+  },
+  {
+   "id": "pf-r-014",
+   "source": "pulsefit-meet-0318",
+   "author": "Martin Oduya",
+   "at": "2026-03-18T14:12:33Z",
+   "text": "Then the website is wrong. I'll take it up with Grace."
+  },
+  {
+   "id": "pf-r-015",
+   "source": "pulsefit-meet-0318",
+   "author": "Nora Quinn",
+   "at": "2026-03-18T14:13:35Z",
+   "text": "OK, we keep 2 hours in the build until you two agree."
+  },
+  {
+   "id": "pf-r-016",
+   "source": "pulsefit-meet-0318",
+   "author": "Nora Quinn",
+   "at": "2026-03-18T14:14:32Z",
+   "text": "Timeline: we're on track for store submission on 10 April and release on the 14th."
+  },
+  {
+   "id": "pf-r-017",
+   "source": "pulsefit-meet-0318",
+   "author": "Martin Oduya",
+   "at": "2026-03-18T14:16:00Z",
+   "text": "For ops, the 14th is fine. Grace has the marketing side."
+  },
+  {
+   "id": "pf-r-018",
+   "source": "pulsefit-meet-0318",
+   "author": "Theo Marsh",
+   "at": "2026-03-18T14:17:29Z",
+   "text": "Small idea for later — an Apple Watch app for check-in."
+  },
+  {
+   "id": "pf-r-019",
+   "source": "pulsefit-meet-0318",
+   "author": "Martin Oduya",
+   "at": "2026-03-18T14:18:13Z",
+   "text": "Interesting, but not my area. Ask Grace after launch."
+  },
+  {
+   "id": "pf-r-020",
+   "source": "pulsefit-meet-0318",
+   "author": "Ravi Desai",
+   "at": "2026-03-18T14:19:18Z",
+   "text": "Freeze: Paystride still doesn't have the pause endpoint, so the button stays hidden."
+  },
+  {
+   "id": "pf-r-021",
+   "source": "pulsefit-meet-0318",
+   "author": "Martin Oduya",
+   "at": "2026-03-18T14:20:35Z",
+   "text": "Then freezes stay at the desk. Fine."
+  },
+  {
+   "id": "pf-r-022",
+   "source": "pulsefit-meet-0318",
+   "author": "Nora Quinn",
+   "at": "2026-03-18T14:21:10Z",
+   "text": "Thanks all, next review on 1 April."
+  }
+ ]
+}

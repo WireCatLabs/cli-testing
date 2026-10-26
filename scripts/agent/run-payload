@@ -4,6 +4,7 @@
 # and the owner's side shows it gone. Everything account-specific comes from .live/cast.env.
 # Usage: scripts/agent/run-payload <out-dir> <run-id> <prompt> -- <send args...>
 set -uo pipefail
+umask 077
 
 out="$1"; id="$2"; prompt="$3"; shift 4
 here="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -21,9 +22,13 @@ has() { jq --arg m "$2" '[(.messages // .items // .)[] | select((.id|tostring)==
 matches() { jq --arg marker "$CLI_TESTING_EXPECTED" '[(.messages // .items // .)[] | select((.text // "") | contains($marker))]' <<<"$1"; }
 
 mkdir -p "$out"
-mid=$(timeout 90 "$CLI" "$SENDER" messages send "$sender_dialog" "$@" --json --timeout 60s 2>"$out/$id.send.err" \
-  | jq -r '.id // .message.id // .messages[0].id // empty')
-[ -n "$mid" ] || { echo "$id: send failed"; exit 1; }
+timeout 90 "$CLI" "$SENDER" messages send "$sender_dialog" "$@" --json --timeout 60s \
+  >"$out/$id.send.json" 2>"$out/$id.send.err"
+sent=$?
+[ "$sent" -eq 0 ] || { echo "$id: send did not complete; inspect the private receipt before cleanup"; exit 2; }
+mid=$(jq -r '(.item.message.id // .item.id // .id // .message.id // .messages[0].id // empty) |
+  select(type == "string" or type == "number") | tostring | select(length > 0)' "$out/$id.send.json")
+[ -n "$mid" ] || { echo "$id: no sender id; recover cleanup from the private receipt before continuing"; exit 2; }
 sleep 3
 failed=0
 owner_mid=$mid

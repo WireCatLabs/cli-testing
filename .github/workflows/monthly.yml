@@ -20,7 +20,37 @@ jobs:
       contents: read
       actions: read
       security-events: write
-    uses: WireCatLabs/cli-base/.github/workflows/release-checks.yml@1183bfb970330989ad8acec917b14b7e6187de15
+    uses: WireCatLabs/cli-base/.github/workflows/release-checks.yml@03341651a008f77abb8172f86d6df652321b4ce5 # v0.31.0
     with:
       dependencies: true
       languages: '["actions","javascript-typescript"]'
+  architecture:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: clone the CLIs
+        run: |
+          for repo in cli-core max-cli tg-cli cli-memo drive-cli zoom-cli whatsapp-cli; do
+            git clone -q --depth=1 "https://github.com/WireCatLabs/$repo.git" "$RUNNER_TEMP/$repo"
+          done
+      - name: measure
+        run: |
+          args=()
+          for repo in cli-core max-cli tg-cli cli-memo drive-cli zoom-cli whatsapp-cli; do args+=(--repo "$repo=$RUNNER_TEMP/$repo"); done
+          node performance/engineering/architecture-checks/measure.mjs --date "$(date -u +%F)" "${args[@]}" > "$RUNNER_TEMP/table.md"
+          cat "$RUNNER_TEMP/table.md" >> "$GITHUB_STEP_SUMMARY"
+      # A run summary expires; the issue keeps the month's table until it is copied into the record.
+      - name: open the month's issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "Architecture checks $(date -u +%Y-%m)" \
+            --body-file "$RUNNER_TEMP/table.md"

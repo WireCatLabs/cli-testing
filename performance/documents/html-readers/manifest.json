@@ -1,0 +1,272 @@
+[
+  {
+    "id": "en-go-blog-slices",
+    "file": "fixtures/en-go-blog-slices.html",
+    "lang": "en",
+    "kind": "blog",
+    "url": "https://go.dev/blog/slices-intro",
+    "licence": "CC BY 4.0 (content), BSD (code)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-heavy-nav-usagov-passport",
+    "file": "fixtures/en-heavy-nav-usagov-passport.html",
+    "lang": "en",
+    "kind": "heavy-nav",
+    "url": "https://www.usa.gov/passport",
+    "licence": "public domain (US government)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-kubernetes-blog-1-30",
+    "file": "fixtures/en-kubernetes-blog-1-30.html",
+    "lang": "en",
+    "kind": "blog",
+    "url": "https://kubernetes.io/blog/2024/04/17/kubernetes-v1-30-release/",
+    "licence": "CC BY 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-mdn-article-element",
+    "file": "fixtures/en-mdn-article-element.html",
+    "lang": "en",
+    "kind": "docs",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article",
+    "licence": "CC BY-SA 2.5 (text), CC0 (examples)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-nasa-cargo-launch",
+    "file": "fixtures/en-nasa-cargo-launch.html",
+    "lang": "en",
+    "kind": "news",
+    "url": "https://www.nasa.gov/news-release/nasa-science-cargo-launch-on-35th-spacex-resupply-mission-to-station/",
+    "licence": "public domain (US government)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-nasa-nuclear-exploration",
+    "file": "fixtures/en-nasa-nuclear-exploration.html",
+    "lang": "en",
+    "kind": "news",
+    "url": "https://www.nasa.gov/news-release/nasa-energy-department-advance-new-era-of-nuclear-powered-exploration/",
+    "licence": "public domain (US government)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-newsletter-wikimedia-tech-news-36",
+    "file": "fixtures/en-newsletter-wikimedia-tech-news-36.html",
+    "lang": "en",
+    "kind": "email",
+    "url": "https://meta.wikimedia.org/wiki/Tech/News/2026/36",
+    "licence": "CC BY-SA 4.0 (newsletter text, sent by email as Tech News)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-newsletter-wikimedia-tech-news-38",
+    "file": "fixtures/en-newsletter-wikimedia-tech-news-38.html",
+    "lang": "en",
+    "kind": "email",
+    "url": "https://meta.wikimedia.org/wiki/Tech/News/2026/38",
+    "licence": "CC BY-SA 4.0 (newsletter text, sent by email as Tech News)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-newsletter-wikimedia-tech-news-40",
+    "file": "fixtures/en-newsletter-wikimedia-tech-news-40.html",
+    "lang": "en",
+    "kind": "email",
+    "url": "https://meta.wikimedia.org/wiki/Tech/News/2026/40",
+    "licence": "CC BY-SA 4.0 (newsletter text, sent by email as Tech News)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-postgres-docs-indexes",
+    "file": "fixtures/en-postgres-docs-indexes.html",
+    "lang": "en",
+    "kind": "docs",
+    "url": "https://www.postgresql.org/docs/current/indexes-intro.html",
+    "licence": "PostgreSQL license",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-python-docs-json",
+    "file": "fixtures/en-python-docs-json.html",
+    "lang": "en",
+    "kind": "docs",
+    "url": "https://docs.python.org/3/library/json.html",
+    "licence": "PSF License v2 (open source)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-rails-guides-active-record",
+    "file": "fixtures/en-rails-guides-active-record.html",
+    "lang": "en",
+    "kind": "docs",
+    "url": "https://guides.rubyonrails.org/active_record_basics.html",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-rust-blog-1-99",
+    "file": "fixtures/en-rust-blog-1-99.html",
+    "lang": "en",
+    "kind": "blog",
+    "url": "https://blog.rust-lang.org/2026/10/01/Rust-1.99.0/",
+    "licence": "MIT or Apache-2.0 (stated in the blog repository)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-rust-book-ownership",
+    "file": "fixtures/en-rust-book-ownership.html",
+    "lang": "en",
+    "kind": "docs",
+    "url": "https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html",
+    "licence": "MIT or Apache-2.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-shop-openfoodfacts-nutella",
+    "file": "fixtures/en-shop-openfoodfacts-nutella.html",
+    "lang": "en",
+    "kind": "shop",
+    "url": "https://world.openfoodfacts.org/product/3017620422003",
+    "licence": "CC BY-SA 3.0 (content), ODbL (database)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-wikinews-7th-heaven",
+    "file": "fixtures/en-wikinews-7th-heaven.html",
+    "lang": "en",
+    "kind": "news",
+    "url": "https://en.wikinews.org/wiki/%227th_Heaven%22_television_series_comes_to_an_end",
+    "licence": "CC BY 2.5",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-wikipedia-markdown",
+    "file": "fixtures/en-wikipedia-markdown.html",
+    "lang": "en",
+    "kind": "wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Markdown",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-wikipedia-talk-markdown",
+    "file": "fixtures/en-wikipedia-talk-markdown.html",
+    "lang": "en",
+    "kind": "forum",
+    "url": "https://en.wikipedia.org/wiki/Talk:Markdown",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "en-wikipedia-talk-rust",
+    "file": "fixtures/en-wikipedia-talk-rust.html",
+    "lang": "en",
+    "kind": "forum",
+    "url": "https://en.wikipedia.org/wiki/Talk:Rust_(programming_language)",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-kremlin-news-80943",
+    "file": "fixtures/ru-kremlin-news-80943.html",
+    "lang": "ru",
+    "kind": "news",
+    "url": "http://kremlin.ru/events/president/news/80943",
+    "licence": "CC BY 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-kremlin-news-80980",
+    "file": "fixtures/ru-kremlin-news-80980.html",
+    "lang": "ru",
+    "kind": "news",
+    "url": "http://kremlin.ru/events/president/news/80980",
+    "licence": "CC BY 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-kremlin-news-80981",
+    "file": "fixtures/ru-kremlin-news-80981.html",
+    "lang": "ru",
+    "kind": "news",
+    "url": "http://kremlin.ru/events/president/news/80981",
+    "licence": "CC BY 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-kubernetes-docs-overview",
+    "file": "fixtures/ru-kubernetes-docs-overview.html",
+    "lang": "ru",
+    "kind": "docs",
+    "url": "https://kubernetes.io/ru/docs/concepts/overview/what-is-kubernetes/",
+    "licence": "CC BY 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-postgrespro-docs-indexes",
+    "file": "fixtures/ru-postgrespro-docs-indexes.html",
+    "lang": "ru",
+    "kind": "docs",
+    "url": "https://postgrespro.ru/docs/postgresql/16/indexes-intro",
+    "licence": "PostgreSQL license",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-python-docs-classes",
+    "file": "fixtures/ru-python-docs-classes.html",
+    "lang": "ru",
+    "kind": "docs",
+    "url": "https://docs.python.org/ru/3/tutorial/classes.html",
+    "licence": "PSF License v2 (open source)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-shop-openfoodfacts-coca-cola",
+    "file": "fixtures/ru-shop-openfoodfacts-coca-cola.html",
+    "lang": "ru",
+    "kind": "shop",
+    "url": "https://ru.openfoodfacts.org/product/5449000000996",
+    "licence": "CC BY-SA 3.0 (content), ODbL (database)",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-wikipedia-markdown",
+    "file": "fixtures/ru-wikipedia-markdown.html",
+    "lang": "ru",
+    "kind": "wikipedia",
+    "url": "https://ru.wikipedia.org/wiki/Markdown",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-wikipedia-pandoc",
+    "file": "fixtures/ru-wikipedia-pandoc.html",
+    "lang": "ru",
+    "kind": "wikipedia",
+    "url": "https://ru.wikipedia.org/wiki/Pandoc",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-wikipedia-talk-markdown",
+    "file": "fixtures/ru-wikipedia-talk-markdown.html",
+    "lang": "ru",
+    "kind": "forum",
+    "url": "https://ru.wikipedia.org/wiki/Обсуждение:Markdown",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  },
+  {
+    "id": "ru-wikipedia-talk-python",
+    "file": "fixtures/ru-wikipedia-talk-python.html",
+    "lang": "ru",
+    "kind": "forum",
+    "url": "https://ru.wikipedia.org/wiki/Обсуждение:Python",
+    "licence": "CC BY-SA 4.0",
+    "fetched": "2026-10-13"
+  }
+]

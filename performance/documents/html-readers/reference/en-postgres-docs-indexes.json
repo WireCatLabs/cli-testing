@@ -1,0 +1,14 @@
+{
+  "title": "11.1. Introduction",
+  "mustAppear": [
+    "terms and concepts that are frequently looked up by readers are collected in an alphabetic index at the end of the book",
+    "The name test1_id_index can be chosen freely",
+    "PostgreSQL indexes can be used to optimize queries that contain one or more WHERE or JOIN clauses of the form",
+    "if the original operator has a commutator operator that is a member of the index's operator class"
+  ],
+  "mustNotAppear": [
+    "Code of Conduct",
+    "Policies",
+    "Copyright © 1996-2026 The PostgreSQL Global Development Group"
+  ]
+}

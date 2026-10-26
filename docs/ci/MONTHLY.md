@@ -5,22 +5,25 @@ The scheduled workflow is `monthly.yml`; it calls the existing `ci.yml` and pinn
 `release-checks.yml`. Tests, coverage floors, build, documentation contracts, parity, Bun, and
 platform/browser jobs run where that project's full workflow defines them.
 Security includes production dependency audits, workflow analysis, full-history secret detection,
-and CodeQL. Messaging includes C/C++ analysis as well as JavaScript/TypeScript and Actions.
+and CodeQL. Messaging includes C/C++ analysis as well as JavaScript/TypeScript and Actions; whatsapp-cli adds Go
+for its engine.
 
 ## Schedule
 
 | Repository/workflow | First day of each month, UTC |
 | --- | --- |
 | cli-base / monthly.yml | 02:17 |
+| whatsapp-cli / monthly.yml | 02:24 |
 | cli-memo / monthly.yml | 02:31 |
-| cli-messaging / monthly.yml | 02:38 |
+| cli-core / monthly.yml | 02:38 |
+| drive-cli / monthly.yml | 02:45 |
 | cli-testing / monthly.yml | 02:52 |
 | max-cli / monthly.yml | 02:59 |
 | tg-cli / monthly.yml | 03:06 |
 | zoom-cli / monthly.yml | 03:13 |
 | cli-docs / monthly.yml | 03:20 |
-| cli-messaging / onnx.yml | 03:27 |
-| cli-messaging / sqlite.yml | 03:37 |
+| cli-core / onnx.yml | 03:27 |
+| cli-core / sqlite.yml | 03:37 |
 | community / security-release.yml | 03:47 |
 
 GitHub runs schedules on the latest default-branch commit. Times are staggered away from the
@@ -48,8 +51,8 @@ gh run list --repo WireCatLabs/cli-testing --workflow monthly.yml --limit 5
 Native probes use their individual workflows with publication disabled:
 
 ```sh
-gh workflow run onnx.yml --repo WireCatLabs/cli-messaging --ref main -f publish=false
-gh workflow run sqlite.yml --repo WireCatLabs/cli-messaging --ref main -f publish=false
+gh workflow run onnx.yml --repo WireCatLabs/cli-core --ref main -f publish=false
+gh workflow run sqlite.yml --repo WireCatLabs/cli-core --ref main -f publish=false
 ```
 
 Community security can be started from its **Security release** workflow without publishing.
@@ -65,5 +68,10 @@ For a tests/build-only investigation, run **Full validation** (`ci.yml`) directl
    vulnerability details out of public logs and documentation.
 5. Do not publish a release while its required validation or critical security checks fail.
 
-Review the Actions results each month. Scheduling does not itself create an issue, send a message,
-or guarantee that someone reviewed the results; notifications follow existing GitHub settings.
+The cli-testing run also measures each CLI's architecture: its `architecture` job writes a table to
+the run summary and opens an issue "Architecture checks YYYY-MM" with it. Copy that table into the
+[architecture checks record](../../performance/engineering/architecture-checks/README.md#trend), give
+any new file over 500 lines a verdict there, and close the issue.
+
+Review the Actions results each month. Apart from the architecture issue, scheduling does not send a
+message or guarantee that someone reviewed the results; notifications follow existing GitHub settings.

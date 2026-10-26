@@ -1,0 +1,269 @@
+{
+  "checked_at": "2026-10-24T23:57:14.332Z",
+  "purpose": "Metadata only; not a download list or tested-model claim",
+  "models": [
+    {
+      "repository": "jinaai/jina-reranker-v2-base-multilingual",
+      "revision": "9cfeff2df7d40d1b78e75e5e9cebec92a99813c9",
+      "licence": "cc-by-nc-4.0",
+      "source": "https://huggingface.co/api/models/jinaai/jina-reranker-v2-base-multilingual?blobs=true",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 1102,
+          "git_blob": "48d55ca21314ee39a6c635abc2896db2fe75e434"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 556892306,
+          "sha256": "ab2595ab9f34bdeffe645431d64c6e4aabe2ff5a57cfcacfef0727a97434238f",
+          "git_blob": "28713d8dbae42365e3041dbff563e342d1956c8d"
+        },
+        {
+          "name": "onnx/model.onnx",
+          "bytes": 1114040223,
+          "sha256": "0ef3f7978f7bc52360864d74edc1a0e03d159af770a7767c4d5943496e616012",
+          "git_blob": "a60fbfa37910646b80eeb1c180327be0b2d2cb4e"
+        },
+        {
+          "name": "onnx/model_int8.onnx",
+          "bytes": 279577152,
+          "sha256": "c5220cf8fe023f8aa0ed2a3eb787d4451a7f17cf53f6b787e35718dd4b8815c3",
+          "git_blob": "67ec257a7d156e9c64efa4bc1927434890eca981"
+        },
+        {
+          "name": "onnx/model_quantized.onnx",
+          "bytes": 279577152,
+          "sha256": "c5220cf8fe023f8aa0ed2a3eb787d4451a7f17cf53f6b787e35718dd4b8815c3",
+          "git_blob": "67ec257a7d156e9c64efa4bc1927434890eca981"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 17082734,
+          "sha256": "3a56def25aa40facc030ea8b0b87f3688e4b3c39eb8b45d5702b3a1300fe2a20",
+          "git_blob": "7126b1d228f6e5f725b6ee02a88b1118c725aeed"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 1148,
+          "git_blob": "541c2896a738767b6757bd4254a9f9ded6ebf1c4"
+        }
+      ]
+    },
+    {
+      "repository": "Qwen/Qwen3-Reranker-0.6B",
+      "revision": "e61197ed45024b0ed8a2d74b80b4d909f1255473",
+      "licence": "apache-2.0",
+      "source": "https://huggingface.co/api/models/Qwen/Qwen3-Reranker-0.6B?blobs=true",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 727,
+          "git_blob": "39784456e9de7a06590f8a4a38760ac1fb38d65e"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 1191588280,
+          "sha256": "27cd75a405b9c1b46b59abfd88aaa209e6fed2a1972cde9b70e7659537c5e65b",
+          "git_blob": "c2009afdaf622dc596bec224a625daa46a2b4cc9"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 11422654,
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "git_blob": "cd71f61a15a522601badb3dc960d800d9cb3766c"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 9706,
+          "git_blob": "7345216a0785dc7086e8c245b2a9d3896ce2b756"
+        }
+      ]
+    },
+    {
+      "repository": "mixedbread-ai/mxbai-rerank-base-v2",
+      "revision": "3ea9d4dffa7d12a4f366be8e275c349de9fc9865",
+      "licence": "apache-2.0",
+      "source": "https://huggingface.co/api/models/mixedbread-ai/mxbai-rerank-base-v2?blobs=true",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 766,
+          "git_blob": "9dc09ad5431b02be9da03a944b10b234e0e4c1a4"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 988097536,
+          "sha256": "c01649fe56b3fe32e52da43c69e084dff7c2252cf231a38c56d5a291a674338f",
+          "git_blob": "eaa0ccdd000e785988a6a70ffa611069ad50d937"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 11421896,
+          "sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa",
+          "git_blob": "51ebb3ba93988c73bbd83a3c163a14343fbc5b06"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 4686,
+          "git_blob": "eaed590d62aaf0ba31e284b66ddcb18222f066c2"
+        }
+      ]
+    },
+    {
+      "repository": "mixedbread-ai/mxbai-rerank-large-v2",
+      "revision": "ca7e1ee484c37c0ddd8d178a9a5c33cec575c5e6",
+      "licence": "apache-2.0",
+      "source": "https://huggingface.co/api/models/mixedbread-ai/mxbai-rerank-large-v2?blobs=true",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 768,
+          "git_blob": "cce4e6d9644a7b34c40d8e96d71bea94049c6eb9"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 3087466808,
+          "sha256": "430e47b1754d2306fce32e560d3386a6a79850a91e5adf78d51fba9647022730",
+          "git_blob": "85143d24ee68da199b435899f3df039e91c8cc2b"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 11421896,
+          "sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa",
+          "git_blob": "51ebb3ba93988c73bbd83a3c163a14343fbc5b06"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 4686,
+          "git_blob": "eaed590d62aaf0ba31e284b66ddcb18222f066c2"
+        }
+      ]
+    },
+    {
+      "repository": "answerdotai/answerai-colbert-small-v1",
+      "revision": "934fa8bb4ce2284f4c2baa232d81aca4d076fa5e",
+      "licence": "apache-2.0",
+      "source": "https://huggingface.co/api/models/answerdotai/answerai-colbert-small-v1?blobs=true",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 702,
+          "git_blob": "94a76dc598a7db297e7d4a21dfa82062df6be110"
+        },
+        {
+          "name": "model.onnx",
+          "bytes": 133298178,
+          "sha256": "bd4bee8b055ed7a8e8b6e401792ae6e9137d9712c35eaa16f915ba69cae6d633",
+          "git_blob": "99998c9f44ddbc7c440aa939647f22789aa7ca06"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 133610664,
+          "sha256": "35bb6ef696cc88b3d18b7520273dfd25315f6c47d265142ba13bba38678c92b6",
+          "git_blob": "e5280e5e9f61c1e7649b12456d9f43191a690e86"
+        },
+        {
+          "name": "model_int8.onnx",
+          "bytes": 33948650,
+          "sha256": "de45baeaa7a48cda647fcf71582e2a0920dca303654034570aa6144d84526283",
+          "git_blob": "6f32c57854cb72f82c9dc143927c2f28ee2728e9"
+        },
+        {
+          "name": "onnx/model.onnx",
+          "bytes": 133159107,
+          "sha256": "b078342c7af055851eb25e599c7e362674e266aa52fe2d87d7bd325d3e3420e0",
+          "git_blob": "ae70c493150370bd61ae76b433aede6e28f9b39a"
+        },
+        {
+          "name": "onnx/model_int8.onnx",
+          "bytes": 34000578,
+          "sha256": "250889c5550969a1f0aaf6f9dcc01db39044fe3998fa9c95ef731af23f737b7b",
+          "git_blob": "6b733f5c8ade3bd3ae47c8c2854441a86da5770d"
+        },
+        {
+          "name": "onnx/model_quantized.onnx",
+          "bytes": 34000578,
+          "sha256": "250889c5550969a1f0aaf6f9dcc01db39044fe3998fa9c95ef731af23f737b7b",
+          "git_blob": "6b733f5c8ade3bd3ae47c8c2854441a86da5770d"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 711396,
+          "git_blob": "688882a79f44442ddc1f60d70334a7ff5df0fb47"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 1242,
+          "git_blob": "75305659f7795d4549f0e23688b52fa20a32f925"
+        }
+      ]
+    },
+    {
+      "repository": "Qwen/Qwen3-Reranker-4B",
+      "revision": "22e683669bc0f0bd69640a1354a6d0aebcfeede5",
+      "licence": "apache-2.0",
+      "source": "https://huggingface.co/api/models/Qwen/Qwen3-Reranker-4B?blobs=true",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 727,
+          "git_blob": "b0d564fb244100a8bbcb6499da05485440bae0d2"
+        },
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "bytes": 4058781760,
+          "sha256": "cf2e87cbf71fa628961532232e04dd6c19702a0a057f5e2aff95ea1aca4fd488",
+          "git_blob": "fa9903b99ad2d67e6ba3f0efab8b7ecac58954a0"
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "bytes": 3984833200,
+          "sha256": "78946d22b7f6456ea7a5358dbdf3982de36c5bac1f166a5fd58e18e31db8048a",
+          "git_blob": "e97990c15c4fa41ca0d97fa44ed68b0a661a9c6a"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 11422654,
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "git_blob": "cd71f61a15a522601badb3dc960d800d9cb3766c"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 9706,
+          "git_blob": "7345216a0785dc7086e8c245b2a9d3896ce2b756"
+        }
+      ]
+    },
+    {
+      "repository": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "licence": "apache-2.0",
+      "source": "https://huggingface.co/api/models/BAAI/bge-reranker-v2-m3?blobs=true",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 795,
+          "git_blob": "9f62673cb00ec41dcec8947b9ed16f6f2eb23ba2"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 2271071852,
+          "sha256": "d9e3e081faff1eefb84019509b2f5558fd74c1a05a2c7db22f74174fcedb5286",
+          "git_blob": "773a0a7d7cc8a010835938a3a82a87eac8b21909"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 17098273,
+          "sha256": "69564b696052886ed0ac63fa393e928384e0f8caada38c1f4864a9bfbf379c15",
+          "git_blob": "1c98a28b19c084901b2622d8e8b15e85eed13bff"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 1173,
+          "git_blob": "328a00a9a560aadcf2a3064f917517359eb3cc26"
+        }
+      ]
+    }
+  ]
+}

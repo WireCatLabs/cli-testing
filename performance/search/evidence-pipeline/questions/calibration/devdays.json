@@ -1,0 +1,219 @@
+[
+ {
+  "id": "devdays-q01",
+  "project": "devdays",
+  "language": "en",
+  "text": "Can someone get their money back for a ticket the week before the event?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "ddy-050": 3,
+   "ddy-187": 3,
+   "ddy-072": 3,
+   "ddy-049": 2,
+   "ddy-026": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-049",
+    "ddy-050"
+   ],
+   [
+    "ddy-187"
+   ],
+   [
+    "ddy-072"
+   ]
+  ],
+  "note": "The answer is a denial with a transfer alternative; the earlier pre-October refund rule is a trap."
+ },
+ {
+  "id": "devdays-q02",
+  "project": "devdays",
+  "language": "ru",
+  "text": "Будут ли выступления главных спикеров идти в прямом эфире в интернете?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "ddy-207": 3,
+   "ddy-239": 3,
+   "ddy-047": 1,
+   "ddy-110": 1,
+   "ddy-191": 1,
+   "ddy-157": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-207"
+   ],
+   [
+    "ddy-239"
+   ]
+  ],
+  "note": "Only if the sponsor pays the full streaming package; the sponsor never answers in the corpus."
+ },
+ {
+  "id": "devdays-q03",
+  "project": "devdays",
+  "language": "en",
+  "text": "Did Anna sign off on how many lunches we planned per day?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "ddy-039": 3,
+   "ddy-184": 2,
+   "ddy-040": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-039",
+    "ddy-184"
+   ]
+  ],
+  "note": "She approved the runbook outline and explicitly not the catering numbers."
+ },
+ {
+  "id": "devdays-q04",
+  "project": "devdays",
+  "language": "en",
+  "text": "What fee did we settle on with the photographer for the three days?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "ddy-035": 3,
+   "ddy-034": 2,
+   "ddy-036": 1,
+   "ddy-209": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-034",
+    "ddy-035"
+   ]
+  ],
+  "note": "Two quotes are in the request; only the bare '+' reply shows which fee was agreed."
+ },
+ {
+  "id": "devdays-q05",
+  "project": "devdays",
+  "language": "en",
+  "text": "Did we agree to the river cruise for the closing party?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "ddy-044": 2,
+   "ddy-212": 2,
+   "ddy-056": 2,
+   "ddy-068": 2
+  },
+  "evidence_sets": [
+   [
+    "ddy-044",
+    "ddy-212",
+    "ddy-068"
+   ]
+  ],
+  "note": "Proposed, not refused, never accepted; the hold lapsed."
+ },
+ {
+  "id": "devdays-q06",
+  "project": "devdays",
+  "language": "en",
+  "text": "What time does the opening keynote begin on the first day?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "ddy-181": 2,
+   "ddy-150": 2,
+   "ddy-151": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-181",
+    "ddy-150"
+   ]
+  ],
+  "note": "Runbook schedule and the speaker coordinator's confirmation to the speaker disagree; neither is corrected."
+ },
+ {
+  "id": "devdays-q07",
+  "project": "devdays",
+  "language": "ru",
+  "text": "Какая компания отвечает за еду для участников на все дни конференции?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "ddy-123": 3,
+   "ddy-126": 3,
+   "ddy-203": 2,
+   "ddy-120": 2,
+   "ddy-118": 1,
+   "ddy-185": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-203",
+    "ddy-123"
+   ],
+   [
+    "ddy-203",
+    "ddy-126"
+   ]
+  ],
+  "note": "Sync decision for the cheaper vendor was revoked after a double booking."
+ },
+ {
+  "id": "devdays-q08",
+  "project": "devdays",
+  "language": "en",
+  "text": "Has Max, the keynote speaker, handed in his presentation?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "ddy-170": 3,
+   "ddy-171": 2,
+   "ddy-167": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-170"
+   ]
+  ],
+  "note": "The sponsor lead also named Max sent a final sponsor deck; that is the trap."
+ },
+ {
+  "id": "devdays-q09",
+  "project": "devdays",
+  "language": "en",
+  "text": "How many wheelchair spaces does the main hall have?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "ddy-059": 1,
+   "ddy-100": 1,
+   "ddy-067": 1,
+   "ddy-220": 1,
+   "ddy-189": 1
+  },
+  "evidence_sets": [],
+  "note": "Ramp, lift and toilets are described, the number is asked for and never given."
+ },
+ {
+  "id": "devdays-q10",
+  "project": "devdays",
+  "language": "ru",
+  "text": "Почему конференцию перенесли на ноябрь?",
+  "kind": "premise",
+  "answerable": false,
+  "grades": {
+   "ddy-001": 2,
+   "ddy-181": 1
+  },
+  "evidence_sets": [
+   [
+    "ddy-001"
+   ]
+  ],
+  "note": "False premise: the October dates were fixed at the start and never moved."
+ }
+]

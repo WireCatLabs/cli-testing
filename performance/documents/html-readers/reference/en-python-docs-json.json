@@ -1,0 +1,14 @@
+{
+  "title": "json — JSON encoder and decoder",
+  "mustAppear": [
+    "Be cautious when parsing JSON data from untrusted sources",
+    "The term “object” in the context of JSON processing in Python can be ambiguous",
+    "s can now be of type bytes or bytearray",
+    "The json module may now be directly executed as python -m json"
+  ],
+  "mustNotAppear": [
+    "Previous topic",
+    "Found a bug?",
+    "Created using Sphinx"
+  ]
+}

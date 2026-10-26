@@ -1,0 +1,10 @@
+{
+  "name": "vector-index-bench",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "hnswlib-node": "3.0.0",
+    "sqlite-vec": "0.1.9",
+    "usearch": "2.26.5"
+  }
+}

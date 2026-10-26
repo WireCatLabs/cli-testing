@@ -1,0 +1,14 @@
+{
+  "title": "NASA Science, Cargo Launch on 35th SpaceX Resupply Mission to Station",
+  "mustAppear": [
+    "SpaceX 35th commercial resupply mission lifted off at 6:33 a.m. EDT Tuesday aboard a Falcon 9 rocket",
+    "Dragon is scheduled to autonomously dock at 11 a.m., Thursday, Oct. 15",
+    "The final pair of solar arrays will complete the space station’s power system augmentation",
+    "These are just a sample of the hundreds of investigations conducted aboard the orbiting laboratory"
+  ],
+  "mustNotAppear": [
+    "Video Series on NASA+",
+    "Media Resources",
+    "Virtual Guest Program"
+  ]
+}

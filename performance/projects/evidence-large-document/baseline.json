@@ -1,0 +1,105 @@
+{
+  "frozen": "2026-10-20",
+  "written_before_first_run": true,
+  "request": {
+    "project": "LNW",
+    "source": "notes:<folder>",
+    "since_time": "60d",
+    "around": "default 2 before, 2 after"
+  },
+  "thresholds": { "page_bytes": 65536, "single_record_read_bytes": 262144, "default_read_budget_bytes": 2097152 },
+  "documents": {
+    "large": {
+      "approx_bytes": 150000,
+      "paragraphs": 220,
+      "label": "relevant",
+      "why": "above one page (64 KiB), below the 256 KiB single-record limit; four paragraphs name the project, far apart",
+      "hit_paragraphs": { "4": "name", "60": "key", "150": "alias", "215": "name" },
+      "around_default": [2, 3, 4, 5, 6],
+      "around_default_found": [4],
+      "around_five": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    },
+    "huge": {
+      "approx_bytes": 300000,
+      "paragraphs": 430,
+      "label": "relevant",
+      "why": "above 256 KiB: expected to be listed under oversized, not read",
+      "hit_paragraphs": { "10": "name" }
+    },
+    "m1": {
+      "approx_bytes": 45000,
+      "paragraphs": 65,
+      "label": "relevant",
+      "why": "medium document, one hit in the middle",
+      "hit_paragraphs": { "30": "name" },
+      "around_default": [28, 29, 30, 31, 32]
+    },
+    "m2": {
+      "approx_bytes": 45000,
+      "paragraphs": 65,
+      "label": "relevant",
+      "why": "medium document, one hit in the middle",
+      "hit_paragraphs": { "30": "name" },
+      "around_default": [28, 29, 30, 31, 32]
+    },
+    "m3": {
+      "approx_bytes": 45000,
+      "paragraphs": 65,
+      "label": "relevant",
+      "why": "medium document, one hit in the middle",
+      "hit_paragraphs": { "30": "name" },
+      "around_default": [28, 29, 30, 31, 32]
+    },
+    "m4": {
+      "approx_bytes": 45000,
+      "paragraphs": 65,
+      "label": "relevant",
+      "why": "medium document, one hit in the middle",
+      "hit_paragraphs": { "30": "name" },
+      "around_default": [28, 29, 30, 31, 32]
+    },
+    "m5": {
+      "approx_bytes": 45000,
+      "paragraphs": 65,
+      "label": "relevant",
+      "why": "medium document, one hit in the middle",
+      "hit_paragraphs": { "30": "name" },
+      "around_default": [28, 29, 30, 31, 32]
+    },
+    "m6": {
+      "approx_bytes": 45000,
+      "paragraphs": 65,
+      "label": "relevant",
+      "why": "medium document, one hit in the middle",
+      "hit_paragraphs": { "30": "name" },
+      "around_default": [28, 29, 30, 31, 32]
+    },
+    "small": {
+      "approx_bytes": 300,
+      "paragraphs": 3,
+      "label": "relevant",
+      "why": "tiny document that names the project only by its alias",
+      "hit_paragraphs": { "2": "alias" },
+      "around_default": [1, 2, 3]
+    },
+    "decoy-lantern": {
+      "approx_bytes": 30000,
+      "label": "irrelevant",
+      "why": "says lantern and works separately, never the project's name"
+    },
+    "decoy-garden": { "approx_bytes": 30000, "label": "irrelevant", "why": "another project's plan" }
+  },
+  "expect": {
+    "found": ["large", "m1", "m2", "m3", "m4", "m5", "m6", "small"],
+    "oversized": ["huge"],
+    "not_found": ["decoy-lantern", "decoy-garden"],
+    "paragraphs_relevant_total": 12,
+    "paragraphs_surfaced_by_around": "only those within 2 of the first hit paragraph of each document: large 1 of 4, each medium 1 of 1, small 1 of 1",
+    "large_lanes": ["name", "key", "alias"],
+    "pages_name_lane_at_least": 4,
+    "charged_bytes_per_document_size_max": 1.2,
+    "charged_bytes_for_oversized_document": 0,
+    "complete": true,
+    "resume_two_pages": { "completes": true, "duplicates": 0, "same_references_as_one_run": true }
+  }
+}

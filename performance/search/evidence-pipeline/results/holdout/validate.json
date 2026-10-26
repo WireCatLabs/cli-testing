@@ -1,0 +1,44 @@
+{
+ "split": "holdout",
+ "files": {
+  "background.json": {
+   "sha256": "074e704ade90a8c6f5b9c82d084c9541eb75927fc6b93562748b1584bddebaf6",
+   "units": 1500,
+   "sources": {
+    "chat": 10
+   }
+  },
+  "meeplehaus.json": {
+   "sha256": "e2e9f3d56ccb83b8de9c07943700fecc7f0d166b5b306dd40d8765b6476d6a4c",
+   "questions": 14
+  },
+  "pulsefit.json": {
+   "sha256": "4e79cfafbb7e3a90ad812c9d7715808d8a3ca7475979331e9c4175075bf4340e",
+   "questions": 14
+  },
+  "zelenydvor.json": {
+   "sha256": "b73fdb35830d8a2aa089570fb35daa4d9f7cbc035276da1aaea94862834c6190",
+   "questions": 14
+  }
+ },
+ "kinds": {
+  "negative": 3,
+  "conditional": 3,
+  "approval": 3,
+  "unresolved": 3,
+  "conflict": 9,
+  "revoked": 9,
+  "same-name": 3,
+  "missing": 3,
+  "fact": 6
+ },
+ "languages": {
+  "ru": 20,
+  "en": 22
+ },
+ "answerable": {
+  "True": 27,
+  "False": 15
+ },
+ "errors": []
+}

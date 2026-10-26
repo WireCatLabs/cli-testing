@@ -1,0 +1,28 @@
+{
+ "frozen_at": "2026-10-25T02:25:28+00:00",
+ "stage": "eval",
+ "settings": {
+  "mmr_lambda": 0.9
+ },
+ "code": {
+  "PROTOCOL.md": "df12e6c177a847c5f8e628914af04e59481cf0289d652f0fbc0302f579c5a650",
+  "CORPUS.md": "156388ceadda1512da09ae98130c7c1cfb9633366d99ee335c9c2ea03a6fdec7",
+  "pipeline.py": "2a0b2e18091ad7f6f5c21050636cb03f2122bd434bde434207ee9ad1ae128ae7",
+  "core/discover.mjs": "05c45aa760eabe0967b161094bbe87e23aa2cdebd0011b3cbb64dbc374261ec5",
+  "core/package.json": "01168f72b235d9e404cf8821a73aad7accf89c1e9a31419893756398cf40a39d",
+  "core/pnpm-lock.yaml": "b1a972cc1667b8468c089759b52081d90ef3ef672d5063006470e0bcb32e33bb",
+  "background.py": "aa62133790c8e9e11db5680763fece750fc535d487da0b3ac1e15729b1aff7f7",
+  "validate.py": "a580a15ced72907673155257405f2d8391b0e005af3476bec40720b2c6e29a63",
+  "report.py": "ae29255d4291cd6774de5a6fcdd36c3f4f5fb77908d4c192243752d18709ebae",
+  "run.sh": "96c92d0c6dd942ac3d6bc72eba42fceb864e9ad2da292ca82ccce0d15eb0ddc0",
+  "models.json": "fe013347449cd3ebec31d91d2293d388110fd4ae4835d0057cf3bff1dc1bc376",
+  "requirements.lock": "6d093289fc74137b7b508d9f0cdece09ad5d335da5175c1129991cd537a87e19"
+ },
+ "inputs": {
+  "corpus/eval/background.json": "e935de8efaeb2493cd6b0b9e8cffa75dd2f943d2e23dfebd6773890e27c5b44a",
+  "corpus/eval/dentavita.json": "a537b474af047580f864104af352f40dcf1534c5f4873e979f8b5e2c0d6920b6",
+  "corpus/eval/mirlo.json": "a080a369f7026011b553b79ed398a7905d5fb976fd92e856b5af69919def3718",
+  "questions/eval/dentavita.json": "6d9aff77ff54249a8c701557a9cc434504facd38419fbb7f55e851e7dcf4a7d6",
+  "questions/eval/mirlo.json": "780c9062b3a3b61abd679ba411e3f8886c8815ccfd045245b5ca552225f0a991"
+ }
+}

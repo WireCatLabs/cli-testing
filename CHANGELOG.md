@@ -6,6 +6,203 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Changed — may break callers
+
+- **The MCP client is `@modelcontextprotocol/client` 2.4 instead of `@modelcontextprotocol/sdk` 1.32.** The v1
+  package pulled Express, body-parser, Ajv and express-rate-limit into every install, and all of this package's
+  audit findings came through them. The contract suite now lets the SDK walk the tool list's pages: a server
+  whose pagination never ends fails after 64 pages ("exceeded listMaxPages") instead of "repeated a cursor".
+
+### Security
+
+- No known advisories in the dependency tree: the MCP SDK swap removes the fast-uri, Express and Ajv findings,
+  and the test runner now resolves Vite 8.3.5.
+
+### Fixed
+
+- Packed installation checks run Windows batch launchers from isolated directories with the pinned managers and platform marker required by native installers.
+
+### Added
+
+- A compact evidence-ranking handoff package with pinned model preparation, synthetic CPU diagnostics,
+  reproducible metrics and a staged comparison of mathematical, contextual and optional neural methods.
+- A reproducible API cost estimator for the knowledge graph memory pilot, with explicit call/token
+  assumptions, current rate sources and a distinction between scenarios and metered engine usage.
+- `cli-testing ux install` checks packed tarballs with pinned npm, pnpm and Bun, validates global binaries and documented follow-up commands, and records install warnings and publint results in isolated run directories.
+- A synthetic knowledge graph memory benchmark fixture and scorer: 2,000 source records, 50 known-answer
+  questions, citation checks and stale-answer checks. Engine runs remain pending provider selection.
+
+## 0.5.3 — 22.10.2026
+
+- Add a question-level lexical/discovery/E5 comparison with support metrics and explicit source/index coverage.
+
+- Add detailed gathering cost/coverage analysis, metadata-only sample review tools and an evaluation protocol.
+
+- Add an opt-in installed Memo 0.84.0 observation runner and aggregate second-project name/contact results.
+
+### Added
+
+- **Offline contracts isolate WhatsApp profiles too.** The harness sets `WA_CONFIG_DIR`, `WA_STATE_DIR` and
+  `WA_CACHE_DIR` inside its temporary directory and disables update checks, so upgrade fixtures use the same
+  paths as the CLI without inheriting the owner's state.
+
+- **`performance/projects/restore/check-memo.mjs`** exercises published Memo0.83 through real CLI
+  processes and stdio MCP, with an exact retained dependency lock. It checks private export, explicit
+  target preview, owner/agent restore policy and historical proposed state using invented stores.
+
+- **`performance/projects/restore/check.mjs`** verifies selected annotation reconstruction against
+  published Core0.374 with independent IDs, stale-preview refusal and proposed state preserved.
+  It records release provenance and does not reset a live project or claim full backup coverage.
+
+- **`performance/projects/snapshot/check.mjs`** checks the public read-only snapshot SDK with invented
+  data, preserving proposed state and alias provenance while omitting source bodies. It does not reset
+  or restore a project.
+
+- **`performance/projects/large-document/result-read-once.json`**: the same run on Memo 0.80.0 / Core 0.369.0 charges
+  95,260 bytes, the document once (476,300 on 0.79.0). `after-fix.mjs` now pins those versions.
+
+- **`performance/projects/large-document/after-fix.mjs`** reruns the stalled large-document reproduction on Memo 0.79.0 and Core
+  0.367.0 and asserts progress: the 95,200-byte document is found in one invocation and the run completes. The
+  result also shows each matching lane reading the whole document again (476,300 charged bytes).
+
+- A synthetic extraction-contract study records released SDK quote/schema limits and accepted semantic
+  contradictions using fake completions, without treating structural validation as model quality.
+
+- A synthetic published-Memo reproduction records oversized document lanes that keep returning checkpoints
+  without progress; a small-document control separates that limitation from broken source setup.
+
+- A project-benchmark provenance ledger and offline verifier retain artifact hashes, source references,
+  metric definitions and historical build gaps without changing frozen fixtures or results.
+
+- A synthetic project-annotation reconstruction proof checks explicit entity bindings, proposed states and
+  unchanged shared records through published SDKs, without copying or resetting an owner store.
+
+- The Drive-to-Memo project-context check accepts explicit pinned version pairs, retaining its defaults
+  and original result; a reviewed release comparison records first-run indexing failure and recovery.
+
+- A pinned synthetic Drive-to-Memo project-context check verifies the existing shared-store ingestion path,
+  source dates, principal scope, incremental changes and real CLI/MCP results without remote accounts.
+
+- A registry-only Zoom0.26 inventory replay checks installed CLI/MCP, unverified recurring hints, strict caller scope, offline refusal and zero store/network access.
+
+- A registry-only Zoom0.25 project-discovery replay checks cited existing-project aliases, strict MCP arguments, connection closure and unchanged database bytes behind the shared external-I/O guard.
+
+- A compiled Drive regression checks document URLs introduced by saved-message edits, including older SDK writers and repair of pre-upgrade link checkpoints.
+
+- Packaged document-transfer checks verify Core 0.327.0 and Drive 0.17.0 registry artifacts against an older SDK, covering safe annotation copying, source preservation, reference collisions and retries. Shared public-page checks cover the localized recovery/recipe publication.
+
+- The shared-document runner tests current registry readers in separate installations, preserving each dependency graph while checking provenance, message links and retained tags across one temporary store.
+
+- A deterministic Zoom/Memo workflow check covers alias discovery, reviewed cited findings and repeat reads against pinned published tools, without owner data or a language model.
+
+- Audit regression guidance covers opaque credential output, inherited relay locks, newly executable apps, pinned fallback resolution and actual useful A7 read evidence.
+
+- Security audit instructions include the WhatsApp Go engine, supported CodeQL build mode,
+  module verification and symbol-level vulnerability evidence. JSON checker exit codes and
+  credential-shaped upstream references are handled explicitly before a run is called complete.
+
+## 0.5.2 — 17.10.2026
+
+### Added
+
+- A synthetic mail-index release check reuses the existing profile without owner mail or models; passing zero chunks skips embedding.
+
+- **The meeting workflow benchmark compares separate reads with batches.** Synthetic alias searches,
+  independent pages and passage context check retained evidence while measuring process count,
+  elapsed time and full versus selected JSON output. No model or real account is used.
+
+### Fixed
+
+- Agent payload runs recognize current CLI send envelopes and retain the private sender receipt
+  for cleanup recovery. Failed or unknown receipts stop as incomplete runs without replaying the
+  send; resolve cleanup before staging another fixture.
+
+## 0.5.1 — 16.10.2026
+
+### Fixed
+
+- Agent audit runs require one successful terminal result. The host canary matches each attempted
+  write to its permission denial by tool name and call ID; unrelated or partial denials fail.
+  Payload runs reject write attempts even when their command text is empty.
+
+## 0.5.0 — 16.10.2026
+
+### Changed — may break callers
+
+- The offline catalog research runner accepts an optional `--precise-effects` expectation for
+  the corrected provider-only metadata, while retaining exact historical release expectations.
+  Its JSON summary records the selected effects expectation. The profile also checks JSON/JSONL
+  field selection, provider key paths, unknown fields and refusal before undeclared writes.
+
+### Added
+
+- Installed Drive 0.14.0 shared-Core acceptance: 59 AI workflow commands/12 loopback requests
+  and 24 decision-history commands, exact Core/Base pins, registry integrity and shared-module
+  hashes. Historical runner modes and results remain reproducible.
+- Synthetic installed-Drive decision history checks: replacement on acceptance, reversal, event
+  time and document/account/policy boundaries, with a network/browser/keyring guard.
+- `security preflight` checks scanner pins, command availability, canonical repository paths and
+  aliases, GitHub analysis access and an optional comparison baseline without scanning source.
+  JSON diagnostics distinguish scanner readiness from the separately approved audit stages.
+- Drive AI extraction research drives the executable against a guarded loopback responder,
+  checking evidence quotes, proposal persistence, provider failures and source changes.
+  Historical npm, local candidate and fixed npm 0.12.2 results are distinguished.
+  Released checks enforce exact Core/Base pins, quote permission and one shared Base instance,
+  and record compiled hashes and npm integrity values.
+- Complex Drive research acceptance: compiled-package SDK fixtures exercise nested content,
+  interrupted exports and source lifecycle with a real temporary store; live multi-tab comparisons
+  publish aggregate counts only, with private source details kept separately. Exact 0.11.2 and
+  0.12.0 compatibility summaries remain separate from the live 0.11.2 comparison.
+- The installed Drive research runner accepts exact npm 0.11.1 pins and checks list queries,
+  document-specific JSON fields, paging and refusal of removed filter flags. Fixture checks
+  follow document-list pages with a bounded scan rather than stopping after fifty sources. Older release
+  expectations remain separate.
+- Drive research acceptance selects exact version-specific export and memory-search contracts,
+  and records aggregate read-only Google import/recovery results without publishing source data.
+- The installed Drive research check now verifies person links, stale-note revision refusal,
+  scoped source-backed memories and local source retirement through the released CLI. It
+  checks persisted memory staleness and owner-note preservation with synthetic data only.
+- Controlled Drive acceptance: an explicit-profile, isolated-workspace checker for cached text,
+  hierarchy, source identity, exact search, Markdown, local annotations and optional syncs.
+  A private fixture manifest and owner-started test-account login are required for live use;
+  synthetic guards and compiled-package checks run without Google credentials.
+- Architecture checks: `performance/engineering/architecture-checks/` measures each CLI's lint guards
+  (import loops, file size, import boundaries), cli-core pins and files over 500 lines, and keeps a
+  dated table for the trend. The monthly workflow writes a fresh table to its run summary; copy it
+  into the record. Nothing is published or built.
+- The offline Drive catalog runner checks published contract-1/contract-2 responses, one-time
+  settings migration, provider metadata keys and field-specific MCP validation/auditing. Contract 3
+  adds effects, page continuation, completeness, JSONL termination and removed-flag checks. Unknown
+  discovery contracts are refused. The research report distinguishes released behavior from
+  newer source changes and includes a separately authorized live Google checklist.
+
+### Fixed
+
+- Socket results retain alerts from Python and other reported ecosystems, including reports
+  that also contain npm alerts. Existing npm observation IDs stay stable; other ecosystems get
+  distinct IDs. Coverage fingerprints distinguish this normalization from older npm-only runs,
+  so comparisons require a baseline produced with the same coverage.
+- The search-matrix hash lock installs the NLTK version declared in its requirements instead
+  of an older version. Historical result/version records remain unchanged; the reproduction
+  guide identifies the previous lock's source commit.
+- Security comparison coverage includes Semgrep rule/file gaps and partial-parsing spans. A new
+  gap cannot make a missing observation appear fixed merely because the scanner names match.
+  Existing records retain their original coverage; older and new fingerprints must not be mixed.
+- `cli-testing security scan` runs its Semgrep stage from an installed package: the stage ships as
+  compiled `dist/semgrep.js`, because Node refuses to strip types under `node_modules`. Before, every
+  scan from an install failed at Semgrep; it worked only from a checkout.
+- A repository whose scanner fails no longer stops the run: `scan` records the failure, scans the
+  remaining repositories and exits 1 at the end, naming the failed ones on stderr. Watch for a
+  non-zero exit with most raw files present — the failed repository has none for that tool.
+- The Semgrep fallback covers JavaScript files the parser rejects (`.js`, `.jsx`, `.mjs`, `.cjs`,
+  plus `.mts`, `.cts`), and keeps top-level await. One rule failing on one file is recorded as a
+  coverage gap in `semgrep.json` and `SCOPE.md` instead of failing the repository; every other
+  scanner error still does.
+- This repository's saved third-party web pages under `performance/**/fixtures/` are excluded from
+  Semgrep in `.semgrepignore`, so they no longer time the scan out.
+
 ## 0.4.0 — 11.10.2026
 
 ### Changed — may break callers

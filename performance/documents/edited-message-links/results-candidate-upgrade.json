@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "date": "2026-10-17T22:58:58.033Z",
+  "runtime": "v24.19.0",
+  "drive": "0.17.0",
+  "core": "0.331.0",
+  "previous_core": "0.307.0",
+  "integrity": "sha512-yf+P/r8qaJJK93Yytj6LJXD2+3NQA5KeS7cqtRgyVD1LlgMrXPRzSwCBMhQn+/ol/wW30/hsufJ2Z9LUcby0Cw==",
+  "artifact": "packed source candidate",
+  "core_integrity": "sha512-lOtFpX+kCYLcBz4kRjBUaB3ayKOSUFeG/ZDEIBlywC1DXdZrOh00jddqypGS4w7TWUqv4hWzGLor0WY9GZcVgA==",
+  "bin_sha256": "8af41515dbb2a4113d9ebe3bcba229a233f9cf0923267a95672bec01eac87828",
+  "one_physical_base": true,
+  "one_physical_commander": true,
+  "sync_invocations": 6,
+  "upgrade_from": "0.17.0",
+  "content_reads": 1,
+  "checks": [
+    "initial import before either message has a URL",
+    "first upgraded sync repairs URLs missed before the old checkpoint without a rescan",
+    "older SDK text edits link both same-ID messages in separate provider accounts",
+    "unchanged sync retains exactly one link per message",
+    "current chat readers omit removed URLs and deleted messages",
+    "re-added URL remains readable without duplicate links or content downloads"
+  ],
+  "limits": [
+    "Synthetic source and saved messages; no Google/messenger/OAuth/model contact",
+    "Auto-link rows are retained as historical context; current readers use current text",
+    "No hidden formatted links or remote edit event delivery is established"
+  ]
+}

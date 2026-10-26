@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "data": "synthetic",
+  "live_google": false,
+  "drive": "0.11.2",
+  "core": "0.289.0",
+  "invocations": 45,
+  "checks": [
+    "interrupted-export-resumes-without-relisting",
+    "nested-tabs-tables-footnotes-chips-unicode-and-native-markdown",
+    "rename-preserves-reference-tags-note-and-confirmed-memory",
+    "edit-replaces-search-text-and-stales-memory",
+    "in-scope-move-updates-tree-and-keeps-reference",
+    "trash-hides-source-and-leaves-unrelated-twin",
+    "restore-reuses-reference-and-owner-note",
+    "ancestor-scope-exit-retires-descendants-without-file-events",
+    "ancestor-reentry-discovers-descendants-and-retains-identity",
+    "repeat-sync-is-idempotent"
+  ]
+}

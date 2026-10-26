@@ -13,8 +13,8 @@ cd "$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)"
 settings=.claude/settings.json
 hook=.claude/hooks/writes-stay-inside.sh
 next=$(mktemp)
-jq '.sandbox.filesystem.allowWrite |= (map(select(test("[^/]\\*/") | not))
-  + ["/home/leemour/Projects/AI/max-cli/docs_ai/.git/**"] | unique)' "$settings" > "$next"
+jq --arg trail "$HOME/Projects/AI/max-cli/docs_ai/.git/**" '.sandbox.filesystem.allowWrite |= (map(select(test("[^/]\\*/") | not))
+  + [$trail] | unique)' "$settings" > "$next"
 mv "$next" "$settings"
 if ! grep -q 'max-cli-private-wt-' "$hook"; then
   anchor='"$beside"/cli-core/*) exit 0 ;;'

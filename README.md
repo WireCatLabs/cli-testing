@@ -26,7 +26,8 @@ Install this package as a development dependency and build it before running fro
 Give every scan a new private output directory; a recorded stage is never overwritten.
 
 ```sh
-cli-testing security scan <run-dir> <checkout>...
+cli-testing security preflight <checkout>... [--previous <run>]
+cli-testing security scan <run-dir> <checkout>... [--previous <run>]
 cli-testing security socket <run-dir> <checkout>...
 cli-testing compare security <run-a> <run-b>
 ```
@@ -52,11 +53,23 @@ attempted a write and whether its answer contains the expected task-specific fra
 these are reported separately in its summary. Runtime failures leave a run incomplete.
 The owner's approval applies only to the test profiles, chats and payloads listed in the plan.
 
+## Installation checks
+
+`cli-testing ux install <run-dir> <plan.json>` checks packed tarballs with pinned npm, pnpm and Bun,
+publint, the installed executable and an account-free follow-up command. Warnings are recorded; failed
+commands or missing binaries fail the row. See the [install guide](docs/ci/INSTALL.md) for plans, isolation
+and the on-demand Linux/macOS/Windows workflow.
+
 ## Search experiments
 
 Offline synthetic search-quality benchmarks, model explanations and resource probes live in
 [`performance/search/`](performance/search/README.md). They run on demand against an explicitly
 selected cli-messaging build; they are separate from the published suite package.
+
+## Engineering reviews
+
+[Code structure reviews](performance/engineering/README.md) assess responsibility, dependency
+direction and the changes needed to make feature development easier.
 
 ## Security audits
 

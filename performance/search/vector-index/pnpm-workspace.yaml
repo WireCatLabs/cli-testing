@@ -1,0 +1,3 @@
+allowBuilds:
+  hnswlib-node: true
+  usearch: true

@@ -1,0 +1,92 @@
+# The sender score on stored mail: what ranking by it would push down
+
+## Why
+
+The owner asked memo to rank likely spam lower in search, using the sender score from `memo mail inspect`.
+The [first check](../README.md) measured the score against Gmail's Spam folder. It counted false alarms only among
+senders the owner replied to, so bills, bookings and newsletters he never answers were not checked. The question
+here: on the mail memo actually searches, how much would each threshold push down, and is it spam? The answer
+decided whether to rank by the score now or first fix its false alarms (the owner chose to fix first).
+
+## Setup
+
+- One personal Gmail account in the shared store: 256,578 emails, 89,140 with full text (2018–2026), 9,585 sender
+  groups. Gmail's Spam folder is not imported, so this is mail Gmail delivered.
+- memo 0.55.0 (before) and the fix in cli-memo#253 (after), each scored by its own `probeMail`.
+- No domain ages: no RDAP lookups had been stored, so `young_domain` never fires here.
+- The command, read-only on the store; it prints totals and signal names only:
+
+```sh
+performance/mail/spam-scoring/stored-mail/score-store.sh <account address> [memo dist folder]
+```
+
+"Strong" signals are the ones that suggest forgery or fraud: `dmarc_fail`, `brand_spoof`, `young_domain`,
+`reply_to_elsewhere`, `disposable_domain` (minus 5 for a sender the owner replied to). The others (`never_opened`,
+`bulk_never_replied`, `dkim_not_passed`) describe engagement, which bills and newsletters share with spam.
+
+## Results
+
+Full-text emails, and their sender groups, that each threshold would rank lower:
+
+| Scorer | All signals ≥ 3 | Strong signals ≥ 3 | Strong signals ≥ 2 |
+|---|---:|---:|---:|
+| memo 0.55.0 | 17,459 (4,079 groups) | 697 (71 groups) | 1,183 (197 groups) |
+| cli-memo#253 | 17,157 (4,060 groups) | 200 (20 groups) | 718 (149 groups) |
+| cli-memo#257 | 17,041 (4,050 groups) | **2 (2 groups)** | 520 (131 groups) |
+| #257 + headers of older mail (cli-memo#266) | 22,890 | 26 (5 groups) | 7,747 (1,353 groups) |
+
+What it showed:
+
+- **All signals at 3 would push down a fifth of the searchable mail.** 16,171 of those emails score only on
+  "never opened" plus "bulk, never replied": newsletters and many bills. Ranking by the full score is ruled out.
+- **The strong signals had two false alarms that #253 fixes.**
+  - `brand_spoof` fired on relays and platforms: "Google via LinkedIn" from LinkedIn's own domain, Coursera
+    courses and Quora spaces named after companies, Dropbox Sign from hellosign.com. One such email marked the
+    whole group, so one platform newsletter group of 893 emails was flagged.
+  - `dmarc_fail` fired on senders whose DKIM signature was valid but for another domain, a setup mistake common at
+    newsletter services before 2021. All 414 DMARC failures in the store are from 2018–2021, none later.
+- **After #253, what was left at strong ≥ 3 was still mostly real mail:** old unsigned mail from a university's
+  alumni office and a payment provider, plus two real look-alike senders (a crypto exchange's name on another
+  domain, a "Microsoft Exchange" sender on a random domain).
+- **#257 counts a DMARC failure only on mail from 2022 on** (the owner's choice). Every failure in this store was
+  from 2018 to March 2021. What is left at strong ≥ 3 is the two look-alike senders, one email each.
+- **Few emails carry an authentication result at all:** about one in eight, and almost none from 2022 on, so the
+  DMARC and DKIM signals see little of the mail.
+
+### After older mail got its headers
+
+57,000 of the emails stored in full had no Reply-To or DKIM/DMARC verdicts, because they were imported before memo
+kept them; cli-memo#266 read them from Gmail. With the signals visible on all mail:
+
+- **Strong signals at 3 or more: 26 emails from 5 senders.** Two are real look-alikes, one is likely junk, and
+  two are real: a university programme and an airline whose DMARC fails on mail from 2022 on. A search for that
+  airline would push down 4 of its 20 hits, its bookings among them.
+- **At 2 or more: 7,747 emails.** `reply_to_elsewhere` alone now fires on 352 senders, mostly real companies
+  that answer from a help-desk domain; it pushed down 7 of 30 hits for one benchmark question.
+- **The eight benchmark-style searches lose nothing at 3 or more.**
+- **Ranking stays off.** A failed DMARC check alone still marks real senders; it should count as fraud only
+  beside another fraud signal before anything is ranked by it.
+
+### Fraud signals redefined, domain ages looked up (cli-memo#281)
+
+The owner's choices: a domain under 180 days old adds 5; a failed DMARC check counts only beside another fraud
+signal (vendor data puts DMARC pass at about half of senders, and on this mailbox it alone flagged an airline and
+a university); a Reply-To on another domain is no longer a fraud signal. The daily scoring now looks up the
+registration date of every never-replied sender's domain heard from in the last two years: 701 lookups, 1,024
+domains known (the rest have no RDAP).
+
+- **Fraud signals at 3 or more: 15 senders, 58 emails stored in full.** Two are look-alike senders; 12 have a
+  domain under 180 days old: mostly cold sales mail and new tools' reports, but also a large site's new mail
+  domain, a creator platform and the owner's own project domain. That is close to the ~70% bad share
+  [Unit 42](https://unit42.paloaltonetworks.com/newly-registered-domains-malicious-abuse-by-bad-actors/) reports for
+  newly registered domains, not 95%.
+- **The DMARC-only false alarms (airline, university) are gone.**
+- **Benchmark searches, plus searches for the airline, the project and the large site, lose no hit at 3 or more.**
+
+## Not measured
+
+- Domain ages (`young_domain`): no lookups were stored for this account.
+- Whether the ranking change hurts real searches: to be checked with the owner's benchmark questions before any
+  demotion ships.
+- Mail Gmail put in Spam: not imported, and covered by the [first check](../README.md).
+- Accounts other than this one.

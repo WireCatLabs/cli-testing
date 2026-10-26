@@ -1,0 +1,31 @@
+{
+  "version": "0.13.0",
+  "dependencies": {
+    "@bomb.sh/tab": "0.0.22",
+    "@googleapis/docs": "14.1.0",
+    "@googleapis/drive": "26.0.2",
+    "@googleapis/driveactivity": "11.0.1",
+    "@modelcontextprotocol/server": "2.1.0",
+    "@wirecat/cli-base": "0.35.0",
+    "@wirecat/cli-core": "0.294.0",
+    "commander": "15.0.0",
+    "google-auth-library": "11.2.0",
+    "mammoth": "1.13.0",
+    "proper-lockfile": "4.1.2",
+    "unpdf": "1.8.1",
+    "valibot": "1.5.0"
+  },
+  "node": "v24.19.0",
+  "commands": 24,
+  "checks": [
+    "proposal leaves earlier decision accepted",
+    "confirm supersedes earlier decision",
+    "owner replacement and event time survive executable round trip",
+    "wrong document and account cannot reverse or replace",
+    "dry-run and readonly preserve decision; offline reversal persists",
+    "nondecisions and unknown arguments refused; history retained"
+  ],
+  "guards": "child network/browser/keyring denied",
+  "package_manifest_sha256": "020f7568bcd2f0f3167de0949a85fbc36bfa79228c1a41d4eecf66b03f6f99b1",
+  "limitations": "synthetic local decisions only; no live Google writes, AI calls or model accuracy measurement"
+}

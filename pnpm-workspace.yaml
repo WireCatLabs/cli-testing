@@ -5,4 +5,7 @@ allowBuilds:
   esbuild: true
   lefthook: true
 minimumReleaseAgeExclude:
-  - '@wirecat/cli-base@0.21.0'
+  - "@wirecat/*"
+
+overrides:
+  micromark-extension-math>katex: 0.19.1

@@ -1,0 +1,295 @@
+[
+  {
+    "id": "stackyard-q01",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Will the scanners on the warehouse floor keep their own DB connection after the migration?",
+    "kind": "negative",
+    "answerable": true,
+    "grades": {
+      "sy-inf-040": 3,
+      "sy-inf-039": 2,
+      "sy-inf-068": 3,
+      "sy-rb-010": 3
+    },
+    "evidence_sets": [
+      [
+        "sy-inf-039",
+        "sy-inf-040"
+      ],
+      [
+        "sy-inf-068"
+      ],
+      [
+        "sy-rb-010"
+      ]
+    ],
+    "note": "Answer is a denial ('nothing on the warehouse LAN talks to the database'); the BI box that does connect directly and gateway timeout chatter are traps."
+  },
+  {
+    "id": "stackyard-q02",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Which site moves to the new cloud first?",
+    "kind": "conditional",
+    "answerable": true,
+    "grades": {
+      "sy-m16-007": 3,
+      "sy-war-021": 3,
+      "sy-pl-003": 1,
+      "sy-rb-005": 1,
+      "sy-inf-078": 1,
+      "sy-inf-077": 2,
+      "sy-war-005": 1,
+      "sy-m16-002": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-m16-007"
+      ],
+      [
+        "sy-war-021"
+      ]
+    ],
+    "note": "Leeds, but only if lag stays under 5s for 72h, otherwise Doncaster. The 30 Sep lag report (max 4.4s) suggests the condition is met, but nobody states a final go."
+  },
+  {
+    "id": "stackyard-q03",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Has the warehouse side agreed to the procedure for reverting if the switch fails?",
+    "kind": "approval",
+    "answerable": true,
+    "grades": {
+      "sy-war-032": 3,
+      "sy-war-031": 2,
+      "sy-war-033": 1,
+      "sy-m07-012": 2,
+      "sy-inf-080": 1,
+      "sy-rb-013": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-war-031",
+        "sy-war-032"
+      ]
+    ],
+    "note": "Hannah approved the outline only and has not reviewed the rollback steps; Tom's 'Hannah approved the runbook' over-claims."
+  },
+  {
+    "id": "stackyard-q04",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Did anyone OK running a bigger database box during migration week?",
+    "kind": "approval",
+    "answerable": true,
+    "grades": {
+      "sy-bil-011": 3,
+      "sy-bil-010": 2,
+      "sy-m16-019": 1,
+      "sy-bil-023": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-bil-010",
+        "sy-bil-011"
+      ]
+    ],
+    "note": "The only proof is Oleg's native request and Priya's bare '+'; Ruth later asks who approved it."
+  },
+  {
+    "id": "stackyard-q05",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Did we agree to rework how label print jobs get scheduled?",
+    "kind": "unresolved",
+    "answerable": false,
+    "grades": {
+      "sy-inf-046": 2,
+      "sy-inf-047": 1,
+      "sy-inf-048": 1,
+      "sy-inf-063": 1,
+      "sy-inf-064": 1,
+      "sy-m16-017": 1,
+      "sy-m16-018": 1,
+      "sy-inf-062": 1,
+      "sy-inf-065": 1,
+      "sy-inf-066": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-inf-046",
+        "sy-inf-048"
+      ]
+    ],
+    "note": "Jess's proposal got support from QA but was parked 'until after cutover'; never accepted."
+  },
+  {
+    "id": "stackyard-q06",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Have we settled on a date for the final switch-over?",
+    "kind": "conflict",
+    "answerable": false,
+    "grades": {
+      "sy-rb-001": 2,
+      "sy-m07-003": 2,
+      "sy-m07-004": 1,
+      "sy-m07-005": 1,
+      "sy-m07-016": 1,
+      "sy-war-038": 1,
+      "sy-war-037": 1,
+      "sy-pl-002": 1,
+      "sy-war-013": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-rb-001",
+        "sy-m07-003"
+      ]
+    ],
+    "note": "Runbook says Sat 17 Oct; the warehouse demands the 24th; nobody decided and Marcus's question went unanswered."
+  },
+  {
+    "id": "stackyard-q07",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Is the old provider's replica going to stay up for a while after we switch?",
+    "kind": "revoked",
+    "answerable": true,
+    "grades": {
+      "sy-bil-018": 3,
+      "sy-m16-015": 2,
+      "sy-m16-016": 2,
+      "sy-rb-015": 2,
+      "sy-bil-019": 1,
+      "sy-war-021": 1,
+      "sy-war-034": 1,
+      "sy-war-019": 1,
+      "sy-bil-021": 2,
+      "sy-bil-022": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-bil-018"
+      ]
+    ],
+    "note": "Two-week replica agreed on 16 Sep and still in runbook v3, revoked in billing on 5 Oct (snapshot export instead)."
+  },
+  {
+    "id": "stackyard-q08",
+    "project": "stackyard",
+    "language": "en",
+    "text": "When do we shut down the Phoenix billing tool?",
+    "kind": "same-name",
+    "answerable": true,
+    "grades": {
+      "sy-bil-016": 3,
+      "sy-bil-015": 2,
+      "sy-m07-007": 3,
+      "sy-inf-070": 1,
+      "sy-rb-018": 1,
+      "sy-rb-002": 1,
+      "sy-pl-006": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-bil-015",
+        "sy-bil-016"
+      ],
+      [
+        "sy-m07-007"
+      ]
+    ],
+    "note": "Two Phoenixes: legacy invoicing off 30 Nov vs the forklift telemetry pilot that 'wraps up 31 Oct'."
+  },
+  {
+    "id": "stackyard-q09",
+    "project": "stackyard",
+    "language": "en",
+    "text": "What's the monthly Nimbara cost for staging?",
+    "kind": "missing",
+    "answerable": false,
+    "grades": {
+      "sy-bil-002": 1,
+      "sy-bil-003": 1,
+      "sy-bil-004": 1,
+      "sy-bil-024": 1,
+      "sy-inf-034": 1,
+      "sy-bil-007": 1,
+      "sy-bil-008": 1,
+      "sy-bil-013": 1
+    },
+    "evidence_sets": [],
+    "note": "Staging was asked for several times and never priced. Traps: 'half everything' + the €6,800 prod estimate invite a guess of ~€3.4k, and the September invoice mixes staging test instances into €1,240."
+  },
+  {
+    "id": "stackyard-q10",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Why did we drop Manchester from the migration?",
+    "kind": "premise",
+    "answerable": false,
+    "grades": {
+      "sy-m16-012": 2,
+      "sy-pl-003": 2,
+      "sy-war-021": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-m16-012"
+      ],
+      [
+        "sy-pl-003"
+      ]
+    ],
+    "note": "False premise: Manchester was moved to wave 2 (November), not dropped."
+  },
+  {
+    "id": "stackyard-q11",
+    "project": "stackyard",
+    "language": "en",
+    "text": "Where geographically is prod going to live on the new provider?",
+    "kind": "fact",
+    "answerable": true,
+    "grades": {
+      "sy-inf-011": 3,
+      "sy-rb-003": 3,
+      "sy-inf-005": 1,
+      "sy-inf-006": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-inf-011"
+      ],
+      [
+        "sy-rb-003"
+      ]
+    ],
+    "note": "uk-west-2; the shortlist, the cheaper uk-south-1 and the eu-central-1 backup region are traps."
+  },
+  {
+    "id": "stackyard-q12",
+    "project": "stackyard",
+    "language": "ru",
+    "text": "Какую версию постгреса поднимаем на новом облаке?",
+    "kind": "fact",
+    "answerable": true,
+    "grades": {
+      "sy-inf-037": 3,
+      "sy-inf-028": 2,
+      "sy-rb-003": 3,
+      "sy-inf-019": 1,
+      "sy-inf-035": 1
+    },
+    "evidence_sets": [
+      [
+        "sy-inf-037"
+      ],
+      [
+        "sy-rb-003"
+      ]
+    ],
+    "note": "Managed 16.4, not 17; the current Corvane 13.11 and Jess's suggestion of 17 are traps; question in Russian over an English corpus."
+  }
+]

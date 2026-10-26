@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-16T16:49:40.186Z",
+  "runtime": "v24.19.0",
+  "drive": "0.14.1",
+  "core": "0.301.0",
+  "model": "deepseek-flash",
+  "endpoint": "https://api.deepseek.com",
+  "source": "synthetic fixtures only",
+  "results": [
+    {
+      "id": "approved-decision-save",
+      "mode": "save",
+      "duration_ms": 6689,
+      "exit": 0,
+      "proposals": [
+        {
+          "kind": "summary",
+          "body": "Project Lantern meeting on 2026-10-01 decided an approved budget of 120 units, assigned migration ownership to Morgan, and specified the team will use the shared document store.",
+          "quote": "Project Lantern meeting, 2026-10-01. Decision: the approved budget is 120 units. Morgan will own the migration. The team will use the shared document store."
+        },
+        {
+          "kind": "fact",
+          "body": "Project Lantern meeting occurred on 2026-10-01.",
+          "quote": "Project Lantern meeting, 2026-10-01."
+        },
+        {
+          "kind": "fact",
+          "body": "The approved budget is 120 units.",
+          "quote": "Decision: the approved budget is 120 units."
+        },
+        {
+          "kind": "fact",
+          "body": "Morgan will own the migration.",
+          "quote": "Morgan will own the migration."
+        },
+        {
+          "kind": "fact",
+          "body": "The team will use the shared document store.",
+          "quote": "The team will use the shared document store."
+        }
+      ],
+      "model": "deepseek-flash",
+      "provider": "openai",
+      "tokens": 1371,
+      "exact_quotes": true,
+      "saved": 5,
+      "saved_statuses": ["proposed", "proposed", "proposed", "proposed", "proposed"]
+    }
+  ]
+}

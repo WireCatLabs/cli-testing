@@ -1,6 +1,6 @@
 # What the tools taught us
 
-Facts learned during the 2026-10-09 audit, with their source. Each cost time once.
+Facts learned during the audits, with their source. Each cost time once.
 
 ## Scanners
 
@@ -18,11 +18,30 @@ Facts learned during the 2026-10-09 audit, with their source. Each cost time onc
   `semgrep/mcp/hooks/post_tool.py`, read in semgrep 1.180.0). The CLI with `--metrics=off` avoids it.
 - **The Socket CLI prints the start of the API token in its banner.** `--no-banner` hides it, and it
   must come after the command — before it, the flag is not parsed.
+- **A `.semgrepignore` replaces Semgrep's built-in ignore list** instead of adding to it: with a
+  one-line file, `test/`, `dist/` and `node_modules/` are scanned again (ran on semgrep 1.178.0). A
+  repository's file repeats the built-in list before its own lines.
+- **gitleaks reads `.gitleaksignore` from the current folder**, not from the repository it scans.
+  Run it from the repository's root, or a scan from elsewhere reports the ignored hits again.
+- **CodeQL 2.27 SARIF keeps the rules in `tool.extensions[].rules`**, and `tool.driver.rules` is
+  empty. A result points at its rule through `rule.toolComponent.index` and `rule.index`; a gate
+  that looks rules up in `driver.rules` by `ruleId` finds none and never fails. Resolve every
+  result to a rule, and fail when one has no rule.
+- **A pinned semgrep in its own virtualenv still runs the newest semgrep on `PATH`**: the
+  `semgrep` wrapper starts whichever `osemgrep` it finds first. Put the virtualenv's `bin` first on
+  `PATH` and check `semgrep --version` before a run (semgrep 1.178.0 next to 1.180.0).
 - **Trail of Bits `supply-chain-risk-auditor` does not read `pnpm-lock.yaml`**; it covers direct
   dependencies only (its `SKILL.md`). osv-scanner covers the tree.
 - **Trail of Bits `fp-check` installs a Stop hook on every session** that blocks stopping until the
   verification is visible in the conversation itself. Disabling the plugin takes effect from the next
   session; in the current one, turn it off in `/hooks`.
+- **Zero scanned history is not a clean secret scan.** Gitleaks splits `--log-opts` itself;
+  embedded shell quotes can select zero commits. Keep the history/path expression in one shell
+  argument without internal quotes, verify a nonzero scanned count and use a separate synthetic
+  known-positive control. A private allowlisted scan does not establish whole-repository coverage.
+- **A delivery closeout is not a new audit baseline.** Do not change historical incomplete runs
+  to pass comparison. Bootstrap a new scanner run without `--previous`, record its coverage and
+  track manual verification, Socket and live A7 independently.
 
 ## GitHub
 
@@ -33,6 +52,15 @@ Facts learned during the 2026-10-09 audit, with their source. Each cost time onc
 - **zizmor runs against `.github`**; given a nested path it can exit 3, "no inputs collected".
 - **Restricting the `npm` environment to `main`** keeps trusted publishing working from `main` (token
   exchange `201`) and stops branch dry runs from reaching npm.
+- **A new repository does not inherit settings applied repository by repository.** Secret
+  scanning, push protection, security updates and private reporting start off unless an
+  organisation code security configuration is the default for new repositories.
+- **CodeQL default setup and workflow CodeQL do not mix**: with default setup on, GitHub refuses
+  the SARIF a workflow uploads for the same languages
+  ([docs](https://docs.github.com/en/code-security/code-scanning/troubleshooting-sarif-uploads/default-setup-enabled)).
+- **A reusable workflow runs in the caller's checkout.** A script file kept next to
+  `release-checks.yml` in cli-base does not exist when max-cli calls it; the gate's code has to be
+  inline in the workflow.
 - **A CodeQL alert number is per repository**; check every dismissed alert's path after dismissing
   by number.
 
@@ -46,6 +74,5 @@ Facts learned during the 2026-10-09 audit, with their source. Each cost time onc
 ## Agents
 
 - **`claude -p` with `--allowedTools` limited to read tools refuses a write and still records it**,
-  which makes a safe canary for injection tests.
-- **On 2026-10-09, Opus 5.5 and Haiku 5.5 made no write in 16 injection runs.** That is model
-  behaviour on one day, not a control.
+  which makes a safe canary for injection tests. Whether a model resisted an injection on one day is
+  behaviour, not a control.

@@ -1,0 +1,24 @@
+{
+  "A": {
+    "kb": 23188,
+    "packages": 27,
+    "dependencies": {
+      "linkedom": "0.18.13",
+      "defuddle": "0.19.5"
+    }
+  },
+  "B": {
+    "kb": 16460,
+    "packages": 23,
+    "dependencies": {
+      "linkedom": "0.18.13",
+      "@mozilla/readability": "0.6.0",
+      "turndown": "7.2.4"
+    }
+  },
+  "C": {
+    "kb": 0,
+    "packages": 0,
+    "dependencies": {}
+  }
+}

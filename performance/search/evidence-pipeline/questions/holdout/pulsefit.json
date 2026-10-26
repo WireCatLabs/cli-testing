@@ -1,0 +1,331 @@
+[
+ {
+  "id": "pulsefit-q01",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "How long may we hold on to the record of when members visited the clubs?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "pf-cl-013": 3,
+   "pf-cl-012": 2,
+   "pf-dv-013": 3
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-012",
+    "pf-cl-013"
+   ],
+   [
+    "pf-dv-013"
+   ]
+  ],
+  "note": "Answer is a denial ('not longer than 18 months'). Traps: receipts 7 years in the same message, Sentry logs 30 days, 'not 24 like my first draft', the spec's 'to be confirmed'."
+ },
+ {
+  "id": "pulsefit-q02",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "Will people be able to put their membership on hold through the app?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "pf-k-014": 3,
+   "pf-k-013": 2,
+   "pf-dv-015": 3,
+   "pf-r-020": 1,
+   "pf-r-021": 1,
+   "pf-dv-032": 1,
+   "pf-dv-033": 1,
+   "pf-sp-014": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-k-013",
+    "pf-k-014"
+   ],
+   [
+    "pf-dv-015"
+   ]
+  ],
+  "note": "Yes only if Paystride ships the pause endpoint by 20 March; the button is behind a flag until then."
+ },
+ {
+  "id": "pulsefit-q03",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "Has the client signed off on the membership prices shown on the plans page?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "pf-cl-028": 3,
+   "pf-cl-027": 2,
+   "pf-tm-051": 1,
+   "pf-r-009": 1,
+   "pf-dv-030": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-027",
+    "pf-cl-028"
+   ]
+  ],
+  "note": "Grace approved the section structure only; prices are placeholders. Jamie P's 'Grace approved the plans screen' over-claims."
+ },
+ {
+  "id": "pulsefit-q04",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "Did we agree to make a smartwatch version of the app?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "pf-tm-024": 2,
+   "pf-tm-026": 1,
+   "pf-tm-055": 1,
+   "pf-tm-081": 1,
+   "pf-r-018": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-tm-024",
+    "pf-tm-026"
+   ]
+  ],
+  "note": "Theo's Watch companion idea was deferred again and again ('after launch', 'April', 'not now'); never decided."
+ },
+ {
+  "id": "pulsefit-q05",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "Up to what point can members back out of a booked class without a penalty?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "pf-sp-010": 2,
+   "pf-r-012": 2,
+   "pf-tm-073": 1,
+   "pf-tm-075": 1,
+   "pf-cl-049": 1,
+   "pf-r-015": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-sp-010",
+    "pf-r-012"
+   ]
+  ],
+  "note": "Spec says 2 hours, Martin demands 12 hours at the review; nobody decided and the build keeps 2 hours."
+ },
+ {
+  "id": "pulsefit-q06",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "When is the app going out to the public?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "pf-sp-017": 2,
+   "pf-cl-051": 2,
+   "pf-r-016": 1,
+   "pf-tm-076": 1,
+   "pf-k-024": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-sp-017",
+    "pf-cl-051"
+   ]
+  ],
+  "note": "Plan says 14 April; Grace demands 1 April for the campaign; Nora never got back, Grace was on holiday."
+ },
+ {
+  "id": "pulsefit-q07",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "How many friends can a Premium member bring along each month?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "pf-sp-013": 2,
+   "pf-cl-024": 2,
+   "pf-cl-025": 1,
+   "pf-tm-049": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-sp-013",
+    "pf-cl-024"
+   ]
+  ],
+  "note": "Spec says 2 guest passes, Martin says 1 (Black gets 2); Grace promised to check and never came back. Black's 4 in the spec is a trap."
+ },
+ {
+  "id": "pulsefit-q08",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "Do class reminders currently go out by email as well as push notification?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "pf-cl-042": 3,
+   "pf-dv-027": 3,
+   "pf-cl-017": 2,
+   "pf-sp-008": 1,
+   "pf-tm-066": 1,
+   "pf-dv-029": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-017",
+    "pf-cl-042"
+   ],
+   [
+    "pf-dv-027"
+   ]
+  ],
+  "note": "Push + email agreed on 24 Feb (still in the spec), cancelled on 12 Mar with a short 'drop the mails, push only'. Another client's 'email only' is a trap."
+ },
+ {
+  "id": "pulsefit-q09",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "How do members currently log in to the app?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "pf-cl-036": 3,
+   "pf-dv-023": 3,
+   "pf-k-008": 2,
+   "pf-sp-007": 2,
+   "pf-dv-011": 1,
+   "pf-tm-062": 1,
+   "pf-tm-060": 1,
+   "pf-dv-012": 1,
+   "pf-k-009": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-036"
+   ],
+   [
+    "pf-dv-023"
+   ]
+  ],
+  "note": "Membership number + 4-digit PIN agreed at kickoff and still in the spec; replaced on 9 Mar by magic links."
+ },
+ {
+  "id": "pulsefit-q10",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "Is booking a session with a personal trainer part of the first release now?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "pf-cl-046": 3,
+   "pf-tm-070": 3,
+   "pf-cl-047": 3,
+   "pf-k-011": 2,
+   "pf-sp-006": 2
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-046"
+   ],
+   [
+    "pf-tm-070"
+   ],
+   [
+    "pf-cl-046",
+    "pf-cl-047"
+   ]
+  ],
+  "note": "PT booking was in v1 at kickoff and in the spec; Martin pulled it to phase 2 on 17 Mar."
+ },
+ {
+  "id": "pulsefit-q11",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "What did Jamie from the club ask to be displayed when a member is scanned at reception?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "pf-cl-033": 3,
+   "pf-r-006": 2,
+   "pf-cl-035": 1,
+   "pf-cl-055": 1,
+   "pf-tm-057": 1,
+   "pf-dv-021": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-033"
+   ]
+  ],
+  "note": "Two Jamies: club manager Jamie Holt asked for photo, name and expiry date in red; agency Android dev Jamie Prentice talks about a tick animation and a Pixel 6 crash on the same screen."
+ },
+ {
+  "id": "pulsefit-q12",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "How much is PulseFit spending on paid ads for the app launch?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "pf-cl-009": 1,
+   "pf-sp-018": 1
+  },
+  "evidence_sets": [],
+  "note": "The campaign exists but its budget is never stated. Traps: agency fee £48,500, Apple account £79, another client's £20k launch budget."
+ },
+ {
+  "id": "pulsefit-q13",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "How many clubs get the new door QR readers in the first wave?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "pf-cl-019": 3,
+   "pf-sp-002": 1,
+   "pf-tm-015": 1,
+   "pf-cl-020": 1,
+   "pf-k-019": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-019"
+   ]
+  ],
+  "note": "5 clubs (all except Eastgate and Millbrook). Traps: spec lists all 7 clubs, '7 × 2 = 14 devices'."
+ },
+ {
+  "id": "pulsefit-q14",
+  "project": "pulsefit",
+  "language": "en",
+  "text": "What is the longest a waiting list for a single class can get?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "pf-cl-031": 3,
+   "pf-cl-030": 2,
+   "pf-dv-020": 3,
+   "pf-sp-021": 3,
+   "pf-r-004": 1,
+   "pf-sp-011": 1
+  },
+  "evidence_sets": [
+   [
+    "pf-cl-030",
+    "pf-cl-031"
+   ],
+   [
+    "pf-dv-020"
+   ],
+   [
+    "pf-sp-021"
+   ]
+  ],
+  "note": "8 per class; the bare '8' needs its question. Traps: ClubDesk's 10, weekly limit of 10 bookings, capacity 20–25."
+ }
+]

@@ -1,0 +1,8 @@
+{"step":"create","ok":true,"created":["budget.csv","plan.md"],"errors":[]}
+{"step":"change-feed-after-docs-api-edit","docListed":false}
+{"step":"pull","ok":true,"pulled":["plan.md"],"updated":[],"introPulled":true,"tickPulled":true,"linesChanged":2,"starBulletsKept":true,"codeLanguageKept":true}
+{"step":"after-pull","ok":true,"pulled":[],"updated":[]}
+{"step":"conflict","ok":false,"reason":"the same part changed here and in Google","parts":[{"last_sync":"closing line","local":"closing line from the laptop","google":"closing line from Google"}],"localChangedAt":true,"googleChangedAt":"2026-10-22T14:35:00.734Z","googleChangedBy":true,"localUntouched":true}
+{"step":"keep-both","ok":true,"local":true,"google":true}
+{"step":"sheet-pull","ok":true,"pulled":["budget.csv"],"csv":"item,amount\nrent,950.50\nfood,130\nwater,15\n"}
+{"step":"cleanup","trashed":true,"configRestored":true}

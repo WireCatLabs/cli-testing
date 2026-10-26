@@ -1,0 +1,336 @@
+[
+ {
+  "id": "meeplehaus-q01",
+  "project": "meeplehaus",
+  "language": "ru",
+  "text": "Сколько у бэкера времени, чтобы исправить адрес, куда слать коробку?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "mh-tm-019": 3,
+   "mh-tm-018": 2,
+   "mh-cp-011": 3,
+   "mh-m1-015": 3
+  },
+  "evidence_sets": [
+   [
+    "mh-tm-018",
+    "mh-tm-019"
+   ],
+   [
+    "mh-cp-011"
+   ],
+   [
+    "mh-m1-015"
+   ]
+  ],
+  "note": "Answer is a denial in English (\"no changes later than 14 days after the pledge manager closes\"). Traps: refunds 30 days in the same message and in the plan."
+ },
+ {
+  "id": "meeplehaus-q02",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "Will the deluxe edition come with metal coins?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "mh-m1-005": 3,
+   "mh-m1-004": 2,
+   "mh-cp-006": 3
+  },
+  "evidence_sets": [
+   [
+    "mh-m1-004",
+    "mh-m1-005"
+   ],
+   [
+    "mh-cp-006"
+   ]
+  ],
+  "note": "Only if the campaign reaches €120,000 (stretch goal); answer in Russian. Traps: €35,000 goal, €50k/€80k stretches."
+ },
+ {
+  "id": "meeplehaus-q03",
+  "project": "meeplehaus",
+  "language": "ru",
+  "text": "Фабрика одобрила цвета на пробной печати карт?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "mh-fc-008": 3,
+   "mh-fc-007": 2,
+   "mh-tm-036": 1,
+   "mh-fc-013": 1,
+   "mh-m2-004": 1,
+   "mh-tm-038": 1,
+   "mh-fc-018": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-fc-007",
+    "mh-fc-008"
+   ]
+  ],
+  "note": "Factory approved the dieline/box template only; the colour proof was not checked. Kirill's 'Фабрика всё одобрила' over-claims."
+ },
+ {
+  "id": "meeplehaus-q04",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "Did we decide to add a single-player mode?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "mh-tm-014": 2,
+   "mh-tm-016": 1,
+   "mh-tm-033": 1,
+   "mh-tm-049": 1,
+   "mh-m1-017": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-tm-014",
+    "mh-tm-016"
+   ]
+  ],
+  "note": "Daniel's solo-mode proposal was deferred every time ('после кампании', 'parking it', 'after launch')."
+ },
+ {
+  "id": "meeplehaus-q05",
+  "project": "meeplehaus",
+  "language": "ru",
+  "text": "Сколько бэкер платит за базовую коробку?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "mh-cp-004": 2,
+   "mh-mk-011": 2,
+   "mh-m1-020": 1,
+   "mh-m1-021": 1,
+   "mh-mk-025": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-cp-004",
+    "mh-mk-011"
+   ]
+  ],
+  "note": "Plan says €49 without shipping; Daniel pushes €55 with shipping and put it as a page placeholder; never decided. Deluxe €79 is a trap."
+ },
+ {
+  "id": "meeplehaus-q06",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "When does the campaign go live?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "mh-cp-003": 2,
+   "mh-m2-005": 2,
+   "mh-m2-006": 1,
+   "mh-tm-051": 1,
+   "mh-tm-060": 1,
+   "mh-of-011": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-cp-003",
+    "mh-m2-005"
+   ]
+  ],
+  "note": "Plan says 23 June; Kirill (in Russian) insists on 7 July after the colour proof; Anna never decided. Max Hollis's June 16 submission deadline is a trap."
+ },
+ {
+  "id": "meeplehaus-q07",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "How many cards are in the core box?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "mh-ar-003": 2,
+   "mh-pr-011": 2,
+   "mh-pr-028": 1,
+   "mh-ar-019": 1,
+   "mh-m1-011": 1,
+   "mh-m2-010": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-ar-003",
+    "mh-pr-011"
+   ]
+  ],
+  "note": "Yulia (Russian) says 180, the factory quote says 216; nobody decided. 120 event cards, 54 per sheet are traps."
+ },
+ {
+  "id": "meeplehaus-q08",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "Who's handling shipping to EU backers now?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "mh-pr-022": 3,
+   "mh-m2-012": 3,
+   "mh-m2-013": 1,
+   "mh-pr-006": 2,
+   "mh-cp-010": 1,
+   "mh-pr-025": 1,
+   "mh-pr-023": 1,
+   "mh-pr-024": 1,
+   "mh-pr-032": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-pr-006",
+    "mh-pr-022"
+   ],
+   [
+    "mh-m2-012"
+   ]
+  ],
+  "note": "ShipNest (included in pledge) was agreed and is still in the plan; Kirill's short Russian reply switches to Fulfilio. Old message shares far more words with the question."
+ },
+ {
+  "id": "meeplehaus-q09",
+  "project": "meeplehaus",
+  "language": "ru",
+  "text": "Из чего в итоге делаем фигурки героев?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "mh-pr-016": 3,
+   "mh-fc-011": 3,
+   "mh-m2-004": 3,
+   "mh-pr-008": 2,
+   "mh-fc-010": 2,
+   "mh-m1-008": 1,
+   "mh-pr-018": 1,
+   "mh-tm-054": 1,
+   "mh-pr-030": 1,
+   "mh-fc-012": 1,
+   "mh-cp-007": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-pr-008",
+    "mh-pr-016"
+   ],
+   [
+    "mh-fc-010",
+    "mh-fc-011"
+   ],
+   [
+    "mh-m2-004"
+   ]
+  ],
+  "note": "Plastic minis agreed by Kirill and still in the plan; Anna's two-word reply 'Минек не будет. Стенди.' cancels it."
+ },
+ {
+  "id": "meeplehaus-q10",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "Are backer-only promo cards still part of the campaign?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "mh-mk-018": 3,
+   "mh-m2-014": 3,
+   "mh-mk-003": 2,
+   "mh-cp-008": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-mk-003",
+    "mh-mk-018"
+   ],
+   [
+    "mh-m2-014"
+   ]
+  ],
+  "note": "Backer-exclusive promo pack agreed in May and still in the plan; dropped on 3 June because of retailers."
+ },
+ {
+  "id": "meeplehaus-q11",
+  "project": "meeplehaus",
+  "language": "ru",
+  "text": "К какому числу иллюстратор Макс обещал готовые картинки для карт?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "mh-ar-007": 3,
+   "mh-m2-018": 3,
+   "mh-ar-015": 1,
+   "mh-mk-007": 1,
+   "mh-mk-014": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-ar-007"
+   ],
+   [
+    "mh-m2-018"
+   ]
+  ],
+  "note": "Two Maxes: illustrator Max Rudenko — final event art by 12 June (drafts 29 May); Backerly manager Max Hollis — June 16 page deadline and May 30 featured slot."
+ },
+ {
+  "id": "meeplehaus-q12",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "How heavy is the core box?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "mh-pr-013": 1,
+   "mh-pr-019": 1,
+   "mh-m2-017": 1,
+   "mh-cp-015": 1
+  },
+  "evidence_sets": [],
+  "note": "Weight is never stated (open question). Traps: 30×30×7 cm, 2 mm board, shipping tiers by kg."
+ },
+ {
+  "id": "meeplehaus-q13",
+  "project": "meeplehaus",
+  "language": "ru",
+  "text": "Какой минимальный тираж у фабрики?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "mh-pr-003": 3,
+   "mh-tm-034": 1,
+   "mh-fc-005": 1,
+   "mh-pr-004": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-pr-003"
+   ]
+  ],
+  "note": "Qingmu minimum 1,500 copies (English). Traps: 2,000 for better price, Polish factory 1,000, \"мечтаю о 3 000\", 4,000 per container."
+ },
+ {
+  "id": "meeplehaus-q14",
+  "project": "meeplehaus",
+  "language": "en",
+  "text": "What is the funding target on Backerly?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "mh-tm-009": 3,
+   "mh-cp-002": 3,
+   "mh-tm-007": 1
+  },
+  "evidence_sets": [
+   [
+    "mh-tm-009"
+   ],
+   [
+    "mh-cp-002"
+   ]
+  ],
+  "note": "€35,000 (stated in Russian and in the plan). Traps: last campaign 28,000 goal / 41k raised, stretches."
+ }
+]

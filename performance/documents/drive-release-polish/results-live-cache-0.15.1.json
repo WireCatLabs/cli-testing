@@ -1,0 +1,13 @@
+{
+  "drive": "0.15.1",
+  "core": "0.301.0",
+  "data": "owner-selected sources; aggregate-only report",
+  "invocations": 13,
+  "selected_roots": 1,
+  "cached_sources_inspected": 5,
+  "sources_found_by_exact_search": 5,
+  "pending_source_operations": 373,
+  "full_scope_import_completed": false,
+  "network_browser_keyring_denied": true,
+  "remote_writes": false
+}

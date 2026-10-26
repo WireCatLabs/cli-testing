@@ -1,0 +1,189 @@
+{
+  "release": "0.16.0",
+  "docs_source_commit": "1695190ada68e5f8c4edaec5b341986dcfdf89ee",
+  "base": "https://wirecat.dev",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "path": "/en/docs/drive",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/drive/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/en/docs/drive/installation",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/drive/installation/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/en/docs/drive/recipes",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/drive/recipes/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/en/docs/drive/troubleshooting",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/drive/troubleshooting/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/en/docs/drive/commands",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/drive/commands/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/en/docs/drive/changelog",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/drive/changelog/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/ru/docs/drive",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/ru/drive/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/ru/docs/drive/installation",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/ru/drive/installation/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/ru/docs/drive/recipes",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/ru/drive/recipes/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/ru/docs/drive/troubleshooting",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/ru/drive/troubleshooting/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/ru/docs/drive/commands",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/ru/drive/commands/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/ru/docs/drive/changelog",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/ru/drive/changelog/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/es/docs/drive",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/es/drive/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/es/docs/drive/installation",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/es/drive/installation/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/es/docs/drive/recipes",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/es/drive/recipes/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/es/docs/drive/troubleshooting",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/es/drive/troubleshooting/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/es/docs/drive/commands",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/es/drive/commands/content.md",
+      "format": "markdown",
+      "passed": true
+    },
+    {
+      "path": "/es/docs/drive/changelog",
+      "format": "html",
+      "passed": true
+    },
+    {
+      "path": "/llms.mdx/docs/es/drive/changelog/content.md",
+      "format": "markdown",
+      "passed": true
+    }
+  ],
+  "limits": ["Public HTTP content markers only; not browser interaction, accessibility or Google OAuth verification"]
+}

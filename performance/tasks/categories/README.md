@@ -1,0 +1,221 @@
+# Task categories: the new default list
+
+## Why it was run
+
+cli-core gives every task a category from one list. An agent names it; a rule that finds a task in a message picks
+it by trigger words. The default list had seven names (`money`, `documents`, `meeting`, `delivery`, `access`,
+`personal`, `other`). On 2026-10-16 the owner approved a list of 36 (cli-core
+[`docs/dev/tasks-plan.md`](https://github.com/WireCatLabs/cli-core/blob/main/docs/dev/tasks-plan.md), "Categories and
+labels"). The category is also one field of the duplicate check: +1 when two tasks share it, −1 when they do not, and
+one of the candidate lookups (the 10 newest tasks of the same category).
+
+The questions:
+
+1. How often does the rule's category match what a person would pick, with the old list and the new one?
+2. Does the new list make the duplicate check better or worse?
+
+The answers went into the cli-core change that ships the list.
+
+## Setup
+
+- Machine and versions: as in [duplicates](../duplicates/README.md) (AMD Ryzen AI 9 HX 470, Linux 7.0, Node 24.19.0),
+  and the same Snowball stemmers and `normalize()` from the published `@wirecat/cli-core@0.277.0`.
+- Data: the 251 synthetic tasks of the duplicate set, [`../duplicates/tasks.jsonl`](../duplicates/tasks.jsonl),
+  unchanged. Each task's message is its `description`, and that is what the rule reads.
+- Lists: [`old-defaults.json`](old-defaults.json) (cli-core `main` before the change) and
+  [`new-defaults.json`](new-defaults.json) (the list the change ships), exported from cli-core's
+  `DEFAULT_TASK_CATEGORIES`.
+- Labels:
+  - **Set labels.** The set's own `category`, in the old seven. To score the new list against them, a new name maps
+    to the old one that held its tasks: `bills`, `taxes`, `bank`, `insurance` → `money`; `legal`, `government` →
+    `documents`; `family`, `health`, `shopping`, `travel`, `events`, `entertainment`, `car` → `personal`; every
+    other new name → `other`.
+  - **New labels.** [`labels.json`](labels.json) gives each task one of the 36 names, written by hand from the
+    meanings before the new triggers were measured. The rule: the most specific meaning wins; `money` is for a debt,
+    a payback or a payment with no closer area (rent is `home`, a car repair `car`, a school collection `family`, a
+    utility `bills`). Every task of one duplicate group has the same label. The old list scores against these labels
+    too: its names that exist in the new list can match.
+- Rule: [`evaluate.mjs`](evaluate.mjs) ports cli-core's `categorize()` (`src/services/task-categories.ts`): stems by
+  script, every trigger against the message's English stems, and `es` triggers also against its Spanish stems when
+  the message reads as Spanish (see [Spanish](#spanish)); the category with the most distinct trigger stems hit, a
+  tie to the earlier one, none hit is `other`. With `--core`, the script checks the port against the real function
+  on all 251 tasks, all three lists and the Spanish messages. The results above Spanish were measured when cli-core
+  stemmed every Latin word as English only; the Spanish change moves none of them (re-run 2026-10-16).
+- Duplicates: the replay of [`../duplicates/linked.mjs`](../duplicates/linked.mjs) with cli-core's shipped weights
+  and bands (maybe ≥ 5, likely ≥ 10), run four times with `category` taken from the set labels, the new labels, the
+  rule with the old list and the rule with the new list. Two of its runs are reported: tasks with an agent's own text
+  ("agent tasks", the "no agent" run there), and tasks a rule opened that compare by their source message ("rule
+  tasks"). A rule's task gets its category from the rule, so "rule tasks" with a rule category is the realistic row.
+
+```sh
+node performance/tasks/categories/evaluate.mjs --core <cli-core checkout, built>
+```
+
+## Results
+
+Port check: the port matches cli-core's `categorize()` on 251 tasks × 3 lists (old, 36, 59).
+
+### How often the rule's category is right (251 tasks)
+
+| List | New labels (36) | Set labels (old 7) | Fell to `other` |
+|---|---|---|---|
+| Old (7) | 66 (26%) | 110 (44%) | 144 |
+| New (36), first draft | 144 (57%) | 121 (48%) | 51 |
+| New (36), shipped | 146 (58%) | 125 (50%) | 55 |
+
+The first draft was written from the meanings. The shipped list drops triggers that stem to a common word, found by
+reviewing every stem of four letters or less and by the draft's misses: `billing` → `bill`, `staging` → `stage`,
+`moving` → `move`, `wedding` → `wed` (Wednesday), `post` (post office), `irs` → `ir` (Spanish "to go"), `son`
+(Spanish "they are"), `друг` → `другой`, `суд` → `судя`, `кино` → `кинь`, `статья` → `стать`, a discount in
+`sales`. That change used the set, so the 58% is partly in-sample. The draft's 57% is less so, but its author had read the
+set's messages.
+
+Most common misses, new labels → rule:
+
+| Old list | New list |
+|---|---|
+| money → other 24 | money → other 11 |
+| home → other 19 | meeting → other 8 |
+| family → other 17 | work → other 7 |
+| meeting → other 13 | family → other 7 |
+| work → other 11 | bills → money 4 |
+| family → personal 9 | home → money 3 |
+| bills → money 7 | money → entertainment 3 |
+| content → other 7 | money → events 3 |
+
+### The duplicate check, by where the category comes from
+
+Pairs are new task × candidate, as in [duplicates](../duplicates/README.md). Recall counts the duplicates stored when
+the task arrives. 180 tasks have no earlier duplicate; "new tasks refused" counts those sent to review.
+
+| Category from | Tasks | ≥ 5 true/false | P | R | ≥ 10 true/false | P | R | New tasks refused |
+|---|---|---|---|---|---|---|---|---|
+| Set labels (old 7) | agent | 72/53 | 58% | 90% | 34/6 | 85% | 43% | 38 |
+| New labels (36) | agent | 72/41 | 64% | 90% | 34/6 | 85% | 43% | 32 |
+| Rule, old list | agent | 69/47 | 59% | 86% | 34/5 | 87% | 43% | 33 |
+| Rule, new list | agent | 69/36 | 66% | 86% | 34/6 | 85% | 43% | 28 |
+| Set labels (old 7) | rule | 59/27 | 69% | 74% | 27/3 | 90% | 34% | 18 |
+| New labels (36) | rule | 59/24 | 71% | 74% | 27/3 | 90% | 34% | 17 |
+| Rule, old list | rule | 56/28 | 67% | 70% | 27/2 | 93% | 34% | 19 |
+| Rule, new list | rule | 56/19 | 75% | 70% | 27/3 | 90% | 34% | 13 |
+
+The set-label rows match the published duplicate results (72/53 and 59/27). Raw numbers: [`results.json`](results.json).
+The first-draft list gave 69/37 and 34/5 (agent), 56/19 and 27/2 (rule).
+
+## What it showed
+
+- **The new list more than doubles how often the rule's category is right: 26% → 58%.** Most of the gain is tasks
+  that fell to `other` with the old list (144 → 55): home, family, bills, work and content had no name or no words.
+  Against the set's own seven labels the gain is small (44% → 50%), because the old seven cannot tell these apart.
+- **The duplicate check gets more precise and loses nothing.** At maybe ≥ 5, precision rises from 59% to 66% for
+  agent tasks and from 67% to 75% for rule tasks; recall stays 86% and 70%. Fewer new tasks go to review (33 → 28,
+  19 → 13). A finer list puts fewer unrelated tasks in one category, so the category lookup brings fewer false
+  candidates and "different category" (−1) separates more of them. At likely ≥ 10 the counts move by one pair.
+- **A rule splits duplicate groups, and a finer list splits more of them.** A reminder rarely repeats the words that
+  chose the first message's category ("Скинь 7 400 ₽ за билеты на матч" is `entertainment`, "Напоминаю про 7400 за
+  билеты" is `events`). The old list split 10 of the set's duplicate groups, the new one 17. Both cost the same 3
+  pairs of recall at ≥ 5 against labelled categories; the 7 extra splits moved no pair across a band here, but on
+  other data they could.
+- **Counting hits favours generic words.** "Оплати счёт за электричество" has two `money` words and one `bills` word,
+  so it is `money`. Paybacks for tickets, flights or a hotel go to `events`, `travel` or `entertainment`, since the
+  payback itself ("скинь", "your half") has no trigger. The tie order cannot fix either: these are not ties.
+
+## Spanish
+
+### Why it was run
+
+Building the new list showed that the rule stemmed every Latin word with the English stemmer, Spanish triggers
+included. `pagues`, `pagado` and `pagar` did not meet: the Spanish triggers matched only their exact form or a plural.
+The fix ([cli-core#1351](https://github.com/WireCatLabs/cli-core/pull/1351)) stems a message both ways when it
+reads as Spanish, and matches `es` triggers by their Spanish stem. The questions: does it help Spanish messages, and
+does it change anything for English and Russian ones?
+
+### Setup
+
+- [`spanish.json`](spanish.json): 24 synthetic Spanish messages, each labelled by hand with one of the 36 names from
+  the meanings, before either rule was run on them. They mix exact trigger forms (`pagar la factura`) with other
+  forms of a word (`¿Me pagas…?`, `Ya te he pagado…`).
+- "Reads as Spanish": a letter of `ñáéíóú¿¡`, or one of the words `de del la las el los que por para una unos unas
+  hay tengo hola gracias`. A Spanish stem is short, and English words land on it (`page` → `pag`, the stem of
+  `pagar`), so an English message without those is not read as Spanish. Short words that are also English (`al`,
+  `su`, `tu`, `mi`, `con`) are left out of the list.
+- Same command as above.
+
+### Results
+
+| Spanish set, new list | Right | Fell to `other` |
+|---|---|---|
+| English stems only (before) | 21/24 (88%) | 3 |
+| Spanish stems too (after) | 23/24 (96%) | 0 |
+
+The 251 tasks of the duplicate set: no category changes, so every row of the tables above is the same before and
+after, and the [duplicate replay](../duplicates/README.md) does not read categories from the rule and is unchanged.
+
+### What it showed
+
+- **The three messages the fix gains are all verb forms of `pagar`** (`pagas`, `pagues`, `pagado`). Plurals and exact
+  forms already matched through the English stemmer, which only cuts an English ending such as `-s`.
+- **It loses one to the tie order**: "Compré las entradas para el concierto" now also hits `shopping` (`compré` →
+  `compr`, the stem of `comprar`), and `shopping` comes before `entertainment` in the list. One hit each, the earlier
+  one wins.
+- **English and Russian are untouched here.** No message of the set reads as Spanish. An English message that
+  uses `de`, `la` or `el` would be, and could then hit a Spanish stem; the set has none.
+
+## 59 names
+
+### Why it was run
+
+The owner chose to add 23 more categories to the 36 (cli-core
+[`docs/dev/tasks-plan.md`](https://github.com/WireCatLabs/cli-core/blob/main/docs/dev/tasks-plan.md), "Default
+list"). More names split the same messages finer, and every name brings trigger words that can collide with common
+words. The questions: is the rule's category still right as often, and does the duplicate check lose anything?
+
+### Setup
+
+- [`list-59.json`](list-59.json): the list the cli-core change ships, exported from `DEFAULT_TASK_CATEGORIES`.
+- [`labels-59.json`](labels-59.json): [`labels.json`](labels.json) with 27 tasks moved to one of the 23 added names
+  whose meaning is more specific (groceries → `food`, a router or a laptop to choose → `devices`, mockups and brand
+  guidelines → `design`, a birthday or anniversary → `celebrations`, medicine or groceries taken to a grandmother →
+  `elder-care`, a domain renewal or hosting → `subscriptions`, a restaurant table → `food`, help with a move →
+  `moving`). Written before the 59 list was run; every duplicate group keeps one label.
+- Same command as above.
+
+### Results
+
+| List | Its own labels | Fell to `other` |
+|---|---|---|
+| 36 names | 146/251 (58%) | 55 |
+| 59 names, first draft | 141/251 (56%) | 46 |
+| 59 names, shipped | 150/251 (60%) | 51 |
+
+| Category from | Tasks | ≥ 5 true/false | P | R | New tasks refused |
+|---|---|---|---|---|---|
+| Rule, 36 list | agent | 69/36 | 66% | 86% | 28 |
+| Rule, 59 list | agent | 69/34 | 67% | 86% | 27 |
+| Rule, 36 list | rule | 56/19 | 75% | 70% | 13 |
+| Rule, 59 list | rule | 56/19 | 75% | 70% | 13 |
+
+Spanish set with the 59 list: 23/24, the same miss as above.
+
+### What it showed
+
+- **The 23 names cost nothing measurable.** The rule is right about as often (60% against 58%), and the duplicate
+  check moves by two false pairs.
+- **The first draft lost 2 points to collisions, all fixed in the shipped list:** `reporter` stems to `report`
+  ("review the Q3 report" became `media`), `еда` to `ед` ("в субботу едем" became `food`), `коробки` sent a trip to
+  the dacha to `moving`, and meal words made "lunch on Wednesday?" `food`. Two tie orders moved: `delivery` before
+  `devices` ("the courier can collect the laptop"), `celebrations` before `family` ("день рождения папы"). These
+  fixes used the set, so the 60% is partly in-sample.
+- **Some added names can't be told from words alone.** Medicine for a grandmother is `health` to the rule
+  (`лекарства`), `elder-care` to the label; paying a friend back for a kids' club is `childcare` to the rule.
+
+## Not measured
+
+- **The labels and the triggers have one author.** Labels were written before the first measurement, from the
+  meanings, but by the same person who wrote the triggers, and the shipped triggers were trimmed after seeing misses.
+- Real chats: the set is synthetic, Russian and English, with no Spanish message. The Spanish check is 24 synthetic
+  messages by the author of the triggers; mixed English and Spanish chats, and English messages that use one of the
+  Spanish words, are not measured.
+- An agent's category choice. Agents name a category themselves; this measures the rule only.
+- Categories outside this set's topics: `insurance`, `bank`, `sales`, `support`, `education`, `community`, `intro`
+  and `follow-up` have no task with that label.

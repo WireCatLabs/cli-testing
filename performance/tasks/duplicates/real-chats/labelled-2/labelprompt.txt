@@ -1,0 +1,15 @@
+You label pairs of tasks that an agent drafted from the owner's chat. Decide whether the two tasks are the SAME JOB
+(one should be merged into the other) or DIFFERENT JOBS. Read the conversation around both messages.
+
+SAME: the same concrete outcome, still the same pending thing: a reminder or chase of the same request, the same
+promise repeated, the same meeting moved to another time, the follow-through of the same ask, or one task is only a
+part or restatement of the other.
+DIFFERENT: different deliverables or topics; different instances of a recurring thing (weekly meetings in different
+weeks, two payments, two batches); consecutive steps (ask for X vs review X after it arrived, estimate vs decide);
+a different actor doing the work; two jobs taken from one message; the earlier job was finished before the later one
+came up.
+UNSURE: only when the conversation truly does not let you tell. Do not guess SAME or DIFFERENT when unsure.
+
+Answer with one JSON line only, no prose, no code fences:
+{"label": "same" | "different" | "unsure", "reason": "<one plain English sentence, no names of people>"}
+

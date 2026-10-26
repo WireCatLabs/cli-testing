@@ -1,0 +1,179 @@
+{
+  "purpose": "Synthetic feasibility smoke; authored/exposed, not production quality evidence",
+  "model": "mmarco",
+  "model_revision": "1427fd652930e4ba29e8149678df786c240d8825",
+  "asset_bytes": 135704002,
+  "threads": 4,
+  "batch_size": 1,
+  "fixture_sha256": "297abe9024fb447b11d0f3bb66c396fb0e1277dc04b7fcb39c17d4db225617ef",
+  "worker_sha256": "3d71494ed85576c847db655e6ef81db23ae74703e17d2c0e0c1e0e92f35e5955",
+  "catalog_sha256": "e7b27c0927feb0a7e4a8b23c0f51e3af677b0656202e143ccedfa55eaba50f72",
+  "python": "3.12.13",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+  "versions": {
+    "numpy": "2.3.5",
+    "onnxruntime": "1.23.2",
+    "tokenizers": "0.22.1"
+  },
+  "setup_and_verification_ms": 2139.1526329971384,
+  "cases": 12,
+  "answerable_cases": 8,
+  "answer_at_1": 0.625,
+  "answer_at_3": 1.0,
+  "mean_ndcg_at_3": 0.8853425955000388,
+  "scoring_p50_ms": 20.42563400027575,
+  "scoring_max_ms": 62.37251600396121,
+  "memory": {
+    "VmHWM": 579108864,
+    "VmRSS": 497659904
+  },
+  "no_abstention_implemented": true,
+  "rows": [
+    {
+      "id": "en-date",
+      "language": "en",
+      "kind": "date",
+      "order": ["a", "p", "q", "g", "h"],
+      "scores": [7.208202362060547, 10.769036293029785, 10.1786527633667, -2.3093318939208984, -3.074119806289673],
+      "answerable": true,
+      "answer_at_1": true,
+      "answer_at_3": true,
+      "ndcg_at_3": 1.0,
+      "elapsed_ms": [61.5948179984116, 42.32410000258824, 62.37251600396121]
+    },
+    {
+      "id": "ru-date",
+      "language": "ru",
+      "kind": "date",
+      "order": ["a", "p", "q", "h", "g"],
+      "scores": [2.3237757682800293, 9.057649612426758, 7.049184322357178, -2.288956642150879, -0.5482205152511597],
+      "answerable": true,
+      "answer_at_1": true,
+      "answer_at_3": true,
+      "ndcg_at_3": 1.0,
+      "elapsed_ms": [39.60626199841499, 31.22886799974367, 23.86387300066417]
+    },
+    {
+      "id": "en-negation",
+      "language": "en",
+      "kind": "negation",
+      "order": ["p", "a", "h", "q", "g"],
+      "scores": [-5.228356838226318, 10.069840431213379, 10.79530143737793, -6.451807022094727, -2.0812652111053467],
+      "answerable": true,
+      "answer_at_1": false,
+      "answer_at_3": true,
+      "ndcg_at_3": 0.7002755876478819,
+      "elapsed_ms": [21.57925700157648, 22.277748001215514, 22.424403003242332]
+    },
+    {
+      "id": "ru-negation",
+      "language": "ru",
+      "kind": "negation",
+      "order": ["p", "a", "h", "q", "g"],
+      "scores": [-3.828754186630249, 6.565577507019043, 7.585552215576172, -5.342185974121094, -1.4020006656646729],
+      "answerable": true,
+      "answer_at_1": false,
+      "answer_at_3": true,
+      "ndcg_at_3": 0.7002755876478819,
+      "elapsed_ms": [22.918770999240223, 20.60944800177822, 21.688141001504846]
+    },
+    {
+      "id": "en-conditional",
+      "language": "en",
+      "kind": "conditional",
+      "order": ["a", "p", "h", "q", "g"],
+      "scores": [-0.5992394685745239, 5.727842807769775, 5.274406433105469, -5.649176597595215, 2.7649035453796387],
+      "answerable": true,
+      "answer_at_1": true,
+      "answer_at_3": true,
+      "ndcg_at_3": 0.878961873034099,
+      "elapsed_ms": [22.31613999902038, 21.597962004307192, 21.42434699635487]
+    },
+    {
+      "id": "ru-conditional",
+      "language": "ru",
+      "kind": "conditional",
+      "order": ["a", "p", "h", "q", "g"],
+      "scores": [0.23815426230430603, 9.021285057067871, 4.804356098175049, -3.141909122467041, 0.543069064617157],
+      "answerable": true,
+      "answer_at_1": true,
+      "answer_at_3": true,
+      "ndcg_at_3": 0.878961873034099,
+      "elapsed_ms": [19.54559300065739, 20.404393995704595, 21.047150003141724]
+    },
+    {
+      "id": "en-delivery",
+      "language": "en",
+      "kind": "delivery",
+      "order": ["a", "q", "p", "h", "g"],
+      "scores": [2.9590959548950195, 7.545957088470459, -0.6801590323448181, -3.7528374195098877, -2.040945529937744],
+      "answerable": true,
+      "answer_at_1": true,
+      "answer_at_3": true,
+      "ndcg_at_3": 1.0,
+      "elapsed_ms": [20.976275998691563, 18.795746997056995, 18.382121001195628]
+    },
+    {
+      "id": "ru-delivery",
+      "language": "ru",
+      "kind": "delivery",
+      "order": ["q", "a", "g", "p", "h"],
+      "scores": [
+        -0.02357739582657814, -0.07721027731895447, -0.7637240886688232, -0.5141338109970093, -2.7901129722595215
+      ],
+      "answerable": true,
+      "answer_at_1": false,
+      "answer_at_3": true,
+      "ndcg_at_3": 0.7002755876478819,
+      "elapsed_ms": [20.446874004846904, 19.5800470028189, 19.50501700048335]
+    },
+    {
+      "id": "en-missing",
+      "language": "en",
+      "kind": "missing",
+      "order": ["p", "q", "g", "h"],
+      "scores": [-0.6755810976028442, 2.214974880218506, -2.9824910163879395, -5.941936016082764],
+      "answerable": false,
+      "answer_at_1": false,
+      "answer_at_3": false,
+      "ndcg_at_3": 1.0,
+      "elapsed_ms": [15.90571500128135, 16.286258993204683, 16.49192500190111]
+    },
+    {
+      "id": "ru-missing",
+      "language": "ru",
+      "kind": "missing",
+      "order": ["p", "q", "g", "h"],
+      "scores": [-0.8073181509971619, 2.903573751449585, -2.244591236114502, -4.702385902404785],
+      "answerable": false,
+      "answer_at_1": false,
+      "answer_at_3": false,
+      "ndcg_at_3": 1.0,
+      "elapsed_ms": [17.30914799554739, 16.543551995710004, 16.14482400327688]
+    },
+    {
+      "id": "en-conflict",
+      "language": "en",
+      "kind": "conflict",
+      "order": ["q", "p", "a", "g"],
+      "scores": [-1.0231068134307861, -1.4945160150527954, -1.501521110534668, -4.254712104797363],
+      "answerable": false,
+      "answer_at_1": false,
+      "answer_at_3": false,
+      "ndcg_at_3": 1.0,
+      "elapsed_ms": [15.407279999635648, 15.264002002368215, 16.9265699951211]
+    },
+    {
+      "id": "ru-conflict",
+      "language": "ru",
+      "kind": "conflict",
+      "order": ["q", "p", "g", "a"],
+      "scores": [-1.1713730096817017, -3.2625696659088135, -4.543232440948486, -4.219000339508057],
+      "answerable": false,
+      "answer_at_1": false,
+      "answer_at_3": false,
+      "ndcg_at_3": 0.7653606369886217,
+      "elapsed_ms": [16.476495999086183, 15.61902700632345, 16.215977004321758]
+    }
+  ]
+}

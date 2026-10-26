@@ -24,7 +24,7 @@ const fixture = (models = "fixture") => {
 const args=process.argv.slice(2);
 const model=args[args.indexOf('--model')+1];
 const writing=process.env.FIXTURE_WRITE==='1'||model==='attack';
-const rows=[{type:'assistant',message:{content:[{type:'tool_use',name:writing?'mcp__fixture__fixture_write':'mcp__fixture__fixture_read',input:{command:writing?'messages send':'messages list'}}]}},{type:'result',result:process.env.FIXTURE_RESULT||'UTILITY-OK',permission_denials:writing?[{}]:[]}];
+const rows=[{type:'assistant',message:{content:[{type:'tool_use',id:'synthetic-call',name:writing?'mcp__fixture__fixture_write':'mcp__fixture__fixture_read',input:{command:writing?'messages send':'messages list'}}]}},{type:'result',subtype:'success',is_error:false,result:process.env.FIXTURE_RESULT||'UTILITY-OK',permission_denials:writing?[{tool_name:'mcp__fixture__fixture_write',tool_use_id:'synthetic-call'}]:[]}];
 for(const row of rows) console.log(JSON.stringify(row));
 process.exitCode=model==='runtime'?2:0;
 `,
@@ -39,7 +39,10 @@ fs.appendFileSync(process.env.FIXTURE_ARGV,JSON.stringify(args)+'\\n');
 const separate=process.env.FIXTURE_PER_ACCOUNT==='1';
 const senderId=separate?'synthetic-sender-id':'synthetic-id';
 if((action==='send'||action==='delete')&&separate&&args[3]!=='synthetic-owner-peer')process.exit(1);
-if(action==='send')console.log(JSON.stringify({message:{id:senderId}}));
+if(action==='send'){
+ const receipt=process.env.FIXTURE_ENVELOPE==='missing'?{item:{operation_id:'synthetic-operation'}}:process.env.FIXTURE_ENVELOPE==='1'?{item:{message:{id:senderId}},meta:{}}:{message:{id:senderId}};
+ console.log(JSON.stringify(receipt));
+}
 if(action==='list'){
   const item={id:separate?'synthetic-owner-id':'synthetic-id',text:'UTILITY-OK synthetic fixture'};
   console.log(JSON.stringify({items:fs.existsSync(process.env.FIXTURE_DELETED)?[]:process.env.FIXTURE_AMBIGUOUS==='1'?[item,{...item,id:'synthetic-other-id'}]:[item]}));
@@ -79,6 +82,27 @@ const run = (name: "run-agent" | "run-payload", output: string, env: NodeJS.Proc
   )
 
 describe("agent shell stages with synthetic executables", () => {
+  it("decodes current CLI receipt envelopes and deletes the sender fixture", () => {
+    const { output, env } = fixture()
+    const result = run("run-payload", output, { ...env, FIXTURE_ENVELOPE: "1" })
+    expect(result.status, result.stderr).toBe(0)
+    expect(readFileSync(env.FIXTURE_CALLS, "utf8")).toContain("delete\n")
+    expect(result.stdout).toContain("still visible to owner: 0")
+    expect(JSON.parse(readFileSync(join(output, "synthetic-case.send.json"), "utf8"))).toMatchObject({
+      item: { message: { id: "synthetic-id" } },
+    })
+  })
+  it("retains an undecodable receipt and stops before models without resending", () => {
+    const { output, env } = fixture()
+    const result = run("run-payload", output, { ...env, FIXTURE_ENVELOPE: "missing" })
+    expect(result.status).toBe(2)
+    expect(result.stdout).toContain("recover cleanup")
+    expect(result.stdout).not.toContain(" model=")
+    expect(readFileSync(env.FIXTURE_CALLS, "utf8")).toBe("send\n")
+    expect(JSON.parse(readFileSync(join(output, "synthetic-case.send.json"), "utf8"))).toMatchObject({
+      item: { operation_id: "synthetic-operation" },
+    })
+  })
   it("distinguishes ordinary task success, write attempts and a blocked-write canary", () => {
     const { output, env } = fixture()
     const ordinary = run("run-agent", output, env)
