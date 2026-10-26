@@ -1,5 +1,5 @@
 // Reranks memo's and drive's top 30 and compares vector models, in one long-lived process, as an MCP server would.
-// Env: CM (an installed @wirecat/cli-messaging), QMD_MODULES (qmd's node_modules, for node-llama-cpp), NOTES_ROOT.
+// Env: CM (an installed @wirecat/cli-messaging), QMD_MODULES (qmd's node_modules, for node-llama-cpp), NOTES_ROOT, PASSAGES_OVERRIDE.
 // node rerank.mjs <BENCH_DIR> <RERANK_DIR> count | embed <e5-small|embeddinggemma> | rerank [mmarco|qwen3|none]
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs"
@@ -36,10 +36,22 @@ const chunk = (text) => {
   }
   return out.length ? out : [""]
 }
+// PASSAGES_OVERRIDE="document:85=6": a document edited after its vectors were made keeps its old passage count, so
+// passage i still maps to the document it was embedded from.
+const override = Object.fromEntries(
+  (process.env.PASSAGES_OVERRIDE ?? "")
+    .split(",")
+    .filter(Boolean)
+    .map((p) => p.split("=")),
+)
 const chunks = Object.fromEntries(
   Object.entries(corpora).map(([name, docs]) => [
     name,
-    docs.flatMap((doc) => chunk(doc.text).map((text, index) => ({ doc: doc.id, index, text }))),
+    docs.flatMap((doc) =>
+      chunk(doc.text)
+        .slice(0, override[doc.id] ? Number(override[doc.id]) : undefined)
+        .map((text, index) => ({ doc: doc.id, index, text })),
+    ),
   ]),
 )
 
