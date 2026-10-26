@@ -4,9 +4,13 @@
 
 The owner asked whether keeping every kind of vector (messages, mail, notes, documents, and soon tags) in one
 `embeddings` table makes search slow at large volume, and when a vector belongs in a column of a main table
-instead. cli-messaging searches vectors by reading the ones in scope from SQLite in pages of 5,000 and comparing
-each with the query (`nearestChunks`, `src/store/sqlite/vectors.ts`). The question: how long that takes as the
-number of vectors in scope grows. It fed the [embedding registry plan](https://github.com/WireCatLabs/cli-core/blob/main/docs/dev/embedding-registry-plan.md).
+instead. At the time (13 October 2026) cli-messaging searched vectors by reading the ones in scope from SQLite in
+pages of 5,000 and comparing each with the query (`nearestChunks`, `src/store/sqlite/vectors.ts`). The question: how
+long that takes as the number of vectors in scope grows. It fed the [embedding registry plan](https://github.com/WireCatLabs/cli-core/blob/main/docs/dev/embedding-registry-plan.md).
+
+This is the first, bare measurement. [Vector index](../vector-index/README.md) (25 October 2026) measures Core's own
+query at 100k and 1M chunks, compares the storage and index options, and measures the sqlite-vec `vec0` index Core
+now uses for search by meaning (store version 34).
 
 ## Setup
 
@@ -33,6 +37,6 @@ comparison, the same comparison over vectors already in memory took 7–11 ms fo
 
 ## Not measured
 
-- The store's own query with its joins and filters; this is the bare read and compare.
-- Vectors held in memory, 8-bit vectors, or an approximate index (`sqlite-vec`) — the options past ~100,000.
-- A cold disk cache.
+- Here: the store's own query with its joins and filters, vectors held in memory, 8-bit vectors, an index
+  (`sqlite-vec`, usearch, hnswlib) and a cold disk cache. [Vector index](../vector-index/README.md) measures all of
+  them.
