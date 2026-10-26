@@ -201,3 +201,18 @@ The released change (parent cut) together with the native runtime (WireCatLabs/c
 copy, six questions × 2: native library loaded on 12 of 12 calls; direct answer in the top 5 for 6 of 6 with native
 and with WebAssembly; 29 of 30 hits shared; CPU per call 22 s native against 45 s WebAssembly (load average 17, wall
 times not comparable).
+
+## Released: max 0.81.0 on cli-core 0.448.0
+
+The owner's archive, the six known questions × 2, installed `max` 0.81.0 (cli-core 0.448.0: the parent cut and the
+native runtime), load average 1–6, 2026-10-26 22:50 UTC. WebAssembly by hiding the runtime folder for that run.
+
+| | WebAssembly | Native |
+| --- | ---: | ---: |
+| Word search | 0.66 s | 0.66 s |
+| `--discover`, reranker off | 1.54 s | 1.28 s |
+| `--discover` (default) | 4.10 s | **2.91 s** |
+
+Before both changes (max 0.78.0, WebAssembly, whole parent) the same calls were 0.8 / 1.9 / 5.1 s at load average
+6–16 — not the same load, so only a rough baseline.
+
