@@ -21,6 +21,8 @@ The answer decided whether cli-base #366 was worth releasing and moving every CL
 - AMD Ryzen AI 9 HX 470 (24 threads), pinned to 4 CPUs with `taskset -c 0-3` as CI does. Node 24.19.0, Linux.
   Other jobs were running on the machine at the same time.
 - tg-cli at `origin/main` 2acf93f, built with `pnpm build`: 594 protected commands, 14 accepted overrides.
+  `bench.mjs` imports `createProgram` from tg's `dist/program.js`; tg-cli #749 moved it to `dist/whole-program.js`, so
+  run it against tg at 2acf93f or earlier.
 - **before**: cli-base `origin/main` 24826fd (0.61.3). **after**: cli-base #366 (12e7df9). Each `dist` was copied
   into the cli-base package that tg and cli-core 0.447.0 both resolve, so both used the same build.
 - `HOME`, the XDG directories and `MESSAGING_STORE` pointed at a temporary directory. No real store was opened.
