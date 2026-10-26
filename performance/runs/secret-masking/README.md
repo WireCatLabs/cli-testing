@@ -104,6 +104,64 @@ emoji. The full list is in [`measure.mjs`](measure.mjs).
   `--api-key <value>` written as free text is kept as well: the pair rule needs `=` or `:`. Flags that the CLI
   parses are hidden by their name before this text step; that path was not measured here.
 
+## Rerun on 0.444.0: hex keys and names written with a space
+
+### Why
+
+The first run showed two gaps: a hex key was never hidden, at any length, and `--api-key <value>` written as text
+was kept, because the pair rule needed `=` or `:`. cli-core 0.444.0
+([#2046](https://github.com/WireCatLabs/cli-core/pull/2046)) borrowed two rules from Yelp's
+[detect-secrets](https://github.com/Yelp/detect-secrets/blob/master/README.md):
+
+- a run of 20 or more **lower-case** hex characters with a Shannon entropy of 3.0 bits per character or more is
+  hidden. Upper case is left out because WhatsApp message ids are 20–32 upper-case hex characters;
+- the value after a secret name is hidden after `=`, `:`, `=>` or a space. The name list adds the
+  [detect-secrets keyword list](https://github.com/Yelp/detect-secrets/blob/master/detect_secrets/plugins/keyword.py)
+  and `pass`, `passcode`, `pin`, `otp`, `2fa`, `clave`, `пароль`, `пин`, `код`. After a space, a value made only of
+  letters is kept, so `pin this message` stays.
+
+The question: does the hex rule hide hex keys without hiding any id on the must-keep list?
+
+### Setup
+
+Same machine, script, seed and sample count as above. Code: `@wirecat/cli-core@0.444.0` from npm, integrity
+`sha512-+b+ebSGpCaD1eBdlITBJTxfeUOBoi5RirPjHtt4qfJBW/4Iw9Ascry9aBNqa4ojlzOg0ncWG30XODI6UgtS/zg==`, release commit
+`6aed128b`.
+
+```sh
+npm pack @wirecat/cli-core@0.444.0 && tar xzf wirecat-cli-core-0.444.0.tgz
+node measure.mjs package 442 5000
+```
+
+### Results
+
+Only these rows changed; every other cell is the same as for 0.442.0, to the tenth of a point.
+
+| case | 0.442.0 | 0.444.0 |
+|---|---|---|
+| hex, lower case, 20 chars | 0.0 % | 97.1 % |
+| hex, lower case, 24 chars | 0.0 % | 99.5 % |
+| hex, lower case, 32 / 39 / 40 / 64 chars | 0.0 % | 100.0 % |
+| hex, upper case, any length | 0.0 % | 0.0 % |
+| base36, lower case, any length | 0.0 % | 0.0 % |
+| Random 40-character hex key, no name | 0.0 % | 100.0 % |
+| Random key after `--api-key` in free text | 0.0 % | 88.8 % |
+
+All 29 ids, names, URLs and texts that must stay were kept, among them the upper-case WhatsApp id, the UUID, the run
+id and `OnUnitInactiveSec=15min`.
+
+### What it showed
+
+- **Lower-case hex keys are now hidden:** 97 % at 20 characters, all of them from 32. The 3 % kept at 20 have
+  repeated characters that bring the entropy under 3.0. A full commit hash (40 hex) is hidden too; a short hash
+  (7–12) is below the length and stays.
+- **Upper-case hex and lower-case base36 are still never hidden.** Upper-case hex is kept on purpose, for WhatsApp
+  ids. Base36 had no rule asked for it.
+- **`--api-key <value>` in free text: 89 %.** The rest are values made only of letters (12 random base62 characters
+  have no digit about 12 % of the time), which the space rule keeps as a plain word.
+- **The mixed-alphabet rule stays.** A single base64 limit of 4.5 bits per character, as detect-secrets uses, cannot
+  be reached by a 20-character string (the most it can have is log2(20) ≈ 4.32 bits), so it would hide less.
+
 ## Not measured
 
 - A corpus of real secrets and real run records. Real keys are not random in the same way (some carry a
