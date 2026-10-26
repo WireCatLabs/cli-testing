@@ -138,9 +138,9 @@ repositories; no new model weights were downloaded during the migration.
 made of it, and the cost of reading the stored word list at query time instead of keeping a trigram table.
 
 [Meeting words, meaning, or both](meeting-hybrid/README.md): combined meeting search against words-only and
-meaning-only on invented Russian and English meetings. Combined kept every literal hit first, but loses questions that
-the question detector misses, passages under the e5-small similarity floor, and can rank an exact word below an
-unrelated passage.
+meaning-only on invented Russian and English meetings. After cli-core#1738 fixed the three gaps it found, combined
+answered 20 of 24 questions (83 %), kept literal words at 100 %, and an exact word hit wins its tie with a meaning
+passage.
 
 [Message garbled words](message-garbled/README.md): voice-note transcripts in message search found in any form of a
 word and widened to garbled spellings (store version 29), on a copy of one person's store, totals only.
