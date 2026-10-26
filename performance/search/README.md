@@ -56,8 +56,9 @@ Core adopted: the same answers as the scan, 1.2 s → 0.2 s warm and 1.9 s → 0
 message vectors.
 
 [Reranker speed](rerank-speed/README.md) splits `--discover`'s time after Core 0.435.0 (words 0.8 s, meaning 1.9 s,
-with mMARCO 5.1 s on one archive) and shows that batching the reranker's pairs saves at most ~15% in WebAssembly
-and changes the 8-bit model's scores, so Core keeps one pair per run (2026-10-26).
+with mMARCO 5.1 s on one archive), shows that batching the reranker's pairs does not help in WebAssembly and changes
+the 8-bit model's scores, and measures onnxruntime-node: a real `--discover` 4.6 s → 3.2 s with the same answers,
+no build for Alpine or Intel Macs (2026-10-26).
 
 ## Layout
 

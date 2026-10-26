@@ -1,0 +1,33 @@
+{
+  "questions": 9,
+  "pairs": 450,
+  "grades": [0, 1, 2, 3],
+  "pairs_compared": {
+    "wasm_vs_python": {
+      "spearman_min": 0.967,
+      "spearman_median": 0.979,
+      "questions_same_top3": 7,
+      "top5_shared_of_45": 43,
+      "largest_score_change": 1.218
+    },
+    "native_vs_python": {
+      "spearman_min": 0.96,
+      "spearman_median": 0.982,
+      "questions_same_top3": 6,
+      "top5_shared_of_45": 40,
+      "largest_score_change": 0.842
+    },
+    "native_vs_wasm": {
+      "spearman_min": 0.965,
+      "spearman_median": 0.981,
+      "questions_same_top3": 8,
+      "top5_shared_of_45": 41,
+      "largest_score_change": 0.828
+    }
+  },
+  "answer_at_3": {
+    "python": "7/9",
+    "wasm": "7/9",
+    "native": "7/9"
+  }
+}
