@@ -1,0 +1,89 @@
+# run 1, 12:01-12:02; uptime before: 12:01:40 load 2.96 3.62 9.08; 10 rounds; before tg-cli 350a088 (0.99.0), after perf/bundle on it; npm global installs; Node 24.19.0
+load average (1 min) over the rounds: 2.66–3.73
+warm	--version	before	wall 39	cpu 30
+warm	--version	after	wall 31	cpu 20
+warm	--help	before	wall 398	cpu 520
+warm	--help	after	wall 203	cpu 260
+warm	messages list --help	before	wall 389	cpu 510
+warm	messages list --help	after	wall 192	cpu 250
+warm	bot api get-me --help	before	wall 417	cpu 550
+warm	bot api get-me --help	after	wall 219	cpu 290
+warm	bench chats list --offline	before	wall 408	cpu 535
+warm	bench chats list --offline	after	wall 221	cpu 290
+cold	--version	before	wall 44	cpu 40
+cold	--version	after	wall 34	cpu 20
+cold	--help	before	wall 550	cpu 670
+cold	--help	after	wall 281	cpu 340
+cold	messages list --help	before	wall 534	cpu 660
+cold	messages list --help	after	wall 272	cpu 340
+cold	bot api get-me --help	before	wall 574	cpu 710
+cold	bot api get-me --help	after	wall 313	cpu 390
+cold	bench chats list --offline	before	wall 573	cpu 700
+cold	bench chats list --offline	after	wall 305	cpu 380
+
+# per-round load, run 1
+warm round 1: load 2.80 3.57 9.04
+warm round 2: load 2.66 3.53 8.99
+warm round 3: load 2.66 3.53 8.99
+warm round 4: load 3.73 3.74 9.03
+warm round 5: load 3.73 3.74 9.03
+warm round 6: load 3.67 3.73 9.00
+warm round 7: load 3.67 3.73 9.00
+warm round 8: load 3.45 3.68 8.95
+warm round 9: load 3.45 3.68 8.95
+warm round 10: load 3.26 3.64 8.91
+cold round 1: load 3.08 3.59 8.87
+cold round 2: load 3.08 3.59 8.87
+cold round 3: load 2.91 3.55 8.83
+cold round 4: load 2.76 3.51 8.78
+cold round 5: load 2.76 3.51 8.78
+cold round 6: load 2.70 3.48 8.75
+cold round 7: load 3.68 3.67 8.78
+cold round 8: load 3.47 3.63 8.74
+cold round 9: load 3.47 3.63 8.74
+cold round 10: load 3.35 3.60 8.70
+
+# run 2, 12:02-12:04; same installs
+load average (1 min) over the rounds: 2.9–3.45
+warm	--version	before	wall 40	cpu 30
+warm	--version	after	wall 32	cpu 20
+warm	--help	before	wall 404	cpu 520
+warm	--help	after	wall 205	cpu 265
+warm	messages list --help	before	wall 393	cpu 510
+warm	messages list --help	after	wall 193	cpu 250
+warm	bot api get-me --help	before	wall 417	cpu 540
+warm	bot api get-me --help	after	wall 222	cpu 295
+warm	bench chats list --offline	before	wall 424	cpu 540
+warm	bench chats list --offline	after	wall 224	cpu 290
+cold	--version	before	wall 44	cpu 40
+cold	--version	after	wall 33	cpu 30
+cold	--help	before	wall 551	cpu 680
+cold	--help	after	wall 282	cpu 340
+cold	messages list --help	before	wall 540	cpu 670
+cold	messages list --help	after	wall 272	cpu 335
+cold	bot api get-me --help	before	wall 573	cpu 700
+cold	bot api get-me --help	after	wall 309	cpu 390
+cold	bench chats list --offline	before	wall 561	cpu 695
+cold	bench chats list --offline	after	wall 300	cpu 370
+
+# per-round load, run 2
+warm round 1: load 3.15 3.54 8.60
+warm round 2: load 3.15 3.54 8.60
+warm round 3: load 2.98 3.50 8.56
+warm round 4: load 2.98 3.50 8.56
+warm round 5: load 2.90 3.47 8.52
+warm round 6: load 2.90 3.47 8.52
+warm round 7: load 2.91 3.46 8.49
+warm round 8: load 2.91 3.46 8.49
+warm round 9: load 2.99 3.47 8.47
+warm round 10: load 2.99 3.47 8.47
+cold round 1: load 3.23 3.51 8.46
+cold round 2: load 3.22 3.51 8.43
+cold round 3: load 3.44 3.55 8.41
+cold round 4: load 3.44 3.55 8.41
+cold round 5: load 3.40 3.54 8.38
+cold round 6: load 3.45 3.55 8.36
+cold round 7: load 3.45 3.55 8.36
+cold round 8: load 3.33 3.52 8.33
+cold round 9: load 3.23 3.49 8.29
+cold round 10: load 3.05 3.45 8.25
