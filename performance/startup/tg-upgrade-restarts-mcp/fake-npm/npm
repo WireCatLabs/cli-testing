@@ -1,0 +1,6 @@
+#!/bin/sh
+# Mirrors `tg upgrade`'s install step with the packed build: `npm install -g @wirecat/tg-cli@latest` installs $E2E_TO.
+if [ "$1 $2 $3" = "install -g @wirecat/tg-cli@latest" ]; then
+  exec "$E2E_REAL_NPM" install -g --no-fund --no-audit "$E2E_TO"
+fi
+exec "$E2E_REAL_NPM" "$@"
