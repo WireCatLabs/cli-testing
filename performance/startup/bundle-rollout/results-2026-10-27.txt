@@ -1,0 +1,113 @@
+== max  19:09:31 up 16:58,  1 user,  load average: 27.28, 22.24, 19.93
+load average (1 min) over the rounds: 22–28.14
+warm	--version	before	wall 67	cpu 65
+warm	--version	after	wall 33	cpu 20
+warm	--help	before	wall 759	cpu 945
+warm	--help	after	wall 393	cpu 455
+warm	messages list --help	before	wall 746	cpu 935
+warm	messages list --help	after	wall 336	cpu 435
+warm	bench chats list --offline	before	wall 743	cpu 955
+warm	bench chats list --offline	after	wall 422	cpu 525
+cold	--version	before	wall 65	cpu 60
+cold	--version	after	wall 26	cpu 10
+cold	--help	before	wall 937	cpu 1105
+cold	--help	after	wall 455	cpu 535
+cold	messages list --help	before	wall 851	cpu 1030
+cold	messages list --help	after	wall 437	cpu 530
+cold	bench chats list --offline	before	wall 880	cpu 1080
+cold	bench chats list --offline	after	wall 525	cpu 620
+== max sizes: before 482863 after 2974168 bytes; unpacked before 3896 KB after 14892 KB; install before 266444 KB after 277392 KB
+== wa  19:03:47 up 16:53,  1 user,  load average: 28.93, 25.61, 20.26
+load average (1 min) over the rounds: 15.64–28.29
+warm	--version	before	wall 56	cpu 50
+warm	--version	after	wall 28	cpu 20
+warm	--help	before	wall 574	cpu 725
+warm	--help	after	wall 311	cpu 385
+warm	messages list --help	before	wall 592	cpu 750
+warm	messages list --help	after	wall 279	cpu 365
+warm	bench chats list --offline	before	wall 650	cpu 835
+warm	bench chats list --offline	after	wall 336	cpu 430
+cold	--version	before	wall 52	cpu 50
+cold	--version	after	wall 23	cpu 10
+cold	--help	before	wall 646	cpu 765
+cold	--help	after	wall 321	cpu 380
+cold	messages list --help	before	wall 616	cpu 750
+cold	messages list --help	after	wall 313	cpu 375
+cold	bench chats list --offline	before	wall 633	cpu 765
+cold	bench chats list --offline	after	wall 349	cpu 415
+== wa sizes: before 302244 after 2695395 bytes; unpacked before 2488 KB after 13160 KB; install before 282508 KB after 293136 KB
+== zm  19:04:59 up 16:54,  1 user,  load average: 14.71, 22.31, 19.51
+load average (1 min) over the rounds: 11.03–15.53
+warm	--version	before	wall 41	cpu 40
+warm	--version	after	wall 21	cpu 10
+warm	--help	before	wall 443	cpu 590
+warm	--help	after	wall 207	cpu 265
+warm	meetings list --help	before	wall 476	cpu 630
+warm	meetings list --help	after	wall 201	cpu 255
+warm	bench meetings list	before	wall 472	cpu 630
+warm	bench meetings list	after	wall 229	cpu 280
+cold	--version	before	wall 50	cpu 50
+cold	--version	after	wall 23	cpu 10
+cold	--help	before	wall 630	cpu 765
+cold	--help	after	wall 303	cpu 355
+cold	meetings list --help	before	wall 635	cpu 795
+cold	meetings list --help	after	wall 313	cpu 370
+cold	bench meetings list	before	wall 632	cpu 765
+cold	bench meetings list	after	wall 354	cpu 405
+== zm sizes: before 254250 after 2757980 bytes; unpacked before 2264 KB after 13440 KB; install before 263576 KB after 274768 KB
+== memo  19:06:06 up 16:55,  1 user,  load average: 12.70, 20.13, 18.94
+load average (1 min) over the rounds: 13.44–21.02
+warm	--version	before	wall 77	cpu 60
+warm	--version	after	wall 37	cpu 25
+warm	--help	before	wall 816	cpu 1015
+warm	--help	after	wall 381	cpu 440
+warm	search all --help	before	wall 792	cpu 985
+warm	search all --help	after	wall 351	cpu 425
+warm	notes list	before	wall 771	cpu 975
+warm	notes list	after	wall 351	cpu 425
+cold	--version	before	wall 67	cpu 60
+cold	--version	after	wall 32	cpu 20
+cold	--help	before	wall 880	cpu 1040
+cold	--help	after	wall 422	cpu 495
+cold	search all --help	before	wall 872	cpu 1055
+cold	search all --help	after	wall 424	cpu 500
+cold	notes list	before	wall 889	cpu 1095
+cold	notes list	after	wall 438	cpu 525
+== memo sizes: before 397622 after 3104404 bytes; unpacked before 3476 KB after 15396 KB; install before 270720 KB after 282680 KB
+== drive  19:07:44 up 16:57,  1 user,  load average: 15.31, 19.86, 19.03
+load average (1 min) over the rounds: 14.04–27.36
+warm	--version	before	wall 72	cpu 60
+warm	--version	after	wall 29	cpu 10
+warm	--help	before	wall 735	cpu 905
+warm	--help	after	wall 354	cpu 430
+warm	search --help	before	wall 714	cpu 905
+warm	search --help	after	wall 347	cpu 435
+warm	commands --json	before	wall 737	cpu 935
+warm	commands --json	after	wall 338	cpu 425
+cold	--version	before	wall 97	cpu 80
+cold	--version	after	wall 39	cpu 25
+cold	--help	before	wall 1212	cpu 1320
+cold	--help	after	wall 592	cpu 675
+cold	search --help	before	wall 1100	cpu 1275
+cold	search --help	after	wall 599	cpu 675
+cold	commands --json	before	wall 1139	cpu 1315
+cold	commands --json	after	wall 627	cpu 680
+== drive sizes: before 571532 after 3287625 bytes; unpacked before 4688 KB after 17396 KB; install before 284780 KB after 297480 KB
+== tg: before = tg's scripts/bundle.ts, after = cli-dev bundle, same dist/ and dependencies (tg 0.100.0)
+load average (1 min) over the rounds: 27.65–35.89
+warm	--version	before	wall 70	cpu 50
+warm	--version	after	wall 44	cpu 30
+warm	--help	before	wall 519	cpu 510
+warm	--help	after	wall 473	cpu 500
+warm	messages list --help	before	wall 447	cpu 485
+warm	messages list --help	after	wall 458	cpu 490
+warm	bench chats list --offline	before	wall 515	cpu 555
+warm	bench chats list --offline	after	wall 527	cpu 555
+cold	--version	before	wall 59	cpu 50
+cold	--version	after	wall 33	cpu 20
+cold	--help	before	wall 450	cpu 530
+cold	--help	after	wall 481	cpu 555
+cold	messages list --help	before	wall 489	cpu 555
+cold	messages list --help	after	wall 424	cpu 510
+cold	bench chats list --offline	before	wall 481	cpu 590
+cold	bench chats list --offline	after	wall 499	cpu 580

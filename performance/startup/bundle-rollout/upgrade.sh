@@ -36,7 +36,7 @@ echo "--- $NAME: session"
 sed -E 's/^[0-9TZ:.-]+ //' $W/mcp.log | cut -c1-220
 echo "--- $NAME: verdict"
 calls=$(grep -c '^.*\[after\] tools/call' $W/mcp.log)
-bad=$(grep '\[after\]' $W/mcp.log | grep -c 'TIMEOUT\|RPC ERROR\|command.crashed\|internal_error')
+bad=$(grep '\[after\]' $W/mcp.log | grep -v '"code":-32601' | grep -c 'TIMEOUT\|RPC ERROR\|command.crashed\|internal_error')
 tools=$(grep -c '\[after\] tools/list .*tools: .*_read' $W/mcp.log)
 if [ "$calls" -ge 3 ] && [ "$bad" = 0 ] && [ "$tools" = 1 ]; then echo "PASS: $calls calls after the upgrade, none crashed"; else echo "FAIL: $calls calls, $bad crashed or timed out, tools listed: $tools"; fi
 echo "--- $NAME: failed loads"

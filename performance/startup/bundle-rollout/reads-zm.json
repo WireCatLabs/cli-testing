@@ -1,8 +1,8 @@
 [
   ["doctor", {}],
-  ["meetings list", { "offline": true }],
-  ["search meetings", { "query": "budget", "offline": true }],
-  ["search all", { "query": "invoice", "offline": true }],
+  ["meetings list", {}],
+  ["meetings list", { "limit": 5 }],
+  ["search all", { "query": "invoice" }],
   ["skill show", {}],
   ["runs list", {}]
 ]

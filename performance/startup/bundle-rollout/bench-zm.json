@@ -1,0 +1,4 @@
+{
+  "setup": [["bench", "config", "set", "limit", "20"]],
+  "commands": [["--version"], ["--help"], ["meetings", "list", "--help"], ["bench", "meetings", "list"]]
+}
