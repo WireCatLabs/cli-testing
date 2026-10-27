@@ -1,0 +1,26 @@
+--version
+-V
+--help
+commands --json
+commands
+help options
+guide
+guide --json
+skill show
+doctor --json
+mcp config
+account list --json
+--nonsense
+runs list --json
+schema --json
+smoke config set limit 20
+smoke doctor --json
+smoke search budget --offline --json
+smoke documents list --offline --json
+smoke folders list --json
+smoke documents export --help
+smoke sync --help
+skill show --json
+smoke documents context x --offline --json
+smoke api --help
+smoke doctor

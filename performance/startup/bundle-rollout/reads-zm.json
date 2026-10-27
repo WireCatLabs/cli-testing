@@ -1,0 +1,8 @@
+[
+  ["doctor", {}],
+  ["meetings list", { "offline": true }],
+  ["search meetings", { "query": "budget", "offline": true }],
+  ["search all", { "query": "invoice", "offline": true }],
+  ["skill show", {}],
+  ["runs list", {}]
+]

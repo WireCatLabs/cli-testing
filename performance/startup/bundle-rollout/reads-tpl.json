@@ -1,0 +1,8 @@
+[
+  ["doctor", {}],
+  ["config show", {}],
+  ["skill show", {}],
+  ["skill status", {}],
+  ["runs list", {}],
+  ["commands info", {}]
+]

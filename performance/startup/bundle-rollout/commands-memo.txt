@@ -1,0 +1,26 @@
+--version
+-V
+--help
+commands --json
+commands
+help options
+guide
+skill show
+skill show --json
+doctor --json
+doctor
+mcp config
+--nonsense
+runs list --json
+schema --json
+search all budget --json
+context Anna --json
+tasks agenda --json
+answers create budget --all --json
+agents list --json
+folders list --json
+notes list --json
+mail --help
+meetings prepare --help
+jobs --help
+search people anna --json

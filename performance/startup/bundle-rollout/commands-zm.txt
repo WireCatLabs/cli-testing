@@ -1,0 +1,26 @@
+--version
+-V
+--help
+commands --json
+commands
+help options
+guide
+guide --json
+skill show
+doctor --json
+mcp config
+account list --json
+--nonsense
+runs list --json
+schema --json
+smoke config set limit 20
+smoke doctor --json
+smoke search meetings budget --offline --json
+smoke meetings list --offline --json
+smoke meetings context Anna --offline --json
+smoke meetings transcribe --help
+recordings schedule create --help
+skill show --json
+smoke search all invoice --offline --json
+smoke meetings sync --help
+smoke doctor

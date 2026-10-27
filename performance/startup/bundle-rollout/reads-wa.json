@@ -1,0 +1,10 @@
+[
+  ["doctor", {}],
+  ["chats list", { "offline": true }],
+  ["search all", { "query": "invoice", "offline": true }],
+  ["tasks list", {}],
+  ["review", { "query": "date>1d", "offline": true }],
+  ["contacts list", { "offline": true }],
+  ["skill show", {}],
+  ["runs list", {}]
+]

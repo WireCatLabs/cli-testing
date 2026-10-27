@@ -1,0 +1,8 @@
+[
+  ["doctor", {}],
+  ["search", { "query": "budget", "offline": true }],
+  ["documents list", { "offline": true }],
+  ["folders list", {}],
+  ["skill show", {}],
+  ["runs list", {}]
+]

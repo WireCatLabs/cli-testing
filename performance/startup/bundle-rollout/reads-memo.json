@@ -1,0 +1,9 @@
+[
+  ["doctor", {}],
+  ["search all", { "query": "budget" }],
+  ["notes list", {}],
+  ["folders list", {}],
+  ["agents list", {}],
+  ["skill show", {}],
+  ["runs list", {}]
+]
