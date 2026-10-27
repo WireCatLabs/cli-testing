@@ -31,6 +31,10 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
 - [tg-upgrade-restarts-mcp](tg-upgrade-restarts-mcp/README.md): the real `tg upgrade` restarted the HTTP MCP server
   on the new version with its `--permission` limits, and named the stdio MCP session by PID and left it running
   (2026-10-27).
+- [bundle-rollout](bundle-rollout/README.md): the shared `cli-dev bundle` (cli-base 0.64.0) on max, wa, zm, memo,
+  drive and cli-template: 43–58% off every warm start, byte-identical under npm and pnpm, a running MCP server survives
+  an upgrade between two bundles; about 2.5 MB more to download. tg's own script and the shared command are within
+  noise (2026-10-27).
 - [packed-install](packed-install/README.md): packed releases installed with npm, pnpm and Bun in isolated directories (2026-10-24).
 
 - [WhatsApp on npm 12](wa-npm12/README.md): whether an unapproved global install hook runs, and the scoped approval flag.

@@ -1,0 +1,27 @@
+--version
+-V
+--help
+commands --json
+commands
+help options
+messages list --help
+bot api get-me --help
+search all --help
+guide
+guide catch-up
+skill show
+skill show follow-ups
+doctor --json
+mcp config
+account list --json
+--nonsense
+chats list --offline --json
+runs list --json
+smoke config set limit 20
+smoke chats list --offline --json
+smoke search all invoice --offline --json
+smoke tasks agenda --offline --json
+smoke review 'date>1d' --offline --json
+smoke doctor --json
+schema --json
+smoke messages list --help

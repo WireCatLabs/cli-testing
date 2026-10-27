@@ -1,0 +1,8 @@
+[
+  ["doctor", {}],
+  ["meetings list", {}],
+  ["meetings list", { "limit": 5 }],
+  ["search all", { "query": "invoice" }],
+  ["skill show", {}],
+  ["runs list", {}]
+]

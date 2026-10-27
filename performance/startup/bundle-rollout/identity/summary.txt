@@ -1,0 +1,20 @@
+max npm: compared 54 files, 1 differ
+max pnpm: compared 54 files, 1 differ
+max npm: 16 ok, 0 missing
+max pnpm: 16 ok, 0 missing
+wa npm: compared 56 files, 1 differ
+wa pnpm: compared 56 files, 1 differ
+zm npm: compared 54 files, 1 differ
+zm pnpm: compared 54 files, 1 differ
+memo npm: compared 54 files, 1 differ
+memo pnpm: compared 54 files, 1 differ
+drive npm: compared 54 files, 1 differ
+drive pnpm: compared 54 files, 1 differ
+wa npm: 12 ok, 0 missing
+wa pnpm: 12 ok, 0 missing
+zm npm: 13 ok, 0 missing
+zm pnpm: 13 ok, 0 missing
+memo npm: 12 ok, 0 missing
+memo pnpm: 12 ok, 0 missing
+drive npm: 13 ok, 0 missing
+drive pnpm: 13 ok, 0 missing

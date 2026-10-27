@@ -1,0 +1,24 @@
+--version
+-V
+--help
+commands --json
+commands
+commands info --json
+help options
+skill show
+skill show --json
+skill status
+doctor --json
+doctor
+mcp config
+--nonsense
+runs list --json
+smoke config set limit 20
+smoke config show --json
+smoke doctor --json
+smoke mcp server status
+upgrade --help
+runs path nothing
+smoke config unset limit
+smoke config show
+mcp --help
