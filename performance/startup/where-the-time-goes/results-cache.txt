@@ -1,0 +1,6 @@
+# load average 3.8 (00:48), tg-cli ae64c39, cli-core 0.449.0, cli-base 0.62.0; 10 rounds
+node                         wall    17 ms   cpu    10 ms
+help-cache                   wall   408 ms   cpu   540 ms
+help-nocache                 wall   495 ms   cpu   640 ms
+offline-cache                wall   428 ms   cpu   580 ms
+offline-nocache              wall   521 ms   cpu   670 ms

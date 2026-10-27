@@ -1,0 +1,7 @@
+# load average 12.7-16.7; 10 rounds
+node -e 0                    wall    24 ms   cpu    10 ms
+--help                       wall   652 ms   cpu   830 ms
+messages list --help         wall   635 ms   cpu   825 ms
+commands --json              wall   740 ms   cpu   950 ms
+chats list --offline         wall   653 ms   cpu   845 ms
+no cache: chats list --offline wall   801 ms   cpu   995 ms

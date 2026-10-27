@@ -17,6 +17,10 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
 - [fast-start](fast-start/README.md): a bare `--version` answered before the program loads (56–73 ms in tg, max
   and wa, from 0.6–1.0 s), tg's mtcute and drive's Google libraries loaded on first use, what still loads, and a
   bundle of tg (2026-10-25).
+- [where-the-time-goes](where-the-time-goes/README.md): where a tg command's ~450 ms goes (83% importing about
+  1,110 files, a third of the CPU resolving imports, 10% building the program), what serve and MCP pay per request
+  (~11 ms of a 20 ms request rebuilds the program), whether the compile cache is hit, and the options; none was a
+  quick win (2026-10-27).
 - [packed-install](packed-install/README.md): packed releases installed with npm, pnpm and Bun in isolated directories (2026-10-24).
 
 - [WhatsApp on npm 12](wa-npm12/README.md): whether an unapproved global install hook runs, and the scoped approval flag.
