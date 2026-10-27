@@ -1,4 +1,4 @@
-# The bundle, rolled out to every WireCat CLI
+# The bundle across the WireCat CLIs
 
 Measured 2026-10-27, with the scripts beside this page.
 
@@ -124,6 +124,14 @@ and names every bundled module that would look in the wrong place ([identity sum
    `pnpm build` bundled it and whose tests passed. The CLIs' moves to 0.464 and later also carry `mcp serve` and the
    `skill` JSON envelope, which change their code, and other sessions own those bumps. Each CLI's bundle branch
    (`perf/bundle`) waits for its bump; zm, drive and memo already pass their bundle smoke on 0.463.
+
+5. **The loader missed a server after a flag, found after these runs.** It looked for `serve`, `watch` or `mcp` in
+   the first three words of the command. Since cli-core 0.463 the server is `mcp serve`, so
+   `drive personal --read-only mcp serve` put `serve` fourth: that server loaded 91 of 138 chunks within 5 s instead of
+   all 138, and would fail after an in-place upgrade. The upgrade runs above used `<profile> mcp`, which the old check
+   caught. [cli-base#389](https://github.com/WireCatLabs/cli-base/pull/389) skips flags and reads four words; rebuilt
+   with it, drive's flagged server loads all 138 and `search --help` still loads 76. It ships in the next cli-base
+   release; cli-base 0.64.0, and the cli-template build that uses it, still have the gap.
 
 ## What was not measured
 
