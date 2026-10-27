@@ -1,0 +1,1 @@
+[["tools/list", {}], ["tools/call", { "name": "tg_read", "arguments": { "command": "status", "arguments": {} } }]]
