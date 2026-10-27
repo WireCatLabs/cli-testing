@@ -28,6 +28,9 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
 - [tg-bundle-upgrade](tg-bundle-upgrade/README.md): tg upgraded in place while `serve` and an MCP session run: from
   bundle to bundle, a running MCP session failed on every chunk it had not loaded yet, where the package from before
   the bundle kept answering; fixed by loading every chunk soon after a server starts (2026-10-27).
+- [tg-upgrade-restarts-mcp](tg-upgrade-restarts-mcp/README.md): the real `tg upgrade` restarted the HTTP MCP server
+  on the new version with its `--permission` limits, and named the stdio MCP session by PID and left it running
+  (2026-10-27).
 - [bundle-rollout](bundle-rollout/README.md): the shared `cli-dev bundle` (cli-base 0.64.0) on max, wa, zm, memo,
   drive and cli-template: 43–58% off every warm start, byte-identical under npm and pnpm, a running MCP server survives
   an upgrade between two bundles; about 2.5 MB more to download. tg's own script and the shared command are within
