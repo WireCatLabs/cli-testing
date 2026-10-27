@@ -85,9 +85,10 @@ CPU profiles, 3 per command, sampled every 0.1 ms, each sample attributed by its
 What is loaded ([`trace.mjs`](trace.mjs)): 1,111 files. cli-core is 903 of them (5.2 MB), cli-base 53, tg itself
 27; then xmldom (8 files, 270 KB), valibot (202 KB), psl (185 KB), `liquidjs` (175 KB), commander, `fflate`, `chardet`
 and 15 smaller packages. Resolving them took 5,114 resolutions: 3,746 relative, 1,047 bare (505 of them
-`@wirecat/cli-base`, 141 `valibot`, 119 `@wirecat/cli-base/commands`, 101 `commander`) and 321 built-ins. Node
-caches a resolution per importing file, not per name, so every file that imports `@wirecat/cli-base` walks the
-`node_modules` folders again. That is about 30 µs per resolution, spread evenly: no single hot spot.
+`@wirecat/cli-base`, 141 `valibot`, 119 `@wirecat/cli-base/commands`, 101 `commander`) and 321 built-ins. The bare
+ones cost 46–51 ms of CPU per run inside Node's `packageResolve`; resolution as a whole is about 30 µs per call,
+spread evenly, with no single hot spot. Node probably caches a resolution per importing file rather than per name,
+which would explain why 505 imports of one package each cost a lookup.
 
 Repeated work at start, inclusive CPU per profiled run:
 
@@ -163,6 +164,9 @@ Reusing one program across requests is not safe as the code stands:
   few files are not cached; that is a few milliseconds.
 - **What it saves** ([results-cache.txt](results-cache.txt), load 3.8): `messages list --help` 408 ms with the cache,
   495 without (−18%); `chats list --offline` 428 against 521 (−18%).
+- **The installed CLI too.** The installed `tg` 0.96.0, with its default cache folder (`/tmp/node-compile-cache`),
+  in the same empty home: the first run after the install accepted 5 code caches and wrote 1,049; the second
+  accepted 1,054. A new version starts cold once, like a reboot.
 - **It is cold after every reboot.** `/tmp` here is on the root file system but is emptied at boot: after this
   machine restarted, only the cache written since was there. The first start of each CLI after a reboot pays the
   extra ~90 ms once.
@@ -190,16 +194,18 @@ Reusing one program across requests is not safe as the code stands:
 4. **The compile cache is the cache that matters, and it already works** (−18%). The only cheap improvement is where
    it lives: a folder that survives a reboot.
 
-### Larger options, with the gains measured here
+### Larger options
+
+Gains measured in this round unless the row says where they come from.
 
 | option | gain | cost |
 | --- | --- | --- |
-| a one-file bundle of each CLI (see [fast start](../fast-start/README.md)) | 100–150 ms wall, ~300 ms CPU per command: it removes most of the 35% spent resolving | a separate build with stubs for `bun:sqlite` and `better-sqlite3` |
+| a one-file bundle of each CLI (see [fast start](../fast-start/README.md)) | 100–150 ms wall, ~300 ms CPU per command, measured in fast start; it would remove most of the 35% spent resolving | a separate build with stubs for `bun:sqlite` and `better-sqlite3` |
 | lazy loading of the eight third-party packages | 5–10% wall, 8–12% CPU per command | eight files in cli-core and one in cli-base; a `createRequire` getter where the caller is synchronous |
 | check query examples in tests or on first use, not at start | about 2–3% wall more | cli-base decides when a broken example fails |
 | reuse built programs in serve and MCP | about 11 ms per request | a pool or a restructured `run()` |
-| decide on the client whether to relay, before loading the program | ~430 ms → tens of ms for a relayed command | the relay decision needs the command's effects and permissions, which are known only from the tree |
-| a compile cache folder that survives a reboot (`enableCompileCache(<cache dir>)`) | ~90 ms on the first start after a reboot | one line in each bin; the folder has to be cleaned of old Node versions |
+| decide on the client whether to relay, before loading the program | estimated: ~430 ms → tens of ms for a relayed command, as `--version` before the program loads | the relay decision needs the command's effects and permissions, which are known only from the tree |
+| a compile cache folder that survives a reboot (`enableCompileCache(<cache dir>)`) | ~90 ms on the first start after a reboot or an upgrade (the −18% above) | one line in each bin; the folder has to be cleaned of old Node versions |
 | cache the `commands --json` document by versions | ~100 ms on that command only | a cache to invalidate; nothing for other commands |
 
 ## What was not measured
