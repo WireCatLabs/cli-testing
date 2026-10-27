@@ -1,0 +1,3 @@
+# load average 12.6-12.9; 9 processes each, medians, ms
+messages list --help 9 runs: node_bootstrap=12.9 script_ready=14.7 import_program=394.2 import_rest_of_cli_core=0.7 create_program_first=48.1 create_program_again=24.9 run_first=23.3 run_again=25.7
+bench chats list --offline 9 runs: node_bootstrap=13.2 script_ready=15.4 import_program=419.8 import_rest_of_cli_core=0.8 create_program_first=52.8 create_program_again=25.5 run_first=59.3 run_again=48.1

@@ -1,0 +1,23 @@
+# first set: load average about 4 (00:50), tg-cli ae64c39; median of 40 calls after 5 untimed, 3 processes
+{"args":["messages","list","--help"],"build_program_ms":15.1,"whole_request_ms":19.3}
+{"args":["messages","list","--help"],"build_program_ms":12.8,"whole_request_ms":11.1}
+{"args":["messages","list","--help"],"build_program_ms":11.4,"whole_request_ms":11.6}
+{"args":["bench","chats","list","--offline"],"build_program_ms":10.8,"whole_request_ms":20.5}
+{"args":["bench","chats","list","--offline"],"build_program_ms":11.2,"whole_request_ms":20.3}
+{"args":["bench","chats","list","--offline"],"build_program_ms":10.8,"whole_request_ms":20}
+{"args":["bench","chats","list","--offline","--json"],"build_program_ms":10.9,"whole_request_ms":19.6}
+{"args":["bench","chats","list","--offline","--json"],"build_program_ms":11,"whole_request_ms":20}
+{"args":["bench","chats","list","--offline","--json"],"build_program_ms":10.6,"whole_request_ms":19.9}
+# second set: load average 16.4-18.2 (02:27), tg-cli 927704d
+{"args":["--version"],"build_program_ms":14.5,"whole_request_ms":15.4}
+{"args":["--version"],"build_program_ms":17.8,"whole_request_ms":18.1}
+{"args":["--version"],"build_program_ms":19.1,"whole_request_ms":17.6}
+{"args":["messages","list","--help"],"build_program_ms":18.4,"whole_request_ms":15.8}
+{"args":["messages","list","--help"],"build_program_ms":16.4,"whole_request_ms":16}
+{"args":["messages","list","--help"],"build_program_ms":16.2,"whole_request_ms":18.9}
+{"args":["bench","chats","list","--offline"],"build_program_ms":16.4,"whole_request_ms":32.9}
+{"args":["bench","chats","list","--offline"],"build_program_ms":18.5,"whole_request_ms":35.5}
+{"args":["bench","chats","list","--offline"],"build_program_ms":17.6,"whole_request_ms":34.9}
+{"args":["bench","chats","list","--offline","--json"],"build_program_ms":18,"whole_request_ms":30.5}
+{"args":["bench","chats","list","--offline","--json"],"build_program_ms":20.3,"whole_request_ms":37.4}
+{"args":["bench","chats","list","--offline","--json"],"build_program_ms":21,"whole_request_ms":35.8}

@@ -1,0 +1,15 @@
+# load average 10.3-11.2 (02:22-02:24); 15 rounds; tg-cli 927704d, cli-core 0.449.0, cli-base 0.62.0
+before help                  wall   425 ms   cpu   560 ms
+stub help                    wall   392 ms   cpu   500 ms
+stub+query help              wall   382 ms   cpu   490 ms
+before offline               wall   454 ms   cpu   590 ms
+stub offline                 wall   421 ms   cpu   540 ms
+stub+query offline           wall   407 ms   cpu   520 ms
+
+# second run: load average 9.6-12.4 (02:30-02:31); 15 rounds; same builds
+before help                  wall   415 ms   cpu   560 ms
+stub help                    wall   394 ms   cpu   500 ms
+stub+query help              wall   354 ms   cpu   480 ms
+before offline               wall   443 ms   cpu   590 ms
+stub offline                 wall   399 ms   cpu   520 ms
+stub+query offline           wall   413 ms   cpu   530 ms

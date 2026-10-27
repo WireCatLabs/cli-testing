@@ -1,0 +1,23 @@
+# load average 8.0 (02:24); 3 profiles each, --cpu-prof-interval 100
+## bench_chats_list_--offline
+mean CPU sampled per run: 556 ms (3 runs)
+  182 ms   33%  resolving imports to files (paths, package.json, stat, realpath)
+  116 ms   21%  running modules' top-level code
+   76 ms   14%  compiling (with the compile cache on)
+   73 ms   13%  reading, linking, instantiating modules
+   49 ms    9%  building the program (createProgram)
+   47 ms    8%  garbage collection
+    6 ms    1%  parsing and running the command
+    5 ms    1%  idle or unattributed
+    1 ms    0%  Node start and other internals
+## messages_list_--help
+mean CPU sampled per run: 508 ms (3 runs)
+  176 ms   35%  resolving imports to files (paths, package.json, stat, realpath)
+   85 ms   17%  running modules' top-level code
+   75 ms   15%  compiling (with the compile cache on)
+   65 ms   13%  reading, linking, instantiating modules
+   49 ms   10%  garbage collection
+   48 ms    9%  building the program (createProgram)
+    6 ms    1%  parsing and running the command
+    4 ms    1%  idle or unattributed
+    1 ms    0%  Node start and other internals
