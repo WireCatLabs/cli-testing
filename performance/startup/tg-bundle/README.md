@@ -31,7 +31,7 @@ The answer decided whether tg-cli merges the bundle
   does, and installed from the tarball with `npm install -g --prefix <temp>` ([`install.sh`](install.sh)). The
   identity checks also used `pnpm add -g` with its own `PNPM_HOME` and store.
 - **The bundle.** esbuild 0.28.2, the version cli-core already uses. `pnpm build` runs `tsc`, then the bundle script
-  [`scripts/bundle.ts`](https://github.com/WireCatLabs/tg-cli/blob/perf/bundle/scripts/bundle.ts). It bundles
+  [`scripts/bundle.ts`](https://github.com/WireCatLabs/tg-cli/blob/main/scripts/bundle.ts). It bundles
   `dist/bin/tg.js` into `dist/bundle/` (ESM, split into chunks, names kept). `dist/bin/tg.js`, the path npm links
   and MCP configs name, becomes a five-line loader: it turns on the compile cache, then imports the bundle.
 - **State.** `HOME`, the four XDG folders, `MESSAGING_STORE`, `WIRECAT_STATE_DIR` and `TMPDIR` in an empty temp
@@ -92,15 +92,20 @@ Two differences remain, and both are expected:
 
 With Node 22.23.2, `--version`, `messages list --help`, `chats list --offline`, `guide`, `doctor --json` and
 `commands --json` gave the same output before and after. The store that `chats list --offline` creates has the same
-597 objects in all four installs. `pnpm smoke:node` and `pnpm smoke:bun` pass, and so do the test suite (2,180 tests,
-which run against `src/`), `lint:commands` and `package:check`.
+597 objects in all four installs. Under Bun, from the repository's pnpm layout, `chats list --offline` reaches the
+store (`item.not-found`) and `doctor` finds every reader, as before. `pnpm smoke:node` and `pnpm smoke:bun` pass, and
+so do the test suite (2,180 tests, which run against `src/`), the shared-contract check (`contracts:check`: help,
+`commands --json`, two usage errors, the MCP schema), `security:no-leak`, `lint:commands` and `package:check`.
+None of the packages left outside the bundle depends on cli-base, cli-core, commander or valibot, so no second copy
+of their classes loads; cli-base's `isCliError` checks a brand, not `instanceof`, in any case.
 
 ### What had to change to make it identical
 
 | problem | what broke | fix |
 | --- | --- | --- |
 | `import.meta.url` in a module moved into a chunk points at the chunk | `tg guide` found no scenarios; cli-core's skills, chart font, `package.json` version and the embeddings child script would resolve next to the chunk | the build replaces `import.meta.url` in tg's, cli-core's and cli-base's modules with the module's original URL: under `dist/` for tg, or under the installed package, found with `import.meta.resolve("@wirecat/cli-core")` |
-| a package loaded at run time resolves from the chunk, which is tg's folder | under pnpm, `doctor` showed every document reader as missing, and opening the store failed with `store.vector-extension-missing`: pnpm puts cli-core's dependencies beside cli-core, not beside tg. npm's flat layout hid it | in cli-core's and cli-base's modules, `import.meta.resolve(x)` and `import()` of a package outside the bundle resolve from the original module. `module.registerHooks` adds a resolve hook for that one call and removes it after, so Node gives its own answer from the right parent. Bun has no hooks; it falls back to the plain lookup, and its global install is flat |
+| a package loaded at run time resolves from the chunk, which is tg's folder | under pnpm, `doctor` showed every document reader as missing, and opening the store failed with `store.vector-extension-missing`: pnpm puts cli-core's dependencies beside cli-core, not beside tg. npm's flat layout hid it | in cli-core's and cli-base's modules, `import.meta.resolve(x)` and `import()` of a package outside the bundle resolve from the original module. `module.registerHooks` adds a resolve hook for that one call and removes it after, so Node gives its own answer from the right parent |
+| the same under Bun, which has no `registerHooks` | in this repository's pnpm layout, Bun lost the store and the readers the same way; the first smoke test missed it, because its offline read had no profile and stopped before the store | under Bun, `Bun.resolveSync(specifier, <the original module's folder>)`; when it finds nothing, the plain lookup keeps Bun's own error. The smoke test now sets a profile, requires `item.not-found` from the store, and checks that `doctor` finds the readers |
 | `await import("yaml")` of a CommonJS package | `tg guide` crashed: Node gives a CommonJS module's named exports (`parseDocument`), a split esbuild chunk gives only `default` | a dynamic import of CommonJS goes through a module that exports exactly the names Node finds (`Object.keys` of Node's own import, `module.exports` included) |
 | esbuild renames clashing top-level names (`run` → `run2`) | function and class `name` values reach errors | `keepNames` |
 | a worker started from its own file (`@eshaz/web-worker`, under `ogg-opus-decoder`) | voice transcription would start a worker from a chunk | `ogg-opus-decoder` stays outside the bundle |
@@ -129,10 +134,10 @@ bundle is not minified: stack traces stay readable.
 1. **The gain holds in a bundle that ships: about half of every start.** Warm `messages list --help` went from 389 to
    192 ms wall (−51%) and from 510 to 250 ms CPU. Cold starts improved by the same share, 534 to 272 ms. `--version`
    was already answered before the program loads and stays at about 30 ms. The rough bundle in fast start saved less
-   (100–150 ms) because its compile cache came on too late, and it ran under higher load.
-2. **Identical behaviour needs four fixes beyond bundling, and npm alone would have hidden two of them.** The
-   path and package lookups that cli-core does from its own place broke only under pnpm's layout; the CommonJS
-   named-export difference broke only `guide`. Each now fails the build, or is covered by the smoke test, if it
+   (100–150 ms), probably because it was one file with no chunks and ran at load 6–9; this was not measured.
+2. **Identical behaviour needs the fixes in the table above, and npm alone would have hidden the package lookups.** The
+   package lookups that cli-core does from its own place broke only under pnpm's layout, under Node and Bun alike;
+   the CommonJS named-export difference broke only `guide`. Each now fails the build, or is covered by the smoke test, if it
    comes back.
 3. **The cost is size**, 2.5 MB more to download and 12 MB more on disk.
 
@@ -157,7 +162,7 @@ for example a `./resolve` export that resolves from cli-core's folder.
 - Commands that connect to Telegram. They still load mtcute's ~650 files outside the bundle, as before.
 - macOS and Windows timings. The pull request's CI covers their install and run (`install-windows.yml`,
   `platform-run`), not their speed.
-- Bun's speed. `smoke:bun` passes; Bun's global layout was not checked with pnpm-style isolation.
+- Bun's speed, and a global `bun add -g` install. Bun was checked from the repository's pnpm layout only.
 - A store with rows, and MCP or serve requests after the start.
 - Memory.
 - An installed CLI upgraded in place, from the unbundled to the bundled version, with servers running. `upgrade`

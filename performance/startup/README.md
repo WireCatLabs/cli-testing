@@ -23,7 +23,8 @@ Measurements of what a WireCat CLI costs before it does any work: install size a
   quick win (2026-10-27).
 - [tg-bundle](tg-bundle/README.md): tg run from an esbuild bundle: a command loads about 55 files instead of about
   1,110 and starts in about half the time (warm `messages list --help` 389 → 192 ms), with every output the same under
-  npm and pnpm after four fixes; the package grows from 0.5 to 3.0 MB (2026-10-27).
+  npm, pnpm and Bun once the bundle looks up files and packages from each module's own place; the package grows
+  from 0.5 to 3.0 MB (2026-10-27).
 - [packed-install](packed-install/README.md): packed releases installed with npm, pnpm and Bun in isolated directories (2026-10-24).
 
 - [WhatsApp on npm 12](wa-npm12/README.md): whether an unapproved global install hook runs, and the scoped approval flag.
