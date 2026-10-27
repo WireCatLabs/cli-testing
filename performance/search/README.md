@@ -59,7 +59,12 @@ message vectors.
 with mMARCO 5.1 s on one archive), shows that batching the reranker's pairs does not help in WebAssembly and changes
 the 8-bit model's scores, and measures onnxruntime-node: a real `--discover` 4.6 s → 3.2 s with the same answers,
 no build for Alpine or Intel Macs; and which reranker input keeps the answers on real long messages — the reply's
-parent cut to 300 characters (2026-10-26).
+parent cut to 300 characters (2026-10-26). It also times CLIP picture models on the native runtime: about 2× faster once loaded,
+vectors at cosine 0.99 or more to WebAssembly's.
+
+[Notes and documents through the vector index](notes-index/README.md) replaces a scan of every chunk in the store
+with the sqlite-vec index for documents and notes: 5.2–5.5 s → 0.03–0.13 s for the same 20 results on a 612k-chunk
+archive copy, and released `memo search all` 6.6 s → 1.4 s with identical results (2026-10-27).
 
 ## Layout
 

@@ -151,9 +151,43 @@ Platforms in onnxruntime-node 1.30.0 (288 MB unpacked, all platforms in one pack
 ### Not measured
 
 - A per-platform repackaging of the native library, its install size and its CI.
-- Windows, macOS and Linux arm64 at run time (only the files were listed).
+- Windows, macOS and Linux arm64 at run time (only the files were listed). Since cli-core 0.451.0 the `Native runtime`
+  workflow runs two tiny models natively on each of them; speed there is still not measured.
 - Quality with a shorter input cap (256 tokens) and with the parent left out.
 - The MCP server, where models stay loaded and only scoring would get faster.
+
+## Picture models (CLIP) on the native runtime
+
+### Why
+
+Core 0.448.0 moved text models and the reranker to the native runtime; picture models stayed on WebAssembly because
+nobody had checked them natively. The question: are CLIP vectors from the native runtime close enough to
+WebAssembly's that pictures embedded before still match, and is it faster? It decided cli-core#2075 (0.451.0).
+
+### Setup
+
+Same machine, load average about 2. [picture.mjs](picture.mjs) with a built cli-core 0.452.0 checkout and clip-b32:
+12 synthetic pictures (plain coloured shapes, 320×240) and 5 short text queries, 4 threads, two runs per runtime,
+`WIRECAT_STATE_DIR` pointing at a folder with the native library (native) or with only the model (WebAssembly).
+
+### Results
+
+| runtime | 12 pictures | 5 queries |
+| --- | --- | --- |
+| native, run 1 (first load) | 769 ms | 137 ms |
+| native, run 2 | 375 ms | 122 ms |
+| WebAssembly, runs 1–2 | 809–842 ms | 182–197 ms |
+
+Cosine similarity native vs WebAssembly, lowest of each set: pictures 0.9916, queries 0.9996.
+
+### What it showed
+
+Native is about 2× faster for pictures once loaded. At cosine 0.99 or more, a picture embedded through WebAssembly
+should still match the same queries; that was not checked on a labelled set. A cold first run is about as slow as WebAssembly.
+
+### Not measured
+
+Real photos, SigLIP2, Windows and macOS, and search quality on a labelled set.
 
 ## Reranker input: how much of the replied-to message
 

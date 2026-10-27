@@ -318,3 +318,7 @@ per account and type) and sqlite-vec `vec0` both cut the first query to about 0.
 took 2.4–3.4 s and `vec0` 1.4 s. Packed blocks need no native library, so they are the recommendation, with the SQL
 scan kept for narrow filters, where every score-first layout loses results. ANN indexes were faster per query but cost an index open per process
 and a second store to keep in step.
+
+Meaning search over documents and notes still scanned every chunk after messages moved to the vector index; on one
+archive that was most of `memo search all`'s time. Ranking them through the same index with the scan's own filters
+gave the same results 100× faster ([notes-index](notes-index/README.md), 2026-10-27).
