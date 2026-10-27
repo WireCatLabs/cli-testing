@@ -70,7 +70,7 @@ The questions, for each CLI:
 | memo | `notes list` | 771 / 975 | 351 / 425 | −54% | −51% |
 | drive | `search --help` | 714 / 905 | 347 / 435 | **−51%** | −46% |
 | drive | `commands --json` | 737 / 935 | 338 / 425 | −54% | −45% |
-| cli-template (`clidev`) | `config show --help` | 531 | 236 | **−56%** | — |
+| cli-template (`clidev`), on cli-core 0.464 | `config show --help` | 366 | 151 | **−59%** | — |
 | tg (own script → shared) | `messages list --help` | 447 / 485 | 458 / 490 | +2% (noise) | −13% (noise) |
 
 `--version` halves too (max 67 → 33, drive 72 → 29 ms): the loader answers it from the version built into it, before
@@ -86,7 +86,7 @@ package installs the `cli-template` scaffolder, not `clidev`.
 | zm | none | yes, yes | 13 / 13 | pass, 7 calls | 0.25 → 2.76 MB | 2.3 → 13.4 MB | 264 → 275 MB |
 | memo | none | yes, yes | 12 / 12 | pass, 8 calls | 0.40 → 3.10 MB | 3.5 → 15.4 MB | 271 → 283 MB |
 | drive | `@googleapis/*`, `google-auth-library` (their `debug` requires an optional `supports-color`) | yes, yes | 13 / 13 | pass, 7 calls | 0.57 → 3.29 MB | 4.7 → 17.4 MB | 285 → 297 MB |
-| cli-template | none | yes (repository `dist/`) | — | not applicable (no published bin) | — | — | — |
+| cli-template | none | yes (repository `dist/`, on cli-core 0.464) | — | not applicable (no published bin); `kit:e2e` builds a new CLI with the bundle | — | — | — |
 | tg | `@mtcute/*`, `undici` | yes ([cli-base#382](https://github.com/WireCatLabs/cli-base/pull/382)) | — | covered by [tg-bundle-upgrade](../tg-bundle-upgrade/README.md) | 3.02 → 3.02 MB | — | — |
 
 The shared defaults are what cli-core and cli-base bring: native modules (`*.node`, `@napi-rs/*`, `@resvg/*`,
@@ -117,11 +117,13 @@ and names every bundled module that would look in the wrong place ([identity sum
    one or two, because a bundled CommonJS library optionally required a package that is not installed. The build
    refused them and named the file, so nothing was guessed.
 3. **The price is size again:** about 2.5 MB more to download and 10–13 MB more on disk per CLI, about 4% of an install.
-4. **The bundle can't ship yet in max, wa, zm, memo, drive or cli-template.** `cli-dev bundle` needs cli-base 0.64,
-   and cli-core accepts it only from the release that carries
-   [cli-core#2115](https://github.com/WireCatLabs/cli-core/pull/2115). That release also carries `mcp serve` and the
-   `skill` JSON envelope, which change each CLI's code. Other sessions own those bumps. Each CLI's bundle branch
-   (`perf/bundle`) waits for them, and is then measured again on the bumped code.
+4. **cli-template ships it; the other CLIs wait for a dependency bump.** `cli-dev bundle` needs cli-base 0.64, and
+   cli-core accepts it from 0.464.0 ([cli-core#2115](https://github.com/WireCatLabs/cli-core/pull/2115)). The template
+   moved to 0.464 ([cli-template#75](https://github.com/WireCatLabs/cli-template/pull/75)) and builds every new CLI
+   with the bundle ([cli-template#76](https://github.com/WireCatLabs/cli-template/pull/76)): `kit:e2e` made a CLI whose
+   `pnpm build` bundled it and whose tests passed. The CLIs' moves to 0.464 and later also carry `mcp serve` and the
+   `skill` JSON envelope, which change their code, and other sessions own those bumps. Each CLI's bundle branch
+   (`perf/bundle`) waits for its bump; zm, drive and memo already pass their bundle smoke on 0.463.
 
 ## What was not measured
 
