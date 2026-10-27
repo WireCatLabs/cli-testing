@@ -165,5 +165,4 @@ for example a `./resolve` export that resolves from cli-core's folder.
 - Bun's speed, and a global `bun add -g` install. Bun was checked from the repository's pnpm layout only.
 - A store with rows, and MCP or serve requests after the start.
 - Memory.
-- An installed CLI upgraded in place, from the unbundled to the bundled version, with servers running. `upgrade`
-  restarts them with `dist/bin/tg.js`, which is still the bin's path.
+- An installed CLI upgraded in place with servers running: measured in [tg-bundle-upgrade](../tg-bundle-upgrade/README.md).

@@ -1,0 +1,23 @@
+[
+  ["tools/list", {}],
+  ["tools/call", { "name": "tg_read", "arguments": { "command": "status", "arguments": {} } }],
+  ["tools/call", { "name": "tg_tools_search", "arguments": { "query": "chart statistics" } }],
+  ["tools/call", { "name": "tg_tools_search", "arguments": {} }],
+  ["tools/call", { "name": "tg_read", "arguments": { "command": "doctor", "arguments": {} } }],
+  ["tools/call", { "name": "tg_read", "arguments": { "command": "chats list", "arguments": { "offline": true } } }],
+  [
+    "tools/call",
+    {
+      "name": "tg_read",
+      "arguments": { "command": "search all", "arguments": { "query": "invoice", "offline": true } }
+    }
+  ],
+  ["tools/call", { "name": "tg_read", "arguments": { "command": "tasks agenda", "arguments": {} } }],
+  [
+    "tools/call",
+    { "name": "tg_read", "arguments": { "command": "stats charts", "arguments": { "chat": "1", "format": "png" } } }
+  ],
+  ["resources/read", { "uri": "tg://skill" }],
+  ["prompts/list", {}],
+  ["prompts/get", { "name": "catch-up", "arguments": {} }]
+]
