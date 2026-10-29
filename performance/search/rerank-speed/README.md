@@ -256,11 +256,14 @@ Before both changes (max 0.78.0, WebAssembly, whole parent) the same calls were 
 Synthetic runs need only this folder and a built `@wirecat/cli-core`:
 
 - Models and batching: `node bench.mjs <path to @wirecat/cli-core>`.
-- WebAssembly against native: `python compare.py`, which runs [runtime.mjs](runtime.mjs) three times per runtime.
-- Holdout pairs: score with [python_native.py](python_native.py) and [pairs.mjs](pairs.mjs), then compare with
-  [agreement.py](agreement.py). The pairs come from the [evidence pipeline](../evidence-pipeline/README.md)'s
+- WebAssembly against native: `python compare.py <cli-core dir> <node_modules with onnxruntime-node> <out.json>`,
+  which runs [runtime.mjs](runtime.mjs) three times per runtime.
+- Holdout pairs: `python python_native.py <evidence-pipeline dir> <mmarco dir> <threads> <out.json>`, then
+  `node pairs.mjs <cli-core dir> <node_modules> <wasm|native> <threads> <pairs file> <out.json>` for each runtime,
+  then `python agreement.py <python.json> <wasm.json> <native.json>`. The pairs come from the [evidence pipeline](../evidence-pipeline/README.md)'s
   holdout questions.
-- Picture models: `node picture.mjs` with a built cli-core checkout.
+- Picture models: `WIRECAT_STATE_DIR=<dir> node picture.mjs <built cli-core checkout> install|native|wasm <out.json>`;
+  the file's header explains the two folders.
 
 Runs on a real archive (the native runtime on `--discover`, the reranker input) also need:
 
