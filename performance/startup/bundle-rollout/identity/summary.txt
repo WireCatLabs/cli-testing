@@ -1,20 +1,44 @@
-max npm: compared 54 files, 1 differ
-max pnpm: compared 54 files, 1 differ
-max npm: 16 ok, 0 missing
-max pnpm: 16 ok, 0 missing
-wa npm: compared 56 files, 1 differ
-wa pnpm: compared 56 files, 1 differ
-zm npm: compared 54 files, 1 differ
-zm pnpm: compared 54 files, 1 differ
-memo npm: compared 54 files, 1 differ
-memo pnpm: compared 54 files, 1 differ
-drive npm: compared 54 files, 1 differ
-drive pnpm: compared 54 files, 1 differ
-wa npm: 12 ok, 0 missing
-wa pnpm: 12 ok, 0 missing
-zm npm: 13 ok, 0 missing
-zm pnpm: 13 ok, 0 missing
-memo npm: 12 ok, 0 missing
-memo pnpm: 12 ok, 0 missing
-drive npm: 13 ok, 0 missing
-drive pnpm: 13 ok, 0 missing
+tg sizes: before 3041975 after 3041353
+tg before npm: 14 asset paths ok, 0 missing
+tg before pnpm: 14 asset paths ok, 0 missing
+tg after npm: 14 asset paths ok, 0 missing
+tg after pnpm: 14 asset paths ok, 0 missing
+tg identity npm: DIFF 19.out: runs list --json compared 56 files, 1 differ 
+tg identity pnpm: DIFF 19.out: runs list --json compared 56 files, 1 differ 
+tg upgrade (mcp serve): PASS: 8 calls after the upgrade, none crashed | bundle loads before the upgrade: 148
+tg upgrade (--read-only mcp serve): FAIL: 0 calls, 0 crashed or timed out, tools listed: 0 | bundle loads before the upgrade: 104
+max sizes: before 483741 after 2994069
+max after npm: 16 asset paths ok, 0 missing
+max after pnpm: 16 asset paths ok, 0 missing
+max identity npm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+max identity pnpm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+max upgrade (mcp serve): PASS: 9 calls after the upgrade, none crashed | bundle loads before the upgrade: 139
+max upgrade (--quiet mcp serve): PASS: 9 calls after the upgrade, none crashed | bundle loads before the upgrade: 139
+wa sizes: before 302304 after 2716563
+wa after npm: 12 asset paths ok, 0 missing
+wa after pnpm: 12 asset paths ok, 0 missing
+wa identity npm: DIFF 14.out: runs list --json compared 56 files, 1 differ 
+wa identity pnpm: DIFF 14.out: runs list --json compared 56 files, 1 differ 
+wa upgrade (mcp serve): PASS: 9 calls after the upgrade, none crashed | bundle loads before the upgrade: 131
+wa upgrade (--quiet mcp serve): PASS: 9 calls after the upgrade, none crashed | bundle loads before the upgrade: 131
+zm sizes: before 256408 after 2784239
+zm after npm: 13 asset paths ok, 0 missing
+zm after pnpm: 13 asset paths ok, 0 missing
+zm identity npm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+zm identity pnpm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+zm upgrade (mcp serve): PASS: 7 calls after the upgrade, none crashed | bundle loads before the upgrade: 210
+zm upgrade (--quiet mcp serve): PASS: 7 calls after the upgrade, none crashed | bundle loads before the upgrade: 210
+memo sizes: before 399836 after 3121995
+memo after npm: 12 asset paths ok, 0 missing
+memo after pnpm: 12 asset paths ok, 0 missing
+memo identity npm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+memo identity pnpm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+memo upgrade (mcp serve): PASS: 8 calls after the upgrade, none crashed | bundle loads before the upgrade: 107
+memo upgrade (--no-record mcp serve): PASS: 8 calls after the upgrade, none crashed | bundle loads before the upgrade: 107
+drive sizes: before 572466 after 3306203
+drive after npm: 13 asset paths ok, 0 missing
+drive after pnpm: 13 asset paths ok, 0 missing
+drive identity npm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+drive identity pnpm: DIFF 14.out: runs list --json compared 54 files, 1 differ 
+drive upgrade (mcp serve): PASS: 7 calls after the upgrade, none crashed | bundle loads before the upgrade: 222
+drive upgrade (--read-only mcp serve): PASS: 7 calls after the upgrade, none crashed | bundle loads before the upgrade: 222
