@@ -250,3 +250,33 @@ native runtime), load average 1–6, 2026-10-26 22:50 UTC. WebAssembly by hiding
 Before both changes (max 0.78.0, WebAssembly, whole parent) the same calls were 0.8 / 1.9 / 5.1 s at load average
 6–16 — not the same load, so only a rough baseline.
 
+
+## How to repeat
+
+Synthetic runs need only this folder and a built `@wirecat/cli-core`:
+
+- Models and batching: `node bench.mjs <path to @wirecat/cli-core>`.
+- WebAssembly against native: `python compare.py`, which runs [runtime.mjs](runtime.mjs) three times per runtime.
+- Holdout pairs: score with [python_native.py](python_native.py) and [pairs.mjs](pairs.mjs), then compare with
+  [agreement.py](agreement.py). The pairs come from the [evidence pipeline](../evidence-pipeline/README.md)'s
+  holdout questions.
+- Picture models: `node picture.mjs` with a built cli-core checkout.
+
+Runs on a real archive (the native runtime on `--discover`, the reranker input) also need:
+
+- **A Core build with the bench switches.** Branch `bench/rerank-input` in WireCatLabs/cli-core (never merged) adds
+  environment variables to Core's reranker:
+  - `WIRECAT_BENCH_PAIR` picks the input form: `parent-first`, `hit-first`, `parent-300` (the released one) or
+    `no-parent`;
+  - `WIRECAT_BENCH_RERANK_TOKENS` replaces the 512-token cap;
+  - `WIRECAT_BENCH_TOKENS=1` prints each pair's lengths (`bench-pair`, `bench-tokens`) on stderr.
+
+  Build max-cli against that branch. The native runtime is in Core since 0.451.0, so the older
+  `WIRECAT_BENCH_ONNX_NATIVE` switch is not needed. The original runs used cli-core v0.439.0, where the default form
+  was `parent-first`.
+- **A copy of the store in a temporary home.** Copy max's config folder there, and copy the store database with
+  SQLite's `.backup`, never by copying the open file. The runs are `--offline` and need no sign-in. Pass the runner
+  only `PATH` and `HOME`, so the copy cannot reach the system keyring.
+- **The questions and the earlier grades.** They are private, together with the runners that keep only totals:
+  `tools/context-gathering/pmed-discover-native-v1.py` and `pmed-rerank-input-v1.py` in the owner's private
+  repository.
