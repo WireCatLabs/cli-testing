@@ -260,8 +260,8 @@ Synthetic runs need only this folder and a built `@wirecat/cli-core`:
   which runs [runtime.mjs](runtime.mjs) three times per runtime.
 - Holdout pairs: `python python_native.py <evidence-pipeline dir> <mmarco dir> <threads> <out.json>`, then
   `node pairs.mjs <cli-core dir> <node_modules> <wasm|native> <threads> <pairs file> <out.json>` for each runtime,
-  then `python agreement.py <python.json> <wasm.json> <native.json>`. The pairs come from the [evidence pipeline](../evidence-pipeline/README.md)'s
-  holdout questions.
+  then `python agreement.py <python.json> <wasm.json> <native.json>`. The pairs come from the
+  [evidence pipeline](../evidence-pipeline/README.md)'s holdout questions.
 - Picture models: `WIRECAT_STATE_DIR=<dir> node picture.mjs <built cli-core checkout> install|native|wasm <out.json>`;
   the file's header explains the two folders.
 
