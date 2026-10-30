@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('stage', choices=['calibration', 'eval', 'holdout'])
+parser.add_argument('stage', choices=['calibration', 'eval', 'holdout', 'long'])
 parser.add_argument('--mmr-lambda', type=float, required=True)
 parser.add_argument('--variants', default='', help='variants chosen on the tuning set, as variants_report.py names them, joined by ;')
 args = parser.parse_args()

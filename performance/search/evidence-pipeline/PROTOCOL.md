@@ -179,3 +179,57 @@ reciprocal rank, all conflict sides and item count. The rule above was committed
 was scored. The rule picked no
 floor on the tuning set: with no floor, no `missing`/`premise` question had an off-topic meaning-only item in the
 first five, so condition (4) could not pass. Holdout agreed (results in the README, "Meaning floor").
+
+## Cancelled decisions and long messages (30 October 2026, before any of it was scored)
+
+Two open items, one new split. **Cancelled decisions** (`revoked`): on holdout 6 of 9 such questions have their
+answer in the first three for every arm, A3 included, and newest-first by cosine lost more than it fixed. In the
+failing ones the cancelling message shares a distinctive name with the decision it cancels (a supplier, a code,
+a product term), not the question's words, and is usually not a reply to it. In two holdout questions and one
+calibration question the cancelling message is not among the first 100 candidates at all. **Long messages:**
+synthetic units stop at 1,200 bytes, so A3's passage cut and the reranker's input cut were never graded; real chat
+messages run to 7–8 KB (median 153 mMARCO tokens, p90 762).
+
+### Follow-ups of a hit
+
+After the final order, each of the first `K` hits gets up to `M` follow-ups: later units of the same project (any
+source) that share at least one term with the hit whose document frequency in the split store, background
+included, is at most `T`. Terms are the BM25 terms (casefolded words of 3+ letters, Snowball-stemmed by script).
+The latest follow-ups are taken first. A follow-up already shown earlier is skipped.
+
+- **Placement:** `ctx` — the follow-ups join the hit's item after its native context; `above` — each follow-up
+  becomes its own item just above the hit.
+- **Grid:** `K` 5, 10; `M` 1, 2; `T` 3, 5, 10; placement `ctx`, `above`. Applied on two bases: A3, and the mMARCO
+  mix that Core ships (rich input, `D` 50, α 0.7). Pool 100, 8 KiB. No question text, kind or label reaches it.
+
+**Choice rule, fixed now.** Tuning set: dev, calibration, eval and holdout, all already open (14 `revoked`
+questions). For each base: the variant that wins the most `revoked` questions' Answer@3 against that base, among
+variants that (1) lose no answerable question's Answer@3, (2) lose no `conflict`/`revoked` question's "all
+conflict sides", and (3) lower mean MRR on the other answerable questions by at most 0.01. Ties go to fewer added
+bytes: smaller `K`, then `M`, then `T`, then `ctx`. Fewer than two wins is "no change".
+
+### The `long` split
+
+Written by a separate agent; sealed (hash and schema checks only) until `results/freeze-long.json` records the
+chosen follow-up variant and the code hashes. Scored once. Three projects, about 14 questions each, English and
+Russian, all eight traps of "Splits", plus:
+
+- **Long units.** This split alone allows units up to 8,000 bytes. Chat messages aim at the real spread: median
+  about 600 bytes, a tenth over 3,000, a few of 5–8 KB. Documents and transcript turns may run long too.
+- **Answer spans.** Every grade-3 unit of a question gets a `spans` entry: the exact sentence(s) that state the
+  answer, as a substring of the unit text. In at least half of the answerable questions the grade-3 unit is over
+  1,500 bytes and its span starts after the first 1,000 bytes.
+- **Cancelled decisions.** Four `revoked` questions per project. In at least two the cancelling message is not a
+  reply to the decision and shares a distinctive name with it but not the question's key words; at least one is a
+  native reply.
+- **Controls.** Two questions per project marked `control: true`: a decision that still stands although a later
+  message names the same thing (a passing mention, a question about it, a related task). Follow-ups must not push
+  these down.
+
+**Gates on `long`.** The chosen variant passes if it wins at least one `revoked` question, loses no `control`
+question's Answer@3, and loses at most one answerable question's Answer@3 overall, against its base.
+
+**Long-message measures, reported, no choice made.** On `long`, for A3 and the mMARCO mix: the share of answerable
+questions whose span survives in what the reader sees (whole unit or A3 passage) among the first 3 and 10 items;
+the same with the passage cut off; and the mMARCO mix with the reranker reading the first 256 and 512 tokens of
+its input against the full model limit. `spans` and `control` reach only the scorer, never a ranker.
