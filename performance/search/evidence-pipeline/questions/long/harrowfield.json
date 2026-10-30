@@ -1,0 +1,363 @@
+[
+ {
+  "id": "harrowfield-q01",
+  "project": "harrowfield",
+  "language": "ru",
+  "text": "Какой предел по времени для груза, вынесенного из камеры к доку перед погрузкой?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "hf-nr-028": 3,
+   "hf-nr-027": 2,
+   "hf-sp-008": 3,
+   "hf-nr-029": 1,
+   "hf-nr-030": 1,
+   "hf-m1-013": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-nr-027",
+    "hf-nr-028"
+   ],
+   [
+    "hf-sp-008"
+   ]
+  ],
+  "note": "Denial: not longer than 20 minutes outside a chamber, then back in. Traps: 15-minute warning, 45 minutes in the dry-goods warehouse, the audit report request.",
+  "spans": [
+   {
+    "unit": "hf-nr-028",
+    "quote": "Не дольше 20 минут вне камеры, потом паллета возвращается обратно в камеру."
+   },
+   {
+    "unit": "hf-sp-008",
+    "quote": "A pallet must not stay in the dispatch buffer outside a chamber for longer than 20 minutes; after that it goes back into the chamber and the load is re-planned."
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q02",
+  "project": "harrowfield",
+  "language": "en",
+  "text": "Is voice picking part of the initial release or not?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "hf-ql-027": 3,
+   "hf-sp-012": 1,
+   "hf-m1-010": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-ql-027"
+   ]
+  ],
+  "note": "Only if the chamber 4 pilot reaches 98% accuracy by 20 Feb; otherwise phase two. Trap: tender 95%; the steering only says figures come next week. Answer buried in a long status.",
+  "spans": [
+   {
+    "unit": "hf-ql-027",
+    "quote": "Voice picking makes it into release one only if the chamber 4 pilot reaches 98% pick accuracy by 20 February; if it doesn't, it moves to phase two and the chilled team stays on scanners at go-live."
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q03",
+  "project": "harrowfield",
+  "language": "ru",
+  "text": "Ирина подтвердила, когда и сколько часов будут идти занятия у кладовщиков?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "hf-pr-029": 3,
+   "hf-ql-021": 2,
+   "hf-ql-043": 1,
+   "hf-ql-044": 1,
+   "hf-pr-051": 1,
+   "hf-m1-014": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-ql-021",
+    "hf-pr-029"
+   ]
+  ],
+  "note": "No: Irina approved only the module structure, not dates or hours. Trap: Fergus claims the plan was approved and sessions start 2 Feb.",
+  "spans": [
+   {
+    "unit": "hf-pr-029",
+    "quote": "По плану обучения от Fergus: утверждаю только структуру — шесть модулей в том порядке, как он предложил. Расписание и часы занятий не утверждаю: в феврале смены на Северном перекрыты инвентаризацией, Олег до пятницы даст окна, и после этого Fergus присылает новый график."
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q04",
+  "project": "harrowfield",
+  "language": "en",
+  "text": "Will the fast-moving stock at North be moved closer to the doors before launch?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "hf-ql-029": 2,
+   "hf-ql-030": 2,
+   "hf-ql-042": 2,
+   "hf-m1-011": 1,
+   "hf-m1-012": 2
+  },
+  "evidence_sets": [
+   [
+    "hf-ql-029",
+    "hf-ql-042"
+   ]
+  ],
+  "note": "Declan's ABC re-slotting proposal was deferred again and again (later, after inventory, maybe summer); never decided.",
+  "spans": []
+ },
+ {
+  "id": "harrowfield-q05",
+  "project": "harrowfield",
+  "language": "ru",
+  "text": "Как часто будем пересчитывать остатки в морозильной зоне после запуска?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "hf-sp-009": 2,
+   "hf-rv-023": 2,
+   "hf-rv-024": 1,
+   "hf-rv-025": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-sp-009",
+    "hf-rv-023"
+   ]
+  ],
+  "note": "Spec: monthly for frozen and chilled; Marat: weekly in frozen at Riverside. Nobody decided. Trap: weekly for high-value SKUs in the spec.",
+  "spans": []
+ },
+ {
+  "id": "harrowfield-q06",
+  "project": "harrowfield",
+  "language": "en",
+  "text": "What's the annual licence cost for the warehouse system?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "hf-pr-041": 1,
+   "hf-sp-012": 1
+  },
+  "evidence_sets": [],
+  "note": "Never stated; the spec points to a commercial annex. Traps: training budget 18,400 EUR, printer lease terms.",
+  "spans": []
+ },
+ {
+  "id": "harrowfield-q07",
+  "project": "harrowfield",
+  "language": "ru",
+  "text": "Какой размер этикетки на паллеты просил Ким с Северного?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "hf-nr-024": 3,
+   "hf-ql-033": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-nr-024"
+   ]
+  ],
+  "note": "Two Kims: foreman Kim Tagirov wants 100x150 mm with the cell number on top; integrator PM Kim Ashworth suggests 58 mm rolls for picking labels.",
+  "spans": [
+   {
+    "unit": "hf-nr-024",
+    "quote": "На паллеты нужна этикетка 100 на 150 мм: номер ячейки крупно сверху, штрихкод SSCC снизу — иначе с погрузчика с трёх метров не читается."
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q08",
+  "project": "harrowfield",
+  "language": "en",
+  "text": "Which handheld terminals are the pickers getting?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "hf-pr-036": 3,
+   "hf-pr-006": 2,
+   "hf-sp-004": 1,
+   "hf-m1-004": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-pr-036"
+   ]
+  ],
+  "note": "Brennick C40 decided (and in the spec), replaced by Veltrax VX9 Cold in a long IT status that is not a reply. old=brennick-old new=brennick-cancel.",
+  "spans": [
+   {
+    "unit": "hf-pr-036",
+    "quote": "The order of 46 units went to Veltrax yesterday — model VX9 Cold, delivery 9 March, and our existing cradle positions fit them."
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q09",
+  "project": "harrowfield",
+  "language": "ru",
+  "text": "Откуда WMS будет брать температуру по камерам?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "hf-pr-038": 3,
+   "hf-pr-014": 2,
+   "hf-pr-015": 1,
+   "hf-sp-006": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-pr-038"
+   ]
+  ],
+  "note": "Cloud API of Coldsense every 15 min was decided; implicitly replaced (\"идём напрямую\") by Tessaro gateways over Modbus every minute. Not a reply.",
+  "spans": [
+   {
+    "unit": "hf-pr-038",
+    "quote": "Идём напрямую: ставим шлюзы Tessaro в каждом холодильном блоке, логгеры опрашиваем по Modbus раз в минуту, и данные сразу пишутся в базу склада."
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q10",
+  "project": "harrowfield",
+  "language": "en",
+  "text": "Which of the two sites switches over to the new WMS first?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "hf-ql-031": 3,
+   "hf-ql-013": 2,
+   "hf-ql-032": 1,
+   "hf-sp-007": 1,
+   "hf-m1-006": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-ql-031"
+   ]
+  ],
+  "note": "Plan Kestrel: North first on 2 March; native reply from Irina: Riverside first, 16 March.",
+  "spans": [
+   {
+    "unit": "hf-ql-031",
+    "quote": "первым запускаем Речной, 16 марта"
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q11",
+  "project": "harrowfield",
+  "language": "ru",
+  "text": "Сколько недель старая и новая система будут работать параллельно?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "hf-m1-007": 3,
+   "hf-nr-009": 2,
+   "hf-nr-010": 1,
+   "hf-sp-007": 1,
+   "hf-m1-008": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-m1-007"
+   ]
+  ],
+  "note": "Two weeks of dual entry agreed in chat and in the spec; at the steering Declan says the legacy system goes read-only at cutover, no dual entry. Meeting turn, not a reply.",
+  "spans": [
+   {
+    "unit": "hf-m1-007",
+    "quote": "On Vectis: at midnight of the cutover it becomes read-only, and that's it — no double keying for two weeks like in the January notes."
+   }
+  ]
+ },
+ {
+  "id": "harrowfield-q12",
+  "project": "harrowfield",
+  "language": "en",
+  "text": "Are the label printers owned by us or leased?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "hf-pr-020": 3,
+   "hf-sp-005": 1,
+   "hf-nr-040": 1,
+   "hf-pr-021": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-pr-020"
+   ]
+  ],
+  "note": "Leased from Orvane for 24 months, nine units. Later: Orvane technician visit (does not change it). Trap: purchase 8% cheaper over three years.",
+  "spans": [
+   {
+    "unit": "hf-pr-020",
+    "quote": "Принтеры этикеток берём в лизинг у Orvane на 24 месяца, девять штук, покупку не делаем — Ирина вчера так решила, сервис и головки входят в платёж."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "harrowfield-q13",
+  "project": "harrowfield",
+  "language": "ru",
+  "text": "Сколько минут даётся перевозчику на разгрузку по записи?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "hf-rv-010": 3,
+   "hf-rv-011": 1,
+   "hf-sp-010": 1,
+   "hf-rv-035": 1,
+   "hf-nr-045": 1,
+   "hf-m1-009": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-rv-010"
+   ]
+  ],
+  "note": "30 minutes for all trucks. Later: Dockhub invoice and outage messages. Traps: carriers asked 45, old practice 40.",
+  "spans": [
+   {
+    "unit": "hf-rv-010",
+    "quote": "Решили по записи машин: в Dockhub окно на разгрузку 30 минут, одинаково для фур и для газелей."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "harrowfield-q14",
+  "project": "harrowfield",
+  "language": "en",
+  "text": "How many pallet locations does Riverside have in the new system?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "hf-sp-003": 3,
+   "hf-rv-018": 1,
+   "hf-sp-002": 1
+  },
+  "evidence_sets": [
+   [
+    "hf-sp-003"
+   ]
+  ],
+  "note": "4,860. Traps: legacy 5,100 including 240 blocked; North 7,240.",
+  "spans": [
+   {
+    "unit": "hf-sp-003",
+    "quote": "In the new system Riverside is set up with 4,860 pallet positions: the legacy count of 5,100 included 240 locations that have been blocked since the roof repair and will not be migrated."
+   }
+  ]
+ }
+]

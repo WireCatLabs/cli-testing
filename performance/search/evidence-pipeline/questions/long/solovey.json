@@ -1,0 +1,362 @@
+[
+ {
+  "id": "solovey-q01",
+  "project": "solovey",
+  "language": "ru",
+  "text": "Как долго у нас можно держать видеозаписи занятий с детьми?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "sv-tm-031": 3,
+   "sv-tm-030": 2,
+   "sv-sp-010": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-tm-030",
+    "sv-tm-031"
+   ]
+  ],
+  "note": "Denial: no longer than 180 days, auto-deleted, no portfolio exception. Traps: adults up to two years, access logs 30 days, spec says \"to be confirmed\".",
+  "spans": [
+   {
+    "unit": "sv-tm-031",
+    "quote": "Записи уроков с несовершеннолетними учениками держим не дольше 180 дней с даты урока, после этого они удаляются автоматически, без исключений — это прямое условие из согласия, которое подписывают родители."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q02",
+  "project": "solovey",
+  "language": "en",
+  "text": "Are we going to have group classes from day one on the new platform?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "sv-tm-056": 3,
+   "sv-tm-055": 2,
+   "sv-dv-034": 1,
+   "sv-sp-011": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-tm-055",
+    "sv-tm-056"
+   ]
+  ],
+  "note": "Only if the group room passes the 12-student load test without audio drops by 10 August; otherwise September. Trap: 8 students was clean.",
+  "spans": [
+   {
+    "unit": "sv-tm-056",
+    "quote": "Group lessons go live together with the new platform only if the group room passes Kasia's load test with 12 students and no audio drops by 10 August. If it does not pass by then, we launch with individual lessons only and open group lessons in September, once it is stable."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q03",
+  "project": "solovey",
+  "language": "en",
+  "text": "Has the director signed off on the prices shown on the new pricing page?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "sv-tm-036": 3,
+   "sv-tm-037": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-tm-036"
+   ]
+  ],
+  "note": "Marina approved the structure and headings only; prices are placeholders until Gleb sends them. Tomás over-claims \"approved the pricing page\".",
+  "spans": [
+   {
+    "unit": "sv-tm-036",
+    "quote": "Структуру страницы тарифов одобряю: три блока — индивидуальные занятия, групповые и пробный урок, в таком порядке и с такими заголовками. А вот цифры на ней я не утверждаю, сейчас там заглушки — финальные цены Глеб пришлёт после педсовета в конце месяца, до этого ничего не публикуем."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q04",
+  "project": "solovey",
+  "language": "ru",
+  "text": "Будет ли на новой платформе встроенный тюнер для гитаристов?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "sv-tm-025": 2,
+   "sv-tm-026": 1,
+   "sv-mr-018": 1,
+   "sv-mr-019": 1,
+   "sv-dv-041": 1,
+   "sv-tm-075": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-tm-025",
+    "sv-tm-026"
+   ]
+  ],
+  "note": "Gleb proposed it; parked \"after launch\", \"not now\", nobody ever decided.",
+  "spans": []
+ },
+ {
+  "id": "solovey-q05",
+  "project": "solovey",
+  "language": "ru",
+  "text": "За сколько часов до урока ученик может отменить его без списания?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "sv-sp-007": 2,
+   "sv-sc-031": 2,
+   "sv-sc-032": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-sp-007",
+    "sv-sc-031"
+   ]
+  ],
+  "note": "Spec says 12 hours, Alisa says 24; Den asks which, Marina is on holiday, never resolved.",
+  "spans": []
+ },
+ {
+  "id": "solovey-q06",
+  "project": "solovey",
+  "language": "ru",
+  "text": "На какой площадке будут лежать наши видеоуроки?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "sv-dv-030": 3,
+   "sv-tm-013": 2,
+   "sv-sp-003": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-tm-013",
+    "sv-dv-030"
+   ],
+   [
+    "sv-dv-030"
+   ]
+  ],
+  "note": "Vidmora decided 13 June (and in the spec); replaced by Cinderfox in Kasia's 12 July round-up, implicit \"we go with\". Not a reply, linked only by the hosting name.",
+  "spans": [
+   {
+    "unit": "sv-dv-030",
+    "quote": "Marina said yes on Monday, so we go with Cinderfox for the whole lesson library, and Den is already asking Vidmora to refund the unused months of the annual plan."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q07",
+  "project": "solovey",
+  "language": "ru",
+  "text": "Через какой сервис будем принимать плату за абонементы?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "sv-mr-010": 3,
+   "sv-pm-006": 2,
+   "sv-sp-004": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-pm-006",
+    "sv-mr-010"
+   ],
+   [
+    "sv-mr-010"
+   ]
+  ],
+  "note": "Payrook decided 16 June in the payments chat; dropped at the 21 July demo in favour of Kassamir. Meeting turn, linked by the provider name only. Traps: commission 3.9 vs 2.8.",
+  "spans": [
+   {
+    "unit": "sv-mr-010",
+    "quote": "С Payrook мы расстаёмся: комиссия у них на деле 3,9 процента вместо обещанных 2,8, и СБП они так и не подключили. Подписки и разовые уроки списываем через Kassamir — договор я подписала в пятницу, Ден уже перенёс туда тестовые карты."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q08",
+  "project": "solovey",
+  "language": "en",
+  "text": "What is the cutoff for students to hand in their homework?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "sv-sc-045": 3,
+   "sv-sc-009": 2,
+   "sv-sp-006": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-sc-045"
+   ],
+   [
+    "sv-sc-009",
+    "sv-sc-045"
+   ]
+  ],
+  "note": "Sunday 23:59 replaced by \"24 hours before the next lesson\" in a native reply a month later. Spec still says Sunday.",
+  "spans": [
+   {
+    "unit": "sv-sc-045",
+    "quote": "В Hometune срок теперь привязан к уроку: работу нужно прислать не позже чем за 24 часа до следующего урока ученика, а правило «до воскресенья 23:59» больше не действует."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q09",
+  "project": "solovey",
+  "language": "en",
+  "text": "Where do teachers mark the hours they are free to teach?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "sv-dv-035": 3,
+   "sv-tm-021": 2,
+   "sv-sp-005": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-tm-021",
+    "sv-dv-035"
+   ],
+   [
+    "sv-dv-035"
+   ]
+  ],
+  "note": "Own calendars synced via Calendrix (21 June, spec) replaced on 17 July by slots in the admin panel. Different chat, implicit wording (\"is gone\"), linked by the integration name.",
+  "spans": [
+   {
+    "unit": "sv-dv-035",
+    "quote": "So Calendrix is gone: every tutor now fills in available slots directly in our admin panel under Schedule → Slots, and I have deleted the nightly import job together with the integration code."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q10",
+  "project": "solovey",
+  "language": "ru",
+  "text": "Что бухгалтер Ирина просит выгружать ей по платежам?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "sv-pm-013": 3
+  },
+  "evidence_sets": [
+   [
+    "sv-pm-013"
+   ]
+  ],
+  "note": "Irina Loseva (accountant): CSV with semicolons, one row per payment, by the 3rd. Trap: Irina Belova (vocal teacher) wants her lessons exported as mp3.",
+  "spans": [
+   {
+    "unit": "sv-pm-013",
+    "quote": "Мне нужна выгрузка платежей в CSV с разделителем «точка с запятой»: одна строка на один платёж, колонки — дата, ФИО плательщика, сумма, номер договора и способ оплаты. Присылать её нужно до 3-го числа каждого месяца за прошлый месяц."
+   }
+  ]
+ },
+ {
+  "id": "solovey-q11",
+  "project": "solovey",
+  "language": "en",
+  "text": "How much money have we set aside for advertising the launch?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "sv-tm-080": 1
+  },
+  "evidence_sets": [],
+  "note": "Never stated; Marina will talk to the marketer later. Traps: Lumenhall fee 1 940 000, commission percentages.",
+  "spans": []
+ },
+ {
+  "id": "solovey-q12",
+  "project": "solovey",
+  "language": "ru",
+  "text": "За сколько до начала занятия приходит напоминание?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "sv-sc-013": 3,
+   "sv-sc-012": 2,
+   "sv-tm-062": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-sc-013"
+   ]
+  ],
+  "note": "Control: Pevunbot, 2 hours before (19 June). Later Alisa complains Pevunbot was silent for 40 minutes — does not change the rule. Trap: Alisa's 30 minutes.",
+  "spans": [
+   {
+    "unit": "sv-sc-013",
+    "quote": "Поэтому Pevunbot присылает ученику напоминание за 2 часа до начала урока, и этого одного напоминания достаточно — второе перед самым уроком не шлём."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "solovey-q13",
+  "project": "solovey",
+  "language": "ru",
+  "text": "Сколько длится и сколько стоит первое занятие для новичка?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "sv-mk-010": 3,
+   "sv-sp-008": 3,
+   "sv-mk-009": 2,
+   "sv-dv-047": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-mk-010"
+   ],
+   [
+    "sv-sp-008"
+   ]
+  ],
+  "note": "Control: Firstnote is free and 30 minutes (kickoff, spec). Later a ticket about the Firstnote form styling does not change it. Traps: Gleb's 20 minutes, regular 45.",
+  "spans": [
+   {
+    "unit": "sv-sp-008",
+    "quote": "Firstnote бесплатный, длительность 30 минут."
+   },
+   {
+    "unit": "sv-mk-010",
+    "quote": "Пробный урок у нас называется Firstnote — он бесплатный и длится 30 минут, не 45, как обычное занятие."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "solovey-q14",
+  "project": "solovey",
+  "language": "en",
+  "text": "How many teachers are being moved over to the new system?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "sv-tm-068": 3,
+   "sv-tm-001": 1,
+   "sv-sp-002": 1
+  },
+  "evidence_sets": [
+   [
+    "sv-tm-068"
+   ]
+  ],
+  "note": "38 active teachers. Traps: 41 accounts in Klavora (intro, spec), 45 on staging.",
+  "spans": [
+   {
+    "unit": "sv-tm-068",
+    "quote": "We are moving 38 active teachers to the new platform; the other three accounts in Klavora belong to teachers who have left the school, so they stay in the archive and do not get logins."
+   }
+  ]
+ }
+]
