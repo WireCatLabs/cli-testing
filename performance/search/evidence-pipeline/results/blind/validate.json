@@ -1,0 +1,86 @@
+{
+ "split": "blind",
+ "files": {
+  "corpus/background.json": {
+   "sha256": "ebcb8dbf93219c3dde374c625f80d6cd8c81798eadbe037107f8a9e5c8bede45",
+   "units": 1500,
+   "sources": {
+    "chat": 10
+   }
+  },
+  "corpus/ferrocart.json": {
+   "sha256": "96e8c40bce378f254cfedf377426b77929ccfa5d7746e8697c2bc8613a5096ba",
+   "units": 130,
+   "sources": {
+    "chat": 2,
+    "document": 1,
+    "meeting": 2
+   }
+  },
+  "corpus/lumenhall.json": {
+   "sha256": "d1d9f3a0052695b75a4547b0b6d364668873329b41c3bb78ee8b2982378a8a86",
+   "units": 126,
+   "sources": {
+    "chat": 2,
+    "document": 1,
+    "meeting": 2
+   }
+  },
+  "corpus/tidepool.json": {
+   "sha256": "fb47a158a61fad0c8265569b4b47b08f133798efdd9ea4098024030bd15bb9e9",
+   "units": 134,
+   "sources": {
+    "chat": 2,
+    "document": 1,
+    "meeting": 2
+   }
+  },
+  "questions/ferrocart.json": {
+   "sha256": "acfa66db9d4cbc3108e989e1ebed77a2d33312cdd64e04e890b2de7d42184194",
+   "questions": 14
+  },
+  "questions/lumenhall.json": {
+   "sha256": "fc5b645f7e2aeeb6447c96bb6e6290b70ebe4a1713c5c618173f77be93f69151",
+   "questions": 14
+  },
+  "questions/tidepool.json": {
+   "sha256": "2bc822a5554ee5f1427e93e94294c2af80decc7942d22b21a7dfbbb8f1fd50bd",
+   "questions": 14
+  }
+ },
+ "kinds": {
+  "negative": 3,
+  "conditional": 3,
+  "approval": 3,
+  "unresolved": 3,
+  "conflict": 3,
+  "revoked": 15,
+  "same-name": 3,
+  "missing": 3,
+  "fact": 6
+ },
+ "languages": {
+  "en": 19,
+  "ru": 23
+ },
+ "answerable": {
+  "True": 33,
+  "False": 9
+ },
+ "controls": {
+  "False": 36,
+  "True": 6
+ },
+ "late_spans": {
+  "False": 27,
+  "True": 6
+ },
+ "unit_bytes": [
+  44,
+  51,
+  60,
+  74,
+  101
+ ],
+ "errors": []
+}

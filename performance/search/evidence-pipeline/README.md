@@ -33,7 +33,8 @@ discovery as the baseline. The decision it feeds: which stage becomes the next p
    questions get all their sides inside the budget. Roughly 89% of every budget is off-question bytes. Nothing
    abstains: every arm fills the budget for unanswerable questions too.
 7. **Cancelled decisions and long messages (30 October).** Showing later messages that share a rare name with a
-   hit fixed 1 of 14 cancelled-decision questions, so no change; a split of long messages keeps the reranker at
+   hit fixed 1 of 14 cancelled-decision questions on the open splits, but 4 of 15 on a split written blind, with
+   nothing lost, which passes the rule fixed before it was written; a split of long messages keeps the reranker at
    512 tokens and finds passages neutral ([details](#cancelled-decisions-and-long-messages)).
 
 Recommended next slice: merge and release the "?" fix, then make native context part of discovery's evidence
@@ -176,7 +177,7 @@ What it showed:
 | mMARCO replacing the order (A4) | Answer@10 up, but one `revoked` question lost from the first three | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Don't ship in this form |
 | Reranker mixed at α 0.7, rich input, top 50 | Answer@3 on holdout: A3 67% → mMARCO 81%, BGE 85% (5 won, 0 lost) | mMARCO 136 MB, ~0.2 s; BGE 588 MB, ~1.5 s per question | Shipped in Core with mMARCO; the search for a smaller model was dropped on 30 October (a smaller one would likely cost quality) |
 | Newest-first by cosine | One `revoked` question fixed, three to ten others lost | ~0 ms | Don't ship; cancelled decisions need another approach |
-| Follow-ups of a hit (later units sharing a rare term) | 1 of 14 `revoked` on the open splits; 8 of 12 on `long`, which was written to a spec naming the mechanism | ~0 ms | No change by the rule; re-test on a split written blind ([cancelled decisions](#cancelled-decisions-and-long-messages)) |
+| Follow-ups of a hit (later units sharing a rare term) | 1 of 14 `revoked` on the open splits; 8 of 12 on `long`, which was written to a spec naming the mechanism | ~0 ms | Passed the blind re-test (4 of 15 won, 0 lost); proposed for Core ([cancelled decisions](#cancelled-decisions-and-long-messages)) |
 | Reranker input cut to 256 / 128 tokens | Nothing; 3 / 6 answers lost on `long` | ~40% less CPU per pair (rerank-speed) | Keep 512 |
 | Meaning floor before fusion (0.80–0.88) | Nothing at the top: no floor already lets no off-topic meaning-only item into the first five | ~0 ms | Don't add; no floor for per-message E5 ([meaning floor](#meaning-floor)) |
 
@@ -297,6 +298,33 @@ the first `K` hits gets up to `M` later units of its project that share a term f
   checked that name occurs in at most 5 units, which is exactly the link this method uses. The controls cannot
   show harm either: follow-ups added as context never push a hit down. The two results disagree for that reason.
   A split written from a spec that does not describe the link is the clean test.
+- **The `blind` split** (below): that test. The variant and the gate were committed and pushed before the split
+  existed ([PROTOCOL.md](PROTOCOL.md), "Blind re-test of follow-ups"; [blind_gate.py](blind_gate.py)). The
+  variant **passes**: `revoked` Answer@3 from 47% to 73% (7 → 11 of 15; 4 won, 0 lost), no answerable question
+  lost, no control lost, MRR on the other answerable questions up 0.03, Answer@10 28 → 31 of 33
+  ([gate.json](results/blind/gate.json)). The cost is room: the budget stays 8 KiB, so follow-ups push about three
+  of the last items out (23.0 → 19.7 items per question). Across all five honest splits it won 5 of 29 `revoked`
+  questions and lost none; on the open splits most cancellations are recapped too often for any term to be rare.
+
+**The `blind` split.** Three new projects by a separate agent that saw only a neutral brief, the format sheet and
+`validate.py`, in a folder outside this repository; the brief and its generator scripts are stored with the split
+([corpus/blind/writer/](corpus/blind/writer/)). The brief asked for decisions, some later cancelled and some still
+standing, written as people really do it, and said nothing about how a cancellation refers to its decision. Sealed
+([freeze-blind.json](results/freeze-blind.json)), scored once: 42 questions, 33 answerable, 15 `revoked`, 6
+controls. The first run stopped in discovery: Core reads the colon in "22:00" as a field filter and throws, so the
+harness now escapes a colon between digits (`--digit-colon-literal`) and froze again; no question had been scored.
+Messages came out short (longest 1.9 KB), so this split adds little on long messages.
+
+| Arm (pool 100, 8 KiB) | Answer@3 | MRR | Answer sentence shown, first 3 / 10 | `revoked` Answer@3 | Control Answer@3 | Won / lost vs Core |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| A3 | 42% | 0.37 | 42% / 70% | 13% | 67% | 0 / 10 |
+| **Core: mMARCO mix, replied-to message cut to 300 characters, 512 tokens** | **73%** | **0.62** | 73% / 85% | 47% | 100% | — |
+| mMARCO mix, 256 tokens | 73% | 0.60 | 73% / 85% | 47% | 100% | 0 / 0 |
+| mMARCO mix, 128 tokens | 70% | 0.59 | 70% / 79% | 40% | 100% | 0 / 1 |
+| **Core + follow-ups `K` 5, `M` 2, `T` 3, context (the tested variant)** | **85%** | **0.73** | 82% / 91% | 73% | 100% | 4 / 0 |
+
+The run labels the last row "exploratory, not chosen", a name carried over from `long`; on `blind` it is the
+variant the protocol fixed. Report: [blind/report.md](results/blind/report.md).
 
 **The `long` split.** Three new projects by a separate agent, sealed until the code was frozen
 ([freeze-long.json](results/freeze-long.json)), scored once: 42 questions, 33 answerable, 12 `revoked`, 6 controls.
@@ -395,7 +423,7 @@ arm64 and Apple silicon (inferred from WebAssembly, not run), slower processors,
 - Core's own conversation-chunk E5 search: the E5 arm here embeds units directly.
 - Document and transcript search paths: here documents and transcripts were loaded as messages.
 - Human judgment, and agreement between two assessors on the synthetic labels.
-- Follow-ups on a split whose author was not told the link they use, and on real archives.
+- Follow-ups on real archives; the blind split is 15 `revoked` questions, written by one agent.
 - Feeding the reranker the passage nearest the question instead of the start of a long hit.
 
 Splits are small (16 answerable eval questions) and machine-written. Core thread context needs a conversation
@@ -434,6 +462,12 @@ node core/discover.mjs /var/tmp/long-discovery.json questions/long corpus/long/*
 PYTHON -I pipeline.py --split long --discovery /var/tmp/long-discovery.json --models CACHE \
   --output /var/tmp/new-long/arms.json --pools 100 --budgets 8192 --fixed-models '' --mmr-lambda 0.9 --long
 PYTHON -I long_report.py /var/tmp/new-long/arms.json
+node core/discover.mjs /var/tmp/blind-discovery.json questions/blind corpus/blind/*.json --question-mark-punctuation \
+  --digit-colon-literal
+PYTHON -I pipeline.py --split blind --discovery /var/tmp/blind-discovery.json --models CACHE \
+  --output /var/tmp/new-blind/arms.json --pools 100 --budgets 8192 --fixed-models '' --mmr-lambda 0.9 --long
+PYTHON -I long_report.py /var/tmp/new-blind/arms.json
+PYTHON -I blind_gate.py /var/tmp/new-blind/arms.json
 ```
 
 Run each under a fresh temporary HOME, as `run.sh` does. Calibration reads `results/calibration-l0.9`, eval
