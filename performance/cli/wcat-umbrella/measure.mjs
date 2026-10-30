@@ -1,6 +1,7 @@
 // Usage: node measure.mjs <out-dir> [managers=npm,pnpm,bun,volta]
 // Needs npm, pnpm, bun and (for volta) volta + volta-shim on PATH. Writes <out-dir>/results.json and summary.md.
-import { spawnSync } from "node:child_process"
+import { spawn, spawnSync } from "node:child_process"
+import { createHash } from "node:crypto"
 import {
   appendFileSync,
   existsSync,
@@ -15,7 +16,7 @@ import {
   writeFileSync,
 } from "node:fs"
 import { tmpdir } from "node:os"
-import { delimiter, join, resolve } from "node:path"
+import { basename, delimiter, join, resolve } from "node:path"
 
 const windows = process.platform === "win32"
 const outDir = resolve(process.argv[2] ?? "wcat-umbrella-out")
@@ -114,8 +115,64 @@ const tarballs = {
 }
 const packageName = { a: "wcat-fixture-a", b: "wcat-fixture-b", c1: "wcat-fixture-c", c2: "wcat-fixture-c" }
 
+// Upgrades by name from a registry, as a real update does: bun refuses to replace one global tarball with another.
+const registryServer = `
+const http = require("node:http")
+const fs = require("node:fs")
+const path = require("node:path")
+const [folder, portFile] = process.argv.slice(1)
+const packuments = JSON.parse(fs.readFileSync(path.join(folder, "packuments.json"), "utf8"))
+const server = http.createServer((request, response) => {
+  const base = "http://127.0.0.1:" + server.address().port
+  const name = decodeURIComponent(request.url.slice(1))
+  if (packuments[name]) {
+    response.setHeader("content-type", "application/json")
+    return response.end(JSON.stringify(packuments[name]).split("REGISTRY").join(base))
+  }
+  const file = path.join(folder, path.basename(request.url))
+  if (request.url.startsWith("/-/") && fs.existsSync(file)) return fs.createReadStream(file).pipe(response)
+  response.statusCode = 404
+  response.end("{}")
+})
+server.listen(0, "127.0.0.1", () => fs.writeFileSync(portFile, String(server.address().port)))
+`
+
+const startRegistry = () => {
+  const versions = {}
+  for (const [key, tarball] of Object.entries(tarballs)) {
+    const name = packageName[key]
+    const data = readFileSync(tarball)
+    const manifest = JSON.parse(readFileSync(join(root, "src", basename(tarball, ".tgz"), "package.json"), "utf8"))
+    versions[name] ??= {}
+    versions[name][manifest.version] = {
+      ...manifest,
+      _id: `${name}@${manifest.version}`,
+      dist: {
+        tarball: `REGISTRY/-/${basename(tarball)}`,
+        shasum: createHash("sha1").update(data).digest("hex"),
+        integrity: `sha512-${createHash("sha512").update(data).digest("base64")}`,
+      },
+    }
+  }
+  const packuments = {}
+  for (const [name, byVersion] of Object.entries(versions)) {
+    const latest = Object.keys(byVersion).sort().at(-1)
+    packuments[name] = { name, "dist-tags": { latest }, versions: byVersion }
+  }
+  const folder = join(root, "tarballs")
+  writeFileSync(join(folder, "packuments.json"), JSON.stringify(packuments))
+  const portFile = join(root, "registry.port")
+  const child = spawn(process.execPath, ["-e", registryServer, folder, portFile], { stdio: "ignore" })
+  const waitUntil = Date.now() + 10_000
+  while (!existsSync(portFile) && Date.now() < waitUntil)
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50)
+  if (!existsSync(portFile)) throw new Error("the local registry did not start")
+  return { child, url: `http://127.0.0.1:${readFileSync(portFile, "utf8")}/` }
+}
+const registry = startRegistry()
+
 const withPath = (folders, extra = {}) => {
-  const env = { ...process.env, ...extra }
+  const env = { ...process.env, npm_config_registry: registry.url, BUN_CONFIG_REGISTRY: registry.url, ...extra }
   const key = Object.keys(env).find((k) => k.toUpperCase() === "PATH") ?? "PATH"
   env[key] = [...folders, env[key]].join(delimiter)
   return env
@@ -153,7 +210,8 @@ const setups = {
     return {
       env,
       binDir: null,
-      add: (t) => exec("pnpm", ["add", "-g", t], env),
+      // pnpm 12 does not read npm_config_registry from the environment.
+      add: (t) => exec("pnpm", ["add", "-g", t, `--registry=${registry.url}`], env),
       remove: (n) => exec("pnpm", ["remove", "-g", n], env),
       version: () => exec("pnpm", ["--version"], env).stdout,
     }
@@ -177,8 +235,14 @@ const setups = {
   volta: (home) => {
     const voltaHome = join(home, "volta")
     const env = withPath([join(voltaHome, "bin")], { VOLTA_HOME: voltaHome })
+    // A runner's own global prefix (Windows sets NPM_CONFIG_PREFIX) would send npm past Volta's interception.
+    for (const key of Object.keys(env)) if (key.toLowerCase() === "npm_config_prefix") delete env[key]
     const node = exec("volta", ["install", `node@${voltaNode}`], env)
     if (node.exit !== 0) return { skipped: `volta install node failed: ${node.stderr || node.error}` }
+    results.voltaShims ??= {
+      bin: readdirSync(join(voltaHome, "bin")),
+      npm: exec(windows ? "where" : "which", ["npm"], env).stdout,
+    }
     // Volta has no tarball form of `volta install`; it takes over `npm i -g` and records the package as its own.
     return {
       env,
@@ -311,7 +375,7 @@ const foreign = (manager) => {
   const { home, setup } = fresh(manager, "foreign")
   if (setup.skipped) return { skipped: setup.skipped }
   const steps = []
-  const install = setup.add(tarballs.c1)
+  const install = setup.add("wcat-fixture-c@1.0.0")
   const binDir = setup.binDir ?? findBinDir(home, "wcat-c")
   const target = findPackageFile(home, "wcat-fixture-c", "wcat-c.js")
   if (!binDir || !target) return { error: "could not find the bin folder or the installed package", install }
@@ -328,10 +392,18 @@ const foreign = (manager) => {
   }
   const step = (label, result) => {
     const state = inspect(binDir, "wcat", setup.env, ["--version"])
-    steps.push({ label, result, wcat: answer(state), wcatFiles: state.files })
+    const own = inspect(binDir, "wcat-c", setup.env, ["--version"])
+    steps.push({
+      label,
+      result,
+      wcat: answer(state),
+      wcatFiles: state.files,
+      wcatC: answer(own),
+      wcatCFiles: own.files,
+    })
   }
-  step("install c@1.0.0, then make wcat -> c's wcat-c.js", install)
-  step("upgrade c to 1.1.0", setup.add(tarballs.c2))
+  step("install c@1.0.0 from the registry, then make wcat -> c's wcat-c.js", install)
+  step("upgrade c to 1.1.0", setup.add("wcat-fixture-c@1.1.0"))
   step("uninstall c", setup.remove(packageName.c1))
   return { target: tail(target), steps }
 }
@@ -404,11 +476,12 @@ try {
   results.timing = { error: String(error?.stack ?? error) }
 }
 
+registry.child.kill()
 writeFileSync(join(outDir, "results.json"), `${JSON.stringify(results, null, 2)}\n`)
 
 const lines = [`## ${results.os} (${results.image}), Node ${results.node}`, ""]
 lines.push(
-  "| manager | version | step | exit | `wcat` after | `wcat-b` after | stderr (start) |",
+  "| manager | version | step | exit | `wcat` after | own bin after (`wcat-b` / `wcat-c`) | stderr (start) |",
   "| --- | --- | --- | ---: | --- | --- | --- |",
 )
 for (const [manager, entry] of Object.entries(results.managers)) {
@@ -423,7 +496,7 @@ for (const [manager, entry] of Object.entries(results.managers)) {
     for (const s of data.steps) {
       const err = (s.result.stderr || s.result.error || "").replace(/\s+/g, " ").replace(/\|/g, "/").slice(0, 160)
       lines.push(
-        `| ${manager} | ${entry.aFirst?.version ?? ""} | ${scenario}: ${s.label} | ${s.result.exit} | ${s.wcat} | ${s.wcatB ?? ""} | ${err} |`,
+        `| ${manager} | ${entry.aFirst?.version ?? ""} | ${scenario}: ${s.label} | ${s.result.exit} | ${s.wcat} | ${s.wcatB ?? s.wcatC ?? ""} | ${err} |`,
       )
     }
   }
