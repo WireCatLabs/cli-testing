@@ -233,3 +233,13 @@ question's Answer@3, and loses at most one answerable question's Answer@3 overal
 questions whose span survives in what the reader sees (whole unit or A3 passage) among the first 3 and 10 items;
 the same with the passage cut off; and the mMARCO mix with the reranker reading the first 256 and 512 tokens of
 its input against the full model limit. `spans` and `control` reach only the scorer, never a ranker.
+
+**After tuning, before `long` was opened (30 October 2026).** `pipeline.py --followups` reproduced every stored A3
+and mMARCO-mix row on all four splits (200 rows, 0 differences in Answer@3, reciprocal rank, all conflict sides and
+item count), then scored the grid ([followups_report.py](followups_report.py),
+[tuning table](results/followups-tuning.md)). The rule picks **no change** for both bases: the best passing
+variants win one `revoked` question. `freeze-long.json` therefore records no follow-up variant. `long` still runs
+the follow-up variant with the most wins and no loss on the tuning set (mMARCO mix, `K` 5, `M` 2, `T` 3, `ctx`),
+labelled exploratory; it decides nothing. The mMARCO limit is 512 tokens, so "full model limit" and 512 are the
+same run; the input cut is reported at 512, 256 and 128 tokens, with Core's released input (the replied-to message
+cut to 300 characters, then the hit) and with the whole replied-to message at 512.

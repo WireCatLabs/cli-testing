@@ -66,8 +66,10 @@ for path in sorted((root / 'questions' / args.split).glob('*.json')):
     report[path.name] = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'questions': len(questions)}
 print(json.dumps({'split': args.split, 'files': report, 'kinds': kinds, 'languages': languages,
                   'answerable': {str(k): v for k, v in answerable.items()},
-                  'controls': {str(k): v for k, v in controls.items()}, 'late_spans': {str(k): v for k, v in late.items()},
-                  'unit_bytes': sorted(len(u['text'].encode()) for u in units.values())[len(units) // 2::len(units) // 10 or 1],
+                  'controls': {str(k): v for k, v in controls.items()},
+                  'late_spans': {str(k): v for k, v in late.items()},
+                  'unit_bytes': sorted(len(u['text'].encode())
+                                       for u in units.values())[len(units) // 2::len(units) // 10 or 1],
                   'errors': sorted(set(errors))},
                  ensure_ascii=False, indent=1))
 raise SystemExit(1 if errors else 0)
