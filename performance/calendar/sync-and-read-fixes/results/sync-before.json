@@ -1,0 +1,44 @@
+{
+  "events": 20000,
+  "calendars": 4,
+  "series": 819,
+  "slotsInWindow": 25752,
+  "steps": [
+    {
+      "label": "first sync (full)",
+      "ms": 15919,
+      "writeTransactions": 1663,
+      "instancesRequests": 819,
+      "rounds": "full,full,full,full",
+      "state": "complete",
+      "saved": 45752
+    },
+    {
+      "label": "same day, no changes",
+      "ms": 12,
+      "writeTransactions": 9,
+      "instancesRequests": 0,
+      "rounds": "changes,changes,changes,changes",
+      "state": "complete",
+      "saved": 0
+    },
+    {
+      "label": "next day: daily full round",
+      "ms": 15108,
+      "writeTransactions": 1663,
+      "instancesRequests": 819,
+      "rounds": "full,full,full,full",
+      "state": "complete",
+      "saved": 45810
+    },
+    {
+      "label": "8 days on: full round, every series",
+      "ms": 16126,
+      "writeTransactions": 1663,
+      "instancesRequests": 819,
+      "rounds": "full,full,full,full",
+      "state": "complete",
+      "saved": 46264
+    }
+  ]
+}
