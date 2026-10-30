@@ -33,8 +33,9 @@ for path in sorted((root / 'corpus' / args.split).glob('*.json')):
         parent = units.get(unit.get('reply_to')) if unit.get('reply_to') else None
         if unit.get('reply_to') and (parent is None or parent['source'] != unit['source']):
             errors.append(f'{path.name}: reply_to outside its source')
-    report[path.name] = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'units': len(corpus['units']),
-                         'sources': Counter(source['kind'] for source in corpus['sources'])}
+    report['corpus/' + path.name] = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                                     'units': len(corpus['units']),
+                                     'sources': Counter(source['kind'] for source in corpus['sources'])}
 kinds, languages, answerable, controls, late = Counter(), Counter(), Counter(), Counter(), Counter()
 for path in sorted((root / 'questions' / args.split).glob('*.json')):
     questions = json.loads(path.read_text())
@@ -63,7 +64,8 @@ for path in sorted((root / 'questions' / args.split).glob('*.json')):
             late[any(len(units[s['unit']]['text'].encode()) > 1500
                      and units[s['unit']]['text'].encode().find(s['quote'].encode()) >= 1000
                      for s in spans if s['unit'] in units)] += question['answerable']
-    report[path.name] = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'questions': len(questions)}
+    report['questions/' + path.name] = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                                        'questions': len(questions)}
 print(json.dumps({'split': args.split, 'files': report, 'kinds': kinds, 'languages': languages,
                   'answerable': {str(k): v for k, v in answerable.items()},
                   'controls': {str(k): v for k, v in controls.items()},
