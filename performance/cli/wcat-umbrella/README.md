@@ -77,7 +77,7 @@ either.
 | manager | after upgrading c 1.0.0 → 1.1.0 | after uninstalling c |
 | --- | --- | --- |
 | npm | kept; runs c@1.1.0 | kept, broken: a dangling symlink; on Windows the three files stay and fail with exit 1 |
-| pnpm | kept, **broken**: the target was in c's versioned folder in pnpm's store (`.pnpm/wcat-fixture-c@1.0.0/…`) | kept, broken |
+| pnpm | kept, **broken**: the target was in a folder named after c's version (`<PNPM_HOME>/global/v11/<hash>/node_modules/.pnpm/wcat-fixture-c@1.0.0/node_modules/wcat-fixture-c/wcat-c.js`) | kept, broken |
 | bun | kept; runs c@1.1.0 | Linux, macOS: **removed by bun**. Windows: kept, broken |
 | Volta (Linux, macOS) | kept; runs c@1.1.0 | kept, dangling |
 
@@ -104,10 +104,10 @@ Median of 20 runs, in ms, for each of the three runs:
 - **Option B works, if cli-base repairs the link on every run.** No manager removed or changed a link it did not make
   on install or upgrade. Uninstalling the package it points into leaves it dangling (npm, pnpm, Volta; on Windows the
   `.cmd`/`.ps1` files stay and fail), except bun on Linux and macOS, which removes it.
-- **The link must not point at a versioned path.** pnpm keeps each version in its own folder in the store, so a link
-  to c's file broke on the first upgrade. npm, bun and Volta keep the path across an upgrade. B needs a target that
+- **The link must not point at a versioned path.** pnpm keeps each version in its own folder, so a link to c's file
+  broke on the first upgrade. npm, bun and Volta kept the path across an upgrade. I think B needs a target that
   survives upgrades on every manager, for example a small script that starts an installed tool's stable command
-  (`wcat-tg`) rather than a file inside its package.
+  (`wcat-tg`) rather than a file inside a package; that was not measured.
 - **`wcat` costs one more Node start**: about 20–30 ms on Linux, 30–45 ms on macOS and 45–70 ms on Windows, where `cmd`
   adds its own start. The plan already has MCP servers and WireCat Desktop call `wcat-tg` directly; these numbers
   support that.
@@ -120,6 +120,10 @@ Median of 20 runs, in ms, for each of the three runs:
   [unmaintained](https://github.com/volta-cli/volta#readme), as its README says.
 - **Yarn** global installs, **mise**, **nvm** with several Node versions, and Homebrew's Node.
 - `npm install -g --force`, which overwrites, and the pnpm and bun equivalents.
+- A link to a file that is not a declared bin. The link here pointed at `wcat-c.js`, which every manager makes
+  executable and keeps at a path tied to c. The real dispatcher would sit inside cli-base, a dependency: on Linux and
+  macOS a symlink to a file without the execute bit fails, and under pnpm its folder probably also changes with every
+  cli-base version, not only with the tool's.
 - A real cli-base dispatcher. The fixture's dispatcher only searches PATH and spawns; it reads no `--wcat-describe`
   answers.
 - The upgrade of a package that itself declares `wcat` (option A) across versions.
