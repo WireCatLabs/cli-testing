@@ -250,3 +250,35 @@ with " … ", and 12 of the 35 quotes have more than one sentence, so such a spa
 when every sentence was kept. The fix counts a span as seen when each of its sentences, split as `passage()` splits
 them, is in the shown text. Ranking is unchanged. The re-run is `results/long-spanfix/`; the first run stays as it
 was.
+
+## Blind re-test of follow-ups (30 October 2026, before the split was written)
+
+The follow-up variant won 1 of 14 `revoked` questions on the open splits and 8 of 12 on `long`, but the `long`
+spec described the very link follow-ups use (a shared distinctive name, not a reply), and its writer checked its
+data against that link. `long` therefore cannot settle it. One more split, `blind`, decides.
+
+- **Writer.** A separate agent that sees only a format sheet and `validate.py` in a folder outside this
+  repository, and is told not to read the repository. Its brief asks for realistic work chats, documents and
+  meetings with decisions, some later cancelled or reversed and some still standing, written the way people
+  really do it. It says nothing about how a cancellation refers to its decision: not names, terms, replies,
+  timing or wording, and nothing about follow-ups or rankers. The brief is stored with the split.
+- **Shape.** Three new projects, about 14 questions each, English and Russian, the eight traps of "Splits", five
+  `revoked` questions and two `control` questions per project. Units up to 8,000 bytes at realistic lengths, with
+  `spans` as in `long`, but no rule on where a span sits. Background chatter from `background.py`, seed 6.
+- **Sealed** (hash and schema checks only) until `results/freeze-blind.json` records the code hashes. Scored once
+  with `pipeline.py --long --split blind`.
+- **Variant, fixed now:** the mMARCO mix Core ships (replied-to message cut to 300 characters, 512 tokens) with
+  follow-ups `K` 5, `M` 2, `T` 3, `ctx` — the row `long` ran as exploratory — against the same mix without them.
+- **Gate, fixed now** ([blind_gate.py](blind_gate.py)), the tuning-set rule of "Follow-ups of a hit": the
+  variant passes if it wins at least two `revoked` questions' Answer@3, loses no answerable question's Answer@3
+  (controls included), loses no `conflict`/`revoked` question's "all conflict sides", and lowers mean MRR on the
+  other answerable questions by at most 0.01. Pass → propose follow-ups for Core. Fail → TASK-837 closes as not
+  solved by follow-ups. Whatever the result, the long-message measures on `blind` are reported, no choice made.
+
+**Discovery stopped on a colon (30 October 2026, before any `blind` question was scored).** The first run failed in
+`core/discover.mjs`: published Core 0.412.0 parses the question as a query, reads the colon in "22:00" or "1:1" as
+a field filter and throws `query.invalid-syntax`, so discovery returns nothing at all. Two of the 42 questions have
+such a colon; the error and their position were the only content read. Like the "?" fix, the harness now applies the
+obvious Core fix to the input under a new flag, `--digit-colon-literal`: a colon between two digits is escaped, so
+it stays part of the word. No other split has such a question. The first freeze stays as
+`results/freeze-blind-first.json`; `results/freeze-blind.json` is taken again with the new `discover.mjs` hash.

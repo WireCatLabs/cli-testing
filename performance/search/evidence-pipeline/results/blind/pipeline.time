@@ -1,0 +1,23 @@
+	Command being timed: "/var/tmp/evidence-837/venv/bin/python -I pipeline.py --split blind --discovery /home/leemour/Projects/AI/cli-testing-wt-evidence-837/performance/search/evidence-pipeline/results/blind/discovery.json --models /var/tmp/evidence-837/models --output /home/leemour/Projects/AI/cli-testing-wt-evidence-837/performance/search/evidence-pipeline/results/blind/arms.json --pools 100 --budgets 8192 --fixed-models  --mmr-lambda 0.9 --long"
+	User time (seconds): 366.08
+	System time (seconds): 0.58
+	Percent of CPU this job got: 524%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:09.95
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1246860
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 464
+	Minor (reclaiming a frame) page faults: 373561
+	Voluntary context switches: 14876
+	Involuntary context switches: 39057
+	Swaps: 0
+	File system inputs: 607184
+	File system outputs: 320
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

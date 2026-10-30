@@ -1,0 +1,1049 @@
+{
+ "project": {
+  "id": "tidepool",
+  "name": "Tidepool booking app for Aqualine",
+  "aliases": [
+   "Тайдпул",
+   "приложение Aqualine",
+   "Aqualine app"
+  ]
+ },
+ "sources": [
+  {
+   "id": "tp-chat-dev",
+   "kind": "chat",
+   "title": "tidepool-dev"
+  },
+  {
+   "id": "tp-chat-client",
+   "kind": "chat",
+   "title": "Aqualine × Northwind"
+  },
+  {
+   "id": "tp-doc-spec",
+   "kind": "document",
+   "title": "Tidepool product spec v2"
+  },
+  {
+   "id": "tp-meet-0902",
+   "kind": "meeting",
+   "title": "Kickoff with Aqualine 2 Sep"
+  },
+  {
+   "id": "tp-meet-1020",
+   "kind": "meeting",
+   "title": "Steering review 20 Oct"
+  }
+ ],
+ "units": [
+  {
+   "id": "tp-101",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-08-20T09:05:00Z",
+   "text": "Всем привет! Завели канал под Aqualine. Кодовое имя проекта — Tidepool, не спрашивайте почему 🙂"
+  },
+  {
+   "id": "tp-102",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-08-20T09:07:00Z",
+   "text": "tidepool норм"
+  },
+  {
+   "id": "tp-103",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-08-20T09:11:00Z",
+   "text": "А их бренд-бук уже есть?"
+  },
+  {
+   "id": "tp-104",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-08-20T09:14:00Z",
+   "text": "Lena запросила, обещали до пятницы",
+   "reply_to": "tp-103"
+  },
+  {
+   "id": "tp-105",
+   "source": "tp-chat-dev",
+   "author": "Lena",
+   "at": "2026-08-20T10:02:00Z",
+   "text": "Got the old brand guide from 2021, they say a new one is coming. I'll start with wireframes anyway."
+  },
+  {
+   "id": "tp-106",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-08-21T11:30:00Z",
+   "text": "Я по андроиду, Kotlin + Compose, ок? Или кто-то хочет Flutter обсудить"
+  },
+  {
+   "id": "tp-107",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-08-21T11:34:00Z",
+   "text": "Нативно оба, это в контракте",
+   "reply_to": "tp-106"
+  },
+  {
+   "id": "tp-108",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-08-21T11:35:00Z",
+   "text": "👍"
+  },
+  {
+   "id": "tp-109",
+   "source": "tp-chat-dev",
+   "author": "Олег",
+   "at": "2026-08-22T15:40:00Z",
+   "text": "Кто знает, у них турникеты на входе какие? Если QR — мне нужны тестовые сканеры"
+  },
+  {
+   "id": "tp-110",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-08-22T16:02:00Z",
+   "text": "Спрошу на кикоффе. Олег, запиши в вопросы",
+   "reply_to": "tp-109"
+  },
+  {
+   "id": "tp-111",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-08-27T10:15:00Z",
+   "text": "Вопрос по оплате: мы у себя храним данные карты, чтобы сделать «оплатить в один клик»? Или это всё на стороне провайдера?"
+  },
+  {
+   "id": "tp-112",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-08-27T10:41:00Z",
+   "text": "Нет. Данные карт мы у себя не храним вообще, ни в базе, ни в логах — только токен, который отдаёт платёжный провайдер. One-click делаем через сохранённый токен у провайдера, PCI нам не нужен.",
+   "reply_to": "tp-111"
+  },
+  {
+   "id": "tp-113",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-08-27T10:43:00Z",
+   "text": "понял, спасибо",
+   "reply_to": "tp-112"
+  },
+  {
+   "id": "tp-114",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-08-28T18:20:00Z",
+   "text": "кто-нибудь идёт в пятницу на митап по Swift? у меня лишний билет"
+  },
+  {
+   "id": "tp-115",
+   "source": "tp-chat-dev",
+   "author": "Lena",
+   "at": "2026-08-28T18:25:00Z",
+   "text": "Not me, I'm in Lisbon this weekend 🌊"
+  },
+  {
+   "id": "tp-116",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-09-02T13:10:00Z",
+   "text": "Кикофф прошёл, заметки скину в Confluence. Главное: Stripe, Hetzner, горизонт записи 14 дней, iOS 15+"
+  },
+  {
+   "id": "tp-117",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-09-02T13:15:00Z",
+   "text": "Stripe это хорошо, я с ним работал"
+  },
+  {
+   "id": "tp-118",
+   "source": "tp-chat-dev",
+   "author": "Олег",
+   "at": "2026-09-02T13:20:00Z",
+   "text": "А турникеты?"
+  },
+  {
+   "id": "tp-119",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-09-02T13:22:00Z",
+   "text": "QR, вендор Gantner. Тестовые сканеры пришлют в Берлин, офис на Torstraße",
+   "reply_to": "tp-118"
+  },
+  {
+   "id": "tp-120",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-09-04T10:00:00Z",
+   "text": "Решили: добавляем вход через VK ID, Sam сказал у них много русскоязычных членов клуба."
+  },
+  {
+   "id": "tp-121",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-09-04T10:05:00Z",
+   "text": "Ок, тогда мне нужен доступ к VK ID кабинету. Кто заводит приложение?",
+   "reply_to": "tp-120"
+  },
+  {
+   "id": "tp-122",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-09-04T10:20:00Z",
+   "text": "Sam заведёт на их юрлицо",
+   "reply_to": "tp-121"
+  },
+  {
+   "id": "tp-123",
+   "source": "tp-chat-dev",
+   "author": "Lena",
+   "at": "2026-09-05T14:00:00Z",
+   "text": "Wireframes v1 are in Figma, page 'Booking flow'. Comments welcome, esp. on the class list filters."
+  },
+  {
+   "id": "tp-124",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-09-05T14:30:00Z",
+   "text": "Фильтр по бассейну и по типу занятия — ок. Фильтр по тренеру точно нужен в v1?"
+  },
+  {
+   "id": "tp-125",
+   "source": "tp-chat-dev",
+   "author": "Lena",
+   "at": "2026-09-05T14:41:00Z",
+   "text": "Sam asked for it explicitly, so yes",
+   "reply_to": "tp-124"
+  },
+  {
+   "id": "tp-126",
+   "source": "tp-chat-dev",
+   "author": "Олег",
+   "at": "2026-09-09T09:12:00Z",
+   "text": "Тестовые устройства: у нас нет ни одного айфона на iOS 15. Кто-то может принести старый?"
+  },
+  {
+   "id": "tp-127",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-09-09T09:30:00Z",
+   "text": "У меня дома 8-й лежит, принесу",
+   "reply_to": "tp-126"
+  },
+  {
+   "id": "tp-128",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-09-11T17:05:00Z",
+   "text": "Hetzner: заказал два CCX33 в Falkenstein + managed Postgres пока не берём, ставим сами. Бэкапы в Storage Box."
+  },
+  {
+   "id": "tp-129",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-09-11T17:10:00Z",
+   "text": "ок, счёт перевыставим Aqualine в конце месяца"
+  },
+  {
+   "id": "tp-130",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-09-12T12:00:00Z",
+   "text": "Тимур, глянь моё ревью по общему API-клиенту до пятницы, плиз"
+  },
+  {
+   "id": "tp-131",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-09-12T12:40:00Z",
+   "text": "Алекс, гляну завтра утром",
+   "reply_to": "tp-130"
+  },
+  {
+   "id": "tp-132",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-09-22T11:00:00Z",
+   "text": "Предложение, пока не поздно: давайте API сразу сделаем на GraphQL, а не REST. Аргументы:\n1) у мобильных два клиента с разными экранами, GraphQL снимает кучу эндпоинтов «под экран»;\n2) расписание занятий — это граф (бассейн → зал → занятие → тренер → записи), REST там получается многословный;\n3) кодоген для Swift и Kotlin из схемы есть и нормально работает.\nМинусы: кэширование сложнее, и Олегу придётся переучивать автотесты. Если ок — я за 3 дня переделаю то, что уже есть."
+  },
+  {
+   "id": "tp-133",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-09-22T11:20:00Z",
+   "text": "интересно",
+   "reply_to": "tp-132"
+  },
+  {
+   "id": "tp-134",
+   "source": "tp-chat-dev",
+   "author": "Олег",
+   "at": "2026-09-22T11:25:00Z",
+   "text": "Кто-нибудь знает, когда приходят сканеры Gantner? DHL пишет «задержка в таможне»"
+  },
+  {
+   "id": "tp-135",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-09-22T11:31:00Z",
+   "text": "Олег, пингану Sam",
+   "reply_to": "tp-134"
+  },
+  {
+   "id": "tp-136",
+   "source": "tp-chat-dev",
+   "author": "Lena",
+   "at": "2026-09-24T16:00:00Z",
+   "text": "Watch companion screens are in Figma as well: next class, check-in QR, lane availability."
+  },
+  {
+   "id": "tp-137",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-09-24T16:10:00Z",
+   "text": "Сделаю прототип на SwiftUI, но watchOS отдельно в оценку не входил, Марина в курсе?",
+   "reply_to": "tp-136"
+  },
+  {
+   "id": "tp-138",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-09-24T16:15:00Z",
+   "text": "В курсе, допродаём как CR",
+   "reply_to": "tp-137"
+  },
+  {
+   "id": "tp-139",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-09-29T10:05:00Z",
+   "text": "По айфонам: устройства на пятнадцатой системе больше не поддерживаем, нижняя планка теперь шестнадцатая. Навигация на SwiftUI там разваливается, а таких пользователей у Aqualine меньше 3%. Sam письменно ок."
+  },
+  {
+   "id": "tp-140",
+   "source": "tp-chat-dev",
+   "author": "Олег",
+   "at": "2026-09-29T10:12:00Z",
+   "text": "Ура, айфон 8 можно вернуть Тимуру 😄",
+   "reply_to": "tp-139"
+  },
+  {
+   "id": "tp-141",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-10-01T09:00:00Z",
+   "text": "Кстати, их безопасник спрашивал в клиентском чате про Azure. Это всё ещё вопрос?"
+  },
+  {
+   "id": "tp-142",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-10-01T09:20:00Z",
+   "text": "Нет, Sam закрыл, Hetzner как решили на кикоффе",
+   "reply_to": "tp-141"
+  },
+  {
+   "id": "tp-143",
+   "source": "tp-chat-dev",
+   "author": "Lena",
+   "at": "2026-10-03T13:00:00Z",
+   "text": "Spec v2 draft is up. Marina, can you check section 3, I wasn't sure about the cancellation wording."
+  },
+  {
+   "id": "tp-144",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-10-03T13:40:00Z",
+   "text": "Написала 12 часов, как в договоре на абонементы. Отправляю Sam в понедельник",
+   "reply_to": "tp-143"
+  },
+  {
+   "id": "tp-145",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-10-09T18:30:00Z",
+   "text": "Статус Tidepool, неделя 41\n\nСделано:\n— бронирование и отмена записи работают end-to-end на стейджинге, iOS и Android;\n— интеграция с Adyen: тестовые платежи проходят, 3DS2 проверен на трёх банках;\n— Gantner: сканеры наконец пришли, Олег прогнал 40 проходов, 2 ложных отказа, разбираемся;\n— спека v2 отправлена Aqualine, ждём фидбек по разделу лояльности.\n\nРиски:\n— Apple review для приложений с подпиской на абонементы бывает долгим, закладываем неделю;\n— security review у Aqualine ещё не назначен, без него не выкатываемся;\n— Тимур перегружен из-за часов (watchOS).\n\nПлан на неделю 42: push-уведомления (ждём юристов), экран истории посещений, нагрузочный тест расписания.\n\nОтдельно: от входа через VK ID отказываемся. Остаются Sign in with Apple, Google и email-ссылка. Причина — юристы Aqualine не хотят передавать данные в ещё одну систему, Sam подтвердил в почте. Игорь, кнопку и SDK выпиливаем в этом спринте.\n\nБюджет: по часам идём на 6% выше плана, в основном из-за часов и Adyen-переделки. Обсудим на steering."
+  },
+  {
+   "id": "tp-146",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-10-09T18:45:00Z",
+   "text": "ок, выпилю VK завтра",
+   "reply_to": "tp-145"
+  },
+  {
+   "id": "tp-147",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-10-13T11:11:00Z",
+   "text": "у кого-нибудь стейджинг тормозит? у меня расписание грузится 6 секунд"
+  },
+  {
+   "id": "tp-148",
+   "source": "tp-chat-dev",
+   "author": "Игорь",
+   "at": "2026-10-13T11:20:00Z",
+   "text": "Индекс слетел после миграции, поправил, проверь",
+   "reply_to": "tp-147"
+  },
+  {
+   "id": "tp-149",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-10-13T11:26:00Z",
+   "text": "0.4 с, огонь",
+   "reply_to": "tp-148"
+  },
+  {
+   "id": "tp-150",
+   "source": "tp-chat-dev",
+   "author": "Олег",
+   "at": "2026-10-15T15:00:00Z",
+   "text": "Security review: Алекс, это ты делаешь? в джире на тебе тикет TP-131"
+  },
+  {
+   "id": "tp-151",
+   "source": "tp-chat-dev",
+   "author": "Алекс",
+   "at": "2026-10-15T15:04:00Z",
+   "text": "Не, на мне только ревью кода Тимура. Security review делает их безопасник, Alex Brandt",
+   "reply_to": "tp-150"
+  },
+  {
+   "id": "tp-152",
+   "source": "tp-chat-dev",
+   "author": "Марина",
+   "at": "2026-10-21T10:00:00Z",
+   "text": "После steering: часы убрали из скоупа. Тимур, всё по watchOS заморозь в отдельной ветке."
+  },
+  {
+   "id": "tp-153",
+   "source": "tp-chat-dev",
+   "author": "Тимур",
+   "at": "2026-10-21T10:05:00Z",
+   "text": "наконец-то 🙏",
+   "reply_to": "tp-152"
+  },
+  {
+   "id": "tp-154",
+   "source": "tp-chat-dev",
+   "author": "Lena",
+   "at": "2026-10-22T12:00:00Z",
+   "text": "Members on the beta keep asking for dark mode. Just saying 🙂"
+  },
+  {
+   "id": "tp-155",
+   "source": "tp-chat-dev",
+   "author": "Олег",
+   "at": "2026-10-24T17:30:00Z",
+   "text": "Регресс на 17-е зелёный, кроме одного кейса с отменой в последний час. Завёл баг TP-160."
+  },
+  {
+   "id": "tp-201",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-08-25T08:30:00Z",
+   "text": "Hi all, welcome to the shared channel. I'm the product owner on Aqualine's side, Vika does marketing, Hendrik finance."
+  },
+  {
+   "id": "tp-202",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-08-25T08:45:00Z",
+   "text": "Hi Sam! Marina, PM at Northwind. Lena (design), Igor (backend), Timur (iOS), Alex (Android), Oleg (QA)."
+  },
+  {
+   "id": "tp-203",
+   "source": "tp-chat-client",
+   "author": "Vika",
+   "at": "2026-08-25T09:00:00Z",
+   "text": "Привет! Я тоже говорю по-русски, если что 🙂"
+  },
+  {
+   "id": "tp-204",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-09-03T10:00:00Z",
+   "text": "Thanks for the kickoff yesterday. One thing we didn't cover: our members keep asking for an Apple Watch app."
+  },
+  {
+   "id": "tp-205",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-09-03T10:20:00Z",
+   "text": "We can estimate it. Is it a must for v1?",
+   "reply_to": "tp-204"
+  },
+  {
+   "id": "tp-206",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-09-08T09:15:00Z",
+   "text": "Yes — let's do the Apple Watch companion in v1. Members keep asking for it. I'll sort the extra budget with Hendrik.",
+   "reply_to": "tp-205"
+  },
+  {
+   "id": "tp-207",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-09-10T11:00:00Z",
+   "text": "Sam, по дате запуска: мы готовы к 1 ноября, если спека v2 будет утверждена до 10 октября. Подходит?"
+  },
+  {
+   "id": "tp-208",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-09-10T11:30:00Z",
+   "text": "Да, 1 ноября подходит, наш маркетинг уже планирует кампанию.",
+   "reply_to": "tp-207"
+  },
+  {
+   "id": "tp-209",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-09-10T11:35:00Z",
+   "text": "Ок, фиксируем: публичный запуск 1 ноября, в оба стора.",
+   "reply_to": "tp-208"
+  },
+  {
+   "id": "tp-210",
+   "source": "tp-chat-client",
+   "author": "Vika",
+   "at": "2026-09-12T14:00:00Z",
+   "text": "For the launch we plan an Apple Search Ads campaign plus posters in all 9 pools. I'll share the creative brief later."
+  },
+  {
+   "id": "tp-211",
+   "source": "tp-chat-client",
+   "author": "Lena",
+   "at": "2026-09-17T10:00:00Z",
+   "text": "Sam, a question from design: can we send push reminders 2 hours before a booked class?"
+  },
+  {
+   "id": "tp-212",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-09-17T12:10:00Z",
+   "text": "Yes, you can send them, but only once our legal team has signed off the opt-in wording, and only to members who actually opted in. I'll forward the wording to legal today.",
+   "reply_to": "tp-211"
+  },
+  {
+   "id": "tp-213",
+   "source": "tp-chat-client",
+   "author": "Lena",
+   "at": "2026-09-17T12:12:00Z",
+   "text": "Perfect, I'll draft the opt-in screen",
+   "reply_to": "tp-212"
+  },
+  {
+   "id": "tp-214",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-09-25T16:00:00Z",
+   "text": "Customs released the Gantner scanners, they should be in Berlin on Monday."
+  },
+  {
+   "id": "tp-215",
+   "source": "tp-chat-client",
+   "author": "Alex Brandt",
+   "at": "2026-10-01T08:50:00Z",
+   "text": "Hi, Alex from Aqualine IT security here. Why is the backend not on our Azure tenant? We have a policy for vendor apps."
+  },
+  {
+   "id": "tp-216",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-10-01T09:05:00Z",
+   "text": "Alex, we settled this at kickoff — Hetzner stays. It's EU, they sign our DPA. Please just review the DPA.",
+   "reply_to": "tp-215"
+  },
+  {
+   "id": "tp-217",
+   "source": "tp-chat-client",
+   "author": "Alex Brandt",
+   "at": "2026-10-01T09:10:00Z",
+   "text": "Fair enough. Send me the DPA draft.",
+   "reply_to": "tp-216"
+  },
+  {
+   "id": "tp-218",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-10-07T17:45:00Z",
+   "text": "Went through spec v2 with Vika and Hendrik. Overall very good, thanks Lena and Marina. Notes:\n\n1. Booking flow (section 2): the trainer filter should default to \"any trainer\", not to the last trainer used. Members switch a lot.\n2. Section 3, booking rules: fine from my side. Vika will double-check against the membership terms.\n3. Section 4, payments: Adyen is confirmed, our merchant account is AqualineGmbH_App. Hendrik will send the API credentials through the vault, not by email.\n4. History screen: please show the pool name, not just the hall number. Hall numbers repeat between pools.\n5. Push opt-in copy: legal is still on it.\n6. The \"Coming soon\" banner for the Watch app on the home screen — please make it smaller.\n\nAbout the document as a whole: Section headings and their order are approved, please lock the structure. The content of section 5 (the loyalty point values and tiers) is NOT approved — Hendrik from finance has to go through the numbers first. I know you want a clear yes, sorry. Expect it next week.\n\nAlso please add a short section about offline behaviour — what happens in the pool basement where there is no signal."
+  },
+  {
+   "id": "tp-219",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-10-07T18:00:00Z",
+   "text": "Thanks Sam, very clear. We lock the structure and keep section 5 open.",
+   "reply_to": "tp-218"
+  },
+  {
+   "id": "tp-220",
+   "source": "tp-chat-client",
+   "author": "Vika",
+   "at": "2026-10-12T13:00:00Z",
+   "text": "Draft FAQ for the website and the app store page:\n\nQ: Can I cancel a class?\nA: Free cancellation up to 24 hours before your class starts. After that, the visit is counted.\n\nQ: Do I need to print my ticket?\nA: No, just show the QR code at the turnstile."
+  },
+  {
+   "id": "tp-221",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-10-12T13:30:00Z",
+   "text": "Looks good. The cancellation text is already live on our website, same as in the membership leaflet.",
+   "reply_to": "tp-220"
+  },
+  {
+   "id": "tp-222",
+   "source": "tp-chat-client",
+   "author": "Lena",
+   "at": "2026-10-12T13:45:00Z",
+   "text": "Хм, в спеке у нас другое число. Проверю",
+   "reply_to": "tp-220"
+  },
+  {
+   "id": "tp-223",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-10-14T09:30:00Z",
+   "text": "Sam, плохие новости по срокам: Apple review + security review не влезают до 1 ноября. Предлагаем 17 ноября."
+  },
+  {
+   "id": "tp-224",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-10-14T10:40:00Z",
+   "text": "Понял. Ок, 17 ноября, Vika сдвинет кампанию.",
+   "reply_to": "tp-223"
+  },
+  {
+   "id": "tp-225",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-10-14T10:45:00Z",
+   "text": "Подтверждаю перенос: запуск 17 ноября. 1 ноября не успеваем из-за ревью Apple и security review, Sam согласовал.",
+   "reply_to": "tp-224"
+  },
+  {
+   "id": "tp-226",
+   "source": "tp-chat-client",
+   "author": "Олег",
+   "at": "2026-10-16T11:00:00Z",
+   "text": "Sam, when exactly does Alex start the review? I need to freeze the staging build."
+  },
+  {
+   "id": "tp-227",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-10-16T11:20:00Z",
+   "text": "Alex Brandt from our IT security will do the security review on 21–23 October. Staging needs to be frozen from the 20th.",
+   "reply_to": "tp-226"
+  },
+  {
+   "id": "tp-228",
+   "source": "tp-chat-client",
+   "author": "Vika",
+   "at": "2026-10-17T15:00:00Z",
+   "text": "Members are asking if they can book a whole month ahead, like in the old Excel system. Can we?"
+  },
+  {
+   "id": "tp-229",
+   "source": "tp-chat-client",
+   "author": "Марина",
+   "at": "2026-10-17T15:20:00Z",
+   "text": "Горизонт 14 дней остаётся, как договорились на кикоффе — это из-за графиков тренеров. В приложении будет подсказка.",
+   "reply_to": "tp-228"
+  },
+  {
+   "id": "tp-230",
+   "source": "tp-chat-client",
+   "author": "Vika",
+   "at": "2026-10-17T15:22:00Z",
+   "text": "ок, напишу так в FAQ",
+   "reply_to": "tp-229"
+  },
+  {
+   "id": "tp-231",
+   "source": "tp-chat-client",
+   "author": "Sam",
+   "at": "2026-10-23T09:00:00Z",
+   "text": "Alex Brandt finished the review: two medium findings, no blockers. Report in the shared drive."
+  },
+  {
+   "id": "tp-232",
+   "source": "tp-chat-client",
+   "author": "Игорь",
+   "at": "2026-10-23T09:30:00Z",
+   "text": "Thanks, fixing both today",
+   "reply_to": "tp-231"
+  },
+  {
+   "id": "tp-233",
+   "source": "tp-chat-client",
+   "author": "Vika",
+   "at": "2026-10-27T10:00:00Z",
+   "text": "Posters are printed! 9 pools × 4 posters, with the new date."
+  },
+  {
+   "id": "tp-301",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "1. Overview"
+   ],
+   "text": "Tidepool is the member app for Aqualine, a chain of 9 swimming pools in Berlin and Potsdam. Members book classes and lane slots, pay for single visits, and check in at the turnstile with a QR code. Target launch: 1 November 2026, iOS and Android. Native apps (Swift/SwiftUI, Kotlin/Compose), backend in Ruby on Rails."
+  },
+  {
+   "id": "tp-302",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "1. Overview",
+    "1.1 Scope v1"
+   ],
+   "text": "In v1: class and lane booking, cancellation, single-visit payments, QR check-in, visit history, push reminders (subject to legal), login via Sign in with Apple, Google, email magic link and VK ID. Apple Watch companion app (next class, QR, lane availability). Out of scope: in-app subscriptions, family accounts, gift cards."
+  },
+  {
+   "id": "tp-303",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "2. Booking flow"
+   ],
+   "text": "Список занятий фильтруется по бассейну, типу занятия и тренеру. По умолчанию показываем ближайший бассейн по геолокации, если доступ к ней дан. Карточка занятия: время, зал, тренер, свободные места, цена для неабонентов. Кнопка «Записаться» доступна только авторизованным пользователям."
+  },
+  {
+   "id": "tp-304",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "3. Booking rules"
+   ],
+   "text": "Записаться на занятие можно не раньше чем за 14 дней до его начала. Одновременно у участника может быть не больше 6 активных записей. Бесплатная отмена записи возможна не позднее чем за 12 часов до начала занятия. Отмена позже считается посещением и списывается с абонемента. Если участник не пришёл три раза за месяц, запись блокируется на 7 дней. Лист ожидания: при освобождении места первому в листе приходит пуш, у него есть 30 минут на подтверждение."
+  },
+  {
+   "id": "tp-305",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "4. Payments"
+   ],
+   "text": "Разовые посещения и докупка занятий оплачиваются в приложении. Абонементы продаются только на ресепшене и в веб-кабинете Aqualine, в приложении мы их только показываем.\n\nПоддерживаемые методы: банковские карты (Visa, Mastercard, Amex), Apple Pay, Google Pay, PayPal. SEPA-дебет не поддерживаем в v1 — слишком долгий цикл подтверждения для разового визита.\n\nХранение данных: приложение и бэкенд не видят номер карты. Мы получаем от провайдера токен и последние 4 цифры для отображения. Повторные платежи идут по сохранённому токену, по явному действию пользователя («Оплатить картой •••• 4242»).\n\nВозвраты: делает только ресепшен через кабинет провайдера; в приложении статус возврата виден в истории. Чеки отправляются на email провайдером, не нами.\n\nПлатёжный провайдер — Adyen. У Aqualine есть корпоративный договор с Adyen с более низкой комиссией, поэтому интеграцию со Stripe мы не делаем. Тестовый мерчант-аккаунт уже заведён, боевой Aqualine заводит сам. Вебхуки провайдера принимаются на отдельном эндпоинте с проверкой HMAC-подписи; неподтверждённые платежи старше 15 минут отменяются автоматически."
+  },
+  {
+   "id": "tp-306",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "5. Loyalty programme"
+   ],
+   "text": "Участник получает 10 баллов за каждое посещение и 25 баллов за занятие с тренером. Уровни: Silver (от 300 баллов), Gold (от 900), Platinum (от 2000). Gold даёт приоритет в листе ожидания, Platinum — одно бесплатное занятие в месяц. Баллы сгорают через 12 месяцев. Значения — черновик, требуют утверждения финансов Aqualine."
+  },
+  {
+   "id": "tp-307",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "6. Notifications"
+   ],
+   "text": "Push-напоминание за 2 часа до занятия, пуш о свободном месте из листа ожидания, пуш об изменении расписания. Все пуши — только при явном согласии (opt-in), текст согласия утверждает юрист Aqualine. Email: подтверждение записи и отмены."
+  },
+  {
+   "id": "tp-308",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "7. Check-in"
+   ],
+   "text": "QR-код генерируется в приложении и обновляется каждые 30 секунд (TOTP), сканеры Gantner проверяют его через наш API. При отсутствии сети приложение показывает последний валидный код с офлайн-подписью на 10 минут."
+  },
+  {
+   "id": "tp-309",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "8. Non-functional"
+   ],
+   "text": "Время загрузки расписания — до 1 с на 4G. Доступность бэкенда 99,5% в часы работы бассейнов. Персональные данные хранятся в ЕС. Логи с персональными данными — не дольше 30 дней. Поддерживаемые языки интерфейса: немецкий, английский, русский, турецкий."
+  },
+  {
+   "id": "tp-310",
+   "source": "tp-doc-spec",
+   "author": "Lena",
+   "at": "2026-10-05T00:00:00Z",
+   "section": [
+    "9. Open questions"
+   ],
+   "text": "— Минимальные версии ОС: см. тикет TP-88.\n— Нужен ли семейный аккаунт в v2?\n— Как показывать абонемент, купленный в старой системе до миграции?"
+  },
+  {
+   "id": "tp-401",
+   "source": "tp-meet-0902",
+   "author": "Марина",
+   "at": "2026-09-02T10:00:05Z",
+   "text": "Okay, I think everyone is here. Sam, Vika, Hendrik from Aqualine, and our team. Let's go through the agenda: scope, tech decisions, timeline."
+  },
+  {
+   "id": "tp-402",
+   "source": "tp-meet-0902",
+   "author": "Sam",
+   "at": "2026-09-02T10:01:10Z",
+   "text": "Thanks. Quick context: the current booking is a mix of phone calls and an Excel sheet at each pool. We want members to do everything in the app."
+  },
+  {
+   "id": "tp-403",
+   "source": "tp-meet-0902",
+   "author": "Vika",
+   "at": "2026-09-02T10:02:30Z",
+   "text": "And from marketing: the app should feel like our brand, not like a generic fitness app. Blue, calm, water."
+  },
+  {
+   "id": "tp-404",
+   "source": "tp-meet-0902",
+   "author": "Lena",
+   "at": "2026-09-02T10:03:15Z",
+   "text": "Noted. I'll do moodboards first."
+  },
+  {
+   "id": "tp-405",
+   "source": "tp-meet-0902",
+   "author": "Игорь",
+   "at": "2026-09-02T10:05:00Z",
+   "text": "Tech side. For payments I'd suggest Stripe — good SDKs for both platforms, Apple Pay and Google Pay out of the box."
+  },
+  {
+   "id": "tp-406",
+   "source": "tp-meet-0902",
+   "author": "Hendrik",
+   "at": "2026-09-02T10:06:20Z",
+   "text": "We don't have a strong preference. The fee is what matters to me."
+  },
+  {
+   "id": "tp-407",
+   "source": "tp-meet-0902",
+   "author": "Sam",
+   "at": "2026-09-02T10:06:45Z",
+   "text": "So payments go through Stripe, decided. Igor, you can start the integration next week."
+  },
+  {
+   "id": "tp-408",
+   "source": "tp-meet-0902",
+   "author": "Игорь",
+   "at": "2026-09-02T10:08:00Z",
+   "text": "Бэкенд и база — у нас на Hetzner, дата-центр Falkenstein, EU. Sam, вас это устраивает?"
+  },
+  {
+   "id": "tp-409",
+   "source": "tp-meet-0902",
+   "author": "Sam",
+   "at": "2026-09-02T10:08:40Z",
+   "text": "Yes, Hetzner in Germany is fine for us. Agreed. Our IT may ask questions, but data in Germany is the main thing."
+  },
+  {
+   "id": "tp-410",
+   "source": "tp-meet-0902",
+   "author": "Тимур",
+   "at": "2026-09-02T10:10:00Z",
+   "text": "Minimum OS versions — what does your member base look like?"
+  },
+  {
+   "id": "tp-411",
+   "source": "tp-meet-0902",
+   "author": "Sam",
+   "at": "2026-09-02T10:11:20Z",
+   "text": "Lots of older members, older phones. We'll support iOS 15 and newer on the iPhone side, Android 9 and newer."
+  },
+  {
+   "id": "tp-412",
+   "source": "tp-meet-0902",
+   "author": "Олег",
+   "at": "2026-09-02T10:12:30Z",
+   "text": "А турникеты какие? Нам для теста нужны сканеры."
+  },
+  {
+   "id": "tp-413",
+   "source": "tp-meet-0902",
+   "author": "Sam",
+   "at": "2026-09-02T10:13:00Z",
+   "text": "Gantner, QR. We'll ship two scanners to your Berlin office."
+  },
+  {
+   "id": "tp-414",
+   "source": "tp-meet-0902",
+   "author": "Lena",
+   "at": "2026-09-02T10:15:10Z",
+   "text": "Booking rules — how far ahead can people book?"
+  },
+  {
+   "id": "tp-415",
+   "source": "tp-meet-0902",
+   "author": "Sam",
+   "at": "2026-09-02T10:15:50Z",
+   "text": "Members can book up to 14 days ahead, not more. That's how our trainers' rotas work."
+  },
+  {
+   "id": "tp-416",
+   "source": "tp-meet-0902",
+   "author": "Vika",
+   "at": "2026-09-02T10:17:00Z",
+   "text": "Можно ещё вопрос про отмену? Сейчас на ресепшене говорят по-разному."
+  },
+  {
+   "id": "tp-417",
+   "source": "tp-meet-0902",
+   "author": "Sam",
+   "at": "2026-09-02T10:17:40Z",
+   "text": "Let's put the cancellation rule in the spec and I'll check it with the membership terms."
+  },
+  {
+   "id": "tp-418",
+   "source": "tp-meet-0902",
+   "author": "Марина",
+   "at": "2026-09-02T10:20:00Z",
+   "text": "Timeline: spec v2 by early October, launch target beginning of November. We'll confirm the exact date in the chat."
+  },
+  {
+   "id": "tp-419",
+   "source": "tp-meet-0902",
+   "author": "Hendrik",
+   "at": "2026-09-02T10:21:30Z",
+   "text": "Please send the change requests to me directly, not only to Sam. Budget sits with me."
+  },
+  {
+   "id": "tp-420",
+   "source": "tp-meet-0902",
+   "author": "Марина",
+   "at": "2026-09-02T10:22:00Z",
+   "text": "Will do. Thanks everyone."
+  },
+  {
+   "id": "tp-501",
+   "source": "tp-meet-1020",
+   "author": "Марина",
+   "at": "2026-10-20T14:00:10Z",
+   "text": "Steering, 20 October. Sam, Hendrik, Vika; from us Igor, Timur and me. Status, budget, scope."
+  },
+  {
+   "id": "tp-502",
+   "source": "tp-meet-1020",
+   "author": "Марина",
+   "at": "2026-10-20T14:01:30Z",
+   "text": "Status: booking, payments via Adyen, check-in — done on staging. Security review starts tomorrow. Launch 17 November holds."
+  },
+  {
+   "id": "tp-503",
+   "source": "tp-meet-1020",
+   "author": "Hendrik",
+   "at": "2026-10-20T14:03:00Z",
+   "text": "Budget is six percent over. Where does it come from?"
+  },
+  {
+   "id": "tp-504",
+   "source": "tp-meet-1020",
+   "author": "Марина",
+   "at": "2026-10-20T14:03:40Z",
+   "text": "Mostly the Watch app and switching the payment provider. The Watch part is about forty hours so far."
+  },
+  {
+   "id": "tp-505",
+   "source": "tp-meet-1020",
+   "author": "Тимур",
+   "at": "2026-10-20T14:05:00Z",
+   "text": "И ещё минимум столько же до релиза, там комплишены и офлайн."
+  },
+  {
+   "id": "tp-506",
+   "source": "tp-meet-1020",
+   "author": "Sam",
+   "at": "2026-10-20T14:06:30Z",
+   "text": "The Watch companion — let's take it out. Not in v1, and not planned for v2 either for now. It's a nice-to-have and it's eating Timur's time."
+  },
+  {
+   "id": "tp-507",
+   "source": "tp-meet-1020",
+   "author": "Hendrik",
+   "at": "2026-10-20T14:07:00Z",
+   "text": "Agreed. That also brings us back near budget."
+  },
+  {
+   "id": "tp-508",
+   "source": "tp-meet-1020",
+   "author": "Vika",
+   "at": "2026-10-20T14:08:10Z",
+   "text": "Then I'll remove the Watch teaser from the posters. Good thing they're not printed yet."
+  },
+  {
+   "id": "tp-509",
+   "source": "tp-meet-1020",
+   "author": "Игорь",
+   "at": "2026-10-20T14:09:30Z",
+   "text": "Loyalty: we need the numbers for section 5 by end of October, otherwise loyalty moves after launch."
+  },
+  {
+   "id": "tp-510",
+   "source": "tp-meet-1020",
+   "author": "Hendrik",
+   "at": "2026-10-20T14:10:20Z",
+   "text": "I'm still working on it. The point values look too generous to me. Give me a week."
+  },
+  {
+   "id": "tp-511",
+   "source": "tp-meet-1020",
+   "author": "Vika",
+   "at": "2026-10-20T14:12:00Z",
+   "text": "Ещё по маркетингу: Apple Search Ads запускаем в день релиза, креативы готовы."
+  },
+  {
+   "id": "tp-512",
+   "source": "tp-meet-1020",
+   "author": "Hendrik",
+   "at": "2026-10-20T14:12:40Z",
+   "text": "We talk about the ads separately, Vika."
+  },
+  {
+   "id": "tp-513",
+   "source": "tp-meet-1020",
+   "author": "Lena",
+   "at": "2026-10-20T14:14:00Z",
+   "text": "One request from the beta: dark mode. Is that something for v1?"
+  },
+  {
+   "id": "tp-514",
+   "source": "tp-meet-1020",
+   "author": "Sam",
+   "at": "2026-10-20T14:14:30Z",
+   "text": "Let's not open new topics today."
+  },
+  {
+   "id": "tp-515",
+   "source": "tp-meet-1020",
+   "author": "Марина",
+   "at": "2026-10-20T14:16:00Z",
+   "text": "Okay. Action items: Timur freezes watchOS, Hendrik sends loyalty numbers, Vika updates posters, Igor fixes review findings."
+  },
+  {
+   "id": "tp-516",
+   "source": "tp-meet-1020",
+   "author": "Sam",
+   "at": "2026-10-20T14:16:40Z",
+   "text": "Thanks all, good meeting."
+  }
+ ]
+}

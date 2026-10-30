@@ -1,0 +1,1036 @@
+{
+ "project": {
+  "id": "ferrocart",
+  "name": "Ferrum Supply B2B shop migration",
+  "aliases": [
+   "Феррокарт",
+   "новый шоп Феррум",
+   "Atlas shop"
+  ]
+ },
+ "sources": [
+  {
+   "id": "fc-chat-migration",
+   "kind": "chat",
+   "title": "shop-migration"
+  },
+  {
+   "id": "fc-chat-sales",
+   "kind": "chat",
+   "title": "Vertrieb / продажи — новый шоп"
+  },
+  {
+   "id": "fc-doc-plan",
+   "kind": "document",
+   "title": "Migration plan: Magento 1 → Shopware 6"
+  },
+  {
+   "id": "fc-meet-0722",
+   "kind": "meeting",
+   "title": "Planning workshop 22 Jul"
+  },
+  {
+   "id": "fc-meet-0924",
+   "kind": "meeting",
+   "title": "Go/no-go 24 Sep"
+  }
+ ],
+ "units": [
+  {
+   "id": "fc-101",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-07-15T08:30:00Z",
+   "text": "Коллеги, канал по миграции шопа. Цель — уйти с Magento 1 до конца года. Внутреннее название проекта Atlas."
+  },
+  {
+   "id": "fc-102",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-07-15T08:41:00Z",
+   "text": "Наконец-то. M1 без патчей уже два года"
+  },
+  {
+   "id": "fc-103",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-07-15T09:02:00Z",
+   "text": "Hi! Katja, ERP & ops. I'll write mostly in English, my Russian is reading-only 🙂"
+  },
+  {
+   "id": "fc-104",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-07-15T09:05:00Z",
+   "text": "No problem, Katja. Mixed is fine",
+   "reply_to": "fc-103"
+  },
+  {
+   "id": "fc-105",
+   "source": "fc-chat-migration",
+   "author": "Anya",
+   "at": "2026-07-16T10:00:00Z",
+   "text": "Сколько у нас товаров с нормальными описаниями? У меня ощущение, что половина — только артикул и размер"
+  },
+  {
+   "id": "fc-106",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-07-16T10:20:00Z",
+   "text": "Половина — это оптимистично 😅",
+   "reply_to": "fc-105"
+  },
+  {
+   "id": "fc-107",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-07-17T14:10:00Z",
+   "text": "Question for the plan: do we migrate customer passwords from Magento? The hashes are old MD5 with salt."
+  },
+  {
+   "id": "fc-108",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-07-17T14:35:00Z",
+   "text": "Nein — passwords are not migrated at all. Every customer gets an email with a reset link on cutover day. MD5 we don't want in the new system.",
+   "reply_to": "fc-107"
+  },
+  {
+   "id": "fc-109",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-07-17T14:36:00Z",
+   "text": "Good, that's what I hoped",
+   "reply_to": "fc-108"
+  },
+  {
+   "id": "fc-110",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-07-18T11:00:00Z",
+   "text": "Поиск: смотрели Algolia и встроенный в Shopware. Algolia сильно лучше по опечаткам, у нас артикулы типа M8x40-DIN933."
+  },
+  {
+   "id": "fc-111",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-07-18T11:15:00Z",
+   "text": "Algolia лучше, но и платить за запросы. Посчитаю",
+   "reply_to": "fc-110"
+  },
+  {
+   "id": "fc-112",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-07-23T09:00:00Z",
+   "text": "Берём Algolia для поиска, решено. Руслан, заводи аккаунт."
+  },
+  {
+   "id": "fc-113",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-07-23T09:10:00Z",
+   "text": "Ок, завёл триал на 14 дней",
+   "reply_to": "fc-112"
+  },
+  {
+   "id": "fc-114",
+   "source": "fc-chat-migration",
+   "author": "Paul",
+   "at": "2026-07-24T16:00:00Z",
+   "text": "Hosting contract is signed, 3 years. Ruslan, credentials come from the provider directly to you."
+  },
+  {
+   "id": "fc-115",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-07-24T16:05:00Z",
+   "text": "👍 получил",
+   "reply_to": "fc-114"
+  },
+  {
+   "id": "fc-116",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-07-28T10:00:00Z",
+   "text": "По URL: все старые адреса товаров редиректим 1:1 на новые, 301, ни одного 404."
+  },
+  {
+   "id": "fc-117",
+   "source": "fc-chat-migration",
+   "author": "Anya",
+   "at": "2026-07-28T10:05:00Z",
+   "text": "И для категорий тоже?",
+   "reply_to": "fc-116"
+  },
+  {
+   "id": "fc-118",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-07-28T10:07:00Z",
+   "text": "Категории тоже, их всего 340",
+   "reply_to": "fc-117"
+  },
+  {
+   "id": "fc-119",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-08-04T13:00:00Z",
+   "text": "ERP API docs are in the shared folder. Warning: the price endpoint is slow, around 800 ms per customer."
+  },
+  {
+   "id": "fc-120",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-08-04T13:30:00Z",
+   "text": "800 мс на клиента — это боль, если считать корзину онлайн",
+   "reply_to": "fc-119"
+  },
+  {
+   "id": "fc-121",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-08-05T09:20:00Z",
+   "text": "Руслан, так мы можем показывать живые цены из ERP, или только ночная выгрузка как сейчас?"
+  },
+  {
+   "id": "fc-122",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-08-05T10:05:00Z",
+   "text": "Да, живые цены из ERP включаем, но только если ERP-API выдержит нагрузочный тест на 50 запросов в секунду. Если нет — остаёмся на ночной выгрузке. Тест сделаю на стейдже ERP в сентябре, Katja даст окно.",
+   "reply_to": "fc-121"
+  },
+  {
+   "id": "fc-123",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-08-05T10:10:00Z",
+   "text": "Window: any weekday after 18:00",
+   "reply_to": "fc-122"
+  },
+  {
+   "id": "fc-124",
+   "source": "fc-chat-migration",
+   "author": "Anya",
+   "at": "2026-08-11T12:00:00Z",
+   "text": "кто-то брал отпуск на неделе 34? мне надо понять, кто проверит переводы на DE"
+  },
+  {
+   "id": "fc-125",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-08-11T12:10:00Z",
+   "text": "я в отпуске 18–22, Katja на месте",
+   "reply_to": "fc-124"
+  },
+  {
+   "id": "fc-126",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-08-19T17:40:00Z",
+   "text": "Algolia: посчитал по логам поиска за год. Выходит дорого, напишу в плане"
+  },
+  {
+   "id": "fc-127",
+   "source": "fc-chat-migration",
+   "author": "Paul",
+   "at": "2026-08-21T08:15:00Z",
+   "text": "Dmitry, I saw the plan draft. Two comments in the doc, one here: who is the new shop's 'payment terms' owner?"
+  },
+  {
+   "id": "fc-128",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-08-21T08:40:00Z",
+   "text": "Пока я, но цифры должны быть твои, Paul",
+   "reply_to": "fc-127"
+  },
+  {
+   "id": "fc-129",
+   "source": "fc-chat-migration",
+   "author": "Paul",
+   "at": "2026-08-21T09:30:00Z",
+   "text": "Раздел «Условия оплаты» в плане — ок, пусть стоит как раздел. Но цифры в нём, 30 и 60 дней отсрочки, я не утверждал, это решает кредитный комитет.",
+   "reply_to": "fc-128"
+  },
+  {
+   "id": "fc-130",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-08-21T09:35:00Z",
+   "text": "Понял, помечу в плане как черновик",
+   "reply_to": "fc-129"
+  },
+  {
+   "id": "fc-131",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-08-26T15:00:00Z",
+   "text": "Stock sync: the ERP can push changes every 15 minutes. Is that enough?"
+  },
+  {
+   "id": "fc-132",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-08-26T15:20:00Z",
+   "text": "Для начала да",
+   "reply_to": "fc-131"
+  },
+  {
+   "id": "fc-133",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-09-10T19:30:00Z",
+   "text": "Нагрузочный тест ERP-API: 50 rps держит, p95 610 мс. Можно включать живые цены, но с кэшем на 10 минут"
+  },
+  {
+   "id": "fc-134",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-09-10T19:45:00Z",
+   "text": "Nice! Didn't expect that 🎉",
+   "reply_to": "fc-133"
+  },
+  {
+   "id": "fc-135",
+   "source": "fc-chat-migration",
+   "author": "Mehmet",
+   "at": "2026-09-12T10:10:00Z",
+   "text": "Some of our big customers asked again for stock to be shown per warehouse. Does that change anything in the ERP logic?"
+  },
+  {
+   "id": "fc-136",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-09-12T10:30:00Z",
+   "text": "Нет, мастер остаётся ERP, как решили. Просто синк чаще — раз в 5 минут вместо 15.",
+   "reply_to": "fc-135"
+  },
+  {
+   "id": "fc-137",
+   "source": "fc-chat-migration",
+   "author": "Paul",
+   "at": "2026-09-15T11:00:00Z",
+   "text": "On shipping — I've looked at the numbers for the last 12 months."
+  },
+  {
+   "id": "fc-138",
+   "source": "fc-chat-migration",
+   "author": "Paul",
+   "at": "2026-09-15T11:02:00Z",
+   "text": "Forget the free shipping over 500. Finance won't carry it on these margins. Shipping is charged on every order, flat 9.90 EUR per parcel, pallets on quote."
+  },
+  {
+   "id": "fc-139",
+   "source": "fc-chat-migration",
+   "author": "Mehmet",
+   "at": "2026-09-15T11:20:00Z",
+   "text": "Customers will not love this. But ok, I'll tell the team",
+   "reply_to": "fc-138"
+  },
+  {
+   "id": "fc-140",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-09-15T11:25:00Z",
+   "text": "Anya, поправь текст на странице доставки",
+   "reply_to": "fc-138"
+  },
+  {
+   "id": "fc-141",
+   "source": "fc-chat-migration",
+   "author": "Anya",
+   "at": "2026-09-15T11:40:00Z",
+   "text": "сделаю",
+   "reply_to": "fc-140"
+  },
+  {
+   "id": "fc-142",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-09-25T08:00:00Z",
+   "text": "После go/no-go: стейдж оставляю как есть, прод-деплой перенесён. Каталог замораживаем с 13 октября"
+  },
+  {
+   "id": "fc-143",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-09-29T14:00:00Z",
+   "text": "Legal has checked it: we can switch the Magento site off completely at cutover. Order history is exported as PDFs into each customer account, so nobody needs the old site. Dmitry, can you confirm we drop the read-only plan?"
+  },
+  {
+   "id": "fc-144",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-09-29T14:30:00Z",
+   "text": "Да, отказываемся, раз юристы ок. Меньше поддерживать",
+   "reply_to": "fc-143"
+  },
+  {
+   "id": "fc-145",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-10-03T18:00:00Z",
+   "text": "Статус Atlas, 3 октября\n\nГотово:\n— импорт каталога: 41 200 товаров, 97% с картинками; описания на DE — 68%, Anya дописывает топ-категории;\n— клиенты и адреса перенесены на стейдж, письма для сброса пароля протестированы на 20 тестовых аккаунтах;\n— живые цены из ERP работают с кэшем 10 минут, договорные цены видны после логина;\n— PDF с историей заказов лежат в аккаунтах, проверили на выборке в 50 клиентов.\n\nОткрыто:\n— OCI punchout для крупных клиентов — пока никто не взялся (см. сообщение Mehmet);\n— тексты страницы доставки после решения Paul — Anya;\n— Atlas Bau: Катя подтвердила, что договорные цены теперь видны.\n\nРиски:\n— если ERP упадёт в день переключения, корзина не посчитает цены; Руслан делает фоллбэк на ночной прайс.\n\nПо редиректам решение поменялось: 1:1 делаем только для топ-2000 товаров по органическому трафику, остальные старые адреса товаров ведут 301 на свою категорию. Это решили с SEO-агентством: длинный хвост почти не приносит трафика, а ручной маппинг 39 000 адресов не окупается. Список топ-2000 у Руслана.\n\nДаты: заморозка каталога 13.10, переключение 17–18.10, пароли сбрасываем 18.10 утром."
+  },
+  {
+   "id": "fc-146",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-10-03T18:20:00Z",
+   "text": "Список топ-2000 в таблице, вкладка «redirects-final»",
+   "reply_to": "fc-145"
+  },
+  {
+   "id": "fc-147",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-10-14T09:00:00Z",
+   "text": "Catalogue freeze is live. Please no more product edits in Magento 🙏"
+  },
+  {
+   "id": "fc-148",
+   "source": "fc-chat-migration",
+   "author": "Anya",
+   "at": "2026-10-14T09:05:00Z",
+   "text": "ой. я только что поменяла три описания",
+   "reply_to": "fc-147"
+  },
+  {
+   "id": "fc-149",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-10-14T09:06:00Z",
+   "text": "😑 send me the SKUs",
+   "reply_to": "fc-148"
+  },
+  {
+   "id": "fc-150",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-10-18T07:45:00Z",
+   "text": "Переключение прошло. DNS обновился, письма со сбросом ушли 6 112 клиентам"
+  },
+  {
+   "id": "fc-151",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-10-18T08:00:00Z",
+   "text": "Спасибо всем! Paul, шампанское за тобой 🍾",
+   "reply_to": "fc-150"
+  },
+  {
+   "id": "fc-152",
+   "source": "fc-chat-migration",
+   "author": "Paul",
+   "at": "2026-10-18T08:30:00Z",
+   "text": "Deal.",
+   "reply_to": "fc-151"
+  },
+  {
+   "id": "fc-153",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-10-18T12:10:00Z",
+   "text": "Сабж: в поддержку 140 тикетов за утро, 90% — «не пришло письмо». Проверяю спам-фильтры у крупных клиентов"
+  },
+  {
+   "id": "fc-154",
+   "source": "fc-chat-migration",
+   "author": "Katja",
+   "at": "2026-10-18T12:30:00Z",
+   "text": "Kranwerk's mail server blocks our sender domain. I called their IT.",
+   "reply_to": "fc-153"
+  },
+  {
+   "id": "fc-155",
+   "source": "fc-chat-migration",
+   "author": "Руслан",
+   "at": "2026-10-19T10:00:00Z",
+   "text": "Мониторинг: p95 корзины 380 мс, ошибок 0,2%. ERP-фоллбэк ни разу не сработал"
+  },
+  {
+   "id": "fc-156",
+   "source": "fc-chat-migration",
+   "author": "Дмитрий",
+   "at": "2026-10-19T10:20:00Z",
+   "text": "отлично. в понедельник ретро, 11:00",
+   "reply_to": "fc-155"
+  },
+  {
+   "id": "fc-201",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-07-20T10:00:00Z",
+   "text": "Hallo zusammen, привет. Здесь собираем всё, что спрашивают клиенты про новый шоп."
+  },
+  {
+   "id": "fc-202",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-07-20T10:15:00Z",
+   "text": "Первый вопрос уже есть: будут ли цены с НДС?"
+  },
+  {
+   "id": "fc-203",
+   "source": "fc-chat-sales",
+   "author": "Дмитрий",
+   "at": "2026-07-20T10:40:00Z",
+   "text": "Цены в шопе показываем без НДС, netto. Это B2B, все наши клиенты так считают.",
+   "reply_to": "fc-202"
+  },
+  {
+   "id": "fc-204",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-07-20T10:42:00Z",
+   "text": "ок, спасибо",
+   "reply_to": "fc-203"
+  },
+  {
+   "id": "fc-205",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-07-29T09:00:00Z",
+   "text": "Shipping: what do we tell customers? Today it's free over 500."
+  },
+  {
+   "id": "fc-206",
+   "source": "fc-chat-sales",
+   "author": "Дмитрий",
+   "at": "2026-07-29T09:30:00Z",
+   "text": "Okay, agreed: free shipping on orders over 500 EUR net, as on the old shop.",
+   "reply_to": "fc-205"
+  },
+  {
+   "id": "fc-207",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-08-06T13:00:00Z",
+   "text": "Idea for the new shop, please read before the plan is final:\n\nOur 15 largest customers (Atlas Bau, Kranwerk, Hoffmann Industriebedarf etc.) order through their own procurement systems — SAP Ariba, Coupa. They want an OCI punchout catalogue: their buyer clicks in SAP, lands in our shop, fills the basket, and the basket goes back to SAP as a purchase requisition.\n\nThis is about 30% of our revenue. Shopware has plugins for OCI. I think we should build it in phase 1, not later. Who decides this?"
+  },
+  {
+   "id": "fc-208",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-08-06T13:20:00Z",
+   "text": "+1, Kranwerk спрашивает каждый месяц",
+   "reply_to": "fc-207"
+  },
+  {
+   "id": "fc-209",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-08-14T15:10:00Z",
+   "text": "Reminder about the punchout question above 👆"
+  },
+  {
+   "id": "fc-210",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-08-20T11:00:00Z",
+   "text": "Ещё вопрос от клиентов: какой минимальный заказ будет в новом шопе?"
+  },
+  {
+   "id": "fc-211",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-08-20T11:30:00Z",
+   "text": "Клиентам говорим как раньше: минимальный заказ 100 евро без НДС, ниже — не принимаем.",
+   "reply_to": "fc-210"
+  },
+  {
+   "id": "fc-212",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-08-20T11:31:00Z",
+   "text": "👍",
+   "reply_to": "fc-211"
+  },
+  {
+   "id": "fc-213",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-09-02T09:00:00Z",
+   "text": "Beta test with 10 customers started today. Feedback form is in the shared drive."
+  },
+  {
+   "id": "fc-214",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-09-05T16:00:00Z",
+   "text": "Катя из Atlas Bau жалуется, что в бете не видит своих договорных цен, только прайс. Это блокер для них."
+  },
+  {
+   "id": "fc-215",
+   "source": "fc-chat-sales",
+   "author": "Руслан",
+   "at": "2026-09-05T16:30:00Z",
+   "text": "Посмотрю, скорее всего маппинг групп клиентов",
+   "reply_to": "fc-214"
+  },
+  {
+   "id": "fc-216",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-09-08T10:00:00Z",
+   "text": "Kranwerk: поиск по артикулу без дефисов не находит M8x40. Это поправят?"
+  },
+  {
+   "id": "fc-217",
+   "source": "fc-chat-sales",
+   "author": "Руслан",
+   "at": "2026-09-08T10:30:00Z",
+   "text": "Да, синонимы для артикулов добавлю",
+   "reply_to": "fc-216"
+  },
+  {
+   "id": "fc-218",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-09-09T12:00:00Z",
+   "text": "Katja from Atlas Bau again: prices fixed, thanks Ruslan! She now asks for a CSV upload for the basket."
+  },
+  {
+   "id": "fc-219",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-09-16T09:00:00Z",
+   "text": "Клиенты-ИП спрашивают, можно ли всё-таки видеть цены с НДС. Может, переключим по умолчанию?"
+  },
+  {
+   "id": "fc-220",
+   "source": "fc-chat-sales",
+   "author": "Дмитрий",
+   "at": "2026-09-16T09:30:00Z",
+   "text": "Default stays net. We add a small toggle in the account for sole traders, that's all.",
+   "reply_to": "fc-219"
+  },
+  {
+   "id": "fc-221",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-09-16T09:31:00Z",
+   "text": "ок, так и передам",
+   "reply_to": "fc-220"
+  },
+  {
+   "id": "fc-222",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-09-16T14:00:00Z",
+   "text": "Doing the sales training on Thursday. Slides: shipping, payment terms, minimum order. Please send me the final numbers."
+  },
+  {
+   "id": "fc-223",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-09-30T11:00:00Z",
+   "text": "Kunden fragen nach dem alten Shop — wie lange bleibt der online?"
+  },
+  {
+   "id": "fc-224",
+   "source": "fc-chat-sales",
+   "author": "Katja",
+   "at": "2026-09-30T11:20:00Z",
+   "text": "It goes off at cutover. Order history will be in their new account as PDFs.",
+   "reply_to": "fc-223"
+  },
+  {
+   "id": "fc-225",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-10-20T10:00:00Z",
+   "text": "Первые отзывы: поиск хвалят, на доставку ругаются 🙃"
+  },
+  {
+   "id": "fc-226",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-10-20T10:15:00Z",
+   "text": "as expected",
+   "reply_to": "fc-225"
+  },
+  {
+   "id": "fc-227",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-10-20T10:40:00Z",
+   "text": "Hoffmann спрашивает, почему в счёте другой номер клиента. Это нормально?"
+  },
+  {
+   "id": "fc-228",
+   "source": "fc-chat-sales",
+   "author": "Katja",
+   "at": "2026-10-20T11:05:00Z",
+   "text": "Yes, new customer numbers come from the ERP now. Old number is printed below it for 6 months.",
+   "reply_to": "fc-227"
+  },
+  {
+   "id": "fc-229",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-10-21T09:00:00Z",
+   "text": "кто-нибудь знает, где лежат новые визитки? 😅 не по теме, сорри"
+  },
+  {
+   "id": "fc-230",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-10-21T09:10:00Z",
+   "text": "в шкафу у переговорки, верхняя полка",
+   "reply_to": "fc-229"
+  },
+  {
+   "id": "fc-231",
+   "source": "fc-chat-sales",
+   "author": "Mehmet",
+   "at": "2026-10-22T15:30:00Z",
+   "text": "Week 1 numbers: 1 870 orders in the new shop, 64% of customers already set a new password."
+  },
+  {
+   "id": "fc-232",
+   "source": "fc-chat-sales",
+   "author": "Olga S.",
+   "at": "2026-10-22T15:45:00Z",
+   "text": "неплохо!",
+   "reply_to": "fc-231"
+  },
+  {
+   "id": "fc-301",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "1. Ziel / цель"
+   ],
+   "text": "Перенос B2B-магазина Ferrum Supply с Magento 1.9 на Shopware 6.5. Срок переключения — конец сентября 2026. Внутреннее название проекта — Atlas. Ответственный — Дмитрий Волков, техлид — Руслан."
+  },
+  {
+   "id": "fc-302",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "2. Scope"
+   ],
+   "text": "Входит: каталог (≈41 000 товаров), клиенты и адреса, договорные цены, история заказов за 5 лет, корзина, оформление заказа, оплата по счёту и картой. Не входит в фазу 1: мобильное приложение, маркетплейсы, интеграция с закупочными системами клиентов."
+  },
+  {
+   "id": "fc-303",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "3. Daten",
+    "3.1 Kunden"
+   ],
+   "text": "Клиенты и адреса переносятся скриптом из Magento. Пароли не переносятся; в день переключения каждый клиент получает письмо со ссылкой для установки нового пароля. Группы клиентов сопоставляются с ценовыми группами ERP."
+  },
+  {
+   "id": "fc-304",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "3. Daten",
+    "3.2 Produkte und Bestand"
+   ],
+   "text": "Stock levels come only from the ERP. The shop never writes stock back, it only reads. ERP отдаёт изменения остатков каждые 15 минут. Цены: прайс — ночная выгрузка; договорные цены — из ERP по API, при условии успешного нагрузочного теста."
+  },
+  {
+   "id": "fc-305",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "4. Suche"
+   ],
+   "text": "Требования к поиску: поиск по артикулу с опечатками и без разделителей (M8x40 = M8 x 40 = M8-40), поиск по DIN/ISO, фасеты по материалу, классу прочности, покрытию, подсказки при вводе. Время ответа — до 200 мс.\n\nСравнивались два варианта: Algolia (SaaS) и встроенный в Shopware OpenSearch. По качеству на тестовом наборе из 300 реальных запросов Algolia дал 94% релевантных первых результатов, OpenSearch после настройки синонимов — 89%. Разница заметна в основном на опечатках в названиях, а не в артикулах.\n\nСтоимость Algolia считали по логам поиска за 12 месяцев: около 2,1 млн поисковых запросов и 41 000 записей, с учётом подсказок при вводе каждый символ — отдельный запрос.\n\nПоиск реализуется на встроенном OpenSearch Shopware. Algolia рассматривался и отклонён: при нашем объёме запросов годовая стоимость выходит около 19 000 EUR. Синонимы для артикулов ведёт Anya в таблице, Руслан импортирует их раз в день. Вернуться к Algolia можно в 2027 году, если доля поисков без результата превысит 8%."
+  },
+  {
+   "id": "fc-306",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "5. Preise und Konditionen",
+    "5.1 Mindestbestellwert"
+   ],
+   "text": "Mindestbestellwert / минимальная сумма заказа: 150 EUR netto. Заказы ниже этой суммы система не принимает; для ключевых клиентов порог отключается вручную."
+  },
+  {
+   "id": "fc-307",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "5. Preise und Konditionen",
+    "5.2 Zahlungsbedingungen"
+   ],
+   "text": "Условия оплаты (черновик): новые клиенты — предоплата или карта; постоянные — отсрочка 30 дней; ключевые клиенты — 60 дней. Лимиты отсрочки берутся из ERP."
+  },
+  {
+   "id": "fc-308",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "5. Preise und Konditionen",
+    "5.3 Versand"
+   ],
+   "text": "Доставка: бесплатно от 500 EUR netto, ниже — 9,90 EUR за посылку. Паллеты — по запросу. Срок отгрузки — 24 часа для товаров со склада Дуйсбург."
+  },
+  {
+   "id": "fc-309",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "6. URLs und SEO"
+   ],
+   "text": "Все URL товаров и категорий из Magento получают 301-редирект на соответствующие новые адреса. Таблица соответствия генерируется скриптом по артикулу. Sitemap отправляется в Search Console в день переключения."
+  },
+  {
+   "id": "fc-310",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "7. Altsystem"
+   ],
+   "text": "Magento после переключения переводится в режим только чтения на 3 месяца: вход для клиентов открыт, оформление заказов закрыто. Потом сервер выключается, база архивируется."
+  },
+  {
+   "id": "fc-311",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "8. Cutover"
+   ],
+   "text": "Переключение в выходные 26–27 сентября. Пятница 18:00 — заморозка заказов в Magento, финальная выгрузка, суббота — проверка, воскресенье — DNS. Откат: обратное переключение DNS до понедельника 6:00."
+  },
+  {
+   "id": "fc-312",
+   "source": "fc-doc-plan",
+   "author": "Дмитрий",
+   "at": "2026-08-28T00:00:00Z",
+   "section": [
+    "9. Risiken"
+   ],
+   "text": "Медленный ERP-API; качество описаний товаров на DE; нагрузка на поддержку в первую неделю из-за сброса паролей; клиенты, привыкшие к старым URL в закладках."
+  },
+  {
+   "id": "fc-401",
+   "source": "fc-meet-0722",
+   "author": "Дмитрий",
+   "at": "2026-07-22T10:00:00Z",
+   "text": "Доброе утро. Сегодня определяем рамки: даты, что берём, что нет. Paul, Katja, Руслан, Anya, Mehmet — все здесь."
+  },
+  {
+   "id": "fc-402",
+   "source": "fc-meet-0722",
+   "author": "Paul",
+   "at": "2026-07-22T10:01:15Z",
+   "text": "From my side the main thing is the date. Magento support costs us money every month we stay."
+  },
+  {
+   "id": "fc-403",
+   "source": "fc-meet-0722",
+   "author": "Руслан",
+   "at": "2026-07-22T10:02:40Z",
+   "text": "Реалистично — конец сентября. Каталог большой, но структура понятная."
+  },
+  {
+   "id": "fc-404",
+   "source": "fc-meet-0722",
+   "author": "Katja",
+   "at": "2026-07-22T10:04:00Z",
+   "text": "Late September works for ops if we avoid the month-end closing. So not the 30th."
+  },
+  {
+   "id": "fc-405",
+   "source": "fc-meet-0722",
+   "author": "Дмитрий",
+   "at": "2026-07-22T10:05:10Z",
+   "text": "Тогда последние выходные перед концом месяца: 26–27 сентября."
+  },
+  {
+   "id": "fc-406",
+   "source": "fc-meet-0722",
+   "author": "Paul",
+   "at": "2026-07-22T10:05:50Z",
+   "text": "Then it's decided: cutover on the weekend of 26 and 27 September."
+  },
+  {
+   "id": "fc-407",
+   "source": "fc-meet-0722",
+   "author": "Mehmet",
+   "at": "2026-07-22T10:07:00Z",
+   "text": "Sales needs two weeks' notice to inform customers. So by mid-September the date must be final."
+  },
+  {
+   "id": "fc-408",
+   "source": "fc-meet-0722",
+   "author": "Katja",
+   "at": "2026-07-22T10:08:30Z",
+   "text": "Stock levels come only from the ERP. The shop never writes stock back, it only reads. I don't want two systems fighting over stock again."
+  },
+  {
+   "id": "fc-409",
+   "source": "fc-meet-0722",
+   "author": "Руслан",
+   "at": "2026-07-22T10:09:10Z",
+   "text": "Согласен, только чтение."
+  },
+  {
+   "id": "fc-410",
+   "source": "fc-meet-0722",
+   "author": "Anya",
+   "at": "2026-07-22T10:11:00Z",
+   "text": "А старый магазин? Клиенты часто смотрят там старые заказы, чтобы повторить."
+  },
+  {
+   "id": "fc-411",
+   "source": "fc-meet-0722",
+   "author": "Дмитрий",
+   "at": "2026-07-22T10:12:20Z",
+   "text": "Старый магазин оставляем в режиме только для чтения на 3 месяца после запуска, чтобы клиенты видели историю заказов."
+  },
+  {
+   "id": "fc-412",
+   "source": "fc-meet-0722",
+   "author": "Paul",
+   "at": "2026-07-22T10:13:00Z",
+   "text": "Three months is fine, but not longer. Every month is hosting and risk."
+  },
+  {
+   "id": "fc-413",
+   "source": "fc-meet-0722",
+   "author": "Mehmet",
+   "at": "2026-07-22T10:14:30Z",
+   "text": "And the big customers with SAP? We should talk about punchout at some point."
+  },
+  {
+   "id": "fc-414",
+   "source": "fc-meet-0722",
+   "author": "Дмитрий",
+   "at": "2026-07-22T10:15:00Z",
+   "text": "Mehmet, напиши, пожалуйста, отдельно, что именно нужно."
+  },
+  {
+   "id": "fc-415",
+   "source": "fc-meet-0722",
+   "author": "Anya",
+   "at": "2026-07-22T10:16:40Z",
+   "text": "Тексты: я беру описания для топ-категорий, остальное — после запуска."
+  },
+  {
+   "id": "fc-416",
+   "source": "fc-meet-0722",
+   "author": "Дмитрий",
+   "at": "2026-07-22T10:18:00Z",
+   "text": "Хорошо. Итог: 26–27 сентября, ERP — мастер по остаткам, старый шоп 3 месяца в режиме чтения. Протокол пришлю."
+  },
+  {
+   "id": "fc-501",
+   "source": "fc-meet-0924",
+   "author": "Дмитрий",
+   "at": "2026-09-24T16:00:00Z",
+   "text": "Go/no-go по переключению 26–27 сентября. Начнём с открытых багов."
+  },
+  {
+   "id": "fc-502",
+   "source": "fc-meet-0924",
+   "author": "Руслан",
+   "at": "2026-09-24T16:01:30Z",
+   "text": "Критичных три: договорные цены у части групп клиентов, оплата по счёту для новых клиентов падает, и PDF истории заказов ещё не сгенерированы."
+  },
+  {
+   "id": "fc-503",
+   "source": "fc-meet-0924",
+   "author": "Katja",
+   "at": "2026-09-24T16:03:10Z",
+   "text": "The PDFs alone take two days to generate for all customers. We can't do that by Saturday."
+  },
+  {
+   "id": "fc-504",
+   "source": "fc-meet-0924",
+   "author": "Mehmet",
+   "at": "2026-09-24T16:04:00Z",
+   "text": "And I promised customers the date two weeks ago… They'll ask."
+  },
+  {
+   "id": "fc-505",
+   "source": "fc-meet-0924",
+   "author": "Paul",
+   "at": "2026-09-24T16:05:20Z",
+   "text": "I'd rather move than go live with broken prices. Customers forgive a delay, not wrong invoices."
+  },
+  {
+   "id": "fc-506",
+   "source": "fc-meet-0924",
+   "author": "Дмитрий",
+   "at": "2026-09-24T16:06:40Z",
+   "text": "Предлагаю 17–18 октября. Месяц-энд прошёл, у Руслана три недели на баги."
+  },
+  {
+   "id": "fc-507",
+   "source": "fc-meet-0924",
+   "author": "Katja",
+   "at": "2026-09-24T16:07:30Z",
+   "text": "October 17 works for ERP."
+  },
+  {
+   "id": "fc-508",
+   "source": "fc-meet-0924",
+   "author": "Paul",
+   "at": "2026-09-24T16:08:10Z",
+   "text": "So it's a no-go for September. New cutover: the weekend of 17 and 18 October, same plan, and we freeze the catalogue from the 13th."
+  },
+  {
+   "id": "fc-509",
+   "source": "fc-meet-0924",
+   "author": "Mehmet",
+   "at": "2026-09-24T16:09:00Z",
+   "text": "I'll send the customer email tomorrow morning."
+  },
+  {
+   "id": "fc-510",
+   "source": "fc-meet-0924",
+   "author": "Anya",
+   "at": "2026-09-24T16:10:20Z",
+   "text": "А то, что доставка теперь платная — в том же письме?"
+  },
+  {
+   "id": "fc-511",
+   "source": "fc-meet-0924",
+   "author": "Mehmet",
+   "at": "2026-09-24T16:11:00Z",
+   "text": "Нет, отдельно, не хочу два плохих новости в одном письме 😅"
+  },
+  {
+   "id": "fc-512",
+   "source": "fc-meet-0924",
+   "author": "Руслан",
+   "at": "2026-09-24T16:12:30Z",
+   "text": "Ещё вопрос: хостинг. Прод-сервер уже оплачен с сентября, это ок?"
+  },
+  {
+   "id": "fc-513",
+   "source": "fc-meet-0924",
+   "author": "Paul",
+   "at": "2026-09-24T16:13:10Z",
+   "text": "It's in the contract, nothing to do."
+  },
+  {
+   "id": "fc-514",
+   "source": "fc-meet-0924",
+   "author": "Дмитрий",
+   "at": "2026-09-24T16:14:00Z",
+   "text": "Всё, спасибо. Новая дата 17–18 октября, протокол сегодня."
+  }
+ ]
+}

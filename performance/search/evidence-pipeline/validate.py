@@ -24,7 +24,7 @@ for path in sorted((root / 'corpus' / args.split).glob('*.json')):
         units[unit['id']] = unit
         if unit['source'] not in source_ids:
             errors.append(f'{path.name}: unknown source')
-        if len(unit['text'].encode()) > (8000 if args.split == 'long' else 1200):
+        if len(unit['text'].encode()) > (8000 if args.split in ('long', 'blind') else 1200):
             errors.append(f'{path.name}: unit over the size limit')
         if unit['at'] < last.get(unit['source'], ''):
             errors.append(f'{path.name}: units out of time order')
@@ -53,7 +53,7 @@ for path in sorted((root / 'questions' / args.split).glob('*.json')):
             errors.append(f'{path.name}: evidence set uses an ungraded unit')
         if question['answerable'] and not any(int(g) == 3 for g in question['grades'].values()):
             errors.append(f'{path.name}: answerable question without a grade-3 unit')
-        if args.split == 'long':
+        if args.split in ('long', 'blind'):
             top = {uid for uid, g in question['grades'].items() if int(g) == 3}
             spans = question.get('spans', [])
             if {span['unit'] for span in spans} != top:

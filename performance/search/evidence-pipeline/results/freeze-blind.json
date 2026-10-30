@@ -1,0 +1,37 @@
+{
+ "frozen_at": "2026-10-30T22:53:29+00:00",
+ "stage": "blind",
+ "settings": {
+  "mmr_lambda": 0.9
+ },
+ "variants": [
+  "mmarco mix, parent 300 chars, 512 tokens + follow-ups K=5 M=2 T=3 ctx"
+ ],
+ "code": {
+  "PROTOCOL.md": "280ed7678a8128be2f94ec3ca1c6adc3d159d410892567f2c9dfd5a045f9ab0b",
+  "CORPUS.md": "4625bed9bde8d37b7399739b0c39d0fe737407b2d3505eedd6c9b16c6c31a16b",
+  "pipeline.py": "2d00cdf41bc789a723367171833c11406856ba3621ec77ca4ea06aa304902758",
+  "core/discover.mjs": "30661716561bb7c1f2d1578559f8b044ffe5a6b0e8281b05879c4c4e2982caeb",
+  "core/package.json": "01168f72b235d9e404cf8821a73aad7accf89c1e9a31419893756398cf40a39d",
+  "core/pnpm-lock.yaml": "b1a972cc1667b8468c089759b52081d90ef3ef672d5063006470e0bcb32e33bb",
+  "background.py": "aa62133790c8e9e11db5680763fece750fc535d487da0b3ac1e15729b1aff7f7",
+  "validate.py": "9b441ad5c02a957c889a3ec2cc4a23feb6b1b76ddf4f19cb1d093b0cfd87892f",
+  "report.py": "ae29255d4291cd6774de5a6fcdd36c3f4f5fb77908d4c192243752d18709ebae",
+  "variants_report.py": "76ad5908c4af7f12409a881a41884f7fcf24b74929c93c866f5873dcb1accb8d",
+  "followups_report.py": "c360f933219ab1acb0097462412305899582a019a114ba7e717b5c31f7caf433",
+  "long_report.py": "bcd892d106e3113c1942e296399f5a193fc695d16e93e65d7b22210beaad0df4",
+  "blind_gate.py": "4713138eb47fdb24d0fbb1fca734808f7cd051ce6ad0cc8cf4d0bb6432115060",
+  "run.sh": "96c92d0c6dd942ac3d6bc72eba42fceb864e9ad2da292ca82ccce0d15eb0ddc0",
+  "models.json": "fe013347449cd3ebec31d91d2293d388110fd4ae4835d0057cf3bff1dc1bc376",
+  "requirements.lock": "6d093289fc74137b7b508d9f0cdece09ad5d335da5175c1129991cd537a87e19"
+ },
+ "inputs": {
+  "corpus/blind/background.json": "ebcb8dbf93219c3dde374c625f80d6cd8c81798eadbe037107f8a9e5c8bede45",
+  "corpus/blind/ferrocart.json": "96e8c40bce378f254cfedf377426b77929ccfa5d7746e8697c2bc8613a5096ba",
+  "corpus/blind/lumenhall.json": "d1d9f3a0052695b75a4547b0b6d364668873329b41c3bb78ee8b2982378a8a86",
+  "corpus/blind/tidepool.json": "fb47a158a61fad0c8265569b4b47b08f133798efdd9ea4098024030bd15bb9e9",
+  "questions/blind/ferrocart.json": "acfa66db9d4cbc3108e989e1ebed77a2d33312cdd64e04e890b2de7d42184194",
+  "questions/blind/lumenhall.json": "fc5b645f7e2aeeb6447c96bb6e6290b70ebe4a1713c5c618173f77be93f69151",
+  "questions/blind/tidepool.json": "2bc822a5554ee5f1427e93e94294c2af80decc7942d22b21a7dfbbb8f1fd50bd"
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "checks": {
+  "revoked questions won (needs 2+)": 4,
+  "answerable questions lost (needs 0)": 0,
+  "conflict/revoked \"all sides\" lost (needs 0)": 0,
+  "MRR drop on other answerable questions (needs <= 0.01)": -0.0278
+ },
+ "controls lost": [],
+ "verdict": "pass"
+}
