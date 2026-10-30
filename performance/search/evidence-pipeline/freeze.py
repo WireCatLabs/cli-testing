@@ -14,7 +14,8 @@ root = Path(__file__).resolve().parent
 output = root / 'results' / f'freeze-{args.stage}.json'
 assert not output.exists(), 'already frozen'
 code = ['PROTOCOL.md', 'CORPUS.md', 'pipeline.py', 'core/discover.mjs', 'core/package.json', 'core/pnpm-lock.yaml',
-        'background.py', 'validate.py', 'report.py', 'variants_report.py', 'run.sh', 'models.json', 'requirements.lock']
+        'background.py', 'validate.py', 'report.py', 'variants_report.py', 'followups_report.py', 'long_report.py',
+        'run.sh', 'models.json', 'requirements.lock']
 digest = lambda path: hashlib.sha256((root / path).read_bytes()).hexdigest()
 sealed = sorted(str(path.relative_to(root)) for folder in ('corpus', 'questions')
                 for path in (root / folder / args.stage).glob('*.json'))
