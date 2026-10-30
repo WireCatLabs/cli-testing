@@ -1,5 +1,5 @@
 {
- "frozen_at": "2026-10-30T22:51:55+00:00",
+ "frozen_at": "2026-10-30T22:53:29+00:00",
  "stage": "blind",
  "settings": {
   "mmr_lambda": 0.9
@@ -8,10 +8,10 @@
   "mmarco mix, parent 300 chars, 512 tokens + follow-ups K=5 M=2 T=3 ctx"
  ],
  "code": {
-  "PROTOCOL.md": "91ac03027dca7e4fba7eec0b2558b86a665dc5ab5d4093d7520c75c8e18fc6b8",
+  "PROTOCOL.md": "280ed7678a8128be2f94ec3ca1c6adc3d159d410892567f2c9dfd5a045f9ab0b",
   "CORPUS.md": "4625bed9bde8d37b7399739b0c39d0fe737407b2d3505eedd6c9b16c6c31a16b",
   "pipeline.py": "2d00cdf41bc789a723367171833c11406856ba3621ec77ca4ea06aa304902758",
-  "core/discover.mjs": "05c45aa760eabe0967b161094bbe87e23aa2cdebd0011b3cbb64dbc374261ec5",
+  "core/discover.mjs": "30661716561bb7c1f2d1578559f8b044ffe5a6b0e8281b05879c4c4e2982caeb",
   "core/package.json": "01168f72b235d9e404cf8821a73aad7accf89c1e9a31419893756398cf40a39d",
   "core/pnpm-lock.yaml": "b1a972cc1667b8468c089759b52081d90ef3ef672d5063006470e0bcb32e33bb",
   "background.py": "aa62133790c8e9e11db5680763fece750fc535d487da0b3ac1e15729b1aff7f7",

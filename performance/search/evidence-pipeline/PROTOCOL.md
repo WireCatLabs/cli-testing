@@ -274,3 +274,11 @@ data against that link. `long` therefore cannot settle it. One more split, `blin
   (controls included), loses no `conflict`/`revoked` question's "all conflict sides", and lowers mean MRR on the
   other answerable questions by at most 0.01. Pass → propose follow-ups for Core. Fail → TASK-837 closes as not
   solved by follow-ups. Whatever the result, the long-message measures on `blind` are reported, no choice made.
+
+**Discovery stopped on a colon (30 October 2026, before any `blind` question was scored).** The first run failed in
+`core/discover.mjs`: published Core 0.412.0 parses the question as a query, reads the colon in "22:00" or "1:1" as
+a field filter and throws `query.invalid-syntax`, so discovery returns nothing at all. Two of the 42 questions have
+such a colon; the error and their position were the only content read. Like the "?" fix, the harness now applies the
+obvious Core fix to the input under a new flag, `--digit-colon-literal`: a colon between two digits is escaped, so
+it stays part of the word. No other split has such a question. The first freeze stays as
+`results/freeze-blind-first.json`; `results/freeze-blind.json` is taken again with the new `discover.mjs` hash.

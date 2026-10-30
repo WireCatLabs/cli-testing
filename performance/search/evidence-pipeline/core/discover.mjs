@@ -6,8 +6,13 @@ import { fileURLToPath, pathToFileURL } from "node:url"
 
 const punctuation = process.argv.includes("--question-mark-punctuation")
 const [output, questionsDir, ...corpusPaths] = process.argv.slice(2).filter((arg) => !arg.startsWith("--"))
+const digitColon = process.argv.includes("--digit-colon-literal")
 // The proposed BUG-395 fix, applied to the input: a "?" after a word ends a sentence, it is not a wildcard.
-const asked = (text) => (punctuation ? text.replace(/(?<=\p{L})\?(?=\s|$)/gu, "") : text)
+// A colon between digits ("22:00", "1:1") is part of a time or ratio, not a field filter; escaped, it stays a word.
+const asked = (text) => {
+  const plain = punctuation ? text.replace(/(?<=\p{L})\?(?=\s|$)/gu, "") : text
+  return digitColon ? plain.replace(/(?<=\d):(?=\d)/gu, "\\:") : plain
+}
 if (!output || !questionsDir || !corpusPaths.length)
   throw new Error("usage: node discover.mjs OUTPUT QUESTIONS_DIR CORPUS.json...")
 const questionPaths = readdirSync(questionsDir)
