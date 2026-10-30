@@ -234,7 +234,8 @@ const setups = {
   },
   volta: (home) => {
     const voltaHome = join(home, "volta")
-    const env = withPath([join(voltaHome, "bin")], { VOLTA_HOME: voltaHome })
+    const shims = windows && process.env.VOLTA_INSTALL_DIR ? [process.env.VOLTA_INSTALL_DIR] : []
+    const env = withPath([join(voltaHome, "bin"), ...shims], { VOLTA_HOME: voltaHome })
     // A runner's own global prefix (Windows sets NPM_CONFIG_PREFIX) would send npm past Volta's interception.
     for (const key of Object.keys(env)) if (key.toLowerCase() === "npm_config_prefix") delete env[key]
     const node = exec("volta", ["install", `node@${voltaNode}`], env)

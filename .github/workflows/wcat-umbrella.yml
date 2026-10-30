@@ -56,7 +56,10 @@ jobs:
           if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne $env:VOLTA_SHA256_WINDOWS) { throw "volta checksum mismatch" }
           $dir = Join-Path $env:RUNNER_TEMP "volta-install"
           Expand-Archive $zip -DestinationPath $dir
+          # The zip has no node/npm shims; Volta's MSI installs them as copies of volta-shim.exe.
+          foreach ($shim in "node", "npm", "npx") { Copy-Item (Join-Path $dir "volta-shim.exe") (Join-Path $dir "$shim.exe") }
           Add-Content $env:GITHUB_PATH $dir
+          Add-Content $env:GITHUB_ENV "VOLTA_INSTALL_DIR=$dir"
       - name: Measure
         run: node performance/cli/wcat-umbrella/measure.mjs "${{ runner.temp }}/wcat-out"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
