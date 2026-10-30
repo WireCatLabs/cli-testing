@@ -1,0 +1,384 @@
+[
+ {
+  "id": "ferrocart-q01",
+  "project": "ferrocart",
+  "language": "en",
+  "text": "Are customer passwords migrated from Magento?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "fc-108": 3,
+   "fc-107": 2,
+   "fc-303": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-107",
+    "fc-108"
+   ]
+  ],
+  "note": "Denial in the reply; the plan section repeats it.",
+  "spans": [
+   {
+    "unit": "fc-108",
+    "quote": "Nein — passwords are not migrated at all. Every customer gets an email with a reset link on cutover day."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q02",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "Будут ли в новом шопе живые цены из ERP?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "fc-122": 3,
+   "fc-121": 2,
+   "fc-133": 1,
+   "fc-304": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-121",
+    "fc-122"
+   ]
+  ],
+  "note": "Yes, if the ERP API passes a 50 rps load test.",
+  "spans": [
+   {
+    "unit": "fc-122",
+    "quote": "Да, живые цены из ERP включаем, но только если ERP-API выдержит нагрузочный тест на 50 запросов в секунду. Если нет — остаёмся на ночной выгрузке."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q03",
+  "project": "ferrocart",
+  "language": "en",
+  "text": "Did Paul approve 60 days payment terms for key accounts?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "fc-129": 3,
+   "fc-307": 2,
+   "fc-128": 2
+  },
+  "evidence_sets": [
+   [
+    "fc-129",
+    "fc-307"
+   ]
+  ],
+  "note": "He approved the section as a section, not the 30/60 day numbers.",
+  "spans": [
+   {
+    "unit": "fc-129",
+    "quote": "Раздел «Условия оплаты» в плане — ок, пусть стоит как раздел. Но цифры в нём, 30 и 60 дней отсрочки, я не утверждал, это решает кредитный комитет."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q04",
+  "project": "ferrocart",
+  "language": "en",
+  "text": "Are we building an OCI punchout catalogue for the big customers?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "fc-207": 2,
+   "fc-209": 1,
+   "fc-208": 1,
+   "fc-413": 1,
+   "fc-145": 1,
+   "fc-302": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-207"
+   ]
+  ],
+  "note": "Mehmet's proposal got no decision.",
+  "spans": []
+ },
+ {
+  "id": "ferrocart-q05",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "Какая минимальная сумма заказа в новом шопе?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "fc-306": 2,
+   "fc-211": 2,
+   "fc-210": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-306",
+    "fc-211"
+   ]
+  ],
+  "note": "Plan says 150 EUR, sales tells customers 100 EUR.",
+  "spans": []
+ },
+ {
+  "id": "ferrocart-q06",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "Когда переключение на новый магазин?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "fc-508": 3,
+   "fc-514": 3,
+   "fc-145": 3,
+   "fc-406": 2,
+   "fc-311": 1,
+   "fc-142": 1,
+   "fc-150": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-508"
+   ],
+   [
+    "fc-514"
+   ],
+   [
+    "fc-145"
+   ]
+  ],
+  "note": "26–27 Sep moved to 17–18 Oct at go/no-go.",
+  "spans": [
+   {
+    "unit": "fc-508",
+    "quote": "So it's a no-go for September. New cutover: the weekend of 17 and 18 October, same plan, and we freeze the catalogue from the 13th."
+   },
+   {
+    "unit": "fc-514",
+    "quote": "Новая дата 17–18 октября, протокол сегодня."
+   },
+   {
+    "unit": "fc-145",
+    "quote": "Даты: заморозка каталога 13.10, переключение 17–18.10, пароли сбрасываем 18.10 утром."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q07",
+  "project": "ferrocart",
+  "language": "en",
+  "text": "What do we use for product search, Algolia?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "fc-305": 3,
+   "fc-112": 2,
+   "fc-126": 1,
+   "fc-110": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-305"
+   ]
+  ],
+  "note": "Algolia decided in chat, rejected in the plan.",
+  "spans": [
+   {
+    "unit": "fc-305",
+    "quote": "Поиск реализуется на встроенном OpenSearch Shopware. Algolia рассматривался и отклонён: при нашем объёме запросов годовая стоимость выходит около 19 000 EUR."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q08",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "Бесплатная доставка от 500 евро остаётся?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "fc-138": 3,
+   "fc-206": 2,
+   "fc-308": 1,
+   "fc-139": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-138"
+   ]
+  ],
+  "note": "Reversed by Paul; the plan still shows the old rule.",
+  "spans": [
+   {
+    "unit": "fc-138",
+    "quote": "Forget the free shipping over 500. Finance won't carry it on these margins. Shipping is charged on every order, flat 9.90 EUR per parcel, pallets on quote."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q09",
+  "project": "ferrocart",
+  "language": "en",
+  "text": "Do all old product URLs get a 1:1 redirect?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "fc-145": 3,
+   "fc-116": 2,
+   "fc-309": 1,
+   "fc-146": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-145"
+   ]
+  ],
+  "note": "Changed to top-2000 only; buried in the status write-up.",
+  "spans": [
+   {
+    "unit": "fc-145",
+    "quote": "По редиректам решение поменялось: 1:1 делаем только для топ-2000 товаров по органическому трафику, остальные старые адреса товаров ведут 301 на свою категорию."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q10",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "Сколько старый магазин будет доступен после запуска?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "fc-143": 3,
+   "fc-224": 3,
+   "fc-411": 2,
+   "fc-144": 2,
+   "fc-310": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-143",
+    "fc-144"
+   ],
+   [
+    "fc-224"
+   ]
+  ],
+  "note": "The 3-month read-only plan was dropped; reversal in English, different words.",
+  "spans": [
+   {
+    "unit": "fc-143",
+    "quote": "Legal has checked it: we can switch the Magento site off completely at cutover. Order history is exported as PDFs into each customer account, so nobody needs the old site."
+   },
+   {
+    "unit": "fc-224",
+    "quote": "It goes off at cutover. Order history will be in their new account as PDFs."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q11",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "На что жаловалась Катя из Atlas Bau?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "fc-214": 3,
+   "fc-218": 1,
+   "fc-103": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-214"
+   ]
+  ],
+  "note": "Katja at Atlas Bau, not Katja Weber (ERP).",
+  "spans": [
+   {
+    "unit": "fc-214",
+    "quote": "Катя из Atlas Bau жалуется, что в бете не видит своих договорных цен, только прайс."
+   }
+  ]
+ },
+ {
+  "id": "ferrocart-q12",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "У какого хостера будет новый магазин?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "fc-114": 1,
+   "fc-512": 1
+  },
+  "evidence_sets": [],
+  "note": "Hosting contract mentioned, provider never named.",
+  "spans": []
+ },
+ {
+  "id": "ferrocart-q13",
+  "project": "ferrocart",
+  "language": "en",
+  "text": "Are prices in the new shop shown with or without VAT?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "fc-203": 3,
+   "fc-202": 2,
+   "fc-220": 2,
+   "fc-219": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-202",
+    "fc-203"
+   ]
+  ],
+  "note": "Net; a later request did not change the default.",
+  "spans": [
+   {
+    "unit": "fc-203",
+    "quote": "Цены в шопе показываем без НДС, netto. Это B2B, все наши клиенты так считают."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "ferrocart-q14",
+  "project": "ferrocart",
+  "language": "ru",
+  "text": "Какая система главная по остаткам?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "fc-408": 3,
+   "fc-304": 3,
+   "fc-136": 2,
+   "fc-135": 1,
+   "fc-131": 1
+  },
+  "evidence_sets": [
+   [
+    "fc-408"
+   ],
+   [
+    "fc-304"
+   ]
+  ],
+  "note": "ERP is master; later discussion only changed sync frequency.",
+  "spans": [
+   {
+    "unit": "fc-408",
+    "quote": "Stock levels come only from the ERP. The shop never writes stock back, it only reads."
+   },
+   {
+    "unit": "fc-304",
+    "quote": "Stock levels come only from the ERP. The shop never writes stock back, it only reads."
+   }
+  ],
+  "control": true
+ }
+]

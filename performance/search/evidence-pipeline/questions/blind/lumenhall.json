@@ -1,0 +1,360 @@
+[
+ {
+  "id": "lumenhall-q01",
+  "project": "lumenhall",
+  "language": "en",
+  "text": "Can visitors use flash when taking photos at the exhibition?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "lh-119": 3,
+   "lh-118": 2,
+   "lh-306": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-118",
+    "lh-119"
+   ]
+  ],
+  "note": "No flash anywhere; photos without flash are fine.",
+  "spans": [
+   {
+    "unit": "lh-119",
+    "quote": "Нет, со вспышкой нельзя нигде на выставке, ни в одном зале. Без вспышки снимать можно, штативы тоже запрещены."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q02",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "Выставка будет работать по пятницам до 22:00?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "lh-126": 3,
+   "lh-125": 2,
+   "lh-142": 2,
+   "lh-146": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-125",
+    "lh-126"
+   ]
+  ],
+  "note": "Yes, if security provides a second shift.",
+  "spans": [
+   {
+    "unit": "lh-126",
+    "quote": "Григорий Павлович подписал пятничные вечера до 22:00, но с условием: только если охрана выставит вторую смену. Нет второй смены — закрываемся в 18:00, как обычно."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q03",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "Директор утвердил тексты для залов?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "lh-136": 3,
+   "lh-302": 2,
+   "lh-303": 1,
+   "lh-516": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-136"
+   ]
+  ],
+  "note": "He approved the room structure and names, not the texts.",
+  "spans": [
+   {
+    "unit": "lh-136",
+    "quote": "Структуру брифа — шесть залов и их названия — Григорий Павлович утвердил. Тексты залов он ещё не читал, их не утверждал, просил прислать отдельно до 20 октября."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q04",
+  "project": "lumenhall",
+  "language": "en",
+  "text": "Will there be a VR room at the exhibition?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "lh-113": 2,
+   "lh-414": 1,
+   "lh-415": 1,
+   "lh-512": 1,
+   "lh-513": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-113"
+   ]
+  ],
+  "note": "Tom proposed it several times; it was deferred, never accepted.",
+  "spans": []
+ },
+ {
+  "id": "lumenhall-q05",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "Сколько стоит взрослый билет на выставку?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "lh-305": 2,
+   "lh-146": 2,
+   "lh-147": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-305",
+    "lh-146"
+   ]
+  ],
+  "note": "Brief says 12 EUR, the website draft says 14 EUR.",
+  "spans": []
+ },
+ {
+  "id": "lumenhall-q06",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "Когда открытие выставки?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "lh-134": 3,
+   "lh-406": 2,
+   "lh-308": 1,
+   "lh-124": 1,
+   "lh-132": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-134"
+   ]
+  ],
+  "note": "24 October moved to 7 November in a chat reply.",
+  "spans": [
+   {
+    "unit": "lh-134",
+    "quote": "Нет, 24-го не открываемся. Стекло от завода приходит только 20-го, на монтаж нужно две недели. Новая дата открытия — 7 ноября, Григорий Павлович согласовал."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q07",
+  "project": "lumenhall",
+  "language": "en",
+  "text": "Which languages is the audio guide in?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "lh-309": 3,
+   "lh-409": 2,
+   "lh-209": 1,
+   "lh-218": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-309"
+   ]
+  ],
+  "note": "RU/EN/DE from the meeting replaced by EN/DE/ES in the brief.",
+  "spans": [
+   {
+    "unit": "lh-309",
+    "quote": "Аудиогид записывается на английском, немецком и испанском. Русской аудиоверсии не будет: русский текст даём печатным буклетом на кассе."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q08",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "Будет ли детская мастерская на выставке?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "lh-508": 3,
+   "lh-116": 2,
+   "lh-307": 1,
+   "lh-510": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-508"
+   ]
+  ],
+  "note": "Decided in chat, dropped at the production meeting.",
+  "spans": [
+   {
+    "unit": "lh-508",
+    "quote": "По детской мастерской: снимаем её совсем. В шестом зале нет площади после того, как туда переехал витраж, а другой комнаты нет."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q09",
+  "project": "lumenhall",
+  "language": "en",
+  "text": "How many copies of the catalogue are we printing?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "lh-142": 3,
+   "lh-121": 2,
+   "lh-310": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-142"
+   ]
+  ],
+  "note": "2000 cut to 800; buried in the weekly summary.",
+  "spans": [
+   {
+    "unit": "lh-142",
+    "quote": "Каталог: тираж урезаем до 800 экземпляров, остальное — PDF на сайте и в аудиогиде. Причина — бюджет на печать срезали после того, как поднялась страховка."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q10",
+  "project": "lumenhall",
+  "language": "en",
+  "text": "Are online tickets sold through TicketBay?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "lh-213": 3,
+   "lh-412": 2,
+   "lh-214": 1,
+   "lh-142": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-213"
+   ]
+  ],
+  "note": "Reversed in Russian without naming TicketBay.",
+  "spans": [
+   {
+    "unit": "lh-213",
+    "quote": "От внешнего продавца в итоге отказались: продажа идёт через собственную кассу музея на нашем сайте. Бухгалтерия так быстрее получает деньги, и не надо отдавать 6% комиссии."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q11",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "Какую дату отгрузки назвала Ирина с завода?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "lh-132": 3,
+   "lh-128": 2,
+   "lh-142": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-132",
+    "lh-128"
+   ]
+  ],
+  "note": "Irina Lanskaya from Glasswerk, not Irina the curator.",
+  "spans": [
+   {
+    "unit": "lh-132",
+    "quote": "Ирина (Glasswerk) пишет: отгрузка 20 октября, фура, два ящика с витражами отдельно."
+   }
+  ]
+ },
+ {
+  "id": "lumenhall-q12",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "На какую сумму застрахованы экспонаты?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "lh-130": 1,
+   "lh-418": 1,
+   "lh-514": 1,
+   "lh-515": 1
+  },
+  "evidence_sets": [],
+  "note": "Insurance is discussed, the sum is never stated.",
+  "spans": []
+ },
+ {
+  "id": "lumenhall-q13",
+  "project": "lumenhall",
+  "language": "en",
+  "text": "What is the maximum light level in the rooms with old glass?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "lh-106": 3,
+   "lh-304": 3,
+   "lh-139": 2,
+   "lh-138": 1,
+   "lh-416": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-106"
+   ],
+   [
+    "lh-304"
+   ]
+  ],
+  "note": "50 lux; a request to go brighter for the opening was declined.",
+  "spans": [
+   {
+    "unit": "lh-106",
+    "quote": "В залах со старым стеклом освещённость не больше 50 люкс. Это не обсуждается, иначе пигменты выгорают."
+   },
+   {
+    "unit": "lh-304",
+    "quote": "В залах со старым стеклом освещённость не больше 50 люкс. Это не обсуждается, иначе пигменты выгорают."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "lumenhall-q14",
+  "project": "lumenhall",
+  "language": "ru",
+  "text": "Как официально называется выставка?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "lh-111": 3,
+   "lh-140": 2,
+   "lh-301": 2,
+   "lh-141": 1,
+   "lh-108": 1
+  },
+  "evidence_sets": [
+   [
+    "lh-111"
+   ]
+  ],
+  "note": "Title fixed in August; later font discussion did not change it.",
+  "spans": [
+   {
+    "unit": "lh-111",
+    "quote": "Название выставки окончательно: «Свет сквозь века» / Light Through Ages. Подзаголовок не используем."
+   }
+  ],
+  "control": true
+ }
+]

@@ -1,0 +1,390 @@
+[
+ {
+  "id": "tidepool-q01",
+  "project": "tidepool",
+  "language": "ru",
+  "text": "Мы храним данные банковских карт пользователей у себя?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "tp-112": 3,
+   "tp-111": 2,
+   "tp-305": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-111",
+    "tp-112"
+   ]
+  ],
+  "note": "The reply is a denial; the payments section repeats it as background.",
+  "spans": [
+   {
+    "unit": "tp-112",
+    "quote": "Нет. Данные карт мы у себя не храним вообще, ни в базе, ни в логах — только токен, который отдаёт платёжный провайдер."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q02",
+  "project": "tidepool",
+  "language": "ru",
+  "text": "Можно отправлять участникам пуш-напоминания перед занятием?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "tp-212": 3,
+   "tp-211": 2,
+   "tp-307": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-211",
+    "tp-212"
+   ]
+  ],
+  "note": "Yes, only after legal approves the opt-in text and only to opted-in members.",
+  "spans": [
+   {
+    "unit": "tp-212",
+    "quote": "Yes, you can send them, but only once our legal team has signed off the opt-in wording, and only to members who actually opted in."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q03",
+  "project": "tidepool",
+  "language": "en",
+  "text": "Did Aqualine approve the loyalty programme in the spec?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "tp-218": 3,
+   "tp-306": 2,
+   "tp-510": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-218",
+    "tp-306"
+   ]
+  ],
+  "note": "Headings approved, the content of section 5 was not.",
+  "spans": [
+   {
+    "unit": "tp-218",
+    "quote": "Section headings and their order are approved, please lock the structure. The content of section 5 (the loyalty point values and tiers) is NOT approved — Hendrik from finance has to go through the numbers first."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q04",
+  "project": "tidepool",
+  "language": "ru",
+  "text": "Мы переводим API на GraphQL?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "tp-132": 2,
+   "tp-133": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-132"
+   ]
+  ],
+  "note": "Proposed by Igor, nobody accepted or rejected it.",
+  "spans": []
+ },
+ {
+  "id": "tidepool-q05",
+  "project": "tidepool",
+  "language": "en",
+  "text": "How late can a member cancel a class without being charged?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "tp-304": 2,
+   "tp-220": 2,
+   "tp-221": 2,
+   "tp-222": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-304",
+    "tp-220"
+   ]
+  ],
+  "note": "Spec says 12 hours, the live marketing text says 24 hours; nobody resolved it.",
+  "spans": []
+ },
+ {
+  "id": "tidepool-q06",
+  "project": "tidepool",
+  "language": "ru",
+  "text": "Когда запуск приложения в сторах?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "tp-225": 3,
+   "tp-502": 3,
+   "tp-209": 2,
+   "tp-223": 2,
+   "tp-224": 2,
+   "tp-301": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-225"
+   ],
+   [
+    "tp-223",
+    "tp-224"
+   ],
+   [
+    "tp-502"
+   ]
+  ],
+  "note": "1 November was moved to 17 November.",
+  "spans": [
+   {
+    "unit": "tp-225",
+    "quote": "Подтверждаю перенос: запуск 17 ноября. 1 ноября не успеваем из-за ревью Apple и security review, Sam согласовал."
+   },
+   {
+    "unit": "tp-502",
+    "quote": "Launch 17 November holds."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q07",
+  "project": "tidepool",
+  "language": "en",
+  "text": "Which payment provider does Tidepool use?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "tp-305": 3,
+   "tp-218": 3,
+   "tp-407": 2,
+   "tp-117": 1,
+   "tp-145": 1,
+   "tp-502": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-305"
+   ],
+   [
+    "tp-218"
+   ]
+  ],
+  "note": "Stripe from the kickoff was replaced by Adyen in spec v2.",
+  "spans": [
+   {
+    "unit": "tp-305",
+    "quote": "Платёжный провайдер — Adyen. У Aqualine есть корпоративный договор с Adyen с более низкой комиссией, поэтому интеграцию со Stripe мы не делаем."
+   },
+   {
+    "unit": "tp-218",
+    "quote": "Adyen is confirmed, our merchant account is AqualineGmbH_App."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q08",
+  "project": "tidepool",
+  "language": "en",
+  "text": "Is the Apple Watch app part of v1?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "tp-506": 3,
+   "tp-152": 3,
+   "tp-206": 2,
+   "tp-302": 1,
+   "tp-508": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-506"
+   ],
+   [
+    "tp-152"
+   ]
+  ],
+  "note": "Agreed in chat, dropped at the steering meeting.",
+  "spans": [
+   {
+    "unit": "tp-506",
+    "quote": "The Watch companion — let's take it out. Not in v1, and not planned for v2 either for now. It's a nice-to-have and it's eating Timur's time."
+   },
+   {
+    "unit": "tp-152",
+    "quote": "После steering: часы убрали из скоупа."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q09",
+  "project": "tidepool",
+  "language": "ru",
+  "text": "Будет вход через VK ID?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "tp-145": 3,
+   "tp-120": 2,
+   "tp-302": 1,
+   "tp-146": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-145"
+   ]
+  ],
+  "note": "Reversal buried in the weekly status.",
+  "spans": [
+   {
+    "unit": "tp-145",
+    "quote": "Отдельно: от входа через VK ID отказываемся. Остаются Sign in with Apple, Google и email-ссылка. Причина — юристы Aqualine не хотят передавать данные в ещё одну систему, Sam подтвердил в почте."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q10",
+  "project": "tidepool",
+  "language": "en",
+  "text": "What is the minimum iOS version we support?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "tp-139": 3,
+   "tp-411": 2,
+   "tp-126": 1,
+   "tp-310": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-139"
+   ]
+  ],
+  "note": "iOS 15+ was raised to 16; the reversal is in Russian with different wording.",
+  "spans": [
+   {
+    "unit": "tp-139",
+    "quote": "По айфонам: устройства на пятнадцатой системе больше не поддерживаем, нижняя планка теперь шестнадцатая. Навигация на SwiftUI там разваливается, а таких пользователей у Aqualine меньше 3%."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q11",
+  "project": "tidepool",
+  "language": "en",
+  "text": "When is Alex doing the security review?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "tp-227": 3,
+   "tp-151": 2,
+   "tp-226": 2,
+   "tp-130": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-226",
+    "tp-227"
+   ]
+  ],
+  "note": "Alex Brandt (Aqualine IT security), not Alex the Android developer.",
+  "spans": [
+   {
+    "unit": "tp-227",
+    "quote": "Alex Brandt from our IT security will do the security review on 21–23 October."
+   }
+  ]
+ },
+ {
+  "id": "tidepool-q12",
+  "project": "tidepool",
+  "language": "ru",
+  "text": "Какой бюджет на Apple Search Ads к запуску?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "tp-210": 1,
+   "tp-511": 1
+  },
+  "evidence_sets": [],
+  "note": "The campaign is mentioned, the budget never is.",
+  "spans": []
+ },
+ {
+  "id": "tidepool-q13",
+  "project": "tidepool",
+  "language": "ru",
+  "text": "Где хостится бэкенд Tidepool?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "tp-408": 3,
+   "tp-409": 3,
+   "tp-216": 2,
+   "tp-142": 2,
+   "tp-128": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-408",
+    "tp-409"
+   ]
+  ],
+  "note": "Hetzner Falkenstein; IT security later asked about Azure, decision stayed.",
+  "spans": [
+   {
+    "unit": "tp-408",
+    "quote": "Бэкенд и база — у нас на Hetzner, дата-центр Falkenstein, EU. Sam, вас это устраивает?"
+   },
+   {
+    "unit": "tp-409",
+    "quote": "Yes, Hetzner in Germany is fine for us. Agreed."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "tidepool-q14",
+  "project": "tidepool",
+  "language": "en",
+  "text": "How many days in advance can members book a class?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "tp-415": 3,
+   "tp-304": 3,
+   "tp-229": 2,
+   "tp-228": 1
+  },
+  "evidence_sets": [
+   [
+    "tp-415"
+   ],
+   [
+    "tp-304"
+   ]
+  ],
+  "note": "14 days; a later request for a month was turned down.",
+  "spans": [
+   {
+    "unit": "tp-415",
+    "quote": "Members can book up to 14 days ahead, not more. That's how our trainers' rotas work."
+   },
+   {
+    "unit": "tp-304",
+    "quote": "Записаться на занятие можно не раньше чем за 14 дней до его начала."
+   }
+  ],
+  "control": true
+ }
+]
