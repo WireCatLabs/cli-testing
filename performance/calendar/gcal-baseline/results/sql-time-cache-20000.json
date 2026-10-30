@@ -1,0 +1,77 @@
+[
+  {
+    "ms": 9988,
+    "n": 3659,
+    "q": "COMMIT"
+  },
+  {
+    "ms": 2342,
+    "n": 374025,
+    "q": "SELECT * FROM calendar_entries WHERE id = ?"
+  },
+  {
+    "ms": 2338,
+    "n": 466854,
+    "q": "INSERT INTO calendar_entry_participants (entry_id, identity_id, email, name, response, optional, organizer, self, resource, created_at, updated_at) VALUES (?, ?"
+  },
+  {
+    "ms": 1317,
+    "n": 122879,
+    "q": "SELECT ce.*, EXISTS (SELECT 1 FROM calendar_entry_participants p WHERE p.entry_id = ce.id AND p.self = 1 AND p.organizer = 1) AS own FROM calendar_entries ce WH"
+  },
+  {
+    "ms": 1188,
+    "n": 48225,
+    "q": "INSERT INTO calendar_entries (calendar_id, kind, series_entry_id, series_external_id, external_id, ical_uid, original_starts_at, exception, status, title, descr"
+  },
+  {
+    "ms": 762,
+    "n": 122879,
+    "q": "UPDATE events SET title = ?, description = ?, location = ?, starts_at = ?, ends_at = ?, timezone = ?, all_day = ?, status = ?, source_deleted_at = ?, event_seri"
+  },
+  {
+    "ms": 741,
+    "n": 48225,
+    "q": "UPDATE calendar_entries SET kind = ?, series_entry_id = ?, series_external_id = ?, external_id = ?, ical_uid = ?, original_starts_at = ?, exception = ?, status "
+  },
+  {
+    "ms": 654,
+    "n": 563304,
+    "q": "SELECT id FROM identities WHERE provider = 'email' AND external_id = ?"
+  },
+  {
+    "ms": 484,
+    "n": 47327,
+    "q": "INSERT INTO events (title, starts_at, ends_at, timezone, origin, created_at, updated_at) VALUES (?, ?, ?, ?, 'calendar', ?, ?) RETURNING id"
+  },
+  {
+    "ms": 477,
+    "n": 56450,
+    "q": "SELECT * FROM calendar_entries WHERE calendar_id = ? AND external_id = ? AND kind = 'series'"
+  },
+  {
+    "ms": 475,
+    "n": 47327,
+    "q": "UPDATE calendar_entries SET event_id = ?, updated_at = ? WHERE id = ?"
+  },
+  {
+    "ms": 410,
+    "n": 96450,
+    "q": "SELECT * FROM calendar_entries WHERE calendar_id = ? AND external_id = ?"
+  },
+  {
+    "ms": 397,
+    "n": 122879,
+    "q": "SELECT * FROM events WHERE id = ?"
+  },
+  {
+    "ms": 305,
+    "n": 96450,
+    "q": "SELECT email FROM calendar_entry_participants WHERE entry_id = ?"
+  },
+  {
+    "ms": 217,
+    "n": 47327,
+    "q": "SELECT DISTINCT event_id AS id FROM calendar_entries WHERE ical_uid = ? AND calendar_id <> ? AND kind = ? AND deleted_at IS NULL AND event_id IS NOT NULL AND or"
+  }
+]

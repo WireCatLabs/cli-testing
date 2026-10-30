@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 9.72,
+    "max": 10.88
+  },
+  "rows": [
+    {
+      "label": "stock | events list week",
+      "runs": 10,
+      "median": 426.4,
+      "p95": 433.4,
+      "min": 413.7,
+      "exit": 0,
+      "outBytes": 52679
+    },
+    {
+      "label": "bundled | events list week",
+      "runs": 10,
+      "median": 204.2,
+      "p95": 210.1,
+      "min": 202.5,
+      "exit": 0,
+      "outBytes": 52679
+    },
+    {
+      "label": "cache | events list week",
+      "runs": 10,
+      "median": 443.2,
+      "p95": 451.1,
+      "min": 422.7,
+      "exit": 0,
+      "outBytes": 52679
+    }
+  ]
+}

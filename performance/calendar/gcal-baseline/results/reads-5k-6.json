@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 5.45,
+    "max": 5.84
+  },
+  "rows": [
+    {
+      "label": "stock | people list",
+      "runs": 10,
+      "median": 448.7,
+      "p95": 460.7,
+      "min": 445.2,
+      "exit": 0,
+      "outBytes": 23637
+    },
+    {
+      "label": "bundled | people list",
+      "runs": 10,
+      "median": 233.9,
+      "p95": 238.3,
+      "min": 226.1,
+      "exit": 0,
+      "outBytes": 23637
+    },
+    {
+      "label": "cache | people list",
+      "runs": 10,
+      "median": 447.3,
+      "p95": 454.5,
+      "min": 436,
+      "exit": 0,
+      "outBytes": 23637
+    }
+  ]
+}

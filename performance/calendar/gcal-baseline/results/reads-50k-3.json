@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 6.05,
+    "max": 6.35
+  },
+  "rows": [
+    {
+      "label": "stock | events show 12270",
+      "runs": 10,
+      "median": 575.4,
+      "p95": 630.5,
+      "min": 513.2,
+      "exit": 0,
+      "outBytes": 2299
+    },
+    {
+      "label": "bundled | events show 12270",
+      "runs": 10,
+      "median": 281.8,
+      "p95": 325.4,
+      "min": 233.4,
+      "exit": 0,
+      "outBytes": 2299
+    },
+    {
+      "label": "cache | events show 12270",
+      "runs": 10,
+      "median": 586.9,
+      "p95": 665.5,
+      "min": 491.5,
+      "exit": 0,
+      "outBytes": 2299
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 4.26,
+    "max": 5.05
+  },
+  "rows": [
+    {
+      "label": "stock | events list today",
+      "runs": 10,
+      "median": 691,
+      "p95": 935.7,
+      "min": 529,
+      "exit": 0,
+      "outBytes": 52516
+    },
+    {
+      "label": "bundled | events list today",
+      "runs": 10,
+      "median": 410.4,
+      "p95": 578.1,
+      "min": 309.4,
+      "exit": 0,
+      "outBytes": 52516
+    },
+    {
+      "label": "cache | events list today",
+      "runs": 10,
+      "median": 721.5,
+      "p95": 902.3,
+      "min": 542.5,
+      "exit": 0,
+      "outBytes": 52516
+    }
+  ]
+}
