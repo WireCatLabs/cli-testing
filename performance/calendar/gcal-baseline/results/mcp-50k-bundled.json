@@ -1,0 +1,9 @@
+{
+  "runs": 15,
+  "initialize": { "median": 396.6, "p95": 503.6 },
+  "list": { "median": 4.2, "p95": 8.8 },
+  "call": { "median": 320.7, "p95": 387.6 },
+  "tools": ["gcal_tools_search", "gcal_read", "gcal_write"],
+  "callError": false,
+  "callBytes": 111238
+}

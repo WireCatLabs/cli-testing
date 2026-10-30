@@ -1,0 +1,49 @@
+{
+  "syncArgs": ["--timeout", "30m"],
+  "events": 50000,
+  "calendars": 4,
+  "series": 2249,
+  "slots": 70699,
+  "steps": [
+    {
+      "label": "first sync (full)",
+      "runs": 3,
+      "ms": 277803,
+      "requests": {
+        "calendarList": 3,
+        "list": 23,
+        "instances": 2249,
+        "bytes": 142639287
+      },
+      "saved": 7309,
+      "state": "complete"
+    },
+    {
+      "label": "second sync (no changes)",
+      "runs": 1,
+      "ms": 159,
+      "requests": {
+        "calendarList": 1,
+        "list": 4,
+        "instances": 0,
+        "bytes": 823
+      },
+      "saved": 0,
+      "state": "complete"
+    },
+    {
+      "label": "sync --rescan (daily full round)",
+      "runs": 2,
+      "ms": 124284,
+      "requests": {
+        "calendarList": 2,
+        "list": 13,
+        "instances": 1125,
+        "bytes": 71098334
+      },
+      "saved": 3686,
+      "state": "complete"
+    }
+  ],
+  "storeBytes": 199008256
+}

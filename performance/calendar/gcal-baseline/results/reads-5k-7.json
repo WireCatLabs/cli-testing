@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 4.8,
+    "max": 5.49
+  },
+  "rows": [
+    {
+      "label": "stock | links review",
+      "runs": 10,
+      "median": 401.9,
+      "p95": 411.8,
+      "min": 398.4,
+      "exit": 0,
+      "outBytes": 159
+    },
+    {
+      "label": "bundled | links review",
+      "runs": 10,
+      "median": 192.2,
+      "p95": 200.7,
+      "min": 186,
+      "exit": 0,
+      "outBytes": 159
+    },
+    {
+      "label": "cache | links review",
+      "runs": 10,
+      "median": 420.7,
+      "p95": 429.9,
+      "min": 409.8,
+      "exit": 0,
+      "outBytes": 159
+    }
+  ]
+}

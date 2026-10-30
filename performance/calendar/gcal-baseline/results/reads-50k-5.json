@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 11.7,
+    "max": 13.25
+  },
+  "rows": [
+    {
+      "label": "stock | search budget review",
+      "runs": 10,
+      "median": 612,
+      "p95": 999.8,
+      "min": 569.9,
+      "exit": 0,
+      "outBytes": 10594
+    },
+    {
+      "label": "bundled | search budget review",
+      "runs": 10,
+      "median": 328.1,
+      "p95": 467.6,
+      "min": 296.8,
+      "exit": 0,
+      "outBytes": 10594
+    },
+    {
+      "label": "cache | search budget review",
+      "runs": 10,
+      "median": 631,
+      "p95": 1091.1,
+      "min": 557.5,
+      "exit": 0,
+      "outBytes": 10594
+    }
+  ]
+}

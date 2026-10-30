@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 7.36,
+    "max": 8.07
+  },
+  "rows": [
+    {
+      "label": "stock | search roadmap",
+      "runs": 10,
+      "median": 444.8,
+      "p95": 465.5,
+      "min": 437.8,
+      "exit": 0,
+      "outBytes": 10478
+    },
+    {
+      "label": "bundled | search roadmap",
+      "runs": 10,
+      "median": 226,
+      "p95": 235,
+      "min": 223.8,
+      "exit": 0,
+      "outBytes": 10478
+    },
+    {
+      "label": "cache | search roadmap",
+      "runs": 10,
+      "median": 462.7,
+      "p95": 491.6,
+      "min": 444.3,
+      "exit": 0,
+      "outBytes": 10478
+    }
+  ]
+}

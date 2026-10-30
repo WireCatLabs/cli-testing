@@ -1,0 +1,26 @@
+attachments/container.js:
+  dist/attachments/container.js
+  <- dist/attachments/documents.js
+  <- dist/services/attachments.js
+  <- dist/services/index.js
+  <- dist/cli/meeting-preparation-read.js
+  <- dist/mcp/meeting-preparation.js
+  <- dist/cli/index.js
+  <- dist/program.js
+  <- dist/bin/gcal.js
+replies/template.js:
+  dist/replies/template.js
+  <- dist/replies/dry-run.js
+  <- dist/cli/index.js
+  <- dist/program.js
+  <- dist/bin/gcal.js
+embeddings/onnx-runtime.js:
+  dist/embeddings/onnx-runtime.js
+  <- dist/embeddings/embed.js
+  <- dist/services/model-downloads.js
+  <- dist/services/index.js
+  <- dist/cli/meeting-preparation-read.js
+  <- dist/mcp/meeting-preparation.js
+  <- dist/cli/index.js
+  <- dist/program.js
+  <- dist/bin/gcal.js

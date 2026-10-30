@@ -1,0 +1,54 @@
+{
+  "rounds": 15,
+  "load1": {
+    "min": 41.27,
+    "max": 44.21
+  },
+  "rows": [
+    {
+      "label": "gcal 0.1.1",
+      "runs": 15,
+      "median": 133.2,
+      "p95": 268.1,
+      "min": 85.7,
+      "exit": 0,
+      "outBytes": 6
+    },
+    {
+      "label": "gcal bundled",
+      "runs": 15,
+      "median": 51,
+      "p95": 112.9,
+      "min": 35.8,
+      "exit": 0,
+      "outBytes": 6
+    },
+    {
+      "label": "drive 0.46.0",
+      "runs": 15,
+      "median": 50,
+      "p95": 137.9,
+      "min": 36.7,
+      "exit": 0,
+      "outBytes": 7
+    },
+    {
+      "label": "memo 0.123.0",
+      "runs": 15,
+      "median": 40.5,
+      "p95": 110.8,
+      "min": 34.6,
+      "exit": 0,
+      "outBytes": 8
+    },
+    {
+      "label": "tg 0.107.0",
+      "runs": 15,
+      "median": 45.3,
+      "p95": 105,
+      "min": 35.3,
+      "exit": 0,
+      "outBytes": 8
+    }
+  ]
+}

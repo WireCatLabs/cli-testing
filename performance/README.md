@@ -14,4 +14,6 @@
   baseline.
 - [cli](cli/README.md): what the shared command layer costs every command — the shared-command check — and how
   the `wcat` umbrella command can get onto PATH.
+- [calendar](calendar/README.md): gcal and cli-core's calendar engine — start, offline reads on a large store, sync
+  cost without the network, MCP.
 - [ci](ci/README.md): how long the pull-request checks take, and where the time goes.

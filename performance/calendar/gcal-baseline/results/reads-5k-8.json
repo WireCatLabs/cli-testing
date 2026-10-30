@@ -1,0 +1,36 @@
+{
+  "rounds": 10,
+  "load1": {
+    "min": 4.11,
+    "max": 4.5
+  },
+  "rows": [
+    {
+      "label": "stock | status",
+      "runs": 10,
+      "median": 405.3,
+      "p95": 420.3,
+      "min": 397.6,
+      "exit": 0,
+      "outBytes": 1472
+    },
+    {
+      "label": "bundled | status",
+      "runs": 10,
+      "median": 187.6,
+      "p95": 195.5,
+      "min": 185.3,
+      "exit": 0,
+      "outBytes": 1472
+    },
+    {
+      "label": "cache | status",
+      "runs": 10,
+      "median": 412.1,
+      "p95": 538.2,
+      "min": 401.2,
+      "exit": 0,
+      "outBytes": 1472
+    }
+  ]
+}
