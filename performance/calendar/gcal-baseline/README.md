@@ -185,12 +185,35 @@ command deadline is 30 s (`src/cli/execution.ts:6`).
 The bundle halves the MCP server's start. The tool call on the 50k store is the unbounded week query above, plus
 about 111 KB of answer.
 
+### 5. The statement cache as merged in cli-core ([`results/statement-cache-*.jsonl`](results/))
+
+Measured 2026-10-31. The `cache` column above came from a text patch on the installed package that no test had run
+against. This run checks the real change: cli-core [PR #2199](https://github.com/WireCatLabs/cli-core/pull/2199)
+(a per-connection LRU of 1,000 statements, cleared on close, with its own tests; the full cli-core suite passed on
+it). [`statement-cache-run.sh`](statement-cache-run.sh) builds two gcal v0.1.1 worktrees on cli-core 0.475.0, and
+[`swap-driver.mjs`](swap-driver.mjs) puts the compiled `node-sqlite.js` of the cli-core branch into one of them. The
+branch's driver is the same file as 0.475.0's apart from the cache. Then `build-store.mjs` runs on each in turn with
+`--timeout 30m`: three 5k pairs and one 50k pair. Same machine as above, but quieter: load average 3–5.
+
+| store | step | stock | cache | faster |
+| --- | --- | ---: | ---: | ---: |
+| 5k | first sync, median of 3 | 6.7 s (6.6–7.5) | **2.5 s** (2.5–2.5) | 2.7× |
+| 5k | `--rescan`, median of 3 | 6.3 s (6.3–8.0) | **2.1 s** (2.1–2.1) | 3.0× |
+| 5k | no-change sync | 21 ms | 18 ms | — |
+| 50k | first sync, 3 runs, 1 pair | 68.1 s | **27.8 s** | 2.5× |
+| 50k | `--rescan`, 2 runs, 1 pair | 32.4 s | **11.9 s** | 2.7× |
+
+The gain is smaller than the 2.9–4.7× of the patch above. Both stock numbers are lower here than in section 3 (50k
+first sync 68 s, not 278 s), because the machine was quiet. A busy machine makes preparing, and the garbage it
+leaves, cost more. The 50k numbers are one pair each, so treat them as a direction, not a median.
+
 ## What it showed
 
 Ranked by what each fix saves:
 
-1. **Cache prepared statements in cli-core's `node:sqlite` driver**: first sync 2.9–4.7 times faster in these runs.
-   The driver is shared, so every CLI's store writes are likely to gain. That was not measured here.
+1. **Cache prepared statements in cli-core's `node:sqlite` driver**: first sync 2.9–4.7 times faster with the patch,
+   2.5–2.7 times with the change as merged (section 5). The driver is shared, so every CLI's store writes are likely
+   to gain. That was not measured here.
 2. **Bundle gcal** as drive, memo and tg are bundled. Change the `build` line in gcal's `package.json` to
    `tsc --build --force && cli-dev bundle --bin dist/bin/gcal.js` and add esbuild as a dev dependency. Every short
    command and the MCP server start drop by about half: `--help` 587 → 260 ms, `events show` 421 → 204 ms.
@@ -217,8 +240,8 @@ Ranked by what each fix saves:
 - Whether the bundled gcal gives byte-identical output to the stock build under npm and pnpm, and whether a running
   MCP server survives an upgrade. [bundle-rollout](../../startup/bundle-rollout/README.md) checked this for the other
   CLIs, but not for gcal.
-- Whether the statement cache is correct. No cli-core test ran against the patched driver. The Bun driver
-  (`bun-sqlite.ts`) was not checked.
+- Other CLIs' syncs with the statement cache, and memory use with 1,000 cached statements per connection. The Bun
+  driver was not changed or measured: `db.query()` already caches there.
 - Real Google latency, real payload sizes and the saving from a `fields` mask.
 - `search` with a meaning model (none was downloaded), `sync --embed`, and the plan of the `search` query.
 - Cold starts with an empty compile cache.
