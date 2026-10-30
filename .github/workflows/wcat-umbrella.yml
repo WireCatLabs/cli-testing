@@ -1,0 +1,67 @@
+name: wcat umbrella measurement
+
+# Step 0 of cli-base's wcat umbrella plan: what package managers do when two packages declare the same bin.
+# Results: performance/cli/wcat-umbrella/README.md
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/wcat-umbrella.yml
+      - performance/cli/wcat-umbrella/measure.mjs
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      VOLTA_VERSION: 2.0.2
+      VOLTA_SHA256_LINUX: 6cec054c911fb925b629a09455775af6e95dc0f5694a4c28b63979ab9ef18037
+      VOLTA_SHA256_MACOS: 57f7b51d6fb975f5c48b5ddf68f75103055e19fd822e3e2ce58d2be6ab78977d
+      VOLTA_SHA256_WINDOWS: d7678a485e2fc9b1a3f7e9da256d8b88a97d7e4c45e63701c4874f6c2a587e0f
+      VOLTA_NODE: 22.16.0
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+      - name: Install pinned package managers
+        run: |
+          npm install --global --prefix "${{ runner.temp }}/wcat-tools" npm@11.17.0 pnpm@12.11.2 bun@1.3.14
+          node -e "const fs = require('node:fs'); const path = require('node:path'); fs.appendFileSync(process.env.GITHUB_PATH, path.join(process.env.RUNNER_TEMP, 'wcat-tools', ...(process.platform === 'win32' ? [] : ['bin'])) + '\n')"
+      - name: Install Volta (Linux, macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "macOS" ]; then asset=macos; sum="$VOLTA_SHA256_MACOS"; else asset=linux; sum="$VOLTA_SHA256_LINUX"; fi
+          curl -sSfLo volta.tar.gz "https://github.com/volta-cli/volta/releases/download/v${VOLTA_VERSION}/volta-${VOLTA_VERSION}-${asset}.tar.gz"
+          echo "${sum}  volta.tar.gz" | shasum -a 256 -c -
+          mkdir -p "$RUNNER_TEMP/volta-install"
+          tar -xzf volta.tar.gz -C "$RUNNER_TEMP/volta-install"
+          echo "$RUNNER_TEMP/volta-install" >> "$GITHUB_PATH"
+      - name: Install Volta (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $zip = Join-Path $env:RUNNER_TEMP "volta.zip"
+          Invoke-WebRequest -Uri "https://github.com/volta-cli/volta/releases/download/v$env:VOLTA_VERSION/volta-$env:VOLTA_VERSION-windows.zip" -OutFile $zip
+          if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne $env:VOLTA_SHA256_WINDOWS) { throw "volta checksum mismatch" }
+          $dir = Join-Path $env:RUNNER_TEMP "volta-install"
+          Expand-Archive $zip -DestinationPath $dir
+          Add-Content $env:GITHUB_PATH $dir
+      - name: Measure
+        run: node performance/cli/wcat-umbrella/measure.mjs "${{ runner.temp }}/wcat-out"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: wcat-umbrella-${{ matrix.os }}
+          path: ${{ runner.temp }}/wcat-out
+          retention-days: 30
