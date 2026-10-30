@@ -34,6 +34,10 @@ parser.add_argument('--taus', default='', help='newest-first cosine thresholds, 
 parser.add_argument('--cosines', action='store_true', help='print the E5 cosine spread among top hits and stop')
 parser.add_argument('--floors', default='',
                     help='minimum E5 cosines for the meaning list before fusion, e.g. 0.80,0.84; scores them and stops')
+parser.add_argument('--long', action='store_true',
+                    help='score the long-message measures of PROTOCOL.md "Cancelled decisions and long messages", stop')
+parser.add_argument('--followups', action='store_true',
+                    help='score the follow-up grid of PROTOCOL.md "Cancelled decisions and long messages" and stop')
 args = parser.parse_args()
 assert not args.output.exists(), 'refuse to overwrite a run'
 root = Path(__file__).resolve().parent
@@ -62,11 +66,12 @@ if args.stdin:
 else:
     corpus_paths = sorted((root / 'corpus' / args.split).glob('*.json'))
     question_paths = sorted((root / 'questions' / args.split).glob('*.json'))
-    units, sources = {}, {}
+    units, sources, project_of = {}, {}, {}
     for path in corpus_paths:
         corpus = json.loads(path.read_text())
         sources.update({source['id']: source for source in corpus['sources']})
         units.update({unit['id']: unit for unit in corpus['units']})
+        project_of.update({unit['id']: corpus['project']['id'] for unit in corpus['units']})
     labels = [question for path in question_paths for question in json.loads(path.read_text())]
     questions = [{'id': question['id'], 'text': question['text']} for question in labels]
     discovery = {row['id']: row for row in json.loads(args.discovery.read_text())['rows']}
@@ -109,8 +114,11 @@ def serialize(uid, text=None):
     return f"[{sources[unit['source']]['title']} · {unit['author']} · {unit['at']}]\n{text or text_of[uid]}"
 
 
-def pair_input(uid, rich):
+def pair_input(uid, rich, parent_chars=None):
     before, _ = context_of(uid)
+    if parent_chars:
+        return '\n'.join(f"[{sources[units[u]['source']]['title']} · {units[u]['author']} · {units[u]['at'][:10]}] "
+                         f"{text_of[u][:parent_chars] if u != uid else text_of[u]}" for u in before[:1] + [uid])
     if rich:
         return '\n'.join(f"[{sources[units[u]['source']]['title']} · {units[u]['author']} · {units[u]['at'][:10]}] "
                          f"{text_of[u]}" for u in before[:1] + [uid])
@@ -158,11 +166,12 @@ class Encoder:
         self.inputs = {item.name for item in self.session.get_inputs()}
         self.clipped = 0
 
-    def feed(self, encoding):
+    def feed(self, encoding, cap=None):
         ids = encoding.ids
-        if len(ids) > self.spec['max_tokens']:
+        limit = min(cap or self.spec['max_tokens'], self.spec['max_tokens'])
+        if len(ids) > limit:
             self.clipped += 1
-            ids = ids[:self.spec['max_tokens'] - 1] + ids[-1:]
+            ids = ids[:limit - 1] + ids[-1:]
         values = {'input_ids': ids, 'attention_mask': [1] * len(ids),
                   'token_type_ids': (encoding.type_ids or [0] * len(ids))[:len(ids)]}
         return {key: np.array([values[key]], dtype=np.int64) for key in self.inputs}
@@ -173,8 +182,8 @@ class Encoder:
         vector = hidden.mean(axis=0)
         return vector / np.linalg.norm(vector)
 
-    def pair(self, query, passage):
-        output = self.session.run(None, self.feed(self.tokenizer.encode(query, passage)))[0]
+    def pair(self, query, passage, cap=None):
+        output = self.session.run(None, self.feed(self.tokenizer.encode(query, passage), cap))[0]
         assert output.size == 1 and np.isfinite(output).all()
         return float(output.reshape(-1)[0])
 
@@ -254,14 +263,14 @@ def mmr(items, relevance, lam):
     return chosen
 
 
-def evidence(hits, with_context, dedupe, budget, qv=None, shown=None):
+def evidence(hits, with_context, dedupe, budget, qv=None, shown=None, follow=None):
     """Items in hit order while they fit the byte budget; an item that does not fit is skipped and counted.
     With a query vector, long units shrink to passages."""
     included, prints, items, texts, used = set(), set(), [], {}, 0
     extras = Counter()
     for uid in hits:
         before, after = context_of(uid) if with_context else ([], [])
-        item = [u for u in before + [uid] + after if u not in included]
+        item = list(dict.fromkeys(u for u in before + [uid] + after + (follow or {}).get(uid, []) if u not in included))
         if dedupe:
             item = [u for u in item if fingerprint(u) not in prints]
         if uid in included or not item:
@@ -475,6 +484,99 @@ if args.floors:
                                                           'rrf_k': RRF_K, 'meaning_depth': 100, 'budget': 8192},
         'rows': floor_rows, 'cosines': cosines}, ensure_ascii=False, indent=1) + '\n')
     print(json.dumps({'split': args.split, 'rows': len(floor_rows)}))
+    sys.exit()
+
+def link_terms(text):
+    words = re.findall(r'[^\W\d_]{3,}', text.casefold().replace('ё', 'е'))
+    return {stemmers['ru' if re.search('[а-я]', word) else 'en'].stemWord(word) for word in words}
+
+
+if args.followups or args.long:
+    later_of = defaultdict(list)
+    for uid in order:
+        later_of[project_of[uid]].append(uid)
+    for ids in later_of.values():
+        ids.sort(key=lambda uid: (units[uid]['at'], uid), reverse=True)
+    links = {uid: link_terms(text_of[uid]) for uid in order}
+    document_frequency = Counter(term for found in links.values() for term in found)
+
+    def followups(uid, m, t):
+        rare = {term for term in links[uid] if document_frequency[term] <= t}
+        return [later for later in later_of[project_of[uid]]
+                if units[later]['at'] > units[uid]['at'] and links[later] & rare][:m]
+
+    def row_of_long(qid, label, name, items, texts, used, extras, extra, span_at):
+        scores = score_items(label, items, texts, used, extras)
+        spans = {f'span_at_{n}': span_at(label, items, texts, n) for n in (3, 10)} if label['answerable'] else {}
+        return {'question': qid, 'kind': label['kind'], 'answerable': label['answerable'],
+                'control': bool(label.get('control')), 'base': name, 'k': None, **spans, **extra,
+                **{key: value for key, value in scores.items() if key != 'units'}}
+
+    def above(hits, follow):
+        out = []
+        for uid in hits:
+            out += [later for later in follow.get(uid, []) if later not in out] + ([uid] if uid not in out else [])
+        return out
+
+    rows = []
+    for qid, text, label, qv, lexical, dense, _ in ([] if args.long else asked):
+        fused = rrf(lexical[:100], dense[:100])
+        base = mmr(ranked(fused)[:100], fused, args.mmr_lambda)
+        head = base[:50]
+        pairs = {uid: mmarco.pair(text, pair_input(uid, True)) for uid in head}
+        mixed = dict(zip(head, .3 * scaled([fused[u] for u in head]) + .7 * scaled([pairs[u] for u in head])))
+        bases = {'A3': base, 'mmarco rich D=50 α=0.7': mmr(ranked(mixed), mixed, args.mmr_lambda) + base[50:]}
+        grid = [(None, None, None, None)] + [(k, m, t, place) for k in (5, 10) for m in (1, 2) for t in (3, 5, 10)
+                                             for place in ('ctx', 'above')]
+        for name, hits in bases.items():
+            for k, m, t, place in grid:
+                follow = {uid: followups(uid, m, t) for uid in hits[:k]} if k else {}
+                final = above(hits, follow) if place == 'above' else hits
+                items, texts, used, extras = evidence(final, True, True, 8192, qv,
+                                                      follow=follow if place == 'ctx' else None)
+                scores = score_items(label, items, texts, used, extras)
+                rows.append({'question': qid, 'kind': label['kind'], 'answerable': label['answerable'],
+                             'control': bool(label.get('control')), 'base': name, 'k': k, 'm': m, 't': t,
+                             'placement': place, 'followups': sum(map(len, follow.values())),
+                             **{key: value for key, value in scores.items() if key != 'units'}})
+    if args.long:
+        def span_at(label, items, texts, n):
+            quotes = [(span['unit'], span['quote']) for span in label.get('spans', [])]
+            shown = {u: texts.get(u) or serialize(u) for item in items[:n] for u in item}
+            pieces = lambda quote: [part.strip() for part in re.split(r'(?<=[.!?…])\s+|\n+', quote) if part.strip()]
+            return any(all(piece in shown.get(uid, '') for piece in pieces(quote)) for uid, quote in quotes)
+
+        for qid, text, label, qv, lexical, dense, _ in asked:
+            fused = rrf(lexical[:100], dense[:100])
+            base = mmr(ranked(fused)[:100], fused, args.mmr_lambda)
+            head = base[:50]
+            arms = {'A3': (base, qv, {}), 'A3, no passages': (base, None, {})}
+            for form, chars, cap in (('whole parent', None, None), ('parent 300 chars', 300, None),
+                                     ('parent 300 chars', 300, 256), ('parent 300 chars', 300, 128)):
+                before = mmarco.clipped
+                pairs = {uid: mmarco.pair(text, pair_input(uid, True, chars), cap) for uid in head}
+                mixed = dict(zip(head, .3 * scaled([fused[u] for u in head]) + .7 * scaled([pairs[u] for u in head])))
+                name = f"mmarco mix, {form}, {cap or 512} tokens"
+                arms[name] = (mmr(ranked(mixed), mixed, args.mmr_lambda) + base[50:], qv,
+                              {'cut_pairs': mmarco.clipped - before})
+            core = arms['mmarco mix, parent 300 chars, 512 tokens'][0]
+            follow = {uid: followups(uid, 2, 3) for uid in core[:5]}
+            for name, (hits, trim, extra) in arms.items():
+                items, texts, used, extras = evidence(hits, True, True, 8192, trim)
+                rows.append(row_of_long(qid, label, name, items, texts, used, extras, extra, span_at))
+            items, texts, used, extras = evidence(core, True, True, 8192, qv, follow=follow)
+            rows.append(row_of_long(qid, label, 'mmarco mix, parent 300 chars, 512 tokens + follow-ups K=5 M=2 T=3 ctx '
+                                    '(exploratory, not chosen)', items, texts, used, extras, {}, span_at))
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps({
+        'purpose': ('Long-message measures' if args.long else 'Follow-ups of a hit')
+                   + '; see PROTOCOL.md "Cancelled decisions and long messages"', 'split': args.split,
+        'inputs': {str(path.relative_to(root)): sha(path) for path in corpus_paths + question_paths},
+        'discovery_run': {'path': str(args.discovery), 'sha256': sha(args.discovery)},
+        'worker_sha256': sha(Path(__file__)), 'settings': {'mmr_lambda': args.mmr_lambda, 'rrf_k': RRF_K,
+                                                          'pool': 100, 'budget': 8192},
+        'rows': rows}, ensure_ascii=False, indent=1) + '\n')
+    print(json.dumps({'split': args.split, 'rows': len(rows)}))
     sys.exit()
 
 variants = []

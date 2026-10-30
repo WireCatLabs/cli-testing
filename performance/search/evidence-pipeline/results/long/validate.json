@@ -1,0 +1,87 @@
+{
+ "split": "long",
+ "files": {
+  "corpus/background.json": {
+   "sha256": "f00b991027c0e606aad883d108edfd7c1d3f27fe990b5613c50ad8df3c20a343",
+   "units": 1500,
+   "sources": {
+    "chat": 10
+   }
+  },
+  "corpus/harrowfield.json": {
+   "sha256": "d9e11920a05535c40fbe30ff1739fb7802cd4d05965dafaa90920bdc08e14738",
+   "units": 269,
+   "sources": {
+    "chat": 4,
+    "document": 1,
+    "meeting": 1
+   }
+  },
+  "corpus/kelpwise.json": {
+   "sha256": "5597840e0dc5cb006e73aaf1db4899ae3c5a94ead419f0612fe5bdd1fb951a60",
+   "units": 276,
+   "sources": {
+    "chat": 4,
+    "document": 1,
+    "meeting": 1
+   }
+  },
+  "corpus/solovey.json": {
+   "sha256": "b678aa17369ab39dd59527c77dd83ca13586bb264ca802e0af0756dbc30083c7",
+   "units": 286,
+   "sources": {
+    "chat": 4,
+    "document": 1,
+    "meeting": 2
+   }
+  },
+  "questions/harrowfield.json": {
+   "sha256": "21f705b7692c6ebd0c5aaeea4ab11e0e39dd41711a66f1700a39a31045b799de",
+   "questions": 14
+  },
+  "questions/kelpwise.json": {
+   "sha256": "f933cefb95f1ec4c77757ceeac65ee805e874b199bd25aed71fa2cf9b92b8f5a",
+   "questions": 14
+  },
+  "questions/solovey.json": {
+   "sha256": "ade8448a1d20bedf5ea6a3a9c3aac5f252fd69eb1dae17770a65c1bb162e4e60",
+   "questions": 14
+  }
+ },
+ "kinds": {
+  "negative": 3,
+  "conditional": 3,
+  "approval": 3,
+  "unresolved": 3,
+  "conflict": 3,
+  "missing": 3,
+  "same-name": 3,
+  "revoked": 12,
+  "fact": 9
+ },
+ "languages": {
+  "ru": 21,
+  "en": 21
+ },
+ "answerable": {
+  "True": 33,
+  "False": 9
+ },
+ "controls": {
+  "False": 36,
+  "True": 6
+ },
+ "late_spans": {
+  "True": 28,
+  "False": 5
+ },
+ "unit_bytes": [
+  50,
+  60,
+  84,
+  402,
+  1215,
+  6956
+ ],
+ "errors": []
+}

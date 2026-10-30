@@ -1,0 +1,354 @@
+[
+ {
+  "id": "kelpwise-q01",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "How long a best-before period are we allowed to put on the bag?",
+  "kind": "negative",
+  "answerable": true,
+  "grades": {
+   "kw-cl-014": 3,
+   "kw-cl-013": 2,
+   "kw-br-007": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-cl-013",
+    "kw-cl-014"
+   ]
+  ],
+  "note": "Denial: no more than 9 months from packing; 12 was not confirmed by the lab. Traps: brief 12 months (TBC), tin 18 months, 6 weeks after opening.",
+  "spans": [
+   {
+    "unit": "kw-cl-014",
+    "quote": "Теперь срок годности: на новый пакет ставим не больше 9 месяцев от даты фасовки. 12 месяцев лаборатория не подтвердила — на десятом месяце листы начинают терять хруст, поэтому 12 писать нельзя."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q02",
+  "project": "kelpwise",
+  "language": "ru",
+  "text": "Смогут ли покупатели в новом магазине платить частями?",
+  "kind": "conditional",
+  "answerable": true,
+  "grades": {
+   "kw-cl-031": 3,
+   "kw-wb-021": 1,
+   "kw-br-011": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-cl-031"
+   ]
+  ],
+  "note": "Yes only if Splitty signs at 2.9% with no monthly fee by 25 April; otherwise launch without. Trap: Kostya says it already works on staging; offer 3.4% + €49.",
+  "spans": [
+   {
+    "unit": "kw-cl-031",
+    "quote": "My answer is yes, but only if Splitty signs at 2.9% with no monthly fee. Their offer today is 3.4% plus €49 a month, which kills the margin on a €20 basket. If they have not moved by 25 April, we launch without pay-later and look again in the summer."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q03",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "Has Maren signed off the wording on the front of the new packs?",
+  "kind": "approval",
+  "answerable": true,
+  "grades": {
+   "kw-ma-005": 3,
+   "kw-ma-004": 2,
+   "kw-st-031": 1,
+   "kw-ma-002": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-ma-004",
+    "kw-ma-005"
+   ]
+  ],
+  "note": "No: she approved the layout (logo, band, window, colours) only; the claim line and flavour texts wait for the lawyer. Dasha later over-claims a full approval.",
+  "spans": [
+   {
+    "unit": "kw-ma-005",
+    "quote": "The layout I approve: logo, flavour band, oval window, the order and the colours — go ahead with that. The words on the front are not approved. The claim line and the flavour descriptions are still with Liisa at the law firm, and \"ocean-grown\" may not be allowed as a claim at all, so nothing with text goes to final files until she replies."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q04",
+  "project": "kelpwise",
+  "language": "ru",
+  "text": "Мы запускаем ежемесячную коробку по подписке или нет?",
+  "kind": "unresolved",
+  "answerable": false,
+  "grades": {
+   "kw-cl-027": 2,
+   "kw-cl-028": 2,
+   "kw-cl-035": 2,
+   "kw-cl-052": 2
+  },
+  "evidence_sets": [
+   [
+    "kw-cl-027",
+    "kw-cl-028",
+    "kw-cl-035",
+    "kw-cl-052"
+   ]
+  ],
+  "note": "Kelp Club proposed, deferred twice (after launch, June), last nudge unanswered. Never decided.",
+  "spans": []
+ },
+ {
+  "id": "kelpwise-q05",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "Above what order value is delivery free for shop customers?",
+  "kind": "conflict",
+  "answerable": false,
+  "grades": {
+   "kw-br-010": 2,
+   "kw-cl-037": 2,
+   "kw-op-031": 2,
+   "kw-op-035": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-br-010",
+    "kw-cl-037",
+    "kw-op-031"
+   ]
+  ],
+  "note": "Brief €35, Petra announced €25, Ilya wants €40; Maren promised to sort it and never did.",
+  "spans": []
+ },
+ {
+  "id": "kelpwise-q06",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "Which company is printing our pouches?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "kw-st-035": 3,
+   "kw-cl-008": 2,
+   "kw-br-008": 1,
+   "kw-st-021": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-cl-008",
+    "kw-st-035"
+   ],
+   [
+    "kw-st-035"
+   ]
+  ],
+  "note": "Old: Vellprint (14 Mar, client chat). New: Kopra Pack, Kaunas, 38,000 units (13 Apr, studio chat, not a reply, buried in a week summary). Link: Vellprint.",
+  "spans": [
+   {
+    "unit": "kw-st-035",
+    "quote": "Vellprint is out: on the second proof they still could not hold our green with the matte varnish, it went yellowish both times. Kopra Pack in Kaunas takes the run instead — 38,000 units, same dielines, their proofs on Thursday."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q07",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "What platform is the online shop built on?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "kw-st-022": 3,
+   "kw-wb-006": 2,
+   "kw-br-009": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-wb-006",
+    "kw-st-022"
+   ],
+   [
+    "kw-st-022"
+   ]
+  ],
+  "note": "Old: Shopwell Grow (web chat, 10 Mar, in the brief). New: implicit \"Larchcart it is\", self-hosted (studio chat, 1 Apr, not a reply). Link: Shopwell.",
+  "spans": [
+   {
+    "unit": "kw-st-022",
+    "quote": "So Larchcart it is: self-hosted on our usual Hetzner box, Kostya ports the theme starting Monday, Tim moves the product import over."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q08",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "When does the new web shop open to customers?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "kw-cl-042": 3,
+   "kw-cl-018": 2,
+   "kw-br-012": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-cl-018",
+    "kw-cl-042"
+   ]
+  ],
+  "note": "Old: 4 May (Driftwood timeline). New: 18 May, a native reply. Trap: brief \"late April\".",
+  "spans": [
+   {
+    "unit": "kw-cl-042",
+    "quote": "Driftwood moves to 18 May."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q09",
+  "project": "kelpwise",
+  "language": "ru",
+  "text": "Из какого материала будут сделаны пакеты?",
+  "kind": "revoked",
+  "answerable": true,
+  "grades": {
+   "kw-ma-008": 3,
+   "kw-cl-016": 2,
+   "kw-br-006": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-cl-016",
+    "kw-ma-008"
+   ],
+   [
+    "kw-ma-008"
+   ]
+  ],
+  "note": "Old: compostable NatureLam film (client chat, 20 Mar). New: recyclable mono-PE laminate from Nordflex for the first run, said in the 8 Apr meeting. Link: NatureLam.",
+  "spans": [
+   {
+    "unit": "kw-ma-008",
+    "quote": "So for the first run we go with the recyclable mono-PE laminate from Nordflex; the compostable film comes back in the autumn reorder if the seal problem is solved."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q10",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "Who is sending out the parcels for web orders?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "kw-op-012": 3,
+   "kw-op-042": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-op-012"
+   ]
+  ],
+  "note": "Packhaven in Saue picks, packs and ships. Later complaint about box sizes changes nothing.",
+  "spans": [
+   {
+    "unit": "kw-op-012",
+    "quote": "Web orders: Packhaven in Saue picks, packs and ships every web order from launch. We send them pallets once a week and they handle the parcel machines and couriers; we do not ship parcels ourselves any more."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "kelpwise-q11",
+  "project": "kelpwise",
+  "language": "ru",
+  "text": "Чем мы будем считать посетителей сайта?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "kw-wb-010": 3,
+   "kw-st-045": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-wb-010"
+   ]
+  ],
+  "note": "Plausiva, no Google Analytics. Later task about Plausiva goals does not change it.",
+  "spans": [
+   {
+    "unit": "kw-wb-010",
+    "quote": "Аналитика: ставим Plausiva — без cookie, без баннера согласия, данные хранятся в ЕС. Google Analytics не ставим вообще, Марен это подтвердила."
+   }
+  ],
+  "control": true
+ },
+ {
+  "id": "kelpwise-q12",
+  "project": "kelpwise",
+  "language": "en",
+  "text": "What did Alex from the store room ask for on the shipping cartons?",
+  "kind": "same-name",
+  "answerable": true,
+  "grades": {
+   "kw-op-025": 3,
+   "kw-st-028": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-op-025"
+   ]
+  ],
+  "note": "Alex Moreau (Kelpwise store room): 12 bags per carton, label on the short end. Alex Brandt (photographer) wants a 24-bag carton as a prop.",
+  "spans": [
+   {
+    "unit": "kw-op-025",
+    "quote": "I want the outer shipping cartons to hold 12 bags, not 24 like now, and the barcode label on the short end of the carton, not on the top. With 24 the cartons get crushed on the pallet, and with the label on top we cannot read it when they are stacked."
+   }
+  ]
+ },
+ {
+  "id": "kelpwise-q13",
+  "project": "kelpwise",
+  "language": "ru",
+  "text": "Сколько денег выделено на рекламу в соцсетях к запуску?",
+  "kind": "missing",
+  "answerable": false,
+  "grades": {
+   "kw-cl-044": 1,
+   "kw-br-012": 1
+  },
+  "evidence_sets": [],
+  "note": "Never stated. Traps: agency fee €62,000, 15 influencers, 38,000 units.",
+  "spans": []
+ },
+ {
+  "id": "kelpwise-q14",
+  "project": "kelpwise",
+  "language": "ru",
+  "text": "Сколько вкусов будет в продаже на старте?",
+  "kind": "fact",
+  "answerable": true,
+  "grades": {
+   "kw-cl-023": 3,
+   "kw-br-004": 1
+  },
+  "evidence_sets": [
+   [
+    "kw-cl-023"
+   ]
+  ],
+  "note": "Four: Sea Salt, Chili Lime, Smoked Paprika, Wasabi. Traps: Petra wants five, moodboard shows six, sesame as autumn limited.",
+  "spans": [
+   {
+    "unit": "kw-cl-023",
+    "quote": "So, final: we launch with four flavours — Sea Salt, Chili Lime, Smoked Paprika and Wasabi."
+   }
+  ]
+ }
+]

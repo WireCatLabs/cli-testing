@@ -228,6 +228,8 @@ In 18 of the 119 pairs with a parent, the parent alone was longer than ~512 toke
 - **Cutting the parent to 300 characters kept every answer**, fixed the hidden-hit case and cost about 40% less CPU.
   Core does that from its next release (WireCatLabs/cli-core#2053, merged).
 - Six questions on one chat is a small sample; a synthetic set with long messages and replies would test it better.
+  That set now exists: on it, cutting to 256 tokens lost 3 of 33 answers and 128 lost 6, so Core keeps 512
+  ([long messages](../evidence-pipeline/README.md#cancelled-decisions-and-long-messages)).
 
 ### Release check
 

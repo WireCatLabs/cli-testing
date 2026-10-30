@@ -55,3 +55,13 @@ Questions live beside the corpus, `questions/<split>/<project>.json`:
   is empty for an unanswerable question with no useful evidence.
 - Scoring code reads only `text` and `project` from a question. `kind`, `grades`, `evidence_sets` and
   `note` never reach a ranker.
+
+**The `long` split** (PROTOCOL.md, 30 October 2026) allows units up to 8,000 bytes and adds two question fields
+that only the scorer reads:
+
+```json
+{ "spans": [{ "unit": "h-102", "quote": "Нет, не больше 21 дня — требование безопасности." }], "control": true }
+```
+
+- `spans` — for every grade-3 unit, the exact sentence(s) that state the answer, as a substring of its text.
+- `control` — a decision that still stands although a later message names the same thing.

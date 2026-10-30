@@ -1,0 +1,34 @@
+{
+ "frozen_at": "2026-10-30T10:38:36+00:00",
+ "stage": "long",
+ "settings": {
+  "mmr_lambda": 0.9
+ },
+ "variants": [],
+ "code": {
+  "PROTOCOL.md": "359a2e796549239fbf9dbd35320874f33871b226e8d3548c6672cc9b395bc4e4",
+  "CORPUS.md": "4625bed9bde8d37b7399739b0c39d0fe737407b2d3505eedd6c9b16c6c31a16b",
+  "pipeline.py": "b0e3385d8f048ed7c8c65e7bafc778cba14abee6a6c6de46bd0dc4528c2a1b0f",
+  "core/discover.mjs": "05c45aa760eabe0967b161094bbe87e23aa2cdebd0011b3cbb64dbc374261ec5",
+  "core/package.json": "01168f72b235d9e404cf8821a73aad7accf89c1e9a31419893756398cf40a39d",
+  "core/pnpm-lock.yaml": "b1a972cc1667b8468c089759b52081d90ef3ef672d5063006470e0bcb32e33bb",
+  "background.py": "aa62133790c8e9e11db5680763fece750fc535d487da0b3ac1e15729b1aff7f7",
+  "validate.py": "9552965984556a2f49388dd7de1306096ee5fb1c55b94266c655e8c4bd646fab",
+  "report.py": "ae29255d4291cd6774de5a6fcdd36c3f4f5fb77908d4c192243752d18709ebae",
+  "variants_report.py": "76ad5908c4af7f12409a881a41884f7fcf24b74929c93c866f5873dcb1accb8d",
+  "followups_report.py": "c360f933219ab1acb0097462412305899582a019a114ba7e717b5c31f7caf433",
+  "long_report.py": "bcd892d106e3113c1942e296399f5a193fc695d16e93e65d7b22210beaad0df4",
+  "run.sh": "96c92d0c6dd942ac3d6bc72eba42fceb864e9ad2da292ca82ccce0d15eb0ddc0",
+  "models.json": "fe013347449cd3ebec31d91d2293d388110fd4ae4835d0057cf3bff1dc1bc376",
+  "requirements.lock": "6d093289fc74137b7b508d9f0cdece09ad5d335da5175c1129991cd537a87e19"
+ },
+ "inputs": {
+  "corpus/long/background.json": "f00b991027c0e606aad883d108edfd7c1d3f27fe990b5613c50ad8df3c20a343",
+  "corpus/long/harrowfield.json": "d9e11920a05535c40fbe30ff1739fb7802cd4d05965dafaa90920bdc08e14738",
+  "corpus/long/kelpwise.json": "5597840e0dc5cb006e73aaf1db4899ae3c5a94ead419f0612fe5bdd1fb951a60",
+  "corpus/long/solovey.json": "b678aa17369ab39dd59527c77dd83ca13586bb264ca802e0af0756dbc30083c7",
+  "questions/long/harrowfield.json": "21f705b7692c6ebd0c5aaeea4ab11e0e39dd41711a66f1700a39a31045b799de",
+  "questions/long/kelpwise.json": "f933cefb95f1ec4c77757ceeac65ee805e874b199bd25aed71fa2cf9b92b8f5a",
+  "questions/long/solovey.json": "ade8448a1d20bedf5ea6a3a9c3aac5f252fd69eb1dae17770a65c1bb162e4e60"
+ }
+}
