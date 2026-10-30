@@ -8,3 +8,7 @@ What the shared command layer in cli-base and cli-core costs every command of ev
 - [mcp-program-build](mcp-program-build/README.md): the command tree an MCP server builds on every tool call, with its
   two self-checks run once per process: a warm build in tg from 12.5 to 6.2 ms and a warm `commands --json` call from
   18 to 12 ms, with identical output (2026-10-29).
+- [wcat-umbrella](wcat-umbrella/README.md): two packages that declare the same `wcat` command. npm, pnpm and Volta
+  refuse the second install and bun overwrites silently, so `wcat` cannot be a `"bin"` of every CLI; a link cli-base
+  makes survives installs and upgrades except pnpm's, and is left dangling on uninstall. `wcat tg` adds 20–70 ms
+  over `wcat-tg` (2026-10-30).
