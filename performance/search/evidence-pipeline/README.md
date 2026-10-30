@@ -32,6 +32,9 @@ discovery as the baseline. The decision it feeds: which stage becomes the next p
 6. **Still unsolved in every arm:** both `conflict` questions miss Answer@3. At most half of the conflict/revoked
    questions get all their sides inside the budget. Roughly 89% of every budget is off-question bytes. Nothing
    abstains: every arm fills the budget for unanswerable questions too.
+7. **Cancelled decisions and long messages (30 October).** Showing later messages that share a rare name with a
+   hit fixed 1 of 14 cancelled-decision questions, so no change; a split of long messages keeps the reranker at
+   512 tokens and finds passages neutral ([details](#cancelled-decisions-and-long-messages)).
 
 Recommended next slice: merge and release the "?" fix, then make native context part of discovery's evidence
 (check first whether `--discover --thread` on a store with built conversations already does it). Next comes a
@@ -169,10 +172,12 @@ What it showed:
 | Native context (A1) | Answers separated from their question; replies without their request | ~0 ms; uses stored reply links | Ship next; check `--discover --thread` with built conversations first |
 | E5 fusion (A2) | Answers lexical search never retrieves | 569 MB peak RSS with E5 alone; 3–5 ms per unit to index; 1.5 KB of index per unit (150 MB per 100k messages); 13 ms per query | Ship after context: on by itself when the E5 model is downloaded and the index built, noted in the result (owner, NEED-1799 A); never auto-download |
 | Duplicates, MMR (A3) | Nothing measured | 2–6 ms | Don't ship; keep duplicate removal for real forwarded text |
-| Passages for long units (A3) | Long real messages crowding out the budget | E5 per sentence of long units | Promising on real data only; needs judged passages |
+| Passages for long units (A3) | Long messages crowding out the budget | E5 per sentence of long units | Keeps the answer sentence about as often as whole units on the `long` split (39% vs 42% in the first three); no gain, no ship ([long messages](#cancelled-decisions-and-long-messages)) |
 | mMARCO replacing the order (A4) | Answer@10 up, but one `revoked` question lost from the first three | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Don't ship in this form |
-| Reranker mixed at α 0.7, rich input, top 50 | Answer@3 on holdout: A3 67% → mMARCO 81%, BGE 85% (5 won, 0 lost) | mMARCO 136 MB, ~0.2 s; BGE 588 MB, ~1.5 s per question | Worth an opt-in stage after E5; pick the model after a search for small rerankers |
+| Reranker mixed at α 0.7, rich input, top 50 | Answer@3 on holdout: A3 67% → mMARCO 81%, BGE 85% (5 won, 0 lost) | mMARCO 136 MB, ~0.2 s; BGE 588 MB, ~1.5 s per question | Shipped in Core with mMARCO; the search for a smaller model was dropped on 30 October (a smaller one would likely cost quality) |
 | Newest-first by cosine | One `revoked` question fixed, three to ten others lost | ~0 ms | Don't ship; cancelled decisions need another approach |
+| Follow-ups of a hit (later units sharing a rare term) | 1 of 14 `revoked` on the open splits; 8 of 12 on `long`, which was written to a spec naming the mechanism | ~0 ms | No change by the rule; re-test on a split written blind ([cancelled decisions](#cancelled-decisions-and-long-messages)) |
+| Reranker input cut to 256 / 128 tokens | Nothing; 3 / 6 answers lost on `long` | ~40% less CPU per pair (rerank-speed) | Keep 512 |
 | Meaning floor before fusion (0.80–0.88) | Nothing at the top: no floor already lets no off-topic meaning-only item into the first five | ~0 ms | Don't add; no floor for per-message E5 ([meaning floor](#meaning-floor)) |
 
 ## Meaning floor
@@ -269,6 +274,60 @@ one chunk (Core scores a message by its first chunk; synthetic units fit in one)
 score as an abstention signal. Holdout has only 3 questions that nothing answers, so the abstention side rests
 on the tuning set (10).
 
+## Cancelled decisions and long messages
+
+**Why.** Two items were left open. First, cancelled decisions: on holdout, 6 of 9 `revoked` questions have their
+answer in the first three for every arm, and newest-first by cosine lost more than it fixed. Second, long messages:
+synthetic units stop at 1,200 bytes, so the passage cut (A3) and the reranker's 512-token input cut were never
+graded, while real chat messages run to 7–8 KB. The owner picked both on 30 October. Rules and choice criteria
+were committed before any of it was scored ([PROTOCOL.md](PROTOCOL.md), "Cancelled decisions and long messages").
+
+**Follow-ups of a hit.** In the failing `revoked` questions the cancelling message shares a distinctive name with
+the old decision (a supplier, a code, "PIN"), not the question's words, and is mostly not a reply to it. So each of
+the first `K` hits gets up to `M` later units of its project that share a term found in at most `T` units. Grid:
+`K` 5/10, `M` 1/2, `T` 3/5/10, as context of the hit or as an item above it, on A3 and on Core's mMARCO mix.
+
+- **Open splits** (dev, calibration, eval, holdout; 14 `revoked`): the rule picks **no change**. The best variants
+  that lose nothing win one `revoked` question ([tuning table](results/followups-tuning.md)). Why: the shared name
+  recurs in 4–8 units of a project (plan, decision, confirmation, task), so at `T` 3 there is no link, and the
+  latest mentions are recaps, not the cancellation. Putting follow-ups above the hit lost 6–15 questions.
+- **The `long` split** (below): the variant with the most wins and no loss on the open splits (mMARCO mix, `K` 5,
+  `M` 2, `T` 3, context) lifted `revoked` Answer@3 from 17% to 83% (8 won, 0 lost). **This does not count.** The
+  split's spec told its author that the cancellation shares a distinctive name with the decision, and the author
+  checked that name occurs in at most 5 units, which is exactly the link this method uses. The controls cannot
+  show harm either: follow-ups added as context never push a hit down. The two results disagree for that reason.
+  A split written from a spec that does not describe the link is the clean test.
+
+**The `long` split.** Three new projects by a separate agent, sealed until the code was frozen
+([freeze-long.json](results/freeze-long.json)), scored once: 42 questions, 33 answerable, 12 `revoked`, 6 controls.
+Non-background unit medians 452–519 bytes, p90 2.2–3.6 KB, longest 7 KB. In 28 of 33 answerable questions the
+answer sentence starts after the unit's first 1,000 bytes: the set is built so that the answer sits past a short
+input cut, so its absolute numbers are a hard case, not what a real chat looks like (real median 153 tokens).
+
+| Arm (pool 100, 8 KiB) | Answer@3 | MRR | Answer sentence shown, first 3 / 10 | `revoked` Answer@3 | Lost vs Core | Pairs cut |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| A3 (passages) | 42% | 0.41 | 39% / 42% | 8% | 2 | — |
+| A3, whole units | 42% | 0.40 | 42% / 42% | 8% | 2 | — |
+| **Core: mMARCO mix, replied-to message cut to 300 characters, 512 tokens** | **48%** | **0.43** | 45% / 45% | 17% | — | 598 |
+| mMARCO mix, whole replied-to message, 512 tokens | 48% | 0.43 | 45% / 45% | 17% | 0 | 598 |
+| mMARCO mix, 256 tokens | 39% | 0.35 | 36% / 45% | 8% | 3 | 1,164 |
+| mMARCO mix, 128 tokens | 30% | 0.25 | 30% / 36% | 8% | 6 | 1,520 |
+| Core + follow-ups (exploratory, see above) | 73% | 0.68 | 70% / 70% | 83% | 0 (8 won) | — |
+
+One question is 3 points. "Pairs cut" counts reranker pairs (42 questions × 50) longer than the cap. About ten items
+fit the budget per question. Report: [long-spanfix/report.md](results/long-spanfix/report.md).
+
+What it showed:
+
+1. **Keep the reranker at 512 tokens.** 256 tokens lost 3 answers and 128 lost 6. Even at 512, 598 of 2,100 pairs
+   were cut, so the reranker never read the end of a long hit; that is where this split puts the answer.
+2. **Passages neither help nor hurt.** The answer sentence is shown in the first three for 39% of questions with
+   passages and 42% with whole units (one question); Answer@3 is the same. A first count said passages lost far
+   more (27%); that was a scoring error with multi-sentence quotes, fixed and kept visible
+   ([first run](results/long/report.md), PROTOCOL.md "span check fixed").
+3. **Long messages halve the answers.** Core's order gets 48% Answer@3 here against 81% on the short holdout.
+   Most of the gap is the cut: the answer is past what the reranker reads.
+
 ## In Core
 
 **Why.** The owner decided to use the reranker by default, since it improves search (25 October 2026). cli-core
@@ -336,6 +395,8 @@ arm64 and Apple silicon (inferred from WebAssembly, not run), slower processors,
 - Core's own conversation-chunk E5 search: the E5 arm here embeds units directly.
 - Document and transcript search paths: here documents and transcripts were loaded as messages.
 - Human judgment, and agreement between two assessors on the synthetic labels.
+- Follow-ups on a split whose author was not told the link they use, and on real archives.
+- Feeding the reranker the passage nearest the question instead of the start of a long hit.
 
 Splits are small (16 answerable eval questions) and machine-written. Core thread context needs a conversation
 build, and the temporary store had none, so A1's context comes from this harness, not from Core.
@@ -361,6 +422,22 @@ python3 performance/search/evidence-pipeline/variants_report.py /var/tmp/new-hol
 [run.sh](run.sh) gives every step a fresh temporary HOME, store and state. A result path that exists is refused.
 [measure_e5.py](measure_e5.py) measures E5 alone. [validate.py](validate.py) checks a split and prints only
 counts and hashes.
+
+Follow-ups (stored discovery runs, mMARCO in `CACHE`) and the long split:
+
+```sh
+cd performance/search/evidence-pipeline
+PYTHON -I pipeline.py --split dev --discovery results/dev-fixq/discovery.json --models CACHE \
+  --output /var/tmp/new-followups-dev/arms.json --pools 100 --budgets 8192 --fixed-models '' --mmr-lambda 0.9 --followups
+PYTHON -I followups_report.py /var/tmp/new-followups-*/arms.json
+node core/discover.mjs /var/tmp/long-discovery.json questions/long corpus/long/*.json --question-mark-punctuation
+PYTHON -I pipeline.py --split long --discovery /var/tmp/long-discovery.json --models CACHE \
+  --output /var/tmp/new-long/arms.json --pools 100 --budgets 8192 --fixed-models '' --mmr-lambda 0.9 --long
+PYTHON -I long_report.py /var/tmp/new-long/arms.json
+```
+
+Run each under a fresh temporary HOME, as `run.sh` does. Calibration reads `results/calibration-l0.9`, eval
+`results/eval-fixq`, holdout `results/holdout`.
 
 Meaning floor (stored discovery runs, both rerankers in `CACHE`):
 
