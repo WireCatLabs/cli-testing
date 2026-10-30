@@ -543,7 +543,8 @@ if args.followups or args.long:
         def span_at(label, items, texts, n):
             quotes = [(span['unit'], span['quote']) for span in label.get('spans', [])]
             shown = {u: texts.get(u) or serialize(u) for item in items[:n] for u in item}
-            return any(quote in shown.get(uid, '') for uid, quote in quotes)
+            pieces = lambda quote: [part.strip() for part in re.split(r'(?<=[.!?…])\s+|\n+', quote) if part.strip()]
+            return any(all(piece in shown.get(uid, '') for piece in pieces(quote)) for uid, quote in quotes)
 
         for qid, text, label, qv, lexical, dense, _ in asked:
             fused = rrf(lexical[:100], dense[:100])

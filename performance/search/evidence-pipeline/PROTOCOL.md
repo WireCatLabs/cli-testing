@@ -243,3 +243,10 @@ the follow-up variant with the most wins and no loss on the tuning set (mMARCO m
 labelled exploratory; it decides nothing. The mMARCO limit is 512 tokens, so "full model limit" and 512 are the
 same run; the input cut is reported at 512, 256 and 128 tokens, with Core's released input (the replied-to message
 cut to 300 characters, then the hit) and with the whole replied-to message at 512.
+
+**After the `long` score: span check fixed (30 October 2026).** The first run (`results/long/`) counted an answer span
+as seen only when the whole quote was a substring of what the reader sees. A3's passages join the kept sentences
+with " … ", and 12 of the 35 quotes have more than one sentence, so such a span could never match a passage even
+when every sentence was kept. The fix counts a span as seen when each of its sentences, split as `passage()` splits
+them, is in the shown text. Ranking is unchanged. The re-run is `results/long-spanfix/`; the first run stays as it
+was.
