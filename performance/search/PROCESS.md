@@ -322,3 +322,12 @@ and a second store to keep in step.
 Meaning search over documents and notes still scanned every chunk after messages moved to the vector index; on one
 archive that was most of `memo search all`'s time. Ranking them through the same index with the scan's own filters
 gave the same results 100× faster ([notes-index](notes-index/README.md), 2026-10-27).
+
+## Notes found by any part of a word
+
+The owner wants notes found by a part of a word in any letter case. Notes, annotations and contact notes were
+searched with `instr(lower(...))`: it missed two thirds of mixed-case Cyrillic matches and took 1.5–4 s on a
+synthetic store five times today's size. Five indexes were compared on 20k and 100k synthetic notes; a contentless
+trigram index over the same normalized text as the word index (A2) found what a folded column finds, in under
+1 ms for a rare word, for +65% disk. cli-core store version 39 ships it, filling the old rows in 9.7 s at scale 1
+([substring-notes](substring-notes/README.md), 2026-10-30).
