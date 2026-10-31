@@ -1,0 +1,7 @@
+Store: the one sync-bench.mjs built with the after build (20,000 events, 46,689 live entries). Median of 15 calls, ms.
+Two alternating rounds per build.
+
+before (fix/calendar-review-bugs ad9a492e)  events list today 12.9  week 12.9  people list week 82.5  (100 rows, 246 people)
+after  (perf/calendar-reads 12aa1014)       events list today  2.1  week  2.0  people list week 15.0  (100 rows, 246 people)
+before                                      events list today 12.5  week 12.4  people list week 84.9  (100 rows, 246 people)
+after                                       events list today  2.0  week  2.0  people list week 15.5  (100 rows, 246 people)
