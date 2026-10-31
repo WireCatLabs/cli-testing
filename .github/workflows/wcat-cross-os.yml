@@ -18,7 +18,7 @@ permissions:
 
 env:
   # The head of cli-base PR #404 that was checked; a commit stays fetchable after the branch goes.
-  CLI_BASE_REF: ${{ inputs.cli_base_ref || '2229ed5b3c6f475afc75bf7ec754af3f8e6dfdbd' }}
+  CLI_BASE_REF: ${{ inputs.cli_base_ref || '9785e6c5b32e53ac73016d284951dabca4395865' }}
 
 jobs:
   pack:
