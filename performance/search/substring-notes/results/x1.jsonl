@@ -1,0 +1,170 @@
+{"runtime":"node 24.19.0","scale":1,"phase":"build:base","step":"insert notes","ms":651,"extraBytes":82841600}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:base","step":"text notes","rows":20000,"textBytes":42227007,"chars":27106547}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:base","step":"insert documents","ms":1192,"extraBytes":106590208}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:base","step":"text documents","rows":2000,"textBytes":102526782,"chars":65806332}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"rare Cyrillic","q":"тартус","counts":{"notes":17,"documents":2},"p50":301.13,"max":312.39}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":17,"documents":2},"p50":364.96,"max":367.58}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"infix Cyrillic","q":"артусск","counts":{"notes":33,"documents":3},"p50":365.21,"max":367.86}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":213.78,"max":215.82}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"two words","q":"договор аренды","counts":{"notes":0,"documents":0},"p50":370.23,"max":386.84}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":0,"documents":0},"p50":367.67,"max":459.05}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"common 3 chars","q":"про","counts":{"notes":19920,"documents":2000},"p50":0.8,"max":1.9}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1380,"documents":1614},"p50":7.95,"max":7.99}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":15630,"documents":2000},"p50":1.08,"max":1.14}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":319.17,"max":344.47}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"2 chars","q":"ян","counts":{"notes":10948,"documents":2000},"p50":1.23,"max":1.28}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","query":"1 char","q":"щ","counts":{"notes":19928,"documents":2000},"p50":0.84,"max":1.6}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:base","summary":true,"p50":299.28,"p95":382.09}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"rare Cyrillic","q":"тартус","counts":{"notes":17,"documents":2},"p50":278.61,"max":325.99}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":17,"documents":2},"p50":346.56,"max":369.13}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"infix Cyrillic","q":"артусск","counts":{"notes":33,"documents":3},"p50":328.22,"max":370.53}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":177.03,"max":200.85}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"two words","q":"договор аренды","counts":{"notes":0,"documents":0},"p50":327.39,"max":335.72}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":0,"documents":0},"p50":276.95,"max":295.97}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"common 3 chars","q":"про","counts":{"notes":19920,"documents":2000},"p50":0.72,"max":0.78}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1380,"documents":1614},"p50":6.85,"max":7.54}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":15630,"documents":2000},"p50":0.96,"max":1.01}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":278.5,"max":281.67}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"2 chars","q":"ян","counts":{"notes":10948,"documents":2000},"p50":1.2,"max":1.43}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","query":"1 char","q":"щ","counts":{"notes":19928,"documents":2000},"p50":0.68,"max":0.76}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:base","summary":true,"p50":273,"p95":346.56}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:base","step":"write notes","insertMsPerRow":0.03,"updateMsPerRow":0.01}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:base","step":"write documents","insertMsPerRow":0.24,"updateMsPerRow":0.09}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:base","step":"write notes","insertMsPerRow":0.03,"updateMsPerRow":0.01}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:base","step":"write documents","insertMsPerRow":0.09,"updateMsPerRow":0.08}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:B","step":"B backfill notes","ms":783,"extraBytes":81920000}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:B","step":"B backfill documents","ms":1326,"extraBytes":106545152}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:B","step":"B backfill notes","ms":1083,"extraBytes":81920000}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:B","step":"B backfill documents","ms":1868,"extraBytes":106545152}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":314.13,"max":324.63}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":311.64,"max":337.39}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"infix Cyrillic","q":"артусск","counts":{"notes":50,"documents":5},"p50":407.28,"max":635.62}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":254.65,"max":264.99}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":302.01,"max":341.45}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":80,"documents":8},"p50":338.93,"max":382.48}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"common 3 chars","q":"про","counts":{"notes":19935,"documents":2000},"p50":0.23,"max":1.6}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1487,"documents":1653},"p50":6.63,"max":7.33}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16384,"documents":2000},"p50":0.46,"max":0.55}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":312.6,"max":343.57}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"2 chars","q":"ян","counts":{"notes":11096,"documents":2000},"p50":0.71,"max":0.85}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","query":"1 char","q":"щ","counts":{"notes":19942,"documents":2000},"p50":0.23,"max":0.45}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:B","summary":true,"p50":294.64,"p95":394.71}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":293.28,"max":338.4}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":304.73,"max":339.54}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"infix Cyrillic","q":"артусск","counts":{"notes":50,"documents":5},"p50":356.75,"max":433.7}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":185.71,"max":194.05}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":252.11,"max":255.69}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":80,"documents":8},"p50":287.79,"max":329.3}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"common 3 chars","q":"про","counts":{"notes":19935,"documents":2000},"p50":0.4,"max":0.52}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1487,"documents":1653},"p50":6.66,"max":6.78}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16384,"documents":2000},"p50":0.48,"max":0.63}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":289.72,"max":294.32}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"2 chars","q":"ян","counts":{"notes":11096,"documents":2000},"p50":0.77,"max":0.88}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","query":"1 char","q":"щ","counts":{"notes":19942,"documents":2000},"p50":0.33,"max":0.48}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:B","summary":true,"p50":248.79,"p95":353.82}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:B","step":"write notes","insertMsPerRow":0.06,"updateMsPerRow":0.05}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:B","step":"write documents","insertMsPerRow":1.15,"updateMsPerRow":1.25}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:B","step":"write notes","insertMsPerRow":0.08,"updateMsPerRow":0.04}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:B","step":"write documents","insertMsPerRow":0.87,"updateMsPerRow":0.71}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:A","step":"A rebuild notes","ms":2422,"extraBytes":88330240}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:A","step":"A rebuild documents","ms":3785,"extraBytes":148959232}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:A","step":"A rebuild notes","ms":2574,"extraBytes":88330240}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:A","step":"A rebuild documents","ms":3639,"extraBytes":148959232}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":0.08,"max":0.15}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":0.1,"max":0.14}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"infix Cyrillic","q":"артусск","counts":{"notes":50,"documents":5},"p50":0.15,"max":0.16}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":0.13,"max":0.16}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":0.71,"max":0.85}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":40,"documents":4},"p50":0.23,"max":1.71}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"common 3 chars","q":"про","counts":{"notes":19935,"documents":2000},"p50":12.04,"max":12.38}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1487,"documents":1653},"p50":2.97,"max":3.34}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16384,"documents":2000},"p50":16.43,"max":16.8}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":0.01,"max":0.02}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"2 chars","q":"ян","counts":{"notes":0,"documents":0},"p50":0,"max":0.01}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","query":"1 char","q":"щ","counts":{"notes":0,"documents":0},"p50":0,"max":0}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A","summary":true,"p50":0.14,"p95":16.42}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":0.16,"max":0.22}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":0.2,"max":0.23}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"infix Cyrillic","q":"артусск","counts":{"notes":50,"documents":5},"p50":0.2,"max":0.23}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":0.28,"max":0.32}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":0.79,"max":1.75}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":40,"documents":4},"p50":0.14,"max":0.18}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"common 3 chars","q":"про","counts":{"notes":19935,"documents":2000},"p50":14.59,"max":14.74}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1487,"documents":1653},"p50":4.37,"max":4.55}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16384,"documents":2000},"p50":19.31,"max":27.05}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":0.02,"max":0.02}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"2 chars","q":"ян","counts":{"notes":0,"documents":0},"p50":0.01,"max":0.01}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","query":"1 char","q":"щ","counts":{"notes":0,"documents":0},"p50":0.01,"max":0.01}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A","summary":true,"p50":0.2,"p95":19.27}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:A","step":"write notes","insertMsPerRow":0.91,"updateMsPerRow":1.05}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:A","step":"write documents","insertMsPerRow":3.92,"updateMsPerRow":4.95}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:A","step":"write notes","insertMsPerRow":0.95,"updateMsPerRow":1.01}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:A","step":"write documents","insertMsPerRow":4.23,"updateMsPerRow":4.63}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:A2","step":"A2 fill notes","ms":3662,"extraBytes":88752128}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:A2","step":"A2 fill documents","ms":5644,"extraBytes":145874944}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:A2","step":"A2 fill notes","ms":3639,"extraBytes":88752128}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:A2","step":"A2 fill documents","ms":5790,"extraBytes":145874944}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":0.19,"max":0.25}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":0.22,"max":0.24}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"infix Cyrillic","q":"артусск","counts":{"notes":50,"documents":5},"p50":0.22,"max":0.22}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":0.32,"max":0.39}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":0.79,"max":1.57}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":80,"documents":8},"p50":0.14,"max":0.15}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"common 3 chars","q":"про","counts":{"notes":19935,"documents":2000},"p50":11.43,"max":12.38}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1487,"documents":1653},"p50":2.16,"max":2.61}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16384,"documents":2000},"p50":15.97,"max":26.97}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":0.02,"max":0.02}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"2 chars","q":"ян","counts":{"notes":0,"documents":0},"p50":0.01,"max":0.02}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","query":"1 char","q":"щ","counts":{"notes":0,"documents":0},"p50":0.01,"max":0.01}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:A2","summary":true,"p50":0.22,"p95":15.84}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":0.09,"max":0.11}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":0.1,"max":0.21}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"infix Cyrillic","q":"артусск","counts":{"notes":50,"documents":5},"p50":0.1,"max":0.12}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"infix Latin","q":"BERNET","counts":{"notes":21,"documents":3},"p50":0.15,"max":0.17}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":0.68,"max":0.75}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":80,"documents":8},"p50":0.16,"max":0.17}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"common 3 chars","q":"про","counts":{"notes":19935,"documents":2000},"p50":14.13,"max":14.22}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":1487,"documents":1653},"p50":3.98,"max":4.39}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16384,"documents":2000},"p50":18.75,"max":19.81}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":0.03,"max":0.03}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"2 chars","q":"ян","counts":{"notes":0,"documents":0},"p50":0.01,"max":0.01}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","query":"1 char","q":"щ","counts":{"notes":0,"documents":0},"p50":0.01,"max":0.01}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:A2","summary":true,"p50":0.15,"p95":18.74}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:A2","step":"write notes","insertMsPerRow":0.7,"updateMsPerRow":0.81}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:A2","step":"write documents","insertMsPerRow":4.52,"updateMsPerRow":4.34}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:A2","step":"write notes","insertMsPerRow":0.69,"updateMsPerRow":0.6}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:A2","step":"write documents","insertMsPerRow":4.68,"updateMsPerRow":4.97}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:C","step":"C fill notes","ms":2284,"extraBytes":24997888}
+{"runtime":"bun 1.3.14","scale":1,"phase":"build:C","step":"C fill documents","ms":4857,"extraBytes":51490816}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:C","step":"C fill notes","ms":2780,"extraBytes":24997888}
+{"runtime":"node 24.19.0","scale":1,"phase":"build:C","step":"C fill documents","ms":5975,"extraBytes":51490816}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":0.07,"max":0.1}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":0.07,"max":0.08}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"infix Cyrillic","q":"артусск","counts":{"notes":0,"documents":0},"p50":0.03,"max":0.04}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"infix Latin","q":"BERNET","counts":{"notes":0,"documents":0},"p50":0.04,"max":0.07}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":0.15,"max":0.19}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":80,"documents":8},"p50":0.09,"max":0.1}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"common 3 chars","q":"про","counts":{"notes":16305,"documents":2000},"p50":15.11,"max":15.67}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":761,"documents":1166},"p50":3.6,"max":3.9}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16233,"documents":2000},"p50":18.56,"max":19.01}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":0.03,"max":0.03}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"2 chars","q":"ян","counts":{"notes":34,"documents":4},"p50":0.1,"max":0.21}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","query":"1 char","q":"щ","counts":{"notes":16787,"documents":2000},"p50":27.32,"max":28.97}
+{"runtime":"node 24.19.0","scale":1,"phase":"query:C","summary":true,"p50":0.1,"p95":27.14}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"rare Cyrillic","q":"тартус","counts":{"notes":50,"documents":5},"p50":0.19,"max":0.34}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"rare Cyrillic, upper case","q":"ТАРТУСС","counts":{"notes":50,"documents":5},"p50":0.19,"max":0.47}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"infix Cyrillic","q":"артусск","counts":{"notes":0,"documents":0},"p50":0.06,"max":0.07}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"infix Latin","q":"BERNET","counts":{"notes":0,"documents":0},"p50":0.09,"max":0.17}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"two words","q":"договор аренды","counts":{"notes":134,"documents":14},"p50":0.4,"max":0.73}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"ё in query, е in text","q":"ёлкин","counts":{"notes":80,"documents":8},"p50":0.25,"max":1.29}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"common 3 chars","q":"про","counts":{"notes":16305,"documents":2000},"p50":19.5,"max":22.58}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"infix in ~8% of notes","q":"лиэк","counts":{"notes":761,"documents":1166},"p50":4.66,"max":5.38}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"infix in ~80% of notes","q":"ельцу","counts":{"notes":16233,"documents":2000},"p50":21.12,"max":24.82}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"absent","q":"щюфыжд","counts":{"notes":0,"documents":0},"p50":0.03,"max":0.04}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"2 chars","q":"ян","counts":{"notes":34,"documents":4},"p50":0.11,"max":0.19}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","query":"1 char","q":"щ","counts":{"notes":16787,"documents":2000},"p50":38.25,"max":45.72}
+{"runtime":"bun 1.3.14","scale":1,"phase":"query:C","summary":true,"p50":0.25,"p95":37.85}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:C","step":"write notes","insertMsPerRow":1.29,"updateMsPerRow":1.8}
+{"runtime":"node 24.19.0","scale":1,"phase":"write:C","step":"write documents","insertMsPerRow":44.18,"updateMsPerRow":24.99}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:C","step":"write notes","insertMsPerRow":3.35,"updateMsPerRow":1.08}
+{"runtime":"bun 1.3.14","scale":1,"phase":"write:C","step":"write documents","insertMsPerRow":21.01,"updateMsPerRow":8.93}

@@ -1,0 +1,41 @@
+{"scale":1,"step":"fill","notes":20000,"documents":2000,"ms":100237}
+{"scale":1,"step":"first drain","rows":22000,"ms":47075,"bytes":602800128}
+{"scale":1,"step":"before (instr lower)","query":"rare Cyrillic","q":"тартус","found":19,"p50":311.03,"max":312.82}
+{"scale":1,"step":"before (instr lower)","query":"rare Cyrillic, upper case","q":"ТАРТУСС","found":19,"p50":376.75,"max":378.48}
+{"scale":1,"step":"before (instr lower)","query":"infix Cyrillic","q":"артусск","found":36,"p50":379.18,"max":387.07}
+{"scale":1,"step":"before (instr lower)","query":"infix Latin","q":"BERNET","found":24,"p50":223.3,"max":223.4}
+{"scale":1,"step":"before (instr lower)","query":"two words","q":"договор аренды","found":0,"p50":374.24,"max":378.09}
+{"scale":1,"step":"before (instr lower)","query":"ё in query, е in text","q":"ёлкин","found":0,"p50":310.13,"max":311.63}
+{"scale":1,"step":"before (instr lower)","query":"common 3 chars","q":"про","found":102,"p50":82.93,"max":84.03}
+{"scale":1,"step":"before (instr lower)","query":"infix in ~80% of notes","q":"ельцу","found":102,"p50":117.78,"max":119.69}
+{"scale":1,"step":"before (instr lower)","query":"absent","q":"щюфыжд","found":0,"p50":311.59,"max":314.46}
+{"scale":1,"step":"after (trigrams)","query":"rare Cyrillic","q":"тартус","found":50,"p50":1.66,"max":1.84}
+{"scale":1,"step":"after (trigrams)","query":"rare Cyrillic, upper case","q":"ТАРТУСС","found":50,"p50":1.57,"max":1.61}
+{"scale":1,"step":"after (trigrams)","query":"infix Cyrillic","q":"артусск","found":50,"p50":1.56,"max":1.58}
+{"scale":1,"step":"after (trigrams)","query":"infix Latin","q":"BERNET","found":24,"p50":1,"max":1.03}
+{"scale":1,"step":"after (trigrams)","query":"two words","q":"договор аренды","found":50,"p50":4.38,"max":4.4}
+{"scale":1,"step":"after (trigrams)","query":"ё in query, е in text","q":"ёлкин","found":50,"p50":2.19,"max":2.21}
+{"scale":1,"step":"after (trigrams)","query":"common 3 chars","q":"про","found":50,"p50":101.32,"max":102.87}
+{"scale":1,"step":"after (trigrams)","query":"infix in ~80% of notes","q":"ельцу","found":50,"p50":100.94,"max":101.48}
+{"scale":1,"step":"after (trigrams)","query":"absent","q":"щюфыжд","found":0,"p50":0.14,"max":0.19}
+{"scale":1,"step":"at version 38","bytes":367493120}
+{"scale":1,"step":"migration 39 (openStore)","ms":20}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"rare Cyrillic","q":"тартус","found":19,"p50":311.57,"max":314.81}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"rare Cyrillic, upper case","q":"ТАРТУСС","found":19,"p50":377.17,"max":380.9}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"infix Cyrillic","q":"артусск","found":36,"p50":379.83,"max":390.58}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"infix Latin","q":"BERNET","found":24,"p50":193.42,"max":212.53}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"two words","q":"договор аренды","found":0,"p50":375.34,"max":378.36}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"ё in query, е in text","q":"ёлкин","found":0,"p50":317.23,"max":324.54}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"common 3 chars","q":"про","found":50,"p50":179.25,"max":181.7}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"infix in ~80% of notes","q":"ельцу","found":50,"p50":207.64,"max":230.29}
+{"scale":1,"step":"queued, before the drain (fallback)","query":"absent","q":"щюфыжд","found":0,"p50":311.93,"max":333.1}
+{"scale":1,"step":"drain after upgrade","rows":22000,"ms":71447,"bytes":614170624}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"rare Cyrillic","q":"тартус","found":50,"p50":3.79,"max":5.69}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"rare Cyrillic, upper case","q":"ТАРТУСС","found":50,"p50":3.76,"max":4}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"infix Cyrillic","q":"артусск","found":50,"p50":2.89,"max":3.65}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"infix Latin","q":"BERNET","found":24,"p50":2.2,"max":2.79}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"two words","q":"договор аренды","found":50,"p50":4.22,"max":5.64}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"ё in query, е in text","q":"ёлкин","found":50,"p50":2.15,"max":2.18}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"common 3 chars","q":"про","found":50,"p50":103.23,"max":125.64}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"infix in ~80% of notes","q":"ельцу","found":50,"p50":102.68,"max":144.65}
+{"scale":1,"step":"after upgrade drain (trigrams)","query":"absent","q":"щюфыжд","found":0,"p50":0.15,"max":0.23}

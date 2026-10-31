@@ -44,6 +44,9 @@ byte limits and a stable merge, while keeping production model-free.
 The [image search levels](images/README.md) compare caption, context and picture models (CLIP, SigLIP2) on one
 person's images, totals only.
 
+[Notes by part of a word](substring-notes/README.md): today's notes search missed two thirds of mixed-case Cyrillic
+matches and read every row; a trigram index over the normalized text finds them all in milliseconds.
+
 [Mentions](mentions/README.md): how long finding phones, e-mail, links and documents by rules takes on one person's
 messages, and how many of each it finds, totals only.
 
@@ -71,6 +74,7 @@ archive copy, and released `memo search all` 6.6 s → 1.4 s with identical resu
 | Path | Purpose |
 |---|---|
 | [message-search/](message-search/README.md) | Synthetic corpus, question supplement, benchmark runners, pinned model manifest and historical JSON reports |
+| [substring-notes/](substring-notes/README.md) | Notes, documents, annotations and contact notes found by any part of a word in any letter case: five indexes compared, then cli-core store version 39 measured (2026-10-30) |
 | [everywhere/](everywhere/README.md) | Latency of a bare word that also looks in transcripts, file names and file text (2026-10-13) |
 | [envelope-s4/](envelope-s4/README.md) | Ranking before and after search moved onto the list envelope: identical (2026-10-14) |
 | [vector-index/](vector-index/README.md) | Storage and index options for search by meaning, 100k and 1M chunks: packed blocks recommended; then Core's `vec0` index measured at 100k and 600k (2026-10-25) |
