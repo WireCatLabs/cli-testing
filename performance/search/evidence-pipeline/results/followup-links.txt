@@ -1,0 +1,6 @@
+dev {'revoked': 2, 'G3 is a follow-up of a G2': 0, '  ...from the same source': 0, 'G3 follow-up of G2, same-source rule': 0, 'G3 is a native reply to a G2': 0, 'G3 in same source as some G2': 1}
+calibration {'revoked': 1, 'G3 is a follow-up of a G2': 0, '  ...from the same source': 0, 'G3 follow-up of G2, same-source rule': 0, 'G3 is a native reply to a G2': 0, 'G3 in same source as some G2': 1}
+eval {'revoked': 2, 'G3 is a follow-up of a G2': 0, '  ...from the same source': 0, 'G3 follow-up of G2, same-source rule': 0, 'G3 is a native reply to a G2': 0, 'G3 in same source as some G2': 0}
+holdout {'revoked': 9, 'G3 is a follow-up of a G2': 3, '  ...from the same source': 1, 'G3 follow-up of G2, same-source rule': 1, 'G3 is a native reply to a G2': 5, 'G3 in same source as some G2': 6}
+long {'revoked': 12, 'G3 is a follow-up of a G2': 10, '  ...from the same source': 5, 'G3 follow-up of G2, same-source rule': 5, 'G3 is a native reply to a G2': 3, 'G3 in same source as some G2': 5}
+blind {'revoked': 15, 'G3 is a follow-up of a G2': 5, '  ...from the same source': 2, 'G3 follow-up of G2, same-source rule': 2, 'G3 is a native reply to a G2': 1, 'G3 in same source as some G2': 5}
