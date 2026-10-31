@@ -13,7 +13,8 @@ processes without a daemon:
   ReadDirectoryChangesW on Windows).
 
 The questions: how fast is each, what does it cost while a sync writes heavily, and does either miss a commit? The
-answer feeds the events design in cli-core (`docs/dev/plans/2026-11-01-events.md`, branch `docs/events-design`).
+answer feeds the events design in cli-core (`docs/dev/plans/2026-11-01-events.md`,
+[cli-core#2274](https://github.com/WireCatLabs/cli-core/pull/2274)).
 
 ## Setup
 
