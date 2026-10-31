@@ -14,5 +14,5 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   none fails even a 1 ms retry, 2 ms lets in both kinds of wait (2026-10-31).
 - [table-sizes](table-sizes/README.md) — row counts, table sizes and integrity checks for the desktop app's Storage
   page: which can be live (2026-10-25).
-- [gcal-baseline](../calendar/gcal-baseline/README.md#3-sync-without-the-network) — the `node:sqlite` driver prepares every
+- [gcal-baseline](../calendar/gcal-baseline/README.md#3-sync-without-the-network-resultssync-json) — the `node:sqlite` driver prepares every
   statement again on each call. A per-connection cache made a calendar sync 3–5 times faster (2026-10-30).
