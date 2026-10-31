@@ -340,3 +340,12 @@ the meaning half embedded the whole query, fields included. On the owner's store
 time (4 of 20 in range). cli-core 0.496.0 embeds only the words and checks every meaning candidate against the
 query's fields; both counts went to zero, so the Desktop can drop `--exact`
 ([notes-meaning-filters](notes-meaning-filters/README.md), 2026-10-31).
+
+## Explicit syntax and narrow filters keep meaning in messages
+
+`search messages --discover` ran strict search for any query with `-`, `NOT`, `OR` or brackets, so it gave no
+meaning hits. cli-core #2254 keeps the whole query for the words. It adds meaning hits that must match every field
+and excluded word, and it ranks a filter's own messages when the filter holds at most 100,000 messages. On the owner's
+store, no hit broke the query (0 of 220), and explicit queries went from 0 to 10–17 meaning hits in 20. A 1,000-message
+chat filter went from 9 hits to 20
+([messages-meaning-filters](messages-meaning-filters/README.md), 2026-10-31).
