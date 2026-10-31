@@ -331,3 +331,12 @@ synthetic store five times today's size. Five indexes were compared on 20k and 1
 trigram index over the same normalized text as the word index (A2) found what a folded column finds, in under
 1 ms for a rare word, for +65% disk. cli-core store version 39 ships it, filling the old rows in 9.7 s at scale 1
 ([substring-notes](substring-notes/README.md), 2026-10-30).
+
+## Field filters hold for notes found by meaning
+
+WireCat Desktop sent `date:today` and `tag:work` to memo and drive and got about 20 notes that matched neither:
+the meaning half embedded the whole query, fields included. On the owner's store every field-only query returned
+20 hits outside its filter, and a Drive document's `date:` read its import time while the hit showed its Drive edit
+time (4 of 20 in range). cli-core 0.496.0 embeds only the words and checks every meaning candidate against the
+query's fields; both counts went to zero, so the Desktop can drop `--exact`
+([notes-meaning-filters](notes-meaning-filters/README.md), 2026-10-31).

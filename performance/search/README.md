@@ -80,6 +80,7 @@ archive copy, and released `memo search all` 6.6 s → 1.4 s with identical resu
 | [vector-index/](vector-index/README.md) | Storage and index options for search by meaning, 100k and 1M chunks: packed blocks recommended; then Core's `vec0` index measured at 100k and 600k (2026-10-25) |
 | [search-all-meaning/](search-all-meaning/README.md) | What searching messages by meaning adds to `search all`, and sharing the model with notes: 1.7 s → 0.9 s (2026-10-25) |
 | [local-documents/](local-documents/README.md) | qmd compared with memo and drive search on the owner's notes and Drive documents (2026-10-13) |
+| [notes-meaning-filters/](notes-meaning-filters/README.md) | Hits found by meaning that break the query's `date:` and `tag:` in memo and drive, before and after cli-core 0.496.0 (2026-10-31) |
 | [vector-scan/](vector-scan/README.md) | Bare vector scan time as the number of vectors grows, 10,000 to 300,000; superseded by vector-index (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |
 | [migration.json](migration.json) | Original file hashes and source commit before the transfer |
