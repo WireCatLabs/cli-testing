@@ -14,7 +14,7 @@ Desktop can stop forcing `--exact`.
 
 - One Linux machine, the owner's real WireCat store (about 1,450 Drive documents and notes, all imported within the
   last 30 days by the local copy's time).
-- Before: the installed memo 0.124.0 (cli-core 0.491.0) and drive 0.49.0 (cli-core 0.494.0). After: the same
+- Before: the installed memo 0.124.0 (cli-core 0.491.0) and drive 0.49.0 (cli-core 0.491.0). After: the same
   tools built from their pull requests on cli-core 0.496.0
   ([cli-memo #512](https://github.com/WireCatLabs/cli-memo/pull/512),
   [drive-cli #294](https://github.com/WireCatLabs/drive-cli/pull/294)), run as `node dist/bin/<tool>.js`.
