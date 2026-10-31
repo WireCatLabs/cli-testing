@@ -318,7 +318,11 @@ standing, written as people really do it, and said nothing about how a cancellat
 ([freeze-blind.json](results/freeze-blind.json)), scored once: 42 questions, 33 answerable, 15 `revoked`, 6
 controls. The first run stopped in discovery: Core reads the colon in "22:00" as a field filter and throws, so the
 harness now escapes a colon between digits (`--digit-colon-literal`) and froze again; no question had been scored.
-Messages came out short (longest 1.9 KB), so this split adds little on long messages.
+Messages came out short (longest 1.9 KB), so this split adds little on long messages. Found afterwards (31
+October): published Core also sends a question with any bare number to strict search, so 4 of the 42 `blind`
+questions (3 with a number, the colon fix saved only "1:1") had no discovery candidates and ranked on E5 alone.
+That holds for both rows the gate compares, so the verdict stands; the fix is
+[cli-base#409](https://github.com/WireCatLabs/cli-base/pull/409). The other splits have one such question (dev).
 
 | Arm (pool 100, 8 KiB) | Answer@3 | MRR | Answer sentence shown, first 3 / 10 | `revoked` Answer@3 | Control Answer@3 | Won / lost vs Core |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

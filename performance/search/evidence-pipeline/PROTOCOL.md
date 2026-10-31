@@ -282,3 +282,10 @@ such a colon; the error and their position were the only content read. Like the 
 obvious Core fix to the input under a new flag, `--digit-colon-literal`: a colon between two digits is escaped, so
 it stays part of the word. No other split has such a question. The first freeze stays as
 `results/freeze-blind-first.json`; `results/freeze-blind.json` is taken again with the new `discover.mjs` hash.
+
+**Numbers in questions (31 October 2026, after the `blind` score).** Published Core sends a question with any bare
+number to strict search, because `implicitTextTerms` (cli-base) does not count a number token as a word. The colon
+escape above saved a ratio ("1\:1" is one word) but not a time with other numbers: 4 of 42 `blind` questions got no
+discovery candidates (`results/blind/discovery.json`, `discovery: null`), 3 of them with a number. Both rows the gate
+compares share that order, so the verdict is unchanged. The fix is in cli-base#409; nothing is re-scored.
+
