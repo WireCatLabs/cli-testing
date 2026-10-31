@@ -3,6 +3,9 @@
 Measured 2026-10-30 in GitHub Actions on Linux, macOS and Windows, with [`measure.mjs`](measure.mjs) beside this page
 and the workflow [`wcat-umbrella.yml`](../../../.github/workflows/wcat-umbrella.yml).
 
+Step 1, the built launcher on real npm, pnpm and bun installs on all three systems, is on its own page:
+[cross-os.md](cross-os.md).
+
 ## Why we ran it
 
 Every WireCat CLI installs one short command: `tg`, `max`, `wa`, `zm`, `drive`, `memo`. The owner hit the problem that

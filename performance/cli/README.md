@@ -12,3 +12,7 @@ What the shared command layer in cli-base and cli-core costs every command of ev
   refuse the second install and bun overwrites silently, so `wcat` cannot be a `"bin"` of every CLI; a link cli-base
   makes survives installs and upgrades except pnpm's, and is left dangling on uninstall. `wcat tg` adds 20–70 ms
   over `wcat-tg` (2026-10-30).
+- [wcat-umbrella, cross-OS](wcat-umbrella/cross-os.md): cli-base's `wcat` launcher, dispatch and shortcuts on real
+  npm, pnpm and bun installs on Linux, macOS and Windows, through bash, cmd and PowerShell. All pass after three fixes
+  it found (pnpm 12's bin folder, PowerShell quoting into `.cmd`, bun's leftover `.exe`). The per-start check costs
+  0.017 ms; loading it about 2 ms (2026-10-31).
