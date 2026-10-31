@@ -305,10 +305,15 @@ the first `K` hits gets up to `M` later units of its project that share a term f
   ([gate.json](results/blind/gate.json)). The cost is room: the budget stays 8 KiB, so follow-ups push about three
   of the last items out (23.0 → 19.7 items per question). Across all five honest splits it won 5 of 29 `revoked`
   questions and lost none; on the open splits most cancellations are recapped too often for any term to be rare.
+- **Where the cancelling message is** ([followup_links.py](followup_links.py),
+  [followup-links.txt](results/followup-links.txt)). On `blind` the cancelling unit is a follow-up of the decision it
+  cancels in 5 of 15 `revoked` questions, and only 2 of those 5 are in the decision's own source (chat, document or
+  meeting); on holdout 1 of 3. Limiting follow-ups to the hit's own chat would keep less than half of the links.
 
 **The `blind` split.** Three new projects by a separate agent that saw only a neutral brief, the format sheet and
 `validate.py`, in a folder outside this repository; the brief and its generator scripts are stored with the split
-([corpus/blind/writer/](corpus/blind/writer/)). The brief asked for decisions, some later cancelled and some still
+([corpus/blind/writer/](corpus/blind/writer/), with the agent's [prompt](corpus/blind/writer/AGENT_PROMPT.md)). Its
+saved transcript shows 9 tool calls, every path inside its own folder, no git, GitHub or web. The brief asked for decisions, some later cancelled and some still
 standing, written as people really do it, and said nothing about how a cancellation refers to its decision. Sealed
 ([freeze-blind.json](results/freeze-blind.json)), scored once: 42 questions, 33 answerable, 15 `revoked`, 6
 controls. The first run stopped in discovery: Core reads the colon in "22:00" as a field filter and throws, so the
@@ -462,13 +467,13 @@ node core/discover.mjs /var/tmp/long-discovery.json questions/long corpus/long/*
 PYTHON -I pipeline.py --split long --discovery /var/tmp/long-discovery.json --models CACHE \
   --output /var/tmp/new-long/arms.json --pools 100 --budgets 8192 --fixed-models '' --mmr-lambda 0.9 --long
 PYTHON -I long_report.py /var/tmp/new-long/arms.json
-node core/discover.mjs /var/tmp/blind-discovery.json questions/blind corpus/blind/*.json --question-mark-punctuation \
-  --digit-colon-literal
-PYTHON -I pipeline.py --split blind --discovery /var/tmp/blind-discovery.json --models CACHE \
-  --output /var/tmp/new-blind/arms.json --pools 100 --budgets 8192 --fixed-models '' --mmr-lambda 0.9 --long
-PYTHON -I long_report.py /var/tmp/new-blind/arms.json
-PYTHON -I blind_gate.py /var/tmp/new-blind/arms.json
+./long.sh blind /var/tmp/new-blind CACHE PYTHON    # validate, discovery, pipeline, report.md, gate.json
+PYTHON -I followup_links.py dev calibration eval holdout long blind
 ```
+
+[long.sh](long.sh) runs every step of the blind (or long) split under a fresh temporary HOME. Re-run on 31 October
+2026 into a new folder: all 294 rows equal to [results/blind](results/blind/) in Answer@3, reciprocal rank, all
+conflict sides, items, bytes and span, and the same `gate.json`.
 
 Run each under a fresh temporary HOME, as `run.sh` does. Calibration reads `results/calibration-l0.9`, eval
 `results/eval-fixq`, holdout `results/holdout`.
