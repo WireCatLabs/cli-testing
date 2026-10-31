@@ -77,3 +77,75 @@ inside the queried range.
 - Messages: `search messages --discover` builds its filter by joining every field with AND, a different path that
   this run did not test.
 - Note titles, texts and refs: totals only, by design.
+
+## Meaning inside the filter, and totals (2026-10-31, cli-core #2236)
+
+### Why this was run
+
+After #2223 no hit broke a filter, but a narrow filter left few meaning hits: meaning took the 50 notes nearest
+overall and dropped those outside the filter. Drive's `budget date>=30d` gave 7 hits while 144 documents match the
+date. The owner chose to rank the filter's own notes by meaning (A), and asked for a total of matches "like elastic
+does". The questions: does ranking inside the filter fill the page without letting a hit outside it, how much does it
+cost, and does the new total equal a count taken another way? The answers set the threshold (`RANK_WITHIN`) in
+[cli-core #2236](https://github.com/WireCatLabs/cli-core/pull/2236).
+
+### Setup
+
+- The same machine and store as above: 1,454 documents and notes with 23,308 chunks; 1,455 documents chunked.
+- Before: cli-core 0.498.0. After: the #2236 branch. Both run from a cli-core worktree through Vitest with
+  `vitest.measure.config.ts` (the scripts go in `.measure/` of that worktree), calling the services the tools call:
+  `searchNotes` with drive's one documents account as `folderIds`, or with no scope as memo does; `searchStore` for
+  messages over the Telegram account that holds the most messages.
+- **Read only.** The store opens with `readOnly: true`. Two writes a search makes on its way are stubbed: indexing
+  notes that wait to be indexed, and topping up the message word index. So the runs search the indexes as they stand.
+  The store held about 5.5 GB and the disk had 1.5 GB free, so no copy was possible.
+- `DBUS_SESSION_BUS_ADDRESS=disabled:` on every run; the default local model `e5-small`.
+
+```sh
+MEASURE_STORE=~/.local/share/WireCat/wirecat.db MEASURE_OUT=out.jsonl MEASURE_LABEL=after \
+  DBUS_SESSION_BUS_ADDRESS=disabled: npx vitest run --config .measure/vitest.measure.config.ts
+MEASURE_FILE=.measure/measure-timing.test.ts …   # scoring cost
+MEASURE_FILE=.measure/measure-messages.test.ts … # messages totals
+```
+
+The query words are generic test words chosen for these runs, not the owner's own searches. Per-query rows are in
+cli-private (`reports/2026-10-31-notes-meaning-in-filter.md`); this page holds totals.
+
+### Results
+
+| What | Before | After |
+| --- | --- | --- |
+| Hits outside the query's fields, 12 notes queries (6 each in memo and drive) | 0 | 0 |
+| Drive `budget date>=30d`: hits, of them found by meaning | 7, 6 | 20, 19 |
+| memo `budget date>=30d`: hits, of them found by meaning | 20, 9 | 20, 13 |
+| Totals of the 6 fields-only notes queries equal to the matching notes listed | – | 6 of 6 |
+| Drive `date>=30d` total against a separate `sqlite3 -readonly` count | – | 144 `eq`, SQL 144 |
+| Messages totals against the grouped count of `search stats`, 9 runs that answered | – | 7 equal; 2 `10000 gte` where the count is 32,180 |
+
+Cost of scoring a filter's notes one by one, against the vector index's nearest 50 (milliseconds, 3 runs):
+
+| Notes scored | 150 | 500 | 1,000 | 1,454 | nearest 50 overall |
+| --- | --- | --- | --- | --- | --- |
+| ms | 14–26 | 35–41 | 132–173 | 478–599 | 165–205 |
+
+Counting up to 10,000 matching notes took 13–17 ms.
+
+### What it showed
+
+- **Ranking inside the filter fills the page.** Drive's `budget date>=30d` went from 7 hits to 20: 50 of the 144
+  documents in the date range pass the meaning floor. None of the new hits breaks a field.
+- **The cost grows with chunks, not notes.** Long documents come late in the list and cost the most. 2,000 notes
+  keeps the scoring under about a second at this store's density (16 chunks per document); above it the old path
+  runs. A chunk budget would scale better on stores of long documents.
+- **Totals agree with counts taken another way.** The two capped totals are `gte`, as designed. A notes total with
+  words also counts the notes found by meaning, so no separate count exists for it.
+- **BUG-36 is not reachable.** A `--discover` query with an excluded or ORed field (`встреча -date>=30d`,
+  `встреча (date>=30d OR …)`) runs strict search, with no meaning half. So its hits cannot break those fields: 0
+  dated outside the range.
+
+### What was not measured
+
+- Ranking quality inside the filter: whether the 19 meaning hits are the right ones.
+- `--discover` with plain words on the real store. Its follow-up step creates a temporary table, which a read-only
+  connection refuses, so those runs failed here. The unit tests cover their totals.
+- The tools' own command lines: the runs called cli-core's services, not `drive` or `memo` binaries.
