@@ -10,6 +10,8 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   and how long it keeps other commands from the write lock (2026-10-19).
 - [lock-hold](lock-hold/README.md) — which writer holds the shared write lock: one mail save per transaction costs
   about 300 ms once it queues text, and slices of 50 fix the wait (2026-10-31).
+- [lock-gap](lock-gap/README.md) — how big a gap between a writer's transactions lets another process's write in:
+  none fails even a 1 ms retry, 2 ms lets in both kinds of wait (2026-10-31).
 - [table-sizes](table-sizes/README.md) — row counts, table sizes and integrity checks for the desktop app's Storage
   page: which can be live (2026-10-25).
 - [gcal-baseline](../calendar/gcal-baseline/README.md#3-sync-without-the-network) — the `node:sqlite` driver prepares every
