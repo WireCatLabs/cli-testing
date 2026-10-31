@@ -54,11 +54,11 @@ This page holds totals only.
 | `встреча date>=30d` (91,485 messages, 957 with vectors): meaning candidates, meaning hits | 10, 10 | 100, 10 |
 | `оплата date>=14d`: meaning candidates, meaning hits | 5, 5 | 100, 10 |
 | `встреча date>=60d` (above 100,000 messages): meaning candidates | 22 | 22 (old path, as designed) |
-| Time, explicit-syntax queries | 0.28–0.37 s | 1.2–2.8 s |
-| Time, narrow filters | 1.8–2.6 s | 1.7–2.5 s |
+| Time, explicit-syntax queries | 0.17–0.21 s | 1.1–1.4 s |
+| Time, narrow filters | 1.2–1.4 s | 1.3–1.5 s |
 
-The time includes loading the model, about a second, which strict search never did. The machine was shared with
-other work, so the times move by about ±0.5 s between passes.
+The time includes loading the model, about a second, which strict search never did. An earlier pair of passes, on a
+machine busy with other work, measured about 0.5 s more for both and gave the same hit counts.
 
 The cost of ranking a filter's own messages, against the vector index's nearest 100 (third of 3 runs, query
 `встреча`):
@@ -78,7 +78,9 @@ The cost of ranking a filter's own messages, against the vector index's nearest 
 ## What it showed
 
 - **No hit breaks the query.** This holds for the meaning hits, and for the replies and follow-ups that discovery
-  adds, for negation, `NOT`, `OR` and groups.
+  adds, for negation, `NOT`, `OR` and groups. The checks had something to remove: the excluded group of two chats
+  removed 81 of the 100 nearest messages, and `-date>=30d` removed 13. The single excluded chat held none of the
+  100 nearest, so that query proves less.
 - **Explicit syntax gains meaning hits.** 10 to 17 of the 20 hits come from meaning, or from words and meaning
   together, where before there were none. The cost is the model load, about one second.
 - **A narrow filter fills its page.** A 1,000-message chat went from 9 hits to 20. A 30-day window went from 10 to 100
