@@ -177,7 +177,7 @@ What it showed:
 | mMARCO replacing the order (A4) | Answer@10 up, but one `revoked` question lost from the first three | 136 MB model; ~0.55 s per question at pool 100, 1.6 s at 300 | Don't ship in this form |
 | Reranker mixed at α 0.7, rich input, top 50 | Answer@3 on holdout: A3 67% → mMARCO 81%, BGE 85% (5 won, 0 lost) | mMARCO 136 MB, ~0.2 s; BGE 588 MB, ~1.5 s per question | Shipped in Core with mMARCO; the search for a smaller model was dropped on 30 October (a smaller one would likely cost quality) |
 | Newest-first by cosine | One `revoked` question fixed, three to ten others lost | ~0 ms | Don't ship; cancelled decisions need another approach |
-| Follow-ups of a hit (later units sharing a rare term) | 1 of 14 `revoked` on the open splits; 8 of 12 on `long`, which was written to a spec naming the mechanism | ~0 ms | Passed the blind re-test (4 of 15 won, 0 lost); proposed for Core ([cancelled decisions](#cancelled-decisions-and-long-messages)) |
+| Follow-ups of a hit (later units sharing a rare term) | 1 of 14 `revoked` on the open splits; 8 of 12 on `long`, which was written to a spec naming the mechanism | ~0.4 ms a message in Core | Passed the blind re-test (4 of 15 won, 0 lost); in Core by [cli-core#2212](https://github.com/WireCatLabs/cli-core/pull/2212), same follow-ups for 99.6–99.9% of units ([follow-ups in Core](#follow-ups-in-core)) |
 | Reranker input cut to 256 / 128 tokens | Nothing; 3 / 6 answers lost on `long` | ~40% less CPU per pair (rerank-speed) | Keep 512 |
 | Meaning floor before fusion (0.80–0.88) | Nothing at the top: no floor already lets no off-topic meaning-only item into the first five | ~0 ms | Don't add; no floor for per-message E5 ([meaning floor](#meaning-floor)) |
 
@@ -318,7 +318,11 @@ standing, written as people really do it, and said nothing about how a cancellat
 ([freeze-blind.json](results/freeze-blind.json)), scored once: 42 questions, 33 answerable, 15 `revoked`, 6
 controls. The first run stopped in discovery: Core reads the colon in "22:00" as a field filter and throws, so the
 harness now escapes a colon between digits (`--digit-colon-literal`) and froze again; no question had been scored.
-Messages came out short (longest 1.9 KB), so this split adds little on long messages.
+Messages came out short (longest 1.9 KB), so this split adds little on long messages. Found afterwards (31
+October): published Core also sends a question with any bare number to strict search, so 4 of the 42 `blind`
+questions (3 with a number, the colon fix saved only "1:1") had no discovery candidates and ranked on E5 alone.
+That holds for both rows the gate compares, so the verdict stands; the fix is
+[cli-base#409](https://github.com/WireCatLabs/cli-base/pull/409). The other splits have one such question (dev).
 
 | Arm (pool 100, 8 KiB) | Answer@3 | MRR | Answer sentence shown, first 3 / 10 | `revoked` Answer@3 | Control Answer@3 | Won / lost vs Core |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -418,6 +422,52 @@ What it showed:
 
 Not measured: Answer@3 through Core's own discovery (the holdout above used the harness's fused order), Bun,
 arm64 and Apple silicon (inferred from WebAssembly, not run), slower processors, real messages.
+
+### Follow-ups in Core
+
+**Why.** The blind split passed the follow-up variant, and the owner chose to ship it (NEED-2035, 31 October 2026):
+[cli-core#2212](https://github.com/WireCatLabs/cli-core/pull/2212) adds it to `search messages --discover`. Core
+counts words with its own stemmer and stem index (`message_stems`, read through a temporary `fts5vocab` table), not
+with the harness's Snowball terms. The question: does Core pick the same follow-ups, so the blind result carries
+over?
+
+**Setup.** [core/followups-agreement.mjs](core/followups-agreement.mjs) loads each split into a fresh store
+through the branch's build, as `discover.mjs` does, and asks `laterSharingRare` (at most 3 messages, 100 per unit)
+for every unit. It keeps the unit's project and the first 2, as the harness does. [followups_agreement.py](followups_agreement.py)
+compares the result unit by unit with `followups(uid, 2, 3)`. Comparing every unit, not the top 5 hits, leaves
+ranking out: a difference comes only from words, counts or order. Core branch commit `cdb4ecca`, same laptop.
+
+```sh
+(cd CLI_CORE && pnpm build)
+node core/followups-agreement.mjs CLI_CORE/dist /var/tmp/fu/blind.json corpus/blind   # under a fresh HOME, per split
+PYTHON -I followups_agreement.py blind /var/tmp/fu/blind.json   # SPLIT JSON pairs
+```
+
+**Results** ([table](results/followups-core/table.md), per-unit lists in [results/followups-core/](results/followups-core/)):
+
+| Split | Units | Same follow-ups | Differ | A cancelling answer only the harness links / only Core links |
+| --- | ---: | ---: | ---: | ---: |
+| dev | 2,042 | 2,037 | 5 | 0 / 0 |
+| calibration | 1,754 | 1,749 | 5 | 0 / 0 |
+| eval | 2,136 | 2,132 | 4 | 0 / 1 |
+| holdout | 2,298 | 2,289 | 9 | 0 / 0 |
+| long | 2,331 | 2,328 | 3 | 0 / 0 |
+| blind | 1,890 | 1,886 | 4 | 0 / 0 |
+
+What it showed:
+
+1. **Core picks the same follow-ups** for 99.6–99.9% of units. The rest differ by a word that the two tokenizers
+   split or stem differently; none of them loses a cancelling message, and on `blind` none touches one, so Core
+   keeps the 4 blind wins wherever discovery puts the same hits in its first 5 (inferred: Answer@3 through Core's
+   own discovery was not run).
+2. **The lookup is cheap:** 155–1,071 ms for 1,750–2,330 units, about 0.4 ms a message, so 5 hits add a few ms.
+3. Core differs from the tested variant on purpose in two ways. There are no projects, so follow-ups come from
+   any chat the search reads and passing its filters; on `blind` 3 of the 5 linked cancellations are in another
+   source than the decision ([followup-links.txt](results/followup-links.txt)), so the decision's own chat would
+   not do. There is no 8 KiB budget in discovery, so follow-ups add at most 10 messages and no hit is dropped.
+
+Not measured: real archives, where "at most 3 messages" is far rarer in a store of 100,000+ messages and a rare
+word may join two unrelated chats; Bun.
 
 ## What was not measured
 
