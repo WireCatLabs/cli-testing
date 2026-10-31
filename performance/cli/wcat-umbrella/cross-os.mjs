@@ -322,6 +322,16 @@ const scenario = (manager) => {
 
   const gone = setup.remove("wcat-fixture-alpha")
   check("uninstall wcat-fixture-alpha", manager, gone, gone.exit === 0)
+  if (windows && manager === "bun") {
+    // bun leaves wcat-alpha.exe and its .bunx behind on Windows; what the .bunx holds says whether its target is gone.
+    const bunx = join(setup.binDir, "wcat-alpha.bunx")
+    const raw = existsSync(bunx) ? readFileSync(bunx) : undefined
+    note(
+      "bun's wcat-alpha.bunx after uninstall",
+      raw && { utf16: clip(raw.toString("utf16le")), hex: raw.toString("hex").slice(0, 400) },
+      true,
+    )
+  }
   const broken = shells[firstShell]("wcat beta --version", setup.env)
   check("wcat before repair (expected to fail: its tool is gone)", firstShell, broken, broken.exit !== 0)
   const repair = shells[firstShell]("wcat-beta --version", setup.env)
