@@ -44,3 +44,10 @@ Totals: 5.54 GB file, 275,951 emails (110,837 with a body), 242,508 mail threads
 | new | slices of 50, 100 ms pause | busy_timeout 5 s | 300 | 2098 ms | 6 | 268 / 322 / 322 | 100 / 100 | 14 | 329 | 0 |
 | new | per email | 1 ms retry | 300 | 61152 ms | 300 | 202 / 288 / 345 | 0.01 / 0.01 | 69 | 3663 | 4 |
 | new | slices of 50, 100 ms pause | 1 ms retry | 300 | 2088 ms | 6 | 265 / 297 / 297 | 100 / 100 | 15 | 295 | 0 |
+
+# With cli-core #2250 (save-threads.mjs, fresh copy)
+
+| waiter's wait | emails | total | transactions | mention drains | name index rebuilds | hold median / max (ms) | waiter tries | waiter worst wait (ms) | waiter failures |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| busy_timeout 5 s | 300 | 1694 ms | 6 | 6 | 6 | 199 / 289 | 15 | 329 | 0 |
+| 1 ms retry | 300 | 1479 ms | 6 | 6 | 6 | 159 / 192 | 16 | 184 | 0 |
