@@ -35,7 +35,9 @@ discovery as the baseline. The decision it feeds: which stage becomes the next p
 7. **Cancelled decisions and long messages (30 October).** Showing later messages that share a rare name with a
    hit fixed 1 of 14 cancelled-decision questions on the open splits, but 4 of 15 on a split written blind, with
    nothing lost, which passes the rule fixed before it was written; a split of long messages keeps the reranker at
-   512 tokens and finds passages neutral ([details](#cancelled-decisions-and-long-messages)).
+   512 tokens and finds passages neutral ([details](#cancelled-decisions-and-long-messages)). Shipped in max 0.90.0;
+   on a real chat follow-ups appeared on 2 of 30 hits, changed no answer, and one added 7 KB until it became an
+   excerpt ([real chat](#follow-ups-on-a-real-chat)).
 
 Recommended next slice: merge and release the "?" fix, then make native context part of discovery's evidence
 (check first whether `--discover --thread` on a store with built conversations already does it). Next comes a
@@ -466,8 +468,44 @@ What it showed:
    source than the decision ([followup-links.txt](results/followup-links.txt)), so the decision's own chat would
    not do. There is no 8 KiB budget in discovery, so follow-ups add at most 10 messages and no hit is dropped.
 
-Not measured: real archives, where "at most 3 messages" is far rarer in a store of 100,000+ messages and a rare
-word may join two unrelated chats; Bun.
+Not measured here: real archives (next section); Bun.
+
+### Follow-ups on a real chat
+
+**Why.** The synthetic splits are small. On a real archive "held by at most 3 messages" means something else, and a
+rare word may join two unrelated chats. The question: how often do follow-ups appear on real questions, what do they
+cost in output, and do they come from other chats? This was the last step of TASK-837 before closing it.
+
+**Setup.** max 0.90.0 (cli-core 0.492.0), installed from npm, on the owner's MAX archive, offline, 31 October 2026.
+The six regression questions about one work chat used in earlier real-data checks, top 5 hits, two ways: scoped to
+that chat, and over the whole archive in the same dates. The script and per-question rows are private
+(cli-private `tools/context-gathering/pmed-discover-followups-v1.py`, `reports/2026-10-31-pmed-discover-followups.json`).
+Only totals are here. The date filter uses whole days: a quoted timestamp failed under `--discover` in 0.492.0
+(fixed in [cli-core#2222](https://github.com/WireCatLabs/cli-core/pull/2222)).
+
+**Results:**
+
+| | Scoped to the chat | Whole archive |
+| --- | ---: | ---: |
+| Questions with a follow-up | 2 of 6 | 2 of 6 |
+| Hits with a follow-up | 2 of 30 | 2 of 30 |
+| Follow-ups from another chat | 0 | 0 |
+| Bytes of follow-ups / of the whole JSON answer | 7,633 / 44,507 | 7,633 / 45,482 |
+| Follow-ups that change the answer (one assessor) | 0 of 2 | 0 of 2 |
+| Median time per search | 3.7 s | 3.1 s |
+
+What it showed:
+
+1. **Follow-ups are rare on a real archive and cost little in count:** 2 of 30 hits. None of the six questions is
+   about a decision that was later cancelled, so a win was not expected; both follow-ups are later context (a
+   pasted review, a next step), and neither misleads.
+2. **They cost a lot in bytes:** one follow-up was a pasted write-up of about 3,900 characters, 7 KB in JSON, while
+   each hit is a 240-character excerpt. Fixed: a follow-up carries an excerpt too
+   ([cli-core#2224](https://github.com/WireCatLabs/cli-core/pull/2224)).
+3. **No unrelated chat was joined** in this sample: the whole-archive run found the same two follow-ups, both in the
+   question's chat.
+
+Not measured: a real cancelled decision (none of the six questions has one); other archives; more than one assessor.
 
 ## What was not measured
 
@@ -478,7 +516,8 @@ word may join two unrelated chats; Bun.
 - Core's own conversation-chunk E5 search: the E5 arm here embeds units directly.
 - Document and transcript search paths: here documents and transcripts were loaded as messages.
 - Human judgment, and agreement between two assessors on the synthetic labels.
-- Follow-ups on real archives; the blind split is 15 `revoked` questions, written by one agent.
+- Follow-ups on a real cancelled decision: the [real-chat check](#follow-ups-on-a-real-chat) had none; the blind split is 15
+  `revoked` questions, written by one agent.
 - Feeding the reranker the passage nearest the question instead of the start of a long hit.
 
 Splits are small (16 answerable eval questions) and machine-written. Core thread context needs a conversation
