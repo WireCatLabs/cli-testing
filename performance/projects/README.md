@@ -33,6 +33,8 @@
 - [evidence-large-document](evidence-large-document/README.md): the same command on large imported documents —
   paragraphs found, paragraphs shown around a hit, pages, charged bytes, `oversized` and resume. A separate test: the
   frozen one above is unchanged.
+- [project-state](project-state/README.md): an agent asks where a real project stands through the CLIs; totals before
+  and after the coverage release (TASK-834 stream b) — tokens, failed commands, coverage signals.
 - [review](review/README.md): what reviewing an agent's proposals costs with and without context, and how a changed
   cited text and agent decisions are handled.
 
