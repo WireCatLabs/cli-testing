@@ -26,6 +26,10 @@ The [installed post-fix observation](installed-observation/README.md) is a separ
 measurement, including a second project on Memo 0.84.0 with explicit name/contact hints. It publishes totals through an allowlisted projection; cases, source references and
 per-item rows remain private. Do not combine it with the frozen synthetic precision/recall scores.
 
+The [project state rerun](project-state/README.md) is an agent scenario on the owner's live store, not a
+synthetic study. It publishes totals only (tokens, tool calls, failed commands, coverage signals) from agent
+transcripts; prompts and per-command rows stay in cli-private. Its percentages are judgments, not scores.
+
 | Study | What is measured | Runtime provenance | What it does not establish |
 | --- | --- | --- | --- |
 | [Initial evidence](https://github.com/WireCatLabs/cli-testing/tree/2c821aac468c280a24e0d3a7e806e76a8adc67ca/performance/projects/evidence) | Primary-hit retrieval against 13 invented labels, scoped windows and continuation | Reported built Memo 0.72.0 source 65822ca, Core 0.345.0; no retained build hash/lock | Published-package identity, live-source recall or interpretation |
