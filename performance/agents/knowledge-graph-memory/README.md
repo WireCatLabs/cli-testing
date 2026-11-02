@@ -384,7 +384,9 @@ Seven steps for OpenClaw alone, six if Node is new enough. Configuration 2 adds 
   sign-in reads nothing from `~/.codex`: onboarding no longer imports it, and the throwaway `HOME` hides it.
 - **Log folder.** OpenClaw writes its log to `/tmp/openclaw/` unless `logging.file` is set. That is true even
   for the `config set` command that sets it. The runner therefore writes `logging.file` into `openclaw.json`
-  before OpenClaw's first command.
+  before OpenClaw's first command. `openclaw plugins install` still unpacks the plugin download in
+  `/tmp/openclaw/` and deletes the file. It leaves an empty folder there, whatever `TMPDIR` says (seen in a fresh
+  `install` run).
 - No gateway and no service. Answers use `openclaw agent --local`, which runs the agent inside the command.
   `llama-server` is a child process that OpenClaw starts on demand and stops when the command exits (the
   index log shows `stopping local model service: reason=host-shutdown`). No `llama-server` was left running
@@ -422,26 +424,36 @@ Seven steps for OpenClaw alone, six if Node is new enough. Configuration 2 adds 
   modification time or the email's `Date`.
 - **After each run** the runner counts the words `oracle`, `run.py`, `fixture` and `knowledge-graph-memory` in
   the agent's transcript store. It also counts the `memory/` files and checks for a new `MEMORY.md`. The
-  answer key sits under the same root, and the agent's shell can reach it. A non-zero count means the run must
-  be read before it is trusted.
+  answer key is kept outside the OpenClaw folder, but the agent's shell can still reach any file of the user.
+  A non-zero count means the run must be read before it is trusted.
+- A question that runs past `--timeout` plus two minutes is stopped with its whole process group and recorded as
+  `timeout` and `unknown`. Predictions are written after every question. After the run, any `llama-server` left
+  from the throwaway root is stopped by its PID.
 
 ### Commands
 
 ```sh
 cd performance/agents/knowledge-graph-memory
-python3 run.py --self-check --output ~/.cache/wirecat-bench/openclaw/fixture
+python3 run.py --self-check --output ~/.cache/wirecat-bench/kg-fixture-openclaw  # outside the OpenClaw root
 python3 openclaw_runner.py install          # Node, OpenClaw, the llama.cpp plugin; prints the step-5 command
 # step 5 once, in a terminal: answer No, then Yes
-python3 openclaw_runner.py prepare --fixture ~/.cache/wirecat-bench/openclaw/fixture
-python3 openclaw_runner.py retrieval --fixture ~/.cache/wirecat-bench/openclaw/fixture --output /tmp/oc-retrieval
-./openclaw-signin.sh                        # the owner: ChatGPT device-code sign-in, then lists the models
-python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/openclaw/fixture --agent files \
+python3 openclaw_runner.py prepare --fixture ~/.cache/wirecat-bench/kg-fixture-openclaw
+python3 openclaw_runner.py retrieval --fixture ~/.cache/wirecat-bench/kg-fixture-openclaw --output /tmp/oc-retrieval
+./openclaw-signin.sh                        # the owner: ChatGPT sign-in; lists the models and both agents' sign-ins
+python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/kg-fixture-openclaw --agent files \
+  --model openai/<model> --thinking <level> --only q01 --output /tmp/oc-check-files   # then the same for memo
+python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/kg-fixture-openclaw --agent files \
   --model openai/<model> --thinking <level> --output /tmp/oc-files
-python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/openclaw/fixture --agent memo \
+python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/kg-fixture-openclaw --agent memo \
   --model openai/<model> --thinking <level> --output /tmp/oc-memo
 python3 run.py --predictions /tmp/oc-files/predictions.json --engine "OpenClaw 2026.10.9 alone, <model>" \
   --output /tmp/oc-files-score
 ```
+
+Before the full runs, answer q01 with each agent and read `per-question.json`. `final_text` must not be empty and
+`usage` must not be null. The files agent's `tools` should include `memory_search`; the memo agent's should
+include a shell call that ran `memo`. The reply shape was taken from OpenClaw's source (`agent exec` builds its
+`final` field from `payloads` the same way); a successful reply has not been seen yet.
 
 Use the same model and thinking level as the Hermes runs. `answer` keeps every raw reply under `raw/`, and
 `per-question.json` holds the parsed answer, the tools the agent called, token usage and OpenClaw's list-price
@@ -493,7 +505,10 @@ Such a file scores 10 correct (the ten budget questions) and 0 stale. **A run th
 ### What was not measured
 
 - **Answer accuracy, citations, stale answers, tokens and time per answer for both configurations**: they wait
-  for the owner's sign-in. No answering model has run.
+  for the owner's sign-in. No answering model has run. Not seen yet either: the sign-in itself, the memo agent
+  using the files agent's sign-in, whether `agentRuntime: "openclaw"` takes effect, and a successful reply.
+- No paid path was open: every command runs under `env -i`, so no `OPENAI_API_KEY` reaches OpenClaw, and
+  embeddings are local with `fallback: none`.
 - OpenAI embeddings, OpenClaw's default and probably its strongest. They bill the API. Ollama, Gemini and the
   others were not tried either.
 - Active Memory, dreaming and the session-memory hook. They act on conversations, and this test has none to

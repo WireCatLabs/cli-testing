@@ -7,6 +7,7 @@ import os
 import re
 import shlex
 import shutil
+import signal
 import statistics
 import subprocess
 import sys
@@ -273,11 +274,26 @@ def normalize(reply, names):
 
 
 def final_text(envelope):
-    for key in ("final", "text", "reply"):
-        if isinstance(envelope.get(key), str):
-            return envelope[key]
-    payloads = envelope.get("payloads") or envelope.get("result", {}).get("payloads") or []
-    return "\n".join(p.get("text", "") for p in payloads if isinstance(p, dict))
+    """`agent --json` returns `{payloads, meta}`; this mirrors how `agent exec` builds its `final` field."""
+    payloads = [p for p in envelope.get("payloads") or [] if isinstance(p, dict)]
+    text = "\n".join(p.get("text") or "" for p in payloads if not p.get("isError") and not p.get("isReasoning"))
+    return text.strip() or (envelope.get("meta", {}).get("finalAssistantVisibleText") or "").strip()
+
+
+def stop_leftover_servers(root):
+    """A killed OpenClaw can orphan the llama-server it started; stop only ours, by PID."""
+    stopped = []
+    for proc in Path("/proc").iterdir():
+        if not proc.name.isdigit():
+            continue
+        try:
+            command = (proc / "cmdline").read_bytes().split(b"\0")[0].decode()
+        except OSError:
+            continue
+        if command.startswith(str(paths(root)["home"])) and command.endswith("/llama-server"):
+            os.kill(int(proc.name), signal.SIGTERM)
+            stopped.append(int(proc.name))
+    return stopped
 
 
 def audit(root, agent):
@@ -291,6 +307,34 @@ def audit(root, agent):
             "memory_md_exists": (root / AGENTS[agent] / "MEMORY.md").exists()}
 
 
+def ask(root, agent, query, run_id, model, thinking, timeout, raw):
+    prompt = PROMPT.format(where=WHERE[agent], as_of=query["as_of"], question=query["question"])
+    args = ["agent", "--local", "--agent", agent, "--session-id", f"kg-{agent}-{run_id}-{query['id']}",
+            "--message", prompt, "--model", model, "--json", "--timeout", str(timeout)]
+    if thinking:
+        args += ["--thinking", thinking]
+    started = time.perf_counter()
+    # Its own process group: the openclaw launcher re-execs a child, which a plain kill would leave running.
+    process = subprocess.Popen([str(paths(root)["openclaw"]), *args], env=openclaw_env(root, agent == "memo"),
+                               cwd=root / AGENTS[agent], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                               start_new_session=True)
+    try:
+        stdout, stderr = process.communicate(timeout=timeout + 120)
+        exit_code = process.returncode
+    except subprocess.TimeoutExpired:
+        os.killpg(process.pid, signal.SIGTERM)
+        stdout, stderr = process.communicate()
+        exit_code = "timeout"
+    seconds = time.perf_counter() - started
+    (raw / f"{query['id']}.stdout.json").write_text(stdout)
+    (raw / f"{query['id']}.stderr.txt").write_text(stderr)
+    try:
+        envelope = json.loads(stdout)
+    except json.JSONDecodeError:
+        envelope = {}
+    return exit_code, seconds, envelope
+
+
 def answer(root, fixture, output, agent, model, thinking, only, timeout):
     output.mkdir(parents=True, exist_ok=False)
     raw = output / "raw"
@@ -300,47 +344,31 @@ def answer(root, fixture, output, agent, model, thinking, only, timeout):
     queries = json.loads((fixture / "queries.json").read_text())
     selected = [q for q in queries if not only or q["id"] in only]
     run_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%S")
-    predictions, rows = [], []
+    rows = []
     for query in selected:
-        prompt = PROMPT.format(where=WHERE[agent], as_of=query["as_of"], question=query["question"])
-        args = ["agent", "--local", "--agent", agent, "--session-id", f"kg-{agent}-{run_id}-{query['id']}",
-                "--message", prompt, "--model", model, "--json", "--timeout", str(timeout)]
-        if thinking:
-            args += ["--thinking", thinking]
-        started = time.perf_counter()
-        done = openclaw(root, *args, with_memo=agent == "memo", check=False, cwd=root / AGENTS[agent],
-                        timeout=timeout + 120)
-        seconds = time.perf_counter() - started
-        (raw / f"{query['id']}.stdout.json").write_text(done.stdout)
-        (raw / f"{query['id']}.stderr.txt").write_text(done.stderr)
-        try:
-            envelope = json.loads(done.stdout)
-        except json.JSONDecodeError:
-            envelope = {}
+        exit_code, seconds, envelope = ask(root, agent, query, run_id, model, thinking, timeout, raw)
         text = final_text(envelope)
         value, refs, problem = normalize(parse_reply(text), names)
-        meta = envelope.get("meta", {})
-        agent_meta = meta.get("agentMeta", {})
-        rows.append({"id": query["id"], "exit": done.returncode, "seconds": round(seconds, 2), "answer": value,
-                     "citations": refs, "problem": problem, "final_text": text,
-                     "usage": agent_meta.get("usage") or envelope.get("usage"),
-                     "list_price_usd_estimate": agent_meta.get("costUsd", envelope.get("costUsd")),
-                     "tools": (meta.get("toolSummary") or envelope.get("toolSummary") or {}).get("tools"),
-                     "tool_calls": (meta.get("toolSummary") or envelope.get("toolSummary") or {}).get("calls"),
-                     "model": agent_meta.get("model", envelope.get("model")),
-                     "provider": agent_meta.get("provider", envelope.get("provider"))})
-        predictions.append({"id": query["id"], "answer": value, "citations": refs})
-        print(f"{query['id']} exit={done.returncode} {seconds:.1f}s answer={value!r} citations={len(refs)}",
+        meta = envelope.get("meta") or {}
+        agent_meta = meta.get("agentMeta") or {}
+        tool_summary = meta.get("toolSummary") or {}
+        rows.append({"id": query["id"], "exit": exit_code, "seconds": round(seconds, 2), "answer": value,
+                     "citations": refs, "problem": problem, "final_text": text, "usage": agent_meta.get("usage"),
+                     "list_price_usd_estimate": agent_meta.get("costUsd"), "tools": tool_summary.get("tools"),
+                     "tool_calls": tool_summary.get("calls"), "model": agent_meta.get("model"),
+                     "provider": agent_meta.get("provider"), "error": envelope.get("error")})
+        # Written after every question, so a crash or a hung run keeps what was answered.
+        answered = {row["id"]: {"id": row["id"], "answer": row["answer"], "citations": row["citations"]}
+                    for row in rows}
+        padded = [answered.get(q["id"], {"id": q["id"], "answer": "unknown", "citations": []}) for q in queries]
+        (output / "predictions.json").write_text(json.dumps(padded, ensure_ascii=False, indent=2) + "\n")
+        (output / "per-question.json").write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n")
+        print(f"{query['id']} exit={exit_code} {seconds:.1f}s answer={value!r} citations={len(refs)}",
               file=sys.stderr)
-    answered = {row["id"] for row in predictions}
-    padded = predictions + [{"id": q["id"], "answer": "unknown", "citations": []}
-                            for q in queries if q["id"] not in answered]
-    (output / "predictions.json").write_text(json.dumps(padded, ensure_ascii=False, indent=2) + "\n")
-    (output / "per-question.json").write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n")
     meta = {"openclaw": openclaw(root, "--version").stdout.strip(), "agent": agent, "model": model,
-            "thinking": thinking, "runtime": "openclaw", "questions_run": len(selected),
-            "questions_padded_unknown": len(padded) - len(predictions), "prompt": PROMPT, "where": WHERE[agent],
-            "after_run": audit(root, agent)}
+            "thinking": thinking, "runtime_requested": "openclaw", "questions_run": len(selected),
+            "questions_padded_unknown": len(queries) - len(selected), "prompt": PROMPT, "where": WHERE[agent],
+            "after_run": audit(root, agent), "leftover_llama_servers_stopped": stop_leftover_servers(root)}
     (output / "run.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(meta | {"prompt": "(in run.json)"}, indent=2))
 

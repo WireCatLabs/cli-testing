@@ -15,7 +15,12 @@ run() {
 
 echo "OpenClaw home: $root/home"
 echo "Open the link it prints, sign in with ChatGPT and enter the code."
-run models auth login --provider openai --device-code
+run models auth login --provider openai --device-code --agent files
 echo
 echo "Models this sign-in offers (pick one for openclaw_runner.py answer --model):"
-run models list --provider openai
+run models list --provider openai --refresh --agent files
+echo
+for agent in files memo; do
+  echo "Saved OpenAI sign-ins the $agent agent can use (both agents must list one):"
+  run models auth list --provider openai --agent "$agent"
+done
