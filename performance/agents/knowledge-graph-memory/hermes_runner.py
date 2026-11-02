@@ -61,7 +61,7 @@ def hermes_env(config):
         "HERMES_HOME": str(place["hermes_home"]),
         # An empty CODEX_HOME stops Hermes importing or self-healing from the owner's ~/.codex/auth.json.
         "CODEX_HOME": str(place["codex_home"]),
-        "PYTHONPATH": str(BENCH / "pydeps"),
+        "PYTHONPATH": f"{Path(__file__).resolve().parent / 'hermes_site'}:{BENCH / 'pydeps'}",
         "PYTHONDONTWRITEBYTECODE": "1",
         "MEM0_TELEMETRY": "False",
         # Without this Hermes runs `gh auth token`, which reaches the keyring over D-Bus even with a throwaway HOME,
