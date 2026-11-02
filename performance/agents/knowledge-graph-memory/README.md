@@ -502,6 +502,26 @@ openai", exit 1). They were kept raw, written as `unknown`, padded to 50 ids, an
 Such a file scores 10 correct (the ten budget questions) and 0 stale. **A run that answers nothing scores
 10/50**, so read the totals against 10, not 0.
 
+### Results: answers with Claude Sonnet (2 November 2026)
+
+Both agents answered all 50 questions with `anthropic/claude-sonnet-5-5` through the owner's API key, one agent at a
+time (the two agents share one OpenClaw state database, and a second run at the same time fails at once with
+"OpenClaw state database is busy"). The machine restarted during the memo agent's run after question 21; questions
+22–50 ran again with `--only` and the two prediction files were joined before scoring. Scored with `run.py`.
+
+| Configuration | Correct | Correct with sources | Stale answers | Median time | Tokens per question | Cost at list price |
+|---|---:|---:|---:|---:|---:|---:|
+| OpenClaw alone (files + its memory search) | 50/50 | 34/50 | 0 | 27.5 s | 97,800 | $1.33 |
+| OpenClaw + WireCat (memo CLI through its skill) | 50/50 | 40/50 | 0 | 33.3 s | 113,400 | $2.35 |
+
+Most source misses are extra sources: for "original date" questions the agents also cite the email that moved the
+date, and the scorer accepts only the exact expected set. With Sonnet, OpenClaw alone mostly searched the files with
+shell commands rather than its `memory_search` tool.
+
+What it showed: on 2,000 short records a strong model with plain file access already answers everything. WireCat
+added six exactly-cited answers at about 1.8 times the cost and 20 % more time per question. This corpus is too small
+to show whether a context layer is worth having; a run at archive scale (about 100,000 records) is the next test.
+
 ### What was not measured
 
 - **Answer accuracy, citations, stale answers, tokens and time per answer for both configurations**: they wait
