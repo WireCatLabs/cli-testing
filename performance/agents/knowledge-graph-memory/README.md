@@ -159,10 +159,11 @@ and 0.05 s at p95.
 | Model download (`e5-small`, plus ONNX Runtime) | 14.9 s |
 | Embedding sync, 2,000 records | 9.4 s |
 
-The store file is 11.3 MB. Its size did not change after embedding. Three full runs from new folders gave
-the same recall. Comparing the last two reply by reply, 3 of 200 replies differed: hits with equal scores
-swapped places below the expected source.
-Query times moved by up to 0.13 s at p95 between runs; the tables show the second run.
+The store (`wirecat.db` and its write-ahead files) holds 3.5 MB after the sync without embedding and
+11.3 MB after embedding, measured in a fourth run. Four full runs from new folders gave the same recall.
+Comparing two runs reply by reply, 3 of 200 replies differed: hits with equal scores swapped places below
+the expected source. The tables show the second run. Query times move between runs: in the fourth run the
+hybrid verbatim p50/p95 was 1.63/2.72 s, while other work ran on the same computer.
 
 Rank of the expected source in each question's top 10 ("—" means not in the top 10):
 
@@ -216,6 +217,8 @@ The adapter writes every raw reply under `raw/<run>/<question>.json`, plus `per-
 
 - **A question typed as a sentence finds nothing by words.** Word search needs every word in one record.
   No record holds "what", "is", "current" and the project name together, so all 50 replies were empty.
+  The question mark is not the cause: "Who is the confirmed delivery owner of Amber Kite" without it also
+  returned nothing, while "Amber Kite delivery owner" found the owner note.
 - **The same words joined by OR find every source in the top 10.** Recall@10 is 1.00 and recall@5 is 0.75.
   An agent that sends keywords with OR gets the evidence. An agent that sends the question does not.
 - **`search all` alternates sources and does not rank them together.** In every OR reply the 10 hits went
@@ -225,7 +228,8 @@ The adapter writes every raw reply under `raw/<run>/<question>.json`, plus `per-
 - **Meaning search never returned an email.** Sync reported 500 mail chunks embedded. Still, all 413 hits
   of the hybrid verbatim run were notes found by meaning. In the hybrid OR run, all 250 mail hits were found
   by words only. `memo search mail` with a paraphrase also returned nothing. So the hybrid verbatim run
-  cannot find any mail source (0 of 10).
+  cannot find any mail source (0 of 10). The cause is not known. It is probably a Memo bug, but the mail
+  account's optional `embed` setting was left unset and has not been ruled out.
 - **Meaning search alone ranks notes well, but only some.** In the hybrid verbatim run, 7 of 10 owner notes
   were first. Only 3 of 10 telegram and 2 of 10 meeting sources were in the top 10. The archive filler names
   the same people, and that pulls it close.

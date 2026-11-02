@@ -171,7 +171,7 @@ def main():
     notes, timings["sync_notes_no_embed_s"] = memo.json("sync", "--only", "notes", "--no-embed")
     mail, timings["sync_mail_no_embed_s"] = memo.json("sync", "--source", "email:synthetic", "--since-time",
                                                       "2000-01-01", "--limit", "5000", "--no-embed")
-    store = memo.json("store", "info")[0]["item"]
+    size_no_embed = store_bytes(memo.json("store", "info")[0]["item"])
 
     runs = {}
     runs["lexical, question verbatim"] = query_all(memo, names, queries, "lexical-verbatim", ["--exact"],
@@ -182,11 +182,11 @@ def main():
     timings["model_download_s"] = memo.json("models", "download", args.model)[1]
     embedded, timings["sync_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "5000",
                                                   "--source", "email:synthetic", "--folder", folder["item"]["id"])
+    size_embedded = store_bytes(memo.json("store", "info")[0]["item"])
     runs[f"hybrid ({args.model}), question verbatim"] = query_all(memo, names, queries, "hybrid-verbatim", [],
                                                                   lambda text: text, raw)
     runs[f"hybrid ({args.model}), content words joined by OR"] = query_all(memo, names, queries, "hybrid-or", [],
                                                                          or_query, raw)
-    store_embedded = memo.json("store", "info")[0]["item"]
 
     oracle = json.loads((args.fixture / "oracle.json").read_text())
     results = {
@@ -194,7 +194,7 @@ def main():
         "records": len(records), "questions": len(queries),
         "ingested": {"notes_folder": notes["item"]["notes"], "mail": mail["item"]["mail"],
                      "embedding": embedded["item"]},
-        "store_bytes_no_embed": store_bytes(store), "store_bytes_embedded": store_bytes(store_embedded),
+        "store_bytes_no_embed": size_no_embed, "store_bytes_embedded": size_embedded,
         "timings": timings,
         "startup_p50_s": statistics.median(startup), "startup_p95_s": percentile(startup, 0.95),
         "scores": [score_run(label, rows, oracle) for label, rows in runs.items()],
