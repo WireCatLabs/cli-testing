@@ -25,6 +25,7 @@ export const TOOL_PINS = {
   "osv-scanner": { version: "2.6.0", released: "2026-09-14T02:55:16Z" },
   semgrep: { version: "1.178.0", released: "2026-09-23T21:05:39Z" },
   zizmor: { version: "1.30.1", released: "2026-09-09T05:34:10Z" },
+  "cargo-audit": { version: "0.22.2", released: "2026-06-05T12:38:04Z" },
   socket: { version: "1.1.179", released: "2026-09-24T21:50:02.169Z" },
 } as const
 

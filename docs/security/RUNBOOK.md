@@ -10,17 +10,14 @@ A version at least two weeks old on the day of the run, recorded in `SCOPE.md` b
 `cli-testing security scan` refuses any other version.
 
 ```sh
-AUDIT_TOOLS="${XDG_CACHE_HOME:-$HOME/.cache}/wirecat-audit/semgrep-1.178.0"
-test -x "$AUDIT_TOOLS/bin/python" || uv venv "$AUDIT_TOOLS"
-uv pip install --python "$AUDIT_TOOLS/bin/python" semgrep==1.178.0 zizmor==1.30.1
-export PATH="$AUDIT_TOOLS/bin:$PATH"
+scripts/security/install-tools        # into ~/.cache/wirecat-audit/tools, each download checked by sha256
+export PATH="$HOME/.cache/wirecat-audit/tools/bin:$PATH"
 export SEMGREP_SEND_METRICS=off SEMGREP_ENABLE_VERSION_CHECK=0
-# gitleaks: the release binary, checked against its checksums file the same way as osv-scanner
-# osv-scanner: the release binary, checked against the release's own SHA256SUMS
-V=2.6.0; D=$(mktemp -d); cd "$D"
-gh release download v$V -R google/osv-scanner -p osv-scanner_linux_amd64 -p osv-scanner_SHA256SUMS
-grep ' osv-scanner_linux_amd64$' osv-scanner_SHA256SUMS | sha256sum -c - && install -m 755 osv-scanner_linux_amd64 ~/.local/bin/osv-scanner
 ```
+
+It installs osv-scanner 2.6.0, gitleaks 8.30.1, cargo-audit 0.22.2 (Rust lockfiles) and, through
+`uv tool`, Semgrep 1.178.0 and zizmor 1.30.1. The digests are written in the script, not read from
+the release. Linux x86_64 only.
 
 Keep the audit environment first on PATH for the whole run: Semgrep also starts `osemgrep`
 through PATH. This preserves any different global installation.

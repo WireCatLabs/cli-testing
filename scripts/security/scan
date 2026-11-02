@@ -41,6 +41,7 @@ done
   echo "- osv-scanner $(osv-scanner --version | head -1 | awk '{print $3}')"
   echo "- semgrep $(semgrep --version)"
   echo "- $(zizmor --version)"
+  echo "- $(cargo-audit --version) (Rust lockfiles; advisory database commit in raw/<repo>/cargo-audit.json)"
   echo "- esbuild 0.25.12 (runtime parse fallback only)"
   echo
   echo "## GitHub settings"
@@ -83,7 +84,9 @@ for checkout in "$@"; do
   out="$run/raw/$name"
   mkdir -p "$out"
   cd "$work/$name"
-  if [ -f pnpm-lock.yaml ]; then
+  locks=()
+  while IFS= read -r lock; do locks+=("$lock"); done < <(find . -name Cargo.lock -not -path '*/node_modules/*' -not -path '*/target/*' | sort)
+  if [ -f pnpm-lock.yaml ] || [ "${#locks[@]}" -gt 0 ]; then
     run_tool osv-scanner "0 1" "$out/osv.json" osv-scanner scan source -r --format json . || true
   fi
   if [ -f .semgrepignore ]; then
@@ -93,6 +96,14 @@ for checkout in "$@"; do
     while IFS= read -r gap; do
       status+=("$name semgrep gap $gap")
     done < <(jq -r '.coverageGaps // [] | .[] | "\(.rule) \(.path)"' "$out/semgrep.json")
+  fi
+  # One file per tool keeps observations keyed by tool; a second Rust workspace needs its own entry here.
+  if [ "${#locks[@]}" -gt 1 ]; then
+    echo "$name: more than one Cargo.lock (${locks[*]})" >&2
+    failed+=("$name cargo-audit")
+  elif [ "${#locks[@]}" -eq 1 ]; then
+    status+=("$name cargo-audit lockfile ${locks[0]#./}")
+    run_tool cargo-audit "0 1" "$out/cargo-audit.json" cargo-audit audit --json --file "${locks[0]}" || true
   fi
   if [ -d .github ]; then
     run_tool zizmor "0 11 12 13 14" "$out/zizmor.json" zizmor --offline --format json .github || true

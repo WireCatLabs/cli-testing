@@ -11,6 +11,7 @@ export const readRun = (directory: string): RunRecord => {
       "osv-scanner": [0, 1],
       semgrep: [0],
       zizmor: [0, 11, 12, 13, 14],
+      "cargo-audit": [0, 1],
       socket: [0],
     }
     const coverage = new Set<string>()
