@@ -22,6 +22,17 @@ the private `cli-private` repository, never here.
 
 ## Next (P2)
 
+- **RES-3 · P2 🚩** Competitive test of WireCat against agent runtimes and memory providers, on the
+  knowledge-graph memory harness (`performance/agents/knowledge-graph-memory/`): adapters for Hermes alone,
+  Hermes + Hindsight, Hermes + Memo, Hindsight alone; then OpenClaw and Supermemory. Hermes always in a
+  throwaway `HERMES_HOME`. Paid runs wait for the owner's budget (cli-private NEED-2155). Plan: cli-private
+  `plans/2026-11-02-competitive-test-plan.md`.
+- **SEED-2 · P2** Extend the knowledge-graph corpus generator: one person under several identities across
+  sources with near-duplicate names, changes after a checkpoint, one topic across several conversations; later
+  CRM and finance records once cli-core's ingestion envelope exists. Same plan, §0.1.
+- **RES-4 · P2** Source coverage, separate from answer quality: per source and configuration, can it reach
+  months of Telegram, WhatsApp, Zoom and mail history, in how many steps, and does it stay current. Same plan,
+  §0.2 (experiment B).
 - **SEC-5 · P2** A complete new audit over the current repository set, with explicit scanner,
   Socket, manual/false-positive and owner-approved agent stages. Start a fresh scanner baseline
   if historical coverage is incomplete; compare only complete records with matching coverage.
