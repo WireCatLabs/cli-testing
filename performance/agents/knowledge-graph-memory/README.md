@@ -327,8 +327,7 @@ get the same 50 questions and the same answer model:
    [Memo retrieval baseline](#memo-retrieval-baseline-2-november-2026). OpenClaw runs the `memo` CLI and finds
    it through the `cli-memo` skill. It has no records in its own memory.
 
-Answering waits for the owner's ChatGPT sign-in. What ran so far is OpenClaw's memory search on its own, with no
-answer model, and a dry run of the answer path.
+Both configurations answered with Claude Sonnet 5.5 through the owner's Anthropic API key; see the results below.
 
 ### How OpenClaw remembers
 
@@ -524,11 +523,9 @@ to show whether a context layer is worth having; a run at archive scale (about 1
 
 ### What was not measured
 
-- **Answer accuracy, citations, stale answers, tokens and time per answer for both configurations**: they wait
-  for the owner's sign-in. No answering model has run. Not seen yet either: the sign-in itself, the memo agent
-  using the files agent's sign-in, whether `agentRuntime: "openclaw"` takes effect, and a successful reply.
-- No paid path was open: every command runs under `env -i`, so no `OPENAI_API_KEY` reaches OpenClaw, and
-  embeddings are local with `fallback: none`.
+- More than one answer run per configuration, and models other than Claude Sonnet 5.5.
+- Memo with its meaning search: the memo agent's store had no embedding model (word search only).
+- Embeddings were local with `fallback: none`; no `OPENAI_API_KEY` reached OpenClaw.
 - OpenAI embeddings, OpenClaw's default and probably its strongest. They bill the API. Ollama, Gemini and the
   others were not tried either.
 - Active Memory, dreaming and the session-memory hook. They act on conversations, and this test has none to
