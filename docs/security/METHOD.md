@@ -9,7 +9,7 @@ us: [`LESSONS.md`](LESSONS.md).
 
 Repositories: every WireCatLabs repository — `max-cli`, `tg-cli`, `whatsapp-cli`, `cli-core` (the shared messaging
 core, with `packages/sqlite` and `packages/onnx`), `cli-base`, `cli-memo`, `drive-cli`, `zoom-cli`,
-`cli-docs`, `cli-testing`, `community` and `.github`, all public. The private `cli-private` is
+`cli-docs`, `cli-testing`, `community`, `.github` and `wirecat-desktop` (Tauri: Rust and TypeScript), all public. The private `cli-private` is
 checked with gitleaks only and is never given to a hosted scanner. A repository left out of a run is
 named in `SCOPE.md` with the reason, so a run never claims more coverage than it had. Check the list
 against the organisation before each run:
@@ -87,7 +87,7 @@ Skills and plugins (Claude Code):
 
 Command-line scanners, each pinned to a version recorded in `SCOPE.md`:
 
-- `osv-scanner` — known advisories over the whole `pnpm-lock.yaml` tree. Trail of Bits
+- `osv-scanner` — known advisories over the whole `pnpm-lock.yaml` tree, and `Cargo.lock` where there is one. Trail of Bits
   `supply-chain-risk-auditor` does not read pnpm lockfiles, so it covers direct dependencies only.
 - `socket` (Socket CLI) — package behaviour: install scripts, network, shell, typosquats. Pinned to
   `@socketsecurity/cli@1.1.179` (the newest release older than two weeks on 2026-10-09); needs a
@@ -105,6 +105,11 @@ Command-line scanners, each pinned to a version recorded in `SCOPE.md`:
   scanner error fails the repository. A repository's own `.semgrepignore` replaces Semgrep's
   built-in ignore list, so it repeats that list; `scan` writes its patterns into `SCOPE.md`.
 - `zizmor` — GitHub Actions workflows.
+- `cargo-audit` 0.22.2 — RustSec advisories, unmaintained, unsound and yanked crates, for a repository
+  with one `Cargo.lock` (outside `node_modules` and `target`); two lockfiles fail the repository until
+  the script handles them. Semgrep adds `p/rust` for the same code. `SCOPE.md` names the lockfile;
+  `raw/<repo>/cargo-audit.json` keeps the advisory database commit, so a later run can tell a new
+  advisory from a code change.
 - `gitleaks` — secrets in the full history of every repository.
 - CodeQL — in the shared `release-checks.yml` (cli-base), which uploads its SARIF on `main`; open
   alerts read with `gh api`. GitHub's CodeQL default setup stays off: it would take over the alerts
