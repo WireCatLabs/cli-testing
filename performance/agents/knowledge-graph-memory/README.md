@@ -314,3 +314,191 @@ request completions from a host that explicitly grants that capability. This cou
 model, but host support has not been verified here, embeddings are still required, and it would be
 a separately recorded configuration. It is not evidence that Hindsight or Graphiti can use a chat
 subscription in place of their configured model clients.
+
+## OpenClaw configurations (2 November 2026)
+
+**Why it was run.** The competitive test plan asks whether OpenClaw, an agent people already use, answers
+these questions well enough on its own, and whether connecting WireCat makes a difference. Two configurations
+get the same 50 questions and the same answer model:
+
+1. **OpenClaw alone.** Each record is a file in the agent's workspace (`memory/r0001.md` … `r2000.md`), indexed by
+   OpenClaw's own memory search. The agent also has its normal file and shell tools.
+2. **OpenClaw + WireCat.** The records are in a throwaway Memo store, seeded the same way as the
+   [Memo retrieval baseline](#memo-retrieval-baseline-2-november-2026). OpenClaw runs the `memo` CLI and finds
+   it through the `cli-memo` skill. It has no records in its own memory.
+
+Answering waits for the owner's ChatGPT sign-in. What ran so far is OpenClaw's memory search on its own, with no
+answer model, and a dry run of the answer path.
+
+### How OpenClaw remembers
+
+OpenClaw's memory is Markdown files in the agent's workspace: `MEMORY.md` for lasting facts, loaded at the start
+of a session, and `memory/*.md` notes, which are indexed but not loaded
+([Memory](https://docs.openclaw.ai/concepts/memory)). The agent writes them when asked to remember, before it
+compacts a long session, and in a background "dreaming" pass. It reads them through two tools: `memory_search`
+and `memory_get`. The built-in engine keeps a SQLite index with word search (FTS) and vectors, and merges both
+("hybrid") ([Memory search](https://docs.openclaw.ai/concepts/memory-search)). Embeddings come from OpenAI by
+default. Gemini, Voyage, Ollama and a local GGUF model through the llama.cpp plugin are the other choices. Dated
+daily notes lose rank with age (30-day half-life). Session transcripts become searchable too when
+"remember across conversations" is on.
+
+### Setup
+
+- Machine: AMD Ryzen AI 9 HX 470, Linux 7.0, Python 3.14.4.
+- OpenClaw **2026.10.9** (`8b18b55`), the npm `latest` tag on 2 November 2026. It needs Node 24.22.1 or later.
+  The system Node is 24.19.0, so Node **v24.22.2** was downloaded from nodejs.org and checked against
+  `SHASUMS256.txt` (sha256 `48cc0e21…aaf75`).
+- Embeddings: the `@openclaw/llama-cpp-provider` plugin 2026.10.9. Its managed `llama-server` (build
+  `b10809-5266f24da`) runs EmbeddingGemma 300M (`embeddinggemma-300m-qat-Q8_0.gguf`, 768 dimensions) on the CPU.
+  `memory.search.provider` is `local` with `fallback: none`, so a broken embedder fails instead of silently
+  turning into word search. `openclaw memory status --deep` reported `searchMode: hybrid`, vector index complete,
+  2,000 files, 2,000 chunks. OpenAI embeddings, OpenClaw's default, were not used: they bill the OpenAI API.
+- `memo` 0.131.13 for configuration 2, with no embedding model (word search only).
+- The fixture from `run.py --self-check`, corpus sha256 `1d36697c…5e8802`.
+
+Disk: Node 208 MB, the OpenClaw package 617 MB, llama.cpp runtime 67 MB, embedding model 314 MB.
+
+**Steps a user takes**, counted for section 5 of the test plan:
+
+| # | OpenClaw alone | Extra for OpenClaw + WireCat |
+|---|---|---|
+| 1 | Node 24.22.1 or later (here a separate download) | install `@wirecat/cli-memo` |
+| 2 | `npm install openclaw` | add the notes folder, configure the mail account |
+| 3 | `openclaw plugins install @openclaw/llama-cpp-provider` | `memo sync` (notes, then mail) |
+| 4 | `openclaw config set memory.search.provider local` | `memo skill install` |
+| 5 | `openclaw models auth login --provider llama-cpp --method local`: two questions; say **No** to the 5.7 GB chat model, **Yes** to the 0.3 GB embedding model | — |
+| 6 | sign in with ChatGPT (`openclaw models auth login --provider openai --device-code`) | — |
+| 7 | put the records in `memory/` and run `openclaw memory index` | — |
+
+Seven steps for OpenClaw alone, six if Node is new enough. Configuration 2 adds four steps.
+
+### Isolation
+
+- Everything lives in `~/.cache/wirecat-bench/openclaw/`. Each OpenClaw command runs under `env -i` with
+  `HOME` and `OPENCLAW_HOME` set to `<root>/home`. `OPENCLAW_HOME` replaces the home folder for all of
+  OpenClaw's own paths: state, config, agents, credentials
+  ([Environment](https://docs.openclaw.ai/help/environment)). `HOME` covers `~/.agents/skills`, which OpenClaw
+  also reads. `TMPDIR` points inside the root, and `DBUS_SESSION_BUS_ADDRESS=disabled:` keeps the keyring out of
+  reach.
+- OpenClaw keeps its sign-ins in its own SQLite store (`state/openclaw.sqlite`), not in the keyring. The Codex
+  sign-in reads nothing from `~/.codex`: onboarding no longer imports it, and the throwaway `HOME` hides it.
+- **Log folder.** OpenClaw writes its log to `/tmp/openclaw/` unless `logging.file` is set. That is true even
+  for the `config set` command that sets it. The runner therefore writes `logging.file` into `openclaw.json`
+  before OpenClaw's first command.
+- No gateway and no service. Answers use `openclaw agent --local`, which runs the agent inside the command.
+  `llama-server` is a child process that OpenClaw starts on demand and stops when the command exits (the
+  index log shows `stopping local model service: reason=host-shutdown`). No `llama-server` was left running
+  after any step.
+- **Proof.** `~/.openclaw`, `~/.agents`, `~/.codex`, `~/.config/openclaw`, `~/.local/share/openclaw` and
+  `~/.cache/openclaw` were listed with modification times before installing, then again after prepare,
+  retrieval and the dry run. Nothing under `~/.openclaw` or `~/.codex` changed. Two files under `~/.agents/skills`
+  changed at 18:49: `max-cli` and `whatsapp-cli`. No command of this run calls `max` or `wa`. The `memo skill
+  install` here ran with a throwaway `HOME` and wrote only `cli-memo` inside the root.
+- `memo` runs only through a wrapper on the agent's `PATH`. The wrapper starts the real CLI under `env -i`, with
+  the same throwaway `HOME`, `XDG_*`, `MEMO_*` and `WIRECAT_*` folders as `memo_baseline.py`, and
+  `DBUS_SESSION_BUS_ADDRESS=disabled:`. `openclaw skills list` shows `cli-memo` as eligible for the memo agent
+  and not eligible for the files agent: there `memo` is not on `PATH`.
+
+### Fairness settings
+
+- **Two agents in one OpenClaw home**: `files` (workspace with the records) and `memo` (an empty `memory/`).
+  Each has its own memory index. The owner signs in once; the `memo` agent reads that sign-in through
+  `agents.defaults.authInheritance`.
+- **Memory of earlier questions is off.** Each question runs in a new session. `memory.search.sources` is
+  `["memory"]` and `rememberAcrossConversations` is `false`, so the transcript of one question is never
+  searchable from the next. Before this setting, `memory index --verbose` listed session transcripts as a source.
+- **OpenClaw's own agent loop.** For an `openai/*` model OpenClaw may hand the turn to the Codex app-server, with
+  Codex's own tools. The runner pins `agentRuntime.id: "openclaw"` for the chosen model. Then `memory_search` and
+  the skills are OpenClaw's, and the Codex sign-in is only the transport
+  ([Agent runtimes](https://docs.openclaw.ai/concepts/agent-runtimes)).
+- **The same first run for both.** A brand-new workspace gets `BOOTSTRAP.md`, a first-run "introduce yourself"
+  ritual. Both workspaces exist before OpenClaw first sees them, so neither gets it.
+- **One prompt** for both, with one sentence that says where the records are ([`openclaw_runner.py`](openclaw_runner.py),
+  `PROMPT` and `WHERE`). It asks for one JSON object `{"answer", "citations"}`, dates as `YYYY-MM-DD`, and
+  `unknown` with no citations. Records are cited by name (`r0042`); both configurations use the same name table
+  to turn names into corpus ids. The parser was fixed before any answer was seen: it takes the last JSON object
+  in the reply, strips quotes and a trailing full stop, and nothing more.
+- Each record file starts with a `date:` line (the record's timestamp). Memo gets the same date as the note's
+  modification time or the email's `Date`.
+- **After each run** the runner counts the words `oracle`, `run.py`, `fixture` and `knowledge-graph-memory` in
+  the agent's transcript store. It also counts the `memory/` files and checks for a new `MEMORY.md`. The
+  answer key sits under the same root, and the agent's shell can reach it. A non-zero count means the run must
+  be read before it is trusted.
+
+### Commands
+
+```sh
+cd performance/agents/knowledge-graph-memory
+python3 run.py --self-check --output ~/.cache/wirecat-bench/openclaw/fixture
+python3 openclaw_runner.py install          # Node, OpenClaw, the llama.cpp plugin; prints the step-5 command
+# step 5 once, in a terminal: answer No, then Yes
+python3 openclaw_runner.py prepare --fixture ~/.cache/wirecat-bench/openclaw/fixture
+python3 openclaw_runner.py retrieval --fixture ~/.cache/wirecat-bench/openclaw/fixture --output /tmp/oc-retrieval
+./openclaw-signin.sh                        # the owner: ChatGPT device-code sign-in, then lists the models
+python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/openclaw/fixture --agent files \
+  --model openai/<model> --thinking <level> --output /tmp/oc-files
+python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/openclaw/fixture --agent memo \
+  --model openai/<model> --thinking <level> --output /tmp/oc-memo
+python3 run.py --predictions /tmp/oc-files/predictions.json --engine "OpenClaw 2026.10.9 alone, <model>" \
+  --output /tmp/oc-files-score
+```
+
+Use the same model and thinking level as the Hermes runs. `answer` keeps every raw reply under `raw/`, and
+`per-question.json` holds the parsed answer, the tools the agent called, token usage and OpenClaw's list-price
+cost estimate. A ChatGPT sign-in bills no API, so that estimate is not money spent.
+
+### Results: OpenClaw's memory search, no answer model
+
+`openclaw memory search <query> --agent files --json --max-results 10`, one process per question, scored like the
+Memo retrieval baseline: is the expected record in the top k? 40 questions have one expected record; the 10
+budget questions have none.
+
+| Query | Questions scored | Recall@1 | Recall@5 | Recall@10 | p50 s | p95 s | Empty replies |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Question verbatim | 40 | 0.35 | 1.00 | 1.00 | 6.15 | 7.09 | 0 |
+| Content words joined by OR | 40 | 0.35 | 0.97 | 1.00 | 5.99 | 6.59 | 0 |
+
+Rank of the expected record, per question group (10 questions each):
+
+| Group | Expected record | Verbatim | OR |
+|---|---|---|---|
+| current date | the confirming email | 3 in all 10 | 3–5 |
+| original date | the first chat message | 1 in 9, 5 in 1 | 1 in 8, 2, 6 |
+| owner | the owner note | 1 or 2 | 1 or 3 |
+| commitment | the meeting passage | 2 or 3 | 2–4 |
+
+### What it showed
+
+- **OpenClaw's hybrid search finds every record from the question as typed.** Recall@5 is 1.00 for the verbatim
+  question. Memo's word search found nothing from the same sentences (recall 0.00) and needed the OR rewrite to
+  reach recall@5 0.75. It is not only meaning search: the word scores of the top hits are about 0.85 for the
+  verbatim question, so OpenClaw's word search does not need every word in one record, as Memo's does.
+- **The current answer never comes first.** For every "current date" question the email that confirms the new
+  date is third. Ahead of it are the original chat message and the project's reference note about "the original
+  delivery date", in either order. An agent that trusts the top hit gives the stale date. The answering run will
+  show whether the model reads past it.
+- **Each search costs 6 seconds as a command**, mostly OpenClaw's start and the embedding server's start. Inside
+  a running agent the server stays up, so this is not the agent's search time.
+- These are 2,000 one-line files. Each one is a single chunk, so chunking never splits a record. Real notes are
+  longer.
+
+### Dry run (no sign-in)
+
+`answer` for q01 and q03 on both agents, before the owner signed in, with `--model openai/gpt-5.5` as a
+placeholder. Both questions failed cleanly ("No route-compatible authentication source is configured for
+openai", exit 1). They were kept raw, written as `unknown`, padded to 50 ids, and the scorer accepted the file.
+Such a file scores 10 correct (the ten budget questions) and 0 stale. **A run that answers nothing scores
+10/50**, so read the totals against 10, not 0.
+
+### What was not measured
+
+- **Answer accuracy, citations, stale answers, tokens and time per answer for both configurations**: they wait
+  for the owner's sign-in. No answering model has run.
+- OpenAI embeddings, OpenClaw's default and probably its strongest. They bill the API. Ollama, Gemini and the
+  others were not tried either.
+- Active Memory, dreaming and the session-memory hook. They act on conversations, and this test has none to
+  remember. No `MEMORY.md` was written.
+- The Codex app-server runtime, which OpenClaw may pick on its own for `openai/*` models.
+- OpenClaw through MCP (`memo mcp`) in place of the CLI.
+- The other OpenClaw memory engines: QMD, Honcho, LanceDB, memory-wiki.
+- macOS and Windows.
