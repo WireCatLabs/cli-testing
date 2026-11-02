@@ -13,7 +13,7 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
 
 - [meeting-series-inventory](meeting-series-inventory/README.md) — published CLI/MCP scheduled candidates, retained uncertainty, strict arguments and no SQLite access.
 
-- [knowledge-graph-memory](knowledge-graph-memory/README.md) — a 2,000-record synthetic corpus and 50-question scorer for changing agreements; engine comparisons are pending.
+- [knowledge-graph-memory](knowledge-graph-memory/README.md) — a 2,000-record synthetic corpus and 50-question scorer for changing agreements, and a Memo retrieval-only baseline: recall@10 1.00 with OR keywords, 0.00 with the verbatim question (2026-11-02); engine comparisons are pending.
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).

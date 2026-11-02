@@ -4,7 +4,8 @@ Memo searches stored notes, mail and messages, but that does not tell us whether
 answers changing agreements more accurately. This fixture prepares a comparison with Hindsight first,
 Graphiti second and Cognee third. It asks whether better answers and citations justify another index,
 provider costs and setup. Engine runs are pending a provider/model decision; the table below validates
-only the fixture and scorer and makes no claim about engine quality.
+only the fixture and scorer and makes no claim about engine quality. A Memo retrieval-only baseline, with
+no answer model, is [below](#memo-retrieval-baseline-2-november-2026).
 
 ## Setup
 
@@ -78,10 +79,176 @@ python3 performance/agents/knowledge-graph-memory/run.py --predictions /tmp/hind
 
 The output directory must not already exist; the script never deletes prior results.
 
+## Memo retrieval baseline (2 November 2026)
+
+**Why it was run.** This is the first step of the WireCat comparison with Hermes, OpenClaw and Hindsight. It
+needs no model API and no money. The question: does Memo's own search put the record that answers each
+question near the top? Any answer model built on Memo can only cite what this search returns. The run
+measures retrieval only. It has no answer model, so it makes no claim about answer accuracy. The Memo row
+in the harness table above stays "not run".
+
+### Setup
+
+- Machine: AMD Ryzen AI 9 HX 470 (24 threads), 30 GB RAM, Linux 7.0, Python 3.14.4, Node 24.19.0.
+- `@wirecat/cli-memo` 0.131.13, the published package installed globally, driven as the `memo` binary.
+- The fixture from `run.py --self-check`, corpus sha256 `1d36697c…5e8802`.
+- Embedding model for the hybrid rows: `e5-small` (multilingual-e5-small, 8-bit ONNX, 135 MB), downloaded
+  with `memo models download`. It runs on this computer; no paid API.
+
+```sh
+python3 performance/agents/knowledge-graph-memory/run.py --self-check --output /tmp/kg-fixture
+python3 performance/agents/knowledge-graph-memory/memo_baseline.py --fixture /tmp/kg-fixture --output /tmp/kg-memo
+```
+
+[`memo_baseline.py`](memo_baseline.py) is standard-library Python. It runs memo in a new directory with
+its own `HOME`, `XDG_*`, `MEMO_CONFIG_DIR`, `MEMO_STATE_DIR`, `MEMO_CACHE_DIR`, `WIRECAT_STATE_DIR` and
+`WIRECAT_CONFIG_DIR`. It also sets `DBUS_SESSION_BUS_ADDRESS=disabled:`, so memo cannot reach the keyring.
+`memo store info` reported the store inside that directory. Nothing signs in.
+
+**How the corpus gets in.** Only public commands are used:
+
+| Corpus kind | Records | How it is ingested | Native? |
+|---|---:|---|---|
+| mail | 500 | A Google Takeout-style mbox file and a `mail.accounts` entry with `"mode": "mbox"`, then `memo sync --source email:synthetic --since-time 2000-01-01 --limit 5000` | yes, stored as mail |
+| notes | 500 | Markdown files, `memo folders add <dir> --format markdown`, then `memo sync --only notes` | yes |
+| telegram | 500 | Markdown notes in the same folder | **no** |
+| meetings | 500 | Markdown notes in the same folder | **no** |
+
+- **Telegram cannot be ingested from a file.** `tg`, `max` and `wa` have no command that imports an
+  exported chat. They only sync from a signed-in account. So WireCat cannot take in outside chat data yet.
+- **Meetings are not imported natively.** `zm <profile> meetings import <folder>` reads VTT files. But it
+  needs a zm profile, and `memo search all` does not search meetings at all: its help lists messages, mail,
+  notes and calendar events. Native meeting records would be invisible to this metric.
+- **The mbox reader takes only Gmail Takeout's shape.** Each email needs `From <digits>@xxx <date>` and
+  `X-GM-THRID`. The adapter writes that shape with invented ids.
+- **How a hit maps back to the corpus.** Each record is named `r0001`…`r2000`: the note's file name or the
+  email's subject. Memo returns that name as the hit's `title`. The adapter keeps a table from name to corpus
+  id. The ids themselves never enter the text, because words like "telegram" would become searchable.
+  Each note file's modification time is set to the record's timestamp.
+
+**What is measured.** The adapter runs each question through `memo search all <query> --limit 10 --json`,
+one process per query, after one warm-up search that is not counted. It reads `oracle.json` only when it
+scores. 10 of the 50 questions are "unknown budget" questions with no source to find. Recall is scored over
+the other 40. Each of those has exactly one expected source, so recall@k is "the source is in the top k".
+
+Four runs on one store:
+
+1. **Lexical, verbatim:** the question as written, `--exact` (word search, no meaning search).
+2. **Lexical, OR:** the question's words minus a fixed list of English function words, quoted and joined
+   with `OR`, `--exact`. This rewrite is deterministic and does not look at the answer key.
+3. **Hybrid, verbatim:** the question as written, with meaning search, after embedding with `e5-small`.
+4. **Hybrid, OR:** the OR query with meaning search.
+
+### Results
+
+| Run | Questions scored | Recall@1 | Recall@5 | Recall@10 | p50 s | p95 s | Empty replies |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Lexical, question verbatim | 40 | 0.00 | 0.00 | 0.00 | 0.27 | 0.32 | 50 of 50 |
+| Lexical, content words joined by OR | 40 | 0.25 | 0.75 | 1.00 | 0.30 | 0.35 | 0 |
+| Hybrid (e5-small), question verbatim | 40 | 0.25 | 0.30 | 0.30 | 1.05 | 1.19 | 0 |
+| Hybrid (e5-small), content words joined by OR | 40 | 0.25 | 0.55 | 0.55 | 1.07 | 1.23 | 0 |
+
+The times are the wall time of one `memo search all` process. `memo --version` alone takes 0.04 s at p50
+and 0.05 s at p95.
+
+| Step | Time |
+|---|---:|
+| `folders add` | 0.33 s |
+| Notes sync, 1,500 files, no embedding | 1.14 s |
+| Mail sync, 500 emails from mbox, no embedding | 1.97 s |
+| Model download (`e5-small`, plus ONNX Runtime) | 14.9 s |
+| Embedding sync, 2,000 records | 9.4 s |
+
+The store file is 11.3 MB. Its size did not change after embedding. Three full runs from new folders gave
+the same recall. Comparing the last two reply by reply, 3 of 200 replies differed: hits with equal scores
+swapped places below the expected source.
+Query times moved by up to 0.13 s at p95 between runs; the tables show the second run.
+
+Rank of the expected source in each question's top 10 ("—" means not in the top 10):
+
+| Question | Asks for | Source kind | Lexical verbatim | Lexical OR | Hybrid verbatim | Hybrid OR |
+|---|---|---|---:|---:|---:|---:|
+| q01 | current date | mail | — | 1 | — | 1 |
+| q02 | original date | telegram | — | 2 | — | — |
+| q03 | owner | notes | — | 2 | 1 | 2 |
+| q04 | commitment | meetings | — | 6 | 2 | 2 |
+| q06 | current date | mail | — | 1 | — | 1 |
+| q07 | original date | telegram | — | 2 | — | — |
+| q08 | owner | notes | — | 2 | — | — |
+| q09 | commitment | meetings | — | 6 | 1 | 2 |
+| q11 | current date | mail | — | 1 | — | 1 |
+| q12 | original date | telegram | — | 2 | — | — |
+| q13 | owner | notes | — | 2 | 1 | 2 |
+| q14 | commitment | meetings | — | 6 | — | — |
+| q16 | current date | mail | — | 1 | — | 1 |
+| q17 | original date | telegram | — | 2 | 2 | 4 |
+| q18 | owner | notes | — | 2 | 1 | 2 |
+| q19 | commitment | meetings | — | 6 | — | — |
+| q21 | current date | mail | — | 1 | — | 1 |
+| q22 | original date | telegram | — | 2 | — | — |
+| q23 | owner | notes | — | 2 | 1 | 2 |
+| q24 | commitment | meetings | — | 6 | — | — |
+| q26 | current date | mail | — | 1 | — | 1 |
+| q27 | original date | telegram | — | 2 | — | — |
+| q28 | owner | notes | — | 2 | 1 | 2 |
+| q29 | commitment | meetings | — | 6 | — | — |
+| q31 | current date | mail | — | 1 | — | 1 |
+| q32 | original date | telegram | — | 2 | 1 | 2 |
+| q33 | owner | notes | — | 2 | 1 | 2 |
+| q34 | commitment | meetings | — | 6 | — | — |
+| q36 | current date | mail | — | 1 | — | 1 |
+| q37 | original date | telegram | — | 2 | — | — |
+| q38 | owner | notes | — | 2 | — | — |
+| q39 | commitment | meetings | — | 6 | — | — |
+| q41 | current date | mail | — | 1 | — | 1 |
+| q42 | original date | telegram | — | 2 | — | — |
+| q43 | owner | notes | — | 2 | — | — |
+| q44 | commitment | meetings | — | 6 | — | — |
+| q46 | current date | mail | — | 1 | — | 1 |
+| q47 | original date | telegram | — | 2 | 1 | 4 |
+| q48 | owner | notes | — | 2 | 1 | 2 |
+| q49 | commitment | meetings | — | 6 | — | — |
+
+The adapter writes every raw reply under `raw/<run>/<question>.json`, plus `per-query.json` and
+`results.json`.
+
+### What it showed
+
+- **A question typed as a sentence finds nothing by words.** Word search needs every word in one record.
+  No record holds "what", "is", "current" and the project name together, so all 50 replies were empty.
+- **The same words joined by OR find every source in the top 10.** Recall@10 is 1.00 and recall@5 is 0.75.
+  An agent that sends keywords with OR gets the evidence. An agent that sends the question does not.
+- **`search all` alternates sources and does not rank them together.** In every OR reply the 10 hits went
+  mail, note, mail, note… (250 mail and 250 notes over 50 queries). So a note can never be first while any
+  email matches. Recall@1 is 0.25 in every row that returns mail: only the mail questions (the current
+  date) get rank 1. Every telegram or notes source sits at rank 2, and every meeting source at rank 6.
+- **Meaning search never returned an email.** Sync reported 500 mail chunks embedded. Still, all 413 hits
+  of the hybrid verbatim run were notes found by meaning. In the hybrid OR run, all 250 mail hits were found
+  by words only. `memo search mail` with a paraphrase also returned nothing. So the hybrid verbatim run
+  cannot find any mail source (0 of 10).
+- **Meaning search alone ranks notes well, but only some.** In the hybrid verbatim run, 7 of 10 owner notes
+  were first. Only 3 of 10 telegram and 2 of 10 meeting sources were in the top 10. The archive filler names
+  the same people, and that pulls it close.
+- **Adding meaning search to the OR query made recall@10 worse** (1.00 to 0.55). Meaning reordered the
+  five note slots, and the expected note dropped out of them in 18 of 30 questions.
+
+### What was not measured
+
+- Answer accuracy, citations in answers, and stale answers: there is no answer model and no `memo answers`
+  run. No predictions file was written. A rule that pulls answers from these question templates would be a
+  hand-made answer model that knows the questions.
+- Telegram and meeting records as their own kinds. Here they are notes, so they show how notes rank, not
+  how messages or meetings rank.
+- `--limit` above 10, `--project`, `--plain-order` and other options of `search all`, and the other
+  embedding model (`embeddinggemma`).
+- Variance across machines, a cold disk cache, and a larger or multilingual corpus. The corpus is 2,000
+  short English template records.
+- Token use and cost: none, since no model API was called.
+
 ## What remains unmeasured
 
-No engine accuracy, ingest duration, latency distribution, token usage, cost, disk footprint, installation
-size or offline behavior has been measured. Record these during engine runs, with p50/p95 query times and
+The Memo retrieval baseline above measures Memo's search only. No engine answer accuracy, token usage,
+cost, installation size or offline behavior has been measured, and no other engine has been run. Record these during engine runs, with p50/p95 query times and
 token/cost totals reported separately from quality. This small English template corpus is a pilot, not
 LongMemEval, multilingual coverage or evidence that graph memory improves Memo. It needs broader wording
 and repeated runs before a product decision. No store export integration is justified by this self-check.
