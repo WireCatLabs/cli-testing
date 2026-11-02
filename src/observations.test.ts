@@ -85,6 +85,15 @@ describe("scanner observations", () => {
     ],
     ["codeql", [[{ number: 1, rule: { id: "synthetic-rule" } }]]],
     [
+      "cargo-audit",
+      {
+        vulnerabilities: {
+          list: [{ advisory: { id: "SYNTHETIC-001", description: "x" }, package: { name: "crate", version: "1.0.0" } }],
+        },
+        warnings: {},
+      },
+    ],
+    [
       "socket",
       {
         ok: true,
@@ -102,6 +111,20 @@ describe("scanner observations", () => {
     expect(observations).toHaveLength(tool === "socket" ? 2 : 1)
     expect(JSON.parse(observations[0]?.id ?? "").slice(0, 2)).toEqual(["fixture", tool])
     expect(JSON.stringify(observations)).not.toContain("description")
+  })
+
+  it("keeps cargo-audit warnings apart from vulnerabilities, by kind", () => {
+    const value = {
+      vulnerabilities: { list: [] },
+      warnings: {
+        unmaintained: [{ advisory: { id: "SYNTHETIC-002" }, package: { name: "old", version: "1.0.0" } }],
+        yanked: [{ advisory: null, package: { name: "gone", version: "0.1.0" } }],
+      },
+    }
+    expect(scannerObservations("fixture", "cargo-audit", value).map(({ id }) => JSON.parse(id))).toEqual([
+      ["fixture", "cargo-audit", "unmaintained", "old", "1.0.0", "SYNTHETIC-002"],
+      ["fixture", "cargo-audit", "yanked", "gone", "0.1.0", "-"],
+    ])
   })
 
   it("retains mixed ecosystems without changing existing npm identifiers", () => {
@@ -141,6 +164,7 @@ describe("scanner observations", () => {
     ["semgrep", { results: [] }],
     ["zizmor", []],
     ["codeql", []],
+    ["cargo-audit", { vulnerabilities: { list: [] }, warnings: {} }],
     ["socket", { ok: true, data: { alerts: { npm: {} } } }],
     ["socket", { ok: true, data: { alerts: { pypi: {} } } }],
     ["socket", { ok: true, data: { healthy: true, alerts: {} } }],

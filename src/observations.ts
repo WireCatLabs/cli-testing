@@ -73,6 +73,20 @@ export const scannerObservations = (repo: string, tool: string, value: unknown):
         add(string(row.check_id), string(row.path), JSON.stringify(object(row.start).line))
       }
       break
+    case "cargo-audit": {
+      const report = object(value)
+      for (const row of list(object(report.vulnerabilities).list)) {
+        const pkg = object(object(row).package)
+        add(string(pkg.name), string(pkg.version), string(object(object(row).advisory).id))
+      }
+      for (const [kind, rows] of Object.entries(object(report.warnings)))
+        for (const row of list(rows)) {
+          const pkg = object(object(row).package)
+          const advisory = object(row).advisory
+          add(kind, string(pkg.name), string(pkg.version), advisory ? string(object(advisory).id) : "-")
+        }
+      break
+    }
     case "zizmor":
       for (const result of list(value)) {
         const row = object(result)

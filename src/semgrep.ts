@@ -4,7 +4,7 @@ import { SourceMap } from "node:module"
 import { dirname, isAbsolute, relative, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
-const PACKS = ["p/javascript", "p/typescript", "p/nodejs", "p/secrets", "p/github-actions"]
+const PACKS = ["p/javascript", "p/typescript", "p/nodejs", "p/secrets", "p/github-actions", "p/rust"]
 const ESBUILD = "0.25.12"
 const SOURCES = /\.(?:[cm]?[jt]s|[jt]sx)$/
 type Failure = { type: string | unknown[]; path?: string; level?: string; rule_id?: string }
