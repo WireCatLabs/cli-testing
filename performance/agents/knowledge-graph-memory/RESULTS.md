@@ -72,12 +72,13 @@ time; inside a running agent it is much faster.
 
 ## Test 2: does the agent answer correctly?
 
-Here an AI agent (OpenClaw 2026.10.9) answers all 50 questions with the same model, Claude Sonnet 5.5, one
-question per fresh session. It must give the answer and the names of the records it used.
+Here an AI agent (OpenClaw 2026.10.9 or Hermes 0.21.0) answers all 50 questions with the same model, Claude Sonnet
+5.5, one question per fresh session. It must give the answer and the names of the records it used.
 
 **How to read the numbers.**
 
-- **Correct**: the answer matches the key (for example 2026-12-11), out of 50.
+- **Correct**: the answer matches the key (for example 2026-12-11), out of 50. A leading "the", "a" or "an" is
+  ignored, so "the accessibility review" counts. **Strict** is the same count without that allowance.
 - **Correct with sources**: the answer is right **and** the agent named exactly the right records: no record
   missing, no extra one. This is the strict score. It matters because a user should be able to click through to
   the message that proves the answer.
@@ -87,16 +88,34 @@ question per fresh session. It must give the answer and the names of the records
   tokens, $0.20 per million re-read tokens).
 - **Tokens per question**: how much text the model read and wrote for one question. This is what drives cost.
 
-| Setup | Correct | Correct with sources | Stale | Median time | Cost for 50 | Tokens per question |
-|---|---:|---:|---:|---:|---:|---:|
-| **OpenClaw alone**: the records as files, its own memory search | 50 | 34 | 0 | **27.5 s** | **$1.33** | **97,800** |
-| **OpenClaw + WireCat**: the records in Memo, read through the memo command | 50 | **40** | 0 | 33.3 s | $2.35 | 113,400 |
-| Hermes alone, + WireCat, + Supermemory, + Mem0 | not run | | | | | |
+| Setup | Correct | Strict | Correct with sources | Stale | Median time | Cost for 50 | Tokens per question |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **OpenClaw alone**: the records as files, its own memory search | 50 | 50 | 34 | 0 | 27.5 s | $1.33 | 97,800 |
+| **OpenClaw + WireCat**: the records in Memo, read through the memo command | 50 | 50 | **40** | 0 | 33.3 s | $2.35 | 113,400 |
+| **Hermes alone**: the records as files, its file and shell tools | 50 | 40 | 37 | 0 | **8.5 s** | $0.88 | 29,300 |
+| **Hermes + Supermemory**: the records only in Supermemory | 40 | 30 | 10 | 0 | 16.9 s | $3.34 | 50,700 |
+| **Hermes + Mem0**: the records only in Mem0 | 48 | 38 | 10 | **2** | 11.4 s | **$0.78** | **14,800** |
+| Hermes + WireCat | waits for memo's search fixes | | | | | | |
 
-The Hermes runs are blocked: Anthropic refuses Hermes's requests while it accepts OpenClaw's with the same key. That
-is being diagnosed.
+Hermes's costs are computed from the tokens it reports, at the same list price (cache writes at $2.50 per million);
+Hermes itself reports the cost as unknown. Hermes + Supermemory and + Mem0 can score "correct with sources" only on
+the 10 budget questions, where the right answer names nothing: their tools never show the agent a record's name, so
+the agent cited memory ids instead.
 
-**Where the source points were lost**, by question group (10 questions each, exact sources):
+**What went wrong with Hermes:**
+
+- **Hermes alone** wrote "the accessibility review" for all 10 commitment questions (strict 40). For the original
+  date it also named the email that moved the date, like OpenClaw.
+- **Hermes + Supermemory** answered "unknown" to all 10 "original date" questions. It probably sees only the latest
+  date: its search returns memories, which hold the current state, and the raw text pieces reach the agent empty.
+  This explanation is an inference from Hermes's provider code, not checked request by request.
+- **Hermes + Mem0** gave the old date for two projects (q11 Cedar Lantern, q16 Dune Harbor). Mem0 never kept the
+  emails that moved those dates, as Test 1 found. Every other answer was right.
+
+The first Hermes alone run (2 November) was thrown away: Hermes's tools started outside the records folder, and on 9
+questions the agent searched the whole disk. The runner was fixed and the run repeated.
+
+**Where OpenClaw lost source points**, by question group (10 questions each, exact sources):
 
 | Group | OpenClaw alone | OpenClaw + WireCat | What went wrong |
 |---|---:|---:|---|
@@ -114,6 +133,11 @@ is being diagnosed.
   against 34.
 - **WireCat's cost is real.** About 1.8 times the price ($0.047 against $0.027 per question), 16 % more tokens and
   20 % more time. The agent reads memo's whole instruction file for every question, and memo's replies are long.
+- **Hermes alone is the cheapest and fastest strong setup here**: every answer right, 3 times faster and a third
+  cheaper than OpenClaw alone, with almost as many exact sources as OpenClaw + WireCat (37 against 40).
+- **Hosted memory alone loses information an agent needs.** With Supermemory the agent could not find the original
+  dates. With Mem0 it gave two old dates. Neither can show where an answer came from. Plain files did better on
+  every count.
 - **The agent did well with Memo only because it rewrote the questions into keywords itself.** Test 1 shows that
   Memo's search fails on the question as typed. A weaker model, or a user typing into a search box, would not get
   that help.
@@ -126,7 +150,9 @@ is being diagnosed.
 | **OpenClaw alone** (files + its own memory search) | Finds every record from the question as typed. Cheapest and fastest agent here. Needs nothing installed beyond the agent. | Puts the old date ahead of the new one. Names a related note instead of the original meeting. Only plain files: no idea which record is an email or a chat. |
 | **Supermemory** | Best first-place rate (up to 0.50). Every record in the top 5 from the question as typed. | Ranked the same data differently on two loads. Its search through Hermes hides the record name, so no exact sources. Data leaves the computer. Building its memories took hours. |
 | **Mem0** | Good first-place rate (0.47). One short fact per record matches questions well. | Lost two of ten date changes and kept the old date. No record name reaches the agent. No date field. After 90 minutes it had processed only 716 of 2,000 records. Data leaves the computer. |
-| **Hermes** (alone and with each memory) | Not measured yet. | Its Anthropic requests are refused; the cause is being found. |
+| **Hermes alone** | Every answer right, the fastest (8.5 s) and among the cheapest. Good exact sources (37). | Adds "the" to answers. Names an extra source for original dates. Needed a workaround to use a Console API key (fixed upstream in 0.22.6). |
+| **Hermes + Supermemory** | Never gave an old date. | Could not find any original date (10 unknown). No sources. The most expensive setup ($3.34). |
+| **Hermes + Mem0** | Cheapest and fewest tokens. 48 of 50 right. | Gave two old dates, because Mem0 dropped the emails that changed them. No sources. |
 
 ## What this means for WireCat
 
@@ -139,7 +165,7 @@ is being diagnosed.
 
 ## What was not measured
 
-- Any Hermes answer run (blocked, see above).
+- Hermes + WireCat: it waits for memo's search fixes, so it measures the fixed memo.
 - Hindsight (not installed).
 - Real data. Everything here is invented, and the records are one line each.
 - More than one answer run per setup. AI answers vary between runs; one run of 50 questions can move by a few points.
@@ -155,3 +181,4 @@ is being diagnosed.
 | Mem0 search | 2026-11-02 | v3 API | not committed yet |
 | OpenClaw alone, Sonnet, 50 questions | 2026-11-02 | OpenClaw 2026.10.9, claude-sonnet-5-5 | not committed yet |
 | OpenClaw + WireCat, Sonnet, 50 questions | 2026-11-02 | OpenClaw 2026.10.9, memo 0.131.13, claude-sonnet-5-5 | not committed yet; a restart cut it after question 21, questions 22–50 ran again and the two halves were joined by hand |
+| Hermes alone, + Supermemory, + Mem0, Sonnet, 50 questions each | 2026-11-03 | Hermes 0.21.0 with the runner's API-key workaround, claude-sonnet-5-5 | not committed yet |
