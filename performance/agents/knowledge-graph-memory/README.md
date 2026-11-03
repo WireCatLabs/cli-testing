@@ -259,7 +259,7 @@ memory provider, does that user still need WireCat? (Competitive test plan, sect
 same 50 questions, and the same scorer counts the answers. This section adds the runners for four Hermes
 configurations, and a retrieval-only run of Supermemory and Mem0 that needs no answer model. The retrieval run
 uses the Memo baseline's questions and scoring; how far each service had processed the records when it was
-searched is stated with the results. The Hermes answer runs wait for the owner to store the Anthropic key.
+searched is stated with the results. The Hermes answer runs (3 November 2026) are in [RESULTS.md](RESULTS.md).
 Nothing in this section has measured answer accuracy yet.
 
 | Configuration | How the records reach it | Hermes toolsets | Status |
@@ -477,7 +477,7 @@ Supermemory's `threshold: 0` rows gave the same recall as the default threshold 
 
 ### What was not measured
 
-- Any answer: the four Hermes answer runs wait for the owner to store the Anthropic key. No predictions file exists yet.
+- Hermes + WireCat answers: they wait for memo's search fixes. The other three Hermes answer runs are in [RESULTS.md](RESULTS.md).
 - Supermemory and Mem0 credit actually used: the services' usage pages were not read. The account holds 4,000
   Supermemory documents of this work (100 pilot, 1,900 run 1, 2,000 run 2, of which 736 sent twice) and 2,100
   Mem0 adds.
