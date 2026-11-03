@@ -66,8 +66,10 @@ def corpus():
     return records, questions
 
 
-def normalized(value):
-    return re.sub(r"\s+", " ", value.strip().casefold())
+def normalized(value, strict=False):
+    text = re.sub(r"\s+", " ", value.strip().casefold())
+    # "the accessibility review" names the same thing as the key's "accessibility review" (NEED-2212).
+    return text if strict else re.sub(r"^(the|a|an) ", "", text)
 
 
 def score(records, questions, predictions):
@@ -76,7 +78,7 @@ def score(records, questions, predictions):
     expected = {question["id"] for question in questions}
     if len(by_id) != len(predictions) or set(by_id) != expected:
         raise ValueError("predictions must contain every question exactly once, with no extra ids")
-    counts = {"correct": 0, "cited_correctly": 0, "stale": 0}
+    counts = {"correct": 0, "cited_correctly": 0, "stale": 0, "correct_strict": 0}
     for question in questions:
         row = by_id[question["id"]]
         answer = normalized(row["answer"])
@@ -88,6 +90,8 @@ def score(records, questions, predictions):
         if not question["required_citations"]:
             supported = citations == []
         counts["correct"] += correct
+        counts["correct_strict"] += normalized(row["answer"], strict=True) in {
+            normalized(value, strict=True) for value in question["answers"]}
         counts["cited_correctly"] += correct and supported
         counts["stale"] += answer in {normalized(value) for value in question["stale_answers"]}
     return counts
@@ -120,12 +124,13 @@ def main():
     if args.self_check:
         predictions = [{"id": row["id"], "answer": row["answers"][0], "citations": row["required_citations"]} for row in questions]
         result = score(records, questions, predictions)
-        assert result == {"correct": 50, "cited_correctly": 50, "stale": 0}
+        assert result == {"correct": 50, "cited_correctly": 50, "stale": 0, "correct_strict": 50}
         wrong = json.loads(json.dumps(predictions))
         wrong[0]["answer"] = questions[0]["stale_answers"][0]
         wrong[1]["citations"] = ["made-up-source"]
         wrong[4]["answer"] = "1000"
-        assert score(records, questions, wrong) == {"correct": 48, "cited_correctly": 47, "stale": 1}
+        wrong[3]["answer"] = f"The {questions[3]['answers'][0]}"
+        assert score(records, questions, wrong) == {"correct": 48, "cited_correctly": 47, "stale": 1, "correct_strict": 47}
         print("| Harness self-check (oracle answers) | 2000 | 50 | 50 | 50 | 0 |")
         write_json(args.output / "self-check.json", result)
     if args.predictions:
