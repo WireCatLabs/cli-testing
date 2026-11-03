@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-03",
+  "node": "v24.19.0",
+  "memo": "0.131.21",
+  "cli_core": "0.560.0",
+  "seeded_messages": 1006,
+  "command": "memo projects status HRB --context-query 1C --before-time 2026-11-02T10:00:00.000Z",
+  "rounds": 7,
+  "claims": {
+    "money": {
+      "expected": "to_us 1200.00 EUR open since 2026-10-19, citing msg:max/11/-900/700 and msg:max/11/-900/790",
+      "observed": {
+        "amount": "1200.00",
+        "currency": "EUR",
+        "state": "open",
+        "since": "2026-10-19",
+        "evidence": ["msg:max/11/-900/700", "msg:max/11/-900/790"]
+      },
+      "pass": true
+    },
+    "contractor_next": {
+      "expected": "next: YOU (owner) since 2026-10-28",
+      "observed": {
+        "next": "owner",
+        "since": "2026-10-21"
+      },
+      "pass": false
+    },
+    "topic_quiet": {
+      "expected": "\"1C\" quiet on their side since 2026-10-12",
+      "observed": {
+        "theirs_last": "2026-10-12",
+        "silent_since": "2026-10-12T11:00:00.000Z"
+      },
+      "pass": true,
+      "in_text": true
+    },
+    "contractor_partial": {
+      "expected": "chat:telegram/22/555 partial, with its sync command",
+      "observed": {
+        "state": "partial",
+        "sync_command": "tg <profile> messages sync 555 --since-time 2026-09-03"
+      },
+      "pass": true
+    }
+  },
+  "claims_passed": 3,
+  "sizes": {
+    "json_bytes": 11169,
+    "json_target": 4096,
+    "compact_bytes": 3639,
+    "compact_target": 1536,
+    "text_bytes": 898,
+    "json_by_field": {
+      "project": 11,
+      "key": 5,
+      "name": 14,
+      "window": 71,
+      "signals": 275,
+      "money": 68,
+      "chats": 682,
+      "purposes": 8,
+      "last_message": 1226,
+      "reply_next": 1577,
+      "questions": 2963,
+      "promises": 1861,
+      "amounts": 510,
+      "topics": 455,
+      "coverage": 384,
+      "finance": 2
+    }
+  },
+  "wall_ms": {
+    "text": 279,
+    "json": 297,
+    "compact": 474
+  },
+  "answer_duration_ms": 56,
+  "texts_shown_without_their_ref": {
+    "json": 0,
+    "compact": 0,
+    "text": 0
+  }
+}

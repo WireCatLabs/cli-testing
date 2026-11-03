@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-03",
+  "node": "v24.19.0",
+  "tg": "0.115.0",
+  "tg_cli_core": "0.553.0",
+  "memo": "0.131.21",
+  "memo_cli_core": "0.560.0",
+  "tokenizer": {
+    "tiktoken": "0.14.0",
+    "encoding": "o200k_base"
+  },
+  "average_text_chars": 147,
+  "cases": [
+    {
+      "command": "tg messages list 1 --limit 1000",
+      "fields": "ref,timestamp,sender_name,text",
+      "variants": {
+        "json": {
+          "bytes": 594387,
+          "tokens": 143545
+        },
+        "json=fields": {
+          "bytes": 386494,
+          "tokens": 86544
+        },
+        "json --brief": {
+          "bytes": 594387,
+          "tokens": 143547
+        },
+        "compact": {
+          "bytes": 315252,
+          "tokens": 62241
+        }
+      }
+    },
+    {
+      "command": "tg messages list 1 --limit 50",
+      "fields": "ref,timestamp,sender_name,text",
+      "variants": {
+        "json": {
+          "bytes": 30499,
+          "tokens": 7383
+        },
+        "json=fields": {
+          "bytes": 20098,
+          "tokens": 4532
+        },
+        "json --brief": {
+          "bytes": 30499,
+          "tokens": 7384
+        },
+        "compact": {
+          "bytes": 16117,
+          "tokens": 3217
+        }
+      }
+    },
+    {
+      "command": "tg messages list 1 'date>=2026-09-10 date<2026-09-12' --limit 200",
+      "fields": "ref,timestamp,sender_name,text",
+      "variants": {
+        "json": {
+          "bytes": 37398,
+          "tokens": 9035
+        },
+        "json=fields": {
+          "bytes": 24502,
+          "tokens": 5501
+        },
+        "json --brief": {
+          "bytes": 37398,
+          "tokens": 9036
+        },
+        "compact": {
+          "bytes": 19859,
+          "tokens": 3944
+        }
+      }
+    },
+    {
+      "command": "tg search messages счёт --limit 50",
+      "fields": "ref,timestamp,sender_name,excerpt",
+      "variants": {
+        "json": {
+          "bytes": 33523,
+          "tokens": 7972
+        },
+        "json=fields": {
+          "bytes": 19222,
+          "tokens": 4423
+        },
+        "json --brief": {
+          "bytes": 22623,
+          "tokens": 5421
+        },
+        "compact": {
+          "bytes": 15081,
+          "tokens": 3088
+        }
+      }
+    },
+    {
+      "command": "tg chats list",
+      "fields": "ref,title",
+      "variants": {
+        "json": {
+          "bytes": 891,
+          "tokens": 260
+        },
+        "json=fields": {
+          "bytes": 454,
+          "tokens": 135
+        },
+        "json --brief": {
+          "bytes": 891,
+          "tokens": 258
+        },
+        "compact": {
+          "bytes": 210,
+          "tokens": 61
+        }
+      }
+    },
+    {
+      "command": "memo search messages счёт --limit 50",
+      "fields": "ref,timestamp,sender_name,excerpt",
+      "variants": {
+        "json": {
+          "bytes": 33037,
+          "tokens": 7844
+        },
+        "json=fields": {
+          "bytes": 18737,
+          "tokens": 4295
+        },
+        "json --brief": {
+          "bytes": 22137,
+          "tokens": 5295
+        },
+        "compact": {
+          "bytes": 14926,
+          "tokens": 3048
+        }
+      }
+    }
+  ],
+  "f1_check": {
+    "json_items": 1000,
+    "compact_rows": 1000,
+    "refs_kept": true,
+    "texts_kept": 1000
+  },
+  "f3_window": {
+    "messages": 62,
+    "oldest_first": true,
+    "inside": true
+  }
+}
