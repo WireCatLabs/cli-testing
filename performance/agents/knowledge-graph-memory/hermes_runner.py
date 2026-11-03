@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 import re
+import sqlite3
 import subprocess
 import time
 from datetime import UTC, datetime
@@ -59,6 +60,8 @@ def hermes_env(config):
         "PATH": f"{place['bin']}:{os.environ['PATH']}",
         "HOME": str(place["home"]),
         "HERMES_HOME": str(place["hermes_home"]),
+        # Hermes's terminal and file tools start in TERMINAL_CWD, else HOME, not in the process's working folder.
+        "TERMINAL_CWD": str(place["workspace"]),
         # An empty CODEX_HOME stops Hermes importing or self-healing from the owner's ~/.codex/auth.json.
         "CODEX_HOME": str(place["codex_home"]),
         "PYTHONPATH": f"{Path(__file__).resolve().parent / 'hermes_site'}:{BENCH / 'pydeps'}",
@@ -160,11 +163,18 @@ def signed_in(config, provider):
     return done.returncode == 0 and any(line.startswith(f"{provider} (") for line in done.stdout.splitlines())
 
 
-def oracle_seen(place):
+def oracle_seen(place, session_ids):
     # The auto-approved terminal tool can read the answer key; these keys exist only in oracle.json.
-    markers = (b"oracle.json", b"required_citations", b"stale_answers")
-    return any(marker in path.read_bytes() for path in place["hermes_home"].rglob("*") for marker in markers
-               if path.is_file() and path.stat().st_size < 500_000_000)
+    # state.db keeps every earlier run's sessions, so only this run's sessions are read.
+    markers = ("oracle.json", "required_citations", "stale_answers")
+    database = place["hermes_home"] / "state.db"
+    if not session_ids or not database.exists():
+        return None
+    with sqlite3.connect(f"file:{database}?mode=ro", uri=True) as db:
+        marks = ",".join("?" * len(session_ids))
+        rows = db.execute(f"SELECT coalesce(content, '') || coalesce(tool_calls, '') FROM messages "
+                          f"WHERE session_id IN ({marks})", list(session_ids)).fetchall()
+    return any(marker in text for (text,) in rows for marker in markers)
 
 
 def parse(stdout):
@@ -235,7 +245,8 @@ def answer(args):
                "reasoning": args.reasoning,
                "toolsets": CONFIGS[args.config]["toolsets"], "provider": CONFIGS[args.config]["provider"],
                "date": datetime.now(UTC).isoformat(timespec="seconds"), "questions": len(queries),
-               "owner_hermes_changed": changed, "oracle_seen_in_sessions": oracle_seen(place)}
+               "owner_hermes_changed": changed, "oracle_seen_in_sessions": oracle_seen(place, [row["usage"].get("session_id") for row in rows
+                                                                       if row["usage"].get("session_id")])}
     if len(queries) == 50:
         oracle = json.loads((args.fixture / "oracle.json").read_text())
         summary["scores"] = score(records, oracle, predictions)
