@@ -83,3 +83,6 @@ The coverage targets of the plan:
 - The client-group check on a fresh store (a fixture test covers it in cli-memo).
 - Run-to-run variance: one run on each side.
 - memo 0.131.1, released after the installed 0.130.0.
+
+The `projects status` command that followed is measured on an invented store in
+[status-fixture](status-fixture/README.md).
