@@ -20,4 +20,4 @@
   cost without the network, MCP.
 - [ci](ci/README.md): how long the pull-request checks take, and where the time goes.
 - [funnel](funnel/README.md): wirecat-funnel, the tsnet helper for Tailscale Funnel: whether Tailscale's
-  log upload stays off.
+  log upload stays off, and Funnel end to end.

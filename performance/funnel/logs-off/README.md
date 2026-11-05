@@ -57,8 +57,8 @@ go1.27.3. The script now asks Go inside the repository. A first run on 2026-11-0
 
 ## Not measured
 
-- A logged-in node. The owner's one live check (`bin/live-check` in funnel-cli) counts the helper's lookups of
-  `log.tailscale.com` while Funnel is on.
+- A logged-in node here. The owner's live check covered it on 2026-11-05: 0 lookups of `log.tailscale.com`
+  ([live-check](../live-check/README.md)).
 - UDP traffic, such as STUN or DERP, which is not a log path. Lookups that bypass Go's resolver, for example
   Tailscale's bootstrap DNS by fixed IP. These are not on the log path either, because the log transport sends
   nothing.
