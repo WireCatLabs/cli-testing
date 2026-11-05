@@ -95,13 +95,17 @@ Here an AI agent (OpenClaw 2026.10.9 or Hermes 0.21.0) answers all 50 questions 
 | **OpenClaw alone**: the records as files, its own memory search | 50 | 50 | 34 | 0 | 27.5 s | $1.33 | 97,800 |
 | **OpenClaw + WireCat**, memo 0.131.13, word search only (2 Nov) | 50 | 50 | **40** | 0 | 33.3 s | $2.35 | 113,400 |
 | **OpenClaw + WireCat**, memo 0.131.24 with the search fixes and e5-small (5 Nov) | 50 | 50 | **40** | 0 | 29.4 s | $2.73 | 95,900 |
+| **OpenClaw + WireCat**, memo 0.131.25 with the short skill, MEMO-39 (5 Nov) | 50 | 50 | **40** | 0 | 27.0 s | $1.45 | **81,300** |
 | **Hermes alone**: the records as files, its file and shell tools | 50 | 40 | 37 | 0 | **8.5 s** | $0.88 | 29,300 |
 | **Hermes + Supermemory**: the records only in Supermemory | 40 | 30 | 10 | 0 | 16.9 s | $3.34 | 50,700 |
 | **Hermes + Mem0**: the records only in Mem0 | 48 | 38 | 10 | **2** | 11.4 s | **$0.78** | **14,800** |
 | **Hermes + WireCat**, memo 0.131.24 with e5-small (5 Nov) | 50 | 40 | 33 | 0 | 14.1 s | $2.07 | 51,100 |
+| **Hermes + WireCat**, memo 0.131.25 with the short skill, MEMO-39 (5 Nov) | 50 | 40 | 33 | 0 | 10.3 s | $0.98 | 31,300 |
 
 Hermes's costs are computed from the tokens it reports, at the same list price (cache writes at $2.50 per million);
-Hermes itself reports the cost as unknown. Hermes + Supermemory and + Mem0 can score "correct with sources" only on
+Hermes itself reports the cost as unknown. OpenClaw's rows are OpenClaw's own estimate, which prices re-read tokens at
+$0.10 per million, not $0.20; each agent's rows keep the method of its first row, so they compare down a column, and
+across the two agents only roughly. Hermes + Supermemory and + Mem0 can score "correct with sources" only on
 the 10 budget questions, where the right answer names nothing: their tools never show the agent a record's name, so
 the agent cited memory ids instead.
 
@@ -155,6 +159,60 @@ questions the agent searched the whole disk. The runner was fixed and the run re
   Memo's search fails on the question as typed. A weaker model, or a user typing into a search box, would not get
   that help.
 
+### MEMO-39: a short skill for agents (5 November)
+
+**Why.** WireCat cost an agent about twice what plain files did ($2.73 against $1.33 with OpenClaw, $2.07 against
+$0.88 with Hermes). The question was where those tokens go, and whether the smallest change to memo brings an agent
+with WireCat down to the cost of an agent with files, without losing a point of score. The owner chose this before
+adding meetings to `search all` (MEMO-7).
+
+**Where the tokens went on memo 0.131.24**, from the agents' own session stores
+([`token_breakdown.py`](token_breakdown.py)). A tool reply is written to the model's cache once ($2.50 per million)
+and re-read on every later call in the question:
+
+| Part of the cost, per question | OpenClaw before | OpenClaw after | Hermes before | Hermes after |
+|---|---:|---:|---:|---:|
+| memo's skill, read at the start of every question | **$0.0215** (39 %) | $0.0036 (12 %) | **$0.0253** (61 %) | $0.0043 (22 %) |
+| `memo search all` replies | $0.0165 (30 %) | $0.0094 (32 %) | $0.0070 (17 %) | $0.0041 (21 %) |
+| the agent's own prompt, the question, re-reads | $0.0121 (22 %) | $0.0116 (40 %) | $0.0056 (14 %) | $0.0081 (42 %) |
+| the agent's own output (thinking, tool calls, answer) | $0.0042 (8 %) | $0.0046 (16 %) | $0.0028 (7 %) | $0.0027 (14 %) |
+| model calls per question | 3.3 | 3.5 | 3.6 | 3.6 |
+| `--limit` most asked | 30 (67 of 129 searches) | 10 (63 of 143) | 20 (44 of 98) | 10 (77 of 94) |
+
+The skill was 22 KB, about 8,100 tokens, and both agents read all of it for every question. Turns and the agent's own
+thinking were not the problem: the files agent makes more calls (4.4 per question) than the memo agent.
+
+**What changed** ([cli-memo #618](https://github.com/WireCatLabs/cli-memo/pull/618)):
+the skill an agent reads every session is 3 KB. It opens with how to answer a question
+(`memo search all '<key words>' --limit 10 --compact`, search again in other words, read the dates, cite each
+reference) and the rules every agent keeps. The rest, unchanged, is printed on request by `memo skill show <topic>`
+(`search`, `projects`, `meetings`, `mail`, `proposals`, `money`, `mcp`, `vocabulary`). No agent asked for a topic in
+these runs. memo's code and replies did not change; the runs are on 0.131.25 (cli-core 0.567.0) with that skill.
+
+| | OpenClaw files | OpenClaw + WireCat 0.131.24 | **after** | Hermes alone | Hermes + WireCat 0.131.24 | **after** |
+|---|---:|---:|---:|---:|---:|---:|
+| Correct / strict / with sources | 50 / 50 / 34 | 50 / 50 / 40 | **50 / 50 / 40** | 50 / 40 / 37 | 50 / 40 / 33 | **50 / 40 / 33** |
+| Cost for 50 | $1.33 | $2.73 | **$1.45** | $0.88 | $2.07 | **$0.98** |
+| Tokens per question | 97,800 | 95,900 | **81,300** | 29,300 | 51,100 | **31,300** |
+| Cache writes per question | | 17,000 | **6,900** | 3,800 | 12,300 | **4,600** |
+| Median time | 27.5 s | 29.4 s | **27.0 s** | 8.5 s | 14.1 s | **10.3 s** |
+| Tool calls for 50 (OpenClaw counts each call inside its code tool) | 344 | 253 | **282** | | 137 | **142** |
+
+**What it showed.**
+
+- **The cost halved for both agents, with the same scores**: OpenClaw $2.73 → $1.45 (−47 %), Hermes $2.07 → $0.98
+  (−53 %). Every answer is still right, OpenClaw still names exact sources 40 times, Hermes 33.
+- **Tokens are now below plain files with OpenClaw** (81,300 against 97,800) **and close with Hermes** (31,300
+  against 29,300).
+- **Cost is at plain files within the noise of one run, not below.** OpenClaw + WireCat is $0.0291 a question against
+  $0.0267 for files; the standard error of each mean is $0.0017 and $0.0011, so the gap is 1.2 standard errors.
+  Hermes is $0.0195 against $0.0177, with standard errors of $0.0006 and $0.0027: 0.65 standard errors. A second run
+  of either could land on either side, so this page does not claim "cheaper".
+- **OpenClaw made more tool calls (253 → 282)** but each was smaller: a short skill gives it less to go on, so it
+  runs one more search more often. Time still fell.
+- **memo's search replies are now its largest cost** ($0.0094 a question with OpenClaw). OpenClaw still asked for 15 or 25
+  hits in 64 of 143 searches, and often runs two searches in one tool call.
+
 ## Strong and weak, per option
 
 | Option | Strong at | Weak at |
@@ -171,7 +229,8 @@ questions the agent searched the whole disk. The runner was fixed and the run re
 
 1. Done on 5 November: questions as typed, one ranked list across sources and meaning search for mail are released
    (cli-core 0.564.0, memo 0.131.24). Test 1 for memo is now 0.40 / 1.00 / 1.00 with e5-small, question as typed.
-   Still open: meetings in `search all`, and a cheaper path for agents. The plan is in cli-private,
+   Still open: meetings in `search all`. The cheaper path for agents (MEMO-39, a 3 KB skill) halved an agent's
+   cost with WireCat, to the cost of plain files within run-to-run noise. The plan is in cli-private,
    `plans/2026-11-02-memo-benchmark-fixes.md`.
 2. On 2,000 short records an agent with plain files already answers everything. WireCat gives more exact sources
    with OpenClaw, none with Hermes, and costs more in both. Making memo cheaper for agents comes before any claim.
@@ -196,3 +255,4 @@ questions the agent searched the whole disk. The runner was fixed and the run re
 | OpenClaw alone, Sonnet, 50 questions | 2026-11-02 | OpenClaw 2026.10.9, claude-sonnet-5-5 | not committed yet |
 | OpenClaw + WireCat, Sonnet, 50 questions | 2026-11-02 | OpenClaw 2026.10.9, memo 0.131.13, claude-sonnet-5-5 | not committed yet; a restart cut it after question 21, questions 22–50 ran again and the two halves were joined by hand |
 | Hermes alone, + Supermemory, + Mem0, Sonnet, 50 questions each | 2026-11-03 | Hermes 0.21.0 with the runner's API-key workaround, claude-sonnet-5-5 | not committed yet |
+| OpenClaw + WireCat and Hermes + WireCat, Sonnet, 50 questions each, MEMO-39 short skill | 2026-11-05 | OpenClaw 2026.10.9, Hermes 0.21.0, memo 0.131.25 from branch `feat/memo-39-agent-cost`, claude-sonnet-5-5 | not committed yet; a 2-question pilot (q02, q04) per agent ran first and is not counted |
