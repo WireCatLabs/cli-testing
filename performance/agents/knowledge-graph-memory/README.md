@@ -1482,6 +1482,13 @@ Read in the installed package code (2.1.19 and 1.2.1), not run against the servi
   `group:runtime`, `group:web`, `group:ui`, `group:sessions`, `group:automation`, `group:nodes`, `ls` and
   `view_image`, so it cannot read the files agent's workspace. Whether OpenClaw removes every one of them could not
   be seen without a model call: the runner fails a run in which any denied tool ran (`denied_tools_used`).
+- **Code Mode off in the plugin homes** (`tools.codeMode: false`). The 10K pilot (6 November 2026) failed that
+  check twice: with the setting unset, OpenClaw turned Code Mode on for Claude Sonnet 5.5 and the model saw one
+  JavaScript tool named `exec` that calls the hidden tools. The transcripts show it called only `supermemory_search`,
+  `memory_search` and `memory_list`, but the check cannot tell that `exec` from a shell. With Code Mode off the agent
+  reaches the memory tools directly or through OpenClaw's tool search (`tool_search`, `tool_call`); the pilot's
+  `tool_call` targets were memory tools only. The files and memo agents keep OpenClaw's default, as in the 2K round,
+  so this is one difference between the OpenClaw setups. The check reads tool names, not `tool_call` targets.
 - `MEM0_TELEMETRY=false` for Mem0 (the plugin and its SDK send usage events to PostHog otherwise).
   `DBUS_SESSION_BUS_ADDRESS=disabled:` as for every run here.
 - Install accepts the plugins' capability consent (`--accept-capabilities`) after reading both manifests: the memory

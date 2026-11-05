@@ -162,6 +162,9 @@ def configure_plugin(root, plugin, store, model=None):
     defaults.setdefault("compaction", {})["memoryFlush"] = {"enabled": False}
     agents["entries"] = {"main": {"workspace": str(plugin_paths(root, plugin)["ws"]),
                                   "tools": {"deny": [*DENIED_GROUPS, *spec["writes"]]}}}
+    # Unset, Code Mode turns itself on for Claude Sonnet 5.5 and wraps the memory tools in a JavaScript tool named
+    # `exec`, which the trust check cannot tell from a shell (10K pilot, 6 November 2026). Off: the tools are direct.
+    config["tools"] = {**config.get("tools", {}), "codeMode": False}
     if model:
         defaults["model"] = {"primary": model}
         defaults.setdefault("models", {})[model] = {"agentRuntime": {"id": "openclaw"}}
