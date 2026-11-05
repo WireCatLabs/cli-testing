@@ -94,7 +94,7 @@ class Supermemory:
 
     def __init__(self, tag):
         self.api = Api(SUPERMEMORY, "Bearer " + keyring_secret("supermemory"))
-        self.tag = tag
+        self.tag, self.ids = tag, {}
 
     final = ("done", "failed")
     retry = ("failed",)
@@ -128,10 +128,19 @@ class Supermemory:
             reply = self.api.request("POST", "/v3/documents/list",
                                      {"containerTags": [self.tag], "limit": 500, "page": page, "order": "asc"})
             for document in reply.get("memories", []):
-                states[document.get("customId") or (document.get("metadata") or {}).get("rid")] = document["status"]
+                name = document.get("customId") or (document.get("metadata") or {}).get("rid")
+                states[name] = document["status"]
+                self.ids[name] = document["id"]
             if page >= reply["pagination"]["totalPages"]:
                 return states
             page += 1
+
+    def settled(self, held):
+        """The list shows only `status`; memories exist once `dreamingStatus` ends, which needs a GET per document."""
+        sample = sorted(held)[::max(1, len(held) // 50)]
+        states = [self.api.request("GET", f"/v3/documents/{document}").get("dreamingStatus") for document in
+                  [self.ids[name] for name in sample if name in self.ids]]
+        return all(state in ("done", "failed") for state in states)
 
     def extra(self):
         tags = self.api.request("GET", "/v3/container-tags/list")
@@ -215,6 +224,9 @@ class Mem0:
                 return states
             page += 1
 
+    def settled(self, held):
+        return True
+
     def extra(self):
         return {"memories": self.count()}
 
@@ -286,7 +298,10 @@ def ingest_records(service, chosen, root, args, ledger):
     # One listing per poll instead of one GET per record every 10 s: 7,800 GETs a round was most of the old wait.
     while True:
         held, status = check(service, chosen, ledger)
-        if all(held.get(name_of(index)) in service.final for index, _ in chosen) or time.time() > deadline:
+        if time.time() > deadline:
+            status["deadline_reached"] = True
+            break
+        if all(held.get(name_of(index)) in service.final for index, _ in chosen) and service.settled(held):
             break
         time.sleep(300)
     write_status(root, status)
@@ -345,8 +360,8 @@ def main():
         ingest = {"search_only": True, "ingest_calls": 0}
     else:
         ingest = ingest_records(service, chosen, root, args, ledger)
-    if isinstance(service, Mem0):
-        ingest["memories_stored"] = service.count()
+    # What the store held when it was searched: a store still building memories gives lower numbers.
+    ingest["at_search"] = service.extra()
     print(json.dumps(ingest, indent=2))
 
     raw = root / "raw"

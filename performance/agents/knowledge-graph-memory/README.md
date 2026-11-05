@@ -373,7 +373,9 @@ python3 performance/agents/knowledge-graph-memory/provider_retrieval.py --servic
   file stays small. `--status --tag <tag>` asks the service what it holds for the tag (Supermemory's document list,
   Mem0's event feed) and writes `<output>/status-<time>.json`; it sends nothing. `--resume --tag <tag>` with the same
   `--output` writes that status first, then sends only the records the service does not hold or marked failed, then
-  waits and searches as usual. Mem0 counts every add against its allowance, so it is never re-sent blindly: a record
+  waits and searches as usual. Supermemory's wait also checks `dreamingStatus` on 50 sampled documents: the list
+  shows a document `done` while its memories are still being built, and a search then sees a half-built store.
+  `results.json` records what the store held when it was searched (`ingest.at_search`). Mem0 counts every add against its allowance, so it is never re-sent blindly: a record
   whose event is still pending is not missing. The wait lists the tag's state every 5 minutes instead of asking for
   each record (7,800 requests a round before).
 - **Record names travel as metadata, never in the text.** Supermemory: `customId` and `metadata.rid` = `r0001`,
