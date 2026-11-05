@@ -15,7 +15,9 @@ from memo_baseline import Memo, configure_mail, isolated_env, name_of, write_sou
 from provider_retrieval import keyring_secret
 from run import score
 
-BENCH = Path.home() / ".cache/wirecat-bench"
+# WIRECAT_BENCH moves the configurations (as in hermes-anthropic-key.sh); the provider SDKs stay shared.
+SHARED = Path.home() / ".cache/wirecat-bench"
+BENCH = Path(os.environ.get("WIRECAT_BENCH", SHARED))
 HERMES_PYTHON = Path.home() / ".hermes/hermes-agent/venv/bin/python"
 HERMES_SCRIPT = Path.home() / ".hermes/hermes-agent/hermes"
 OWNER_HERMES = Path.home() / ".hermes"
@@ -51,7 +53,7 @@ Reply with one JSON object and nothing else: {{"answer": "...", "citations": [".
 def paths(config):
     base = BENCH / "hermes" / config
     return {"base": base, "hermes_home": base / "hermes-home", "home": base / "home", "workspace": base / "workspace",
-            "memo": base / "memo", "bin": base / "bin", "codex_home": BENCH / "codex-empty"}
+            "memo": base / "memo", "bin": base / "bin", "codex_home": SHARED / "codex-empty"}
 
 
 def hermes_env(config):
@@ -64,7 +66,7 @@ def hermes_env(config):
         "TERMINAL_CWD": str(place["workspace"]),
         # An empty CODEX_HOME stops Hermes importing or self-healing from the owner's ~/.codex/auth.json.
         "CODEX_HOME": str(place["codex_home"]),
-        "PYTHONPATH": f"{Path(__file__).resolve().parent / 'hermes_site'}:{BENCH / 'pydeps'}",
+        "PYTHONPATH": f"{Path(__file__).resolve().parent / 'hermes_site'}:{SHARED / 'pydeps'}",
         "PYTHONDONTWRITEBYTECODE": "1",
         "MEM0_TELEMETRY": "False",
         # Without this Hermes runs `gh auth token`, which reaches the keyring over D-Bus even with a throwaway HOME,

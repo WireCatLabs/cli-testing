@@ -68,6 +68,8 @@ def corpus():
 
 
 ARCHIVE_SEED = 20261105
+# Mem0's free tier had under 7,850 adds left for November 2026; a margin for Hermes's per-turn adds.
+MEM0_SUBSET = 6500
 ARCHIVE_PROJECTS = [*PROJECTS, "Amber Kitchen", "Hazel Ridge"]
 LOOKALIKES = dict(zip(PEOPLE, ["Ari Vail", "Bo Read", "Cy Ross", "Dee Blake", "Eli Paine", "Kay Stone", "Gia Fern",
                                "Hal Grove", "Ira Brooks", "Jo Burch"], strict=True))
@@ -246,13 +248,14 @@ def subject_trail(rng, fresh_date, team, subject, owner, lookalike):
          revised if stale_commitment else first_deliverable, [commitment], stale_commitment),
         (f"What approved budget amount was agreed for the {subject}?", "unknown", [], []),
     ]
-    return chain, subject_questions
+    hardness = (changes, len(stale_dates) - changes, bool(stale_owner), bool(stale_commitment))
+    return chain, subject_questions, {"hardness": hardness, "people": [owner, current_owner, lookalike]}
 
 
 def archive_corpus(size):
     """About a dozen projects with long, noisy histories; every question subject is one project milestone."""
     rng = random.Random(ARCHIVE_SEED)
-    items, questions = [], []
+    items, asked = [], {}
     used_dates = set()
 
     def fresh_date(after):
@@ -278,9 +281,13 @@ def archive_corpus(size):
             subject = f"{project} {milestone}"
             owner = team[0] if number == 0 else rng.choice(team)
             lookalike = PAIRS.get(owner) or rng.choice([person for person in team if person != owner])
-            chain, subject_questions = subject_trail(rng, fresh_date, team, subject, owner, lookalike)
+            chain, subject_questions, info = subject_trail(rng, fresh_date, team, subject, owner, lookalike)
             items.extend(chain)
-            questions.extend(subject_questions)
+            # The asked milestone of a real project is its hardest: most changes, then rejected proposals,
+            # then a handover and a revised commitment; ties go to the earlier milestone.
+            rank = (*info["hardness"], -number)
+            if project in PROJECTS and (project not in asked or rank > asked[project][0]):
+                asked[project] = (rank, subject, subject_questions, info["people"])
 
     def fill(template, project=None):
         team = teams[project] if project else ARCHIVE_PEOPLE
@@ -330,13 +337,55 @@ def archive_corpus(size):
         item["id"] = ref
         records.append({"id": ref, "kind": item["kind"], "timestamp": iso(item["day"], item["minute"]),
                         "text": item["text"]})
+    questions = [row for project in PROJECTS for row in asked[project][2]]
+    subjects = [asked[project][1] for project in PROJECTS]
+    people = sorted({person for project in PROJECTS for person in asked[project][3]})
     width = len(str(len(questions)))
     questions = [{"id": f"q{index:0{width}}", "question": question, "as_of": "2026-10-20T00:00:00Z",
                   "answers": [answer], "required_citations": [item["id"] for item in cited], "stale_answers": stale}
                  for index, (question, answer, cited, stale) in enumerate(questions, start=1)]
     assert len(records) == size and len({record["id"] for record in records}) == size
     assert all(record["timestamp"] < "2026-10-19" for record in records)
-    return records, questions
+    return records, questions, {"subjects": subjects, "people": people}
+
+
+DECISION_WORDS = re.compile(r"delivery|date|owner|commit|deliver|budget|take over|Handover|Recap|history")
+
+
+def provider_subset(records, asked, size, seed=ARCHIVE_SEED):
+    """The records a capped provider gets: all about the asked milestones, then the hardest distractors, then noise."""
+    texts = [record["text"] for record in records]
+    projects = sorted({project for subject in asked["subjects"] for project in ARCHIVE_PROJECTS
+                       if subject.startswith(project + " ")})
+    twins = {"Amber Kite": "Amber Kitchen", "Hazel Bridge": "Hazel Ridge"}
+    near = [*projects, *(twins[project] for project in projects if project in twins)]
+    lookalikes = sorted({PAIRS[person] for person in asked["people"] if person in PAIRS})
+    tiers = [
+        ("asked milestones", lambda text: any(subject in text for subject in asked["subjects"])),
+        ("decisions of other milestones and look-alike projects",
+         lambda text: any(name in text for name in near) and bool(DECISION_WORDS.search(text))),
+        ("quoting replies about the asked projects",
+         lambda text: text.startswith("Re: ") and any(name in text for name in near)),
+        ("look-alike people in the asked projects",
+         lambda text: any(name in text for name in lookalikes) and any(name in text for name in near)),
+    ]
+    chosen, counts = [], {}
+    taken = set()
+    for label, test in tiers:
+        tier = [index for index, text in enumerate(texts) if index not in taken and test(text)]
+        tier = tier[:max(0, size - len(chosen))]
+        chosen += tier
+        taken.update(tier)
+        counts[label] = len(tier)
+    rest = [index for index in range(len(records)) if index not in taken]
+    random.Random(seed).shuffle(rest)
+    noise = rest[:max(0, size - len(chosen))]
+    counts["noise"] = len(noise)
+    chosen = sorted([*chosen, *noise])
+    assert counts["asked milestones"] == sum(any(s in text for s in asked["subjects"]) for text in texts)
+    lines = "".join(json.dumps(records[index], ensure_ascii=False) + "\n" for index in chosen)
+    return {"records": len(chosen), "sha256": hashlib.sha256(lines.encode()).hexdigest(), "tiers": counts,
+            "ids": [records[index]["id"] for index in chosen]}
 
 
 def normalized(value, strict=False):
@@ -386,16 +435,21 @@ def main():
     if args.records != 2000 and args.records < 3000:
         parser.error("the archive corpus needs at least 3000 records")
     args.output.mkdir(parents=True, exist_ok=False)
-    records, questions = corpus() if args.records == 2000 else archive_corpus(args.records)
-    rows, asked = len(records), len(questions)
+    records, questions, asked = (*corpus(), None) if args.records == 2000 else archive_corpus(args.records)
+    rows = len(records)
     source = "".join(json.dumps(record, ensure_ascii=False) + "\n" for record in records)
     (args.output / "corpus.jsonl").write_text(source)
     write_json(args.output / "queries.json", [{key: row[key] for key in ["id", "question", "as_of"]} for row in questions])
     write_json(args.output / "oracle.json", questions)
-    archive = {} if rows == 2000 else {"projects": len(ARCHIVE_PROJECTS), "subjects": asked // 5}
+    archive = {}
+    if asked:
+        subset = provider_subset(records, asked, MEM0_SUBSET)
+        write_json(args.output / "subset-mem0.json", subset)
+        archive = {"projects": len(ARCHIVE_PROJECTS), "milestones": 50, "asked_milestones": asked["subjects"],
+                   "mem0_subset": {key: subset[key] for key in ("records", "sha256", "tiers")}}
     write_json(args.output / "manifest.json", {
         "fixture_version": 1 if rows == 2000 else 2, "seed": 20261024 if rows == 2000 else ARCHIVE_SEED,
-        "records": rows, "questions": asked, **archive,
+        "records": rows, "questions": len(questions), **archive,
         "source_counts": {kind: sum(record["kind"] == kind for record in records) for kind in KINDS},
         "sha256": hashlib.sha256(source.encode()).hexdigest(), "python": platform.python_version(),
     })
@@ -404,23 +458,24 @@ def main():
     if args.self_check:
         predictions = [{"id": row["id"], "answer": row["answers"][0], "citations": row["required_citations"]} for row in questions]
         result = score(records, questions, predictions)
-        assert result == {"correct": asked, "cited_correctly": asked, "stale": 0, "correct_strict": asked}
+        total = len(questions)
+        assert result == {"correct": total, "cited_correctly": total, "stale": 0, "correct_strict": total}
         wrong = json.loads(json.dumps(predictions))
         wrong[0]["answer"] = questions[0]["stale_answers"][0]
         wrong[1]["citations"] = ["made-up-source"]
         wrong[4]["answer"] = "1000"
         wrong[3]["answer"] = f"The {questions[3]['answers'][0]}"
-        assert score(records, questions, wrong) == {"correct": asked - 2, "cited_correctly": asked - 3, "stale": 1,
-                                                    "correct_strict": asked - 3}
-        print(f"| Harness self-check (oracle answers) | {rows} | {asked} | {asked} | {asked} | 0 |")
+        assert score(records, questions, wrong) == {"correct": len(questions) - 2, "cited_correctly": len(questions) - 3, "stale": 1,
+                                                    "correct_strict": len(questions) - 3}
+        print(f"| Harness self-check (oracle answers) | {rows} | {total} | {total} | {total} | 0 |")
         write_json(args.output / "self-check.json", result)
     if args.predictions:
         result = score(records, questions, json.loads(args.predictions.read_text()))
         write_json(args.output / "scores.json", {"engine": args.engine, **result})
-        print(f"| {args.engine.replace('|', '/')} | {rows} | {asked} | {result['correct']} | {result['cited_correctly']} | {result['stale']} |")
+        print(f"| {args.engine.replace('|', '/')} | {rows} | {len(questions)} | {result['correct']} | {result['cited_correctly']} | {result['stale']} |")
     else:
         for engine in ["Memo", "Hindsight", "Graphiti", "Cognee"]:
-            print(f"| {engine} (not run) | {rows} | {asked} | — | — | — |")
+            print(f"| {engine} (not run) | {rows} | {len(questions)} | — | — | — |")
 
 
 if __name__ == "__main__":

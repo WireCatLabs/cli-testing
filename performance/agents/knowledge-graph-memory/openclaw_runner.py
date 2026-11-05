@@ -168,7 +168,7 @@ def configure_plugin(root, plugin, store, model=None):
     path.write_text(json.dumps(config, indent=2) + "\n")
 
 
-def install_plugin(root, plugin, store, corpus_sha256):
+def install_plugin(root, plugin, store, corpus_sha256, subset=None):
     """A home of its own for one memory plugin, pointed at a store that was already ingested; nothing is written."""
     spec, place = PLUGINS[plugin], plugin_paths(root, plugin)
     for key in ("home", "tmp", "logs"):
@@ -187,7 +187,7 @@ def install_plugin(root, plugin, store, corpus_sha256):
         raise RuntimeError(f"plugins install {spec['spec']} exited {done.returncode}: {done.stderr.strip()[-800:]}")
     configure_plugin(root, plugin, store)
     (place["base"] / "store.json").write_text(json.dumps({"plugin": plugin, spec["store_key"]: store,
-                                                          "corpus_sha256": corpus_sha256}) + "\n")
+                                                          "corpus_sha256": corpus_sha256, "subset": subset}) + "\n")
     inspect = openclaw(root, "plugins", "inspect", spec["id"], "--runtime", "--json", plugin=plugin, check=False,
                        timeout=600)
     (place["logs"] / "plugins-inspect.json").write_text(inspect.stdout + inspect.stderr)
@@ -527,6 +527,7 @@ def main():
     plug.add_argument("--plugin", choices=sorted(PLUGINS), required=True)
     plug.add_argument("--store", required=True, help="Supermemory container tag or Mem0 user id of the ingest")
     plug.add_argument("--fixture", type=Path, required=True, help="the fixture that store was ingested from")
+    plug.add_argument("--subset", type=Path, help="the subset-mem0.json the store holds, if only a subset")
     prep = sub.add_parser("prepare", help="write the workspace, seed the memo store, index OpenClaw's memory")
     prep.add_argument("--fixture", type=Path, required=True)
     prep.add_argument("--memo", default=shutil.which("memo"), help="the memo binary the memo agent runs")
@@ -546,8 +547,10 @@ def main():
     if args.command == "install":
         install(root)
     elif args.command == "install-plugin":
+        subset = json.loads(args.subset.read_text()) if args.subset else None
         install_plugin(root, args.plugin, args.store,
-                       hashlib.sha256((args.fixture / "corpus.jsonl").read_bytes()).hexdigest())
+                       hashlib.sha256((args.fixture / "corpus.jsonl").read_bytes()).hexdigest(),
+                       {key: subset[key] for key in ("records", "sha256")} if subset else None)
     elif args.command == "prepare":
         prepare(root, args.fixture.resolve(), args.memo)
     elif args.command == "retrieval":

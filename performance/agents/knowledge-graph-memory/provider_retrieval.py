@@ -2,6 +2,7 @@
 """Ingest the synthetic corpus into a hosted memory service and score its own search, with no answer model."""
 
 import argparse
+import hashlib
 import json
 import platform
 import subprocess
@@ -214,6 +215,7 @@ def main():
     parser.add_argument("--fixture", type=Path, required=True, help="a run.py output directory")
     parser.add_argument("--output", type=Path, required=True, help="new directory; existing paths are refused")
     parser.add_argument("--records", type=int, help="ingest only the first N records (a pilot); default all")
+    parser.add_argument("--subset", type=Path, help="ingest only these records: run.py's subset-mem0.json")
     parser.add_argument("--tag", help="container tag / user id; a new one per run keeps runs apart")
     parser.add_argument("--no-infer", action="store_true", help="Mem0: store records verbatim, no fact extraction")
     parser.add_argument("--variants", default="default", help="Supermemory: comma list of default,threshold-0")
@@ -227,8 +229,18 @@ def main():
     tag = args.tag or f"wirecat_bench_{datetime.now(UTC):%Y%m%d_%H%M%S}"
     records = [json.loads(line) for line in (args.fixture / "corpus.jsonl").read_text().splitlines()]
     queries = json.loads((args.fixture / "queries.json").read_text())
-    chosen = list(enumerate(records))[:args.records]
-    names = {name_of(index): record["id"] for index, record in chosen}
+    chosen = list(enumerate(records))
+    subset = None
+    if args.subset:
+        subset = json.loads(args.subset.read_text())
+        wanted = set(subset["ids"])
+        # Names stay those of the whole corpus, so hits map back through the same table as every other run.
+        chosen = [(index, record) for index, record in chosen if record["id"] in wanted]
+        lines = "".join(json.dumps(record, ensure_ascii=False) + "\n" for _, record in chosen)
+        if len(chosen) != subset["records"] or hashlib.sha256(lines.encode()).hexdigest() != subset["sha256"]:
+            raise SystemExit("the subset does not match this fixture's corpus")
+    chosen = chosen[:args.records]
+    names = {name_of(index): record["id"] for index, record in enumerate(records)}
     service = Supermemory(tag) if args.service == "supermemory" else Mem0(tag, infer=not args.no_infer)
 
     if args.search_only and not args.tag:
@@ -259,7 +271,8 @@ def main():
             row["memory_results"] = sum(item["kinds"]["memory"] for item in rows)
             row["chunk_results"] = sum(item["kinds"]["chunk"] for item in rows)
         scores.append(row)
-    results = {"service": args.service, "tag": tag, "infer": not args.no_infer if args.service == "mem0" else None,
+    results = {"service": args.service, "tag": tag,
+               "subset": {key: subset[key] for key in ("records", "sha256")} if subset else None, "infer": not args.no_infer if args.service == "mem0" else None,
                "python": platform.python_version(), "date": datetime.now(UTC).isoformat(timespec="seconds"),
                "ingest": ingest, "search_calls": service.api.calls - ingest["ingest_calls"], "scores": scores}
     (root / "results.json").write_text(json.dumps(results, ensure_ascii=False, indent=2) + "\n")
