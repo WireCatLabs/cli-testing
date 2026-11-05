@@ -1620,11 +1620,10 @@ python3 $K/openclaw_runner.py --root $R prepare --fixture $F
 python3 $K/openclaw_runner.py --root $R install-plugin --plugin supermemory --store <tag from 1> --fixture $F
 python3 $K/openclaw_runner.py --root $R install-plugin --plugin mem0 --store <user id from 2> --fixture $F \
   --subset $F/subset-mem0.json
-$K/openclaw-anthropic-key.sh $R                                                     # the owner
-WIRECAT_OPENCLAW_ROOT=$R $K/openclaw-memory-keys.sh                                 # the owner
+# the owner, once, after steps 3 and 4: every 10K setup's keys from the keyring (the three scripts below in one)
+$K/owner-10k-keys.sh
 # 4. Hermes for 10K (free): its own folder
 export WIRECAT_BENCH=~/.cache/wirecat-bench-10k
-$K/hermes-anthropic-key.sh                                                          # the owner
 python3 $K/hermes_runner.py prepare --config alone --fixture $F
 python3 $K/hermes_runner.py prepare --config wirecat --fixture $F
 python3 $K/hermes_runner.py prepare --config supermemory --fixture $F --tag <tag from 1>
