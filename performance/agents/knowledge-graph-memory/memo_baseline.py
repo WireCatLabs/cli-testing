@@ -178,6 +178,9 @@ def main():
                                                    lambda text: text, raw)
     runs["lexical, content words joined by OR"] = query_all(memo, names, queries, "lexical-or", ["--exact"],
                                                             or_query, raw)
+    # No --exact and no model yet: the words half alone, as an owner who never ran `models download` searches.
+    runs["words, question verbatim (no model)"] = query_all(memo, names, queries, "words-verbatim", [],
+                                                             lambda text: text, raw)
 
     timings["model_download_s"] = memo.json("models", "download", args.model)[1]
     embedded, timings["sync_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "5000",

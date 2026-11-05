@@ -531,6 +531,117 @@ throwaway home (the daemon writes `~/.hindsight/profiles/`), `recall_types: obse
 provider now recalls only consolidated observations by default), retain the corpus through Hindsight's own API
 with the record name as metadata, then a 100-record pilot with `openai-codex` and one with `ollama`, each timed.
 
+## Memo retrieval after MEMO-36: a question as typed (3 November 2026)
+
+**Why it was run.** The baseline above showed that a question typed as a sentence finds nothing in
+`memo search all`: word search needs every word in one record. Backlog item MEMO-36 (owner decision NEED-2201 A)
+makes `search all` treat a question the way `search messages --discover` does, so any of the question's content
+words can find a record. The question: does the question as typed now reach the source? The plan's target was
+recall@10 of at least 0.95 for the question as typed, with the meaning model on. The result decides whether
+MEMO-36 is done.
+
+### Setup
+
+- Same machine, fixture (corpus sha256 `1d36697c…5e8802`) and `memo_baseline.py`, with one new row (below).
+- Memo built from source, not the published package: cli-memo `main` at `ab05df6` (0.131.20), with
+  `@wirecat/cli-core` linked to the change ([cli-core #2455](https://github.com/WireCatLabs/cli-core/pull/2455),
+  commits `102d9a53a` and `2443c68f5`). The binary was a two-line shell script running `node dist/bin/memo.js`,
+  passed as `--memo`.
+- New row **words, question verbatim (no model)**: the question as written, no `--exact`, run before
+  `memo models download`. This is what an owner who never downloaded the model gets.
+
+```sh
+python3 performance/agents/knowledge-graph-memory/run.py --self-check --output /tmp/kg-fixture
+python3 performance/agents/knowledge-graph-memory/memo_baseline.py --fixture /tmp/kg-fixture --output /tmp/kg-memo \
+  --memo /path/to/memo-wrapper
+```
+
+### Results
+
+Final build (`2443c68f5`), one full run from new folders:
+
+| Run | Before (0.131.13) R@1 / R@5 / R@10 | After R@1 / R@5 / R@10 | Empty replies after |
+|---|---|---|---:|
+| Lexical, question verbatim (`--exact`) | 0.00 / 0.00 / 0.00 | 0.00 / 0.00 / 0.00 | 50 of 50 |
+| Lexical, content words joined by OR (`--exact`) | 0.25 / 0.75 / 1.00 | 0.25 / 0.75 / 1.00 | 0 |
+| **Words, question verbatim (no model)** | not run (0 / 0 / 0 expected: every word in one record) | **0.25 / 1.00 / 1.00** | 0 |
+| **Hybrid (e5-small), question verbatim** | 0.25 / 0.30 / 0.30 | **0.25 / 1.00 / 1.00** | 0 |
+| Hybrid (e5-small), content words joined by OR | 0.25 / 0.55 / 0.55 | 0.25 / 0.55 / 0.55 | 0 |
+
+No reply was incomplete. Times are left out: this build runs unbundled through `node` and a wrapper
+(`memo --version` p50 0.08 s against 0.04 s for the published package), and other work shared the computer.
+
+**How the notes merge was chosen.** With the first commit (`102d9a53a`) the hybrid question row was
+0.25 / 0.55 / 0.55. Notes merge two ranked lists, any-word and meaning, by reciprocal rank. The any-word list holds
+almost every note meaning finds, so those notes got two votes and pushed down the note found by words alone. Each
+change below applied only to a question, and was measured on the same embedded store, hybrid question row only:
+
+| Change to the notes merge | R@1 / R@5 / R@10 |
+|---|---|
+| None (k = 60, equal weights) | 0.25 / 0.55 / 0.55 |
+| Meaning weight 0.5 | 0.25 / 0.55 / 0.55 |
+| Meaning weight 0.25 | 0.25 / 0.55 / 0.70 |
+| Meaning weight 0 (words alone) | 0.25 / 1.00 / 1.00 |
+| k = 5 | 0.25 / 0.65 / 0.80 |
+| k = 20 | 0.25 / 0.55 / 0.57 |
+| **Dedup: a note already found by words gets no vote from meaning; meaning still adds notes words missed** | **0.25 / 1.00 / 1.00** |
+
+Dedup was kept. It matches words alone here, and it keeps meaning for notes that share no word with the question.
+This corpus has no such question, so that part is not measured.
+
+### Then MEMO-38 and MEMO-37 (5 November 2026)
+
+Two more fixes from the same plan, each its own cli-core PR stacked on #2455, each measured with one full run of
+`memo_baseline.py` from new folders:
+
+- **MEMO-38** ([cli-core #2471](https://github.com/WireCatLabs/cli-core/pull/2471), `831d8f35c`): `search all`
+  searches mail by meaning.
+- **MEMO-37** ([cli-core #2474](https://github.com/WireCatLabs/cli-core/pull/2474), `cc2e7d165`): hits at the same
+  rank in their own source are ordered by cosine, so the sources no longer take turns.
+
+Question as typed, R@1 / R@5 / R@10:
+
+| Build | With e5-small | Words only (no model) | Mail hits found by meaning |
+|---|---|---|---:|
+| MEMO-36 (`2443c68f5`) | 0.25 / 1.00 / 1.00 | 0.25 / 1.00 / 1.00 | 0 of 250 |
+| + MEMO-38 | 0.25 / 1.00 / 1.00 | 0.25 / 1.00 / 1.00 | 222 of 250 |
+| + MEMO-37 | **0.40 / 1.00 / 1.00** | 0.25 / 1.00 / 1.00 | 222 of 250 |
+
+The free index experiment ([cli-testing #291](https://github.com/WireCatLabs/cli-testing/pull/291)) reached
+0.38 to 0.42 at R@1 with one in-memory list. MEMO-37 is in that range. MEMO-38 does not move recall here because
+every mail source was already first by words. The hybrid OR row also rose to 0.40 at R@1 with MEMO-37.
+
+Merges tried for MEMO-37 and dropped (with the model, measured on one embedded store):
+
+| Merge | R@1 / R@5 / R@10 |
+|---|---|
+| One words order by share of question words, plus one meaning order by cosine, fused by rank | 0.10 / 0.55 / 0.68 |
+| The same without the share of words | 0.28 / 0.55 / 0.68 |
+| The same, with the e5-small floor (0.80) on mail and messages too | 0.28 / 0.57 / 0.72 |
+| Cosine breaks ties within each rank (kept) | 0.40 / 1.00 / 1.00 |
+| The kept merge without the floor on mail and messages | 0.40 / 1.00 / 1.00 |
+
+The global merges lose because many expected notes are found by words only. Meaning keeps only notes above the
+floor, so hits found both ways outvote them. The share of question words fails because the decoy records repeat
+the same words.
+
+### What it showed
+
+- **The question as typed now finds the source with and without the model:** 40 of 40 in the top 5. `--exact`
+  stays strict, as intended.
+- The hybrid OR row did not change: an explicit `OR` query is query syntax, not a question, and keeps the old merge.
+- Recall@1 stays 0.25 in every row. This is the cap from the mail, note, mail… turn-taking of `search all` (MEMO-37).
+- Mail is now found by words for a question (all 10 mail sources at rank 1). `search all` never searches mail by
+  meaning (MEMO-38).
+
+### What was not measured
+
+- Messenger messages: the corpus has none (telegram records are notes). The change routes a question through
+  discovery for messages too; that path is covered by cli-core's tests only.
+- Calendar events: the corpus has none.
+- A question that shares no word with its source, where meaning alone must find it.
+- The published, bundled package: this was a local build.
+
 ## What remains unmeasured
 
 The Memo retrieval baseline above measures Memo's search only. No engine answer accuracy, token usage,
