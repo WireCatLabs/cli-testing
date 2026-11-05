@@ -927,3 +927,239 @@ to show whether a context layer is worth having; a run at archive scale (about 1
 - OpenClaw through MCP (`memo mcp`) in place of the CLI.
 - The other OpenClaw memory engines: QMD, Honcho, LanceDB, memory-wiki.
 - macOS and Windows.
+
+## Index variants (3 November 2026)
+
+**Why it was run.** The owner asked which index design works best. Memo's hybrid search found the right record for
+only 0.25 / 0.30 / 0.30 of the questions as typed (recall@1 / @5 / @10, [above](#memo-retrieval-baseline-2-november-2026)).
+OpenClaw scored 0.35 / 1.00 / 1.00. The hosted services in the retrieval-only run of
+[PR #288](https://github.com/WireCatLabs/cli-testing/pull/288) scored 0.47 / 1.00 / 1.00 (Supermemory) and
+0.47 / 0.95 / 0.95 (Mem0). Three causes were found in Memo's code (cli-core `src/services/search-all.ts`):
+
+- mail is never searched by meaning;
+- `search all` alternates sources by rank instead of ranking them in one list;
+- notes search drops meaning hits below the model's floor, 0.80 for e5-small.
+
+The question: would an index without those three faults reach the hosted numbers, and does a bigger model, word
+search or grouping records help more? The answer feeds the decision on what to fix in Memo's search first. This run
+needs no paid API and no account.
+
+### Setup
+
+- Machine: AMD Ryzen AI 9 HX 470 (24 threads), 30 GB RAM, Linux 7.0, Node 24.19.0, Python 3.14.4.
+- `@wirecat/cli-core` 0.562.0 from npm. Its own `downloadTextModel` fetched both models and the native ONNX Runtime
+  1.30.0, checked against its pinned sha256 list; the run used the native runtime. EmbeddingGemma comes under the
+  Gemma Terms of Use, so the script accepts them, the same as `memo models download embeddinggemma --accept-terms`.
+- The fixture from `run.py --self-check`, corpus sha256 `1d36697c…5e8802`, the same as the Memo baseline.
+- Isolation: [`index-variants.sh`](index-variants.sh) puts `HOME`, `XDG_*`, `WIRECAT_STATE_DIR`,
+  `WIRECAT_CONFIG_DIR` and the npm cache in a new folder and sets `DBUS_SESSION_BUS_ADDRESS=disabled:`.
+  Nothing reads the owner's models or keyring, and nothing signs in.
+
+```sh
+performance/agents/knowledge-graph-memory/index-variants.sh ~/.cache/wirecat-bench/index-variants/run2
+```
+
+The script installs cli-core 0.562.0, writes the fixture and runs [`index_variants.mjs`](index_variants.mjs). That
+script builds every index in memory and writes `results/results.json` and `results/per-query.json`. The measured
+`results.json` is [`index-variants-results.json`](index-variants-results.json).
+
+**Same keywords, same scorer.** The script calls `memo_baseline.py`'s own `or_query` and `score_run` through Python,
+so the keyword string and recall@k are exactly those of the Memo rows. The keywords row gives the meaning search the
+whole OR string, quotes and `OR` included, as the Memo hybrid OR row did.
+
+**Arms.** Every arm ranks all four kinds in one list, mail included.
+
+1. **e5-small, one vector per record, no floor.** A second row keeps only hits at 0.80 or above, to see what the
+   floor alone costs.
+2. **Arm 1 + word search.** SQLite FTS5 with BM25 over the records, always queried with the OR keywords: the
+   sentence as typed would need every word in one record and finds nothing, as Memo's word search showed. The two
+   lists are merged by reciprocal rank fusion, k = 60, over every vector rank and every word match. Ties break by
+   record order. "Typed" and "keywords" say what the meaning side embeds.
+3. **EmbeddingGemma 300M** (4-bit, 768 dimensions), arms 1 and 2 again. It has no floor in cli-core.
+4. **Grouped records.** Each project's eight records (chat, mail, note and meeting) form one group, as a thread or a
+   project page would; the 1,920 archive records are cut into runs of eight in corpus order: 250 groups. A group is
+   embedded as its records joined by line breaks (at most 277 e5 tokens, so no group is cut). A group hit stands for
+   all its records in corpus order. With word search, the record-level BM25 list is fused with that expanded list.
+   **This corpus has one-line records and no real threads, so this arm measures only dilution:** what happens to a
+   record's vector when seven others share it. Grouping by kind and day was not used: the fixture gives every project
+   the same timestamp per template, so such a group would hold one record of each of the ten projects.
+5. **LLM-extracted facts.** Claude Haiku 5.5 rewrites each record into one to three short standalone facts; each
+   fact keeps its record, is embedded with both models, with and without BM25 over the facts, and a hit on a fact
+   counts as its record, once. Approved by the owner with Claude Haiku only (NEED-2211); results in
+   [Arm 5: facts extracted by Claude Haiku](#arm-5-facts-extracted-by-claude-haiku).
+
+### Results
+
+40 questions have one expected record; the 10 budget questions have none.
+
+| Arm | Query | Recall@1 | Recall@5 | Recall@10 |
+|---|---|---:|---:|---:|
+| Word search alone (BM25) | keywords | 0.50 | 0.97 | 0.97 |
+| 1 · e5-small, records, floor 0.80 | typed | 0.38 | 1.00 | 1.00 |
+| 1 · e5-small, records, floor 0.80 | keywords | 0.25 | 0.75 | 0.88 |
+| 1 · e5-small, records | typed | 0.38 | 1.00 | 1.00 |
+| 1 · e5-small, records | keywords | 0.25 | 0.75 | 0.88 |
+| 2 · e5-small, records + BM25 | typed | 0.42 | 1.00 | 1.00 |
+| 2 · e5-small, records + BM25 | keywords | 0.38 | 0.88 | 0.93 |
+| 3 · EmbeddingGemma, records | typed | **0.50** | 1.00 | 1.00 |
+| 3 · EmbeddingGemma, records | keywords | 0.15 | 0.97 | 1.00 |
+| 3 · EmbeddingGemma, records + BM25 | typed | **0.50** | 1.00 | 1.00 |
+| 3 · EmbeddingGemma, records + BM25 | keywords | 0.42 | 0.97 | 1.00 |
+| 4 · e5-small, groups of 8 | typed | 0.25 | 1.00 | 1.00 |
+| 4 · e5-small, groups of 8 | keywords | 0.20 | 0.93 | 0.93 |
+| 4 · e5-small, groups of 8 + BM25 | typed | **0.50** | 1.00 | 1.00 |
+| 4 · e5-small, groups of 8 + BM25 | keywords | 0.47 | 1.00 | 1.00 |
+| 4 · EmbeddingGemma, groups of 8 | typed | 0.25 | 1.00 | 1.00 |
+| 4 · EmbeddingGemma, groups of 8 | keywords | 0.25 | 1.00 | 1.00 |
+| 4 · EmbeddingGemma, groups of 8 + BM25 | typed | **0.50** | 1.00 | 1.00 |
+| 4 · EmbeddingGemma, groups of 8 + BM25 | keywords | 0.50 | 1.00 | 1.00 |
+| 5 · e5-small, facts | typed | 0.25 | 1.00 | 1.00 |
+| 5 · e5-small, facts | keywords | 0.10 | 0.20 | 0.20 |
+| 5 · e5-small, facts + BM25 | typed | 0.40 | 0.97 | 1.00 |
+| 5 · e5-small, facts + BM25 | keywords | 0.10 | 0.25 | 0.63 |
+| 5 · EmbeddingGemma, facts | typed | 0.28 | 1.00 | 1.00 |
+| 5 · EmbeddingGemma, facts | keywords | 0.25 | 0.95 | 0.97 |
+| 5 · EmbeddingGemma, facts + BM25 | typed | 0.42 | 0.90 | 1.00 |
+| 5 · EmbeddingGemma, facts + BM25 | keywords | 0.35 | 0.90 | 0.95 |
+| *For comparison:* Memo hybrid (e5-small), 0.131.13 | typed | 0.25 | 0.30 | 0.30 |
+| *For comparison:* OpenClaw (EmbeddingGemma + words) | typed | 0.35 | 1.00 | 1.00 |
+| *For comparison:* Supermemory, hosted ([#288](https://github.com/WireCatLabs/cli-testing/pull/288)) | typed | 0.47 | 1.00 | 1.00 |
+| *For comparison:* Mem0, hosted ([#288](https://github.com/WireCatLabs/cli-testing/pull/288)) | typed | 0.47 | 0.95 | 0.95 |
+
+Build time, one run, native ONNX Runtime, 8 threads:
+
+| Index | Items | Build |
+|---|---:|---:|
+| BM25 (FTS5, in memory) | 2,000 records | 0.03 s |
+| e5-small vectors | 2,000 records | 13.0 s |
+| e5-small vectors | 250 groups | 6.7 s |
+| EmbeddingGemma vectors | 2,000 records | 51.5 s |
+| EmbeddingGemma vectors | 250 groups | 44.6 s |
+
+Arm 5 adds 5,531 facts: 22.6 s to embed with e5-small, 131.3 s with EmbeddingGemma, 0.1 s for their BM25 index, and
+the extraction calls described below. Opening a model took 1.1 s; embedding the 50 questions took 0.2–0.3 s with e5-small and 0.8–1.1 s with
+EmbeddingGemma. Download times are not counted.
+
+Rank of the expected record per question group, question as typed (10 questions each):
+
+| Group | Expected record | e5 records | e5 + BM25 | Gemma records | Gemma + BM25 | e5 groups | e5 groups + BM25 |
+|---|---|---|---|---|---|---|---|
+| current date | the confirming email | 2–3 | 3 | 3 | 3 | 2 | 2–3 |
+| original date | the first chat message | 2–3 | 1–2 | 1 (one 2) | 1 | 1 | 1 |
+| owner | the owner note | 1 | 1 | 1 | 1 | 3 | 1 |
+| commitment | the meeting passage | 1–2 | 2–3 | 1–2 | 2–3 | 4 | 3 |
+
+### What it showed
+
+- **An index without Memo's three faults reaches the hosted numbers at 5 and 10.** e5-small, one list, mail
+  included, scores 0.38 / 1.00 / 1.00 for the question as typed, against Memo's 0.25 / 0.30 / 0.30. It ties
+  Supermemory at recall@5 and @10 and beats Mem0 there. At recall@1 it is 0.38 against the hosted 0.47.
+  Word search (arm 2) lifts it to 0.42; EmbeddingGemma lifts it to 0.50.
+- **The floor is not what hurt Memo here.** With the 0.80 floor the scores are the same in both rows. The floor cut
+  some lists to 7 hits, but never an expected record.
+  On this corpus the loss comes from leaving mail out of meaning search and from alternating sources.
+- **Recall@1 stops at 0.50 for every design.** In every arm the email that confirms the new date is second or third:
+  the original chat message and the project's reference note "the original delivery date…" come first. OpenClaw
+  showed the same order (the email third), and the hosted services stop at 0.47; their ranks per group were not
+  compared here. Finding the record is solved; choosing the current one
+  is not, and that is a job for time order or an answer model, not for the index.
+- **The OR keywords hurt meaning search.** Embedding `"current" OR "confirmed" OR …` instead of the sentence drops
+  e5-small to 0.25 / 0.75 / 0.88 and EmbeddingGemma to 0.15 at recall@1. An agent should send the question as typed
+  to meaning search and keywords only to word search.
+- **EmbeddingGemma is better at rank 1 and four times slower to build.** 0.50 against 0.38 at recall@1, the same at
+  5 and 10; 51.5 s against 13.0 s for 2,000 short records.
+- **Facts extracted by Claude Haiku did worse than the records they came from** (arm 5): recall@1 0.25 against
+  0.38 with e5-small and 0.28 against 0.50 with EmbeddingGemma, and the keyword queries collapsed to 0.10 / 0.20 / 0.20
+  with e5-small. Repeated filler facts, facts without their project and a value copied across records explain it
+  ([below](#arm-5-facts-extracted-by-claude-haiku)).
+- **Grouping dilutes the vector but hides it in recall@5.** A group occupies eight places, so once the right
+  project's group is first, recall@5 and @10 are near 1.00 whatever the order inside it. Recall@1 falls to 0.25: only
+  the first record of each group, the original chat message, can be first. Word search then reorders the members
+  and brings recall@1 back to 0.50. On this corpus grouping costs nothing at k ≥ 5 only because every group is one
+  project, which a real thread is not always.
+
+### Arm 5: facts extracted by Claude Haiku
+
+The owner ran it on 2026-11-03 with one command; the key never passed through an agent:
+
+```sh
+performance/agents/knowledge-graph-memory/index-variants-facts.sh
+```
+
+[`index-variants-facts.sh`](index-variants-facts.sh) reads the Anthropic key with
+`secret-tool lookup service cli-memo account anthropic`, before it turns D-Bus off for the rest of the run. The key goes
+only into the environment of [`extract_facts.mjs`](extract_facts.mjs). It is never in argv, a URL or the output, and
+the script prints only an error's status code. The work folder is `~/.cache/wirecat-bench/index-variants/facts` with
+the same throwaway folders as `index-variants.sh`; `@anthropic-ai/sdk` 1.4.0 is installed beside cli-core 0.562.0.
+
+`extract_facts.mjs` sends 25 records a call, four calls at a time, to `claude-haiku-5-5` with effort `low` and a JSON
+schema for the answer. Records go in as `r0001`…`r2000`; a reply must give every name of its batch exactly once with
+one to three facts, or the batch is tried once more and the run fails. The prompt: "Rewrite each record into 1–3 short
+standalone facts. Keep names, dates and values exactly." Every finished batch is saved to `facts.json` with its
+token counts and the cost at list price ($0.10 input and $0.50 output per million tokens for prompts up to 100,000,
+[pricing](https://platform.claude.com/docs/en/about-claude/pricing), read 2026-11-03). A second run reuses
+`facts.json`, calls nothing, and only scores again. A refused key stops the run after the first four batches.
+
+**Cost, measured.** One extraction took 80 calls, 159,238 input and 143,462 output tokens as the API reported them:
+$0.0877 at list price. **The run happened twice by accident:** two copies started at the same time, each found no
+`facts.json` and paid for all 80 calls, 159,238 input and 143,587 output tokens the second time. **Real cost: $0.1754.**
+The script now takes a lock on its work folder, so a second copy stops before it reads the key or calls anything.
+Scoring every arm again took about 5.5 minutes after the extraction.
+
+**The two copies agree except on e5-small's facts rows.** The first copy began scoring 3 seconds before the second
+copy last wrote `facts.json`, so it probably scored its own extraction; the file kept is the second copy's. Every
+EmbeddingGemma row and every row without facts is the same in both. The e5-small facts rows differ in 67 of 200
+hit lists, and in one score: e5-small facts + BM25 with keywords has recall@10 0.60 in the first copy and 0.625 in
+the second. The first copy's facts were overwritten, so this was not checked further. The tables show the second
+copy, which matches the kept facts: [`index-variants-facts-results.json`](index-variants-facts-results.json) and
+[`index-variants-facts.json`](index-variants-facts.json). With that file in a work folder's `facts.json`, the script
+scores again without calling the API.
+
+**The facts did not beat plain records at recall@1, and they hurt the keyword queries.** Question as typed, recall@1:
+e5-small 0.25 with facts against 0.38 with records, EmbeddingGemma 0.28 against 0.50. With word search, 0.40 against
+0.42 and 0.42 against 0.50. With the OR keywords, e5-small falls to 0.10 / 0.20 / 0.20, from 0.25 / 0.75 / 0.88.
+
+Rank of the expected record, question as typed:
+
+| Group | Expected record | e5 records | e5 facts | Gemma records | Gemma facts |
+|---|---|---|---|---|---|
+| current date | the confirming email | 2–3 | 2–3 | 3 | 2–5 |
+| original date | the first chat message | 2–3 | 2 (one 1) | 1 (one 2) | 1–3 |
+| owner | the owner note | 1 | 1 (one 2) | 1 | 1 |
+| commitment | the meeting passage | 1–2 | 2–3 | 1–2 | 2–3 |
+
+What a sample of `facts.json` shows:
+
+- **Date order and source kind were not lost; they were never there.** The model saw each record's text only, the
+  same text every other arm embeds. No timestamp and no kind went in, so the facts cannot order "original" before
+  "current" any better than the records.
+- **The archive filler became 1,845 near-copies of one fact.** "No delivery decision or budget approval." appears 1,500
+  times, and 345 times more with "was made" or "for this item" added. The keyword string holds "delivery",
+  "decision", "budget" and "approved", and the OR rows fill with archive records. Probably a short fact made only of
+  those words is closer to the string than any project record, while in the records arms the same sentence sits
+  beside a person and a topic, which keeps it further away. Distances were not compared.
+- **Facts lose their subject.** 51 of the 141 facts from project records do not name the project, such as "No
+  decision was made on this date." from the 2027-01-15 suggestion. A fact like that can only match by its other words.
+- **Short facts make near-misses as close as the answer.** "Ari Vale committed to deliver the Amber Kite
+  accessibility review." and "The Amber Kite accessibility review is still open." differ in a few words. That is
+  probably why the meeting passage drops from first to second or third on the commitment questions.
+- **The model copied a value across records.** Batches hold 25 records, and for three projects the reference note's
+  fact reads "Current plans should use the confirmed replacement date, 2026-12-11.", a date the note does not hold;
+  it comes from the confirming email in the same batch. Here it is true, but it is a fact taken from another
+  record, and it makes the note compete with the email for the current date.
+
+Checked without a key: with a fake key from a stand-in `secret-tool`, the API answered 401, the run stopped after four
+batches with exit 1, and the fake key appeared in no output and no file. With stand-in facts (each record's own text
+as its only fact), the facts rows scored the same as the record rows.
+
+### What was not measured
+
+- Memo itself with these fixes: this is an in-memory index with RRF k = 60, not Memo's fusion code, its notes
+  search or its store. A fixed Memo has to be measured again with `memo_baseline.py`.
+- Arm 5 with the record's time and kind in the prompt, one record a call, another prompt or another model. Only one
+  extraction is scored here; two ran, and the first copy's facts were overwritten.
+- Query time inside a store, and memory use. The scan here is a loop over vectors in memory.
+- Other group sizes, a real thread structure, and longer records that a model would cut.
+- Rerankers, other fusion constants, and other word-search settings (Porter stemming, column weights).
+- More than one run; build times will vary.
+- Variance across machines, a cold disk cache, and a larger or multilingual corpus.
