@@ -2,6 +2,7 @@
 """Run the knowledge-graph-memory questions through OpenClaw, alone and with WireCat Memo, in a throwaway home."""
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -22,11 +23,34 @@ NODE_VERSION = "v24.22.2"
 NODE_SHA256 = "48cc0e21e048790e54c0cf5749c2725005313d652651c40b7a21feb9697aaf75"
 LLAMA_PLUGIN = "@openclaw/llama-cpp-provider"
 AGENTS = {"files": "ws-files", "memo": "ws-memo"}
+# The memory slot is exclusive per OpenClaw home, so each plugin gets a home of its own. Its agent is `main`:
+# openclaw-mem0 searches `<userId>:agent:<id>` for any other agent id, an empty store here.
+PLUGINS = {
+    "supermemory": {"spec": "npm:@supermemory/openclaw-supermemory@2.1.19", "id": "openclaw-supermemory",
+                    "key_env": "SUPERMEMORY_OPENCLAW_API_KEY", "store_key": "containerTag",
+                    "config": {"autoRecall": False, "autoCapture": False, "showMemoryUsage": False,
+                               "enableCustomContainerTags": False},
+                    "writes": ["supermemory-save", "supermemory_store", "supermemory-forget", "supermemory_forget"]},
+    "mem0": {"spec": "npm:@mem0/openclaw-mem0@1.2.1", "id": "openclaw-mem0", "key_env": "MEM0_API_KEY",
+             "store_key": "userId", "config": {"mode": "platform", "autoRecall": False, "autoCapture": False},
+             "writes": ["memory_add", "memory_update", "memory_delete"]},
+}
+# Like Hermes + Supermemory and + Mem0, which had only the memory toolset: no shell or files to reach ws-files.
+DENIED_GROUPS = {"group:fs": ["read", "write", "edit", "apply_patch"],
+                 "group:runtime": ["exec", "process", "code_execution", "bash"],
+                 "group:web": ["web_search", "x_search", "web_fetch"],
+                 "group:ui": ["browser", "screen", "terminal", "canvas"],
+                 "group:sessions": ["sessions_spawn", "sessions_send", "subagents"],
+                 "group:automation": ["cron", "gateway"], "group:nodes": ["nodes", "computer"],
+                 "ls": ["ls"], "view_image": ["view_image"]}
+SETUPS = [*AGENTS, *PLUGINS]
 WHERE = {
-    "files": "The records are Markdown files in your memory folder (memory/r0001.md ... memory/r2000.md); "
+    "files": "The records are Markdown files in your memory folder (memory/{first}.md ... memory/{last}.md); "
              "use your memory search, and read the files when you need to.",
     "memo": "The records are stored in WireCat Memo (notes and mail). Search them with the `memo` command; "
             "the cli-memo skill describes it.",
+    "supermemory": "The records are stored in your Supermemory memory. Search it with your Supermemory search tool.",
+    "mem0": "The records are stored in your Mem0 memory. Search it with your memory_search tool.",
 }
 PROMPT = """You are answering one question from a set of synthetic records: chat messages, emails, notes and
 meeting passages. Every record has a name like r0042. {where}
@@ -50,19 +74,28 @@ def paths(root):
             "openclaw": root / "pkg/node_modules/.bin/openclaw"}
 
 
-def openclaw_env(root, with_memo=False):
-    p = paths(root)
-    path = [str(p["node"] / "bin"), "/usr/bin", "/bin"]
+def plugin_paths(root, plugin):
+    base = root / "plugins" / plugin
+    return {"base": base, "home": base / "home", "tmp": base / "tmp", "logs": base / "logs", "ws": base / "ws"}
+
+
+def openclaw_env(root, with_memo=False, plugin=None):
+    p = paths(root) if plugin is None else plugin_paths(root, plugin)
+    path = [str(paths(root)["node"] / "bin"), "/usr/bin", "/bin"]
     if with_memo:
         path.insert(0, str(p["bin"]))
     # OPENCLAW_HOME moves ~/.openclaw; HOME moves ~/.agents/skills and anything else read from the home folder.
-    return {"HOME": str(p["home"]), "OPENCLAW_HOME": str(p["home"]), "TMPDIR": str(p["tmp"]),
-            "PATH": ":".join(path), "TERM": "dumb", "NO_COLOR": "1", "TZ": "UTC",
-            "OPENCLAW_NO_AUTO_UPDATE": "1", "DBUS_SESSION_BUS_ADDRESS": "disabled:"}
+    # Both plugins call os.homedir() directly, so only HOME keeps their writes out of the owner's ~/.openclaw.
+    env = {"HOME": str(p["home"]), "OPENCLAW_HOME": str(p["home"]), "TMPDIR": str(p["tmp"]),
+           "PATH": ":".join(path), "TERM": "dumb", "NO_COLOR": "1", "TZ": "UTC",
+           "OPENCLAW_NO_AUTO_UPDATE": "1", "DBUS_SESSION_BUS_ADDRESS": "disabled:"}
+    if plugin == "mem0":
+        env["MEM0_TELEMETRY"] = "false"
+    return env
 
 
-def openclaw(root, *args, with_memo=False, check=True, cwd=None, timeout=None):
-    done = subprocess.run([str(paths(root)["openclaw"]), *args], env=openclaw_env(root, with_memo),
+def openclaw(root, *args, with_memo=False, plugin=None, check=True, cwd=None, timeout=None):
+    done = subprocess.run([str(paths(root)["openclaw"]), *args], env=openclaw_env(root, with_memo, plugin),
                           capture_output=True, text=True, check=False, cwd=cwd or root, timeout=timeout)
     if check and done.returncode != 0:
         raise RuntimeError(f"openclaw {' '.join(args)} exited {done.returncode}: {done.stderr.strip()[-800:]}")
@@ -102,8 +135,64 @@ def env_prefix(root):
     return ["env", "-i", *[f"{key}={value}" for key, value in openclaw_env(root).items()]]
 
 
-def config_path(root):
-    return paths(root)["home"] / ".openclaw/openclaw.json"
+def config_path(root, plugin=None):
+    return (paths(root) if plugin is None else plugin_paths(root, plugin))["home"] / ".openclaw/openclaw.json"
+
+
+def key_file(root, plugin):
+    """Written by openclaw-memory-keys.sh; OpenClaw loads it and fills ${KEY} in the plugin config from it."""
+    return plugin_paths(root, plugin)["home"] / ".openclaw/.env"
+
+
+def configure_plugin(root, plugin, store, model=None):
+    spec = PLUGINS[plugin]
+    path = config_path(root, plugin)
+    config = json.loads(path.read_text())
+    plugins = config.setdefault("plugins", {})
+    plugins.setdefault("slots", {})["memory"] = spec["id"]
+    entry = plugins.setdefault("entries", {}).setdefault(spec["id"], {})
+    entry["enabled"] = True
+    # Without allowConversationAccess OpenClaw never runs a plugin's recall or capture hooks, whatever its flags say.
+    entry.pop("hooks", None)
+    entry["config"] = {**entry.get("config", {}), **spec["config"], "apiKey": f"${{{spec['key_env']}}}",
+                       spec["store_key"]: store}
+    agents = config.setdefault("agents", {})
+    defaults = agents.setdefault("defaults", {})
+    # A pre-compaction flush turn could let the plugin write memory.
+    defaults.setdefault("compaction", {})["memoryFlush"] = {"enabled": False}
+    agents["entries"] = {"main": {"workspace": str(plugin_paths(root, plugin)["ws"]),
+                                  "tools": {"deny": [*DENIED_GROUPS, *spec["writes"]]}}}
+    if model:
+        defaults["model"] = {"primary": model}
+        defaults.setdefault("models", {})[model] = {"agentRuntime": {"id": "openclaw"}}
+    path.write_text(json.dumps(config, indent=2) + "\n")
+
+
+def install_plugin(root, plugin, store, corpus_sha256):
+    """A home of its own for one memory plugin, pointed at a store that was already ingested; nothing is written."""
+    spec, place = PLUGINS[plugin], plugin_paths(root, plugin)
+    for key in ("home", "tmp", "logs"):
+        place[key].mkdir(parents=True, exist_ok=True)
+    # An existing workspace skips the BOOTSTRAP.md ritual, as for the other agents.
+    (place["ws"] / "memory").mkdir(parents=True, exist_ok=True)
+    if not config_path(root, plugin).exists():
+        config_path(root, plugin).parent.mkdir(parents=True, exist_ok=True)
+        config_path(root, plugin).write_text(json.dumps({"logging": {"file": str(place["logs"] / "openclaw.log")}})
+                                             + "\n")
+    # Consent reviewed in both manifests (5 Nov 2026): the memory slot, the listed tools, one skill, one CLI command.
+    done = openclaw(root, "plugins", "install", spec["spec"], "--pin", "--force", "--accept-capabilities",
+                    plugin=plugin, check=False, timeout=900)
+    (place["logs"] / "plugins-install.txt").write_text(done.stdout + done.stderr)
+    if done.returncode != 0:
+        raise RuntimeError(f"plugins install {spec['spec']} exited {done.returncode}: {done.stderr.strip()[-800:]}")
+    configure_plugin(root, plugin, store)
+    (place["base"] / "store.json").write_text(json.dumps({"plugin": plugin, spec["store_key"]: store,
+                                                          "corpus_sha256": corpus_sha256}) + "\n")
+    inspect = openclaw(root, "plugins", "inspect", spec["id"], "--runtime", "--json", plugin=plugin, check=False,
+                       timeout=600)
+    (place["logs"] / "plugins-inspect.json").write_text(inspect.stdout + inspect.stderr)
+    print(f"{plugin}: installed {spec['spec']} into {place['home']}; store {store}; "
+          f"key file {'present' if key_file(root, plugin).exists() else 'missing: run openclaw-memory-keys.sh'}")
 
 
 def configure_agents(root, model=None):
@@ -296,27 +385,61 @@ def stop_leftover_servers(root):
     return stopped
 
 
+def workspace(root, agent):
+    return plugin_paths(root, agent)["ws"] if agent in PLUGINS else root / AGENTS[agent]
+
+
 def audit(root, agent):
     """Did the agent reach for the answer key, and did OpenClaw write memory of its own during the run?"""
-    store = paths(root)["home"] / f".openclaw/agents/{agent}/agent"
+    if agent in PLUGINS:
+        store = plugin_paths(root, agent)["home"] / ".openclaw/agents/main/agent"
+    else:
+        store = paths(root)["home"] / f".openclaw/agents/{agent}/agent"
     blob = b"".join(path.read_bytes() for path in store.glob("openclaw-agent.sqlite*") if path.is_file())
-    memory = root / AGENTS[agent] / "memory"
-    return {"transcript_mentions": {word: blob.count(word.encode())
-                                    for word in ("oracle", "run.py", "fixture", "knowledge-graph-memory")},
+    memory = workspace(root, agent) / "memory"
+    # The files agent reads its own workspace, so only the others are asked whether they reached ws-files.
+    words = ("oracle", "run.py", "fixture", "knowledge-graph-memory", *(("ws-files",) if agent != "files" else ()))
+    return {"transcript_mentions": {word: blob.count(word.encode()) for word in words},
             "memory_files": len(list(memory.glob("*.md"))),
-            "memory_md_exists": (root / AGENTS[agent] / "MEMORY.md").exists()}
+            "memory_md_exists": (workspace(root, agent) / "MEMORY.md").exists()}
 
 
-def ask(root, agent, query, run_id, model, thinking, timeout, raw):
-    prompt = PROMPT.format(where=WHERE[agent], as_of=query["as_of"], question=query["question"])
-    args = ["agent", "--local", "--agent", agent, "--session-id", f"kg-{agent}-{run_id}-{query['id']}",
+def key_outside_env_file(root, plugin):
+    """True if the plugin key was copied anywhere in the throwaway home besides the .env file. Never prints it."""
+    keys = [line.split("=", 1)[1].strip().encode() for line in key_file(root, plugin).read_text().splitlines()
+            if "=" in line and line.split("=", 1)[1].strip()]
+    found = []
+    for path in plugin_paths(root, plugin)["home"].rglob("*"):
+        if path.is_file() and path != key_file(root, plugin) and not path.is_symlink():
+            data = path.read_bytes()
+            if any(key in data for key in keys):
+                found.append(str(path.relative_to(plugin_paths(root, plugin)["home"])))
+    return found
+
+
+def denied_tools_used(rows):
+    denied = {tool for tools in DENIED_GROUPS.values() for tool in tools}
+    denied |= {tool for spec in PLUGINS.values() for tool in spec["writes"]}
+    return sorted({tool for row in rows for tool in (row["tools"] or []) if tool in denied})
+
+
+def where(agent, records):
+    return WHERE[agent].format(first=name_of(0), last=name_of(records - 1))
+
+
+def ask(root, agent, query, run_id, model, thinking, timeout, raw, records):
+    prompt = PROMPT.format(where=where(agent, records), as_of=query["as_of"], question=query["question"])
+    agent_id = "main" if agent in PLUGINS else agent
+    args = ["agent", "--local", "--agent", agent_id, "--session-id", f"kg-{agent}-{run_id}-{query['id']}",
             "--message", prompt, "--model", model, "--json", "--timeout", str(timeout)]
     if thinking:
         args += ["--thinking", thinking]
     started = time.perf_counter()
     # Its own process group: the openclaw launcher re-execs a child, which a plain kill would leave running.
-    process = subprocess.Popen([str(paths(root)["openclaw"]), *args], env=openclaw_env(root, agent == "memo"),
-                               cwd=root / AGENTS[agent], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+    plugin = agent if agent in PLUGINS else None
+    process = subprocess.Popen([str(paths(root)["openclaw"]), *args],
+                               env=openclaw_env(root, agent == "memo", plugin),
+                               cwd=workspace(root, agent), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
                                start_new_session=True)
     try:
         stdout, stderr = process.communicate(timeout=timeout + 120)
@@ -339,14 +462,28 @@ def answer(root, fixture, output, agent, model, thinking, only, timeout):
     output.mkdir(parents=True, exist_ok=False)
     raw = output / "raw"
     raw.mkdir()
-    configure_agents(root, model)
-    names = json.loads((root / "names.json").read_text())
+    records = sum(1 for _ in (fixture / "corpus.jsonl").open())
+    names = {name_of(index): json.loads(line)["id"] for index, line in enumerate((fixture / "corpus.jsonl").open())}
+    store = None
+    if agent in PLUGINS:
+        store = json.loads((plugin_paths(root, agent)["base"] / "store.json").read_text())
+        corpus = hashlib.sha256((fixture / "corpus.jsonl").read_bytes()).hexdigest()
+        if corpus != store["corpus_sha256"]:
+            raise SystemExit(f"{agent}: the store holds corpus {store['corpus_sha256'][:12]}, the fixture is "
+                             f"{corpus[:12]}; ingest this fixture and install-plugin with its --store first")
+        if not key_file(root, agent).exists():
+            raise SystemExit(f"{agent}: no key file; the owner runs openclaw-memory-keys.sh {agent} once")
+        configure_plugin(root, agent, store[PLUGINS[agent]["store_key"]], model)
+    else:
+        configure_agents(root, model)
+        # The workspace was written from the prepared corpus, so its names stay the reference.
+        names = json.loads((root / "names.json").read_text())
     queries = json.loads((fixture / "queries.json").read_text())
     selected = [q for q in queries if not only or q["id"] in only]
     run_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%S")
     rows = []
     for query in selected:
-        exit_code, seconds, envelope = ask(root, agent, query, run_id, model, thinking, timeout, raw)
+        exit_code, seconds, envelope = ask(root, agent, query, run_id, model, thinking, timeout, raw, records)
         text = final_text(envelope)
         value, refs, problem = normalize(parse_reply(text), names)
         meta = envelope.get("meta") or {}
@@ -367,10 +504,17 @@ def answer(root, fixture, output, agent, model, thinking, only, timeout):
               file=sys.stderr)
     meta = {"openclaw": openclaw(root, "--version").stdout.strip(), "agent": agent, "model": model,
             "thinking": thinking, "runtime_requested": "openclaw", "questions_run": len(selected),
-            "questions_padded_unknown": len(queries) - len(selected), "prompt": PROMPT, "where": WHERE[agent],
-            "after_run": audit(root, agent), "leftover_llama_servers_stopped": stop_leftover_servers(root)}
+            "questions_padded_unknown": len(queries) - len(selected), "prompt": PROMPT,
+            "where": where(agent, records), "store": store, "after_run": audit(root, agent),
+            "leftover_llama_servers_stopped": stop_leftover_servers(root)}
+    if agent in PLUGINS:
+        meta["plugin"] = PLUGINS[agent]["spec"]
+        meta["denied_tools_used"] = denied_tools_used(rows)
+        meta["key_copied_to"] = key_outside_env_file(root, agent)
     (output / "run.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(meta | {"prompt": "(in run.json)"}, indent=2))
+    if meta.get("denied_tools_used") or meta.get("key_copied_to"):
+        raise SystemExit("run not trusted: a denied tool ran or the key was copied; see run.json")
 
 
 def main():
@@ -379,6 +523,10 @@ def main():
                         help="throwaway folder holding Node, OpenClaw, its home and both workspaces")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("install", help="Node, OpenClaw and the llama.cpp plugin under --root")
+    plug = sub.add_parser("install-plugin", help="a home of its own with one memory plugin, on an ingested store")
+    plug.add_argument("--plugin", choices=sorted(PLUGINS), required=True)
+    plug.add_argument("--store", required=True, help="Supermemory container tag or Mem0 user id of the ingest")
+    plug.add_argument("--fixture", type=Path, required=True, help="the fixture that store was ingested from")
     prep = sub.add_parser("prepare", help="write the workspace, seed the memo store, index OpenClaw's memory")
     prep.add_argument("--fixture", type=Path, required=True)
     prep.add_argument("--memo", default=shutil.which("memo"), help="the memo binary the memo agent runs")
@@ -388,7 +536,7 @@ def main():
     ans = sub.add_parser("answer", help="ask the questions through one OpenClaw agent")
     ans.add_argument("--fixture", type=Path, required=True)
     ans.add_argument("--output", type=Path, required=True)
-    ans.add_argument("--agent", choices=sorted(AGENTS), required=True)
+    ans.add_argument("--agent", choices=SETUPS, required=True)
     ans.add_argument("--model", required=True, help="the same model as the other configurations, e.g. openai/<id>")
     ans.add_argument("--thinking", help="thinking level, recorded")
     ans.add_argument("--only", help="comma-separated question ids; the rest are written as unknown")
@@ -397,6 +545,9 @@ def main():
     root = args.root.resolve()
     if args.command == "install":
         install(root)
+    elif args.command == "install-plugin":
+        install_plugin(root, args.plugin, args.store,
+                       hashlib.sha256((args.fixture / "corpus.jsonl").read_bytes()).hexdigest())
     elif args.command == "prepare":
         prepare(root, args.fixture.resolve(), args.memo)
     elif args.command == "retrieval":
