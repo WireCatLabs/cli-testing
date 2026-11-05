@@ -1321,8 +1321,11 @@ what an agent has to do with the hits. No answer model is involved.
   - **Supermemory**, tag `wirecat_bench_20261105_023737`: all 10,000 records, hybrid search, limit 10. Searched when
     a sample of 50 documents had finished building memories (`dreamingStatus`), at 1,582 memories.
   - **Mem0**, user `wirecat_bench_20261105_023735`: the subset, `infer: true`, `top_k: 10`.
-  - **Memo** 0.131.24, word search and word + meaning search (`e5-small`), on a disposable store with no keyring
-    access. 0.131.24 is the last memo that loads the corpus's mail from an mbox file (see *What was not measured*).
+  - **Memo** 0.131.38 with mail CLI 0.16.3, word search and word + meaning search (`e5-small`), on a disposable store
+    with no keyring access. From memo 0.131.28 mail is stored by the mail CLI: `memo_baseline.py` writes a throwaway
+    mail profile and runs `mail synthetic messages import mail.mbox` (no sign-in), then memo searches it from the
+    shared store. One `memo sync` embeds at most 600 chunks of notes and 600 of mail, so the script repeats it until
+    nothing is left (9 runs, 104 s here).
 - Linux, Python 3.14.4, from Valencia; hosted times include the network.
 
 Reproduce (the hosted builds need the owner's keys in the system keyring, service `supermemory` or `mem0`):
@@ -1339,7 +1342,7 @@ $W store build mem0 -d synthetic-10000-e99e1e52 --subset mem0 --space <new user 
 $W store search mem0 -d synthetic-10000-e99e1e52 --subset mem0 --space <user id> --rewrite typed
 # Memo, from this folder; the fixture is run.py --records 10000
 python3 run.py --self-check --records 10000 --output /tmp/kg-fixture-10k
-python3 memo_baseline.py --fixture /tmp/kg-fixture-10k --output /tmp/memo-10k --memo <memo 0.131.24 binary>
+python3 memo_baseline.py --fixture /tmp/kg-fixture-10k --output /tmp/memo-10k   # memo and mail on PATH
 ```
 
 A stopped hosted build continues with `--resume` and sends only what the store does not hold; `store status` checks
@@ -1352,8 +1355,8 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 | Store | Records | As typed: top 1 / 5 / 10 | Keywords: top 1 / 5 / 10 | Half the searches under |
 |---|---:|---|---|---:|
 | SQLite word search (floor) | 10,000 | 0.25 / 0.62 / 0.80 | **0.47** / 0.62 / 0.75 | 0.002 s |
-| **Memo 0.131.24, word search** | 10,000 | 0.17 / **0.97** / **1.00** | 0.17 / 0.70 / 0.75 | 0.34 s |
-| **Memo 0.131.24, word + meaning** | 10,000 | 0.20 / **0.97** / **1.00** | 0.07 / 0.28 / 0.70 | 1.16 s |
+| **Memo 0.131.38, word + meaning** | 10,000 | **0.72** / **1.00** / **1.00** | **0.68** / **0.97** / **1.00** | 1.59 s |
+| Memo 0.131.38, word search only (no model) | 10,000 | 0.17 / 0.97 / 1.00 | 0.17 / 0.70 / 0.75 | 0.40 s |
 | Supermemory | 10,000 | 0.20 / 0.70 / 0.90 | 0.25 / **0.78** / **0.93** | 0.49 s |
 | Mem0, all 6,500 processed (6,926 memories) | 6,500 | 0.10 / 0.53 / 0.70 | not run | 0.54 s |
 | Mem0, provisional (5,932 of 6,500 processed) | 6,500 | 0.10 / 0.50 / 0.72 | not run | 0.92 s |
@@ -1366,27 +1369,32 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 | Supermemory, as typed | 1 first, 6 in top 10 | 1 first, 10 in top 10 | 6 first, 10 in top 10 | 0 first, 10 in top 10 |
 | Supermemory, keywords | 0 first, 8 in top 10 | 4 first, 10 in top 10 | 6 first, 9 in top 10 | 0 first, 10 in top 10 |
 | Mem0, as typed | 0 first, 10 in top 10 | 2 first, 7 in top 10 | 2 first, 8 in top 10 | 0 first, 3 in top 10 |
-| **Memo word search, as typed** | **7 first**, 10 in top 10 | 0 first, all at rank 2 | 0 first, 10 in top 10 | 0 first, all at rank 2 |
+| **Memo word + meaning, as typed** | 3 first, the rest at rank 2 | **10 first** | 6 first, 10 in top 10 | **10 first** |
+| Memo word search only, as typed | **7 first**, the rest at rank 2 | 0 first, all at rank 2 | 0 first, 10 in top 10 | 0 first, all at rank 2 |
 
 **Time to build each store:**
 
 | Store | Sending | Until searchable as intended |
 |---|---|---|
 | SQLite | 7 s | at once |
-| Memo 0.131.24 | 16 s for 5,851 note files and 4,149 mails, 16 s more to embed | at once |
+| Memo 0.131.38 | 38 s for 5,851 note files and 4,149 mails | 104 s more to embed everything for meaning search |
 | Supermemory | 31 min (100 per batch, about 85 s per batch) | about 14 h until the sampled documents finished building memories (02:37 to about 16:50 UTC) |
 | Mem0 | 80 s to accept 6,500 adds | 19 h: every add processed by 21:40 UTC (sent 02:37); about 250 an hour in the afternoon |
 
 ### What it showed
 
-- **Memo finds the most, and only Memo puts the current date first.** Memo's search of the question as typed has
-  every source in its top 10 and 97 % in its top 5, above Supermemory (90 % and 70 %). The hardest question, "what is
-  the current confirmed date", has its answer in the last confirmation; Memo ranks it first in 7 of 10, Supermemory in
-  1, Mem0 in 0, SQLite in 3 at best. The 7 are the mail confirmations, probably because Memo keeps a mail thread together and
-  the confirming reply is its newest message (not checked in the code). The other 3 (confirmed in a meeting) and every other kind sit at rank 2.
-- **Memo's rank 1 is capped by the order of `search all`, not by what it finds.** `search all` takes turns between
-  mail and notes (MEMO-37), so a note or meeting source lands at rank 2 even when it is the best note. That is why
-  its top 1 is 0.17–0.20 while its top 5 is 0.97. Fixing the turn-taking is the cheapest gain left in this test.
+- **Memo finds the most and ranks it best.** Word + meaning search of the question as typed puts the source first in
+  72 % of questions and in the top 5 in all 40; Supermemory 20 % and 70 %, Mem0 10 % and 53 %. It ranks every original
+  date and every commitment first, and 6 of 10 owners.
+- **The current date is the one kind no store ranks first reliably.** Memo's meaning search puts it first in 3 of 10
+  and second in the other 7, Supermemory first in 1, Mem0 in 0. Memo's word search alone does better on it (7 of 10
+  first: the confirming mail reply) but worse on everything else, because `search all` without a model takes turns
+  between mail and notes (MEMO-37) and puts every note source at rank 2. Combining the two orders is the gain left
+  in this test.
+- **Memo's meaning search must be complete to count.** The first Memo run embedded one batch of 600 chunks and left
+  the rest: its word + meaning row (0.20 / 0.97 / 1.00) was word search. Embedded fully it rose to 0.72 at rank 1. A
+  user whose sync stops after one batch gets the low number; this is worth a fix in memo (embed all by default, or
+  say how much is left).
 - **The other stores rank stale records above the current date.** Supermemory put the confirmation first 10 of 10
   times on the 2K fixture and 1 of 10 here: with several date changes per milestone, older records match the question
   just as well. An agent on those stores that takes the top hit answers with an old date; it has to read several hits
@@ -1394,12 +1402,10 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 - **Supermemory is second, Mem0 last.** Supermemory finds every commitment, which plain SQLite word search misses (the
   revised commitment does not repeat the question's words). Mem0, even with all cited records sent, loses most
   commitments and two owners: fact extraction rewrote or dropped them, as on the 2K fixture.
-- **Memo's keywords form is worse than the question as typed** (0.75 and 0.70 in the top 10): since MEMO-36 Memo
-  handles the sentence itself, and joining words by OR only adds noise. Its strict word search of the sentence, the
-  mode before MEMO-36, still finds nothing (50 empty replies).
-- **Plain word search is a hard floor to beat at rank 1.** SQLite with keywords puts the source first in 47 % of
-  questions, Supermemory in 25 %, Memo in 20 %. Its strength is the original date (the first chat message, 10 of 10 first), its gap
-  the commitments.
+- **Plain word search beats both hosted services at rank 1.** SQLite with keywords puts the source first in 47 % of
+  questions, Supermemory in 25 %, Mem0 in 10 %. Its strength is the original date (the first chat message, 10 of 10
+  first), its gap the commitments. Memo's strict word search of the sentence (`--exact`, the mode before MEMO-36)
+  still finds nothing (50 empty replies).
 - **Waiting for Supermemory's memories changed little.** A search at 1,229 memories gave 0.225 / 0.675 / 0.875 as
   typed; at 1,582 memories 0.20 / 0.70 / 0.90.
 - **Mem0 did not improve when it finished.** The provisional search (5,932 processed) and the final one (all 6,500)
@@ -1411,13 +1417,7 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 
 ### What was not measured
 
-- **Memo 0.131.28 and later on this corpus.** From 0.131.28 memo no longer reads mail itself: `memo sync --source`
-  is gone and mail comes from the mail CLI, which syncs from a mail server only. This folder's runners
-  (`memo_baseline.py`, `hermes_runner.py`, `openclaw_runner.py`) still load mail with `--source`, so the WireCat
-  setups on 10K cannot be prepared with a current memo until the bench can serve the corpus's mail over IMAP or the
-  mail CLI can import an mbox file.
-- Memo's meaning search fully: the sync embedded 600 note chunks and reported more left (`"left": true`), so the
-  word + meaning row is mostly words. It found the same as word search.
+- Memo with a model other than `e5-small`.
 - Mem0 keywords form (to keep retrievals for the agent runs), Mem0 on all 10,000 records, Supermemory's `rerank`,
   thresholds, limits above 10.
 - How an agent uses these hits: that is the agent round.

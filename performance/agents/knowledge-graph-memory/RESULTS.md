@@ -81,20 +81,23 @@ reproduce it: [README](README.md#store-search-on-the-10k-corpus-5-november-2026)
 
 | Search, question as typed | Top 1 | Top 5 | Top 10 | Current date first | Time per search |
 |---|---:|---:|---:|---:|---:|
-| **Memo 0.131.24** | 0.17 | **0.97** | **1.00** | **7 of 10** | 0.3 s |
+| **Memo 0.131.38, word + meaning search** | **0.72** | **1.00** | **1.00** | 3 of 10 | 1.6 s |
+| Memo 0.131.38, word search only | 0.17 | 0.97 | 1.00 | **7 of 10** | 0.4 s |
 | Supermemory | 0.20 | 0.70 | 0.90 | 1 of 10 | 0.5 s |
 | Mem0 | 0.10 | 0.53 | 0.70 | 0 of 10 | 0.5 s |
 | Plain SQLite word search, for scale | 0.25 | 0.62 | 0.80 | 0 of 10 | 0.002 s |
 
-- **Memo finds the right record most often**: all 40 in the top 10, 39 in the top 5.
-- **Only Memo puts the current date first** most of the time. The others put an older date above it, so an agent
-  that trusts their first result answers with a date that already changed.
-- **Memo's top 1 is low only because it takes turns between mail and notes.** Every note or meeting record it found
-  sits at place 2. Fixing that order is the cheapest gain left.
+- **Memo finds the right record most often and ranks it best**: first in 72 % of questions, in the top 5 in all 40.
+  Supermemory: 20 % and 70 %. Mem0: 10 % and 53 %.
+- **The current date is still hard for everyone.** Memo's word + meaning search puts it second in 7 of 10, under an
+  older record; its word search alone puts it first in 7 of 10 but ranks everything else worse. The hosted services
+  rank older dates above it almost every time. An agent must read several results and compare dates.
+- **Memo's meaning search only counts when it has processed everything.** One `memo sync` processes 600 pieces of
+  text; this corpus needs 9 runs. After one run, Memo's top 1 was 0.20; after all of them, 0.72.
 - **The hosted services take most of a day to load 10,000 records**: Supermemory about 14 hours until its memories
-  were built, Mem0 19 hours for 6,500. Memo took 32 seconds on this computer.
-- **The newest memo (0.131.28 and later) could not be tested here**: it reads mail only from a mail server, and this
-  test has its mail in a file.
+  were built, Mem0 19 hours for 6,500. Memo took about 2.5 minutes on this computer.
+- **Mail now comes through the mail CLI.** Since memo 0.131.28 the mail CLI stores mail; the test imports its mail
+  file with `mail messages import`, which needs no sign-in.
 
 ## Test 2: does the agent answer correctly?
 

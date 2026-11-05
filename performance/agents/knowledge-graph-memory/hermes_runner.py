@@ -11,7 +11,7 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
-from memo_baseline import Memo, configure_mail, isolated_env, name_of, write_sources
+from memo_baseline import Memo, embed, isolated_env, load_mail, name_of, write_sources
 from provider_retrieval import keyring_secret
 from run import score
 
@@ -116,12 +116,10 @@ def seed_memo(place, records, model):
     memo = Memo("memo", place["memo"])
     write_sources(records, place["memo"] / "data")
     folder, _ = memo.json("folders", "add", str(place["memo"] / "data/notes"), "--format", "markdown")
-    configure_mail(memo, place["memo"] / "data")
     memo.json("sync", "--only", "notes", "--no-embed")
-    memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01", "--limit", "50000", "--no-embed")
+    load_mail(memo, place["memo"] / "data")
     memo.json("models", "download", model)
-    memo.json("sync", "--since-time", "2000-01-01", "--limit", "50000", "--source", "email:synthetic",
-              "--folder", folder["item"]["id"])
+    embed(memo, folder["item"]["id"])
     real = subprocess.run(["which", "memo"], capture_output=True, text=True, check=True).stdout.strip()
     # memo gets its own throwaway folders; the wrapper keeps them out of Hermes's environment.
     exports = "".join(f"export {key}='{value}'\n" for key, value in isolated_env(place["memo"]).items()

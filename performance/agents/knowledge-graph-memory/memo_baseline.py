@@ -101,6 +101,51 @@ def configure_mail(memo, data):
     config.write_text(json.dumps(current, indent=2) + "\n")
 
 
+def reads_mbox(memo):
+    """memo up to 0.131.24 reads an mbox account itself; from 0.131.28 the mail CLI stores mail and memo searches it."""
+    return "--source" in memo.run("sync", "--help")[0]
+
+
+def load_mail(memo, data, mail_binary="mail"):
+    """The mbox into the store without embedding: (the reply's item, seconds)."""
+    if reads_mbox(memo):
+        configure_mail(memo, data)
+        reply, seconds = memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01", "--limit",
+                                   "50000", "--no-embed")
+        return reply["item"]["mail"], seconds
+    # The mail CLI refuses an agent that sets a profile's address, so the run writes its own throwaway config.
+    # `messages import` adds a Google Takeout file to a Gmail profile; no sign-in is needed for it.
+    config = Path(memo.env["XDG_CONFIG_HOME"]) / "mail-cli/config.json"
+    config.parent.mkdir(parents=True, exist_ok=True)
+    profile = {"address": "synthetic@example.test", "imap_host": "imap.gmail.com"}
+    config.write_text(json.dumps({"profiles": {"synthetic": profile}}, indent=2) + "\n")
+    mail = Memo(mail_binary, Path(memo.env["HOME"]).parent)
+    reply, seconds = mail.json("synthetic", "messages", "import", str(data / "mail.mbox"), "--limit", "50000")
+    if not reply["item"]["complete"]:
+        raise RuntimeError(f"mail import left {reply['item']['remaining']} emails")
+    return reply["item"], seconds
+
+
+def embed(memo, folder_id):
+    """Embed the notes folder and the stored mail: (the last reply's item with the number of runs, seconds).
+
+    One sync embeds at most 600 chunks of notes and 600 of mail and says what is left, so it runs until nothing is.
+    """
+    if reads_mbox(memo):
+        command = ("sync", "--since-time", "2000-01-01", "--limit", "50000", "--source", "email:synthetic", "--folder",
+                   folder_id)
+    else:
+        command = ("sync",)
+    seconds = 0.0
+    for runs in range(1, 101):
+        reply, elapsed = memo.json(*command)
+        seconds += elapsed
+        parts = [value for value in reply["item"].values() if isinstance(value, dict) and "left" in value]
+        if not any(part["left"] for part in parts):
+            return {**reply["item"], "sync_runs": runs}, seconds
+    raise RuntimeError("memo sync still had chunks to embed after 100 runs")
+
+
 def or_query(question):
     words = [word for word in re.findall(r"[\w-]+", question.casefold()) if word not in STOP_WORDS]
     return " OR ".join(f'"{word}"' for word in words)
@@ -154,6 +199,7 @@ def main():
     parser.add_argument("--fixture", type=Path, required=True, help="a run.py output directory")
     parser.add_argument("--output", type=Path, required=True, help="new directory; existing paths are refused")
     parser.add_argument("--memo", default="memo", help="the memo binary to drive")
+    parser.add_argument("--mail", default="mail", help="the mail CLI binary, for memo 0.131.28 and later")
     parser.add_argument("--model", default="e5-small", help="local embedding model for the hybrid run")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
@@ -169,10 +215,8 @@ def main():
     names = write_sources(records, root / "data")
     timings = {}
     folder, timings["folders_add_s"] = memo.json("folders", "add", str(root / "data/notes"), "--format", "markdown")
-    configure_mail(memo, root / "data")
     notes, timings["sync_notes_no_embed_s"] = memo.json("sync", "--only", "notes", "--no-embed")
-    mail, timings["sync_mail_no_embed_s"] = memo.json("sync", "--source", "email:synthetic", "--since-time",
-                                                      "2000-01-01", "--limit", "50000", "--no-embed")
+    mail, timings["sync_mail_no_embed_s"] = load_mail(memo, root / "data", args.mail)
     size_no_embed = store_bytes(memo.json("store", "info")[0]["item"])
 
     runs = {}
@@ -185,8 +229,7 @@ def main():
                                                              lambda text: text, raw)
 
     timings["model_download_s"] = memo.json("models", "download", args.model)[1]
-    embedded, timings["sync_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "50000",
-                                                  "--source", "email:synthetic", "--folder", folder["item"]["id"])
+    embedded, timings["sync_embed_s"] = embed(memo, folder["item"]["id"])
     size_embedded = store_bytes(memo.json("store", "info")[0]["item"])
     runs[f"hybrid ({args.model}), question verbatim"] = query_all(memo, names, queries, "hybrid-verbatim", [],
                                                                   lambda text: text, raw)
@@ -197,8 +240,8 @@ def main():
     results = {
         "memo_version": version.strip(), "python": platform.python_version(), "machine": platform.machine(),
         "records": len(records), "questions": len(queries),
-        "ingested": {"notes_folder": notes["item"]["notes"], "mail": mail["item"]["mail"],
-                     "embedding": embedded["item"]},
+        "ingested": {"notes_folder": notes["item"]["notes"], "mail": mail,
+                     "embedding": embedded},
         "store_bytes_no_embed": size_no_embed, "store_bytes_embedded": size_embedded,
         "timings": timings,
         "startup_p50_s": statistics.median(startup), "startup_p95_s": percentile(startup, 0.95),

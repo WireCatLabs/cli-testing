@@ -16,7 +16,7 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
-from memo_baseline import Memo, configure_mail, isolated_env, name_of, or_query, percentile, write_sources
+from memo_baseline import Memo, embed, isolated_env, load_mail, name_of, or_query, percentile, write_sources
 
 OPENCLAW_VERSION = "2026.10.9"
 NODE_VERSION = "v24.22.2"
@@ -259,14 +259,11 @@ def prepare(root, fixture, memo_binary):
         write_workspace(root, records)
         names = write_sources(records, memo_root / "data")
         folder, _ = memo.json("folders", "add", str(memo_root / "data/notes"), "--format", "markdown")
-        configure_mail(memo, memo_root / "data")
         timings["memo_sync_notes_s"] = memo.json("sync", "--only", "notes", "--no-embed")[1]
-        timings["memo_sync_mail_s"] = memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01",
-                                                "--limit", "50000", "--no-embed")[1]
+        timings["memo_sync_mail_s"] = load_mail(memo, memo_root / "data")[1]
         # The same local model as the Hermes + WireCat store, so both WireCat setups search by meaning.
         memo.json("models", "download", "e5-small")
-        timings["memo_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "50000", "--source",
-                                            "email:synthetic", "--folder", folder["item"]["id"])[1]
+        timings["memo_embed_s"] = embed(memo, folder["item"]["id"])[1]
         wrapper = write_memo_wrapper(root, memo_binary)
         # The skill goes to OpenClaw's throwaway ~/.agents/skills; requires.bins hides it from the files agent.
         subprocess.run([str(wrapper), "skill", "install", "--for", "agents"], check=True, capture_output=True)
