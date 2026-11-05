@@ -41,8 +41,10 @@ does by itself, so it shows what the search can do with help.
 
 | Search | Question as typed: top 1 | top 5 | top 10 | Keywords: top 1 | top 5 | top 10 | Time per search |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **Memo, word search** | 0.00 | 0.00 | 0.00 | 0.25 | 0.75 | **1.00** | 0.3 s |
-| **Memo, word + meaning search** | 0.25 | 0.30 | 0.30 | 0.25 | 0.55 | 0.55 | 1.1 s |
+| **Memo 0.131.13, word search** | 0.00 | 0.00 | 0.00 | 0.25 | 0.75 | **1.00** | 0.3 s |
+| **Memo 0.131.13, word + meaning search** | 0.25 | 0.30 | 0.30 | 0.25 | 0.55 | 0.55 | 1.1 s |
+| **Memo 0.131.24, word search** (after the fixes) | 0.25 | 1.00 | 1.00 | — | — | — | |
+| **Memo 0.131.24, word + meaning search** (after the fixes) | **0.40** | **1.00** | **1.00** | — | — | — | |
 | **OpenClaw's memory search** | 0.35 | **1.00** | 1.00 | 0.35 | 0.97 | 1.00 | 6 s (as a command) |
 | **Supermemory** (best of two loads) | **0.47** | **1.00** | 1.00 | **0.50** | 1.00 | 1.00 | 0.5 s |
 | **Mem0** | **0.47** | 0.95 | 0.95 | 0.45 | 0.95 | 0.95 | 0.9 s |
@@ -91,11 +93,12 @@ Here an AI agent (OpenClaw 2026.10.9 or Hermes 0.21.0) answers all 50 questions 
 | Setup | Correct | Strict | Correct with sources | Stale | Median time | Cost for 50 | Tokens per question |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | **OpenClaw alone**: the records as files, its own memory search | 50 | 50 | 34 | 0 | 27.5 s | $1.33 | 97,800 |
-| **OpenClaw + WireCat**: the records in Memo, read through the memo command | 50 | 50 | **40** | 0 | 33.3 s | $2.35 | 113,400 |
+| **OpenClaw + WireCat**, memo 0.131.13, word search only (2 Nov) | 50 | 50 | **40** | 0 | 33.3 s | $2.35 | 113,400 |
+| **OpenClaw + WireCat**, memo 0.131.24 with the search fixes and e5-small (5 Nov) | 50 | 50 | **40** | 0 | 29.4 s | $2.73 | 95,900 |
 | **Hermes alone**: the records as files, its file and shell tools | 50 | 40 | 37 | 0 | **8.5 s** | $0.88 | 29,300 |
 | **Hermes + Supermemory**: the records only in Supermemory | 40 | 30 | 10 | 0 | 16.9 s | $3.34 | 50,700 |
 | **Hermes + Mem0**: the records only in Mem0 | 48 | 38 | 10 | **2** | 11.4 s | **$0.78** | **14,800** |
-| Hermes + WireCat | waits for memo's search fixes | | | | | | |
+| **Hermes + WireCat**, memo 0.131.24 with e5-small (5 Nov) | 50 | 40 | 33 | 0 | 14.1 s | $2.07 | 51,100 |
 
 Hermes's costs are computed from the tokens it reports, at the same list price (cache writes at $2.50 per million);
 Hermes itself reports the cost as unknown. Hermes + Supermemory and + Mem0 can score "correct with sources" only on
@@ -127,6 +130,16 @@ questions the agent searched the whole disk. The runner was fixed and the run re
 
 ### What Test 2 showed
 
+- **Memo's search fixes made the agent's work shorter, not its answers better.** With memo 0.131.24 (questions as
+  typed, mail by meaning, one ranked list, released in cli-core 0.564.0) the OpenClaw agent ran 253 tool calls
+  instead of 380 (−33 %), read 15 % fewer tokens and answered 12 % faster, with the same 50 right and 40 exact
+  sources. The list-price cost rose from $2.35 to $2.73: more of its tokens were first-time cache writes
+  (852,300 against 624,330), which cost more than cache reads. Why the cache writes rose is not known; the memo
+  skill text changed between the two versions.
+- **Hermes + WireCat did not beat Hermes alone.** Same 50 right, fewer exact sources (33 against 37), slower
+  (14.1 s against 8.5 s) and more than twice the cost. On "current date" questions it named the original message
+  beside the confirming email 6 times out of 10.
+
 - **On 2,000 short records a strong model answers everything, with or without WireCat.** Both setups got 50 of 50
   right and never gave an old date. This data is too small and too easy to show the value of a context layer.
 - **WireCat's advantage is exact sources.** It named the meeting itself, not a note about the meeting: 40 exact
@@ -156,16 +169,17 @@ questions the agent searched the whole disk. The runner was fixed and the run re
 
 ## What this means for WireCat
 
-1. Fix Memo's search before any more paid runs: questions as typed, one ranked list across sources, meaning search
-   for mail, meetings in `search all`. Then make it cheaper for agents. The plan is in cli-private,
+1. Done on 5 November: questions as typed, one ranked list across sources and meaning search for mail are released
+   (cli-core 0.564.0, memo 0.131.24). Test 1 for memo is now 0.40 / 1.00 / 1.00 with e5-small, question as typed.
+   Still open: meetings in `search all`, and a cheaper path for agents. The plan is in cli-private,
    `plans/2026-11-02-memo-benchmark-fixes.md`.
-2. Run Test 1 and the OpenClaw + WireCat answers again after the fixes.
+2. On 2,000 short records an agent with plain files already answers everything. WireCat gives more exact sources
+   with OpenClaw, none with Hermes, and costs more in both. Making memo cheaper for agents comes before any claim.
 3. Then run a large test with about 100,000 records over several years, with look-alike people and projects. That
    is where plain files should start to fail, and where a context layer either earns its place or does not.
 
 ## What was not measured
 
-- Hermes + WireCat: it waits for memo's search fixes, so it measures the fixed memo.
 - Hindsight (not installed).
 - Real data. Everything here is invented, and the records are one line each.
 - More than one answer run per setup. AI answers vary between runs; one run of 50 questions can move by a few points.
