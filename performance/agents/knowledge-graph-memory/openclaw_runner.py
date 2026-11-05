@@ -223,20 +223,22 @@ def record_file(record):
 
 def write_workspace(root, records):
     memory = root / AGENTS["files"] / "memory"
-    memory.mkdir(parents=True)
+    memory.mkdir(parents=True, exist_ok=True)
     for index, record in enumerate(records):
         path = memory / f"{name_of(index)}.md"
         path.write_text(record_file(record))
         stamp = datetime.fromisoformat(record["timestamp"]).timestamp()
         os.utime(path, (stamp, stamp))
     # An existing workspace skips OpenClaw's first-run BOOTSTRAP.md ritual, so both agents start the same way.
-    (root / AGENTS["memo"] / "memory").mkdir(parents=True)
+    (root / AGENTS["memo"] / "memory").mkdir(parents=True, exist_ok=True)
 
 
 def write_memo_wrapper(root, memo_binary):
     """`memo` on the agent's PATH runs the real CLI in the throwaway store, with D-Bus off for memo alone."""
     env = isolated_env(paths(root)["memo"])
-    env["PATH"] = f"{Path(memo_binary).parent}:/usr/bin:/bin"
+    # memo's launcher is `#!/usr/bin/env node`; a memo installed outside node's own bin folder needs node beside it.
+    node_bin = Path(shutil.which("node") or "/usr/bin/node").parent
+    env["PATH"] = f"{Path(memo_binary).parent}:{node_bin}:/usr/bin:/bin"
     script = "#!/bin/sh\nexec env -i " + " ".join(shlex.quote(f"{k}={v}") for k, v in env.items())
     script += f" {shlex.quote(memo_binary)} \"$@\"\n"
     wrapper = paths(root)["bin"] / "memo"
@@ -256,11 +258,15 @@ def prepare(root, fixture, memo_binary):
     if not (root / "names.json").exists():
         write_workspace(root, records)
         names = write_sources(records, memo_root / "data")
-        memo.json("folders", "add", str(memo_root / "data/notes"), "--format", "markdown")
+        folder, _ = memo.json("folders", "add", str(memo_root / "data/notes"), "--format", "markdown")
         configure_mail(memo, memo_root / "data")
         timings["memo_sync_notes_s"] = memo.json("sync", "--only", "notes", "--no-embed")[1]
         timings["memo_sync_mail_s"] = memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01",
                                                 "--limit", "50000", "--no-embed")[1]
+        # The same local model as the Hermes + WireCat store, so both WireCat setups search by meaning.
+        memo.json("models", "download", "e5-small")
+        timings["memo_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "50000", "--source",
+                                            "email:synthetic", "--folder", folder["item"]["id"])[1]
         wrapper = write_memo_wrapper(root, memo_binary)
         # The skill goes to OpenClaw's throwaway ~/.agents/skills; requires.bins hides it from the files agent.
         subprocess.run([str(wrapper), "skill", "install", "--for", "agents"], check=True, capture_output=True)
