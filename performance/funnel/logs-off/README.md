@@ -29,7 +29,7 @@ decided against.
 ## Results (2026-11-05)
 
 ```text
-binary: 22364320 bytes, go1.27.3, Linux x86_64
+binary: 22364320 bytes, go1.26.5, Linux x86_64
 state after start: needs-login, 1.28 s
 connection:       6 [2606:b740:49::112]:80
 lookup:       1 hostLookupOrder(controlplane.tailscale.com)
@@ -43,7 +43,8 @@ file: tailscaled.state 600 119
 stopped
 ```
 
-A first run on 2026-11-03 gave the same picture, with one connection to `[2606:b740:49::116]:80`.
+The run printed `go1.26.5`, the Go on PATH outside the repository. The build itself used the module's toolchain,
+go1.27.3. The script now asks Go inside the repository. A first run on 2026-11-03 gave the same picture, with one connection to `[2606:b740:49::116]:80`.
 
 ## What it showed
 
