@@ -1297,6 +1297,129 @@ Record names stay those of the whole corpus (`r0042` is the same record in every
 estimated 7,850 adds left for Hermes + Mem0's own per-turn adds (50) and a margin. The subset is easier than the
 full corpus only in the amount of plain noise: every hard distractor named above is in it.
 
+## Store search on the 10K corpus (5 November 2026)
+
+**Why.** On the 2K fixture every hosted store found every source in its top 5, so search alone could not tell the
+setups apart ([RESULTS.md](RESULTS.md)). Before the paid agent runs on the 10K corpus, this asks the cheaper question
+first: on 10,000 noisy records with several date changes per milestone, does each store still put the record that
+holds the answer near the top, and above the stale ones? The answer tells us which agent runs are worth paying for and
+what an agent has to do with the hits. No answer model is involved.
+
+### Setup
+
+- Data: the [10K archive corpus](#the-10k-archive-corpus-5-november-2026), corpus sha256 `e99e1e52…c1f6b8f0`, the
+  same 50 questions, 40 scored (the 10 budget questions cite nothing). Mem0 holds the
+  [6,500-record subset](#the-mem0-subset), which contains every cited record.
+- Harness: [wcatbench](https://github.com/WireCatLabs/wcatbench) 0.1.0 at `4f43086` for SQLite, Supermemory and the
+  final Mem0 search; this folder's `provider_retrieval.py` for the provisional Mem0 search and `memo_baseline.py` for
+  Memo. Both score the same way: partial credit `|sources ∩ hits[:k]| / |sources|`, as `score_run` here. wcatbench's
+  scorer is a copy of it, pinned by tests that rescore the 2K runs and get the published numbers.
+- Two forms of each question: **as typed**, and **keywords** (common English words dropped, the rest joined by OR, the
+  stop list fixed before any run).
+- Stores:
+  - **SQLite full text search** on this computer (wcatbench store `fts`): a floor, what plain word search does.
+  - **Supermemory**, tag `wirecat_bench_20261105_023737`: all 10,000 records, hybrid search, limit 10. Searched when
+    a sample of 50 documents had finished building memories (`dreamingStatus`), at 1,582 memories.
+  - **Mem0**, user `wirecat_bench_20261105_023735`: the subset, `infer: true`, `top_k: 10`.
+  - **Memo** 0.131.24, word search and word + meaning search (`e5-small`), on a disposable store with no keyring
+    access. 0.131.24 is the last memo that loads the corpus's mail from an mbox file (see *What was not measured*).
+- Linux, Python 3.14.4, from Valencia; hosted times include the network.
+
+Reproduce (the hosted builds need the owner's keys in the system keyring, service `supermemory` or `mem0`):
+
+```sh
+W="uvx --from git+https://github.com/WireCatLabs/wcatbench@4f43086 wcatbench"
+$W dataset build synthetic -p records=10000          # synthetic-10000-e99e1e52, same bytes as run.py --records 10000
+$W store build fts -d synthetic-10000-e99e1e52 --space demo
+$W store search fts -d synthetic-10000-e99e1e52 --space demo
+export WCATBENCH_KEYRING_ACCOUNT=wirecat
+$W store build supermemory -d synthetic-10000-e99e1e52 --space <new tag> --wait-minutes 900
+$W store search supermemory -d synthetic-10000-e99e1e52 --space <tag>
+$W store build mem0 -d synthetic-10000-e99e1e52 --subset mem0 --space <new user id> --wait-minutes 900
+$W store search mem0 -d synthetic-10000-e99e1e52 --space <user id> --rewrite typed
+# Memo, from this folder; the fixture is run.py --records 10000
+python3 run.py --self-check --records 10000 --output /tmp/kg-fixture-10k
+python3 memo_baseline.py --fixture /tmp/kg-fixture-10k --output /tmp/memo-10k --memo <memo 0.131.24 binary>
+```
+
+A stopped hosted build continues with `--resume` and sends only what the store does not hold; `store status` checks
+without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json` and `manifest.json` under
+`~/.local/share/wcatbench/builds/<store>/<dataset>/<space>/`, and each search a folder with `typed.jsonl`,
+`keywords.jsonl` (one line per question, the record ids in rank order) and `results.json`.
+
+### Results
+
+| Store | Records | As typed: top 1 / 5 / 10 | Keywords: top 1 / 5 / 10 | Half the searches under |
+|---|---:|---|---|---:|
+| SQLite word search (floor) | 10,000 | 0.25 / 0.62 / 0.80 | **0.47** / 0.62 / 0.75 | 0.002 s |
+| **Memo 0.131.24, word search** | 10,000 | 0.17 / **0.97** / **1.00** | 0.17 / 0.70 / 0.75 | 0.34 s |
+| **Memo 0.131.24, word + meaning** | 10,000 | 0.20 / **0.97** / **1.00** | 0.07 / 0.28 / 0.70 | 1.16 s |
+| Supermemory | 10,000 | 0.20 / 0.70 / 0.90 | 0.25 / **0.78** / **0.93** | 0.49 s |
+| Mem0, provisional (5,932 of 6,500 processed) | 6,500 | 0.10 / 0.50 / 0.72 | not run | 0.92 s |
+
+**Where the cited record ranked, by question kind** (10 questions each; rank 1 = first, — = not in the top 10):
+
+| Store, question form | Current date | Original date | Owner | Commitment |
+|---|---|---|---|---|
+| SQLite, keywords | 3 first, 10 in top 10 | 10 first | 6 first, 10 in top 10 | 0 in top 10 |
+| Supermemory, as typed | 1 first, 6 in top 10 | 1 first, 10 in top 10 | 6 first, 10 in top 10 | 0 first, 10 in top 10 |
+| Supermemory, keywords | 0 first, 8 in top 10 | 4 first, 10 in top 10 | 6 first, 9 in top 10 | 0 first, 10 in top 10 |
+| Mem0 provisional, as typed | 0 first, 10 in top 10 | 2 first, 8 in top 10 | 2 first, 8 in top 10 | 0 first, 3 in top 10 |
+| **Memo word search, as typed** | **7 first**, 10 in top 10 | 0 first, all at rank 2 | 0 first, 10 in top 10 | 0 first, all at rank 2 |
+
+**Time to build each store:**
+
+| Store | Sending | Until searchable as intended |
+|---|---|---|
+| SQLite | 7 s | at once |
+| Memo 0.131.24 | 16 s for 5,851 note files and 4,149 mails, 16 s more to embed | at once |
+| Supermemory | 31 min (100 per batch, about 85 s per batch) | about 14 h until the sampled documents finished building memories (02:37 to about 16:50 UTC) |
+| Mem0 | 80 s to accept 6,500 adds | more than 11 h, still 425 queued at 20:21 UTC; about 250 processed an hour in the afternoon |
+
+### What it showed
+
+- **Memo finds the most, and only Memo puts the current date first.** Memo's search of the question as typed has
+  every source in its top 10 and 97 % in its top 5, above Supermemory (90 % and 70 %). The hardest question, "what is
+  the current confirmed date", has its answer in the last confirmation; Memo ranks it first in 7 of 10, Supermemory in
+  1, Mem0 in 0, SQLite in 3 at best. The 7 are the mail confirmations, probably because Memo keeps a mail thread together and
+  the confirming reply is its newest message (not checked in the code). The other 3 (confirmed in a meeting) and every other kind sit at rank 2.
+- **Memo's rank 1 is capped by the order of `search all`, not by what it finds.** `search all` takes turns between
+  mail and notes (MEMO-37), so a note or meeting source lands at rank 2 even when it is the best note. That is why
+  its top 1 is 0.17–0.20 while its top 5 is 0.97. Fixing the turn-taking is the cheapest gain left in this test.
+- **The other stores rank stale records above the current date.** Supermemory put the confirmation first 10 of 10
+  times on the 2K fixture and 1 of 10 here: with several date changes per milestone, older records match the question
+  just as well. An agent on those stores that takes the top hit answers with an old date; it has to read several hits
+  and compare their dates. This is what the agent runs must measure.
+- **Supermemory is second, Mem0 last.** Supermemory finds every commitment, which plain SQLite word search misses (the
+  revised commitment does not repeat the question's words). Mem0, even with all cited records sent, loses most
+  commitments and two owners: fact extraction rewrote or dropped them, as on the 2K fixture.
+- **Memo's keywords form is worse than the question as typed** (0.75 and 0.70 in the top 10): since MEMO-36 Memo
+  handles the sentence itself, and joining words by OR only adds noise. Its strict word search of the sentence, the
+  mode before MEMO-36, still finds nothing (50 empty replies).
+- **Plain word search is a hard floor to beat at rank 1.** SQLite with keywords puts the source first in 47 % of
+  questions, Supermemory in 25 %, Memo in 20 %. Its strength is the original date (the first chat message, 10 of 10 first), its gap
+  the commitments.
+- **Waiting for Supermemory's memories changed little.** A search at 1,229 memories gave 0.225 / 0.675 / 0.875 as
+  typed; at 1,582 memories 0.20 / 0.70 / 0.90.
+- **Hosted stores take most of a day to build at this size** on the plans used (Supermemory free credit, Mem0 free
+  tier). A user importing a year of history waits that long before the memory answers well. Mem0's pricing page and
+  docs (read 5 November 2026) say nothing about processing speed or queue priority per plan; an SLA is listed only
+  for the Custom plan. Whether a paid plan is faster was not measured.
+
+### What was not measured
+
+- **Memo 0.131.28 and later on this corpus.** From 0.131.28 memo no longer reads mail itself: `memo sync --source`
+  is gone and mail comes from the mail CLI, which syncs from a mail server only. This folder's runners
+  (`memo_baseline.py`, `hermes_runner.py`, `openclaw_runner.py`) still load mail with `--source`, so the WireCat
+  setups on 10K cannot be prepared with a current memo until the bench can serve the corpus's mail over IMAP or the
+  mail CLI can import an mbox file.
+- Memo's meaning search fully: the sync embedded 600 note chunks and reported more left (`"left": true`), so the
+  word + meaning row is mostly words. It found the same as word search.
+- Mem0 keywords form (to keep retrievals for the agent runs), Mem0 on all 10,000 records, Supermemory's `rerank`,
+  thresholds, limits above 10.
+- How an agent uses these hits: that is the agent round.
+- Paid plans' processing speed.
+
 ## OpenClaw + Supermemory and OpenClaw + Mem0 (5 November 2026)
 
 **Why.** The owner asked (5 November 2026) to compare these as setups of their own: a user who runs OpenClaw with a

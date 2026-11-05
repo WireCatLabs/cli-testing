@@ -72,6 +72,30 @@ time; inside a running agent it is much faster.
 - **Supermemory and Mem0 cannot tell the agent which record an answer came from.** Through Hermes, an agent sees
   only the remembered text, never the record's name. So they can never score on "correct with sources" below.
 
+## Test 1 again, on 10,000 records (5 November 2026)
+
+The same 50 questions on a harder corpus: 10,000 records, and each asked deadline moved two to four times, with
+rejected proposals and meeting recaps that repeat old dates. Mem0 got 6,500 of the records (every record an answer
+cites is among them), because its free plan allows too few adds for all of them. Details and the commands to
+reproduce it: [README](README.md#store-search-on-the-10k-corpus-5-november-2026).
+
+| Search, question as typed | Top 1 | Top 5 | Top 10 | Current date first | Time per search |
+|---|---:|---:|---:|---:|---:|
+| **Memo 0.131.24** | 0.17 | **0.97** | **1.00** | **7 of 10** | 0.3 s |
+| Supermemory | 0.20 | 0.70 | 0.90 | 1 of 10 | 0.5 s |
+| Mem0 (not finished processing: 5,932 of 6,500) | 0.10 | 0.50 | 0.72 | 0 of 10 | 0.9 s |
+| Plain SQLite word search, for scale | 0.25 | 0.62 | 0.80 | 0 of 10 | 0.002 s |
+
+- **Memo finds the right record most often**: all 40 in the top 10, 39 in the top 5.
+- **Only Memo puts the current date first** most of the time. The others put an older date above it, so an agent
+  that trusts their first result answers with a date that already changed.
+- **Memo's top 1 is low only because it takes turns between mail and notes.** Every note or meeting record it found
+  sits at place 2. Fixing that order is the cheapest gain left.
+- **The hosted services take most of a day to load 10,000 records**: Supermemory about 14 hours until its memories
+  were built, Mem0 more than 11 hours for 6,500 and still not done. Memo took 32 seconds on this computer.
+- **The newest memo (0.131.28 and later) could not be tested here**: it reads mail only from a mail server, and this
+  test has its mail in a file.
+
 ## Test 2: does the agent answer correctly?
 
 Here an AI agent (OpenClaw 2026.10.9 or Hermes 0.21.0) answers all 50 questions with the same model, Claude Sonnet
