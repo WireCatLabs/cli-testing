@@ -16,3 +16,5 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   page: which can be live (2026-10-25).
 - [gcal-baseline](../calendar/gcal-baseline/README.md#3-sync-without-the-network-resultssync-json) — the `node:sqlite` driver prepares every
   statement again on each call. A per-connection cache made a calendar sync 3–5 times faster (2026-10-30).
+- [records-import-sheets](records-import-sheets/README.md) — the first real import of two payment spreadsheets into
+  memo's records store: split payments needed a per-link amount, and 7 of 7 totals matched the sheets (2026-11-05).
