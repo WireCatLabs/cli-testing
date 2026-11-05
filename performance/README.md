@@ -19,3 +19,5 @@
 - [calendar](calendar/README.md): gcal and cli-core's calendar engine — start, offline reads on a large store, sync
   cost without the network, MCP.
 - [ci](ci/README.md): how long the pull-request checks take, and where the time goes.
+- [funnel](funnel/logs-off/README.md): wirecat-funnel, the tsnet helper for Tailscale Funnel: whether Tailscale's
+  log upload stays off.
