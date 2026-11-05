@@ -83,7 +83,7 @@ reproduce it: [README](README.md#store-search-on-the-10k-corpus-5-november-2026)
 |---|---:|---:|---:|---:|---:|
 | **Memo 0.131.24** | 0.17 | **0.97** | **1.00** | **7 of 10** | 0.3 s |
 | Supermemory | 0.20 | 0.70 | 0.90 | 1 of 10 | 0.5 s |
-| Mem0 (not finished processing: 5,932 of 6,500) | 0.10 | 0.50 | 0.72 | 0 of 10 | 0.9 s |
+| Mem0 | 0.10 | 0.53 | 0.70 | 0 of 10 | 0.5 s |
 | Plain SQLite word search, for scale | 0.25 | 0.62 | 0.80 | 0 of 10 | 0.002 s |
 
 - **Memo finds the right record most often**: all 40 in the top 10, 39 in the top 5.
@@ -92,7 +92,7 @@ reproduce it: [README](README.md#store-search-on-the-10k-corpus-5-november-2026)
 - **Memo's top 1 is low only because it takes turns between mail and notes.** Every note or meeting record it found
   sits at place 2. Fixing that order is the cheapest gain left.
 - **The hosted services take most of a day to load 10,000 records**: Supermemory about 14 hours until its memories
-  were built, Mem0 more than 11 hours for 6,500 and still not done. Memo took 32 seconds on this computer.
+  were built, Mem0 19 hours for 6,500. Memo took 32 seconds on this computer.
 - **The newest memo (0.131.28 and later) could not be tested here**: it reads mail only from a mail server, and this
   test has its mail in a file.
 

@@ -1336,7 +1336,7 @@ export WCATBENCH_KEYRING_ACCOUNT=wirecat
 $W store build supermemory -d synthetic-10000-e99e1e52 --space <new tag> --wait-minutes 900
 $W store search supermemory -d synthetic-10000-e99e1e52 --space <tag>
 $W store build mem0 -d synthetic-10000-e99e1e52 --subset mem0 --space <new user id> --wait-minutes 900
-$W store search mem0 -d synthetic-10000-e99e1e52 --space <user id> --rewrite typed
+$W store search mem0 -d synthetic-10000-e99e1e52 --subset mem0 --space <user id> --rewrite typed
 # Memo, from this folder; the fixture is run.py --records 10000
 python3 run.py --self-check --records 10000 --output /tmp/kg-fixture-10k
 python3 memo_baseline.py --fixture /tmp/kg-fixture-10k --output /tmp/memo-10k --memo <memo 0.131.24 binary>
@@ -1355,6 +1355,7 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 | **Memo 0.131.24, word search** | 10,000 | 0.17 / **0.97** / **1.00** | 0.17 / 0.70 / 0.75 | 0.34 s |
 | **Memo 0.131.24, word + meaning** | 10,000 | 0.20 / **0.97** / **1.00** | 0.07 / 0.28 / 0.70 | 1.16 s |
 | Supermemory | 10,000 | 0.20 / 0.70 / 0.90 | 0.25 / **0.78** / **0.93** | 0.49 s |
+| Mem0, all 6,500 processed (6,926 memories) | 6,500 | 0.10 / 0.53 / 0.70 | not run | 0.54 s |
 | Mem0, provisional (5,932 of 6,500 processed) | 6,500 | 0.10 / 0.50 / 0.72 | not run | 0.92 s |
 
 **Where the cited record ranked, by question kind** (10 questions each; rank 1 = first, — = not in the top 10):
@@ -1364,7 +1365,7 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 | SQLite, keywords | 3 first, 10 in top 10 | 10 first | 6 first, 10 in top 10 | 0 in top 10 |
 | Supermemory, as typed | 1 first, 6 in top 10 | 1 first, 10 in top 10 | 6 first, 10 in top 10 | 0 first, 10 in top 10 |
 | Supermemory, keywords | 0 first, 8 in top 10 | 4 first, 10 in top 10 | 6 first, 9 in top 10 | 0 first, 10 in top 10 |
-| Mem0 provisional, as typed | 0 first, 10 in top 10 | 2 first, 8 in top 10 | 2 first, 8 in top 10 | 0 first, 3 in top 10 |
+| Mem0, as typed | 0 first, 10 in top 10 | 2 first, 7 in top 10 | 2 first, 8 in top 10 | 0 first, 3 in top 10 |
 | **Memo word search, as typed** | **7 first**, 10 in top 10 | 0 first, all at rank 2 | 0 first, 10 in top 10 | 0 first, all at rank 2 |
 
 **Time to build each store:**
@@ -1374,7 +1375,7 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 | SQLite | 7 s | at once |
 | Memo 0.131.24 | 16 s for 5,851 note files and 4,149 mails, 16 s more to embed | at once |
 | Supermemory | 31 min (100 per batch, about 85 s per batch) | about 14 h until the sampled documents finished building memories (02:37 to about 16:50 UTC) |
-| Mem0 | 80 s to accept 6,500 adds | more than 11 h, still 425 queued at 20:21 UTC; about 250 processed an hour in the afternoon |
+| Mem0 | 80 s to accept 6,500 adds | 19 h: every add processed by 21:40 UTC (sent 02:37); about 250 an hour in the afternoon |
 
 ### What it showed
 
@@ -1401,6 +1402,8 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
   the commitments.
 - **Waiting for Supermemory's memories changed little.** A search at 1,229 memories gave 0.225 / 0.675 / 0.875 as
   typed; at 1,582 memories 0.20 / 0.70 / 0.90.
+- **Mem0 did not improve when it finished.** The provisional search (5,932 processed) and the final one (all 6,500)
+  differ by one source: one original date dropped out of the top 10, and recall@5 rose 0.03.
 - **Hosted stores take most of a day to build at this size** on the plans used (Supermemory free credit, Mem0 free
   tier). A user importing a year of history waits that long before the memory answers well. Mem0's pricing page and
   docs (read 5 November 2026) say nothing about processing speed or queue priority per plan; an SLA is listed only
