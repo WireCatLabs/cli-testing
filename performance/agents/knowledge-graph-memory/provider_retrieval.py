@@ -213,7 +213,7 @@ def main():
     parser.add_argument("--service", choices=["supermemory", "mem0"], required=True)
     parser.add_argument("--fixture", type=Path, required=True, help="a run.py output directory")
     parser.add_argument("--output", type=Path, required=True, help="new directory; existing paths are refused")
-    parser.add_argument("--records", type=int, default=2000, help="ingest only the first N records (a pilot)")
+    parser.add_argument("--records", type=int, help="ingest only the first N records (a pilot); default all")
     parser.add_argument("--tag", help="container tag / user id; a new one per run keeps runs apart")
     parser.add_argument("--no-infer", action="store_true", help="Mem0: store records verbatim, no fact extraction")
     parser.add_argument("--variants", default="default", help="Supermemory: comma list of default,threshold-0")

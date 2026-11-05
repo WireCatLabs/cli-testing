@@ -61,11 +61,13 @@ def name_of(index):
 
 def mbox_entry(index, record):
     when = datetime.fromisoformat(record["timestamp"]).astimezone(UTC)
+    first = int(re.search(r"/thread-(\d+)/", record["id"]).group(1)) - 1
+    reply = f"In-Reply-To: <{name_of(first)}@example.test>\n" if first != index else ""
     # Takeout's "From <gmail id>@xxx <asctime>" line is what memo's mbox reader requires.
     return (f"From {1_000_000_000_000_000 + index}@xxx {when.strftime('%a %b %d %H:%M:%S +0000 %Y')}\n"
-            f"X-GM-THRID: {2_000_000_000_000_000 + index}\n"
+            f"X-GM-THRID: {2_000_000_000_000_000 + first}\n"
             "X-Gmail-Labels: Inbox,Opened\n"
-            f"Message-ID: <{name_of(index)}@example.test>\n"
+            f"Message-ID: <{name_of(index)}@example.test>\n{reply}"
             f"Date: {when.strftime('%a, %d %b %Y %H:%M:%S +0000')}\n"
             "From: Synthetic Sender <sender@example.test>\n"
             "To: synthetic@example.test\n"
@@ -170,7 +172,7 @@ def main():
     configure_mail(memo, root / "data")
     notes, timings["sync_notes_no_embed_s"] = memo.json("sync", "--only", "notes", "--no-embed")
     mail, timings["sync_mail_no_embed_s"] = memo.json("sync", "--source", "email:synthetic", "--since-time",
-                                                      "2000-01-01", "--limit", "5000", "--no-embed")
+                                                      "2000-01-01", "--limit", "50000", "--no-embed")
     size_no_embed = store_bytes(memo.json("store", "info")[0]["item"])
 
     runs = {}
@@ -183,7 +185,7 @@ def main():
                                                              lambda text: text, raw)
 
     timings["model_download_s"] = memo.json("models", "download", args.model)[1]
-    embedded, timings["sync_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "5000",
+    embedded, timings["sync_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "50000",
                                                   "--source", "email:synthetic", "--folder", folder["item"]["id"])
     size_embedded = store_bytes(memo.json("store", "info")[0]["item"])
     runs[f"hybrid ({args.model}), question verbatim"] = query_all(memo, names, queries, "hybrid-verbatim", [],

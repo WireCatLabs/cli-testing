@@ -116,9 +116,9 @@ def seed_memo(place, records, model):
     folder, _ = memo.json("folders", "add", str(place["memo"] / "data/notes"), "--format", "markdown")
     configure_mail(memo, place["memo"] / "data")
     memo.json("sync", "--only", "notes", "--no-embed")
-    memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01", "--limit", "5000", "--no-embed")
+    memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01", "--limit", "50000", "--no-embed")
     memo.json("models", "download", model)
-    memo.json("sync", "--since-time", "2000-01-01", "--limit", "5000", "--source", "email:synthetic",
+    memo.json("sync", "--since-time", "2000-01-01", "--limit", "50000", "--source", "email:synthetic",
               "--folder", folder["item"]["id"])
     real = subprocess.run(["which", "memo"], capture_output=True, text=True, check=True).stdout.strip()
     # memo gets its own throwaway folders; the wrapper keeps them out of Hermes's environment.
@@ -196,7 +196,7 @@ def normalize(reply, names):
     cited = [str(item) for item in cited] if isinstance(cited, list) else [str(cited)]
     mapped = []
     for item in cited:
-        match = re.fullmatch(r"(?:.*/)?(r\d{4})(?:\.md)?", item.strip())
+        match = re.fullmatch(r"(?:.*/)?(r\d{4,})(?:\.md)?", item.strip())
         source = names.get(match.group(1)) if match else None
         mapped.append(source or item)
     return {"answer": answer, "citations": sorted(set(mapped))}, None

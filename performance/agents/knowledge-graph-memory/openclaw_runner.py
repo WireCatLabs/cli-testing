@@ -171,7 +171,7 @@ def prepare(root, fixture, memo_binary):
         configure_mail(memo, memo_root / "data")
         timings["memo_sync_notes_s"] = memo.json("sync", "--only", "notes", "--no-embed")[1]
         timings["memo_sync_mail_s"] = memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01",
-                                                "--limit", "5000", "--no-embed")[1]
+                                                "--limit", "50000", "--no-embed")[1]
         wrapper = write_memo_wrapper(root, memo_binary)
         # The skill goes to OpenClaw's throwaway ~/.agents/skills; requires.bins hides it from the files agent.
         subprocess.run([str(wrapper), "skill", "install", "--for", "agents"], check=True, capture_output=True)
@@ -206,7 +206,7 @@ def memory_search(root, agent, query):
 
 
 def hit_name(hit):
-    match = re.search(r"(r\d{4})\.md", json.dumps(hit))
+    match = re.search(r"(r\d{4,})\.md", json.dumps(hit))
     return match.group(1) if match else None
 
 
@@ -266,7 +266,7 @@ def normalize(reply, names):
         citations = [citations]
     refs = []
     for cite in citations:
-        match = re.search(r"r\d{4}", str(cite))
+        match = re.search(r"r\d{4,}", str(cite))
         refs.append(names.get(match.group(0), f"unmapped:{cite}") if match else f"unmapped:{cite}")
     if answer.casefold() == "unknown":
         refs = []
