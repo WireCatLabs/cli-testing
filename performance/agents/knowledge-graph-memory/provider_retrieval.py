@@ -2,6 +2,7 @@
 """Ingest the synthetic corpus into a hosted memory service and score its own search, with no answer model."""
 
 import argparse
+import ast
 import hashlib
 import json
 import platform
@@ -9,6 +10,7 @@ import subprocess
 import time
 import urllib.error
 import urllib.request
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
@@ -27,6 +29,36 @@ def keyring_secret(service):
     if done.returncode != 0 or not secret:
         raise SystemExit(f"no keyring entry for service {service} account wirecat")
     return secret
+
+
+def now():
+    return datetime.now(UTC).isoformat(timespec="seconds")
+
+
+def tag_started(tag):
+    try:
+        return datetime.strptime(tag.removeprefix("wirecat_bench_"), "%Y%m%d_%H%M%S").replace(tzinfo=UTC)
+    except ValueError:
+        return None
+
+
+class Ledger:
+    """One short line per batch, appended and closed at once, so a killed run still shows what reached the service."""
+
+    def __init__(self, path):
+        self.path = path
+
+    def write(self, **entry):
+        with self.path.open("a") as out:
+            out.write(json.dumps({"at": now(), **entry}, ensure_ascii=False) + "\n")
+
+    def totals(self):
+        if not self.path.exists():
+            return {"batches": 0, "sent": 0, "failed": 0}
+        rows = [json.loads(line) for line in self.path.read_text().splitlines() if line.strip()]
+        batches = [row for row in rows if "batch" in row]
+        return {"batches": len(batches), "sent": sum(row["sent"] for row in batches),
+                "failed": sum(len(row["failed"]) for row in batches)}
 
 
 class Api:
@@ -64,41 +96,50 @@ class Supermemory:
         self.api = Api(SUPERMEMORY, "Bearer " + keyring_secret("supermemory"))
         self.tag = tag
 
-    def ingest(self, records, log):
-        documents = [{"content": record["text"], "containerTag": self.tag, "customId": name_of(index),
-                      "metadata": {"rid": name_of(index)}, "documentDate": record["timestamp"]}
-                     for index, record in records]
-        ids, failures = [], []
-        for start in range(0, len(documents), 100):
-            batch = documents[start:start + 100]
+    final = ("done", "failed")
+    retry = ("failed",)
+
+    def ingest(self, records, ledger):
+        for start in range(0, len(records), 100):
+            documents = [{"content": record["text"], "containerTag": self.tag, "customId": name_of(index),
+                          "metadata": {"rid": name_of(index)}, "documentDate": record["timestamp"]}
+                         for index, record in records[start:start + 100]]
+            started = time.time()
             # A whole batch can come back as HTTP 200 with a single "Failed to save documents" item.
             for attempt in range(3):
                 # One batch of 100 took 88 s on average in the first full run; 60 s timed out four times in a row.
-                reply = self.api.request("POST", "/v3/documents/batch", {"documents": batch}, timeout=300)
-                log.append(reply)
+                reply = self.api.request("POST", "/v3/documents/batch", {"documents": documents}, timeout=300)
                 if reply.get("success"):
                     break
                 time.sleep(10 * (attempt + 1))
-            for item in reply["results"]:
-                (ids if item.get("status") != "error" else failures).append(item)
-        return [item["id"] for item in ids], failures
+            items = reply.get("results", [])
+            if len(items) == len(documents):
+                failed = [{"rid": document["customId"], "error": json.dumps(item)[:300]}
+                          for document, item in zip(documents, items) if item.get("status") == "error"]
+            else:
+                failed = [{"rid": document["customId"], "error": json.dumps(items)[:300]} for document in documents]
+            ledger.write(batch=start // 100, rids=[document["customId"] for document in documents],
+                         sent=len(documents), failed=failed, s=round(time.time() - started, 1))
 
-    def wait(self, ids, log, deadline):
-        pending, states = set(ids), {}
-        while pending and time.time() < deadline:
-            for document_id in list(pending):
-                reply = self.api.request("GET", f"/v3/documents/{document_id}")
-                states[document_id] = (reply.get("status"), reply.get("dreamingStatus"))
-                # Search can return chunks once status is done; memories exist only after dreaming ends.
-                if reply.get("status") == "failed" or (reply.get("status") == "done"
-                                                        and reply.get("dreamingStatus") in ("done", "failed")):
-                    pending.discard(document_id)
-            if pending:
-                time.sleep(10)
-        log.append({"states": {key: list(value) for key, value in states.items()}})
-        return {"done": sum(value[0] == "done" for value in states.values()),
-                "dreaming_done": sum(value[1] == "done" for value in states.values()),
-                "failed": sum("failed" in value for value in states.values()), "still_pending": len(pending)}
+    def held(self):
+        """Every document under the tag, by record name, with its processing status."""
+        states, page = {}, 1
+        while True:
+            reply = self.api.request("POST", "/v3/documents/list",
+                                     {"containerTags": [self.tag], "limit": 500, "page": page, "order": "asc"})
+            for document in reply.get("memories", []):
+                states[document.get("customId") or (document.get("metadata") or {}).get("rid")] = document["status"]
+            if page >= reply["pagination"]["totalPages"]:
+                return states
+            page += 1
+
+    def extra(self):
+        tags = self.api.request("GET", "/v3/container-tags/list")
+        for tag in tags if isinstance(tags, list) else tags.get("containerTags", []):
+            if tag["containerTag"] == self.tag:
+                return {"documents": tag.get("documentCount"), "memories": tag.get("memoryCount"),
+                        "last_activity": tag.get("lastActivityAt")}
+        return {}
 
     def search(self, query, variant):
         # threshold "default" is what the Hermes provider sends (none); "0" asks for every candidate.
@@ -136,27 +177,46 @@ class Mem0:
         except RuntimeError as error:
             return {"rid": name_of(index), "error": str(error)}
 
-    def ingest(self, records, log):
-        with ThreadPoolExecutor(max_workers=4) as pool:
-            replies = list(pool.map(self.add, records))
-        log.extend(replies)
-        events = [row["reply"].get("event_id") for row in replies if "reply" in row]
-        failures = [row for row in replies if "error" in row]
-        return [event for event in events if event], failures
+    final = ("SUCCEEDED", "FAILED")
+    retry = ("FAILED",)
 
-    def wait(self, events, log, deadline):
-        pending, states = set(events), {}
-        while pending and time.time() < deadline:
-            for event in list(pending):
-                reply = self.api.request("GET", f"/v1/event/{event}/")
-                states[event] = reply.get("status")
-                if reply.get("status") in ("SUCCEEDED", "FAILED"):
-                    pending.discard(event)
-            if pending:
-                time.sleep(10)
-        log.append({"states": states})
-        return {"done": sum(value == "SUCCEEDED" for value in states.values()),
-                "failed": sum(value == "FAILED" for value in states.values()), "still_pending": len(pending)}
+    def ingest(self, records, ledger):
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            for start in range(0, len(records), 100):
+                started = time.time()
+                replies = list(pool.map(self.add, records[start:start + 100]))
+                ledger.write(batch=start // 100, rids=[row["rid"] for row in replies], sent=len(replies),
+                             failed=[{"rid": row["rid"], "error": row["error"][:300]}
+                                     for row in replies if "error" in row],
+                             s=round(time.time() - started, 1))
+
+    @staticmethod
+    def literal(value):
+        # The event feed returns payload and metadata sometimes as objects, sometimes as Python repr strings.
+        return ast.literal_eval(value) if isinstance(value, str) and value.startswith("{") else value or {}
+
+    def held(self):
+        """Every ADD event for the tag, by record name, from the organisation's event feed (newest first)."""
+        states, page, since = {}, 1, tag_started(self.tag)
+        rank = {"FAILED": 0, "PENDING": 1, "RUNNING": 1, "SUCCEEDED": 2}
+        while True:
+            reply = self.api.request("GET", f"/v1/events/?page={page}&page_size=100")
+            for event in reply.get("results", []):
+                if since and datetime.fromisoformat(event["created_at"]) < since:
+                    return states
+                payload = self.literal(event.get("payload"))
+                if event.get("event_type") != "ADD" or payload.get("user_id") != self.tag:
+                    continue
+                rid = (self.literal(event.get("metadata")) or {}).get("rid") or (payload.get("metadata") or {}).get("rid")
+                # A record added twice keeps its best outcome.
+                if rank.get(event["status"], 1) >= rank.get(states.get(rid), -1):
+                    states[rid] = event["status"]
+            if not reply.get("next"):
+                return states
+            page += 1
+
+    def extra(self):
+        return {"memories": self.count()}
 
     def count(self):
         reply = self.api.request("POST", "/v3/memories/?page=1&page_size=1", {"filters": {"user_id": self.tag}})
@@ -182,7 +242,7 @@ def flatten(groups, names):
 
 def run_queries(service, queries, names, variant, rewrite, raw):
     folder = raw / f"{variant}-{'or' if rewrite is or_query else 'verbatim'}"
-    folder.mkdir()
+    folder.mkdir(exist_ok=True)
     rows = []
     for query in queries:
         text = rewrite(query["question"])
@@ -196,17 +256,42 @@ def run_queries(service, queries, names, variant, rewrite, raw):
     return rows
 
 
-def ingest_records(service, chosen, root, args):
-    log = []
+def check(service, chosen, ledger):
+    held = service.held()
+    names = [name_of(index) for index, _ in chosen]
+    wanted = set(names)
+    return held, {"service": service.label, "tag": service.tag, "checked_at": now(), "expected": len(names),
+                  "by_status": dict(Counter(held.get(name, "absent") for name in names)),
+                  "outside_selection": len(set(held) - wanted), "ledger": ledger.totals(), "service_counts": service.extra()}
+
+
+def write_status(root, status):
+    path = root / f"status-{datetime.now(UTC):%Y%m%dT%H%M%S}.json"
+    path.write_text(json.dumps(status, indent=2) + "\n")
+    print(json.dumps(status, indent=2))
+    return path
+
+
+def ingest_records(service, chosen, root, args, ledger):
     started = time.time()
-    handles, failures = service.ingest(chosen, log)
+    todo = chosen
+    if args.resume:
+        held, status = check(service, chosen, ledger)
+        write_status(root, status)
+        todo = [(index, record) for index, record in chosen if held.get(name_of(index), "absent") in ("absent", *service.retry)]
+    print(f"sending {len(todo)} of {len(chosen)} records", flush=True)
+    service.ingest(todo, ledger)
     submit_s = time.time() - started
-    processed = service.wait(handles, log, time.time() + args.wait_minutes * 60)
-    indexed_s = time.time() - started
-    (root / "ingest-log.json").write_text(json.dumps(log, ensure_ascii=False, indent=2) + "\n")
-    return {"records": len(chosen), "accepted": len(handles), "rejected": len(failures),
-            "rejections": failures[:20], "processed": processed, "submit_s": submit_s, "until_indexed_s": indexed_s,
-            "ingest_calls": service.api.calls}
+    deadline = time.time() + args.wait_minutes * 60
+    # One listing per poll instead of one GET per record every 10 s: 7,800 GETs a round was most of the old wait.
+    while True:
+        held, status = check(service, chosen, ledger)
+        if all(held.get(name_of(index)) in service.final for index, _ in chosen) or time.time() > deadline:
+            break
+        time.sleep(300)
+    write_status(root, status)
+    return {"records": len(chosen), "sent_this_run": len(todo), "status": status["by_status"], "submit_s": submit_s,
+            "until_indexed_s": time.time() - started, "ingest_calls": service.api.calls}
 
 
 def main():
@@ -222,8 +307,14 @@ def main():
     parser.add_argument("--rewrites", default="verbatim,or", help="comma list of verbatim,or")
     parser.add_argument("--wait-minutes", type=float, default=30)
     parser.add_argument("--search-only", action="store_true", help="search an earlier run's --tag; no ingest")
+    parser.add_argument("--status", action="store_true",
+                        help="check what the service holds for --tag, write status-<time>.json, then stop")
+    parser.add_argument("--resume", action="store_true",
+                        help="continue an interrupted ingest for --tag in the same --output: send only what is missing")
     args = parser.parse_args()
-    args.output.mkdir(parents=True, exist_ok=False)
+    if (args.status or args.resume) and not args.tag:
+        raise SystemExit("--status and --resume need the --tag of the interrupted run")
+    args.output.mkdir(parents=True, exist_ok=args.status or args.resume)
     root = args.output.resolve()
     # Underscores only: Hermes's Supermemory provider turns any other character into "_" before it searches.
     tag = args.tag or f"wirecat_bench_{datetime.now(UTC):%Y%m%d_%H%M%S}"
@@ -243,18 +334,23 @@ def main():
     names = {name_of(index): record["id"] for index, record in enumerate(records)}
     service = Supermemory(tag) if args.service == "supermemory" else Mem0(tag, infer=not args.no_infer)
 
+    ledger = Ledger(root / "ledger.jsonl")
+
     if args.search_only and not args.tag:
         raise SystemExit("--search-only needs the --tag of the run that ingested the records")
+    if args.status:
+        write_status(root, check(service, chosen, ledger)[1])
+        return
     if args.search_only:
         ingest = {"search_only": True, "ingest_calls": 0}
     else:
-        ingest = ingest_records(service, chosen, root, args)
+        ingest = ingest_records(service, chosen, root, args, ledger)
     if isinstance(service, Mem0):
         ingest["memories_stored"] = service.count()
     print(json.dumps(ingest, indent=2))
 
     raw = root / "raw"
-    raw.mkdir()
+    raw.mkdir(exist_ok=args.resume)
     rewrites = {"verbatim": lambda text: text, "or": or_query}
     variants = args.variants.split(",") if isinstance(service, Supermemory) else ["default"]
     runs = {}

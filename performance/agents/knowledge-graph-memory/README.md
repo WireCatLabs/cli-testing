@@ -368,6 +368,14 @@ python3 performance/agents/knowledge-graph-memory/provider_retrieval.py --servic
 python3 performance/agents/knowledge-graph-memory/provider_retrieval.py --service mem0 --fixture $B/fixture --output $B/runs/mem0-full-2000 --wait-minutes 90
 ```
 
+- **An interrupted ingest continues, it does not start over.** Each batch of 100 adds one line to
+  `<output>/ledger.jsonl`: the record names sent, the ones the service refused, the seconds. No full replies, so the
+  file stays small. `--status --tag <tag>` asks the service what it holds for the tag (Supermemory's document list,
+  Mem0's event feed) and writes `<output>/status-<time>.json`; it sends nothing. `--resume --tag <tag>` with the same
+  `--output` writes that status first, then sends only the records the service does not hold or marked failed, then
+  waits and searches as usual. Mem0 counts every add against its allowance, so it is never re-sent blindly: a record
+  whose event is still pending is not missing. The wait lists the tag's state every 5 minutes instead of asking for
+  each record (7,800 requests a round before).
 - **Record names travel as metadata, never in the text.** Supermemory: `customId` and `metadata.rid` = `r0001`,
   `documentDate` = the record's time. Mem0: `metadata.rid`. A hit maps back to the corpus through that name. A
   Supermemory memory built from several records cites all of them at one rank; the hit list is deduplicated in
@@ -1472,6 +1480,11 @@ python3 $K/provider_retrieval.py --service supermemory --fixture $F --output ~/.
 # 2. Mem0 ingest, the subset (6,500 adds, 50 retrievals); prints the new user id
 python3 $K/provider_retrieval.py --service mem0 --fixture $F --subset $F/subset-mem0.json \
   --output ~/.cache/wirecat-bench/runs/mem0-10k-subset --rewrites verbatim --wait-minutes 900
+# 1–2 interrupted? Check, then continue in the same folder with the printed tag (sends only what is missing)
+python3 $K/provider_retrieval.py --service supermemory --fixture $F --output ~/.cache/wirecat-bench/runs/supermemory-10k \
+  --tag <tag> --status
+python3 $K/provider_retrieval.py --service supermemory --fixture $F --output ~/.cache/wirecat-bench/runs/supermemory-10k \
+  --tag <tag> --resume --variants default --rewrites verbatim --wait-minutes 240 > ~/.cache/wirecat-bench/runs/supermemory-10k/run.log 2>&1
 # 3. OpenClaw for 10K (free): its own root; step 5 of the OpenClaw setup once, then prepare and the plugins
 R=~/.cache/wirecat-bench/openclaw-10k
 python3 $K/openclaw_runner.py --root $R install
