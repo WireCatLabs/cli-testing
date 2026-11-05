@@ -57,7 +57,7 @@ Every total memo reports per project and direction (7 totals) equals the sheet's
   over-covered invoice.
 - A confirmed payment with a wrong split needs an owner-only way to correct it. The re-import flags such payments and
   does not change them.
-- Two further sheets of 36 and 38 records import with no refusals once the amounts are carried.
+- Both sheets, of 36 and 38 records, import with no refusals once the amounts are carried.
 
 ## Not measured
 
