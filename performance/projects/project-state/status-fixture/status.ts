@@ -63,18 +63,23 @@ const plus = (days: number) => new Date(Date.parse(`${D}T00:00:00Z`) + days * 86
 
 interface Signal {
   chat: string
-  evidence: { ref: string }[]
+  ref: string
+  evidence?: string[]
   data: Record<string, unknown>
+}
+interface ChatRow {
+  chat: string
+  next?: string
+  waiting_since?: string | null
+  coverage: string
+  sync_command?: string | null
 }
 const group = CHATS[0]
 const asks = group.said.filter((one) => one.from === "me" && one.text.includes("1 200"))
 const askRefs = asks.map((one) => `msg:max/11/-900/${one.id}`)
 const money = (answer.item.amounts as Signal[]).find((one) => one.data.direction === "to_us")
-const contractor = (answer.item.reply_next as Signal[]).find((one) => one.chat === "chat:telegram/22/555")
+const contractor = (answer.item.chats as ChatRow[]).find((one) => one.chat === "chat:telegram/22/555")
 const topic = (answer.item.topics as Signal[]).find((one) => one.data.query === "1C")
-const coverage = (answer.item.coverage as (Signal & { sync_command?: string })[]).find(
-  (one) => one.chat === "chat:telegram/22/555",
-)
 
 const claims = {
   money: {
@@ -84,19 +89,20 @@ const claims = {
       currency: money.data.currency,
       state: money.data.state,
       since: day(money.data.since as string),
-      evidence: money.evidence.map((one) => one.ref),
+      evidence: money.evidence ?? [money.ref],
     },
     pass:
       money?.data.amount === "1200.00" &&
       money.data.currency === "EUR" &&
       money.data.state === "open" &&
       day(money.data.since as string) === D &&
-      askRefs.every((ref) => money.evidence.some((one) => one.ref === ref)),
+      askRefs.every((ref) => (money.evidence ?? [money.ref]).includes(ref)),
   },
+  // NEED-2210 A: the move is the owner's since the contractor's first unanswered message, how long they have waited.
   contractor_next: {
-    expected: `next: YOU (owner) since ${plus(9)}`,
-    observed: contractor && { next: contractor.data.next, since: day(contractor.data.waiting_since as string) },
-    pass: contractor?.data.next === "owner" && day(contractor.data.waiting_since as string) === plus(9),
+    expected: `next: YOU (owner) since ${plus(2)}`,
+    observed: contractor && { next: contractor.next, since: day(contractor.waiting_since) },
+    pass: contractor?.next === "owner" && day(contractor.waiting_since) === plus(2),
   },
   topic_quiet: {
     expected: `"1C" quiet on their side since ${plus(-7)}`,
@@ -106,8 +112,8 @@ const claims = {
   },
   contractor_partial: {
     expected: "chat:telegram/22/555 partial, with its sync command",
-    observed: coverage && { state: coverage.data.state, sync_command: coverage.sync_command },
-    pass: coverage?.data.state === "partial" && /messages sync 555/.test(coverage.sync_command ?? ""),
+    observed: contractor && { state: contractor.coverage, sync_command: contractor.sync_command },
+    pass: contractor?.coverage === "partial" && /messages sync 555/.test(contractor.sync_command ?? ""),
   },
 }
 
