@@ -1,6 +1,8 @@
 # Project status on an invented store
 
-Measured 2026-11-03 with memo 0.131.21 (cli-core 0.560.0), for the e stream of TASK-834 (`projects status`).
+First run 2026-11-03 with memo 0.131.21 (cli-core 0.560.0), for the e stream of TASK-834 (`projects status`).
+Second run 2026-11-05 with memo 0.131.34 (cli-core 0.578.0), after PERF-75 shrank the answer. "Before" below is the
+first run, "after" is the second.
 
 ## Why this was run
 
@@ -16,8 +18,9 @@ cli-core first.
 
 ## Setup
 
-- AMD Ryzen AI 9 HX 470, Linux 7.0, Node v24.19.0. memo 0.131.21 from npm in a scratch folder
-  (`npm i --prefix <dir> @wirecat/cli-memo@0.131.21`), its cli-core 0.560.0.
+- AMD Ryzen AI 9 HX 470, Linux 7.0, Node v24.19.0. memo from npm in a scratch folder
+  (`npm i --prefix <dir> @wirecat/cli-memo@<version>`). Before: 0.131.21 with cli-core 0.560.0. After: 0.131.34 with
+  cli-core 0.578.0.
 - [`fixture.ts`](fixture.ts) builds the store through cli-core's store API: project HRB "Harbour site" and 4 linked
   chats, 1,006 messages, every name and text invented.
   - Client group (MAX account 11, role `client`): 801 messages from D−55 to D+8, D = 2026-10-19. Planted among
@@ -29,63 +32,104 @@ cli-core first.
   - A leads group with no role: 200 visitor requests.
 - [`status.ts`](status.ts) seeds a fresh temporary store and runs
   `memo projects status HRB --context-query 1C --before-time 2026-11-02T10:00:00Z` as text, `--json` and `--compact`,
-  7 rounds each, with HOME, XDG_*, `WIRECAT_STATE_DIR` and `MESSAGING_STORE` in a temporary folder,
+  7 rounds each (3 in the second run), with HOME, XDG_*, `WIRECAT_STATE_DIR` and `MESSAGING_STORE` in a temporary folder,
   `DBUS_SESSION_BUS_ADDRESS=disabled:` and `TZ=UTC`. The fixed end makes the answer the same on any day. No network,
   no keyring, no account.
 - It checks the four claims on the JSON, counts message texts printed without their reference, and writes
-  [`result.json`](result.json). Wall time is the median of 7 runs of the whole process, Node start included.
-- Run: `node status.ts <folder whose node_modules holds @wirecat/cli-memo> 7`.
+  [`result.json`](result.json). Wall time is the median of the rounds of the whole process, Node start included.
+- Run: `node status.ts <folder whose node_modules holds @wirecat/cli-memo> <rounds>`.
 
 ## Results
 
-| Claim (e plan, section 7) | Expected | Observed | |
+Before is memo 0.131.21. After is memo 0.131.34 (cli-core 0.578.0, PERF-75). All four claims pass after.
+
+| Claim (e plan, section 7) | Expected | Before | After |
 | --- | --- | --- | --- |
-| 1. Money | `to_us` 1,200 EUR open since D, citing both asks | 1200.00 EUR open since 2026-10-19, both asks cited, `asks: 2` | pass |
-| 2. Contractor chat | `next: YOU since D+9` | `next: owner` since 2026-10-21 (D+2) | **differs** |
-| 3. Client group | "1C" quiet on their side since D−7 | quiet since 2026-10-12 (D−7), in JSON, compact and text | pass |
-| 4. Contractor chat partial | flagged, with its sync line | `partial`, 3 held, `tg <profile> messages sync 555 --since-time 2026-09-03` | pass |
+| 1. Money | `to_us` 1,200 EUR open since D, citing both asks | pass | pass: 1200.00 EUR open since 2026-10-19, both asks cited |
+| 2. Contractor chat | `next: YOU since D+2` (was D+9 in the plan) | **differs**: owner since 2026-10-21 (D+2) | pass: owner since 2026-10-21 (D+2) |
+| 3. Client group | "1C" quiet on their side since D−7 | pass | pass: quiet since 2026-10-12 (D−7), in JSON, compact and text |
+| 4. Contractor chat partial | flagged, with its sync line | pass | pass: `partial`, `tg <profile> messages sync 555 --since-time 2026-09-03` |
 
-| Limit | Target | Observed |
-| --- | ---: | ---: |
-| JSON | ≤ 4,096 bytes | **11,169** |
-| `--compact` | ≤ 1,536 bytes | **3,639** |
-| Text (no target) | | 898 |
-| Wall time, median of 7 | ≤ 2 s | 0.28 to 0.47 s by form; the answer's own `duration_ms` 56 to 108 |
-| Message texts printed without their reference | 0 | 0 in every form |
+Claim 2 passes because the expectation changed, not the output. The owner decided (NEED-2210 A) that "your move
+since" counts from the first unanswered message. The answer was already D+2 in the first run. The plan said D+9. The
+check in [`status.ts`](status.ts) now expects D+2. In the new JSON the claim reads from the chat row (`next`,
+`waiting_since`), not from the old `reply_next` list.
 
-Where the JSON bytes go (bytes of each field of `item`):
+| Limit | Target | Before | After |
+| --- | ---: | ---: | ---: |
+| JSON | ≤ 4,096 bytes | 11,169 | **3,998** |
+| `--compact` | ≤ 1,536 bytes | 3,639 | **1,511** |
+| Text (no target) | | 898 | 898 |
+| Wall time, median | ≤ 2 s | 0.28 to 0.47 s by form (7 rounds) | text 0.44 s, JSON 0.32 s, compact 0.36 s (3 rounds) |
+| The answer's own `duration_ms` | | 56 to 108 | 57 |
+| Message texts printed without their reference | 0 | 0 | 0 in every form |
 
-| Field | Bytes | What fills it on this store |
-| --- | ---: | --- |
-| `questions` | 2,963 | 7 open questions; 5 are visitors' requests in the leads group |
-| `promises` | 1,861 | 4 promises by word pattern; 3 are "фото пришлю позже" in the client group's filler |
-| `reply_next` | 1,577 | one row per chat |
-| `last_message` | 1,226 | one row per chat |
-| `chats` | 682 | |
-| `amounts`, `topics`, `coverage` and the rest of `item` | 1,803 | |
-| `next`, `missing`, `meta` | about 1,050 | |
+Both margins are thin. JSON has 98 bytes of room and compact has 25. One more field per chat row, or a few longer
+names, can break a limit. Any change to the answer should rerun this page.
+
+Where the JSON bytes go after (bytes of each top-level field of the answer):
+
+| Field | Bytes |
+| --- | ---: |
+| `chats` | 1,260 |
+| `questions` | 492 |
+| `amounts` | 361 |
+| `topics` | 307 |
+| `promises` | 292 |
+| `signals` | 105 |
+| `window` | 71 |
+| `money` | 68 |
+| `name`, `project`, `purposes`, `key` | 38 |
+| Keys of the answer's other parts, quotes, commas | about 1,000 |
+
+The last row is the remainder to 3,998, not a measured field. The first run broke down the fields of `item`, the new
+one breaks down the whole answer, so the two tables do not line up row by row.
+
+## What was cut
+
+- **Chat rows carry what three lists carried.** `last_message`, `reply_next` and `coverage` are gone as lists. Each
+  chat row now has `last`, `next`, `waiting_since`, `addressed`, `overdue`, `held` and `sync_command`. Before, these
+  three lists were 1,226 + 1,577 bytes and part of the 1,803 in the first run's remainder.
+- **Unlisted counts instead of rows.** Others' questions in a group with no role, and others' promises found by word
+  pattern in a group, are counted on the chat row as `unlisted`. They are no longer listed. These were the 5 visitor
+  requests in `questions` and the 3 "фото пришлю позже" in `promises`.
+- **Items are lighter.** They lost `signal`, `chat_title` and memo's per-item `title`. `finance` is left out when empty.
+- **Compact hides more.** It leaves out project, window, purposes and signals.
 
 ## What it showed
 
-- **Three of the four claims hold, with references, in under a second.** The money row cites both asks, the quiet
-  topic carries its date, and the contractor chat is flagged partial with the command that syncs it.
-- **"Whose move" dates from the first unanswered message, not the last.** The contractor wrote on D+2 ("I'll send it
-  tomorrow") and again on D+9 (a question); the owner answered neither. The answer says the move has been the owner's
-  since D+2. The plan expected D+9. Both readings are defensible; the plan and the code should pick one.
+- **All four claims hold, with references, in under half a second, within both size limits.** JSON is 3,998 bytes and
+  compact is 1,511.
+- **"Whose move" counts from the first unanswered message.** The contractor wrote on D+2 ("I'll send it tomorrow") and
+  again on D+9 (a question). The owner answered neither, so the move has been the owner's since D+2. The plan said
+  D+9. The owner chose D+2 (NEED-2210 A) and the plan and code now agree.
 - **A topic is "quiet on their side" only after the owner has written about it.** Without the owner's D−5 message the
   JSON has the client's last mention but no `silent_since`, and the text prints no topic line at all. The plan's
-  fixture did not say the owner must answer; this one adds that message.
-- **Sizes are about 2.5 times the plan's limits.** The JSON is 11.2 KB against 4 KB and compact 3.6 KB against
-  1.5 KB. Most of it is rows the owner would not call status: questions from the leads group, which has no role, and
-  promises guessed from words in ordinary chatter. Folding a chat without a role into one line, and capping pattern
-  promises, would cut most of the overage (inferred, not measured).
+  fixture did not say the owner must answer. This one adds that message.
+- **The size cut came from dropping rows, not from squeezing fields.** The cuts above removed lists and per-item
+  fields. The planted claims did not need any of them.
+
+## Corrections
+
+- **Correction, 2026-11-05.** Old claim: "Three of the four claims hold." It is now four of four. Claim 2 was a
+  disagreement between plan and code, and the owner settled it.
+- **Correction, 2026-11-05.** Old claim: "'Whose move' dates from the first unanswered message, not the last ... The
+  plan expected D+9. Both readings are defensible; the plan and the code should pick one." The pick is made: first
+  unanswered message (NEED-2210 A).
+- **Correction, 2026-11-05.** Old claim: "Sizes are about 2.5 times the plan's limits. The JSON is 11.2 KB against
+  4 KB and compact 3.6 KB against 1.5 KB." That held for memo 0.131.21. On 0.131.34 the JSON is 3,998 bytes and
+  compact is 1,511, both inside the limits. The old guess that folding no-role chats and dropping pattern promises
+  would cut most of the overage (inferred, not measured) was right in direction. The measured result is above.
+- **Correction, 2026-11-05.** Old claim: the field table with `questions` at 2,963 bytes, `promises` at 1,861,
+  `reply_next` at 1,577 and `last_message` at 1,226. Those fields no longer exist in that form. See the new table.
 
 ## Not measured
 
-- The real project: the private 834.h rerun on the installed releases is a separate run; its counts go to the
+- The real project: the private 834.h rerun on the installed releases is a separate run. Its counts go to the
   [project-state page](../README.md), its rows to cli-private.
-- Accuracy beyond the four planted claims: the false positives in `promises` and `questions` are counted above, not
-  scored against labels.
-- Eight linked chats: cli-core's unit test checks compact size for eight chats; this store has four.
-- A store with the `payments` table (NEED-2159 B) or recorded finance: `finance` is empty here.
-- Run-to-run variance beyond the 7 timed rounds; one machine.
+- Accuracy beyond the four planted claims. The `unlisted` counts are not scored against labels, so we do not know how
+  many real promises or questions the cut hides.
+- Eight linked chats: cli-core's unit test checks compact size for eight chats. This store has four. With margins of
+  98 and 25 bytes, more chats will probably break a limit.
+- A store with the `payments` table (NEED-2159 B) or recorded finance. `finance` is empty here.
+- Run-to-run variance: the second run has 3 timed rounds, the first 7. One machine.

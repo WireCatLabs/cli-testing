@@ -1,11 +1,11 @@
 {
-  "date": "2026-11-03",
+  "date": "2026-11-05",
   "node": "v24.19.0",
-  "memo": "0.131.21",
-  "cli_core": "0.560.0",
+  "memo": "0.131.34",
+  "cli_core": "0.578.0",
   "seeded_messages": 1006,
   "command": "memo projects status HRB --context-query 1C --before-time 2026-11-02T10:00:00.000Z",
-  "rounds": 7,
+  "rounds": 3,
   "claims": {
     "money": {
       "expected": "to_us 1200.00 EUR open since 2026-10-19, citing msg:max/11/-900/700 and msg:max/11/-900/790",
@@ -19,12 +19,12 @@
       "pass": true
     },
     "contractor_next": {
-      "expected": "next: YOU (owner) since 2026-10-28",
+      "expected": "next: YOU (owner) since 2026-10-21",
       "observed": {
         "next": "owner",
         "since": "2026-10-21"
       },
-      "pass": false
+      "pass": true
     },
     "topic_quiet": {
       "expected": "\"1C\" quiet on their side since 2026-10-12",
@@ -44,11 +44,11 @@
       "pass": true
     }
   },
-  "claims_passed": 3,
+  "claims_passed": 4,
   "sizes": {
-    "json_bytes": 11169,
+    "json_bytes": 3998,
     "json_target": 4096,
-    "compact_bytes": 3639,
+    "compact_bytes": 1511,
     "compact_target": 1536,
     "text_bytes": 898,
     "json_by_field": {
@@ -56,26 +56,22 @@
       "key": 5,
       "name": 14,
       "window": 71,
-      "signals": 275,
+      "signals": 105,
       "money": 68,
-      "chats": 682,
+      "chats": 1260,
       "purposes": 8,
-      "last_message": 1226,
-      "reply_next": 1577,
-      "questions": 2963,
-      "promises": 1861,
-      "amounts": 510,
-      "topics": 455,
-      "coverage": 384,
-      "finance": 2
+      "questions": 492,
+      "promises": 292,
+      "amounts": 361,
+      "topics": 307
     }
   },
   "wall_ms": {
-    "text": 279,
-    "json": 297,
-    "compact": 474
+    "text": 440,
+    "json": 315,
+    "compact": 362
   },
-  "answer_duration_ms": 56,
+  "answer_duration_ms": 57,
   "texts_shown_without_their_ref": {
     "json": 0,
     "compact": 0,
