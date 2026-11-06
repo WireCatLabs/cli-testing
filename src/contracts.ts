@@ -4,6 +4,7 @@ import { tmpdir } from "node:os"
 import { dirname, join, resolve } from "node:path"
 import { Client } from "@modelcontextprotocol/client"
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio"
+import { type ContractDeny, type DenyDependencies, openContractTools, runDenyContracts } from "./contract-deny.js"
 import {
   assertJson,
   type ContractFile,
@@ -37,6 +38,7 @@ export interface ContractPlan {
   args?: string[]
   cases: ContractCase[]
   mcp?: { args: string[]; snapshot: string }
+  deny?: ContractDeny
   fixtures?: ContractFile[]
   previous?: { entry: string; version: string }
   canaries?: string[]
@@ -58,6 +60,7 @@ export interface ContractResult {
 export interface ContractDependencies {
   run?: (process: ContractProcess) => ContractResult
   tools?: (process: ContractProcess) => Promise<unknown[]>
+  toolSession?: DenyDependencies["mcp"]
   update?: boolean
   timeout?: number
   path?: string
@@ -305,6 +308,11 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
           deps.update === true,
           true,
         )
+      })
+    if (plan.deny)
+      await runDenyContracts(plan.deny, invocation, check, {
+        run: deps.run ?? runContractProcess,
+        mcp: deps.toolSession ?? openContractTools,
       })
     return { passed: results.every((item) => item.passed), results }
   } finally {

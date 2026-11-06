@@ -26,6 +26,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- **A `deny` check in contract plans.** `"deny": { "profile": "personal" }` sets `deny` for each command that
+  reaches the service and names a permission key in its `--dry-run`, in the fresh empty home, and expects exit 5
+  with `permission_error` before any network, keyring or child-process access; then it calls each over
+  `mcp serve` and expects the same refusal. It fails when no read names a key, as when a program drops its
+  permission table. Every CLI made from cli-template runs it in `contracts:check`. See
+  [the contracts guide](docs/ci/CONTRACTS.md#deny-check).
 - A compact evidence-ranking handoff package with pinned model preparation, synthetic CPU diagnostics,
   reproducible metrics and a staged comparison of mathematical, contextual and optional neural methods.
 - A reproducible API cost estimator for the knowledge graph memory pilot, with explicit call/token
