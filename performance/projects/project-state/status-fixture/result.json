@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "node": "v24.19.0",
-  "memo": "0.131.34",
-  "cli_core": "0.578.0",
+  "memo": "0.131.40",
+  "cli_core": "0.583.0",
   "seeded_messages": 1006,
   "command": "memo projects status HRB --context-query 1C --before-time 2026-11-02T10:00:00.000Z",
   "rounds": 3,
@@ -46,32 +46,31 @@
   },
   "claims_passed": 4,
   "sizes": {
-    "json_bytes": 3998,
+    "json_bytes": 3644,
     "json_target": 4096,
-    "compact_bytes": 1511,
+    "compact_bytes": 1363,
     "compact_target": 1536,
     "text_bytes": 898,
     "json_by_field": {
       "project": 11,
       "key": 5,
       "name": 14,
-      "window": 71,
       "signals": 105,
       "money": 68,
-      "chats": 1260,
+      "chats": 1236,
       "purposes": 8,
-      "questions": 492,
-      "promises": 292,
-      "amounts": 361,
-      "topics": 307
+      "questions": 404,
+      "promises": 243,
+      "amounts": 323,
+      "topics": 265
     }
   },
   "wall_ms": {
-    "text": 440,
-    "json": 315,
-    "compact": 362
+    "text": 423,
+    "json": 349,
+    "compact": 302
   },
-  "answer_duration_ms": 57,
+  "answer_duration_ms": 51,
   "texts_shown_without_their_ref": {
     "json": 0,
     "compact": 0,
