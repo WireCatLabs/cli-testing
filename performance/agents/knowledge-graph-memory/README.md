@@ -1440,34 +1440,58 @@ the agent session that ran it ended) and joined by question id; every other setu
 |---|---:|---:|---:|---:|---:|
 | OpenClaw alone (files) | **50** | **47** | 0 | 24.0 | $2.30 |
 | OpenClaw + WireCat | **50** | 45 | 0 | 23.7 | $2.03 |
-| OpenClaw + Supermemory | 17 | 10 | 6 | 27.8 | $1.54 |
-| OpenClaw + Mem0 | not valid, rerun pending | | | | |
+| OpenClaw + Supermemory | 16 | 10 | 8 | 34.1 | $1.64 |
+| OpenClaw + Mem0 | 42 | 10 | 4 | 96.5 | $2.58 |
 | Hermes alone | 49 | 28 | 1 | 8.7 | 3.39M tokens |
 | Hermes + WireCat | 45 | 32 | 0 | 13.2 | 2.13M tokens |
 | Hermes + Supermemory | 16 | 10 | 7 | | |
-| Hermes + Mem0 | not run: API limit | | | | |
+| Hermes + Mem0 | 35 | 10 | 4 | 11.4 | 0.88M tokens |
 
 OpenClaw's cost is its own per-call report; Hermes reports tokens and no price. The 10 budget questions are
-answered "unknown" correctly by every setup, so 10 of each "correct" are those.
+answered "unknown" correctly by every setup, so 10 of each "correct" are those. The OpenClaw + Supermemory and both
+Mem0 rows are the reruns of 6 November (OpenClaw plugin homes with Code Mode, Tool Search and memory-core off, see
+[isolation](#isolation-and-fairness)); the first OpenClaw + Supermemory run gave 17 correct and 6 stale.
+
+**By question kind** (correct of 10; "old" = a stale date, "unknown" = the agent found nothing it trusted):
+
+| Setup | Current date | Original date | Owner | Commitment | Budget |
+|---|---|---|---|---|---|
+| OpenClaw alone, OpenClaw + WireCat | 10 | 10 | 10 | 10 | 10 |
+| Hermes alone | 10 | 10 | 10 | 9, 1 old | 10 |
+| Hermes + WireCat | 10 | 10 | 10 | 5 (format) | 10 |
+| OpenClaw + Mem0 | 10 | 10 | 6, 3 old | 6, 1 old | 10 |
+| Hermes + Mem0 | 8, 2 unknown | 8, 2 unknown | 4, 4 old, 2 unknown | 5, 3 unknown | 10 |
+| OpenClaw + Supermemory | 1, 7 old, 1 unknown | 2, 4 unknown | 0, 8 unknown | 3, 1 old, 6 unknown | 10 |
+| Hermes + Supermemory | 1, 7 old, 2 unknown | 3, 4 unknown | 0, 10 unknown | 2, 7 unknown | 10 |
 
 **What it showed:**
 
-- **Supermemory makes both agents worse than no memory**: 17 and 16 correct, of which 10 are the "unknown" budget
-  questions, against 49–50 with no memory. Most other answers are "unknown" (the agent found nothing it trusted) or
-  a stale date (6 and 7): the store ranks old dates above the current one, as the search test predicted, and the
-  plugin agents have no other source to check.
+- **Supermemory makes both agents worse than no memory**: 16 and 16 correct, of which 10 are the "unknown" budget
+  questions, against 49–50 with no memory. The misses have three causes, one per kind of question:
+  - current date: 7 of 10 stale, the store ranks old dates above the confirmation, as the search test predicted;
+  - owner: 0 of 10, mostly "unknown". An owner never changes, so this is not about dates. The store holds 1,585
+    extracted memories for 10,051 documents (`store status`, 6 November), and the plugins search only those
+    memories (threshold 0.6, 5 results); the search test, in hybrid mode with raw chunks, had every owner in its top
+    10. That the owners are missing from the memories is inferred, not checked;
+  - commitment: mostly "unknown": extraction rewrote the promise, as on the 2K fixture.
+- **Mem0 is far better than Supermemory at 10K, and still below no memory**: OpenClaw + Mem0 42, Hermes + Mem0 35.
+  Dates hold up (OpenClaw 20 of 20); owners and commitments do not (3–4 owners given as someone else, several
+  commitments "unknown"). OpenClaw + Mem0 is the slowest setup, 96.5 s per question, with no more tool calls than the
+  others (median 7, as OpenClaw + WireCat): the time is in Mem0's calls, not measured one by one.
 - **Plain files are still enough for a strong agent at 10,000 records**: OpenClaw searching its workspace with shell
   tools answered all 50. WireCat matched it at 12 % less cost; Hermes + WireCat used 37 % fewer tokens than Hermes
   alone and cited the right records more often (32 against 28).
 - **Hermes + WireCat's 5 misses are mostly format**: 4 are the right commitment with a note in parentheses
   ("the rollback plan (revised from the usability study)"), which exact matching counts as wrong; one (q29) gave a
   date for a commitment.
-- **OpenClaw + Mem0 was not tested**: with Tool Search on, the agent asked for `memory_search` and got "Tool
-  memory_search not found" on every question (the plugin's tool is `openclaw:openclaw-mem0:memory_search`), so all
-  40 project questions came back "unknown". Tool Search is now off in the plugin homes; the run is to be repeated.
-- **The owner's Anthropic key reached its monthly usage limit** during OpenClaw + Mem0's last 4 questions
-  ("The AI service needs a short break") and for all of Hermes + Mem0 (`HTTP 400: You have reached your specified
-  API usage limits`). Both Mem0 setups wait for the limit.
+- **The first OpenClaw + Mem0 run never reached Mem0.** With Tool Search on, `memory_search` was "not found". With
+  Tool Search off it still was not Mem0's: OpenClaw's memory-core, listed as disabled, registers its own
+  `memory_search` and `memory_get` first, and the plugin's tools are dropped ("plugin tool name conflict
+  (openclaw-mem0): memory_search" on stderr). The agent searched an empty built-in index and answered "unknown" to
+  every project question. memory-core is now turned off explicitly in the plugin homes, and the runner stops on
+  that message. A user who installs the Mem0 plugin on OpenClaw 2026.10.9 meets the same conflict.
+- **The owner's Anthropic key reached its monthly usage limit** during the first Mem0 runs; the limit was raised and
+  both Mem0 setups ran again on 6 November.
 
 ## OpenClaw + Supermemory and OpenClaw + Mem0 (5 November 2026)
 

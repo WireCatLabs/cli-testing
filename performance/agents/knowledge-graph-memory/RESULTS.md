@@ -108,18 +108,22 @@ The same agents and model as Test 2 below, on the 10,000-record corpus. Details:
 |---|---:|---:|---:|
 | OpenClaw alone | **50** | **47** | 0 |
 | OpenClaw + WireCat | **50** | 45 | 0 |
-| OpenClaw + Supermemory | 17 | 10 | 6 |
+| OpenClaw + Mem0 | 42 | 10 | 4 |
+| OpenClaw + Supermemory | 16 | 10 | 8 |
 | Hermes alone | 49 | 28 | 1 |
 | Hermes + WireCat | 45 | 32 | 0 |
+| Hermes + Mem0 | 35 | 10 | 4 |
 | Hermes + Supermemory | 16 | 10 | 7 |
-| OpenClaw + Mem0, Hermes + Mem0 | not yet: see below | | |
 
 - **With Supermemory both agents got most questions wrong.** It shows old dates first, and the agent has nothing
   else to check them against.
 - **With WireCat the agents answered as well as with plain files, for less**: OpenClaw 12 % cheaper, Hermes 37 % fewer
   tokens and more right sources. Four of Hermes + WireCat's five misses were right answers with an extra note.
-- **The Mem0 setups still have to run.** OpenClaw could not reach Mem0's search (a setting, now fixed), and the
-  Anthropic key hit its monthly limit before Hermes + Mem0.
+- **Mem0 did much better than Supermemory, but worse than no memory**: 42 and 35. It kept the dates right and lost
+  owners and commitments. OpenClaw's own memory tools had hidden Mem0's search in the first run; that is fixed.
+- **The failures are not only about dates.** Supermemory got the current date wrong 7 times of 10 (old date first),
+  but every owner question wrong too, though owners never change: it extracted 1,585 memories from 10,051
+  documents and the agents search only those. Details by question kind in the README.
 
 ## Test 2: does the agent answer correctly?
 
