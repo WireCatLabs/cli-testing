@@ -40,8 +40,8 @@ points, and native addons are disabled. An attempted external operation fails th
 the command catches its exception. The runner accepts only the current Node executable.
 
 This is a regression-test guard for trusted CLI builds, not a sandbox for arbitrary untrusted code.
-Plans must use offline metadata operations. The MCP client only initializes and lists tools;
-it never calls a messenger tool. Temporary directories and server processes are closed afterward.
+Plans must use offline metadata operations. The MCP client initializes and lists tools; it calls a
+tool only in the `deny` check, for a command that profile denies. Temporary directories and server processes are closed afterward.
 Cases default to a five-second process limit; MCP uses one five-second request budget across
 initialization and pagination. Process output has an eight-megabyte limit.
 
@@ -90,6 +90,25 @@ they do not copy CLI stdout/stderr into public logs.
 Relative executable arguments and snapshot paths resolve from the plan directory.
 Add `contains` for a required output fragment, `errorCode` for a structured error, and `snapshot`
 to freeze text such as help. MCP is optional for command-line tools without a server.
+
+## Deny check
+
+`"deny": { "profile": "personal" }` checks that a `deny` in the profile stops each command that reaches the
+service, on the command line and over MCP ([WC-PERM-23](https://github.com/WireCatLabs/cli-base/blob/main/docs/standards/permissions.md)).
+It reads `commands --json` and takes each leaf whose `effects.remote` is `read` or `write`, except a `persistent`
+one such as `mcp serve`. Its arguments are the words after its path in its first example that has no `--dry-run`,
+or `x` for each required argument and option. `<profile> <path> --dry-run --json` names the command's key;
+housekeeping such as `session` and `doctor` names none and is left out. `<profile> config show --json` names the
+config file, inside the fresh root.
+
+- `deny-keys` fails when no read names a key, or no write does in a CLI that has writes: the program then
+  dropped its permission table, as one CLI's did.
+- `deny:<path>` writes `deny` for that key alone and runs the command: exit 5, `permission_error` on stderr,
+  nothing on stdout, and no network, keyring or child-process access.
+- `deny-mcp` denies every key and starts `<profile> mcp serve`. Each command not marked `mcp: false` or
+  `interactive` is called through the server's `*_read` or `*_write` tool and must come back `permission_error`.
+  A `validation_error` that carries the arguments' schema is retried once with the required arguments filled; a
+  second `validation_error` fails, since it hides whether the deny holds.
 
 ## Stateful plans
 
