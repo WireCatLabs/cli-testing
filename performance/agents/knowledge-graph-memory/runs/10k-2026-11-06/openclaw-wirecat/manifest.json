@@ -1,0 +1,25 @@
+{
+  "setup": "OpenClaw + WireCat",
+  "dataset": {
+    "fixture_version": 2,
+    "seed": 20261105,
+    "records": 10000,
+    "questions": 50
+  },
+  "corpus_sha256": "e99e1e524875a7ca087f90952f061aac70856bdfbbe56d3915de1bd4c1f6b8f0",
+  "agent": "OpenClaw 2026.10.9 (8b18b55)",
+  "model": "anthropic/claude-sonnet-5-5",
+  "reasoning": null,
+  "store": null,
+  "plugin": null,
+  "toolsets": null,
+  "prompt_sha256": "49b397dc753d38559f81db32c89daaa10f870ae3bcc9061921e35baaacdc16bb",
+  "scores": {
+    "engine": "OpenClaw 2026.10.9 + memo, claude-sonnet-5-5, 10K",
+    "correct": 50,
+    "cited_correctly": 45,
+    "stale": 0,
+    "correct_strict": 50
+  },
+  "raw_transcripts": "~/.cache/wirecat-bench/runs/oc10k-memo/raw"
+}

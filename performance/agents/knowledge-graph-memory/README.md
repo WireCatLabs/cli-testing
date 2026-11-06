@@ -1452,6 +1452,11 @@ answered "unknown" correctly by every setup, so 10 of each "correct" are those. 
 Mem0 rows are the reruns of 6 November (OpenClaw plugin homes with Code Mode, Tool Search and memory-core off, see
 [isolation](#isolation-and-fairness)); the first OpenClaw + Supermemory run gave 17 correct and 6 stale.
 
+**Run records.** Answers, per-question rows, scores and a manifest per setup (dataset digest, agent, plugin, model,
+prompt hash, store id) are in [runs/10k-2026-11-06/](runs/10k-2026-11-06/), written by
+[`collect_runs.py`](collect_runs.py). A new setting is compared against these files instead of rerunning the eight
+setups. The raw agent transcripts stay in the cache folder each manifest names.
+
 **By question kind** (correct of 10; "old" = a stale date, "unknown" = the agent found nothing it trusted):
 
 | Setup | Current date | Original date | Owner | Commitment | Budget |

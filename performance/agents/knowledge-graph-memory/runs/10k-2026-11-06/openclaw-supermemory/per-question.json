@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "q01",
+    "exit": 0,
+    "seconds": 33.84,
+    "answer": "2027-04-06",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-04-06\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 794,
+      "cacheRead": 105959,
+      "cacheWrite": 4383,
+      "total": 111148,
+      "cost": {
+        "total": 0.029517399999999996
+      }
+    },
+    "list_price_usd_estimate": 0.029517399999999996,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q02",
+    "exit": 0,
+    "seconds": 33.64,
+    "answer": "2027-03-28",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-03-28\", \"citations\": []}",
+    "usage": {
+      "input": 8,
+      "output": 381,
+      "cacheRead": 61400,
+      "cacheWrite": 2738,
+      "total": 64527,
+      "cost": {
+        "total": 0.016811
+      }
+    },
+    "list_price_usd_estimate": 0.016811,
+    "tools": ["supermemory_search"],
+    "tool_calls": 3,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q03",
+    "exit": 0,
+    "seconds": 33.21,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 638,
+      "cacheRead": 84542,
+      "cacheWrite": 4873,
+      "total": 90063,
+      "cost": {
+        "total": 0.027036700000000004
+      }
+    },
+    "list_price_usd_estimate": 0.027036700000000004,
+    "tools": ["supermemory_search"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q04",
+    "exit": 0,
+    "seconds": 34.01,
+    "answer": "rollback plan",
+    "citations": [],
+    "problem": null,
+    "final_text": "The search results don't show record names, so I can't cite the record. The answer is clear, though.\n\n{\"answer\": \"rollback plan\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 540,
+      "cacheRead": 84066,
+      "cacheWrite": 4239,
+      "total": 88855,
+      "cost": {
+        "total": 0.0244241
+      }
+    },
+    "list_price_usd_estimate": 0.0244241,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q05",
+    "exit": 0,
+    "seconds": 30.93,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 395,
+      "cacheRead": 82687,
+      "cacheWrite": 3886,
+      "total": 86978,
+      "cost": {
+        "total": 0.021953700000000003
+      }
+    },
+    "list_price_usd_estimate": 0.021953700000000003,
+    "tools": ["supermemory_search"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q06",
+    "exit": 0,
+    "seconds": 33.14,
+    "answer": "2026-11-08",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-08\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 613,
+      "cacheRead": 106937,
+      "cacheWrite": 4413,
+      "total": 111975,
+      "cost": {
+        "total": 0.027880199999999997
+      }
+    },
+    "list_price_usd_estimate": 0.027880199999999997,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q07",
+    "exit": 0,
+    "seconds": 31.28,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 781,
+      "cacheRead": 109157,
+      "cacheWrite": 6298,
+      "total": 116248,
+      "cost": {
+        "total": 0.0344947
+      }
+    },
+    "list_price_usd_estimate": 0.0344947,
+    "tools": ["supermemory_search"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q08",
+    "exit": 0,
+    "seconds": 33.3,
+    "answer": "Lou Park",
+    "citations": [],
+    "problem": null,
+    "final_text": "Search results didn't expose record names, so I can't cite any.\n\n{\"answer\": \"Lou Park\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 552,
+      "cacheRead": 105214,
+      "cacheWrite": 3608,
+      "total": 109386,
+      "cost": {
+        "total": 0.025085399999999997
+      }
+    },
+    "list_price_usd_estimate": 0.025085399999999997,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q09",
+    "exit": 0,
+    "seconds": 33.38,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "The records don't state what Kim Hale committed to delivering for the Birch Compass pilot, so I'm answering unknown.\n\nThe searches turned up no record of a Kim Hale commitment for that pilot. The closest results were these:\n- A note that Kim Hale led delivery of the pilot in its first months. It doesn't name a deliverable.\n- Kim Hale's commitments to deliver an API changelog (Dune Harbor data migration) and a rollback plan (Amber Kite launch). Both are for other projects.\n- A record that Bo Reed will deliver the API changelog for the Birch Compass beta. That is a different person and a different project phase.\n\nThe search results also didn't show record names such as r0042, so I couldn't cite any records.\n\n{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 815,
+      "cacheRead": 84261,
+      "cacheWrite": 4927,
+      "total": 90013,
+      "cost": {
+        "total": 0.028913599999999998
+      }
+    },
+    "list_price_usd_estimate": 0.028913599999999998,
+    "tools": ["supermemory_search"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q10",
+    "exit": 0,
+    "seconds": 37.71,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 828,
+      "cacheRead": 135176,
+      "cacheWrite": 7929,
+      "total": 143947,
+      "cost": {
+        "total": 0.0416481
+      }
+    },
+    "list_price_usd_estimate": 0.0416481,
+    "tools": ["supermemory_search"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q11",
+    "exit": 0,
+    "seconds": 30.29,
+    "answer": "2027-03-09",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-03-09\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 723,
+      "cacheRead": 107197,
+      "cacheWrite": 3942,
+      "total": 111874,
+      "cost": {
+        "total": 0.0278287
+      }
+    },
+    "list_price_usd_estimate": 0.0278287,
+    "tools": ["supermemory_search", "supermemory-search"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q12",
+    "exit": 0,
+    "seconds": 34.07,
+    "answer": "2027-02-05",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-02-05\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 921,
+      "cacheRead": 133423,
+      "cacheWrite": 5870,
+      "total": 140228,
+      "cost": {
+        "total": 0.037255300000000005
+      }
+    },
+    "list_price_usd_estimate": 0.037255300000000005,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q13",
+    "exit": 0,
+    "seconds": 27.7,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 491,
+      "cacheRead": 84451,
+      "cacheWrite": 4142,
+      "total": 89094,
+      "cost": {
+        "total": 0.0237301
+      }
+    },
+    "list_price_usd_estimate": 0.0237301,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q14",
+    "exit": 0,
+    "seconds": 35.67,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 882,
+      "cacheRead": 134109,
+      "cacheWrite": 6790,
+      "total": 141795,
+      "cost": {
+        "total": 0.0392339
+      }
+    },
+    "list_price_usd_estimate": 0.0392339,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q15",
+    "exit": 0,
+    "seconds": 29.31,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "The records don't state an approved budget for the Cedar Lantern data migration. The only Cedar Lantern budget I found is a draft idea of about EUR 80,000 for the launch. That record says it is not approved and finance hasn't decided. The memory search results didn't show record names, so I couldn't cite any anyway.\n\n{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 572,
+      "cacheRead": 84424,
+      "cacheWrite": 4473,
+      "total": 89479,
+      "cost": {
+        "total": 0.0253649
+      }
+    },
+    "list_price_usd_estimate": 0.0253649,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q16",
+    "exit": 0,
+    "seconds": 34.23,
+    "answer": "2027-01-27",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-01-27\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 694,
+      "cacheRead": 106686,
+      "cacheWrite": 3914,
+      "total": 111306,
+      "cost": {
+        "total": 0.0274176
+      }
+    },
+    "list_price_usd_estimate": 0.0274176,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q17",
+    "exit": 0,
+    "seconds": 29.75,
+    "answer": "2026-12-14",
+    "citations": [],
+    "problem": null,
+    "final_text": "I couldn't find the record names. The search results only returned the memory text, not the r-numbers, so the citations list is empty.\n\n{\"answer\": \"2026-12-14\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 573,
+      "cacheRead": 106161,
+      "cacheWrite": 4203,
+      "total": 110949,
+      "cost": {
+        "total": 0.0268776
+      }
+    },
+    "list_price_usd_estimate": 0.0268776,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q18",
+    "exit": 0,
+    "seconds": 29.2,
+    "answer": "Bo Read",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Bo Read\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 472,
+      "cacheRead": 83286,
+      "cacheWrite": 2737,
+      "total": 86505,
+      "cost": {
+        "total": 0.0199111
+      }
+    },
+    "list_price_usd_estimate": 0.0199111,
+    "tools": ["supermemory_search"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q19",
+    "exit": 0,
+    "seconds": 44.27,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1260,
+      "cacheRead": 162634,
+      "cacheWrite": 9315,
+      "total": 173225,
+      "cost": {
+        "total": 0.0521829
+      }
+    },
+    "list_price_usd_estimate": 0.0521829,
+    "tools": ["supermemory_search"],
+    "tool_calls": 11,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q20",
+    "exit": 0,
+    "seconds": 27.44,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 320,
+      "cacheRead": 82678,
+      "cacheWrite": 3136,
+      "total": 86144,
+      "cost": {
+        "total": 0.019327800000000003
+      }
+    },
+    "list_price_usd_estimate": 0.019327800000000003,
+    "tools": ["supermemory_search"],
+    "tool_calls": 3,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q21",
+    "exit": 0,
+    "seconds": 29.71,
+    "answer": "2026-11-19",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-19\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 503,
+      "cacheRead": 84474,
+      "cacheWrite": 3547,
+      "total": 88534,
+      "cost": {
+        "total": 0.0223649
+      }
+    },
+    "list_price_usd_estimate": 0.0223649,
+    "tools": ["supermemory_search"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q22",
+    "exit": 0,
+    "seconds": 37.16,
+    "answer": "2026-11-19",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-19\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 732,
+      "cacheRead": 108810,
+      "cacheWrite": 4841,
+      "total": 114395,
+      "cost": {
+        "total": 0.0303275
+      }
+    },
+    "list_price_usd_estimate": 0.0303275,
+    "tools": ["supermemory_search"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q23",
+    "exit": 0,
+    "seconds": 33.12,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 498,
+      "cacheRead": 84726,
+      "cacheWrite": 4872,
+      "total": 90106,
+      "cost": {
+        "total": 0.0256526
+      }
+    },
+    "list_price_usd_estimate": 0.0256526,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q24",
+    "exit": 0,
+    "seconds": 32.8,
+    "answer": "pricing page copy",
+    "citations": [],
+    "problem": null,
+    "final_text": "I found the answer, but I couldn't find the record names to cite. The Supermemory search returned only the memory text and no record IDs. Two memories state it: \"Eli Pine committed to deliver pricing page copy for Elm Beacon partner API\" and \"Elm Beacon partner API: Eli Pine agreed to deliver pricing page copy.\"\n\n{\"answer\": \"pricing page copy\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 680,
+      "cacheRead": 105729,
+      "cacheWrite": 3816,
+      "total": 110237,
+      "cost": {
+        "total": 0.0269369
+      }
+    },
+    "list_price_usd_estimate": 0.0269369,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q25",
+    "exit": 0,
+    "seconds": 41.66,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 911,
+      "cacheRead": 160284,
+      "cacheWrite": 7890,
+      "total": 169101,
+      "cost": {
+        "total": 0.0448954
+      }
+    },
+    "list_price_usd_estimate": 0.0448954,
+    "tools": ["supermemory_search"],
+    "tool_calls": 10,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q26",
+    "exit": 0,
+    "seconds": 52.26,
+    "answer": "2027-06-06",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-06-06\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 669,
+      "cacheRead": 129780,
+      "cacheWrite": 5031,
+      "total": 135494,
+      "cost": {
+        "total": 0.032273500000000004
+      }
+    },
+    "list_price_usd_estimate": 0.032273500000000004,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q27",
+    "exit": 0,
+    "seconds": 46.84,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 630,
+      "cacheRead": 84704,
+      "cacheWrite": 5778,
+      "total": 91122,
+      "cost": {
+        "total": 0.0292354
+      }
+    },
+    "list_price_usd_estimate": 0.0292354,
+    "tools": ["supermemory_search"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q28",
+    "exit": 0,
+    "seconds": 49.09,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 975,
+      "cacheRead": 133197,
+      "cacheWrite": 7698,
+      "total": 141884,
+      "cost": {
+        "total": 0.0423427
+      }
+    },
+    "list_price_usd_estimate": 0.0423427,
+    "tools": ["supermemory_search"],
+    "tool_calls": 10,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q29",
+    "exit": 0,
+    "seconds": 42.61,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 20,
+      "output": 1425,
+      "cacheRead": 215287,
+      "cacheWrite": 10819,
+      "total": 227551,
+      "cost": {
+        "total": 0.06286620000000001
+      }
+    },
+    "list_price_usd_estimate": 0.06286620000000001,
+    "tools": ["supermemory_search"],
+    "tool_calls": 13,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q30",
+    "exit": 0,
+    "seconds": 38.79,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 710,
+      "cacheRead": 156447,
+      "cacheWrite": 7094,
+      "total": 164267,
+      "cost": {
+        "total": 0.040511700000000005
+      }
+    },
+    "list_price_usd_estimate": 0.040511700000000005,
+    "tools": ["supermemory_search"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q31",
+    "exit": 0,
+    "seconds": 48.13,
+    "answer": "2027-07-05",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-07-05\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 769,
+      "cacheRead": 84276,
+      "cacheWrite": 3425,
+      "total": 88480,
+      "cost": {
+        "total": 0.0247001
+      }
+    },
+    "list_price_usd_estimate": 0.0247001,
+    "tools": ["supermemory_search"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q32",
+    "exit": 0,
+    "seconds": 61.64,
+    "answer": "2027-06-05",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-06-05\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1064,
+      "cacheRead": 159805,
+      "cacheWrite": 6982,
+      "total": 167867,
+      "cost": {
+        "total": 0.044107499999999994
+      }
+    },
+    "list_price_usd_estimate": 0.044107499999999994,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q33",
+    "exit": 0,
+    "seconds": 52.62,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 524,
+      "cacheRead": 84903,
+      "cacheWrite": 5090,
+      "total": 90527,
+      "cost": {
+        "total": 0.0264753
+      }
+    },
+    "list_price_usd_estimate": 0.0264753,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q34",
+    "exit": 0,
+    "seconds": 54.39,
+    "answer": "security audit",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"security audit\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 883,
+      "cacheRead": 132854,
+      "cacheWrite": 5479,
+      "total": 139230,
+      "cost": {
+        "total": 0.035840899999999995
+      }
+    },
+    "list_price_usd_estimate": 0.035840899999999995,
+    "tools": ["supermemory_search", "supermemory-search"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q35",
+    "exit": 0,
+    "seconds": 34.91,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 383,
+      "cacheRead": 83695,
+      "cacheWrite": 3610,
+      "total": 87698,
+      "cost": {
+        "total": 0.0212445
+      }
+    },
+    "list_price_usd_estimate": 0.0212445,
+    "tools": ["supermemory_search"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q36",
+    "exit": 0,
+    "seconds": 45.95,
+    "answer": "2027-08-25",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-08-25\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1403,
+      "cacheRead": 158842,
+      "cacheWrite": 7037,
+      "total": 167298,
+      "cost": {
+        "total": 0.047538699999999996
+      }
+    },
+    "list_price_usd_estimate": 0.047538699999999996,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 10,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q37",
+    "exit": 0,
+    "seconds": 39.16,
+    "answer": "2027-04-05",
+    "citations": [],
+    "problem": null,
+    "final_text": "The search results didn't include record names, so I can't cite any records. One memory says the Hazel Bridge security hardening was \"moved to 2027-05-20 (was 2027-04-05)\", so the original date appears to be 2027-04-05.\n\n{\"answer\": \"2027-04-05\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 706,
+      "cacheRead": 106133,
+      "cacheWrite": 3692,
+      "total": 110543,
+      "cost": {
+        "total": 0.0269273
+      }
+    },
+    "list_price_usd_estimate": 0.0269273,
+    "tools": ["supermemory_search", "supermemory-search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q38",
+    "exit": 0,
+    "seconds": 39.16,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "I couldn't find a record that names a confirmed delivery owner for the Hazel Bridge security hardening, and the search results don't show record names (like r0042), so I can't cite any. The closest match is that Gia Fern committed to delivering the accessibility review for it. That is a commitment to one deliverable, not an ownership statement. The other \"delivery owner\" records are for different Hazel Bridge work: Hal Cove for the beta and Nia Shaw for the data migration.\n\n{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1113,
+      "cacheRead": 135471,
+      "cacheWrite": 7145,
+      "total": 143743,
+      "cost": {
+        "total": 0.042567600000000004
+      }
+    },
+    "list_price_usd_estimate": 0.042567600000000004,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q39",
+    "exit": 0,
+    "seconds": 30.93,
+    "answer": "accessibility review",
+    "citations": [],
+    "problem": null,
+    "final_text": "The search results don't show record names, so I can't cite the records.\n\n{\"answer\": \"accessibility review\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 611,
+      "cacheRead": 105704,
+      "cacheWrite": 3228,
+      "total": 109555,
+      "cost": {
+        "total": 0.024774400000000002
+      }
+    },
+    "list_price_usd_estimate": 0.024774400000000002,
+    "tools": ["supermemory_search"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q40",
+    "exit": 0,
+    "seconds": 32.86,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 834,
+      "cacheRead": 133229,
+      "cacheWrite": 6758,
+      "total": 140835,
+      "cost": {
+        "total": 0.03858589999999999
+      }
+    },
+    "list_price_usd_estimate": 0.03858589999999999,
+    "tools": ["supermemory_search"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q41",
+    "exit": 0,
+    "seconds": 35.06,
+    "answer": "2027-08-07",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-08-07\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 762,
+      "cacheRead": 106869,
+      "cacheWrite": 4508,
+      "total": 112151,
+      "cost": {
+        "total": 0.0296009
+      }
+    },
+    "list_price_usd_estimate": 0.0296009,
+    "tools": ["supermemory_search", "supermemory_profile"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q42",
+    "exit": 0,
+    "seconds": 37.93,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 790,
+      "cacheRead": 109562,
+      "cacheWrite": 7337,
+      "total": 117701,
+      "cost": {
+        "total": 0.0372227
+      }
+    },
+    "list_price_usd_estimate": 0.0372227,
+    "tools": ["supermemory_search"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q43",
+    "exit": 0,
+    "seconds": 45.85,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1142,
+      "cacheRead": 161370,
+      "cacheWrite": 8416,
+      "total": 170944,
+      "cost": {
+        "total": 0.048629
+      }
+    },
+    "list_price_usd_estimate": 0.048629,
+    "tools": ["supermemory_search"],
+    "tool_calls": 10,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q44",
+    "exit": 0,
+    "seconds": 42.24,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "I couldn't find a record that says what Hal Grove committed to deliver for the Iris Summit security hardening.\n\nThe closest match is a suggestion by Hal Cove, a different person, to take responsibility for the load test report. That item says \"no agreement yet.\" The Hal Grove records I found are about other Iris Summit work, such as a demo date, a staging deploy draft and a tooling invoice. Other commitments to deliver, such as the accessibility review, belong to Gia Fern on a different project.\n\n{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 20,
+      "output": 1298,
+      "cacheRead": 213316,
+      "cacheWrite": 8829,
+      "total": 223463,
+      "cost": {
+        "total": 0.056424100000000005
+      }
+    },
+    "list_price_usd_estimate": 0.056424100000000005,
+    "tools": ["supermemory_search"],
+    "tool_calls": 11,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q45",
+    "exit": 0,
+    "seconds": 31.49,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "Only \"not yet approved\" is stated, and no record gives an approved amount.\n\n{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 721,
+      "cacheRead": 131592,
+      "cacheWrite": 5250,
+      "total": 137577,
+      "cost": {
+        "total": 0.0335222
+      }
+    },
+    "list_price_usd_estimate": 0.0335222,
+    "tools": ["supermemory_search"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q46",
+    "exit": 0,
+    "seconds": 28.55,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 8,
+      "output": 400,
+      "cacheRead": 61442,
+      "cacheWrite": 3599,
+      "total": 65449,
+      "cost": {
+        "total": 0.0191577
+      }
+    },
+    "list_price_usd_estimate": 0.0191577,
+    "tools": ["supermemory_search"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q47",
+    "exit": 0,
+    "seconds": 30.41,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 596,
+      "cacheRead": 84369,
+      "cacheWrite": 5328,
+      "total": 90303,
+      "cost": {
+        "total": 0.027736900000000002
+      }
+    },
+    "list_price_usd_estimate": 0.027736900000000002,
+    "tools": ["supermemory_search"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q48",
+    "exit": 0,
+    "seconds": 29.44,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 769,
+      "cacheRead": 84633,
+      "cacheWrite": 5089,
+      "total": 90501,
+      "cost": {
+        "total": 0.028895800000000003
+      }
+    },
+    "list_price_usd_estimate": 0.028895800000000003,
+    "tools": ["supermemory_search"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q49",
+    "exit": 0,
+    "seconds": 34.68,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1199,
+      "cacheRead": 164107,
+      "cacheWrite": 10356,
+      "total": 175678,
+      "cost": {
+        "total": 0.0543227
+      }
+    },
+    "list_price_usd_estimate": 0.0543227,
+    "tools": ["supermemory_search"],
+    "tool_calls": 11,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q50",
+    "exit": 0,
+    "seconds": 34.3,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "The records don't say what budget was approved for the Juniper Valley launch. The closest matches only say that a budget is still awaited or not confirmed. The only amounts I found were unapproved draft budgets for other projects. The search results also didn't show any record names, so there is nothing I could cite.\n\n{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 877,
+      "cacheRead": 108842,
+      "cacheWrite": 7140,
+      "total": 116871,
+      "cost": {
+        "total": 0.037528200000000005
+      }
+    },
+    "list_price_usd_estimate": 0.037528200000000005,
+    "tools": ["supermemory_search"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  }
+]

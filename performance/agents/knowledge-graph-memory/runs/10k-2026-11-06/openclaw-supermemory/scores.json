@@ -1,0 +1,7 @@
+{
+  "engine": "OpenClaw 2026.10.9 + supermemory, claude-sonnet-5-5, 10K",
+  "correct": 16,
+  "cited_correctly": 10,
+  "stale": 8,
+  "correct_strict": 16
+}
