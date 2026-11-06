@@ -99,6 +99,28 @@ reproduce it: [README](README.md#store-search-on-the-10k-corpus-5-november-2026)
 - **Mail now comes through the mail CLI.** Since memo 0.131.28 the mail CLI stores mail; the test imports its mail
   file with `mail messages import`, which needs no sign-in.
 
+## Test 2 again, on 10,000 records (6 November 2026)
+
+The same agents and model as Test 2 below, on the 10,000-record corpus. Details:
+[README](README.md#agent-answers-on-the-10k-corpus-6-november-2026).
+
+| Setup | Correct of 50 | Correct with sources | Old date given |
+|---|---:|---:|---:|
+| OpenClaw alone | **50** | **47** | 0 |
+| OpenClaw + WireCat | **50** | 45 | 0 |
+| OpenClaw + Supermemory | 17 | 10 | 6 |
+| Hermes alone | 49 | 28 | 1 |
+| Hermes + WireCat | 45 | 32 | 0 |
+| Hermes + Supermemory | 16 | 10 | 7 |
+| OpenClaw + Mem0, Hermes + Mem0 | not yet: see below | | |
+
+- **With Supermemory both agents got most questions wrong.** It shows old dates first, and the agent has nothing
+  else to check them against.
+- **With WireCat the agents answered as well as with plain files, for less**: OpenClaw 12 % cheaper, Hermes 37 % fewer
+  tokens and more right sources. Four of Hermes + WireCat's five misses were right answers with an extra note.
+- **The Mem0 setups still have to run.** OpenClaw could not reach Mem0's search (a setting, now fixed), and the
+  Anthropic key hit its monthly limit before Hermes + Mem0.
+
 ## Test 2: does the agent answer correctly?
 
 Here an AI agent (OpenClaw 2026.10.9 or Hermes 0.21.0) answers all 50 questions with the same model, Claude Sonnet

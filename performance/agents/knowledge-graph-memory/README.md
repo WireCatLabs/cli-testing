@@ -1423,6 +1423,52 @@ without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json`
 - How an agent uses these hits: that is the agent round.
 - Paid plans' processing speed.
 
+## Agent answers on the 10K corpus (6 November 2026)
+
+**Why.** The store search above says which store finds the record; this asks whether an agent with that store
+answers correctly. Same 50 questions, Claude Sonnet 5.5, one question per fresh session, scored by `run.py
+--records 10000` (exact match after normalisation, no judge model).
+
+**Setup.** OpenClaw 2026.10.9 and Hermes 0.21.0 as in the 2K round. WireCat setups: memo 0.131.38 (pinned
+`~/.cache/wirecat-bench/memo-0.131.38`), mail imported with mail CLI 0.16.3, meaning index complete. Plugins:
+`@supermemory/openclaw-supermemory` 2.1.19 and `@mem0/openclaw-mem0` 1.2.1 on the stores searched above; OpenClaw's
+plugin homes run with Code Mode and Tool Search off (see [isolation](#isolation-and-fairness)). Commands: the
+[paid steps](#paid-steps-in-order), steps 3 to 6. OpenClaw alone was run in two parts (q01–q23, then q24–q50 after
+the agent session that ran it ended) and joined by question id; every other setup is one run.
+
+| Setup | Correct | Correct with sources | Stale answers | Median s / question | Cost for 50 |
+|---|---:|---:|---:|---:|---:|
+| OpenClaw alone (files) | **50** | **47** | 0 | 24.0 | $2.30 |
+| OpenClaw + WireCat | **50** | 45 | 0 | 23.7 | $2.03 |
+| OpenClaw + Supermemory | 17 | 10 | 6 | 27.8 | $1.54 |
+| OpenClaw + Mem0 | not valid, rerun pending | | | | |
+| Hermes alone | 49 | 28 | 1 | 8.7 | 3.39M tokens |
+| Hermes + WireCat | 45 | 32 | 0 | 13.2 | 2.13M tokens |
+| Hermes + Supermemory | 16 | 10 | 7 | | |
+| Hermes + Mem0 | not run: API limit | | | | |
+
+OpenClaw's cost is its own per-call report; Hermes reports tokens and no price. The 10 budget questions are
+answered "unknown" correctly by every setup, so 10 of each "correct" are those.
+
+**What it showed:**
+
+- **Supermemory makes both agents worse than no memory**: 17 and 16 correct, of which 10 are the "unknown" budget
+  questions, against 49–50 with no memory. Most other answers are "unknown" (the agent found nothing it trusted) or
+  a stale date (6 and 7): the store ranks old dates above the current one, as the search test predicted, and the
+  plugin agents have no other source to check.
+- **Plain files are still enough for a strong agent at 10,000 records**: OpenClaw searching its workspace with shell
+  tools answered all 50. WireCat matched it at 12 % less cost; Hermes + WireCat used 37 % fewer tokens than Hermes
+  alone and cited the right records more often (32 against 28).
+- **Hermes + WireCat's 5 misses are mostly format**: 4 are the right commitment with a note in parentheses
+  ("the rollback plan (revised from the usability study)"), which exact matching counts as wrong; one (q29) gave a
+  date for a commitment.
+- **OpenClaw + Mem0 was not tested**: with Tool Search on, the agent asked for `memory_search` and got "Tool
+  memory_search not found" on every question (the plugin's tool is `openclaw:openclaw-mem0:memory_search`), so all
+  40 project questions came back "unknown". Tool Search is now off in the plugin homes; the run is to be repeated.
+- **The owner's Anthropic key reached its monthly usage limit** during OpenClaw + Mem0's last 4 questions
+  ("The AI service needs a short break") and for all of Hermes + Mem0 (`HTTP 400: You have reached your specified
+  API usage limits`). Both Mem0 setups wait for the limit.
+
 ## OpenClaw + Supermemory and OpenClaw + Mem0 (5 November 2026)
 
 **Why.** The owner asked (5 November 2026) to compare these as setups of their own: a user who runs OpenClaw with a

@@ -164,7 +164,10 @@ def configure_plugin(root, plugin, store, model=None):
                                   "tools": {"deny": [*DENIED_GROUPS, *spec["writes"]]}}}
     # Unset, Code Mode turns itself on for Claude Sonnet 5.5 and wraps the memory tools in a JavaScript tool named
     # `exec`, which the trust check cannot tell from a shell (10K pilot, 6 November 2026). Off: the tools are direct.
-    config["tools"] = {**config.get("tools", {}), "codeMode": False}
+    # Unset, Tool Search also hides the schemas behind `tool_search` and `tool_call`, and the 10K OpenClaw + Mem0 run
+    # asked for `memory_search` where the plugin's tool is `openclaw:openclaw-mem0:memory_search`: "Tool memory_search
+    # not found" on every question. Direct schemas, as Hermes gives its memory tools.
+    config["tools"] = {**config.get("tools", {}), "codeMode": False, "toolSearch": False}
     if model:
         defaults["model"] = {"primary": model}
         defaults.setdefault("models", {})[model] = {"agentRuntime": {"id": "openclaw"}}
