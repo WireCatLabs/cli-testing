@@ -154,6 +154,8 @@ export const runDenyContracts = async (
       const path = node.path ?? []
       const args = argsFor(node)
       const preview = call([deny.profile, ...path, ...args, "--dry-run", "--json", "--no-input"])
+      if (preview.exit !== 0)
+        throw new Error(`${path.join(" ")} --dry-run exited ${preview.exit}, so its key is unknown`)
       const key = (parsed(preview.stdout)?.item as { permission?: { key?: unknown } } | undefined)?.permission?.key
       if (typeof key !== "string") return []
       const write = node.effects?.remote === "write"
@@ -179,11 +181,13 @@ export const runDenyContracts = async (
   await check("deny-mcp", async () => {
     writeConfig(overMcp.map((command) => command.key))
     const failures: string[] = []
+    let called = 0
     const session = await mcp({ ...invocation, args: [...invocation.args, deny.profile, "mcp", "serve"] })
     try {
       for (const command of overMcp) {
         const name = session.tools.find((tool) => tool.endsWith(command.write ? "_write" : "_read"))
         if (!name) continue
+        called++
         const ask = (args: Record<string, unknown>) =>
           session.call({ name, arguments: { command: command.path.join(" "), arguments: args } })
         let answer = await ask({})
@@ -197,6 +201,8 @@ export const runDenyContracts = async (
     } finally {
       await session.close()
     }
+    if (called === 0)
+      throw new Error("the MCP server offers no *_read or *_write tool, so no denied command was called")
     if (failures.length > 0) throw new Error(`a denied command was not refused over MCP: ${failures.join("; ")}`)
   })
 }

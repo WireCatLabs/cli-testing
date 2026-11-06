@@ -170,6 +170,22 @@ describe("deny contracts", () => {
     expect(printed.results.find((item) => item.id === "deny-mcp")?.passed).toBe(true)
   })
 
+  it("fails an MCP server whose tools it cannot call, and a command whose --dry-run fails", async () => {
+    const unnamed = await runContracts(plan(fakeCli(true)), {
+      toolSession: async () => ({ ...session(() => refused), tools: ["fake_search"] }),
+    })
+    expect(unnamed.results.find((item) => item.id === "deny-mcp")?.failure).toContain("no *_read or *_write tool")
+    const broken = await runContracts(plan(fakeCli(true)), {
+      run: (invocation) =>
+        invocation.args.includes("commands")
+          ? { exit: 0, stdout: JSON.stringify(TREE), stderr: "" }
+          : invocation.args.includes("config")
+            ? { exit: 0, stdout: '{"item":{"config_file":"config.json"}}', stderr: "" }
+            : { exit: 2, stdout: "", stderr: "{}" },
+    })
+    expect(broken.results.find((item) => item.id === "deny-keys")?.failure).toContain("--dry-run exited 2")
+  })
+
   it("fails when the MCP server does not start", async () => {
     const dead = { command: process.execPath, args: ["-e", "process.exit(1)"], cwd: fixtures, env: {}, timeout: 2000 }
     await expect(openContractTools(dead)).rejects.toThrow()

@@ -6,6 +6,14 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Fixed
+
+- **The contract `deny` check no longer passes while checking nothing.** `deny-mcp` fails when the server offers no
+  `*_read` or `*_write` tool to call, and `deny-keys` fails when a remote command's `--dry-run` exits non-zero, which
+  used to drop it from the check.
+
 ## 0.6.0 — 07.11.2026
 
 ### Changed — may break callers
