@@ -76,6 +76,41 @@ Checks on the 1,000-message list:
 - **The 594 KB answer carries no step towards `--compact`.** That is F2's budget step, open in cli-core#2460, not yet
   in a tg release.
 
+## Day lines (cli-core 0.583.0)
+
+Run 2026-11-05 for the memo size task: `messages list --compact` was still 53 % of JSON's bytes, against the 45 %
+target, and the question was what in a row costs bytes without helping the reader.
+
+- Setup: the same store ([`seed.ts`](seed.ts)) and tg 0.116.0. [`day-lines.ts`](day-lines.ts) takes tg's `--json`
+  answers and draws them with cli-core 0.581.0's and 0.583.0's `compactText`, so only the renderer differs. It also
+  counts the bytes of the message texts alone. Run:
+  `node day-lines.ts <folder with tg-cli> <cli-core 0.581.0 dir> <cli-core 0.583.0 dir>`. Output:
+  [`day-lines.json`](day-lines.json).
+- The change ([cli-core#2527](https://github.com/WireCatLabs/cli-core/pull/2527)): a list in time order whose days
+  hold three rows on average prints `# YYYY-MM-DD` once per day, and its rows print `HH:MM` instead of
+  `MM-DD HH:MM`.
+
+Bytes, then tokens, as a share of the same command's `--json`:
+
+| Command | 0.581.0 | 0.583.0 | Texts alone |
+| --- | ---: | ---: | ---: |
+| messages list 1 --limit 1000 | 53.0 % · 43.3 % | **52.1 % · 40.8 %** | 44.2 % of bytes |
+| messages list 1 --limit 50 | 52.8 % · 43.5 % | 51.9 % · 41.0 % | 43.0 % |
+| messages list 1 'date>=2026-09-10 date<2026-09-12' | 53.1 % · 43.6 % | 52.1 % · 41.1 % | 43.6 % |
+| search messages счёт --limit 50 | 44.9 % · 38.7 % | 44.9 % · 38.7 % (unchanged: hits are not in time order) | 35.6 % |
+
+What it showed:
+
+- **The 45 % bytes target cannot be met on this store while texts stay whole.** The texts alone are 44.2 % of
+  JSON's bytes on the 1,000-message list. JSON does not escape Cyrillic, so a text costs the same bytes in both
+  forms. That leaves about 5 bytes a row for the ref, the time and the sender. They take about 47. Only cutting texts
+  would reach 45 %, and F1 requires every text kept.
+- **Tokens is the number that moves.** The day lines cut 6 % of compact's tokens (62,239 to 58,536) but under 2 % of
+  its bytes. The date costs more tokens per byte than Cyrillic text does.
+- **What is left in a row is wanted.** After the day lines a row is `#<id> · HH:MM · <sender> · <text>`. The sender
+  (about 24 bytes here) is the biggest part, and dropping it on repeated rows would make a row depend on the rows
+  above it.
+
 ## Not measured
 
 - Claude's own token count: `o200k_base` is a proxy, and the ratio between forms is what to read, not the totals.
@@ -84,3 +119,5 @@ Checks on the 1,000-message list:
 - Long texts over the 400-character cap, attachments, forwarded messages, voice transcripts: none in this store.
 - max, wa and drive: they share cli-core's renderer (F1) but were not run.
 - An agent's whole session: the 834.h rerun measures that on the real project.
+- Day lines through a released tg: tg 0.116.0 still ships cli-core 0.567.0, so the day-lines table draws tg's JSON
+  with cli-core's renderer directly, not through `tg --compact`.

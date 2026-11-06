@@ -2,7 +2,8 @@
 
 First run 2026-11-03 with memo 0.131.21 (cli-core 0.560.0), for the e stream of TASK-834 (`projects status`).
 Second run 2026-11-05 with memo 0.131.34 (cli-core 0.578.0), after PERF-75 shrank the answer. "Before" below is the
-first run, "after" is the second.
+first run, "after" is the second. Third run 2026-11-06 with memo 0.131.40 (cli-core 0.583.0), for headroom under the
+limits: see "Headroom" below.
 
 ## Why this was run
 
@@ -123,13 +124,42 @@ one breaks down the whole answer, so the two tables do not line up row by row.
 - **Correction, 2026-11-05.** Old claim: the field table with `questions` at 2,963 bytes, `promises` at 1,861,
   `reply_next` at 1,577 and `last_message` at 1,226. Those fields no longer exist in that form. See the new table.
 
+## Headroom (third run)
+
+The second run left 98 bytes of room in JSON and 25 in compact, so the next field would break a limit. The third run
+checks that removing what the answer says twice gives real room, without raising the limits. Same fixture, same
+command, memo 0.131.40 with cli-core 0.583.0 ([cli-core#2527](https://github.com/WireCatLabs/cli-core/pull/2527),
+[cli-memo#649](https://github.com/WireCatLabs/cli-memo/pull/649)), 3 rounds.
+
+| Limit | Target | Second run | Third run | Room |
+| --- | ---: | ---: | ---: | ---: |
+| JSON | ≤ 4,096 bytes | 3,998 | **3,644** | 452 (11 %) |
+| `--compact` | ≤ 1,536 bytes | 1,511 | **1,363** | 173 (11 %) |
+| Text (no target) | | 898 | 898 | |
+| Wall time, median | ≤ 2 s | 0.32 to 0.44 s | 0.30 to 0.42 s | |
+
+All four claims pass, and no message text is printed without its reference, in every form.
+
+What was removed:
+
+- **JSON, said twice:** `item.window` (it is `meta.window`); a listed item's `chat` when its `ref` is a message of
+  that chat; `basis` when it is `store`; a promise's `data.source`, which equals its `basis`; `who.name: null` and a
+  chat row's `role: null`.
+- **memo:** the `next_command` gaps, one per messenger with no signed-in profile, are one `missing` entry.
+- **Compact:** each section header repeated the days and zone (`· 2026-10-12…2026-10-28 · UTC`). They are printed once,
+  above the first section.
+
+The largest saving is the `chat` field: 138 bytes on five listed items. The fixture's two `next_command` gaps exist
+because no profile is signed in here. On a machine with profiles they are absent, so the real answer has more room.
+
 ## Not measured
 
 - The real project: the private 834.h rerun on the installed releases is a separate run. Its counts go to the
   [project-state page](../README.md), its rows to cli-private.
 - Accuracy beyond the four planted claims. The `unlisted` counts are not scored against labels, so we do not know how
   many real promises or questions the cut hides.
-- Eight linked chats: cli-core's unit test checks compact size for eight chats. This store has four. With margins of
-  98 and 25 bytes, more chats will probably break a limit.
+- Eight linked chats: cli-core's unit test checks compact size for eight chats. This store has four. After the third
+  run the margins are 452 and 173 bytes, room for probably one or two more chat rows (inferred from row sizes, not
+  measured).
 - A store with the `payments` table (NEED-2159 B) or recorded finance. `finance` is empty here.
 - Run-to-run variance: the second run has 3 timed rounds, the first 7. One machine.

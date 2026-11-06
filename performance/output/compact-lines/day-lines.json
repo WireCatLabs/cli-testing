@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-05",
+  "node": "v24.19.0",
+  "tg": "0.116.0",
+  "cli_core_before": "0.581.0",
+  "cli_core_after": "0.583.0",
+  "tokens": {
+    "encoding": "o200k_base",
+    "tiktoken": "0.14.0"
+  },
+  "rows": [
+    {
+      "label": "messages list 1 --limit 1000",
+      "json": {
+        "bytes": 594685,
+        "tokens": 143622
+      },
+      "before": {
+        "bytes": 315242,
+        "tokens": 62239,
+        "bytes_pct": 53,
+        "tokens_pct": 43.3
+      },
+      "after": {
+        "bytes": 309671,
+        "tokens": 58536,
+        "bytes_pct": 52.1,
+        "tokens_pct": 40.8
+      },
+      "texts_bytes": 262568,
+      "texts_pct": 44.2
+    },
+    {
+      "label": "messages list 1 --limit 50",
+      "json": {
+        "bytes": 30499,
+        "tokens": 7384
+      },
+      "before": {
+        "bytes": 16097,
+        "tokens": 3213,
+        "bytes_pct": 52.8,
+        "tokens_pct": 43.5
+      },
+      "after": {
+        "bytes": 15823,
+        "tokens": 3031,
+        "bytes_pct": 51.9,
+        "tokens_pct": 41
+      },
+      "texts_bytes": 13125,
+      "texts_pct": 43
+    },
+    {
+      "label": "messages list 1 'date>=2026-09-10 date<2026-09-12'",
+      "json": {
+        "bytes": 37398,
+        "tokens": 9034
+      },
+      "before": {
+        "bytes": 19849,
+        "tokens": 3942,
+        "bytes_pct": 53.1,
+        "tokens_pct": 43.6
+      },
+      "after": {
+        "bytes": 19503,
+        "tokens": 3712,
+        "bytes_pct": 52.1,
+        "tokens_pct": 41.1
+      },
+      "texts_bytes": 16314,
+      "texts_pct": 43.6
+    },
+    {
+      "label": "search messages счёт --limit 50",
+      "json": {
+        "bytes": 33523,
+        "tokens": 7972
+      },
+      "before": {
+        "bytes": 15061,
+        "tokens": 3084,
+        "bytes_pct": 44.9,
+        "tokens_pct": 38.7
+      },
+      "after": {
+        "bytes": 15061,
+        "tokens": 3084,
+        "bytes_pct": 44.9,
+        "tokens_pct": 38.7
+      },
+      "texts_bytes": 11950,
+      "texts_pct": 35.6
+    }
+  ]
+}
