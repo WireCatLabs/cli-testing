@@ -83,7 +83,7 @@ const topic = (answer.item.topics as Signal[]).find((one) => one.data.query === 
 
 const claims = {
   money: {
-    expected: `to_us 1200.00 EUR open since ${D}, citing ${askRefs.join(" and ")}`,
+    expected: `to_us 1200.00 EUR asked since ${D}, citing ${askRefs.join(" and ")}`,
     observed: money && {
       amount: money.data.amount,
       currency: money.data.currency,
@@ -94,7 +94,7 @@ const claims = {
     pass:
       money?.data.amount === "1200.00" &&
       money.data.currency === "EUR" &&
-      money.data.state === "open" &&
+      money.data.state === "asked" &&
       day(money.data.since as string) === D &&
       askRefs.every((ref) => (money.evidence ?? [money.ref]).includes(ref)),
   },

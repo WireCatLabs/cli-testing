@@ -3,7 +3,8 @@
 First run 2026-11-03 with memo 0.131.21 (cli-core 0.560.0), for the e stream of TASK-834 (`projects status`).
 Second run 2026-11-05 with memo 0.131.34 (cli-core 0.578.0), after PERF-75 shrank the answer. "Before" below is the
 first run, "after" is the second. Third run 2026-11-06 with memo 0.131.40 (cli-core 0.583.0), for headroom under the
-limits: see "Headroom" below.
+limits: see "Headroom" below. Fourth run 2026-11-06 with memo 0.131.44 (cli-core 0.590.0), after the word-found money
+request was renamed from `open` to `asked`: see "Money asked" below.
 
 ## Why this was run
 
@@ -46,7 +47,7 @@ Before is memo 0.131.21. After is memo 0.131.34 (cli-core 0.578.0, PERF-75). All
 
 | Claim (e plan, section 7) | Expected | Before | After |
 | --- | --- | --- | --- |
-| 1. Money | `to_us` 1,200 EUR open since D, citing both asks | pass | pass: 1200.00 EUR open since 2026-10-19, both asks cited |
+| 1. Money | `to_us` 1,200 EUR asked since D, citing both asks (was `open` before the fourth run) | pass | pass: 1200.00 EUR open since 2026-10-19, both asks cited |
 | 2. Contractor chat | `next: YOU since D+2` (was D+9 in the plan) | **differs**: owner since 2026-10-21 (D+2) | pass: owner since 2026-10-21 (D+2) |
 | 3. Client group | "1C" quiet on their side since D−7 | pass | pass: quiet since 2026-10-12 (D−7), in JSON, compact and text |
 | 4. Contractor chat partial | flagged, with its sync line | pass | pass: `partial`, `tg <profile> messages sync 555 --since-time 2026-09-03` |
@@ -151,6 +152,28 @@ What was removed:
 
 The largest saving is the `chat` field: 138 bytes on five listed items. The fixture's two `next_command` gaps exist
 because no profile is signed in here. On a machine with profiles they are absent, so the real answer has more room.
+
+## Money asked (fourth run)
+
+In a project with no confirmed invoices or payments, `projects status` called a money request found by words
+`open`. A word match cannot tell a real request from a price the owner quoted, and "open" read as a debt. The owner
+chose `asked` (2026-11-06). cli-core 0.590.0 ([cli-core#2549](https://github.com/WireCatLabs/cli-core/pull/2549))
+gives `state: "asked"` with `amounts` signal version 3, and memo 0.131.44
+([cli-memo#660](https://github.com/WireCatLabs/cli-memo/pull/660)) runs on it. Claim 1 in [`status.ts`](status.ts)
+now expects `asked`. Same fixture and command, 3 rounds.
+
+| Limit | Target | memo 0.131.43 (cli-core 0.589.0) | Fourth run | Room |
+| --- | ---: | ---: | ---: | ---: |
+| JSON | ≤ 4,096 bytes | 3,578 | **3,581** | 515 (13 %) |
+| `--compact` | ≤ 1,536 bytes | 1,329 | **1,331** | 205 (13 %) |
+| Text (no target) | | | 899 | |
+| Wall time, median | ≤ 2 s | | text 0.29 s, JSON 0.30 s, compact 0.30 s | |
+
+All four claims pass: 1200.00 EUR `asked` since 2026-10-19, both asks cited. No message text is printed without its
+reference, in every form. The 0.589.0 sizes were measured before this change by the session that ran it, not in
+this run. The few extra bytes are the longer word: `asked` for `open` in the item, and `money asked` in the compact
+`next` line. `money` is now 2 bytes (`[]`): since cli-core 0.589.0 it sums only confirmed invoices, and this store
+has none.
 
 ## Not measured
 

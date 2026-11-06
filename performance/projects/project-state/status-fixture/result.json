@@ -1,18 +1,18 @@
 {
   "date": "2026-11-06",
   "node": "v24.19.0",
-  "memo": "0.131.40",
-  "cli_core": "0.583.0",
+  "memo": "0.131.44",
+  "cli_core": "0.590.0",
   "seeded_messages": 1006,
   "command": "memo projects status HRB --context-query 1C --before-time 2026-11-02T10:00:00.000Z",
   "rounds": 3,
   "claims": {
     "money": {
-      "expected": "to_us 1200.00 EUR open since 2026-10-19, citing msg:max/11/-900/700 and msg:max/11/-900/790",
+      "expected": "to_us 1200.00 EUR asked since 2026-10-19, citing msg:max/11/-900/700 and msg:max/11/-900/790",
       "observed": {
         "amount": "1200.00",
         "currency": "EUR",
-        "state": "open",
+        "state": "asked",
         "since": "2026-10-19",
         "evidence": ["msg:max/11/-900/700", "msg:max/11/-900/790"]
       },
@@ -46,31 +46,31 @@
   },
   "claims_passed": 4,
   "sizes": {
-    "json_bytes": 3644,
+    "json_bytes": 3581,
     "json_target": 4096,
-    "compact_bytes": 1363,
+    "compact_bytes": 1331,
     "compact_target": 1536,
-    "text_bytes": 898,
+    "text_bytes": 899,
     "json_by_field": {
       "project": 11,
       "key": 5,
       "name": 14,
       "signals": 105,
-      "money": 68,
-      "chats": 1236,
+      "money": 2,
+      "chats": 1237,
       "purposes": 8,
       "questions": 404,
       "promises": 243,
-      "amounts": 323,
+      "amounts": 324,
       "topics": 265
     }
   },
   "wall_ms": {
-    "text": 423,
-    "json": 349,
-    "compact": 302
+    "text": 285,
+    "json": 298,
+    "compact": 296
   },
-  "answer_duration_ms": 51,
+  "answer_duration_ms": 60,
   "texts_shown_without_their_ref": {
     "json": 0,
     "compact": 0,
