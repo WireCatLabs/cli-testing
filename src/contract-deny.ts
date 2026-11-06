@@ -85,7 +85,7 @@ export const argsFor = (node: Node): string[] => {
     ...(node.arguments ?? []).filter((argument) => argument.required).map(() => "x"),
     ...(node.options ?? [])
       .filter((option) => option.mandatory)
-      .flatMap((option) => [option.flags?.match(/--[\w-]+/)?.[0] ?? "", "x"]),
+      .flatMap((option) => [option.flags?.match(/--[\w-]+|-\w/)?.[0] ?? "", "x"]),
   ]
 }
 

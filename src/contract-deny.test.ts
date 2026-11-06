@@ -2,7 +2,7 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { afterAll, describe, expect, it } from "vitest"
-import { argsFor, argumentsFor, type ToolAnswer, type ToolSession } from "./contract-deny.js"
+import { argsFor, argumentsFor, openContractTools, type ToolAnswer, type ToolSession } from "./contract-deny.js"
 import { type ContractPlan, runContracts } from "./contracts.js"
 
 const fixtures = mkdtempSync(join(tmpdir(), "contract-deny-"))
@@ -44,7 +44,23 @@ const args = process.argv.slice(2).filter((a) => a !== "--no-input")
 const config = path.join(process.env.XDG_CONFIG_HOME, "fake", "config.json")
 const out = (v) => process.stdout.write(JSON.stringify(v) + "\\n")
 if (args[0] === "commands") out(${JSON.stringify(TREE)})
-else if (args[1] === "config") out({ item: { config_file: config } })
+else if (args[2] === "serve") {
+  const tools = ["fake_read", "fake_write"].map((name) => ({ name, inputSchema: { type: "object" } }))
+  require("node:readline").createInterface({ input: process.stdin }).on("line", (line) => {
+    const { id, method, params } = JSON.parse(line)
+    if (id === undefined) return
+    const refusal = { error: { code: ${honours} ? "permission_error" : "validation_error" } }
+    const result =
+      method === "initialize"
+        ? { protocolVersion: params.protocolVersion, capabilities: { tools: {} }, serverInfo: { name: "fake", version: "1" } }
+        : method === "tools/list"
+          ? { tools }
+          : method === "tools/call"
+            ? { isError: true, content: [{ type: "text", text: JSON.stringify(refusal) }] }
+            : {}
+    out({ jsonrpc: "2.0", id, result })
+  })
+} else if (args[1] === "config") out({ item: { config_file: config } })
 else {
   const words = args.slice(1).filter((a) => !a.startsWith("-"))
   const key = words[0] === "doctor" ? null : words.slice(0, 2).join(".")
@@ -101,6 +117,64 @@ describe("deny contracts", () => {
     ])
   })
 
+  it("calls a real MCP server over stdio, and fails one that does not answer permission_error", async () => {
+    const honest = await runContracts(plan(fakeCli(true)))
+    expect(honest.results.find((item) => item.id === "deny-mcp")).toEqual({ id: "deny-mcp", passed: true })
+    const confused = await runContracts(plan(fakeCli(false)))
+    expect(confused.results.find((item) => item.id === "deny-mcp")?.failure).toContain(
+      "comments list: validation_error",
+    )
+  })
+
+  it("fails a CLI whose config show names no file, and one whose writes name no key", async () => {
+    const answering = (dryRun: (args: string[]) => string, config = '{"item":{"config_file":"config.json"}}') => ({
+      run: (invocation: { args: string[] }) =>
+        invocation.args.includes("commands")
+          ? { exit: 0, stdout: JSON.stringify(TREE), stderr: "" }
+          : invocation.args.includes("config")
+            ? { exit: 0, stdout: config, stderr: "" }
+            : invocation.args.includes("--dry-run")
+              ? { exit: 0, stdout: dryRun(invocation.args), stderr: "" }
+              : { exit: 5, stdout: "", stderr: '{"error":{"code":"permission_error"}}' },
+    })
+    const noFile = await runContracts(
+      plan(fakeCli(true)),
+      answering(() => "{}", "not json"),
+    )
+    expect(noFile.results.find((item) => item.id === "deny-keys")?.failure).toContain("no config_file")
+    const readsOnly = await runContracts(
+      plan(fakeCli(true)),
+      answering((args) =>
+        JSON.stringify({ item: { permission: { key: args.includes("list") ? "comments.list" : null } } }),
+      ),
+    )
+    expect(readsOnly.results.find((item) => item.id === "deny-keys")?.failure).toContain("no command that writes")
+  })
+
+  it("fails a refusal that is not permission_error, or that prints on stdout", async () => {
+    const refusing = (stdout: string, stderr: string) => ({
+      run: (invocation: { args: string[] }) =>
+        invocation.args.includes("commands")
+          ? { exit: 0, stdout: JSON.stringify(TREE), stderr: "" }
+          : invocation.args.includes("config")
+            ? { exit: 0, stdout: '{"item":{"config_file":"config.json"}}', stderr: "" }
+            : invocation.args.includes("--dry-run")
+              ? { exit: 0, stdout: '{"item":{"permission":{"key":"comments.list"}}}', stderr: "" }
+              : { exit: 5, stdout, stderr },
+      toolSession: async () => ({ ...session(() => refused), tools: ["fake_read"] }),
+    })
+    const wrongCode = await runContracts(plan(fakeCli(true)), refusing("", '{"error":{"code":"auth_error"}}'))
+    expect(wrongCode.results.find((item) => item.id === "deny:comments list")?.failure).toContain("permission_error")
+    const printed = await runContracts(plan(fakeCli(true)), refusing("{}", '{"error":{"code":"permission_error"}}'))
+    expect(printed.results.find((item) => item.id === "deny:comments list")?.failure).toContain("stdout")
+    expect(printed.results.find((item) => item.id === "deny-mcp")?.passed).toBe(true)
+  })
+
+  it("fails when the MCP server does not start", async () => {
+    const dead = { command: process.execPath, args: ["-e", "process.exit(1)"], cwd: fixtures, env: {}, timeout: 2000 }
+    await expect(openContractTools(dead)).rejects.toThrow()
+  })
+
   it("fails a CLI that ignores deny and sends the request", async () => {
     const report = await runContracts(plan(fakeCli(false)), { toolSession: async () => session(() => refused) })
     expect(report.passed).toBe(false)
@@ -155,6 +229,21 @@ describe("deny arguments", () => {
         options: [{ flags: "--text <text>", mandatory: true }, { flags: "--limit <n>" }],
       }),
     ).toEqual(["x", "--text", "x"])
+  })
+
+  it("falls back to placeholders when no example names the path, and to nothing when none is required", () => {
+    expect(argsFor({ path: ["a", "b"], examples: ["fake a c"], options: [{ flags: "-t", mandatory: true }] })).toEqual([
+      "-t",
+      "x",
+    ])
+    expect(argsFor({})).toEqual([])
+    expect(argumentsFor(undefined)).toEqual({})
+    expect(
+      argumentsFor({
+        properties: { n: { type: "number" }, tags: { type: "array" }, odd: { type: "string", pattern: "^z$" } },
+        required: ["n", "tags", "odd", "missing"],
+      }),
+    ).toEqual({ n: 1, tags: [], odd: "x", missing: "x" })
   })
 
   it("fills each required MCP argument from its schema", () => {
