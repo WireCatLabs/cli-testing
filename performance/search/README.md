@@ -30,6 +30,11 @@ The [robustness validation](validation/README.md) challenges negation, condition
 reply context. It shows why the first feature model is not ready for production and distinguishes
 cheap ranking from reliable answer-availability decisions.
 
+The [mail meaning index](mail-meaning-index/README.md) (6 November) replaced the full scan of mail vectors in
+`search all` with the vector index: same answers, about 5 times faster at 100,000 vectors. The
+[topic-less replies](topicless-replies/README.md) check shows a question in `memo search messages` now finds a short
+reply by the message it answers (0/10 → 10/10).
+
 The [model-free path](model-free/README.md) now tests actual questions end to end without manual
 keyword anchors: bounded lexical planning, stemmed BM25 and eligible reply context. It records
 ranking failures and full-process RAM. The [fresh validation](model-free/FRESH-VALIDATION.md)

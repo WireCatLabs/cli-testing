@@ -349,3 +349,13 @@ and excluded word, and it ranks a filter's own messages when the filter holds at
 store, no hit broke the query (0 of 220), and explicit queries went from 0 to 10–17 meaning hits in 20. A 1,000-message
 chat filter went from 9 hits to 20
 ([messages-meaning-filters](messages-meaning-filters/README.md), 2026-10-31).
+
+## A question finds a reply that does not name its topic
+
+In a project test run, a short reply that put off a piece of work was missed: it never named the work, and
+`memo search messages` searched strictly, so reply context (section 4) never ran. `search all` already discovered a
+question typed as a sentence. memo's message search now does the same: on ten synthetic topic-less replies, a
+question found 0/10 before and 10/10 after; plain words still find none, by design. The same run's slow `search all`
+came from reading every mail vector; the vector index gives the same answers about 5 times faster.
+
+Evidence: [topic-less replies](topicless-replies/README.md), [mail meaning index](mail-meaning-index/README.md).
