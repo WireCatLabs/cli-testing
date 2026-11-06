@@ -84,5 +84,71 @@ The coverage targets of the plan:
 - Run-to-run variance: one run on each side.
 - memo 0.131.1, released after the installed 0.130.0.
 
+## Run 3 (2026-11-06): status first, scored against an answer key
+
+### Why
+
+Run 2 could not say whether the agents' answers were right. Since then the owner checked a set of 16 questions with
+expected answers for the same project (open tasks, money, who replies next, decisions, people, growth proposals),
+and `memo projects status` and `--compact` output shipped. The question: does an agent that starts from
+`projects status` give more right answers with fewer tokens? The answer decides whether the next work is more status
+signals or better search and reading.
+
+### Setup
+
+- Installed: memo 0.131.43, tg 0.116.0, max 0.102.0, drive 0.60.0. Same machine and store as run 2, read only, plus
+  the same six syncs.
+- Two arms, each the same two Sonnet subagents. Arm A: the 28.10 prompts word for word, date changed. Arm B: the same
+  plus one line, "start with `memo projects status`, use `--compact`, read in full only the chats it names in
+  `next`". Both arms also got one paragraph of safety rules (read only, explicit profiles).
+- Scoring: each arm's answers against the 16 expected answers, using each question's "must say" and "wrong" lines.
+- Store checks that need old data (a chat flagged partial before sync; link proposals recovering removed links) ran
+  on a copy of the store in a temporary folder with the keyring unreachable.
+
+### Results
+
+| | Run 2 (01.11) | Run 3 arm A | Run 3 arm B |
+| --- | --- | --- | --- |
+| Right / partly / wrong / not answered (of 16) | not scored | 8 / 4 / 2 / 2 | 11 / 3 / 1 / 1 |
+| Share right | — | 50 % | 69 % |
+| State through the CLIs (judgment) | ~45 % | ~45 % | ~60 % |
+| Subagent tokens, both agents | 279 834 | 267 957 | 259 550 |
+| Cache reads summed over turns | — | 5.34 M | 3.09 M |
+| Tool calls | 58 | 62 | 36 |
+| Wall time | 129 s + 204 s | 114 s + 229 s | 98 s + 204 s |
+| Agents that ran `projects status` | 0 of 2 | 0 of 2 | 2 of 2 |
+| Agents that wrote message text to scratch files | 2 of 2 | 2 of 2 | 2 of 2 |
+
+Of the 4 wrong answers, 2 came from a search gap (a reply that never names its topic; an amount kept only in a
+document whose local copy was 13 days old), 2 from an agent that rebuilt a debt from an old reminder instead of
+reading the confirmed books.
+
+Re-run of the earlier failing commands: of the 13 rows failing on 28.10, 4 more are fixed (12 → 8 failing or
+confusing). Of the run 2 bugs, the profile choice for the sync, the exit code on a partial answer and the raw date in
+progress lines are fixed. A cross-store search got slower (4.3 s → 56 s).
+
+Store checks on the copy:
+
+| Target | Result |
+| --- | --- |
+| A chat holding only part of its history is named partial before any sync | met: the chat's line says from which date it is held, with the sync command |
+| Link proposals recover removed links, recall after two rounds ≥ 80 % | 27 % (4 of 15); 47 % after three rounds; links in the second messenger are never reached |
+| False proposals ≤ 5, precision ≥ 60 % | 0 after two rounds, 2 after three (78 %) |
+| Agent's own decisions accepted | 0 (refused: agent decisions are off) |
+
+### What it showed
+
+- Starting from `projects status` gave 3 more right answers out of 16, all on money: the confirmed books answer
+  "who owes what", raw chats lead to a debt that was already paid.
+- It did not cut tokens much (−3 % against arm A, −7 % against run 2): both status-first agents still read every
+  message of their chats.
+- The remaining wrong answers need search that ties a reply to its topic, and a document read that does not miss
+  a staleness signal.
+
+### Not measured
+
+Run-to-run variance (one run per arm); voice messages (no agent transcribed them); the 2 000-chat scan timing and
+re-proposal of rejected links.
+
 The `projects status` command that followed is measured on an invented store in
 [status-fixture](status-fixture/README.md).
