@@ -152,6 +152,9 @@ def configure_plugin(root, plugin, store, model=None):
     plugins.setdefault("slots", {})["memory"] = spec["id"]
     entry = plugins.setdefault("entries", {}).setdefault(spec["id"], {})
     entry["enabled"] = True
+    # Listed as disabled, memory-core still registers its memory_search and memory_get, which take the names first;
+    # the plugin's own tools are then dropped as a "plugin tool name conflict" (10K pilot, 6 November 2026).
+    plugins["entries"]["memory-core"] = {"enabled": False}
     # Without allowConversationAccess OpenClaw never runs a plugin's recall or capture hooks, whatever its flags say.
     entry.pop("hooks", None)
     entry["config"] = {**entry.get("config", {}), **spec["config"], "apiKey": f"${{{spec['key_env']}}}",
@@ -460,6 +463,9 @@ def ask(root, agent, query, run_id, model, thinking, timeout, raw, records):
     seconds = time.perf_counter() - started
     (raw / f"{query['id']}.stdout.json").write_text(stdout)
     (raw / f"{query['id']}.stderr.txt").write_text(stderr)
+    # A shadowed memory tool still answers, with an empty search: two paid 50-question runs came back "unknown".
+    if "plugin tool name conflict" in stderr:
+        raise RuntimeError(f"{query['id']}: a core tool hides a plugin tool, see {raw / query['id']}.stderr.txt")
     try:
         envelope = json.loads(stdout)
     except json.JSONDecodeError:
