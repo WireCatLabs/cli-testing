@@ -48,7 +48,8 @@ CONFIGS = {
 # Servers on this machine, started by hindsight-server.sh and honcho-server.sh; the stores were built by wcatbench.
 HINDSIGHT_URL, HONCHO_URL = "http://127.0.0.1:18888", "http://127.0.0.1:18000"
 # Each provider's SDK in its own folder, so adding one never changes the packages an earlier run used.
-PROVIDER_DEPS = {"hindsight": "pydeps-hindsight-client", "honcho": "pydeps-honcho-ai"}
+# Hermes pins each provider's SDK to one version (tools/lazy_deps.py); another version reads as missing.
+PROVIDER_DEPS = {"hindsight": "pydeps-hindsight-client-0.6.1", "honcho": "pydeps-honcho-ai"}
 
 PROMPT = """You are answering one question about the owner's records. {where}
 
@@ -81,6 +82,8 @@ def hermes_env(config):
         "PYTHONPATH": ":".join(str(path) for path in site),
         "PYTHONDONTWRITEBYTECODE": "1",
         "MEM0_TELEMETRY": "False",
+        # Else Hermes pip-installs a provider SDK it finds missing into its own venv, the owner's ~/.hermes.
+        "HERMES_DISABLE_LAZY_INSTALLS": "1",
         # Without this Hermes runs `gh auth token`, which reaches the keyring over D-Bus even with a throwaway HOME,
         # and stores the owner's GitHub token in the benchmark's auth.json as a Copilot credential.
         "DBUS_SESSION_BUS_ADDRESS": "disabled:",

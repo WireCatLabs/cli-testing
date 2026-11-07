@@ -456,7 +456,12 @@ def where(agent, records):
 def ask(root, agent, query, run_id, model, thinking, timeout, raw, records):
     prompt = PROMPT.format(where=where(agent, records), as_of=query["as_of"], question=query["question"])
     agent_id = "main" if agent in PLUGINS else agent
-    args = ["agent", "--local", "--agent", agent_id, "--session-id", f"kg-{agent}-{run_id}-{query['id']}",
+    session = f"kg-{agent}-{run_id}-{query['id']}"
+    # Hindsight's plugin refuses its tools in a session with no message provider, which a CLI turn has; a
+    # five-part key agent:<id>:<provider>:<type>:<channel> names one, one fresh session per question still.
+    target = ["--session-key", f"agent:{agent_id}:bench:direct:{session}"] if agent == "hindsight" else [
+        "--session-id", session]
+    args = ["agent", "--local", "--agent", agent_id, *target,
             "--message", prompt, "--model", model, "--json", "--timeout", str(timeout)]
     if thinking:
         args += ["--thinking", thinking]
