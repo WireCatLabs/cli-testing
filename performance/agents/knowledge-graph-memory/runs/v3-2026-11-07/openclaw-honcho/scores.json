@@ -1,9 +1,9 @@
 {
   "engine": "OpenClaw 2026.10.9 + Honcho 3.5.0, claude-sonnet-5-5, v3",
-  "correct": 48,
+  "correct": 50,
   "cited_correctly": 4,
-  "stale": 1,
-  "correct_strict": 48,
+  "stale": 0,
+  "correct_strict": 50,
   "by_family": {
     "money": {
       "questions": 13,
@@ -21,10 +21,10 @@
     },
     "people and decisions": {
       "questions": 17,
-      "correct": 15,
-      "correct_strict": 15,
+      "correct": 17,
+      "correct_strict": 17,
       "cited_correctly": 0,
-      "stale": 1
+      "stale": 0
     },
     "not recorded": {
       "questions": 4,

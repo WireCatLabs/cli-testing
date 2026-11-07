@@ -16,10 +16,10 @@
   "prompt_sha256": null,
   "scores": {
     "engine": "Hermes + Honcho 3.5.0, claude-sonnet-5-5, v3",
-    "correct": 48,
+    "correct": 50,
     "cited_correctly": 4,
-    "stale": 1,
-    "correct_strict": 47,
+    "stale": 0,
+    "correct_strict": 49,
     "by_family": {
       "money": {
         "questions": 13,
@@ -37,10 +37,10 @@
       },
       "people and decisions": {
         "questions": 17,
-        "correct": 15,
-        "correct_strict": 14,
+        "correct": 17,
+        "correct_strict": 16,
         "cited_correctly": 0,
-        "stale": 1
+        "stale": 0
       },
       "not recorded": {
         "questions": 4,
