@@ -500,14 +500,17 @@ if (worker) {
     assert.notEqual(evidence.after.crm, evidence.after.mail)
   })
 
-  check(10, "a CRM role change against the owner's role does not overwrite it", (evidence) => {
-    const own = relationshipLinks().find(
-      (one) =>
-        one.kind === "member-of" && `person:${one.from_id}` === ids.alice && `organization:${one.to_id}` === ids.acme,
-    )
-    owner(["relationships", "update", String(own.id), "--role", "manager"])
-    const decision = relationshipLinks().find((one) => one.role === "decision-maker")
-    const set = relationshipLinks().filter((one) => [own.id, decision.id].includes(one.id))
+  check(10, "a CRM change does not overwrite a role the owner set", (evidence) => {
+    const aliceAtAcme = () =>
+      relationshipLinks().filter(
+        (one) =>
+          one.kind === "member-of" && `person:${one.from_id}` === ids.alice && `organization:${one.to_id}` === ids.acme,
+      )
+    const reported = aliceAtAcme().find((one) => one.account_id !== null)
+    owner(["relationships", "update", String(reported.id), "--role", "manager"])
+    const overrides = () => aliceAtAcme().filter((one) => one.account_id === null)
+    const override = overrides()
+    const decision = relationshipLinks().filter((one) => one.role === "decision-maker")
     touch(portal.contact[0], { post: "Head of procurement" })
     touch(portal.deal[0], { contactsId: [20, 21] })
     savePortal()
@@ -517,17 +520,24 @@ if (worker) {
     const first = { proposals: proposals(), links: relationshipLinks().length }
     b24(["sync", "--rescan"])
     const second = { proposals: proposals(), links: relationshipLinks().length }
-    evidence.owner_links = set.map(({ id, role, confirmed, account_id }) => ({ id, role, confirmed, account_id }))
+    const pick = ({ id, role, confirmed, account_id, deleted_at }) => ({ id, role, confirmed, account_id, deleted_at })
+    evidence.alice_links = aliceAtAcme().map(pick)
     evidence.after_sync = [first, second]
-    const now = relationshipLinks().filter((one) => [own.id, decision.id].includes(one.id))
-    assert.deepEqual(now, set, "the owner's two links are as the owner left them")
+    assert.equal(override.length, 1, "the owner's edit made one override link")
+    assert.deepEqual(overrides(), override, "two syncs leave the override as the owner made it")
+    assert.equal(override[0].role, "manager")
+    assert.equal(override[0].confirmed, 1)
     assert.deepEqual(second, first, "a second sync proposes and writes nothing new")
-    const bob = rolesOf(memo(["deals", "context", ids.deal]).item.participants)[ids.bob]
-    evidence.bob_on_deal = bob
-    assert.ok(bob.includes("decision-maker:confirmed"), "the CRM reporting Bob as a contact leaves the owner's role")
     const alice = rolesOf(memo(["organizations", "context", ids.acme]).item.people)[ids.alice]
     evidence.alice_at_acme = alice
-    assert.ok(alice.includes("manager:confirmed"), "the owner's role edit stands as the owner's")
+    assert.deepEqual(alice, ["manager:confirmed"], "the CRM's contact row is hidden behind the owner's override")
+    const bob = rolesOf(memo(["deals", "context", ids.deal]).item.participants)[ids.bob]
+    evidence.bob_on_deal = bob
+    assert.deepEqual(
+      relationshipLinks().filter((one) => one.role === "decision-maker"),
+      decision,
+    )
+    assert.ok(bob.includes("decision-maker:confirmed"), "the CRM reporting Bob as a contact leaves the owner's role")
   })
 
   check(11, "a group lock never reads the other group's accounts, and deals: deny hides deals", (evidence) => {

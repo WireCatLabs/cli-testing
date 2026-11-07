@@ -4,13 +4,13 @@
   "build": {
     "kind": "pre-release: unreleased local builds from open pull requests, never published",
     "cli-core": {
-      "merge": "0e4199d6f6cd06e6873e0f02a12a6de2a61f833b",
+      "merge": "54108fded21944a914662046109440b952959ae4",
       "of": {
-        "WireCatLabs/cli-core#2642": "20cc10fb00b990729ecfa0b0df31f6951f8efe52",
-        "WireCatLabs/cli-core#2632": "e04a396bb3230a06beae6218f30ffa0a479cc7f5"
+        "WireCatLabs/cli-core#2642": "977d0ae29f996c4c85d0c24b7c24258624954c88",
+        "WireCatLabs/cli-core#2632": "37e93c7f2f055732cfc43f5fb1f9bfc3db99c454"
       },
       "contains": {
-        "WireCatLabs/cli-core#2641": "6c411e0eb"
+        "WireCatLabs/cli-core#2641": "2c946fa2b"
       },
       "note": "local merge, conflicts in imports and CHANGELOG only, never pushed"
     },
@@ -19,9 +19,9 @@
       "override": "uncommitted pnpm add of the cli-core tarball"
     },
     "cli-memo": {
-      "WireCatLabs/cli-memo#699": "981c50d976cf4b074bb7a0c2f7505d6e246dd6d8",
+      "WireCatLabs/cli-memo#699": "c583358cf3078054d7869da1753f7d8afe730c98",
       "stacked_on": {
-        "WireCatLabs/cli-memo#698": "e41cbabda2165917a6995ba6bcbc2fb8560ff28f"
+        "WireCatLabs/cli-memo#698": "760d846bd675c66f012ebdcfa1a77dfaec9e79c3"
       },
       "override": "uncommitted pnpm add of the cli-core tarball"
     }
@@ -29,18 +29,18 @@
   "artifacts": {
     "bitrix24-cli": {
       "version": "0.5.0",
-      "integrity": "sha512-0fdjuai83GjO4HfwGZekRHyVaPzT8+lh1n9cbrlYwSJQdS2JBLNIb6xa7jaokZ5OlYSmSOvVzh4BtK3xLyhS6g==",
-      "entry_sha256": "37698751e88c58c43e1ad640a707390c22c01f4783df16f7cf6b80da0955da5a"
+      "integrity": "sha512-MfDVlTCtAc+cMu05IXKhYr/z0pfNzMwZpBOOTlt2UOe5eRXBKw+LgSIqWfkns6SXxBwiQe3fe5ERW3mneLTfug==",
+      "entry_sha256": "e13340297b1542969464d24a6037889017a66409328b010d0fd47fda973f5769"
     },
     "cli-memo": {
       "version": "0.131.48",
-      "integrity": "sha512-qM5t02Km4E9vJES7ulEce8/VNCKzupLf+k/nzfXALcTDVYHhbmrH/0p5YOloTWndvi497oOiCXuOd07ntC2/pw==",
-      "entry_sha256": "2918e5ce495cafb4df3ea11bab3440e41ff7c0cc6a3798c612c1cc4335703aac"
+      "integrity": "sha512-qmxI/WM4pXfGpKOXt9EvtxZd9tz2Rac2uJrK1KOd/37tbpjuENKUGtKkhy35eah0AUh9gz01qYEvXGbU8nt8aQ==",
+      "entry_sha256": "946941122a344bf61486d736f1c589fa379844fe8e5049bee2fc3bf94949ce22"
     },
     "cli-core": {
       "version": "0.604.0",
       "b24_core": "0.604.0",
-      "integrity": "sha512-yk0lJNX51HI/6prnGPzfwHEwS96s6nx7mY6gLfEOiobgCGGr9NxkNJ5kVq9aQs9zXMZAvUzUU9ZqvkMBBt6mkQ=="
+      "integrity": "sha512-6oQQodQ2f/2Hw/X912inF/RSK3xemhKcn1rNGKIInZo54INbv23s9s1nq6ztZLeC8ehw+Vp7Y29ji30cL+dFzw=="
     }
   },
   "first_sync": {
@@ -273,21 +273,23 @@
     },
     {
       "id": 10,
-      "name": "a CRM role change against the owner's role does not overwrite it",
+      "name": "a CRM change does not overwrite a role the owner set",
       "pass": true,
       "evidence": {
-        "owner_links": [
+        "alice_links": [
           {
             "id": 1,
             "role": "contact",
             "confirmed": 0,
-            "account_id": 5
+            "account_id": 5,
+            "deleted_at": null
           },
           {
-            "id": 10,
-            "role": "decision-maker",
+            "id": 12,
+            "role": "manager",
             "confirmed": 1,
-            "account_id": null
+            "account_id": null,
+            "deleted_at": null
           }
         ],
         "after_sync": [
@@ -300,8 +302,8 @@
             "links": 13
           }
         ],
-        "bob_on_deal": ["decision-maker:confirmed", "contact:reported"],
-        "alice_at_acme": ["contact:reported", "manager:confirmed"]
+        "alice_at_acme": ["manager:confirmed"],
+        "bob_on_deal": ["decision-maker:confirmed", "contact:reported"]
       }
     },
     {

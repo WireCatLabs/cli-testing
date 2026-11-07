@@ -78,8 +78,8 @@ How the runner reaches each CLI:
 
 ## Results
 
-[The pre-release run](result.json), on Node v24.19.0, passed 12 of 13 checks. It ran on the final heads of the pull requests (2026-11-07), and it replaces
-the first run on earlier heads, which passed 11.
+[The pre-release run](result.json), on Node v24.19.0, passed 12 of 13 checks. It ran on the final heads of the pull requests (2026-11-08), and it replaces
+the runs on earlier heads.
 
 | # | Check | Result | Evidence |
 | --- | --- | --- | --- |
@@ -92,7 +92,7 @@ the first run on earlier heads, which passed 11.
 | 7 | The invoice shows unpaid, and no payment appears | Pass | `issued`, open 1200.00, 0 payments on the deal and on Acme |
 | 8 | Three `b24 sync` runs (one with `--rescan`) leave one link per relationship and no new revisions | Pass | 11 links and 11 revisions before and after, no duplicate key |
 | 9 | A wrong identity join, separated by the owner, stays separated after two re-syncs | Pass | The CRM contact and the front-desk mail address stay two persons |
-| 10 | A CRM change does not overwrite a role the owner set | Pass | Bob keeps `decision-maker:confirmed` when the CRM also lists him. The owner's change of Alice's role is its own link, `manager:confirmed`, beside the CRM's `contact:reported`. Two syncs add nothing |
+| 10 | A CRM change does not overwrite a role the owner set | Pass | Bob keeps `decision-maker:confirmed` when the CRM also lists him. The owner's change of Alice's role makes one override link, `manager:confirmed`, which hides the CRM's `contact` row. Alice reads `manager:confirmed` only, and two syncs change nothing |
 | 11 | A group lock never reads the other group's accounts, and `deals: deny` hides deals | Pass | Under the `personal` lock: no deal, no work chat, no CRM-only person. Alice's context is refused, and Bob's shows only his mail. Under the `work` lock: no personal chat and no mail. Each item is found without a lock. The owner's projects, invoices and tasks show the same counts under both locks |
 | 12 | Every new memo command is found by `memo_tools_search` over a real stdio MCP process | Pass | All 13, each by a short phrase. `memo_read deals context` answers for the same deal |
 | 13 | Each docs example that names these commands runs as written | Pass | 42 examples found in the updated docs, 35 run. Of the other 7, 5 have placeholders and 2 install or remove an OS timer. The 3 bare command names in prose ran and count as mentions |
@@ -109,8 +109,10 @@ The strict portal answered 297 requests over 17 methods and refused none.
   belongs to the Memory/Search stream's `mergePerson` change. The check stays as it is until that lands. The
   positive control in check 11 counts "Grace is found without a lock" as at least one, because the duplicate is
   check 1's subject.
-- **Check 10, fixed on the final heads.** On the earlier heads, the owner's role edit rewrote the CRM's own row,
-  which kept `confirmed = 0`. Now it is a separate owner link, and the CRM's `contact` stays its own `reported` link.
+- **Check 10, fixed on the final heads.** On the first heads, the owner's role edit rewrote the CRM's own row,
+  which kept `confirmed = 0`. Now the edit makes one owner override. The CRM's row stays stored with its account,
+  but the answers hide it behind the override. A later edit changes the override in place, and ending the CRM link
+  ends the override.
 - **The rest holds.**
   - The CRM's relationships are `reported`, and the owner's are `confirmed`.
   - Re-syncs are idempotent, and a separation survives them.
@@ -140,9 +142,9 @@ None of these were published. The commit shas are in [`result.json`](result.json
 
 | Package | Built from |
 | --- | --- |
-| cli-core 0.604.0 | a local merge of [#2642](https://github.com/WireCatLabs/cli-core/pull/2642) `20cc10fb0` (which contains #2641 `6c411e0eb`) and [#2632](https://github.com/WireCatLabs/cli-core/pull/2632) `e04a396bb`. Conflicts were in imports and the CHANGELOG only. Never pushed |
+| cli-core 0.604.0 | a local merge of [#2642](https://github.com/WireCatLabs/cli-core/pull/2642) `977d0ae29` (which contains #2641 `2c946fa2b`) and [#2632](https://github.com/WireCatLabs/cli-core/pull/2632) `37e93c7f2`. Conflicts were in imports and the CHANGELOG only. Never pushed |
 | bitrix24-cli 0.5.0 | [#39](https://github.com/WireCatLabs/bitrix24-cli/pull/39) `66137f596`, with that cli-core tarball added locally and not committed |
-| cli-memo 0.131.48 | [#699](https://github.com/WireCatLabs/cli-memo/pull/699) `981c50d97` on [#698](https://github.com/WireCatLabs/cli-memo/pull/698) `e41cbabda`, the same way |
+| cli-memo 0.131.48 | [#699](https://github.com/WireCatLabs/cli-memo/pull/699) `c583358cf` on [#698](https://github.com/WireCatLabs/cli-memo/pull/698) `760d846bd`, the same way |
 
 The three tarballs were installed with npm into one prefix, with an `overrides` entry for cli-core. The lockfile
 integrities, the versions and the SHA-256 of each executable are in the report.
