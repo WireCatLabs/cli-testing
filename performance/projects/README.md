@@ -37,6 +37,8 @@
   and after the coverage release (TASK-834 stream b) — tokens, failed commands, coverage signals.
 - [project-state/status-fixture](project-state/status-fixture/README.md): `memo projects status` on an invented store
   shaped like that project — the four planted claims, answer sizes against their limits, wall time.
+- [project-state/link-recall](project-state/link-recall/README.md): `memo relationships scan` recall and precision
+  on an invented project shaped like PMED, before and after spreading within one run (27 % → 93 % after two rounds).
 - [review](review/README.md): what reviewing an agent's proposals costs with and without context, and how a changed
   cited text and agent decisions are handled.
 
