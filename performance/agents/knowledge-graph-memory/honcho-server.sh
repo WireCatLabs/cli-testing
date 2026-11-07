@@ -4,7 +4,7 @@
 # Every language model call goes to OpenAI gpt-4o-mini (Honcho's own default is gpt-5.4-mini), so it matches
 # Hindsight. The key comes from the keyring entry openai/default through an env file of mode 600, removed once
 # the containers exist. `docker inspect` still shows it inside them.
-# Usage: honcho-server.sh start | stop | status
+# Usage: honcho-server.sh start | stop | status | backdate <workspace>
 set -euo pipefail
 
 project=wcatbench-honcho
@@ -87,5 +87,15 @@ case ${1:-status} in
     ;;
   stop) docker compose -f "$dir/compose.yml" stop > /dev/null && echo "stopped $project (containers and volume kept)" ;;
   status) docker compose -f "$dir/compose.yml" ps --format '{{.Service}} {{.Status}}' ;;
-  *) echo "usage: $0 start | stop | status" >&2; exit 2 ;;
+  backdate)
+    # wcatbench sends each record with its own date as created_at, but Honcho dates a peer's session membership to
+    # when the session was made. Message search "from a peer's perspective" (what Hermes's honcho_search uses) keeps
+    # only messages created after the peer joined, so it found none of the owner's own history (7 November 2026).
+    # The owner took part in every one of these conversations: date the membership to before the first record.
+    workspace=${2:?usage: $0 backdate <workspace>}
+    [[ $workspace =~ ^[A-Za-z0-9_-]+$ ]] || { echo "bad workspace name" >&2; exit 2; }
+    docker compose -f "$dir/compose.yml" exec -T database psql -U postgres -At -c \
+      "UPDATE session_peers SET joined_at = '2025-01-01T00:00:00Z' WHERE workspace_name = '$workspace' RETURNING session_name, peer_name"
+    ;;
+  *) echo "usage: $0 start | stop | status | backdate <workspace>" >&2; exit 2 ;;
 esac
