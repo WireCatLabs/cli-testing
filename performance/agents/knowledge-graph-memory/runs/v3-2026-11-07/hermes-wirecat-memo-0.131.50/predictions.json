@@ -1,0 +1,291 @@
+[
+  {
+    "id": "q01",
+    "answer": "EUR 16,000",
+    "citations": ["msg:email/synthetic%40example.test/thread-10116/10123"]
+  },
+  {
+    "id": "q02",
+    "answer": "EUR 15,000",
+    "citations": ["msg:email/synthetic%40example.test/thread-10258/10276"]
+  },
+  {
+    "id": "q03",
+    "answer": "EUR 25,000",
+    "citations": ["msg:email/synthetic%40example.test/thread-10115/10121"]
+  },
+  {
+    "id": "q04",
+    "answer": "EUR 7,000",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10138/10138",
+      "msg:email/synthetic%40example.test/thread-10200/10200",
+      "msg:email/synthetic%40example.test/thread-10202/10202"
+    ]
+  },
+  {
+    "id": "q05",
+    "answer": "EUR 17,250",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10311/10311",
+      "msg:email/synthetic%40example.test/thread-10351/10351",
+      "msg:email/synthetic%40example.test/thread-10352/10352"
+    ]
+  },
+  {
+    "id": "q06",
+    "answer": "EUR 11,250",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10112/10112",
+      "msg:email/synthetic%40example.test/thread-10119/10119",
+      "msg:email/synthetic%40example.test/thread-10136/10136"
+    ]
+  },
+  {
+    "id": "q07",
+    "answer": "EUR 8,250",
+    "citations": ["document:10083", "document:10096", "msg:email/synthetic%40example.test/thread-10070/10070"]
+  },
+  {
+    "id": "q08",
+    "answer": "EUR 17,250",
+    "citations": [
+      "document:709",
+      "document:718",
+      "msg:email/synthetic%40example.test/2000000000010193/1000000000010193"
+    ]
+  },
+  {
+    "id": "q09",
+    "answer": "EUR 23,750",
+    "citations": ["document:10279", "document:10286", "msg:email/synthetic%40example.test/thread-10271/10271"]
+  },
+  {
+    "id": "q10",
+    "answer": "EUR 900",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10173/10173",
+      "msg:email/synthetic%40example.test/thread-10180/10180"
+    ]
+  },
+  {
+    "id": "q11",
+    "answer": "EUR 1,500",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10057/10057",
+      "msg:email/synthetic%40example.test/thread-10113/10113"
+    ]
+  },
+  {
+    "id": "q12",
+    "answer": "Tess Ng",
+    "citations": ["msg:email/synthetic%40example.test/thread-10223/10223"]
+  },
+  {
+    "id": "q13",
+    "answer": "Dee Lake",
+    "citations": ["msg:email/synthetic%40example.test/thread-10225/10225"]
+  },
+  {
+    "id": "q14",
+    "answer": "2026-12-24 16:00",
+    "citations": ["msg:email/synthetic%40example.test/2000000000010416/1000000000010416"]
+  },
+  {
+    "id": "q15",
+    "answer": "2026-11-21 12:00",
+    "citations": ["msg:email/synthetic%40example.test/thread-10342/10342"]
+  },
+  {
+    "id": "q16",
+    "answer": "2026-12-11 16:00",
+    "citations": ["msg:email/synthetic%40example.test/2000000000010405/1000000000010405"]
+  },
+  {
+    "id": "q17",
+    "answer": "2026-10-26 22:30",
+    "citations": ["msg:email/synthetic%40example.test/2000000000010356/1000000000010356"]
+  },
+  {
+    "id": "q18",
+    "answer": "2026-11-15 14:30",
+    "citations": ["msg:email/synthetic%40example.test/thread-10318/10318"]
+  },
+  {
+    "id": "q19",
+    "answer": "2026-12-06 09:30",
+    "citations": ["msg:email/synthetic%40example.test/2000000000010361/1000000000010361"]
+  },
+  {
+    "id": "q20",
+    "answer": "2026-03-29",
+    "citations": ["document:640"]
+  },
+  {
+    "id": "q21",
+    "answer": "2026-05-28",
+    "citations": ["document:700"]
+  },
+  {
+    "id": "q22",
+    "answer": "2026-08-18",
+    "citations": ["document:769"]
+  },
+  {
+    "id": "q23",
+    "answer": "cancelled",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10400/10400",
+      "msg:email/synthetic%40example.test/thread-10428/10428"
+    ]
+  },
+  {
+    "id": "q24",
+    "answer": "cancelled",
+    "citations": ["msg:email/synthetic%40example.test/thread-10396/10396"]
+  },
+  {
+    "id": "q25",
+    "answer": "cancelled",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10343/10343",
+      "msg:email/synthetic%40example.test/thread-10363/10363"
+    ]
+  },
+  {
+    "id": "q26",
+    "answer": "2026-12-02",
+    "citations": ["msg:email/synthetic%40example.test/thread-10436/10436"]
+  },
+  {
+    "id": "q27",
+    "answer": "2026-11-22",
+    "citations": ["msg:email/synthetic%40example.test/thread-10433/10433"]
+  },
+  {
+    "id": "q28",
+    "answer": "Monday",
+    "citations": ["meeting:synthetic/10099/cue/1", "msg:email/synthetic%40example.test/thread-10104/10104"]
+  },
+  {
+    "id": "q29",
+    "answer": "Friday",
+    "citations": ["msg:email/synthetic%40example.test/2000000000010081/1000000000010081"]
+  },
+  {
+    "id": "q30",
+    "answer": "Ira Brook",
+    "citations": ["msg:email/synthetic%40example.test/thread-10329/10329"]
+  },
+  {
+    "id": "q31",
+    "answer": "Ira Brooks",
+    "citations": ["msg:email/synthetic%40example.test/thread-10264/10264"]
+  },
+  {
+    "id": "q32",
+    "answer": "Harbour Loft",
+    "citations": ["msg:email/synthetic%40example.test/thread-10241/10241"]
+  },
+  {
+    "id": "q33",
+    "answer": "Tram Depot",
+    "citations": ["msg:email/synthetic%40example.test/thread-10114/10114"]
+  },
+  {
+    "id": "q34",
+    "answer": "Harbour Loft",
+    "citations": ["msg:email/synthetic%40example.test/thread-10262/10262"]
+  },
+  {
+    "id": "q35",
+    "answer": "5",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10313/10313",
+      "msg:email/synthetic%40example.test/thread-10326/10326",
+      "msg:email/synthetic%40example.test/thread-10339/10339",
+      "msg:email/synthetic%40example.test/thread-10398/10398",
+      "msg:email/synthetic%40example.test/thread-10413/10413"
+    ]
+  },
+  {
+    "id": "q36",
+    "answer": "3",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-10399/10399",
+      "msg:email/synthetic%40example.test/thread-10423/10423",
+      "msg:email/synthetic%40example.test/thread-10425/10425",
+      "msg:email/synthetic%40example.test/thread-10430/10430"
+    ]
+  },
+  {
+    "id": "q37",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q38",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q39",
+    "answer": "2027-09-11",
+    "citations": ["meeting:synthetic/7114/cue/1"]
+  },
+  {
+    "id": "q40",
+    "answer": "2027-04-28",
+    "citations": ["msg:email/synthetic%40example.test/thread-6747/6805"]
+  },
+  {
+    "id": "q41",
+    "answer": "2026-10-31",
+    "citations": ["document:1632", "msg:email/synthetic%40example.test/2000000000003879/1000000000004136"]
+  },
+  {
+    "id": "q42",
+    "answer": "Jo Birch",
+    "citations": ["msg:email/synthetic%40example.test/thread-3594/3594"]
+  },
+  {
+    "id": "q43",
+    "answer": "Gia Fern",
+    "citations": ["document:3841"]
+  },
+  {
+    "id": "q44",
+    "answer": "the usability study (replacing the load test report)",
+    "citations": ["meeting:synthetic/2541/cue/1", "meeting:synthetic/6484/cue/1"]
+  },
+  {
+    "id": "q45",
+    "answer": "the rollback plan",
+    "citations": ["meeting:synthetic/1034/cue/1", "meeting:synthetic/6423/cue/1"]
+  },
+  {
+    "id": "q46",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q47",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q48",
+    "answer": "Bilbao",
+    "citations": ["document:995", "msg:email/synthetic%40example.test/thread-10067/10067"]
+  },
+  {
+    "id": "q49",
+    "answer": "Porto",
+    "citations": ["document:10026", "document:2520", "msg:email/synthetic%40example.test/thread-10036/10036"]
+  },
+  {
+    "id": "q50",
+    "answer": "Lisbon",
+    "citations": ["document:2273", "msg:email/synthetic%40example.test/thread-10268/10268"]
+  }
+]

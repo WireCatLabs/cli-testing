@@ -1,0 +1,18 @@
+{
+  "config": "wirecat",
+  "model": "claude-sonnet-5-5",
+  "model_provider": "anthropic",
+  "reasoning": "medium",
+  "toolsets": "terminal,skills,memory",
+  "provider": "",
+  "date": "2026-11-07T19:53:01+00:00",
+  "questions": 50,
+  "owner_hermes_changed": [],
+  "oracle_seen_in_sessions": false,
+  "scores": {
+    "correct": 49,
+    "cited_correctly": 30,
+    "stale": 0,
+    "correct_strict": 48
+  }
+}
