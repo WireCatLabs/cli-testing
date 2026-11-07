@@ -4,21 +4,24 @@
   "build": {
     "kind": "pre-release: unreleased local builds from open pull requests, never published",
     "cli-core": {
-      "merge": "6dada80843b9150f446e30e698036b82c7785dff",
+      "merge": "0e4199d6f6cd06e6873e0f02a12a6de2a61f833b",
       "of": {
-        "WireCatLabs/cli-core#2642": "a00c5a641ccd626feabf84e2ed47a857c2fff02f",
-        "WireCatLabs/cli-core#2632": "3158ad664853a359d7bd6b21711052acf8ed70e0"
+        "WireCatLabs/cli-core#2642": "20cc10fb00b990729ecfa0b0df31f6951f8efe52",
+        "WireCatLabs/cli-core#2632": "e04a396bb3230a06beae6218f30ffa0a479cc7f5"
+      },
+      "contains": {
+        "WireCatLabs/cli-core#2641": "6c411e0eb"
       },
       "note": "local merge, conflicts in imports and CHANGELOG only, never pushed"
     },
     "bitrix24-cli": {
-      "WireCatLabs/bitrix24-cli#39": "919e9563d37a71a49a670b4dd76c171810e119c8",
+      "WireCatLabs/bitrix24-cli#39": "66137f59638f64038b10e2bfc15b0349ffb7a995",
       "override": "uncommitted pnpm add of the cli-core tarball"
     },
     "cli-memo": {
-      "WireCatLabs/cli-memo#699": "002773d09c932a0934aeecaa1ef4c3295b44d8cd",
+      "WireCatLabs/cli-memo#699": "981c50d976cf4b074bb7a0c2f7505d6e246dd6d8",
       "stacked_on": {
-        "WireCatLabs/cli-memo#698": "923f20ea4db003e9e2bfdd7c4ba08718dda8af64"
+        "WireCatLabs/cli-memo#698": "e41cbabda2165917a6995ba6bcbc2fb8560ff28f"
       },
       "override": "uncommitted pnpm add of the cli-core tarball"
     }
@@ -26,18 +29,18 @@
   "artifacts": {
     "bitrix24-cli": {
       "version": "0.5.0",
-      "integrity": "sha512-g41vaH51Rkn/9Jstt1+7KL9aiDoM356dbqeRRpxuj4Mp3Pvdb5fHNLl4ded3QVqvQGfrQ18odQgnP3Pq9HEYhw==",
-      "entry_sha256": "630f656cf9ad863819b00afbb267876e8b5736bb068a997d164e41c0fa808b7c"
+      "integrity": "sha512-0fdjuai83GjO4HfwGZekRHyVaPzT8+lh1n9cbrlYwSJQdS2JBLNIb6xa7jaokZ5OlYSmSOvVzh4BtK3xLyhS6g==",
+      "entry_sha256": "37698751e88c58c43e1ad640a707390c22c01f4783df16f7cf6b80da0955da5a"
     },
     "cli-memo": {
       "version": "0.131.48",
-      "integrity": "sha512-GyCPVGK0V3Ur3lE2tEHh1TaLCUU1cSBtZX8F1uJ6cnx+X386x53sfNEIpoSYpOm1FYXL65UuKOGvMij5Fce+SQ==",
-      "entry_sha256": "707e510a61734c8a35b0ba5d3b654b3409c505de936564b580145669c63d057a"
+      "integrity": "sha512-qM5t02Km4E9vJES7ulEce8/VNCKzupLf+k/nzfXALcTDVYHhbmrH/0p5YOloTWndvi497oOiCXuOd07ntC2/pw==",
+      "entry_sha256": "2918e5ce495cafb4df3ea11bab3440e41ff7c0cc6a3798c612c1cc4335703aac"
     },
     "cli-core": {
       "version": "0.604.0",
       "b24_core": "0.604.0",
-      "integrity": "sha512-GB+4NnOxTWbEuwizyp3Q30LQonvVw32QA2f3/MieMNp8aAfm37zXxWAqjn9p/5/UZFAG+I+2rurQP/4LljxD8g=="
+      "integrity": "sha512-yk0lJNX51HI/6prnGPzfwHEwS96s6nx7mY6gLfEOiobgCGGr9NxkNJ5kVq9aQs9zXMZAvUzUU9ZqvkMBBt6mkQ=="
     }
   },
   "first_sync": {
@@ -84,14 +87,14 @@
     ],
     "refused": 0
   },
-  "passed": 11,
-  "failed": [1, 10],
+  "passed": 12,
+  "failed": [1],
   "checks": [
     {
       "id": 1,
       "name": "Alice's CRM contact and Telegram identity are one person once the owner links them",
       "pass": false,
-      "error": "people list shows one Alice\n\n3 !== 1\n",
+      "error": "search people finds one Alice\n\n3 !== 1\n",
       "evidence": {
         "before": {
           "crm": "person:8",
@@ -102,14 +105,6 @@
           "telegram": "person:8"
         },
         "search_people": [
-          {
-            "ref": "person:8",
-            "name": "Alice"
-          }
-        ],
-        "identities": ["bitrix24", "email", "telegram"],
-        "direct_messages": 1,
-        "people_list": [
           {
             "ref": "person:2",
             "name": "Alice"
@@ -190,7 +185,7 @@
           "direct_reports": ["person:9"],
           "coverage_accounts": ["bitrix24:example.bitrix24.test", "google-calendar:owner@northstar.example"]
         },
-        "search_people_finds_name_only": 0,
+        "search_people_finds_name_only": 1,
         "name_only": {
           "name": "Dana Example",
           "not_read": ["messages", "mail"]
@@ -279,13 +274,12 @@
     {
       "id": 10,
       "name": "a CRM role change against the owner's role does not overwrite it",
-      "pass": false,
-      "error": "the owner's role edit stands as the owner's",
+      "pass": true,
       "evidence": {
         "owner_links": [
           {
             "id": 1,
-            "role": "manager",
+            "role": "contact",
             "confirmed": 0,
             "account_id": 5
           },
@@ -307,7 +301,7 @@
           }
         ],
         "bob_on_deal": ["decision-maker:confirmed", "contact:reported"],
-        "alice_at_acme": ["manager:reported", "contact:reported"]
+        "alice_at_acme": ["contact:reported", "manager:confirmed"]
       }
     },
     {
@@ -320,7 +314,7 @@
         "personal_search_work_chat": [],
         "personal_search_crm_person": [],
         "personal_context_bob": {
-          "accounts": ["email:owner@northstar.example", "google-calendar:owner@northstar.example"],
+          "accounts": ["email:owner@northstar.example"],
           "organizations": 0,
           "deals": 0
         },
@@ -329,18 +323,18 @@
         "unlocked": {
           "deal": true,
           "work_chat": true,
-          "crm_person": 1,
+          "crm_person": true,
           "personal_chat": true,
           "mail": true
         },
         "owner_made": {
           "personal": {
-            "projects": 5,
+            "projects": 1,
             "invoices": 5,
             "tasks": 2
           },
           "work": {
-            "projects": 5,
+            "projects": 1,
             "invoices": 5,
             "tasks": 2
           }
@@ -491,7 +485,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 174,
+            "line": 176,
             "command": "memo relationships add chat:telegram/1/123 project:1",
             "ran": true,
             "code": 0,
@@ -555,23 +549,7 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 188,
-            "command": "memo groups add work bitrix24:acme",
-            "ran": true,
-            "code": 0,
-            "shape": "text"
-          },
-          {
-            "file": "memo/docs/usage.md",
-            "line": 189,
-            "command": "memo work context person:5",
-            "ran": true,
-            "code": 0,
-            "shape": "item"
-          },
-          {
-            "file": "memo/docs/usage.md",
-            "line": 195,
+            "line": 196,
             "command": "memo groups list",
             "ran": true,
             "code": 0,
@@ -579,16 +557,8 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 204,
+            "line": 202,
             "command": "memo groups remove work telegram:102",
-            "ran": true,
-            "code": 0,
-            "shape": "text"
-          },
-          {
-            "file": "memo/docs/usage.md",
-            "line": 204,
-            "command": "memo groups move telegram:102 personal work",
             "ran": true,
             "code": 0,
             "shape": "text"
@@ -749,8 +719,8 @@
           }
         ],
         "counts": {
-          "examples": 45,
-          "ran": 38
+          "examples": 42,
+          "ran": 35
         }
       }
     }

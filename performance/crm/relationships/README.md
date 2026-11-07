@@ -78,23 +78,24 @@ How the runner reaches each CLI:
 
 ## Results
 
-[The pre-release run](result.json), on Node v24.19.0, passed 11 of 13 checks.
+[The pre-release run](result.json), on Node v24.19.0, passed 12 of 13 checks. It ran on the final heads of the pull requests (2026-11-07), and it replaces
+the first run on earlier heads, which passed 11.
 
 | # | Check | Result | Evidence |
 | --- | --- | --- | --- |
-| 1 | Alice's CRM contact and Telegram identity are one person once the owner links them | **Fail** | They join, and `search people` finds one Alice. But `people list` shows three: the persons the two merges emptied stay listed |
+| 1 | Alice's CRM contact and Telegram identity are one person once the owner links them | **Fail** | They join. But `search people Alice` finds three: the persons the two merges emptied stay behind. This is expected until the Memory/Search stream's `mergePerson` fix lands |
 | 2 | Bob is Alice's manager only through the owner's link | Pass | No `reports-to` before the owner's link, `confirmed` after it. The portal's own line (Emma → Grace, from the department head) is `reported` |
 | 3 | The deal has Alice `contact`, Bob `decision-maker` and Emma `owner`, each once, with a standing | Pass | `contact:reported`, `decision-maker:confirmed`, `owner:reported` |
 | 4 | Acme's context has its people and its deal, each once | Pass | Alice, Bob and Carol once each, and the deal once. Category `client` comes from the company-types setting |
-| 5 | `memo context person:` answers for a CRM-only person and a name-only person | Pass | Grace: her name, `employee` of Northstar, Emma under her. Dana: her name and what was not read |
+| 5 | `memo context person:` answers for a CRM-only person and a name-only person | Pass | Grace: her name, `employee` of Northstar, Emma under her. Dana: her name and what was not read, and `search people` now finds her |
 | 6 | The deal's context shows the meeting and the messages, marked `proposed` | Pass | Counts are 1 message, 1 mail and 1 meeting, all `proposed` |
 | 7 | The invoice shows unpaid, and no payment appears | Pass | `issued`, open 1200.00, 0 payments on the deal and on Acme |
 | 8 | Three `b24 sync` runs (one with `--rescan`) leave one link per relationship and no new revisions | Pass | 11 links and 11 revisions before and after, no duplicate key |
 | 9 | A wrong identity join, separated by the owner, stays separated after two re-syncs | Pass | The CRM contact and the front-desk mail address stay two persons |
-| 10 | A CRM change does not overwrite a role the owner set | **Fail** | Bob keeps `decision-maker:confirmed` when the CRM also lists him. But the owner's change of Alice's role to `manager` reads as `reported` |
-| 11 | A group lock never reads the other group's accounts, and `deals: deny` hides deals | Pass | Under the `personal` lock: no deal, no work chat, no CRM-only person. Alice's context is refused, and Bob's shows only his mail. Under the `work` lock: no personal chat and no mail. Each item is found without a lock |
+| 10 | A CRM change does not overwrite a role the owner set | Pass | Bob keeps `decision-maker:confirmed` when the CRM also lists him. The owner's change of Alice's role is its own link, `manager:confirmed`, beside the CRM's `contact:reported`. Two syncs add nothing |
+| 11 | A group lock never reads the other group's accounts, and `deals: deny` hides deals | Pass | Under the `personal` lock: no deal, no work chat, no CRM-only person. Alice's context is refused, and Bob's shows only his mail. Under the `work` lock: no personal chat and no mail. Each item is found without a lock. The owner's projects, invoices and tasks show the same counts under both locks |
 | 12 | Every new memo command is found by `memo_tools_search` over a real stdio MCP process | Pass | All 13, each by a short phrase. `memo_read deals context` answers for the same deal |
-| 13 | Each docs example that names these commands runs as written | Pass | 45 examples found, 38 run. Of the other 7, 5 have placeholders and 2 install or remove an OS timer. The 3 bare command names in prose ran and count as mentions |
+| 13 | Each docs example that names these commands runs as written | Pass | 42 examples found in the updated docs, 35 run. Of the other 7, 5 have placeholders and 2 install or remove an OS timer. The 3 bare command names in prose ran and count as mentions |
 
 The strict portal answered 297 requests over 17 methods and refused none.
 
@@ -102,29 +103,23 @@ The strict portal answered 297 requests over 17 methods and refused none.
 
 - **Check 1, in cli-core.** A merge leaves the emptied person behind. `mergePerson` and `move`
   (`src/store/sqlite/person-links.ts:165`) move the identities and never retire the person they leave. Both the
-  owner's link and the CRM sync's same-email join (`joinByAddress`, `:203`) therefore leave one. `memo people list`
-  shows each of them with its old name. The store had 3 Alices, 2 Bobs, 2 Emmas and 2 Graces. The code is the same
-  on cli-core `main`, so this is older than these pull requests. But the plan's CRM sync (BUG-585: a CRM person
-  takes the contact's name) is what gives the empty persons names, so they now look like duplicates.
-- **Check 10, in cli-core.** `memo relationships update <id> --role manager` on a CRM-reported link rewrites that
-  same row (`applyUpdate`, `src/store/sqlite/relation-proposals.ts:131`). The row keeps the CRM's `account_id` and
-  `confirmed = 0`. So the owner's choice reads as "the CRM says Alice is a manager". The next sync then adds the
-  CRM's `contact` back beside it. The confirm path at `:398` sets `confirmed = 1` and `source = 'owner'`. An owner's
-  edit should take the link over the same way, and leave the CRM's claim to the diff's owner-wins rule (plan §4.1,
-  rule 4).
+  owner's link and the CRM sync's same-email join (`joinByAddress`, `:203`) therefore leave one. Now that
+  `search people` also finds people with no identity (which fixed Dana's case), it returns these leftovers too: three
+  Alices, two Graces. The code is the same on cli-core `main`, so this is older than these pull requests. The fix
+  belongs to the Memory/Search stream's `mergePerson` change. The check stays as it is until that lands. The
+  positive control in check 11 counts "Grace is found without a lock" as at least one, because the duplicate is
+  check 1's subject.
+- **Check 10, fixed on the final heads.** On the earlier heads, the owner's role edit rewrote the CRM's own row,
+  which kept `confirmed = 0`. Now it is a separate owner link, and the CRM's `contact` stays its own `reported` link.
 - **The rest holds.**
   - The CRM's relationships are `reported`, and the owner's are `confirmed`.
   - Re-syncs are idempotent, and a separation survives them.
   - The money says what is stored, and no more.
   - The group locks hold in both directions.
 - **Gaps an agent will hit.**
-  - `memo search people Dana` finds nobody for a person the owner added by name. memo's skill (plan §6, step 1) says
-    to resolve a person with `search people`.
   - `memo_tools_search` needs every word of the query to appear (cli-core `src/mcp/surface.ts`, `search`). So
     "who reports to whom", "remove account from group" or "one person's companies and deals" find nothing. The
     recorded task phrases found 6 of 13 commands.
-  - In memo's `docs/usage.md`, "Groups of accounts" still describes `personal` as every account in no other group.
-    The owner has since made the default group `all` and every group explicit.
 
 ## What was not measured
 
@@ -145,9 +140,9 @@ None of these were published. The commit shas are in [`result.json`](result.json
 
 | Package | Built from |
 | --- | --- |
-| cli-core 0.604.0 | a local merge of [#2642](https://github.com/WireCatLabs/cli-core/pull/2642) `a00c5a641` (stacked on #2641 and #2629) and [#2632](https://github.com/WireCatLabs/cli-core/pull/2632) `3158ad664`. Conflicts were in imports and the CHANGELOG only. Never pushed |
-| bitrix24-cli 0.5.0 | [#39](https://github.com/WireCatLabs/bitrix24-cli/pull/39) `919e9563d`, with that cli-core tarball added locally and not committed |
-| cli-memo 0.131.48 | [#699](https://github.com/WireCatLabs/cli-memo/pull/699) `002773d09` on [#698](https://github.com/WireCatLabs/cli-memo/pull/698) `923f20ea4`, the same way |
+| cli-core 0.604.0 | a local merge of [#2642](https://github.com/WireCatLabs/cli-core/pull/2642) `20cc10fb0` (which contains #2641 `6c411e0eb`) and [#2632](https://github.com/WireCatLabs/cli-core/pull/2632) `e04a396bb`. Conflicts were in imports and the CHANGELOG only. Never pushed |
+| bitrix24-cli 0.5.0 | [#39](https://github.com/WireCatLabs/bitrix24-cli/pull/39) `66137f596`, with that cli-core tarball added locally and not committed |
+| cli-memo 0.131.48 | [#699](https://github.com/WireCatLabs/cli-memo/pull/699) `981c50d97` on [#698](https://github.com/WireCatLabs/cli-memo/pull/698) `e41cbabda`, the same way |
 
 The three tarballs were installed with npm into one prefix, with an `overrides` entry for cli-core. The lockfile
 integrities, the versions and the SHA-256 of each executable are in the report.

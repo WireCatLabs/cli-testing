@@ -565,11 +565,18 @@ if (worker) {
     evidence.unlocked = {
       deal: hits("Acme renewal").includes(ids.deal),
       work_chat: hits("renew Atlas").some((ref) => ref.startsWith(`msg:telegram/${TELEGRAM.account}/`)),
-      crm_person: memo(["search", "people", "Grace"]).items.length,
+      // At least one: a merge's leftover person may be found too, which is check 1's subject, not this one's.
+      crm_person: memo(["search", "people", "Grace"]).items.length > 0,
       personal_chat: hits("Weekend hike").some((ref) => ref.startsWith("msg:telegram/100/")),
       mail: hits("Renewal terms").some((ref) => ref.startsWith("msg:email/")),
     }
-    assert.deepEqual(evidence.unlocked, { deal: true, work_chat: true, crm_person: 1, personal_chat: true, mail: true })
+    assert.deepEqual(evidence.unlocked, {
+      deal: true,
+      work_chat: true,
+      crm_person: true,
+      personal_chat: true,
+      mail: true,
+    })
     // The owner's own projects, tasks and invoices are visible under either lock by design; recorded, not asserted.
     evidence.owner_made = Object.fromEntries(
       [
