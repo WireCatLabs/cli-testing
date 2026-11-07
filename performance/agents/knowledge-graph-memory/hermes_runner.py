@@ -38,7 +38,17 @@ CONFIGS = {
     "mem0": {"toolsets": "memory", "provider": "mem0",
              "where": "The records are in your Mem0 long-term memory; search it. A record's name is the rid in a "
                       "result's metadata, when the result shows it."},
+    "hindsight": {"toolsets": "memory", "provider": "hindsight",
+                  "where": "The records are in your Hindsight long-term memory; recall from it. A record's name is "
+                           "the rid in a memory's metadata, when the memory shows it."},
+    "honcho": {"toolsets": "memory", "provider": "honcho",
+               "where": "The records are in your Honcho memory of the owner; search it. A record's name is the rid "
+                        "in a message's metadata, when the message shows it."},
 }
+# Servers on this machine, started by hindsight-server.sh and honcho-server.sh; the stores were built by wcatbench.
+HINDSIGHT_URL, HONCHO_URL = "http://127.0.0.1:18888", "http://127.0.0.1:18000"
+# Each provider's SDK in its own folder, so adding one never changes the packages an earlier run used.
+PROVIDER_DEPS = {"hindsight": "pydeps-hindsight-client", "honcho": "pydeps-honcho-ai"}
 
 PROMPT = """You are answering one question about the owner's records. {where}
 
@@ -58,6 +68,8 @@ def paths(config):
 
 def hermes_env(config):
     place = paths(config)
+    extra = PROVIDER_DEPS.get(CONFIGS[config]["provider"])
+    site = [Path(__file__).resolve().parent / "hermes_site", *([SHARED / extra] if extra else []), SHARED / "pydeps"]
     env = {
         "PATH": f"{place['bin']}:{os.environ['PATH']}",
         "HOME": str(place["home"]),
@@ -66,7 +78,7 @@ def hermes_env(config):
         "TERMINAL_CWD": str(place["workspace"]),
         # An empty CODEX_HOME stops Hermes importing or self-healing from the owner's ~/.codex/auth.json.
         "CODEX_HOME": str(place["codex_home"]),
-        "PYTHONPATH": f"{Path(__file__).resolve().parent / 'hermes_site'}:{SHARED / 'pydeps'}",
+        "PYTHONPATH": ":".join(str(path) for path in site),
         "PYTHONDONTWRITEBYTECODE": "1",
         "MEM0_TELEMETRY": "False",
         # Without this Hermes runs `gh auth token`, which reaches the keyring over D-Bus even with a throwaway HOME,
@@ -110,6 +122,21 @@ def write_config(config, model, provider, tag):
         (place["hermes_home"] / "supermemory.json").write_text(json.dumps({"container_tag": tag}, indent=2) + "\n")
     if config == "mem0":
         (place["hermes_home"] / "mem0.json").write_text(json.dumps({"user_id": tag}, indent=2) + "\n")
+    # Retain off for both: the questions and answers of a run must not become memories the next question reads.
+    if config == "hindsight":
+        (place["hermes_home"] / "hindsight").mkdir(exist_ok=True)
+        settings = {"mode": "local_external", "api_url": HINDSIGHT_URL, "bank_id": tag, "auto_retain": False,
+                    "recall_indicator": False, "retain_indicator": False}
+        (place["hermes_home"] / "hindsight/config.json").write_text(json.dumps(settings, indent=2) + "\n")
+    if config == "honcho":
+        # wcatbench wrote every record as a message of peer "owner", so Honcho's conclusions are the owner's about
+        # itself; with the AI peer observing no one, Hermes reads exactly those.
+        host = {"enabled": True, "workspace": tag, "peerName": "owner", "pinPeerName": True, "aiPeer": "hermes",
+                "saveMessages": False,
+                "observation": {"user": {"observeMe": True, "observeOthers": False},
+                                "ai": {"observeMe": False, "observeOthers": False}}}
+        settings = {"baseUrl": HONCHO_URL, "hosts": {"hermes": host}}
+        (place["hermes_home"] / "honcho.json").write_text(json.dumps(settings, indent=2) + "\n")
 
 
 def seed_memo(place, records, model):

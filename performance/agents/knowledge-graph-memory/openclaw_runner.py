@@ -34,6 +34,15 @@ PLUGINS = {
     "mem0": {"spec": "npm:@mem0/openclaw-mem0@1.2.1", "id": "openclaw-mem0", "key_env": "MEM0_API_KEY",
              "store_key": "userId", "config": {"mode": "platform", "autoRecall": False, "autoCapture": False},
              "writes": ["memory_add", "memory_update", "memory_delete"]},
+    # Servers on this machine (honcho-server.sh, hindsight-server.sh), built by wcatbench; they take no key.
+    "honcho": {"spec": "npm:@honcho-ai/openclaw-honcho@1.7.0", "id": "openclaw-honcho", "key_env": None,
+               "store_key": "workspaceId", "config": {"baseUrl": "http://127.0.0.1:18000"}, "writes": []},
+    "hindsight": {"spec": "npm:@vectorize-io/hindsight-openclaw@1.2.0", "id": "hindsight-openclaw", "key_env": None,
+                  "store_key": "bankId",
+                  "config": {"hindsightApiUrl": "http://127.0.0.1:18888", "dynamicBankId": False,
+                             "autoRecall": False, "autoRetain": False},
+                  "writes": ["hindsight_retain", "hindsight_create_knowledge_folder", "hindsight_create_knowledge_page",
+                             "hindsight_update_knowledge_node", "hindsight_delete_knowledge_node"]},
 }
 # Like Hermes + Supermemory and + Mem0, which had only the memory toolset: no shell or files to reach ws-files.
 DENIED_GROUPS = {"group:fs": ["read", "write", "edit", "apply_patch"],
@@ -51,6 +60,8 @@ WHERE = {
             "the cli-memo skill describes it.",
     "supermemory": "The records are stored in your Supermemory memory. Search it with your Supermemory search tool.",
     "mem0": "The records are stored in your Mem0 memory. Search it with your memory_search tool.",
+    "honcho": "The records are stored in your Honcho memory of the owner. Search it with your Honcho tools.",
+    "hindsight": "The records are stored in your Hindsight memory. Recall from it with your Hindsight tools.",
 }
 PROMPT = """You are answering one question from a set of synthetic records: chat messages, emails, notes and
 meeting passages. Every record has a name like r0042. {where}
@@ -157,8 +168,8 @@ def configure_plugin(root, plugin, store, model=None):
     plugins["entries"]["memory-core"] = {"enabled": False}
     # Without allowConversationAccess OpenClaw never runs a plugin's recall or capture hooks, whatever its flags say.
     entry.pop("hooks", None)
-    entry["config"] = {**entry.get("config", {}), **spec["config"], "apiKey": f"${{{spec['key_env']}}}",
-                       spec["store_key"]: store}
+    key = {"apiKey": f"${{{spec['key_env']}}}"} if spec["key_env"] else {}
+    entry["config"] = {**entry.get("config", {}), **spec["config"], **key, spec["store_key"]: store}
     agents = config.setdefault("agents", {})
     defaults = agents.setdefault("defaults", {})
     # A pre-compaction flush turn could let the plugin write memory.
@@ -200,8 +211,9 @@ def install_plugin(root, plugin, store, corpus_sha256, subset=None):
     inspect = openclaw(root, "plugins", "inspect", spec["id"], "--runtime", "--json", plugin=plugin, check=False,
                        timeout=600)
     (place["logs"] / "plugins-inspect.json").write_text(inspect.stdout + inspect.stderr)
-    print(f"{plugin}: installed {spec['spec']} into {place['home']}; store {store}; "
-          f"key file {'present' if key_file(root, plugin).exists() else 'missing: run openclaw-memory-keys.sh'}")
+    keyed = "no key needed" if not spec["key_env"] else (
+        "key file present" if key_file(root, plugin).exists() else "key file missing: run openclaw-memory-keys.sh")
+    print(f"{plugin}: installed {spec['spec']} into {place['home']}; store {store}; {keyed}")
 
 
 def configure_agents(root, model=None):
@@ -418,6 +430,8 @@ def audit(root, agent):
 
 def key_outside_env_file(root, plugin):
     """True if the plugin key was copied anywhere in the throwaway home besides the .env file. Never prints it."""
+    if not key_file(root, plugin).exists():
+        return []
     keys = [line.split("=", 1)[1].strip().encode() for line in key_file(root, plugin).read_text().splitlines()
             if "=" in line and line.split("=", 1)[1].strip()]
     found = []
@@ -486,7 +500,7 @@ def answer(root, fixture, output, agent, model, thinking, only, timeout):
         if corpus != store["corpus_sha256"]:
             raise SystemExit(f"{agent}: the store holds corpus {store['corpus_sha256'][:12]}, the fixture is "
                              f"{corpus[:12]}; ingest this fixture and install-plugin with its --store first")
-        if not key_file(root, agent).exists():
+        if PLUGINS[agent]["key_env"] and not key_file(root, agent).exists():
             raise SystemExit(f"{agent}: no key file; the owner runs openclaw-memory-keys.sh {agent} once")
         configure_plugin(root, agent, store[PLUGINS[agent]["store_key"]], model)
     else:
