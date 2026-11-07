@@ -183,9 +183,21 @@ export const runDenyContracts = async (
     const failures: string[] = []
     let called = 0
     const session = await mcp({ ...invocation, args: [...invocation.args, deny.profile, "mcp", "serve"] })
+    const search = session.tools.find((tool) => tool.endsWith("_tools_search"))
+    // The server decides which tool runs a command, not its effects: cli-core sends a local write such as `models
+    // download` to *_write and a fetch-only sync to *_read, and refuses the other tool before the guard is reached.
+    const writesOverMcp = async (command: Keyed) => {
+      if (!search) return command.write
+      const words = command.path.join(" ")
+      const answer = await session.call({ name: search, arguments: { query: words } })
+      const items = (answer.body as { items?: { command?: unknown; writes?: unknown }[] } | undefined)?.items
+      const found = items?.find((item) => item.command === words)?.writes
+      return typeof found === "boolean" ? found : command.write
+    }
     try {
       for (const command of overMcp) {
-        const name = session.tools.find((tool) => tool.endsWith(command.write ? "_write" : "_read"))
+        const writes = await writesOverMcp(command)
+        const name = session.tools.find((tool) => tool.endsWith(writes ? "_write" : "_read"))
         if (!name) continue
         called++
         const ask = (args: Record<string, unknown>) =>
