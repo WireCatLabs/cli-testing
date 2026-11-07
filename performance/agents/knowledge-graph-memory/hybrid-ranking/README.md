@@ -58,6 +58,9 @@ Where memo's meaning search puts the 20 mail answers of the reworded questions a
   `../memo_baseline.py` now writes each record's author as its sender.
 - With real senders the sender line still costs a little (10 against 7). Not changed: the text is what each mail's
   vector is stored by, so changing it re-embeds every owner's mail.
+- The table uses memo's own stored vectors from two stores. `meaning_lane.py` also rebuilds texts to guess at memo's.
+  Only the one-sender rebuild was checked against memo's vectors (cosine 0.997). Its "author" rebuild (median 15) is
+  not memo's text, so the "stored by memo" rows are the evidence.
 - The 8-bit model against full precision: no loss here. The `query: ` prefix: without it the median rank is 21.
 
 ### 2. The merge: where the found answer is lost
