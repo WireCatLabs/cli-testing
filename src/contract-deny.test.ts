@@ -87,9 +87,15 @@ const plan = (file: string): ContractPlan => ({
   deny: { profile: "personal" },
 })
 
-const session = (answers: (call: { command: string; arguments: unknown }) => ToolAnswer): ToolSession => ({
+const session = (
+  answers: (call: { command: string; arguments: unknown }, tool: string) => ToolAnswer,
+  found: { command: string; writes: boolean }[] = [],
+): ToolSession => ({
   tools: ["fake_read", "fake_tools_search", "fake_write"],
-  call: async ({ arguments: given }) => answers(given as { command: string; arguments: unknown }),
+  call: async ({ name, arguments: given }) =>
+    name === "fake_tools_search"
+      ? { isError: false, body: { items: found } }
+      : answers(given as { command: string; arguments: unknown }, name),
   close: async () => {},
 })
 const refused = { isError: true, body: { error: { code: "permission_error" } } }
@@ -115,6 +121,25 @@ describe("deny contracts", () => {
       { command: "comments list", arguments: {} },
       { command: "comments create", arguments: {} },
     ])
+  })
+
+  it("calls each command with the tool the server's search names, not the one its effects suggest", async () => {
+    const tools: string[] = []
+    const report = await runContracts(plan(fakeCli(true)), {
+      toolSession: async () =>
+        session(
+          (call, tool) => {
+            tools.push(`${call.command} ${tool}`)
+            return refused
+          },
+          [
+            { command: "comments list", writes: true },
+            { command: "comments create", writes: false },
+          ],
+        ),
+    })
+    expect(report.results.find((item) => item.id === "deny-mcp")).toEqual({ id: "deny-mcp", passed: true })
+    expect(tools).toEqual(["comments list fake_write", "comments create fake_read"])
   })
 
   it("calls a real MCP server over stdio, and fails one that does not answer permission_error", async () => {

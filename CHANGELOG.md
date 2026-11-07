@@ -6,6 +6,16 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Fixed
+
+- **The contract `deny` check calls each command over MCP with the tool the server runs it with.** It picked
+  `*_write` only for a remote write, but cli-core sends a local write such as `models download` to `*_write` and
+  refuses it on `*_read` with `validation_error` before the permission guard, so a CLI that honoured `deny` failed
+  `deny-mcp`. The check now asks the server's `*_tools_search` for each command's `writes`, and falls back to the
+  command's effects when the server has no search tool.
+
 ## 0.6.1 — 07.11.2026
 
 ### Fixed
