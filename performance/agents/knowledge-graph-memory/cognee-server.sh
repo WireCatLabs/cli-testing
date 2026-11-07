@@ -31,7 +31,7 @@ case ${1:-status} in
     } > "$env_file"
     unset key
     docker run -d --name "$name" -p 127.0.0.1:18100:8000 --env-file "$env_file" \
-      -v wcatbench-cognee-system:/cognee-storage/system -v wcatbench-cognee-data:/cognee-storage/data \
+      -v ${COGNEE_VOLUME:-wcatbench-cognee}-system:/cognee-storage/system -v ${COGNEE_VOLUME:-wcatbench-cognee}-data:/cognee-storage/data \
       "$image" > /dev/null
     echo "started $name ($image)"
     ;;

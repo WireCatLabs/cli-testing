@@ -32,6 +32,8 @@ def isolated_env(root):
         "WIRECAT_STATE_DIR": str(root / "wirecat-state"),
         "WIRECAT_CONFIG_DIR": str(root / "wirecat-config"),
         "MEMO_NO_UPDATE_CHECK": "1",
+        # memo 0.131.47 stops any command after 30 s; importing a 10K mbox takes longer (7 Nov 2026).
+        "MEMO_TIMEOUT": "60m",
         # The keyring is reached over D-Bus even with a throwaway HOME; this run must not see it.
         "DBUS_SESSION_BUS_ADDRESS": "disabled:",
         "TZ": "UTC",
