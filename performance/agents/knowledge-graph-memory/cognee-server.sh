@@ -28,6 +28,9 @@ case ${1:-status} in
       echo "SYSTEM_ROOT_DIRECTORY=/cognee-storage/system"
       echo "DATA_ROOT_DIRECTORY=/cognee-storage/data"
       echo "TELEMETRY_DISABLED=1"
+      # With the graph engine in its own worker process, a 10K cognify left the graph file unreadable ("not a valid
+      # Lbug database file", "Subprocess session is closed") twice on 7 November 2026; in-process it is one writer.
+      echo "GRAPH_DATABASE_SUBPROCESS_ENABLED=false"
     } > "$env_file"
     unset key
     docker run -d --name "$name" -p 127.0.0.1:18100:8000 --env-file "$env_file" \
