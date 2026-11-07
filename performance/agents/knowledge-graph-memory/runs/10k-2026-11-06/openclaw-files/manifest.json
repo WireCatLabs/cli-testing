@@ -1,0 +1,25 @@
+{
+  "setup": "OpenClaw files",
+  "dataset": {
+    "fixture_version": 2,
+    "seed": 20261105,
+    "records": 10000,
+    "questions": 50
+  },
+  "corpus_sha256": "e99e1e524875a7ca087f90952f061aac70856bdfbbe56d3915de1bd4c1f6b8f0",
+  "agent": "Hermes 0.21.0",
+  "model": null,
+  "reasoning": null,
+  "store": null,
+  "plugin": null,
+  "toolsets": null,
+  "prompt_sha256": null,
+  "scores": {
+    "engine": "OpenClaw 2026.10.9 + files, claude-sonnet-5-5, 10K",
+    "correct": 50,
+    "cited_correctly": 47,
+    "stale": 0,
+    "correct_strict": 50
+  },
+  "raw_transcripts": "~/.cache/wirecat-bench/runs/oc10k-files-joined/raw"
+}

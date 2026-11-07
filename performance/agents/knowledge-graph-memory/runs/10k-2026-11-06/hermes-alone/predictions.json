@@ -1,0 +1,264 @@
+[
+  {
+    "id": "q01",
+    "answer": "2027-04-06",
+    "citations": ["msg:email/synthetic%40example.test/thread-4304/4994"]
+  },
+  {
+    "id": "q02",
+    "answer": "2027-01-04",
+    "citations": ["msg:email/synthetic%40example.test/thread-3396/3469", "msg:telegram/synthetic/team/1898"]
+  },
+  {
+    "id": "q03",
+    "answer": "Kim Hale",
+    "citations": ["document:2273"]
+  },
+  {
+    "id": "q04",
+    "answer": "The rollback plan",
+    "citations": ["meeting:synthetic/2695/cue/1", "meeting:synthetic/5513/cue/1"]
+  },
+  {
+    "id": "q05",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q06",
+    "answer": "2027-03-19",
+    "citations": ["meeting:synthetic/7732/cue/1", "msg:email/synthetic%40example.test/thread-7278/7278"]
+  },
+  {
+    "id": "q07",
+    "answer": "2026-10-31",
+    "citations": ["msg:email/synthetic%40example.test/thread-3880/4137", "msg:telegram/synthetic/team/2466"]
+  },
+  {
+    "id": "q08",
+    "answer": "Sol Mendez",
+    "citations": ["document:4364"]
+  },
+  {
+    "id": "q09",
+    "answer": "the usability study",
+    "citations": ["meeting:synthetic/2601/cue/1"]
+  },
+  {
+    "id": "q10",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q11",
+    "answer": "2027-02-17",
+    "citations": ["meeting:synthetic/6362/cue/1", "msg:email/synthetic%40example.test/thread-6082/6082"]
+  },
+  {
+    "id": "q12",
+    "answer": "2026-12-04",
+    "citations": ["msg:email/synthetic%40example.test/thread-2130/2462", "msg:telegram/synthetic/team/952"]
+  },
+  {
+    "id": "q13",
+    "answer": "Sol Mendez",
+    "citations": ["document:995"]
+  },
+  {
+    "id": "q14",
+    "answer": "the accessibility review",
+    "citations": ["meeting:synthetic/1034/cue/1"]
+  },
+  {
+    "id": "q15",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q16",
+    "answer": "2027-01-16",
+    "citations": ["msg:email/synthetic%40example.test/thread-4740/4921"]
+  },
+  {
+    "id": "q17",
+    "answer": "2026-11-24",
+    "citations": ["msg:email/synthetic%40example.test/thread-3651/4227", "msg:telegram/synthetic/team/1425"]
+  },
+  {
+    "id": "q18",
+    "answer": "Dee Lake",
+    "citations": ["document:1495"]
+  },
+  {
+    "id": "q19",
+    "answer": "the usability study",
+    "citations": ["meeting:synthetic/2541/cue/1", "meeting:synthetic/6484/cue/1"]
+  },
+  {
+    "id": "q20",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q21",
+    "answer": "2027-02-23",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-6811/6811",
+      "msg:email/synthetic%40example.test/thread-6811/7146"
+    ]
+  },
+  {
+    "id": "q22",
+    "answer": "2026-11-19",
+    "citations": ["msg:email/synthetic%40example.test/thread-5246/5405", "msg:telegram/synthetic/team/3523"]
+  },
+  {
+    "id": "q23",
+    "answer": "Eli Pine",
+    "citations": ["document:3975"]
+  },
+  {
+    "id": "q24",
+    "answer": "the pricing page copy",
+    "citations": ["meeting:synthetic/4002/cue/1"]
+  },
+  {
+    "id": "q25",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q26",
+    "answer": "2027-04-28",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-6747/6747",
+      "msg:email/synthetic%40example.test/thread-6747/6805"
+    ]
+  },
+  {
+    "id": "q27",
+    "answer": "2026-11-25",
+    "citations": ["msg:email/synthetic%40example.test/thread-3886/4781", "msg:telegram/synthetic/team/2891"]
+  },
+  {
+    "id": "q28",
+    "answer": "Tess Ng",
+    "citations": ["document:3219", "msg:email/synthetic%40example.test/thread-5439/5439"]
+  },
+  {
+    "id": "q29",
+    "answer": "The API changelog",
+    "citations": ["meeting:synthetic/3747/cue/1", "meeting:synthetic/7252/cue/1"]
+  },
+  {
+    "id": "q30",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q31",
+    "answer": "2027-08-04",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-6168/6168",
+      "msg:email/synthetic%40example.test/thread-6168/6687"
+    ]
+  },
+  {
+    "id": "q32",
+    "answer": "2027-03-24",
+    "citations": ["msg:email/synthetic%40example.test/thread-3204/3407", "msg:telegram/synthetic/team/2968"]
+  },
+  {
+    "id": "q33",
+    "answer": "Gia Fern",
+    "citations": ["document:3841"]
+  },
+  {
+    "id": "q34",
+    "answer": "the accessibility review",
+    "citations": ["meeting:synthetic/7298/cue/1"]
+  },
+  {
+    "id": "q35",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q36",
+    "answer": "2027-08-13",
+    "citations": [
+      "msg:email/synthetic%40example.test/thread-7065/7065",
+      "msg:email/synthetic%40example.test/thread-7065/7220"
+    ]
+  },
+  {
+    "id": "q37",
+    "answer": "2027-04-05",
+    "citations": ["msg:email/synthetic%40example.test/thread-2818/3406", "msg:telegram/synthetic/team/1324"]
+  },
+  {
+    "id": "q38",
+    "answer": "Jo Birch",
+    "citations": ["document:1513", "msg:email/synthetic%40example.test/thread-3594/3594"]
+  },
+  {
+    "id": "q39",
+    "answer": "The accessibility review",
+    "citations": ["meeting:synthetic/2322/cue/1"]
+  },
+  {
+    "id": "q40",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q41",
+    "answer": "2027-09-24",
+    "citations": ["msg:email/synthetic%40example.test/thread-7269/7328"]
+  },
+  {
+    "id": "q42",
+    "answer": "2027-05-06",
+    "citations": ["msg:email/synthetic%40example.test/thread-4061/4219", "msg:telegram/synthetic/team/3082"]
+  },
+  {
+    "id": "q43",
+    "answer": "Hal Grove",
+    "citations": ["document:3603"]
+  },
+  {
+    "id": "q44",
+    "answer": "The pricing page copy",
+    "citations": ["meeting:synthetic/3609/cue/1"]
+  },
+  {
+    "id": "q45",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q46",
+    "answer": "2027-09-11",
+    "citations": ["meeting:synthetic/7114/cue/1"]
+  },
+  {
+    "id": "q47",
+    "answer": "2027-05-23",
+    "citations": ["msg:email/synthetic%40example.test/thread-3773/4093", "msg:telegram/synthetic/team/2426"]
+  },
+  {
+    "id": "q48",
+    "answer": "Max Dorn",
+    "citations": ["document:2520"]
+  },
+  {
+    "id": "q49",
+    "answer": "the data retention policy",
+    "citations": ["meeting:synthetic/2554/cue/1"]
+  },
+  {
+    "id": "q50",
+    "answer": "unknown",
+    "citations": []
+  }
+]

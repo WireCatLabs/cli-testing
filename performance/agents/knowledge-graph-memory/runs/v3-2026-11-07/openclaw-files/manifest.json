@@ -1,0 +1,55 @@
+{
+  "setup": "OpenClaw files",
+  "dataset": {
+    "fixture_version": 3,
+    "seed": 20261105,
+    "records": 10444,
+    "questions": 50
+  },
+  "corpus_sha256": "74290fb30bd1fd682d6f8b828f79c142f9314bb07e1f069f0571b056229db789",
+  "agent": "OpenClaw 2026.10.9 (8b18b55)",
+  "model": "anthropic/claude-sonnet-5-5",
+  "reasoning": null,
+  "store": null,
+  "plugin": null,
+  "toolsets": null,
+  "prompt_sha256": "49b397dc753d38559f81db32c89daaa10f870ae3bcc9061921e35baaacdc16bb",
+  "scores": {
+    "engine": "OpenClaw 2026.10.9 + files, claude-sonnet-5-5, v3",
+    "correct": 50,
+    "cited_correctly": 47,
+    "stale": 0,
+    "correct_strict": 50,
+    "by_family": {
+      "money": {
+        "questions": 13,
+        "correct": 13,
+        "correct_strict": 13,
+        "cited_correctly": 13,
+        "stale": 0
+      },
+      "calendar": {
+        "questions": 16,
+        "correct": 16,
+        "correct_strict": 16,
+        "cited_correctly": 16,
+        "stale": 0
+      },
+      "people and decisions": {
+        "questions": 17,
+        "correct": 17,
+        "correct_strict": 17,
+        "cited_correctly": 14,
+        "stale": 0
+      },
+      "not recorded": {
+        "questions": 4,
+        "correct": 4,
+        "correct_strict": 4,
+        "cited_correctly": 4,
+        "stale": 0
+      }
+    }
+  },
+  "raw_transcripts": "~/.cache/wirecat-bench-v3/runs/oc-v3-files/raw"
+}

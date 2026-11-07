@@ -24,6 +24,9 @@ Ten projects carry original deadlines, confirmed replacements, rejected date sug
 commitments and unknown budgets. The 50 questions include current versus original agreements,
 misleading mentions and explicit unknown answers. Distractors add separate archive conversations.
 
+`--records 10000` (any size from 3,000) writes the harder archive corpus instead; the default stays this
+2,000-record fixture, byte for byte. See [the 10K archive corpus](#the-10k-archive-corpus-5-november-2026).
+
 The script writes `corpus.jsonl`, `queries.json`, `oracle.json` and `manifest.json` with a corpus hash.
 Give engines only the corpus and queries. The answer key stays outside retrieval and prompts.
 `as_of` is the latest time an answer may use; ingest chronologically and retain source ids verbatim.
@@ -365,6 +368,16 @@ python3 performance/agents/knowledge-graph-memory/provider_retrieval.py --servic
 python3 performance/agents/knowledge-graph-memory/provider_retrieval.py --service mem0 --fixture $B/fixture --output $B/runs/mem0-full-2000 --wait-minutes 90
 ```
 
+- **An interrupted ingest continues, it does not start over.** Each batch of 100 adds one line to
+  `<output>/ledger.jsonl`: the record names sent, the ones the service refused, the seconds. No full replies, so the
+  file stays small. `--status --tag <tag>` asks the service what it holds for the tag (Supermemory's document list,
+  Mem0's event feed) and writes `<output>/status-<time>.json`; it sends nothing. `--resume --tag <tag>` with the same
+  `--output` writes that status first, then sends only the records the service does not hold or marked failed, then
+  waits and searches as usual. Supermemory's wait also checks `dreamingStatus` on 50 sampled documents: the list
+  shows a document `done` while its memories are still being built, and a search then sees a half-built store.
+  `results.json` records what the store held when it was searched (`ingest.at_search`). Mem0 counts every add against its allowance, so it is never re-sent blindly: a record
+  whose event is still pending is not missing. The wait lists the tag's state every 5 minutes instead of asking for
+  each record (7,800 requests a round before).
 - **Record names travel as metadata, never in the text.** Supermemory: `customId` and `metadata.rid` = `r0001`,
   `documentDate` = the record's time. Mem0: `metadata.rid`. A hit maps back to the corpus through that name. A
   Supermemory memory built from several records cites all of them at one rank; the hit list is deduplicated in
@@ -1163,3 +1176,554 @@ as its only fact), the facts rows scored the same as the record rows.
 - Rerankers, other fusion constants, and other word-search settings (Porter stemming, column weights).
 - More than one run; build times will vary.
 - Variance across machines, a cold disk cache, and a larger or multilingual corpus.
+
+## The 10K archive corpus (5 November 2026)
+
+**Why it was built.** On 2,000 one-line records every strong setup answered all 50 questions
+([RESULTS.md](RESULTS.md)): the data was too small and too easy to show whether a context layer helps. The owner
+asked (5 November 2026) for the next round to use at least 10,000 records, and for the projects to stay realistic:
+about the same ten, each with a long, noisy history, not fifty thin ones, and (same day) 50 questions: one
+milestone per real project, the rest of the corpus as distractors. This corpus is that round's data. No engine has
+run on it yet.
+
+```sh
+python3 performance/agents/knowledge-graph-memory/run.py --self-check --records 10000 --output /tmp/kg-memory-10k
+```
+
+| | 2K fixture (unchanged) | 10K archive corpus |
+|---|---:|---:|
+| Records | 2,000 | 10,000 |
+| Telegram / mail / notes / meetings | 500 / 500 / 500 / 500 | 2,116 / 4,149 / 1,780 / 1,955 |
+| Mail replies quoting earlier text | 0 | 2,021 |
+| Projects | 10 | 12 (the ten, plus look-alikes Amber Kitchen and Hazel Ridge) |
+| Milestones | — | 50 (Amber Kite beta, Amber Kite launch, …) |
+| Question subjects | 10 projects | 10 milestones, one per real project |
+| Questions | 50 | 50 |
+| Records naming one project (median) | 8 | 766 |
+| Records naming one question subject (median) | 8 | 91 |
+| Text characters | 296,860 | 995,773 |
+| Tokens, record texts one by one (`o200k_base`) | 60,175 | 237,593 |
+| Tokens, whole JSONL | 147,426 | 692,168 |
+| Corpus sha256 | `1d36697c…5e8802` | `e99e1e52…c1f6b8f0` |
+
+Every number in this table comes from [`corpus_stats.py`](corpus_stats.py)
+(`uv run --quiet --no-project --with tiktoken==0.14.0 python corpus_stats.py <fixture>`). Tokens use
+`tiktoken==0.14.0`, the method of the [cost plan](#api-cost-plan-24-october-2026), and reproduce its 2K numbers
+exactly. Seed 20261105, `fixture_version` 2, Python 3.14.4. Two runs give the same
+bytes. Full hash: `e99e1e524875a7ca087f90952f061aac70856bdfbbe56d3915de1bd4c1f6b8f0`.
+
+**The 2K fixture is unchanged.** With no `--records` or `--records 2000`, `corpus.jsonl`, `oracle.json`,
+`queries.json`, `self-check.json` and `manifest.json` are byte-identical to `origin/main` (checked with `cmp`), and
+so is the mbox that `memo_baseline.py` writes from it.
+
+**What makes it harder**, against the corpus weaknesses listed for the 2K fixture:
+
+- **Long histories.** Each milestone's records spread from January to mid-October 2026 at its own pace; all
+  records are sorted by time before ids are given, so an id says nothing about importance.
+- **Several date changes**: two to four confirmed changes per milestone, each a mail thread (a proposal, then a reply
+  that confirms it and quotes the proposal) or, for the last change of about a third, a meeting decision. 40 % of
+  the changes are preceded by a rejected proposal.
+- **An "almost moved" date** for every milestone: a suggestion, a mail thread that parks it, and a meeting where it
+  comes up again and no one confirms it. It is in the question's stale answers.
+- **Meeting recaps that restate superseded facts**: "the plan currently says 2027-02-15" after a date that later
+  changed; "X led the delivery in the first months" after a handover.
+- **Owners handed over** (22 of 50 milestones, 4 of the 10 asked) and **commitments revised** (25 of 50, 5 of the 10
+  asked). The old owner and the old deliverable count as stale answers.
+- **Look-alike names across and inside projects.** Amber Kite and Amber Kitchen share milestone names; their leads are
+  Ari Vale and Ari Vail. Ten people have a twin one letter away (Bo Reed and Bo Read, Hal Cove and Hal Grove). Every
+  milestone has a look-alike or teammate who "is not the delivery owner", "could take over, nothing agreed", or
+  offers a deliverable that nobody accepted.
+- **Noise about the real projects.** About 90 % of the records name a project, a milestone and its people
+  (standups, CI, offsite and demo dates, invoices, mail threads with "thanks, will read it" replies) and decide
+  nothing. About 10 % are general office noise. There is no "Archive item N" filler.
+- **Unapproved budgets.** Every milestone has a draft budget figure that was never approved and an unanswered
+  question about the budget. The right answer stays "unknown".
+
+**Which milestones are asked.** For each of the ten original projects, its hardest milestone: the most confirmed
+date changes, then the most rejected proposals, then a handover, then a revised commitment; a tie goes to the
+earlier milestone. All ten also have an "almost moved" date. The other 40 milestones and the two look-alike projects
+stay in the corpus as distractors and are never asked about. The asked ones:
+
+| Project | Asked milestone | Confirmed changes | Rejected proposals | Stale dates to read past |
+|---|---|---:|---:|---:|
+| Amber Kite | launch | 4 | 0 | 5 |
+| Birch Compass | pilot | 4 | 3 | 8 |
+| Cedar Lantern | data migration | 3 | 3 | 7 |
+| Dune Harbor | pilot | 2 | 2 | 5 |
+| Elm Beacon | partner API | 4 | 1 | 6 |
+| Flint Meadow | security hardening | 3 | 1 | 5 |
+| Grove Atlas | billing revamp | 4 | 1 | 6 |
+| Hazel Bridge | security hardening | 4 | 2 | 7 |
+| Iris Summit | security hardening | 4 | 3 | 8 |
+| Juniper Valley | launch | 4 | 3 | 8 |
+
+The current date is confirmed in a mail reply for 7 of them and in a meeting for 3. `manifest.json` lists the asked
+milestones (`asked_milestones`).
+
+**Same five question kinds, same scorer.** Per asked milestone: current confirmed date (cited: the last confirmation),
+original date (the first chat message), current owner (the handover, or the owner note when there was none),
+the commitment of the person who made it (the revision, or the original meeting), and the approved budget
+("unknown", no citation). Each has one checkable answer, and the current one is found only by reading past stale
+or unconfirmed ones. `run.py`'s `score` is unchanged. The self-check makes the same four injected errors and expects
+48 correct, 47 cited correctly, 1 stale, 47 strict. Scoring a 10K run needs `--records 10000`, so the scorer builds
+the same 50 questions.
+
+**Runners that changed for it:** record names past `r9999` (`r10000`) are parsed, memo syncs allow 50,000 items (the
+10K corpus has 5,851 note files, above the old limit of 5,000), replies in the mbox carry `In-Reply-To` and the
+thread's `X-GM-THRID`, `provider_retrieval.py` ingests every record unless `--records` asks for a pilot or
+`--subset` for the Mem0 subset (below), and `hermes_runner.py` takes `WIRECAT_BENCH`, as `hermes-anthropic-key.sh`
+already did, so the 10K configurations live beside the 2K ones instead of on top of them.
+
+### The Mem0 subset
+
+Mem0's free tier has too few adds left this month for 10,000 records (see the estimates below), so the owner chose
+(5 November 2026) to give Mem0 a subset, **reported as such in every result**. `run.py --records 10000` writes it as
+`subset-mem0.json`: 6,500 record ids in corpus order, with their size and sha256, also in `manifest.json`. It is
+built in tiers, each taken whole, in this order:
+
+| Tier | Records |
+|---|---:|
+| every record naming an asked milestone | 903 |
+| records of the asked projects' other milestones and of the look-alike projects that mention a date, owner, commitment, budget, handover or recap | 1,292 |
+| quoting replies about the asked or look-alike projects | 1,605 |
+| records naming a look-alike twin of an asked milestone's people together with one of those projects | 1,849 |
+| noise, the rest in a fixed shuffled order (seed 20261105) | 851 |
+| **total** | **6,500** |
+
+Subset sha256 (the records' JSONL lines in corpus order):
+`6273370e89cb74e034e6e7e72f683975e3da4d87feae9f3c0fd5b245268cb973`. Every record the answer key cites is in it.
+Record names stay those of the whole corpus (`r0042` is the same record in every setup), and
+`provider_retrieval.py --subset` refuses a subset that does not match the fixture. 6,500 leaves room under the
+estimated 7,850 adds left for Hermes + Mem0's own per-turn adds (50) and a margin. The subset is easier than the
+full corpus only in the amount of plain noise: every hard distractor named above is in it.
+
+## Store search on the 10K corpus (5 November 2026)
+
+**Why.** On the 2K fixture every hosted store found every source in its top 5, so search alone could not tell the
+setups apart ([RESULTS.md](RESULTS.md)). Before the paid agent runs on the 10K corpus, this asks the cheaper question
+first: on 10,000 noisy records with several date changes per milestone, does each store still put the record that
+holds the answer near the top, and above the stale ones? The answer tells us which agent runs are worth paying for and
+what an agent has to do with the hits. No answer model is involved.
+
+### Setup
+
+- Data: the [10K archive corpus](#the-10k-archive-corpus-5-november-2026), corpus sha256 `e99e1e52…c1f6b8f0`, the
+  same 50 questions, 40 scored (the 10 budget questions cite nothing). Mem0 holds the
+  [6,500-record subset](#the-mem0-subset), which contains every cited record.
+- Harness: [wcatbench](https://github.com/WireCatLabs/wcatbench) 0.1.0 at `4f43086` for SQLite, Supermemory and the
+  final Mem0 search; this folder's `provider_retrieval.py` for the provisional Mem0 search and `memo_baseline.py` for
+  Memo. Both score the same way: partial credit `|sources ∩ hits[:k]| / |sources|`, as `score_run` here. wcatbench's
+  scorer is a copy of it, pinned by tests that rescore the 2K runs and get the published numbers.
+- Two forms of each question: **as typed**, and **keywords** (common English words dropped, the rest joined by OR, the
+  stop list fixed before any run).
+- Stores:
+  - **SQLite full text search** on this computer (wcatbench store `fts`): a floor, what plain word search does.
+  - **Supermemory**, tag `wirecat_bench_20261105_023737`: all 10,000 records, hybrid search, limit 10. Searched when
+    a sample of 50 documents had finished building memories (`dreamingStatus`), at 1,582 memories.
+  - **Mem0**, user `wirecat_bench_20261105_023735`: the subset, `infer: true`, `top_k: 10`.
+  - **Memo** 0.131.38 with mail CLI 0.16.3, word search and word + meaning search (`e5-small`), on a disposable store
+    with no keyring access. From memo 0.131.28 mail is stored by the mail CLI: `memo_baseline.py` writes a throwaway
+    mail profile and runs `mail synthetic messages import mail.mbox` (no sign-in), then memo searches it from the
+    shared store. One `memo sync` embeds at most 600 chunks of notes and 600 of mail, so the script repeats it until
+    nothing is left (9 runs, 104 s here).
+- Linux, Python 3.14.4, from Valencia; hosted times include the network.
+
+Reproduce (the hosted builds need the owner's keys in the system keyring, service `supermemory` or `mem0`):
+
+```sh
+W="uvx --from git+https://github.com/WireCatLabs/wcatbench@4f43086 wcatbench"
+$W dataset build synthetic -p records=10000          # synthetic-10000-e99e1e52, same bytes as run.py --records 10000
+$W store build fts -d synthetic-10000-e99e1e52 --space demo
+$W store search fts -d synthetic-10000-e99e1e52 --space demo
+export WCATBENCH_KEYRING_ACCOUNT=wirecat
+$W store build supermemory -d synthetic-10000-e99e1e52 --space <new tag> --wait-minutes 900
+$W store search supermemory -d synthetic-10000-e99e1e52 --space <tag>
+$W store build mem0 -d synthetic-10000-e99e1e52 --subset mem0 --space <new user id> --wait-minutes 900
+$W store search mem0 -d synthetic-10000-e99e1e52 --subset mem0 --space <user id> --rewrite typed
+# Memo, from this folder; the fixture is run.py --records 10000
+python3 run.py --self-check --records 10000 --output /tmp/kg-fixture-10k
+python3 memo_baseline.py --fixture /tmp/kg-fixture-10k --output /tmp/memo-10k   # memo and mail on PATH
+```
+
+A stopped hosted build continues with `--resume` and sends only what the store does not hold; `store status` checks
+without sending. Each build writes `build.json`, `ledger.jsonl`, `status-*.json` and `manifest.json` under
+`~/.local/share/wcatbench/builds/<store>/<dataset>/<space>/`, and each search a folder with `typed.jsonl`,
+`keywords.jsonl` (one line per question, the record ids in rank order) and `results.json`.
+
+### Results
+
+| Store | Records | As typed: top 1 / 5 / 10 | Keywords: top 1 / 5 / 10 | Half the searches under |
+|---|---:|---|---|---:|
+| SQLite word search (floor) | 10,000 | 0.25 / 0.62 / 0.80 | **0.47** / 0.62 / 0.75 | 0.002 s |
+| **Memo 0.131.38, word + meaning** | 10,000 | **0.72** / **1.00** / **1.00** | **0.68** / **0.97** / **1.00** | 1.59 s |
+| Memo 0.131.38, word search only (no model) | 10,000 | 0.17 / 0.97 / 1.00 | 0.17 / 0.70 / 0.75 | 0.40 s |
+| Supermemory | 10,000 | 0.20 / 0.70 / 0.90 | 0.25 / **0.78** / **0.93** | 0.49 s |
+| Mem0, all 6,500 processed (6,926 memories) | 6,500 | 0.10 / 0.53 / 0.70 | not run | 0.54 s |
+| Mem0, provisional (5,932 of 6,500 processed) | 6,500 | 0.10 / 0.50 / 0.72 | not run | 0.92 s |
+
+**Where the cited record ranked, by question kind** (10 questions each; rank 1 = first, — = not in the top 10):
+
+| Store, question form | Current date | Original date | Owner | Commitment |
+|---|---|---|---|---|
+| SQLite, keywords | 3 first, 10 in top 10 | 10 first | 6 first, 10 in top 10 | 0 in top 10 |
+| Supermemory, as typed | 1 first, 6 in top 10 | 1 first, 10 in top 10 | 6 first, 10 in top 10 | 0 first, 10 in top 10 |
+| Supermemory, keywords | 0 first, 8 in top 10 | 4 first, 10 in top 10 | 6 first, 9 in top 10 | 0 first, 10 in top 10 |
+| Mem0, as typed | 0 first, 10 in top 10 | 2 first, 7 in top 10 | 2 first, 8 in top 10 | 0 first, 3 in top 10 |
+| **Memo word + meaning, as typed** | 3 first, the rest at rank 2 | **10 first** | 6 first, 10 in top 10 | **10 first** |
+| Memo word search only, as typed | **7 first**, the rest at rank 2 | 0 first, all at rank 2 | 0 first, 10 in top 10 | 0 first, all at rank 2 |
+
+**Time to build each store:**
+
+| Store | Sending | Until searchable as intended |
+|---|---|---|
+| SQLite | 7 s | at once |
+| Memo 0.131.38 | 38 s for 5,851 note files and 4,149 mails | 104 s more to embed everything for meaning search |
+| Supermemory | 31 min (100 per batch, about 85 s per batch) | about 14 h until the sampled documents finished building memories (02:37 to about 16:50 UTC) |
+| Mem0 | 80 s to accept 6,500 adds | 19 h: every add processed by 21:40 UTC (sent 02:37); about 250 an hour in the afternoon |
+
+### What it showed
+
+- **Memo finds the most and ranks it best.** Word + meaning search of the question as typed puts the source first in
+  72 % of questions and in the top 5 in all 40; Supermemory 20 % and 70 %, Mem0 10 % and 53 %. It ranks every original
+  date and every commitment first, and 6 of 10 owners.
+- **The current date is the one kind no store ranks first reliably.** Memo's meaning search puts it first in 3 of 10
+  and second in the other 7, Supermemory first in 1, Mem0 in 0. Memo's word search alone does better on it (7 of 10
+  first: the confirming mail reply) but worse on everything else, because `search all` without a model takes turns
+  between mail and notes (MEMO-37) and puts every note source at rank 2. Combining the two orders is the gain left
+  in this test.
+- **Memo's meaning search must be complete to count.** The first Memo run embedded one batch of 600 chunks and left
+  the rest: its word + meaning row (0.20 / 0.97 / 1.00) was word search. Embedded fully it rose to 0.72 at rank 1. A
+  user whose sync stops after one batch gets the low number; this is worth a fix in memo (embed all by default, or
+  say how much is left).
+- **The other stores rank stale records above the current date.** Supermemory put the confirmation first 10 of 10
+  times on the 2K fixture and 1 of 10 here: with several date changes per milestone, older records match the question
+  just as well. An agent on those stores that takes the top hit answers with an old date; it has to read several hits
+  and compare their dates. This is what the agent runs must measure.
+- **Supermemory is second, Mem0 last.** Supermemory finds every commitment, which plain SQLite word search misses (the
+  revised commitment does not repeat the question's words). Mem0, even with all cited records sent, loses most
+  commitments and two owners: fact extraction rewrote or dropped them, as on the 2K fixture.
+- **Plain word search beats both hosted services at rank 1.** SQLite with keywords puts the source first in 47 % of
+  questions, Supermemory in 25 %, Mem0 in 10 %. Its strength is the original date (the first chat message, 10 of 10
+  first), its gap the commitments. Memo's strict word search of the sentence (`--exact`, the mode before MEMO-36)
+  still finds nothing (50 empty replies).
+- **Waiting for Supermemory's memories changed little.** A search at 1,229 memories gave 0.225 / 0.675 / 0.875 as
+  typed; at 1,582 memories 0.20 / 0.70 / 0.90.
+- **Mem0 did not improve when it finished.** The provisional search (5,932 processed) and the final one (all 6,500)
+  differ by one source: one original date dropped out of the top 10, and recall@5 rose 0.03.
+- **Hosted stores take most of a day to build at this size** on the plans used (Supermemory free credit, Mem0 free
+  tier). A user importing a year of history waits that long before the memory answers well. Mem0's pricing page and
+  docs (read 5 November 2026) say nothing about processing speed or queue priority per plan; an SLA is listed only
+  for the Custom plan. Whether a paid plan is faster was not measured.
+
+### What was not measured
+
+- Memo with a model other than `e5-small`.
+- Mem0 keywords form (to keep retrievals for the agent runs), Mem0 on all 10,000 records, Supermemory's `rerank`,
+  thresholds, limits above 10.
+- How an agent uses these hits: that is the agent round.
+- Paid plans' processing speed.
+
+## Agent answers on the 10K corpus (6 November 2026)
+
+**Why.** The store search above says which store finds the record; this asks whether an agent with that store
+answers correctly. Same 50 questions, Claude Sonnet 5.5, one question per fresh session, scored by `run.py
+--records 10000` (exact match after normalisation, no judge model).
+
+**Setup.** OpenClaw 2026.10.9 and Hermes 0.21.0 as in the 2K round. WireCat setups: memo 0.131.38 (pinned
+`~/.cache/wirecat-bench/memo-0.131.38`), mail imported with mail CLI 0.16.3, meaning index complete. Plugins:
+`@supermemory/openclaw-supermemory` 2.1.19 and `@mem0/openclaw-mem0` 1.2.1 on the stores searched above; OpenClaw's
+plugin homes run with Code Mode and Tool Search off (see [isolation](#isolation-and-fairness)). Commands: the
+[paid steps](#paid-steps-in-order), steps 3 to 6. OpenClaw alone was run in two parts (q01–q23, then q24–q50 after
+the agent session that ran it ended) and joined by question id; every other setup is one run.
+
+| Setup | Correct | Correct with sources | Stale answers | Median s / question | Cost for 50 |
+|---|---:|---:|---:|---:|---:|
+| OpenClaw alone (files) | **50** | **47** | 0 | 24.0 | $2.30 |
+| OpenClaw + WireCat | **50** | 45 | 0 | 23.7 | $2.03 |
+| OpenClaw + Supermemory | 16 | 10 | 8 | 34.1 | $1.64 |
+| OpenClaw + Mem0 | 42 | 10 | 4 | 96.5 | $2.58 |
+| Hermes alone | 49 | 28 | 1 | 8.7 | 3.39M tokens |
+| Hermes + WireCat | 45 | 32 | 0 | 13.2 | 2.13M tokens |
+| Hermes + Supermemory | 16 | 10 | 7 | | |
+| Hermes + Mem0 | 35 | 10 | 4 | 11.4 | 0.88M tokens |
+
+OpenClaw's cost is its own per-call report; Hermes reports tokens and no price. The 10 budget questions are
+answered "unknown" correctly by every setup, so 10 of each "correct" are those. The OpenClaw + Supermemory and both
+Mem0 rows are the reruns of 6 November (OpenClaw plugin homes with Code Mode, Tool Search and memory-core off, see
+[isolation](#isolation-and-fairness)); the first OpenClaw + Supermemory run gave 17 correct and 6 stale.
+
+**Run records.** Answers, per-question rows, scores and a manifest per setup (dataset digest, agent, plugin, model,
+prompt hash, store id) are in [runs/10k-2026-11-06/](runs/10k-2026-11-06/), written by
+[`collect_runs.py`](collect_runs.py). A new setting is compared against these files instead of rerunning the eight
+setups. The raw agent transcripts stay in the cache folder each manifest names.
+
+**By question kind** (correct of 10; "old" = a stale date, "unknown" = the agent found nothing it trusted):
+
+| Setup | Current date | Original date | Owner | Commitment | Budget |
+|---|---|---|---|---|---|
+| OpenClaw alone, OpenClaw + WireCat | 10 | 10 | 10 | 10 | 10 |
+| Hermes alone | 10 | 10 | 10 | 9, 1 old | 10 |
+| Hermes + WireCat | 10 | 10 | 10 | 5 (format) | 10 |
+| OpenClaw + Mem0 | 10 | 10 | 6, 3 old | 6, 1 old | 10 |
+| Hermes + Mem0 | 8, 2 unknown | 8, 2 unknown | 4, 4 old, 2 unknown | 5, 3 unknown | 10 |
+| OpenClaw + Supermemory | 1, 7 old, 1 unknown | 2, 4 unknown | 0, 8 unknown | 3, 1 old, 6 unknown | 10 |
+| Hermes + Supermemory | 1, 7 old, 2 unknown | 3, 4 unknown | 0, 10 unknown | 2, 7 unknown | 10 |
+
+**What it showed:**
+
+- **Supermemory makes both agents worse than no memory**: 16 and 16 correct, of which 10 are the "unknown" budget
+  questions, against 49–50 with no memory. The misses have three causes, one per kind of question:
+  - current date: 7 of 10 stale, the store ranks old dates above the confirmation, as the search test predicted;
+  - owner: 0 of 10, mostly "unknown". An owner never changes, so this is not about dates. The store holds 1,585
+    extracted memories for 10,051 documents (`store status`, 6 November), and the plugins search only those
+    memories (threshold 0.6, 5 results); the search test, in hybrid mode with raw chunks, had every owner in its top
+    10. That the owners are missing from the memories is inferred, not checked;
+  - commitment: mostly "unknown": extraction rewrote the promise, as on the 2K fixture.
+- **Mem0 is far better than Supermemory at 10K, and still below no memory**: OpenClaw + Mem0 42, Hermes + Mem0 35.
+  Dates hold up (OpenClaw 20 of 20); owners and commitments do not (3–4 owners given as someone else, several
+  commitments "unknown"). OpenClaw + Mem0 is the slowest setup, 96.5 s per question, with no more tool calls than the
+  others (median 7, as OpenClaw + WireCat): the time is in Mem0's calls, not measured one by one.
+- **Plain files are still enough for a strong agent at 10,000 records**: OpenClaw searching its workspace with shell
+  tools answered all 50. WireCat matched it at 12 % less cost; Hermes + WireCat used 37 % fewer tokens than Hermes
+  alone and cited the right records more often (32 against 28).
+- **Hermes + WireCat's 5 misses are mostly format**: 4 are the right commitment with a note in parentheses
+  ("the rollback plan (revised from the usability study)"), which exact matching counts as wrong; one (q29) gave a
+  date for a commitment.
+- **The first OpenClaw + Mem0 run never reached Mem0.** With Tool Search on, `memory_search` was "not found". With
+  Tool Search off it still was not Mem0's: OpenClaw's memory-core, listed as disabled, registers its own
+  `memory_search` and `memory_get` first, and the plugin's tools are dropped ("plugin tool name conflict
+  (openclaw-mem0): memory_search" on stderr). The agent searched an empty built-in index and answered "unknown" to
+  every project question. memory-core is now turned off explicitly in the plugin homes, and the runner stops on
+  that message. A user who installs the Mem0 plugin on OpenClaw 2026.10.9 meets the same conflict.
+- **The owner's Anthropic key reached its monthly usage limit** during the first Mem0 runs; the limit was raised and
+  both Mem0 setups ran again on 6 November.
+
+## OpenClaw + Supermemory and OpenClaw + Mem0 (5 November 2026)
+
+**Why.** The owner asked (5 November 2026) to compare these as setups of their own: a user who runs OpenClaw with a
+hosted memory plugin, does that user still need WireCat? Hermes + Supermemory and Hermes + Mem0 already ran
+([RESULTS.md](RESULTS.md)). Nothing was ingested and no paid call was made for this section.
+
+**The plugins are official.** `npm view <package> maintainers repository.url dist.attestations _npmUser` (5 November
+2026) shows both published by GitHub Actions with SLSA provenance from the vendor organization's repository:
+
+| | Supermemory | Mem0 |
+|---|---|---|
+| Package | [`@supermemory/openclaw-supermemory`](https://www.npmjs.com/package/@supermemory/openclaw-supermemory) 2.1.19 | [`@mem0/openclaw-mem0`](https://www.npmjs.com/package/@mem0/openclaw-mem0) 1.2.1 |
+| Source | [supermemoryai/openclaw-supermemory](https://github.com/supermemoryai/openclaw-supermemory), built by `publish.yml` on `main` | [mem0ai/mem0](https://github.com/mem0ai/mem0), `integrations/openclaw`, built by `openclaw-cd.yml` at tag `openclaw-v1.2.1` |
+| npm maintainers | `dhravya` | `deshrajdry`, `howard.gil.mem0`, `kartik-mem0` |
+| Docs | [Supermemory OpenClaw guide](https://supermemory.ai/docs/integrations/openclaw) | [Mem0 OpenClaw guide](https://docs.mem0.ai/integrations/openclaw) |
+
+### What the agent gets
+
+Read in the installed package code (2.1.19 and 1.2.1), not run against the services:
+
+| | Supermemory | Mem0 |
+|---|---|---|
+| Search tool | `supermemory_search` (also `supermemory-search`): `query`, `limit` (5) | `memory_search`: `query`, `limit` (5), `scope` (`all`), `userId`, `agentId`, `categories`, `filters` |
+| What a hit shows the model | `1. <memory text> (NN%)`: no id, no metadata, no date (`tools/search.ts`) | `1. <memory text> (score: NN%, id: <Mem0 memory id>)`: no metadata (`dist/index.js`, `memory_search`) |
+| Request | `POST /ns/{tag}/search` (API v5, the default), `searchMode: "memories"`, `threshold: 0.6` (`client.ts`) | `POST /v3/memories/search/` filtered by `user_id`; `scope: all` adds a second search with the session's `run_id` |
+| Other read tools | `supermemory_profile` | `memory_get` (adds created and updated dates), `memory_list`, `memory_event_list`, `memory_event_status` |
+| Write tools (denied here) | `supermemory_store`, `supermemory-save`, `supermemory_forget`, `supermemory-forget` | `memory_add`, `memory_update`, `memory_delete` |
+| Auto-recall and auto-capture | on by default (`config.ts`) | on by default, though the manifest calls them opt-in |
+
+- **No setup can cite a record.** Our record name is stored on every memory (`metadata.rid`, and Supermemory's
+  `customId`), but neither plugin shows it to the model. As with Hermes, "correct with sources" can score only the
+  budget questions, where the right citation is none.
+- **The existing stores can be searched as they are.** Supermemory uses `containerTag` unchanged (only characters
+  outside `[A-Za-z0-9_]` become `_`) and lets the model pick another tag only with `enableCustomContainerTags`, off by
+  default and off here. Mem0 filters by `user_id` only, but **changes the user id for any agent not named `main`**
+  to `<userId>:agent:<agentId>`, an empty store here; the bench agent is therefore `main`.
+- **Supermemory searches only extracted memories**, not raw chunks, with a 0.6 cutoff. The bench store was built
+  from documents, and at 4.5 h a sample of it was still being processed. How many of the 2,000 records it holds as
+  memories is not known; the retrieval run used `hybrid` mode, which also returns chunks.
+- **Mem0's default `scope: all` makes two Mem0 searches per tool call**; that doubles the retrievals counted against
+  the free tier (below).
+- Both bundle a skill. Mem0's tells the model to save facts with `memory_add` on its own; that tool is denied.
+
+### Isolation and fairness
+
+- **One OpenClaw home per plugin**, `~/.cache/wirecat-bench/openclaw/plugins/<plugin>/home` (`HOME` and
+  `OPENCLAW_HOME`), sharing only Node and the OpenClaw package. The memory slot is exclusive per home: installing a
+  plugin in the existing home would replace the files agent's memory search
+  ([plugins](https://docs.openclaw.ai/tools/plugin)). Both plugins call `os.homedir()` directly (Mem0 writes its
+  telemetry id and key fingerprint into `~/.openclaw/openclaw.json`), so only a moved `HOME` keeps them out of the
+  owner's folder. `~/.openclaw` was listed before and after both installs, the dry runs and the key test: unchanged.
+- **Writes are off three ways**, so the store is the same for every question: `autoCapture` and `autoRecall` are
+  false; `hooks.allowConversationAccess` is not granted, so OpenClaw would not run a plugin's turn hooks anyway
+  (`plugins inspect --runtime` reports `hookCount: 0` for both, read with a fake key in place, when both had
+  registered their tools); the write tools are denied; and `compaction.memoryFlush` is off.
+- **Memory tools only, like Hermes + Supermemory and + Mem0.** The agent's tool policy denies `group:fs`,
+  `group:runtime`, `group:web`, `group:ui`, `group:sessions`, `group:automation`, `group:nodes`, `ls` and
+  `view_image`, so it cannot read the files agent's workspace. Whether OpenClaw removes every one of them could not
+  be seen without a model call: the runner fails a run in which any denied tool ran (`denied_tools_used`).
+- **Code Mode off in the plugin homes** (`tools.codeMode: false`). The 10K pilot (6 November 2026) failed that
+  check twice: with the setting unset, OpenClaw turned Code Mode on for Claude Sonnet 5.5 and the model saw one
+  JavaScript tool named `exec` that calls the hidden tools. The transcripts show it called only `supermemory_search`,
+  `memory_search` and `memory_list`, but the check cannot tell that `exec` from a shell. With Code Mode off the agent
+  reaches the memory tools directly or through OpenClaw's tool search (`tool_search`, `tool_call`); the pilot's
+  `tool_call` targets were memory tools only. The files and memo agents keep OpenClaw's default, as in the 2K round,
+  so this is one difference between the OpenClaw setups. The check reads tool names, not `tool_call` targets.
+- `MEM0_TELEMETRY=false` for Mem0 (the plugin and its SDK send usage events to PostHog otherwise).
+  `DBUS_SESSION_BUS_ADDRESS=disabled:` as for every run here.
+- Install accepts the plugins' capability consent (`--accept-capabilities`) after reading both manifests: the memory
+  slot, the listed tools, one skill, one CLI command. OpenClaw warns that npm sources are outside its review.
+- **The two Mem0 setups differ by design.** Hermes's Mem0 provider adds every turn to the store and has no switch
+  for it (above); OpenClaw + Mem0 here writes nothing. Hermes + Supermemory kept its provider's default too.
+- Auto-recall off is a choice: a user's default would put memories in every prompt and spend a search per turn. It
+  could be a second, labelled variant.
+
+### Commands
+
+```sh
+cd performance/agents/knowledge-graph-memory
+python3 openclaw_runner.py install-plugin --plugin supermemory --store wirecat_bench_20261102_183348 \
+  --fixture ~/.cache/wirecat-bench/fixture
+python3 openclaw_runner.py install-plugin --plugin mem0 --store wirecat-bench-20261102-175648 \
+  --fixture ~/.cache/wirecat-bench/fixture
+./openclaw-memory-keys.sh                    # the owner, once: Anthropic key and the plugin key per home
+python3 openclaw_runner.py answer --fixture ~/.cache/wirecat-bench/fixture --agent supermemory \
+  --model anthropic/claude-sonnet-5-5 --only q01 --output /tmp/oc-sm-pilot      # then mem0
+```
+
+Both installs ran on 5 November 2026 and the plugins load (`plugins inspect --runtime`: `status: loaded`, memory slot
+selected). `openclaw-memory-keys.sh` pipes `secret-tool` into `models auth paste-api-key --agent main`, and writes
+`SUPERMEMORY_OPENCLAW_API_KEY` or `MEM0_API_KEY` to `<home>/.openclaw/.env` (mode 600), which OpenClaw loads and
+substitutes into the plugin's `"${KEY}"` config value. **Checked with a fake `secret-tool`** in a copy of both homes:
+no key was printed, both `.env` files are mode 600, Supermemory registered its eight tools only once its key was
+there, `openclaw mem0 status` answered "Authentication failed" (so the fake key reached Mem0), the runner's check
+found the key in no other file, and an `answer` dry run of q01 on each agent ended at the
+Anthropic sign-in with a clean record. `answer` refuses to start without the key file, and after a run it fails if
+the key appears in any other file of the home (`key_copied_to`). Each home's `store.json` records the corpus
+sha256 of the fixture its store was ingested from (`install-plugin --fixture`, and `--subset` for Mem0's subset), and
+`answer` refuses another fixture: the 2 November stores hold the 2K corpus. The 10K stores and their homes are set up
+by the [paid steps](#paid-steps-in-order) below.
+
+### What was not measured
+
+- Any search or answer through the plugins (no key here). The first paid question per agent shows the tools the agent
+  really had.
+- Whether Supermemory's v5 `ns/{tag}` search finds documents ingested through `/v3/documents/batch` with that
+  `containerTag`; the plugin's `apiVersion: "legacy"` is the fallback to try.
+- How many memories the Supermemory store holds after processing.
+
+## Cost and limits for the 10K round (estimates, 5 November 2026)
+
+Nothing here was spent. **Measured** marks numbers from runs recorded above; everything else is an estimate.
+Prices from [Supermemory pricing](https://supermemory.ai/pricing) and [Mem0 pricing](https://docs.mem0.ai/platform/pricing),
+read 5 November 2026. The round is 50 questions; Supermemory gets all 10,000 records, Mem0 the 6,500-record subset.
+
+### Ingest
+
+| | Supermemory, 10,000 records | Mem0, 6,500-record subset |
+|---|---|---|
+| Measured on 2,000 | submit 88 s per batch of 100 (29 min for 1,900); memories still processing at 4.5 h | 2,000 adds submitted in 400 s; 716 processed after 90 min (pilot: 100 in 13 min) |
+| Submit (estimate) | about 2.5 h, 100 batches | about 22 min |
+| Until processed (estimate) | a day or more, if processing scales with records | about 13–14 h at the measured 8 per minute |
+| Price | $0.005 per 1K tokens as memories, $0.001 as plain documents; $5 free credit a month | free tier with Mem0's model: 10,000 adds and 1,000 retrievals a month |
+| Cost (estimate) | 237,593 tokens: about $1.20 as memories, $0.24 as documents ("SM tokens" are their own unit) | $0, if it fits the allowance (below) |
+
+**Mem0 allowance this month (estimate).** Already used: about 2,150 adds or more (100 pilot, 2,000 full, and the
+Hermes + Mem0 run, whose provider adds every turn) and about 250–300 retrievals (about 155 on 2 November, 91
+`mem0_search` calls on 3 November in 51 Hermes sessions, and Hermes's own lookups). Past the limit "calls return an
+error until your limits reset next month". The free period ends on 25 November 2026 for accounts created before
+26 October, otherwise 30 days after sign-up; the account's sign-up date was not checked.
+
+| Mem0 use in this round | Adds | Retrievals | Based on |
+|---|---:|---:|---|
+| Subset ingest | 6,500 | 0 | |
+| `provider_retrieval.py`, question as typed | 0 | 50 | one search per question (add the OR words row for another 50) |
+| OpenClaw + Mem0, 50 questions | 0 | about 180 | Hermes + Mem0 searched 1.8 times per question (**measured**); the plugin's `scope: all` doubles each |
+| Hermes + Mem0, 50 questions | 50 | about 90–140 | 1.8 tool searches per question, plus the provider's lookup each turn if it counts |
+| **Total** | **about 6,550** | **about 320–370** | against about 7,850 adds and 750 retrievals left |
+
+Harder questions may take more searches: at 1.5 times as many, retrievals reach about 550, still under 750. Pilot
+questions count too.
+
+Supermemory fits: about $1.20 for ingest; searches cost $0.005 per 1,000, and an answer run makes about 235 at the
+measured 4.7 per question. This month's earlier ingests (about 4,000 documents of 30 tokens) are roughly $0.60 at
+the memory rate. The account's usage page was not read.
+
+### Sonnet answers for 50 questions
+
+At the list price ($2 / $10 per million input / output, $0.20 re-read, $2.50 cache write). "2K, measured" is the
+cost of the 50-question runs in [RESULTS.md](RESULTS.md); the 10K column is an estimate.
+
+| Setup | 2K, measured | 10K (estimate) |
+|---|---:|---:|
+| OpenClaw alone | $1.33 | $1.60–4.00 |
+| OpenClaw + WireCat (memo 0.131.24) | $2.73 | $3.30–8.20 |
+| OpenClaw + Supermemory | not run | $1.60–3.40 |
+| OpenClaw + Mem0 (subset) | not run | $1.20–2.40 |
+| Hermes alone | $0.88 | $1.05–2.65 |
+| Hermes + WireCat (memo 0.131.24) | $2.07 | $2.50–6.20 |
+| Hermes + Supermemory | $3.34 | $3.35–5.00 |
+| Hermes + Mem0 (subset) | $0.78 | $0.80–1.20 |
+| **All eight** | **$11.13 for the six measured** | **about $15–33** |
+
+How the estimates were made:
+
+- **Files and memo agents scale with what a search returns, not with the record count.** On 2K a project name
+  matched 8 records; on 10K it matches a median of 766, and an asked milestone's name 91 (a grep for it returns about
+  2,000 tokens instead of 200). Most of a question's tokens today are the fixed prompt (OpenClaw alone: 97,800 per
+  question), so a targeted search adds about 20 %; broad greps, more steps and re-reads into the cache could triple
+  it. Hence 1.2–3 times the 2K cost.
+- **Hosted memory agents get a fixed top 5 or 10**, so their cost hardly grows with the store: 1–1.5 times.
+- **OpenClaw + plugins have no measurement.** The range takes Hermes + Supermemory and Hermes + Mem0 as the floor and
+  OpenClaw's larger prompt (3.3 times Hermes's tokens, alone against alone) as the ceiling, minus the file and shell
+  tools that are denied.
+- Time: about 25 minutes per OpenClaw setup at the measured median of 27–33 s per question, under 15 minutes per
+  Hermes setup.
+
+### Paid steps, in order
+
+Free preparation first; then each step that spends money or a free-tier allowance is marked. Run one heavy step at a
+time; the 10K setups live in their own folders, beside the 2K ones.
+
+```sh
+K=performance/agents/knowledge-graph-memory
+F=~/.cache/wirecat-bench/kg-fixture-10k
+python3 $K/run.py --self-check --records 10000 --output $F                         # free
+# 1. Supermemory ingest, all 10,000 (about $1.20 of credit); prints the new tag
+python3 $K/provider_retrieval.py --service supermemory --fixture $F --output ~/.cache/wirecat-bench/runs/supermemory-10k \
+  --variants default --rewrites verbatim --wait-minutes 240
+# 2. Mem0 ingest, the subset (6,500 adds, 50 retrievals); prints the new user id
+python3 $K/provider_retrieval.py --service mem0 --fixture $F --subset $F/subset-mem0.json \
+  --output ~/.cache/wirecat-bench/runs/mem0-10k-subset --rewrites verbatim --wait-minutes 900
+# 1–2 interrupted? Check, then continue in the same folder with the printed tag (sends only what is missing)
+python3 $K/provider_retrieval.py --service supermemory --fixture $F --output ~/.cache/wirecat-bench/runs/supermemory-10k \
+  --tag <tag> --status
+python3 $K/provider_retrieval.py --service supermemory --fixture $F --output ~/.cache/wirecat-bench/runs/supermemory-10k \
+  --tag <tag> --resume --variants default --rewrites verbatim --wait-minutes 240 > ~/.cache/wirecat-bench/runs/supermemory-10k/run.log 2>&1
+# 3. OpenClaw for 10K (free): its own root; step 5 of the OpenClaw setup once, then prepare and the plugins
+R=~/.cache/wirecat-bench/openclaw-10k
+python3 $K/openclaw_runner.py --root $R install
+python3 $K/openclaw_runner.py --root $R prepare --fixture $F
+python3 $K/openclaw_runner.py --root $R install-plugin --plugin supermemory --store <tag from 1> --fixture $F
+python3 $K/openclaw_runner.py --root $R install-plugin --plugin mem0 --store <user id from 2> --fixture $F \
+  --subset $F/subset-mem0.json
+# the owner, once, after steps 3 and 4: every 10K setup's keys from the keyring (the three scripts below in one)
+$K/owner-10k-keys.sh
+# 4. Hermes for 10K (free): its own folder
+export WIRECAT_BENCH=~/.cache/wirecat-bench-10k
+python3 $K/hermes_runner.py prepare --config alone --fixture $F
+python3 $K/hermes_runner.py prepare --config wirecat --fixture $F
+python3 $K/hermes_runner.py prepare --config supermemory --fixture $F --tag <tag from 1>
+python3 $K/hermes_runner.py prepare --config mem0 --fixture $F --tag <user id from 2>
+# 5. Pilots, one question each (Sonnet, a few cents each; Mem0 retrievals count)
+for a in files memo supermemory mem0; do
+  python3 $K/openclaw_runner.py --root $R answer --fixture $F --agent $a --model anthropic/claude-sonnet-5-5 \
+    --only q01 --output ~/.cache/wirecat-bench/runs/oc10k-pilot-$a; done
+for c in alone wirecat supermemory mem0; do
+  python3 $K/hermes_runner.py answer --config $c --fixture $F --questions q01 \
+    --output $WIRECAT_BENCH/runs/hermes10k-pilot-$c; done
+# 6. Full runs, one setup at a time (about $15–33 in all), then score each with the 10K questions
+python3 $K/openclaw_runner.py --root $R answer --fixture $F --agent files --model anthropic/claude-sonnet-5-5 \
+  --output ~/.cache/wirecat-bench/runs/oc10k-files                                  # then memo, supermemory, mem0
+python3 $K/hermes_runner.py answer --config alone --fixture $F --output $WIRECAT_BENCH/runs/hermes10k-alone
+python3 $K/run.py --records 10000 --predictions ~/.cache/wirecat-bench/runs/oc10k-files/predictions.json \
+  --engine "OpenClaw 2026.10.9 alone, claude-sonnet-5-5, 10K" --output ~/.cache/wirecat-bench/runs/oc10k-files-score
+```
+
+After each pilot, read its `per-question.json` (OpenClaw) or `.usage.json` (Hermes): the plugin agents' `tools` must
+show only memory tools, and `run.json` must show `denied_tools_used: []` and `key_copied_to: []`.

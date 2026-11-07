@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "q01",
+    "exit": 0,
+    "seconds": 37.44,
+    "answer": "EUR 16,000",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 16,000\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 729,
+      "cacheRead": 99775,
+      "cacheWrite": 26414,
+      "total": 126930,
+      "cost": {
+        "total": 0.08332650000000001
+      }
+    },
+    "list_price_usd_estimate": 0.08332650000000001,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_session", "honcho_ask"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q02",
+    "exit": 0,
+    "seconds": 34.96,
+    "answer": "EUR 15,000",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 15,000\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 875,
+      "cacheRead": 148628,
+      "cacheWrite": 7374,
+      "total": 156891,
+      "cost": {
+        "total": 0.042075800000000003
+      }
+    },
+    "list_price_usd_estimate": 0.042075800000000003,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_session", "honcho_ask"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q03",
+    "exit": 0,
+    "seconds": 48.09,
+    "answer": "EUR 25,000",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 25,000\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1014,
+      "cacheRead": 178449,
+      "cacheWrite": 8013,
+      "total": 187492,
+      "cost": {
+        "total": 0.048049400000000006
+      }
+    },
+    "list_price_usd_estimate": 0.048049400000000006,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_session", "honcho_ask"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q04",
+    "exit": 0,
+    "seconds": 50.82,
+    "answer": "EUR 7,000",
+    "citations": [],
+    "problem": null,
+    "final_text": "Record names aren't exposed in the search results, so I can't cite them.\n\n{\"answer\": \"EUR 7,000\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 876,
+      "cacheRead": 145746,
+      "cacheWrite": 6624,
+      "total": 153260,
+      "cost": {
+        "total": 0.03992260000000001
+      }
+    },
+    "list_price_usd_estimate": 0.03992260000000001,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q05",
+    "exit": 0,
+    "seconds": 51.61,
+    "answer": "EUR 17,250",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 17,250\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 831,
+      "cacheRead": 96375,
+      "cacheWrite": 8578,
+      "total": 105794,
+      "cost": {
+        "total": 0.0394125
+      }
+    },
+    "list_price_usd_estimate": 0.0394125,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q06",
+    "exit": 0,
+    "seconds": 58.53,
+    "answer": "EUR 11,250",
+    "citations": [],
+    "problem": null,
+    "final_text": "The three payments received were EUR 1,750, EUR 4,000 and EUR 5,500, which total EUR 11,250. I left out a EUR 4,500 payment because the records say it bounced and was not received. The hardware order instalments are a separate order, so I didn't count them.\n\nMy Honcho search results didn't show record names like r0042, so I couldn't cite any records.\n\n{\"answer\": \"EUR 11,250\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 870,
+      "cacheRead": 146451,
+      "cacheWrite": 6854,
+      "total": 154189,
+      "cost": {
+        "total": 0.040508100000000005
+      }
+    },
+    "list_price_usd_estimate": 0.040508100000000005,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q07",
+    "exit": 0,
+    "seconds": 66.85,
+    "answer": "EUR 8,250",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 8,250\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1040,
+      "cacheRead": 156392,
+      "cacheWrite": 9020,
+      "total": 166466,
+      "cost": {
+        "total": 0.048617200000000006
+      }
+    },
+    "list_price_usd_estimate": 0.048617200000000006,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_session"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q08",
+    "exit": 0,
+    "seconds": 37.5,
+    "answer": "EUR 17,250",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 17,250\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 939,
+      "cacheRead": 161336,
+      "cacheWrite": 10492,
+      "total": 172781,
+      "cost": {
+        "total": 0.05178159999999999
+      }
+    },
+    "list_price_usd_estimate": 0.05178159999999999,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q09",
+    "exit": 0,
+    "seconds": 35.16,
+    "answer": "EUR 23,750",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 23,750\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1043,
+      "cacheRead": 153200,
+      "cacheWrite": 9323,
+      "total": 163580,
+      "cost": {
+        "total": 0.0490855
+      }
+    },
+    "list_price_usd_estimate": 0.0490855,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_session"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q10",
+    "exit": 0,
+    "seconds": 34.45,
+    "answer": "EUR 900",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 900\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 630,
+      "cacheRead": 94827,
+      "cacheWrite": 5757,
+      "total": 101224,
+      "cost": {
+        "total": 0.030195200000000002
+      }
+    },
+    "list_price_usd_estimate": 0.030195200000000002,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q11",
+    "exit": 0,
+    "seconds": 37.08,
+    "answer": "EUR 1,500",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"EUR 1,500\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 881,
+      "cacheRead": 173520,
+      "cacheWrite": 6725,
+      "total": 181142,
+      "cost": {
+        "total": 0.0430065
+      }
+    },
+    "list_price_usd_estimate": 0.0430065,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q12",
+    "exit": 0,
+    "seconds": 36.19,
+    "answer": "Tess Ng",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Tess Ng\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1041,
+      "cacheRead": 149391,
+      "cacheWrite": 6853,
+      "total": 157299,
+      "cost": {
+        "total": 0.04250960000000001
+      }
+    },
+    "list_price_usd_estimate": 0.04250960000000001,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_session", "honcho_ask"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q13",
+    "exit": 0,
+    "seconds": 32.89,
+    "answer": "Dee Lake",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Dee Lake\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1156,
+      "cacheRead": 148145,
+      "cacheWrite": 6737,
+      "total": 156052,
+      "cost": {
+        "total": 0.043245000000000006
+      }
+    },
+    "list_price_usd_estimate": 0.043245000000000006,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_session"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q14",
+    "exit": 0,
+    "seconds": 37.79,
+    "answer": "2026-12-24 16:00",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-12-24 16:00\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1030,
+      "cacheRead": 147653,
+      "cacheWrite": 6389,
+      "total": 155086,
+      "cost": {
+        "total": 0.0410658
+      }
+    },
+    "list_price_usd_estimate": 0.0410658,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_session"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q15",
+    "exit": 0,
+    "seconds": 37.69,
+    "answer": "2026-11-21 12:00",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-21 12:00\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 964,
+      "cacheRead": 146565,
+      "cacheWrite": 5819,
+      "total": 153362,
+      "cost": {
+        "total": 0.038872000000000004
+      }
+    },
+    "list_price_usd_estimate": 0.038872000000000004,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q16",
+    "exit": 0,
+    "seconds": 26.48,
+    "answer": "2026-12-11 16:00",
+    "citations": ["msg:email/synthetic%40example.test/thread-2/2"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-12-11 16:00\", \"citations\": [\"r0002\"]}",
+    "usage": {
+      "input": 10,
+      "output": 588,
+      "cacheRead": 94926,
+      "cacheWrite": 7138,
+      "total": 102662,
+      "cost": {
+        "total": 0.0332376
+      }
+    },
+    "list_price_usd_estimate": 0.0332376,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q17",
+    "exit": 0,
+    "seconds": 35.91,
+    "answer": "2026-10-26 22:30",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-10-26 22:30\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 732,
+      "cacheRead": 124369,
+      "cacheWrite": 7202,
+      "total": 132315,
+      "cost": {
+        "total": 0.037785900000000004
+      }
+    },
+    "list_price_usd_estimate": 0.037785900000000004,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q18",
+    "exit": 0,
+    "seconds": 41.23,
+    "answer": "2026-11-15 14:30",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-15 14:30\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1139,
+      "cacheRead": 180338,
+      "cacheWrite": 8598,
+      "total": 190091,
+      "cost": {
+        "total": 0.050950800000000004
+      }
+    },
+    "list_price_usd_estimate": 0.050950800000000004,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_session"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q19",
+    "exit": 0,
+    "seconds": 29.07,
+    "answer": "2026-12-06 09:30",
+    "citations": [],
+    "problem": null,
+    "final_text": "The records show the partner call set for 2026-12-06 at 08:30 London time, which is 09:30 in Madrid. London is on GMT in December and Madrid is one hour ahead. I found no later change to that date.\n\nThe search results didn't show record names, so I can't cite any records.\n\n{\"answer\": \"2026-12-06 09:30\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 869,
+      "cacheRead": 120550,
+      "cacheWrite": 5959,
+      "total": 127390,
+      "cost": {
+        "total": 0.035666500000000004
+      }
+    },
+    "list_price_usd_estimate": 0.035666500000000004,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_session"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q20",
+    "exit": 0,
+    "seconds": 23.67,
+    "answer": "2026-03-29",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-03-29\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 791,
+      "cacheRead": 124448,
+      "cacheWrite": 8852,
+      "total": 134103,
+      "cost": {
+        "total": 0.042508800000000006
+      }
+    },
+    "list_price_usd_estimate": 0.042508800000000006,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q21",
+    "exit": 0,
+    "seconds": 54.5,
+    "answer": "2026-05-28",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-05-28\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1087,
+      "cacheRead": 182312,
+      "cacheWrite": 8409,
+      "total": 191824,
+      "cost": {
+        "total": 0.0501557
+      }
+    },
+    "list_price_usd_estimate": 0.0501557,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q22",
+    "exit": 0,
+    "seconds": 47.44,
+    "answer": "2026-08-18",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-08-18\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1016,
+      "cacheRead": 148709,
+      "cacheWrite": 6933,
+      "total": 156672,
+      "cost": {
+        "total": 0.0423914
+      }
+    },
+    "list_price_usd_estimate": 0.0423914,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q23",
+    "exit": 0,
+    "seconds": 43.64,
+    "answer": "cancelled",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"cancelled\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1002,
+      "cacheRead": 174280,
+      "cacheWrite": 7276,
+      "total": 182574,
+      "cost": {
+        "total": 0.045669999999999995
+      }
+    },
+    "list_price_usd_estimate": 0.045669999999999995,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q24",
+    "exit": 0,
+    "seconds": 68.85,
+    "answer": "cancelled",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"cancelled\", \"citations\": []}",
+    "usage": {
+      "input": 24,
+      "output": 2359,
+      "cacheRead": 317700,
+      "cacheWrite": 14218,
+      "total": 334301,
+      "cost": {
+        "total": 0.090953
+      }
+    },
+    "list_price_usd_estimate": 0.090953,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 12,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q25",
+    "exit": 0,
+    "seconds": 54.67,
+    "answer": "cancelled",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"cancelled\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 934,
+      "cacheRead": 147233,
+      "cacheWrite": 6921,
+      "total": 155102,
+      "cost": {
+        "total": 0.041393799999999994
+      }
+    },
+    "list_price_usd_estimate": 0.041393799999999994,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_session", "honcho_ask"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q26",
+    "exit": 0,
+    "seconds": 58.15,
+    "answer": "2026-12-02",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-12-02\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1032,
+      "cacheRead": 177831,
+      "cacheWrite": 8014,
+      "total": 186893,
+      "cost": {
+        "total": 0.04817010000000001
+      }
+    },
+    "list_price_usd_estimate": 0.04817010000000001,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_session", "honcho_ask"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q27",
+    "exit": 0,
+    "seconds": 38.57,
+    "answer": "2026-11-22",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-22\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 834,
+      "cacheRead": 95349,
+      "cacheWrite": 7261,
+      "total": 103454,
+      "cost": {
+        "total": 0.0360474
+      }
+    },
+    "list_price_usd_estimate": 0.0360474,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q28",
+    "exit": 0,
+    "seconds": 53.08,
+    "answer": "Monday",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Monday\", \"citations\": []}",
+    "usage": {
+      "input": 18,
+      "output": 1199,
+      "cacheRead": 205484,
+      "cacheWrite": 8061,
+      "total": 214762,
+      "cost": {
+        "total": 0.05272690000000001
+      }
+    },
+    "list_price_usd_estimate": 0.05272690000000001,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_session", "honcho_ask"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q29",
+    "exit": 0,
+    "seconds": 34.2,
+    "answer": "Friday",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Friday\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 980,
+      "cacheRead": 149155,
+      "cacheWrite": 6755,
+      "total": 156904,
+      "cost": {
+        "total": 0.041631
+      }
+    },
+    "list_price_usd_estimate": 0.041631,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q30",
+    "exit": 0,
+    "seconds": 34.96,
+    "answer": "Ira Brook",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Ira Brook\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 807,
+      "cacheRead": 119153,
+      "cacheWrite": 6163,
+      "total": 126135,
+      "cost": {
+        "total": 0.0354168
+      }
+    },
+    "list_price_usd_estimate": 0.0354168,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q31",
+    "exit": 0,
+    "seconds": 43.4,
+    "answer": "Ira Brooks",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Ira Brooks\", \"citations\": []}",
+    "usage": {
+      "input": 18,
+      "output": 1076,
+      "cacheRead": 198097,
+      "cacheWrite": 7046,
+      "total": 206237,
+      "cost": {
+        "total": 0.0482207
+      }
+    },
+    "list_price_usd_estimate": 0.0482207,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q32",
+    "exit": 0,
+    "seconds": 53.78,
+    "answer": "Harbour Loft",
+    "citations": [],
+    "problem": null,
+    "final_text": "I couldn't find record names (like r0042) anywhere in the Honcho results, so the citations list is empty.\n\nHarbour Loft is the booked venue. In a 2026-06-17 email, Max Dorn said he booked Harbour Loft for the Grove Atlas launch party, the deposit is paid, and Old Mill Hall is off. A conclusion dated 2026-06-24 says the same thing. Old Mill Hall appears only as \"to be confirmed\" in earlier planning notes, so it doesn't override the booking.\n\n{\"answer\": \"Harbour Loft\", \"citations\": []}",
+    "usage": {
+      "input": 18,
+      "output": 1309,
+      "cacheRead": 205379,
+      "cacheWrite": 7704,
+      "total": 214410,
+      "cost": {
+        "total": 0.05292390000000001
+      }
+    },
+    "list_price_usd_estimate": 0.05292390000000001,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q33",
+    "exit": 0,
+    "seconds": 32.66,
+    "answer": "Tram Depot",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Tram Depot\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 842,
+      "cacheRead": 121750,
+      "cacheWrite": 6742,
+      "total": 129346,
+      "cost": {
+        "total": 0.037474
+      }
+    },
+    "list_price_usd_estimate": 0.037474,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q34",
+    "exit": 0,
+    "seconds": 33.58,
+    "answer": "Harbour Loft",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Harbour Loft\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1060,
+      "cacheRead": 175850,
+      "cacheWrite": 7609,
+      "total": 184535,
+      "cost": {
+        "total": 0.047239500000000004
+      }
+    },
+    "list_price_usd_estimate": 0.047239500000000004,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q35",
+    "exit": 0,
+    "seconds": 32.01,
+    "answer": "5",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"5\", \"citations\": []}",
+    "usage": {
+      "input": 12,
+      "output": 1273,
+      "cacheRead": 122915,
+      "cacheWrite": 7512,
+      "total": 131712,
+      "cost": {
+        "total": 0.0438255
+      }
+    },
+    "list_price_usd_estimate": 0.0438255,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q36",
+    "exit": 0,
+    "seconds": 24.93,
+    "answer": "3",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"3\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 569,
+      "cacheRead": 96431,
+      "cacheWrite": 6829,
+      "total": 103839,
+      "cost": {
+        "total": 0.032425600000000006
+      }
+    },
+    "list_price_usd_estimate": 0.032425600000000006,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q37",
+    "exit": 0,
+    "seconds": 27.73,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 10,
+      "output": 544,
+      "cacheRead": 96193,
+      "cacheWrite": 8019,
+      "total": 104766,
+      "cost": {
+        "total": 0.0351268
+      }
+    },
+    "list_price_usd_estimate": 0.0351268,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q38",
+    "exit": 0,
+    "seconds": 32.4,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 1028,
+      "cacheRead": 157581,
+      "cacheWrite": 11343,
+      "total": 169966,
+      "cost": {
+        "total": 0.054423599999999996
+      }
+    },
+    "list_price_usd_estimate": 0.054423599999999996,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q39",
+    "exit": 0,
+    "seconds": 39.2,
+    "answer": "2027-09-11",
+    "citations": [],
+    "problem": null,
+    "final_text": "I couldn't find the record names for the supporting records. The Honcho tools return only the record text, not names like r0042. The answer itself is clear from the text. Max Dorn is the delivery owner, and he confirmed the move from 2027-07-31 to 2027-09-11 in the Juniper Valley launch review. Later suggestions to move to 2027-10-02 were never confirmed.\n\n{\"answer\": \"2027-09-11\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 855,
+      "cacheRead": 151960,
+      "cacheWrite": 8078,
+      "total": 160907,
+      "cost": {
+        "total": 0.043969
+      }
+    },
+    "list_price_usd_estimate": 0.043969,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q40",
+    "exit": 0,
+    "seconds": 35.1,
+    "answer": "2027-04-28",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-04-28\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1024,
+      "cacheRead": 177615,
+      "cacheWrite": 9098,
+      "total": 187753,
+      "cost": {
+        "total": 0.050778500000000004
+      }
+    },
+    "list_price_usd_estimate": 0.050778500000000004,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_session", "honcho_ask"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q41",
+    "exit": 0,
+    "seconds": 35.89,
+    "answer": "2026-10-31",
+    "citations": [],
+    "problem": null,
+    "final_text": "I couldn't find the record names for these messages, so the citations are empty. The records show the original agreed pilot delivery date as 2026-10-31. Kim Hale stated it in a Telegram message dated 2026-03-22: \"We agreed the Birch Compass pilot delivery date is 2026-10-31.\"\n\n{\"answer\": \"2026-10-31\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 836,
+      "cacheRead": 148438,
+      "cacheWrite": 7341,
+      "total": 156629,
+      "cost": {
+        "total": 0.0415843
+      }
+    },
+    "list_price_usd_estimate": 0.0415843,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q42",
+    "exit": 0,
+    "seconds": 47.09,
+    "answer": "Jo Birch",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Jo Birch\", \"citations\": []}",
+    "usage": {
+      "input": 18,
+      "output": 1156,
+      "cacheRead": 205781,
+      "cacheWrite": 8491,
+      "total": 215446,
+      "cost": {
+        "total": 0.05340160000000001
+      }
+    },
+    "list_price_usd_estimate": 0.05340160000000001,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages", "honcho_ask", "honcho_session"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q43",
+    "exit": 0,
+    "seconds": 37.46,
+    "answer": "Gia Fern",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Gia Fern\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 950,
+      "cacheRead": 177546,
+      "cacheWrite": 7432,
+      "total": 185944,
+      "cost": {
+        "total": 0.0458666
+      }
+    },
+    "list_price_usd_estimate": 0.0458666,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_session"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q44",
+    "exit": 0,
+    "seconds": 38.99,
+    "answer": "usability study",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"usability study\", \"citations\": []}",
+    "usage": {
+      "input": 14,
+      "output": 802,
+      "cacheRead": 147084,
+      "cacheWrite": 6790,
+      "total": 154690,
+      "cost": {
+        "total": 0.03973140000000001
+      }
+    },
+    "list_price_usd_estimate": 0.03973140000000001,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q45",
+    "exit": 0,
+    "seconds": 41.94,
+    "answer": "rollback plan",
+    "citations": [],
+    "problem": null,
+    "final_text": "Honcho shows what the records say but not their names (r0042 and so on). The latest confirmed commitment is that Sol Mendez delivers the rollback plan. It replaced the accessibility review in a meeting record dated 2026-07-08. I couldn't find the record names, so I left the citations empty.\n\n{\"answer\": \"rollback plan\", \"citations\": []}",
+    "usage": {
+      "input": 16,
+      "output": 1154,
+      "cacheRead": 179426,
+      "cacheWrite": 7728,
+      "total": 188324,
+      "cost": {
+        "total": 0.0488346
+      }
+    },
+    "list_price_usd_estimate": 0.0488346,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_session", "honcho_ask"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q46",
+    "exit": 0,
+    "seconds": 22.94,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 8,
+      "output": 344,
+      "cacheRead": 68734,
+      "cacheWrite": 6037,
+      "total": 75123,
+      "cost": {
+        "total": 0.025421899999999997
+      }
+    },
+    "list_price_usd_estimate": 0.025421899999999997,
+    "tools": ["honcho_search_conclusions", "honcho_search_messages"],
+    "tool_calls": 3,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q47",
+    "exit": 0,
+    "seconds": 22.61,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 6,
+      "output": 214,
+      "cacheRead": 43213,
+      "cacheWrite": 4120,
+      "total": 47553,
+      "cost": {
+        "total": 0.016773299999999998
+      }
+    },
+    "list_price_usd_estimate": 0.016773299999999998,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions"],
+    "tool_calls": 2,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q48",
+    "exit": 0,
+    "seconds": 41.9,
+    "answer": "Bilbao",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Bilbao\", \"citations\": []}",
+    "usage": {
+      "input": 20,
+      "output": 1507,
+      "cacheRead": 242519,
+      "cacheWrite": 9131,
+      "total": 253177,
+      "cost": {
+        "total": 0.06218939999999999
+      }
+    },
+    "list_price_usd_estimate": 0.06218939999999999,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_session"],
+    "tool_calls": 12,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q49",
+    "exit": 0,
+    "seconds": 43.09,
+    "answer": "Porto",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Porto\", \"citations\": []}",
+    "usage": {
+      "input": 20,
+      "output": 1515,
+      "cacheRead": 252565,
+      "cacheWrite": 13024,
+      "total": 267124,
+      "cost": {
+        "total": 0.0730065
+      }
+    },
+    "list_price_usd_estimate": 0.0730065,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_ask", "honcho_context", "honcho_session"],
+    "tool_calls": 12,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q50",
+    "exit": 0,
+    "seconds": 39.29,
+    "answer": "Lisbon",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"Lisbon\", \"citations\": []}",
+    "usage": {
+      "input": 18,
+      "output": 1782,
+      "cacheRead": 218348,
+      "cacheWrite": 11166,
+      "total": 231314,
+      "cost": {
+        "total": 0.06760580000000001
+      }
+    },
+    "list_price_usd_estimate": 0.06760580000000001,
+    "tools": ["honcho_search_messages", "honcho_search_conclusions", "honcho_session", "honcho_ask"],
+    "tool_calls": 14,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "engine": "Hermes + alone, claude-sonnet-5-5, 10K",
+  "correct": 49,
+  "cited_correctly": 28,
+  "stale": 1,
+  "correct_strict": 40
+}

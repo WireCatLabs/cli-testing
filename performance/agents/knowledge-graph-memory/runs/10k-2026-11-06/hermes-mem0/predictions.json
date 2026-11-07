@@ -1,0 +1,256 @@
+[
+  {
+    "id": "q01",
+    "answer": "2027-04-06",
+    "citations": ["e14a8497-9d9c-4dfe-852f-dfa9710afae8"]
+  },
+  {
+    "id": "q02",
+    "answer": "2027-01-04",
+    "citations": ["5f0595ed-1ec8-4f7d-a995-45f069df60c1", "be2273ac-237d-4139-b5fb-4ad80d5f4a99"]
+  },
+  {
+    "id": "q03",
+    "answer": "Kim Hale",
+    "citations": []
+  },
+  {
+    "id": "q04",
+    "answer": "rollback plan",
+    "citations": ["716c287e-fe17-4791-8732-ff8ebb24a6c6", "d25376e2-02b9-4b28-881d-097121b4d1d8"]
+  },
+  {
+    "id": "q05",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q06",
+    "answer": "2027-03-19",
+    "citations": ["dd10ba25-e9db-4f5c-b466-8b9308f4f9a3"]
+  },
+  {
+    "id": "q07",
+    "answer": "2026-10-31",
+    "citations": ["5db61aed-1b3c-4d4c-b5f9-45f4bd2eb920", "6e0ceb4d-19be-4eb4-a341-51e1ea4e54f8"]
+  },
+  {
+    "id": "q08",
+    "answer": "Kim Hale",
+    "citations": []
+  },
+  {
+    "id": "q09",
+    "answer": "2026-12-03",
+    "citations": ["5db61aed-1b3c-4d4c-b5f9-45f4bd2eb920"]
+  },
+  {
+    "id": "q10",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q11",
+    "answer": "2027-02-17",
+    "citations": ["64d3f85a-daf6-4495-8763-d2aac522e117"]
+  },
+  {
+    "id": "q12",
+    "answer": "2026-12-04",
+    "citations": []
+  },
+  {
+    "id": "q13",
+    "answer": "Sol Mendez",
+    "citations": ["26c4a5f6-3e39-4a92-b80a-25c1b72f598b"]
+  },
+  {
+    "id": "q14",
+    "answer": "the rollback plan",
+    "citations": []
+  },
+  {
+    "id": "q15",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q16",
+    "answer": "2027-01-16",
+    "citations": []
+  },
+  {
+    "id": "q17",
+    "answer": "2026-11-24",
+    "citations": ["a27804d4-1a1d-49a6-a37e-056c88b1b656", "f107c360-e6fc-439f-a391-6abef08213db"]
+  },
+  {
+    "id": "q18",
+    "answer": "Dee Lake",
+    "citations": ["e50cfb8e-9862-48f7-9524-6ffe3ed1d8b0"]
+  },
+  {
+    "id": "q19",
+    "answer": "the usability study (revised from the load test report)",
+    "citations": []
+  },
+  {
+    "id": "q20",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q21",
+    "answer": "2027-02-23",
+    "citations": ["1ca91cc8-d921-47ca-9986-6a6757b0b2a0"]
+  },
+  {
+    "id": "q22",
+    "answer": "2026-11-19",
+    "citations": []
+  },
+  {
+    "id": "q23",
+    "answer": "Eli Pine",
+    "citations": ["0688142a-2ebf-4e2c-aba1-086606fc056f"]
+  },
+  {
+    "id": "q24",
+    "answer": "the pricing page copy",
+    "citations": ["4bccf5ac-cc09-4507-8995-6f00c2cb791c"]
+  },
+  {
+    "id": "q25",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q26",
+    "answer": "2027-04-28",
+    "citations": []
+  },
+  {
+    "id": "q27",
+    "answer": "2026-11-25",
+    "citations": []
+  },
+  {
+    "id": "q28",
+    "answer": "Raj Iyer",
+    "citations": []
+  },
+  {
+    "id": "q29",
+    "answer": "API changelog",
+    "citations": ["249e760e-241b-4d45-bc6d-6144fa61b211"]
+  },
+  {
+    "id": "q30",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q31",
+    "answer": "2027-08-04",
+    "citations": []
+  },
+  {
+    "id": "q32",
+    "answer": "2027-03-24",
+    "citations": []
+  },
+  {
+    "id": "q33",
+    "answer": "Raj Iyer",
+    "citations": ["50c0d781-b028-4688-b407-e905422d2664", "735ba5dc-13b1-4c3a-b28c-31d504522b54"]
+  },
+  {
+    "id": "q34",
+    "answer": "accessibility review",
+    "citations": ["d7d63f34-8e67-41ed-9a64-fd3affd17bed"]
+  },
+  {
+    "id": "q35",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q36",
+    "answer": "2027-08-13",
+    "citations": ["892ea71f-5792-4878-b85e-5ce0cd46dc00"]
+  },
+  {
+    "id": "q37",
+    "answer": "2027-04-05",
+    "citations": [
+      "0661c1a0-c94b-4778-85b6-e535deb384c0",
+      "372b69ce-fafe-4534-bf72-0baba2007a01",
+      "c4b07721-5127-4099-8a67-5af7a6b3a3e9"
+    ]
+  },
+  {
+    "id": "q38",
+    "answer": "Gia Fern",
+    "citations": ["2045e985-6a79-4b5e-8943-521420e05628", "75ff3d2a-bdfa-422b-a502-007944f9f4d3"]
+  },
+  {
+    "id": "q39",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q40",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q41",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q42",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q43",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q44",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q45",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q46",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q47",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q48",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q49",
+    "answer": "unknown",
+    "citations": []
+  },
+  {
+    "id": "q50",
+    "answer": "unknown",
+    "citations": []
+  }
+]

@@ -72,6 +72,59 @@ time; inside a running agent it is much faster.
 - **Supermemory and Mem0 cannot tell the agent which record an answer came from.** Through Hermes, an agent sees
   only the remembered text, never the record's name. So they can never score on "correct with sources" below.
 
+## Test 1 again, on 10,000 records (5 November 2026)
+
+The same 50 questions on a harder corpus: 10,000 records, and each asked deadline moved two to four times, with
+rejected proposals and meeting recaps that repeat old dates. Mem0 got 6,500 of the records (every record an answer
+cites is among them), because its free plan allows too few adds for all of them. Details and the commands to
+reproduce it: [README](README.md#store-search-on-the-10k-corpus-5-november-2026).
+
+| Search, question as typed | Top 1 | Top 5 | Top 10 | Current date first | Time per search |
+|---|---:|---:|---:|---:|---:|
+| **Memo 0.131.38, word + meaning search** | **0.72** | **1.00** | **1.00** | 3 of 10 | 1.6 s |
+| Memo 0.131.38, word search only | 0.17 | 0.97 | 1.00 | **7 of 10** | 0.4 s |
+| Supermemory | 0.20 | 0.70 | 0.90 | 1 of 10 | 0.5 s |
+| Mem0 | 0.10 | 0.53 | 0.70 | 0 of 10 | 0.5 s |
+| Plain SQLite word search, for scale | 0.25 | 0.62 | 0.80 | 0 of 10 | 0.002 s |
+
+- **Memo finds the right record most often and ranks it best**: first in 72 % of questions, in the top 5 in all 40.
+  Supermemory: 20 % and 70 %. Mem0: 10 % and 53 %.
+- **The current date is still hard for everyone.** Memo's word + meaning search puts it second in 7 of 10, under an
+  older record; its word search alone puts it first in 7 of 10 but ranks everything else worse. The hosted services
+  rank older dates above it almost every time. An agent must read several results and compare dates.
+- **Memo's meaning search only counts when it has processed everything.** One `memo sync` processes 600 pieces of
+  text; this corpus needs 9 runs. After one run, Memo's top 1 was 0.20; after all of them, 0.72.
+- **The hosted services take most of a day to load 10,000 records**: Supermemory about 14 hours until its memories
+  were built, Mem0 19 hours for 6,500. Memo took about 2.5 minutes on this computer.
+- **Mail now comes through the mail CLI.** Since memo 0.131.28 the mail CLI stores mail; the test imports its mail
+  file with `mail messages import`, which needs no sign-in.
+
+## Test 2 again, on 10,000 records (6 November 2026)
+
+The same agents and model as Test 2 below, on the 10,000-record corpus. Details:
+[README](README.md#agent-answers-on-the-10k-corpus-6-november-2026).
+
+| Setup | Correct of 50 | Correct with sources | Old date given |
+|---|---:|---:|---:|
+| OpenClaw alone | **50** | **47** | 0 |
+| OpenClaw + WireCat | **50** | 45 | 0 |
+| OpenClaw + Mem0 | 42 | 10 | 4 |
+| OpenClaw + Supermemory | 16 | 10 | 8 |
+| Hermes alone | 49 | 28 | 1 |
+| Hermes + WireCat | 45 | 32 | 0 |
+| Hermes + Mem0 | 35 | 10 | 4 |
+| Hermes + Supermemory | 16 | 10 | 7 |
+
+- **With Supermemory both agents got most questions wrong.** It shows old dates first, and the agent has nothing
+  else to check them against.
+- **With WireCat the agents answered as well as with plain files, for less**: OpenClaw 12 % cheaper, Hermes 37 % fewer
+  tokens and more right sources. Four of Hermes + WireCat's five misses were right answers with an extra note.
+- **Mem0 did much better than Supermemory, but worse than no memory**: 42 and 35. It kept the dates right and lost
+  owners and commitments. OpenClaw's own memory tools had hidden Mem0's search in the first run; that is fixed.
+- **The failures are not only about dates.** Supermemory got the current date wrong 7 times of 10 (old date first),
+  but every owner question wrong too, though owners never change: it extracted 1,585 memories from 10,051
+  documents and the agents search only those. Details by question kind in the README.
+
 ## Test 2: does the agent answer correctly?
 
 Here an AI agent (OpenClaw 2026.10.9 or Hermes 0.21.0) answers all 50 questions with the same model, Claude Sonnet

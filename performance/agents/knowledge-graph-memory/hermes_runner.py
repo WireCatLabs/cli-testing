@@ -11,11 +11,13 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
-from memo_baseline import Memo, configure_mail, isolated_env, name_of, write_sources
+from memo_baseline import Memo, embed, isolated_env, load_mail, name_of, write_sources
 from provider_retrieval import keyring_secret
 from run import score
 
-BENCH = Path.home() / ".cache/wirecat-bench"
+# WIRECAT_BENCH moves the configurations (as in hermes-anthropic-key.sh); the provider SDKs stay shared.
+SHARED = Path.home() / ".cache/wirecat-bench"
+BENCH = Path(os.environ.get("WIRECAT_BENCH", SHARED))
 HERMES_PYTHON = Path.home() / ".hermes/hermes-agent/venv/bin/python"
 HERMES_SCRIPT = Path.home() / ".hermes/hermes-agent/hermes"
 OWNER_HERMES = Path.home() / ".hermes"
@@ -36,7 +38,18 @@ CONFIGS = {
     "mem0": {"toolsets": "memory", "provider": "mem0",
              "where": "The records are in your Mem0 long-term memory; search it. A record's name is the rid in a "
                       "result's metadata, when the result shows it."},
+    "hindsight": {"toolsets": "memory", "provider": "hindsight",
+                  "where": "The records are in your Hindsight long-term memory; recall from it. A record's name is "
+                           "the rid in a memory's metadata, when the memory shows it."},
+    "honcho": {"toolsets": "memory", "provider": "honcho",
+               "where": "The records are in your Honcho memory of the owner; search it. A record's name is the rid "
+                        "in a message's metadata, when the message shows it."},
 }
+# Servers on this machine, started by hindsight-server.sh and honcho-server.sh; the stores were built by wcatbench.
+HINDSIGHT_URL, HONCHO_URL = "http://127.0.0.1:18888", "http://127.0.0.1:18000"
+# Each provider's SDK in its own folder, so adding one never changes the packages an earlier run used.
+# Hermes pins each provider's SDK to one version (tools/lazy_deps.py); another version reads as missing.
+PROVIDER_DEPS = {"hindsight": "pydeps-hindsight-client-0.6.1", "honcho": "pydeps-honcho-ai"}
 
 PROMPT = """You are answering one question about the owner's records. {where}
 
@@ -51,11 +64,13 @@ Reply with one JSON object and nothing else: {{"answer": "...", "citations": [".
 def paths(config):
     base = BENCH / "hermes" / config
     return {"base": base, "hermes_home": base / "hermes-home", "home": base / "home", "workspace": base / "workspace",
-            "memo": base / "memo", "bin": base / "bin", "codex_home": BENCH / "codex-empty"}
+            "memo": base / "memo", "bin": base / "bin", "codex_home": SHARED / "codex-empty"}
 
 
 def hermes_env(config):
     place = paths(config)
+    extra = PROVIDER_DEPS.get(CONFIGS[config]["provider"])
+    site = [Path(__file__).resolve().parent / "hermes_site", *([SHARED / extra] if extra else []), SHARED / "pydeps"]
     env = {
         "PATH": f"{place['bin']}:{os.environ['PATH']}",
         "HOME": str(place["home"]),
@@ -64,9 +79,11 @@ def hermes_env(config):
         "TERMINAL_CWD": str(place["workspace"]),
         # An empty CODEX_HOME stops Hermes importing or self-healing from the owner's ~/.codex/auth.json.
         "CODEX_HOME": str(place["codex_home"]),
-        "PYTHONPATH": f"{Path(__file__).resolve().parent / 'hermes_site'}:{BENCH / 'pydeps'}",
+        "PYTHONPATH": ":".join(str(path) for path in site),
         "PYTHONDONTWRITEBYTECODE": "1",
         "MEM0_TELEMETRY": "False",
+        # Else Hermes pip-installs a provider SDK it finds missing into its own venv, the owner's ~/.hermes.
+        "HERMES_DISABLE_LAZY_INSTALLS": "1",
         # Without this Hermes runs `gh auth token`, which reaches the keyring over D-Bus even with a throwaway HOME,
         # and stores the owner's GitHub token in the benchmark's auth.json as a Copilot credential.
         "DBUS_SESSION_BUS_ADDRESS": "disabled:",
@@ -108,18 +125,31 @@ def write_config(config, model, provider, tag):
         (place["hermes_home"] / "supermemory.json").write_text(json.dumps({"container_tag": tag}, indent=2) + "\n")
     if config == "mem0":
         (place["hermes_home"] / "mem0.json").write_text(json.dumps({"user_id": tag}, indent=2) + "\n")
+    # Retain off for both: the questions and answers of a run must not become memories the next question reads.
+    if config == "hindsight":
+        (place["hermes_home"] / "hindsight").mkdir(exist_ok=True)
+        settings = {"mode": "local_external", "api_url": HINDSIGHT_URL, "bank_id": tag, "auto_retain": False,
+                    "recall_indicator": False, "retain_indicator": False}
+        (place["hermes_home"] / "hindsight/config.json").write_text(json.dumps(settings, indent=2) + "\n")
+    if config == "honcho":
+        # wcatbench wrote every record as a message of peer "owner", so Honcho's conclusions are the owner's about
+        # itself; with the AI peer observing no one, Hermes reads exactly those.
+        host = {"enabled": True, "workspace": tag, "peerName": "owner", "pinPeerName": True, "aiPeer": "hermes",
+                "saveMessages": False,
+                "observation": {"user": {"observeMe": True, "observeOthers": False},
+                                "ai": {"observeMe": False, "observeOthers": False}}}
+        settings = {"baseUrl": HONCHO_URL, "hosts": {"hermes": host}}
+        (place["hermes_home"] / "honcho.json").write_text(json.dumps(settings, indent=2) + "\n")
 
 
 def seed_memo(place, records, model):
     memo = Memo("memo", place["memo"])
     write_sources(records, place["memo"] / "data")
     folder, _ = memo.json("folders", "add", str(place["memo"] / "data/notes"), "--format", "markdown")
-    configure_mail(memo, place["memo"] / "data")
     memo.json("sync", "--only", "notes", "--no-embed")
-    memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01", "--limit", "5000", "--no-embed")
+    load_mail(memo, place["memo"] / "data")
     memo.json("models", "download", model)
-    memo.json("sync", "--since-time", "2000-01-01", "--limit", "5000", "--source", "email:synthetic",
-              "--folder", folder["item"]["id"])
+    embed(memo, folder["item"]["id"])
     real = subprocess.run(["which", "memo"], capture_output=True, text=True, check=True).stdout.strip()
     # memo gets its own throwaway folders; the wrapper keeps them out of Hermes's environment.
     exports = "".join(f"export {key}='{value}'\n" for key, value in isolated_env(place["memo"]).items()
@@ -196,7 +226,7 @@ def normalize(reply, names):
     cited = [str(item) for item in cited] if isinstance(cited, list) else [str(cited)]
     mapped = []
     for item in cited:
-        match = re.fullmatch(r"(?:.*/)?(r\d{4})(?:\.md)?", item.strip())
+        match = re.fullmatch(r"(?:.*/)?(r\d{4,})(?:\.md)?", item.strip())
         source = names.get(match.group(1)) if match else None
         mapped.append(source or item)
     return {"answer": answer, "citations": sorted(set(mapped))}, None

@@ -1,0 +1,25 @@
+{
+  "setup": "Hermes alone",
+  "dataset": {
+    "fixture_version": 2,
+    "seed": 20261105,
+    "records": 10000,
+    "questions": 50
+  },
+  "corpus_sha256": "e99e1e524875a7ca087f90952f061aac70856bdfbbe56d3915de1bd4c1f6b8f0",
+  "agent": "Hermes 0.21.0",
+  "model": "claude-sonnet-5-5",
+  "reasoning": "medium",
+  "store": "",
+  "plugin": null,
+  "toolsets": "file,terminal,memory",
+  "prompt_sha256": null,
+  "scores": {
+    "engine": "Hermes + alone, claude-sonnet-5-5, 10K",
+    "correct": 49,
+    "cited_correctly": 28,
+    "stale": 1,
+    "correct_strict": 40
+  },
+  "raw_transcripts": "~/.cache/wirecat-bench-10k/runs/hermes10k-alone/raw"
+}
