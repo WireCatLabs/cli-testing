@@ -57,6 +57,9 @@ messages, and how many of each it finds, totals only.
 
 [Startup stages](startup/README.md) separates process start, built store import, empty-store opening and text-model loading.
 
+[A larger embedding model](embedding-models/README.md): multilingual-e5-large 8-bit downloads with its pinned hashes,
+gives 1024-length vectors and embeds about 3.4 chunks a second, about eight times slower than e5-small (2026-11-07).
+
 [Vector index](vector-index/README.md) compares Core's current vector scan with an index on chunks, int8 vectors,
 sqlite-vec, usearch, hnswlib and packed blocks of vectors, on synthetic stores of 100k and 1M chunks (2026-10-25).
 Its [Core implementation](vector-index/README.md#core-implementation-cli-core2001) section measures the `vec0` index
