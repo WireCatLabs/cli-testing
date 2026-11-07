@@ -1,0 +1,37 @@
+{
+  "engine": "OpenClaw 2026.10.9 + Honcho 3.5.0, claude-sonnet-5-5, v3",
+  "correct": 48,
+  "cited_correctly": 4,
+  "stale": 1,
+  "correct_strict": 48,
+  "by_family": {
+    "money": {
+      "questions": 13,
+      "correct": 13,
+      "correct_strict": 13,
+      "cited_correctly": 0,
+      "stale": 0
+    },
+    "calendar": {
+      "questions": 16,
+      "correct": 16,
+      "correct_strict": 16,
+      "cited_correctly": 0,
+      "stale": 0
+    },
+    "people and decisions": {
+      "questions": 17,
+      "correct": 15,
+      "correct_strict": 15,
+      "cited_correctly": 0,
+      "stale": 1
+    },
+    "not recorded": {
+      "questions": 4,
+      "correct": 4,
+      "correct_strict": 4,
+      "cited_correctly": 4,
+      "stale": 0
+    }
+  }
+}

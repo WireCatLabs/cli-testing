@@ -228,7 +228,11 @@ def main():
     runs["words, question verbatim (no model)"] = query_all(memo, names, queries, "words-verbatim", [],
                                                              lambda text: text, raw)
 
-    timings["model_download_s"] = memo.json("models", "download", args.model)[1]
+    # EmbeddingGemma comes under the Gemma Terms of Use; the owner accepted them for this benchmark (7 Nov 2026).
+    terms = ["--accept-terms"] if args.model == "embeddinggemma" else []
+    timings["model_download_s"] = memo.json("models", "download", args.model, *terms)[1]
+    # memo embeds with MEMO_EMBEDDING_MODEL (default e5-small), not with whichever model was downloaded last.
+    memo.env["MEMO_EMBEDDING_MODEL"] = args.model
     embedded, timings["sync_embed_s"] = embed(memo, folder["item"]["id"])
     size_embedded = store_bytes(memo.json("store", "info")[0]["item"])
     runs[f"hybrid ({args.model}), question verbatim"] = query_all(memo, names, queries, "hybrid-verbatim", [],
