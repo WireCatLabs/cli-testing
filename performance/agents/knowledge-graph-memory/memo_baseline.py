@@ -57,8 +57,21 @@ class Memo:
         return json.loads(out), elapsed
 
 
+# A mail's Takeout id is this plus the record's index; memo's ref ends with it.
+TAKEOUT_ID = 1_000_000_000_000_000
+
+
 def name_of(index):
     return f"r{index + 1:04}"
+
+
+def sender(text):
+    """The record's author as the From line. One name on every mail put the same words at the head of each piece memo
+    embeds, and its meaning search ranked the answers lower than a real mailbox would (median rank 16 against 6)."""
+    found = re.search(r"(?:^|\. )([A-Z][a-z]+) ([A-Z][a-z]+):", text)
+    if not found:
+        return "Notifications <notifications@example.test>"
+    return f"{found.group(1)} {found.group(2)} <{found.group(1).lower()}.{found.group(2).lower()}@example.test>"
 
 
 def mbox_entry(index, record):
@@ -66,12 +79,12 @@ def mbox_entry(index, record):
     first = int(re.search(r"/thread-(\d+)/", record["id"]).group(1)) - 1
     reply = f"In-Reply-To: <{name_of(first)}@example.test>\n" if first != index else ""
     # Takeout's "From <gmail id>@xxx <asctime>" line is what memo's mbox reader requires.
-    return (f"From {1_000_000_000_000_000 + index}@xxx {when.strftime('%a %b %d %H:%M:%S +0000 %Y')}\n"
+    return (f"From {TAKEOUT_ID + index}@xxx {when.strftime('%a %b %d %H:%M:%S +0000 %Y')}\n"
             f"X-GM-THRID: {2_000_000_000_000_000 + first}\n"
             "X-Gmail-Labels: Inbox,Opened\n"
             f"Message-ID: <{name_of(index)}@example.test>\n{reply}"
             f"Date: {when.strftime('%a, %d %b %Y %H:%M:%S +0000')}\n"
-            "From: Synthetic Sender <sender@example.test>\n"
+            f"From: {sender(record['text'])}\n"
             "To: synthetic@example.test\n"
             f"Subject: {name_of(index)}\n"
             "Content-Type: text/plain; charset=utf-8\n\n"
@@ -153,10 +166,17 @@ def or_query(question):
     return " OR ".join(f'"{word}"' for word in words)
 
 
+def hit_name(item):
+    """A mail by its ref: its title is the thread's, so the first mail of a thread was scored as its latest reply."""
+    if item.get("ref", "").startswith("msg:email/"):
+        return name_of(int(item["ref"].rsplit("/", 1)[1]) - TAKEOUT_ID)
+    return item.get("title", "")
+
+
 def search(memo, names, query, extra, raw_path):
     reply, elapsed = memo.json("search", "all", query, "--limit", "10", *extra)
     raw_path.write_text(json.dumps(reply, ensure_ascii=False, indent=2) + "\n")
-    hits = [names.get(item.get("title", ""), f"unmapped:{item.get('ref')}") for item in reply["items"]]
+    hits = [names.get(hit_name(item), f"unmapped:{item.get('ref')}") for item in reply["items"]]
     return hits, elapsed, reply["meta"].get("complete", True)
 
 

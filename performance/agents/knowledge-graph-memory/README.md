@@ -655,6 +655,13 @@ the same words.
 - A question that shares no word with its source, where meaning alone must find it.
 - The published, bundled package: this was a local build.
 
+## Memo and questions in other words (7 November 2026)
+
+Why memo `search all` found 0.34 of the reworded v3 questions' answers at @10 where e5-small alone found 0.71, and
+the cli-core ranking change that takes it to 0.44 without moving the plain v3 or 10K sets:
+[hybrid-ranking/README.md](hybrid-ranking/README.md). It also changed this harness: each mail's sender is now its
+record's author, and a mail hit is scored by its ref, not its thread's title.
+
 ## What remains unmeasured
 
 The Memo retrieval baseline above measures Memo's search only. No engine answer accuracy, token usage,

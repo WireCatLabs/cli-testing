@@ -1,0 +1,12 @@
+memo-before/dist/bin/memo.js | kg-fixture-v3-paraphrased | reworded | verbatim | n=17 @1=0.14 @5=0.36 @10=0.36 p50=1.12s
+memo-before/dist/bin/memo.js | kg-fixture-v3 | plain | verbatim | n=46 @1=0.34 @5=0.64 @10=0.71 p50=1.12s
+memo-before/dist/bin/memo.js | kg-fixture-10k | plain | verbatim | n=40 @1=0.72 @5=1.00 @10=1.00 p50=1.18s
+memo-before/dist/bin/memo.js | kg-fixture-v3-paraphrased | reworded | or | n=17 @1=0.14 @5=0.36 @10=0.42 p50=1.12s
+memo-before/dist/bin/memo.js | kg-fixture-v3 | plain | or | n=46 @1=0.54 @5=0.82 @10=0.87 p50=1.14s
+memo-before/dist/bin/memo.js | kg-fixture-10k | plain | or | n=40 @1=0.68 @5=0.97 @10=1.00 p50=1.15s
+memo-after/dist/bin/memo.js | kg-fixture-v3-paraphrased | reworded | verbatim | n=17 @1=0.14 @5=0.44 @10=0.44 p50=1.11s
+memo-after/dist/bin/memo.js | kg-fixture-v3 | plain | verbatim | n=46 @1=0.34 @5=0.68 @10=0.75 p50=1.15s
+memo-after/dist/bin/memo.js | kg-fixture-10k | plain | verbatim | n=40 @1=0.72 @5=1.00 @10=1.00 p50=1.15s
+memo-after/dist/bin/memo.js | kg-fixture-v3-paraphrased | reworded | or | n=17 @1=0.14 @5=0.36 @10=0.42 p50=1.18s
+memo-after/dist/bin/memo.js | kg-fixture-v3 | plain | or | n=46 @1=0.54 @5=0.82 @10=0.87 p50=1.18s
+memo-after/dist/bin/memo.js | kg-fixture-10k | plain | or | n=40 @1=0.68 @5=0.97 @10=1.00 p50=1.16s
