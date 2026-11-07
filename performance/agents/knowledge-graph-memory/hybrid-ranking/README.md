@@ -7,7 +7,7 @@ memo 0.131.47 `search all` found 0.34 of the answers in its first 10 hits. The s
 over each record's text (`../eval_embeddings.py`), found 0.71. The question: what in memo's word + meaning search
 loses the reworded questions, and is there a ranking change in cli-core that helps them without hurting the plain
 v3 questions and the older 10K set? It fed cli-core PR
-[#2609](https://github.com/WireCatLabs/cli-core/pull/2609).
+[#2620](https://github.com/WireCatLabs/cli-core/pull/2620).
 
 ## Setup
 
