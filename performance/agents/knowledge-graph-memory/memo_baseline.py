@@ -122,7 +122,9 @@ def load_mail(memo, data, mail_binary="mail"):
     profile = {"address": "synthetic@example.test", "imap_host": "imap.gmail.com"}
     config.write_text(json.dumps({"profiles": {"synthetic": profile}}, indent=2) + "\n")
     mail = Memo(mail_binary, Path(memo.env["HOME"]).parent)
-    reply, seconds = mail.json("synthetic", "messages", "import", str(data / "mail.mbox"), "--limit", "50000")
+    # mail 0.18.0 renamed --limit to --max-messages.
+    cap = "--max-messages" if "--max-messages" in mail.run("synthetic", "messages", "import", "--help")[0] else "--limit"
+    reply, seconds = mail.json("synthetic", "messages", "import", str(data / "mail.mbox"), cap, "50000")
     if not reply["item"]["complete"]:
         raise RuntimeError(f"mail import left {reply['item']['remaining']} emails")
     return reply["item"], seconds
