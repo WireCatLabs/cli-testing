@@ -1,6 +1,6 @@
 // One streaming import in a fresh process: node import.mjs <cli-core package dir> <file.jsonl> <store.db>
 // Prints one JSON line: the receipt's counts, the wall time and the peak memory of this process.
-import { createReadStream, statSync } from "node:fs"
+import { createReadStream, readFileSync, statSync } from "node:fs"
 import { homedir } from "node:os"
 import { join, resolve } from "node:path"
 import { pathToFileURL } from "node:url"
@@ -35,6 +35,8 @@ clearInterval(sampler)
 const mb = (bytes) => Math.round((bytes / 1024 / 1024) * 10) / 10
 process.stdout.write(
   `${JSON.stringify({
+    core_version: JSON.parse(readFileSync(join(core, "package.json"), "utf8")).version,
+    node: process.version,
     file_mb: mb(statSync(file).size),
     ms: Math.round(ms),
     rss_after_open_mb: mb(baseline),

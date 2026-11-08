@@ -363,6 +363,7 @@ Evidence: [topic-less replies](topicless-replies/README.md), [mail meaning index
 ## Business data in `search all`
 
 `search all` reads invoices, wallets and other business data in its `business` lane. On stores filled by the
-streaming records import with 1,000, 10,000 and 100,000 synthetic records, one lane call took 1–2 ms, 6–11 ms and
-58–131 ms. A query that finds one invoice costs about as much as one that finds nothing, so the time follows the
-store's size, not the hits ([business-lane](business-lane/README.md), 2026-11-08).
+streaming records import with 1,000 to 300,000 synthetic records, one warm lane call took about 1 ms at 1,000
+records, 60–130 ms at 100,000 and 250–330 ms at 300,000. A query that finds one invoice costs about as much as one
+that finds nothing, so the time follows the store's size, not the hits
+([business-lane](business-lane/README.md), 2026-11-08).

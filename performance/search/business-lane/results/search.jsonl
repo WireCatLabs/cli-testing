@@ -1,12 +1,16 @@
-{"records":1000,"case":"word in every invoice number","query":"INV","first_ms":9.3,"warm_median_ms":1.8,"hits":20,"has_more":true,"kinds":["invoice"],"skipped":[]}
-{"records":1000,"case":"one invoice number","query":"INV-000123","first_ms":1.6,"warm_median_ms":0.9,"hits":1,"has_more":false,"kinds":["invoice"],"skipped":[]}
-{"records":1000,"case":"word in every wallet name","query":"Bench","first_ms":1.4,"warm_median_ms":1.2,"hits":10,"has_more":false,"kinds":["wallet"],"skipped":[]}
-{"records":1000,"case":"word nothing holds","query":"zebra","first_ms":1.2,"warm_median_ms":0.9,"hits":0,"has_more":false,"kinds":[],"skipped":[]}
-{"records":10000,"case":"word in every invoice number","query":"INV","first_ms":16.7,"warm_median_ms":10.6,"hits":20,"has_more":true,"kinds":["invoice"],"skipped":[]}
-{"records":10000,"case":"one invoice number","query":"INV-001248","first_ms":6.9,"warm_median_ms":6.9,"hits":1,"has_more":false,"kinds":["invoice"],"skipped":[]}
-{"records":10000,"case":"word in every wallet name","query":"Bench","first_ms":8.5,"warm_median_ms":8,"hits":10,"has_more":false,"kinds":["wallet"],"skipped":[]}
-{"records":10000,"case":"word nothing holds","query":"zebra","first_ms":6.7,"warm_median_ms":6.4,"hits":0,"has_more":false,"kinds":[],"skipped":[]}
-{"records":100000,"case":"word in every invoice number","query":"INV","first_ms":74.5,"warm_median_ms":82.9,"hits":20,"has_more":true,"kinds":["invoice"],"skipped":[]}
-{"records":100000,"case":"one invoice number","query":"INV-012498","first_ms":50.5,"warm_median_ms":57.8,"hits":1,"has_more":false,"kinds":["invoice"],"skipped":[]}
-{"records":100000,"case":"word in every wallet name","query":"Bench","first_ms":59,"warm_median_ms":81.4,"hits":10,"has_more":false,"kinds":["wallet"],"skipped":[]}
-{"records":100000,"case":"word nothing holds","query":"zebra","first_ms":110.2,"warm_median_ms":130.9,"hits":0,"has_more":false,"kinds":[],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":1000,"case":"word in every invoice number","query":"INV","first_ms":11.3,"warm_median_ms":1.7,"hits":20,"has_more":true,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":1000,"case":"one invoice number","query":"INV-000123","first_ms":1.6,"warm_median_ms":0.9,"hits":1,"has_more":false,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":1000,"case":"word in every wallet name","query":"Bench","first_ms":1.8,"warm_median_ms":1.1,"hits":10,"has_more":false,"kinds":["wallet"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":1000,"case":"word nothing holds","query":"zebra","first_ms":1.5,"warm_median_ms":1.4,"hits":0,"has_more":false,"kinds":[],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":10000,"case":"word in every invoice number","query":"INV","first_ms":12.8,"warm_median_ms":7.2,"hits":20,"has_more":true,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":10000,"case":"one invoice number","query":"INV-001248","first_ms":5.1,"warm_median_ms":5.3,"hits":1,"has_more":false,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":10000,"case":"word in every wallet name","query":"Bench","first_ms":8.1,"warm_median_ms":5.5,"hits":10,"has_more":false,"kinds":["wallet"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":10000,"case":"word nothing holds","query":"zebra","first_ms":4.8,"warm_median_ms":4.5,"hits":0,"has_more":false,"kinds":[],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":100000,"case":"word in every invoice number","query":"INV","first_ms":276.5,"warm_median_ms":85,"hits":20,"has_more":true,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":100000,"case":"one invoice number","query":"INV-012498","first_ms":84.9,"warm_median_ms":71.6,"hits":1,"has_more":false,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":100000,"case":"word in every wallet name","query":"Bench","first_ms":80.6,"warm_median_ms":66.3,"hits":10,"has_more":false,"kinds":["wallet"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":100000,"case":"word nothing holds","query":"zebra","first_ms":58.4,"warm_median_ms":68.2,"hits":0,"has_more":false,"kinds":[],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":300000,"case":"word in every invoice number","query":"INV","first_ms":842.1,"warm_median_ms":333.2,"hits":20,"has_more":true,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":300000,"case":"one invoice number","query":"INV-037498","first_ms":258.4,"warm_median_ms":287.7,"hits":1,"has_more":false,"kinds":["invoice"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":300000,"case":"word in every wallet name","query":"Bench","first_ms":219.9,"warm_median_ms":264.5,"hits":10,"has_more":false,"kinds":["wallet"],"skipped":[]}
+{"core_version":"0.612.0","node":"v24.19.0","records":300000,"case":"word nothing holds","query":"zebra","first_ms":243.1,"warm_median_ms":246.8,"hits":0,"has_more":false,"kinds":[],"skipped":[]}

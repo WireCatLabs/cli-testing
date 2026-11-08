@@ -1,5 +1,6 @@
 // The business lane of `search all` on a seeded store: node search.mjs <cli-core package dir> <store.db> <records>
 // Prints one JSON line per query: the first call, the median of the warm calls, the hits and whether more were left.
+import { readFileSync } from "node:fs"
 import { homedir } from "node:os"
 import { join, resolve } from "node:path"
 import { pathToFileURL } from "node:url"
@@ -41,6 +42,8 @@ for (const query of QUERIES) {
   warm.sort((a, b) => a - b)
   process.stdout.write(
     `${JSON.stringify({
+      core_version: JSON.parse(readFileSync(join(core, "package.json"), "utf8")).version,
+      node: process.version,
       records,
       case: query.case,
       query: query.text,
