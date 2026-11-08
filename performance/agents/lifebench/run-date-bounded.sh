@@ -7,6 +7,7 @@
 #   run-date-bounded.sh changed   # how many contexts changed, so how much answering and judging costs
 #   run-date-bounded.sh answer    # answer the changed questions, reuse the rest; judge them; write the report
 #   run-date-bounded.sh report    # tables only
+# ONLY=e5-small (or embeddinggemma) limits a phase to one model.
 set -euo pipefail
 
 phase=${1:?search, changed, answer or report}
@@ -29,12 +30,15 @@ for person in "${persons[@]}"; do
   mkdir -p "$out"
   for model in "${models[@]}"; do
     read -r m short <<< "$model"
+    [[ -n ${ONLY:-} && $m != "$ONLY" ]] && continue
     label="hybrid ($m), question verbatim"
     search=$out/search-$m.json
     name=memo-$short-top20
     case $phase in
       search)
-        [[ -f $search ]] || flock "$LOCK" python3 -I -B context_search.py --baseline "$K/memo_baseline.py" \
+        # e5-small queries are light; Gemma's query embedding waits for the heavy lock.
+        lock=(); [[ $m == embeddinggemma ]] && lock=(flock "$LOCK")
+        [[ -f $search ]] || "${lock[@]}" python3 -I -B context_search.py --baseline "$K/memo_baseline.py" \
           --store "$B/lifebench-memo-0.131.57-$m-$suffix" --fixture "$fixture" --label "$label" --limit 40 \
           --before-ask --output "$search" ;;
       changed)
@@ -54,7 +58,7 @@ PY
     esac
   done
 done
-if [[ $phase == answer || $phase == report ]]; then
+if [[ -z ${ONLY:-} && ( $phase == answer || $phase == report ) ]]; then
   for person in "${persons[@]}"; do
     read -r p fixture suffix answers judged <<< "$person"
     out=$R/bounded/$p

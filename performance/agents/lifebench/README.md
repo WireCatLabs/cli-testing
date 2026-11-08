@@ -676,4 +676,8 @@ To resume after an interruption (every step skips what is already on disk):
 ```
 
 Search rows, answers and verdicts land one per line in `~/.cache/wirecat-bench/lifebench/runs/leaderboard-style/bounded/`
-(`*.partial.jsonl`). Results follow here when the run ends.
+(`*.partial.jsonl`). Results follow here when the run ends. `ONLY=e5-small` or `ONLY=embeddinggemma` limits a phase
+to one model (Gemma searches wait for the heavy lock; the tables need both).
+
+So far: e5-small searched with the bound for both persons; memo returned no record dated after the ask day (0 dropped
+by the script's own check), and the 20 records changed for 141 of fenghaoran's 348 questions and 134 of maxiulan's 352.
