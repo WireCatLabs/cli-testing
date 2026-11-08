@@ -16,3 +16,6 @@ What the shared command layer in cli-base and cli-core costs every command of ev
   npm, pnpm and bun installs on Linux, macOS and Windows, through bash, cmd and PowerShell. All pass after three fixes
   it found (pnpm 12's bin folder, PowerShell quoting into `.cmd`, bun's leftover `.exe`). The per-start check costs
   0.017 ms; loading it about 2 ms (2026-10-31).
+- [host-fetch-timer](host-fetch-timer/README.md): cli-base 0.85.0's `hostFetch` keeps each request's timeout timer
+  alive to its deadline. Routing tg's Bot API suites through it raised their peak memory from 0.7–1.6 GB to 3.2 GB.
+  Clearing the timer once the body is read (cli-base #534) brings it back to 0.7–1.8 GB (2026-11-08).
