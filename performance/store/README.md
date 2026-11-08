@@ -24,8 +24,10 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   bring back rows the damage destroyed. Its [What can happen again](integrity/README.md#what-can-happen-again)
   lists the risks that remain after the fix (2026-11-08). S4 adds T2 to T16, P2 and role writers for tg, mail and
   memo: nothing a CLI does broke cli-core 0.611.0; deleting `-shm`, swapping `-wal` and a sync client did; `store
-  recover run` lost 50 to 300 committed rows in each of 6 recoveries and reported them in none (BUG-627)
-  (2026-11-08).
+  recover run` lost 50 to 300 committed rows in each of 6 recoveries and reported them in none (BUG-627) (2026-11-08).
+  [refill.mjs](integrity/README.md#refillmjs-ordinary-syncs-after-the-recovery): once the recovery marks what was held
+  from a day before the last passing deep check as not fetched, one ordinary sync brought back all 291 messages a hole
+  took; on 0.613.0, 200 were still missing after 25 syncs.
 - [records-jsonl-stream](records-jsonl-stream/README.md) — the streaming JSONL records import (cli-core 0.612.0),
   1,000 to 300,000 synthetic business records: peak memory levels off at 340–365 MB from 100,000 records while the
   file triples, so large imports need no chunking advice for memory (2026-11-08).
