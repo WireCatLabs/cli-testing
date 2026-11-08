@@ -94,6 +94,12 @@ gives a hit only words found the cosine of the hit above or below it in its own 
 - Giving words-only hits a cosine brings them back onto the page, more than memo 0.131.50 had. It costs one cited
   source on q04: two words-only mails move ahead of it, and it goes from 9th to 11th.
 
+## Rank fusion across sources (8 November, cli-core#2742)
+
+Replacing #2667's neighbour cosine with reciprocal rank fusion of a words rank and a real cosine rank: it wins with
+e5-small (reworded @10 0.529 → 0.618) and loses with EmbeddingGemma (0.718 → 0.627), so it does not ship. Details,
+every variant and the scripts: [fusion/](fusion/README.md).
+
 ## What was not measured
 
 - A build of cli-core with the fix: the numbers come from the bundle patch.
