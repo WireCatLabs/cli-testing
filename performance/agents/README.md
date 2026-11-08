@@ -17,7 +17,8 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
 
 - [lifebench](lifebench/README.md) — LifeBench 2.0 (public, synthetic) English phone data in memo, search only, no
   answer model: memo hybrid with e5-small finds an evidence record in the first 10 for 70% of one persona's 288
-  answerable questions (recall@10 0.32); EmbeddingGemma alone 76% (0.38) (2026-11-08).
+  answerable questions (recall@10 0.32); EmbeddingGemma alone 76% (0.38) (2026-11-08). Agent pilot: OpenClaw +
+  Claude Sonnet 5.5 on 46 questions, LifeBench's deepseek-chat judge: memo 93%, plain files 96%, $5.05 and $4.23.
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).

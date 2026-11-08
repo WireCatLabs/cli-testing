@@ -1,0 +1,506 @@
+[
+  {
+    "id": "fenghaoran-q003",
+    "kind": "gold",
+    "expected": "CORRECT",
+    "generated": "Python for Financial Big Data Analysis",
+    "question": "I went to Shenzhen to meet a friend earlier, and he gave me a book about Python at the coffee shop downstairs from his company. Do you remember the name of that book?",
+    "ask_time": "2025-03-15",
+    "categories": ["Single_hop"],
+    "answer": "Python for Financial Big Data Analysis",
+    "score_points": [
+      {
+        "description": "Correctly pointed out that the friend is Zhang Mingxuan (based on the person information in the notes and photos)",
+        "score": 5
+      },
+      {
+        "description": "Correctly answered that the book title is 'Python for Financial Big Data Analysis' (based on note contents).",
+        "score": 5
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q003",
+    "kind": "paraphrase",
+    "expected": "CORRECT",
+    "generated": "Your friend gave you the book 'Python for Financial Big Data Analysis' at the café below his office in Shenzhen.",
+    "question": "I went to Shenzhen to meet a friend earlier, and he gave me a book about Python at the coffee shop downstairs from his company. Do you remember the name of that book?",
+    "ask_time": "2025-03-15",
+    "categories": ["Single_hop"],
+    "answer": "Python for Financial Big Data Analysis",
+    "score_points": [
+      {
+        "description": "Correctly pointed out that the friend is Zhang Mingxuan (based on the person information in the notes and photos)",
+        "score": 5
+      },
+      {
+        "description": "Correctly answered that the book title is 'Python for Financial Big Data Analysis' (based on note contents).",
+        "score": 5
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q003",
+    "kind": "wrong",
+    "expected": "WRONG",
+    "generated": "It was 'Python for Data Analysis' by Wes McKinney.",
+    "question": "I went to Shenzhen to meet a friend earlier, and he gave me a book about Python at the coffee shop downstairs from his company. Do you remember the name of that book?",
+    "ask_time": "2025-03-15",
+    "categories": ["Single_hop"],
+    "answer": "Python for Financial Big Data Analysis",
+    "score_points": [
+      {
+        "description": "Correctly pointed out that the friend is Zhang Mingxuan (based on the person information in the notes and photos)",
+        "score": 5
+      },
+      {
+        "description": "Correctly answered that the book title is 'Python for Financial Big Data Analysis' (based on note contents).",
+        "score": 5
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q115",
+    "kind": "gold",
+    "expected": "CORRECT",
+    "generated": "45 minutes",
+    "question": "In June, on the morning Feng Haoran called Zheng Wenbo, the previous afternoon he had done a rehabilitation activity prescribed by the doctor. How long did this activity last?",
+    "ask_time": "2025-12-31",
+    "categories": ["Multi_hop", "Temporal"],
+    "answer": "45 minutes",
+    "score_points": [
+      {
+        "description": "Correctly identified that the date Feng Haoran called Zheng Wenbo was June 18, 2025, thereby confirming the previous day was June 17, 2025.",
+        "score": 2
+      },
+      {
+        "description": "Correctly found the rehabilitation activity instructed by the doctor on June 17, 2025, with the evidence being the schedule event 'Doctor-ordered rehabilitation activity'",
+        "score": 3
+      },
+      {
+        "description": "Correctly calculated the duration as 45 minutes from the start_time (15:45) and end_time (16:30) of the calendar entry.",
+        "score": 5
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q115",
+    "kind": "paraphrase",
+    "expected": "CORRECT",
+    "generated": "The doctor-ordered rehabilitation session on June 17 ran from 15:45 to 16:30, so three quarters of an hour.",
+    "question": "In June, on the morning Feng Haoran called Zheng Wenbo, the previous afternoon he had done a rehabilitation activity prescribed by the doctor. How long did this activity last?",
+    "ask_time": "2025-12-31",
+    "categories": ["Multi_hop", "Temporal"],
+    "answer": "45 minutes",
+    "score_points": [
+      {
+        "description": "Correctly identified that the date Feng Haoran called Zheng Wenbo was June 18, 2025, thereby confirming the previous day was June 17, 2025.",
+        "score": 2
+      },
+      {
+        "description": "Correctly found the rehabilitation activity instructed by the doctor on June 17, 2025, with the evidence being the schedule event 'Doctor-ordered rehabilitation activity'",
+        "score": 3
+      },
+      {
+        "description": "Correctly calculated the duration as 45 minutes from the start_time (15:45) and end_time (16:30) of the calendar entry.",
+        "score": 5
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q115",
+    "kind": "wrong",
+    "expected": "WRONG",
+    "generated": "It lasted 30 minutes, from 15:45 to 16:15.",
+    "question": "In June, on the morning Feng Haoran called Zheng Wenbo, the previous afternoon he had done a rehabilitation activity prescribed by the doctor. How long did this activity last?",
+    "ask_time": "2025-12-31",
+    "categories": ["Multi_hop", "Temporal"],
+    "answer": "45 minutes",
+    "score_points": [
+      {
+        "description": "Correctly identified that the date Feng Haoran called Zheng Wenbo was June 18, 2025, thereby confirming the previous day was June 17, 2025.",
+        "score": 2
+      },
+      {
+        "description": "Correctly found the rehabilitation activity instructed by the doctor on June 17, 2025, with the evidence being the schedule event 'Doctor-ordered rehabilitation activity'",
+        "score": 3
+      },
+      {
+        "description": "Correctly calculated the duration as 45 minutes from the start_time (15:45) and end_time (16:30) of the calendar entry.",
+        "score": 5
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q173",
+    "kind": "gold",
+    "expected": "CORRECT",
+    "generated": "March 15, 2025",
+    "question": "Feng Haoran met with MBA group members at Cotti Coffee in mid-March to repair the relationship. What was the exact date?",
+    "ask_time": "2025-12-31",
+    "categories": ["Single_hop", "Conflict"],
+    "answer": "March 15, 2025",
+    "score_points": [
+      {
+        "description": "Identified that the calendar event clearly shows an activity to repair the relationship through MBA group communication on March 15, 2025.",
+        "score": 4
+      },
+      {
+        "description": "From agent_chat, it is inferred that on March 15, 2025, (he/she) took the initiative to apologize and mend the relationship at Cotti Coffee.",
+        "score": 3
+      },
+      {
+        "description": "Excluding the interference from the note on March 16, 2025 (Sunday), correctly identify the date referred to in the question as March 15.",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q173",
+    "kind": "paraphrase",
+    "expected": "CORRECT",
+    "generated": "It was on 2025-03-15, a Saturday, at Cotti Coffee.",
+    "question": "Feng Haoran met with MBA group members at Cotti Coffee in mid-March to repair the relationship. What was the exact date?",
+    "ask_time": "2025-12-31",
+    "categories": ["Single_hop", "Conflict"],
+    "answer": "March 15, 2025",
+    "score_points": [
+      {
+        "description": "Identified that the calendar event clearly shows an activity to repair the relationship through MBA group communication on March 15, 2025.",
+        "score": 4
+      },
+      {
+        "description": "From agent_chat, it is inferred that on March 15, 2025, (he/she) took the initiative to apologize and mend the relationship at Cotti Coffee.",
+        "score": 3
+      },
+      {
+        "description": "Excluding the interference from the note on March 16, 2025 (Sunday), correctly identify the date referred to in the question as March 15.",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q173",
+    "kind": "wrong",
+    "expected": "WRONG",
+    "generated": "March 17, 2025",
+    "question": "Feng Haoran met with MBA group members at Cotti Coffee in mid-March to repair the relationship. What was the exact date?",
+    "ask_time": "2025-12-31",
+    "categories": ["Single_hop", "Conflict"],
+    "answer": "March 15, 2025",
+    "score_points": [
+      {
+        "description": "Identified that the calendar event clearly shows an activity to repair the relationship through MBA group communication on March 15, 2025.",
+        "score": 4
+      },
+      {
+        "description": "From agent_chat, it is inferred that on March 15, 2025, (he/she) took the initiative to apologize and mend the relationship at Cotti Coffee.",
+        "score": 3
+      },
+      {
+        "description": "Excluding the interference from the note on March 16, 2025 (Sunday), correctly identify the date referred to in the question as March 15.",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q294",
+    "kind": "gold",
+    "expected": "CORRECT",
+    "generated": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+    "question": "What is my personal best pace for a 10 km run?",
+    "ask_time": "2025-09-10",
+    "categories": ["Single_hop", "Pattern_recognition(Non-declarative)", "Knowledge_update"],
+    "answer": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+    "score_points": [
+      {
+        "description": "Correctly answered that the pace is 5 min 58 sec / km.",
+        "score": 5
+      },
+      {
+        "description": "Pointed out that the pace was calculated based on a 10K time of 59 minutes 42 seconds.",
+        "score": 3
+      },
+      {
+        "description": "Explicitly note that this pace is a personal best",
+        "score": 2
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q294",
+    "kind": "paraphrase",
+    "expected": "CORRECT",
+    "generated": "Your best 10K pace is about 5:58 per km, from the 59:42 test run at the end of August.",
+    "question": "What is my personal best pace for a 10 km run?",
+    "ask_time": "2025-09-10",
+    "categories": ["Single_hop", "Pattern_recognition(Non-declarative)", "Knowledge_update"],
+    "answer": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+    "score_points": [
+      {
+        "description": "Correctly answered that the pace is 5 min 58 sec / km.",
+        "score": 5
+      },
+      {
+        "description": "Pointed out that the pace was calculated based on a 10K time of 59 minutes 42 seconds.",
+        "score": 3
+      },
+      {
+        "description": "Explicitly note that this pace is a personal best",
+        "score": 2
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q294",
+    "kind": "wrong",
+    "expected": "WRONG",
+    "generated": "Your best 10K pace is 6:15 per km, from a 1:02:30 run in July.",
+    "question": "What is my personal best pace for a 10 km run?",
+    "ask_time": "2025-09-10",
+    "categories": ["Single_hop", "Pattern_recognition(Non-declarative)", "Knowledge_update"],
+    "answer": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+    "score_points": [
+      {
+        "description": "Correctly answered that the pace is 5 min 58 sec / km.",
+        "score": 5
+      },
+      {
+        "description": "Pointed out that the pace was calculated based on a 10K time of 59 minutes 42 seconds.",
+        "score": 3
+      },
+      {
+        "description": "Explicitly note that this pace is a personal best",
+        "score": 2
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q321",
+    "kind": "gold",
+    "expected": "CORRECT",
+    "generated": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+    "question": "I recently won the company innovation award and want to celebrate with friends. I plan to treat everyone to dinner on the evening of December 16. How does that arrangement sound?",
+    "ask_time": "2025-12-31",
+    "categories": ["Multi_hop", "Temporal", "Hidden_info"],
+    "answer": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+    "score_points": [
+      {
+        "description": "Identified that December 16 is Tuesday, and Feng Haoran has a daily CFA Level II review plan scheduled for 19:00-21:00, which conflicts with the evening gathering time.",
+        "score": 4
+      },
+      {
+        "description": "Identified that Feng Haoran has enrolled in an ESG course, which starts on December 15. It adds to his study workload, making his evenings even tighter.",
+        "score": 3
+      },
+      {
+        "description": "Reached the correct conclusion: hosting a dinner on the evening of December 16 was not appropriate.",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q321",
+    "kind": "paraphrase",
+    "expected": "CORRECT",
+    "generated": "I would not pick that evening. December 16 is a Tuesday, and you study for CFA Level II every evening from 19:00 to 21:00; your ESG course has just started too. A weekend would work better.",
+    "question": "I recently won the company innovation award and want to celebrate with friends. I plan to treat everyone to dinner on the evening of December 16. How does that arrangement sound?",
+    "ask_time": "2025-12-31",
+    "categories": ["Multi_hop", "Temporal", "Hidden_info"],
+    "answer": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+    "score_points": [
+      {
+        "description": "Identified that December 16 is Tuesday, and Feng Haoran has a daily CFA Level II review plan scheduled for 19:00-21:00, which conflicts with the evening gathering time.",
+        "score": 4
+      },
+      {
+        "description": "Identified that Feng Haoran has enrolled in an ESG course, which starts on December 15. It adds to his study workload, making his evenings even tighter.",
+        "score": 3
+      },
+      {
+        "description": "Reached the correct conclusion: hosting a dinner on the evening of December 16 was not appropriate.",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q321",
+    "kind": "wrong",
+    "expected": "WRONG",
+    "generated": "Sounds great: your evening of December 16 is free, so go ahead and book a restaurant.",
+    "question": "I recently won the company innovation award and want to celebrate with friends. I plan to treat everyone to dinner on the evening of December 16. How does that arrangement sound?",
+    "ask_time": "2025-12-31",
+    "categories": ["Multi_hop", "Temporal", "Hidden_info"],
+    "answer": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+    "score_points": [
+      {
+        "description": "Identified that December 16 is Tuesday, and Feng Haoran has a daily CFA Level II review plan scheduled for 19:00-21:00, which conflicts with the evening gathering time.",
+        "score": 4
+      },
+      {
+        "description": "Identified that Feng Haoran has enrolled in an ESG course, which starts on December 15. It adds to his study workload, making his evenings even tighter.",
+        "score": 3
+      },
+      {
+        "description": "Reached the correct conclusion: hosting a dinner on the evening of December 16 was not appropriate.",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q343",
+    "kind": "gold",
+    "expected": "CORRECT",
+    "generated": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+    "question": "On the afternoon of June 23, 2025, why did Feng Haoran specifically adjust the investment portfolios for Huang Siqi and Lin Zhihao?",
+    "ask_time": "2025-12-31",
+    "categories": ["Causal", "Single_hop"],
+    "answer": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+    "score_points": [
+      {
+        "description": "Indicate that the adjustment is directly related to the workshop on the morning of June 23, 2025.",
+        "score": 2
+      },
+      {
+        "description": "Accurately explained Huang Siqi's adjustment: 5% fixed income transferred to STAR 50 Index ETF.",
+        "score": 3
+      },
+      {
+        "description": "Accurately state Lin Zhihao's adjustment: increasing the allocation to gold ETF by 2%",
+        "score": 3
+      },
+      {
+        "description": "It is clear that the adjustment came from the inspiration of the seminar; without the seminar, there would have been no adjustment.",
+        "score": 2
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q343",
+    "kind": "paraphrase",
+    "expected": "CORRECT",
+    "generated": "Because of the seminar he went to that morning: its macro outlook and allocation ideas led him to move 5% of Huang Siqi's fixed income into the STAR 50 ETF and add 2% gold ETF for Lin Zhihao.",
+    "question": "On the afternoon of June 23, 2025, why did Feng Haoran specifically adjust the investment portfolios for Huang Siqi and Lin Zhihao?",
+    "ask_time": "2025-12-31",
+    "categories": ["Causal", "Single_hop"],
+    "answer": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+    "score_points": [
+      {
+        "description": "Indicate that the adjustment is directly related to the workshop on the morning of June 23, 2025.",
+        "score": 2
+      },
+      {
+        "description": "Accurately explained Huang Siqi's adjustment: 5% fixed income transferred to STAR 50 Index ETF.",
+        "score": 3
+      },
+      {
+        "description": "Accurately state Lin Zhihao's adjustment: increasing the allocation to gold ETF by 2%",
+        "score": 3
+      },
+      {
+        "description": "It is clear that the adjustment came from the inspiration of the seminar; without the seminar, there would have been no adjustment.",
+        "score": 2
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q343",
+    "kind": "wrong",
+    "expected": "WRONG",
+    "generated": "Because both clients called him that afternoon complaining about losses after a market drop, so he cut their equity exposure.",
+    "question": "On the afternoon of June 23, 2025, why did Feng Haoran specifically adjust the investment portfolios for Huang Siqi and Lin Zhihao?",
+    "ask_time": "2025-12-31",
+    "categories": ["Causal", "Single_hop"],
+    "answer": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+    "score_points": [
+      {
+        "description": "Indicate that the adjustment is directly related to the workshop on the morning of June 23, 2025.",
+        "score": 2
+      },
+      {
+        "description": "Accurately explained Huang Siqi's adjustment: 5% fixed income transferred to STAR 50 Index ETF.",
+        "score": 3
+      },
+      {
+        "description": "Accurately state Lin Zhihao's adjustment: increasing the allocation to gold ETF by 2%",
+        "score": 3
+      },
+      {
+        "description": "It is clear that the adjustment came from the inspiration of the seminar; without the seminar, there would have been no adjustment.",
+        "score": 2
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q221",
+    "kind": "declines",
+    "expected": "CORRECT",
+    "generated": "I cannot find any record of a science fiction movie at Wanda Cinema this afternoon, so I can't tell you its name.",
+    "question": "What is the name of the science fiction movie watched this afternoon at Wanda Cinema?",
+    "ask_time": "2025-09-24",
+    "categories": ["Unanswerable"],
+    "answer": "Unable to answer",
+    "score_points": [
+      {
+        "description": "Correctly judged that the question lacks necessary evidence and gave the conclusion 'unable to answer'",
+        "score": 10
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q221",
+    "kind": "made-up",
+    "expected": "WRONG",
+    "generated": "You watched 'Dune: Part Two' at Wanda Cinema this afternoon.",
+    "question": "What is the name of the science fiction movie watched this afternoon at Wanda Cinema?",
+    "ask_time": "2025-09-24",
+    "categories": ["Unanswerable"],
+    "answer": "Unable to answer",
+    "score_points": [
+      {
+        "description": "Correctly judged that the question lacks necessary evidence and gave the conclusion 'unable to answer'",
+        "score": 10
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q257",
+    "kind": "declines",
+    "expected": "CORRECT",
+    "generated": "Your records don't say what project problem Gao Yunfei mentioned on this morning's run.",
+    "question": "What exactly was the project problem at work that Gao Yunfei mentioned during this morning's run?",
+    "ask_time": "2025-12-29",
+    "categories": ["Unanswerable"],
+    "answer": "Unable to answer",
+    "score_points": [
+      {
+        "description": "Recognize that the evidence does not provide any information about the project difficulties Gao Yunfei mentioned.",
+        "score": 6
+      },
+      {
+        "description": "Correctly answer that you cannot answer, rather than fabricating or guessing specific content",
+        "score": 4
+      }
+    ]
+  },
+  {
+    "id": "fenghaoran-q257",
+    "kind": "made-up",
+    "expected": "WRONG",
+    "generated": "Gao Yunfei said his team's database migration was behind schedule and the client was threatening to pull out.",
+    "question": "What exactly was the project problem at work that Gao Yunfei mentioned during this morning's run?",
+    "ask_time": "2025-12-29",
+    "categories": ["Unanswerable"],
+    "answer": "Unable to answer",
+    "score_points": [
+      {
+        "description": "Recognize that the evidence does not provide any information about the project difficulties Gao Yunfei mentioned.",
+        "score": 6
+      },
+      {
+        "description": "Correctly answer that you cannot answer, rather than fabricating or guessing specific content",
+        "score": 4
+      }
+    ]
+  }
+]
