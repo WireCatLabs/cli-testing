@@ -2,6 +2,9 @@
 
 **Results so far, explained for a reader new to the test: [RESULTS.md](RESULTS.md).**
 
+Where memo's search loses what its own model finds, step by step, and the fix: [meaning-loss](meaning-loss/README.md)
+(2026-11-08).
+
 Memo searches stored notes, mail and messages, but that does not tell us whether a graph memory engine
 answers changing agreements more accurately. This fixture prepares a comparison with Hindsight first,
 Graphiti second and Cognee third. It asks whether better answers and citations justify another index,
