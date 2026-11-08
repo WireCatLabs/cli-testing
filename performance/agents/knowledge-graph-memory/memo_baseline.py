@@ -250,13 +250,13 @@ def main():
                                                              lambda text: text, raw)
 
     # EmbeddingGemma comes under the Gemma Terms of Use; the owner accepted them for this benchmark (7 Nov 2026).
-    terms = ["--accept-terms"] if args.model == "embeddinggemma" else []
+    terms = ["--accept-terms"] if args.model.startswith("embeddinggemma") else []
     timings["model_download_s"] = memo.json("models", "download", args.model, *terms)[1]
-    # A download does not choose the model. Memo with cli-memo #676 embeds with the one `models set` chose for every
-    # CLI; older memo read MEMO_EMBEDDING_MODEL (default e5-small).
+    # A download does not choose the model: memo embeds and searches with the one `models set` chose for every CLI
+    # (cli-memo #676). Memo before it always used e5-small: MEMO_EMBEDDING_MODEL, set here until 8 Nov 2026, was read by
+    # no memo version.
     if "set" in memo.run("models", "--help")[0].split():
         memo.json("models", "set", args.model)
-    memo.env["MEMO_EMBEDDING_MODEL"] = args.model
     embedded, timings["sync_embed_s"] = embed(memo, folder["item"]["id"])
     size_embedded = store_bytes(memo.json("store", "info")[0]["item"])
     runs[f"hybrid ({args.model}), question verbatim"] = query_all(memo, names, queries, "hybrid-verbatim", [],

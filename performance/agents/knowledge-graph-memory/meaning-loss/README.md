@@ -8,6 +8,8 @@ plain vector search with the same model over the same records reached about 0.71
 similarity floor, fusion, per-source caps, the model's prefixes, or something else. The answer decided what cli-core
 changes (IDEA-249). The fix is [cli-core#2665](https://github.com/WireCatLabs/cli-core/pull/2665).
 
+EmbeddingGemma inside memo, with these fixes merged, and the mail sender line it found: [gemma-in-memo](gemma-in-memo/README.md).
+
 ## Setup
 
 - Machine: AMD Ryzen AI 9 HX 470, 24 threads, 30 GB, Linux. Node 24.19.0, Python 3.14.

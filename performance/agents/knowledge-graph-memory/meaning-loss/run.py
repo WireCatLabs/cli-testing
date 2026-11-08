@@ -12,7 +12,7 @@ BIN = str(S / "memo-pkg/node_modules/@wirecat/cli-memo/dist/bin/memo.js")
 def main(label, env_pairs, limit="10"):
     memo = Memo(BIN, S / os.environ.get("STORE", "store") / "memo")
     memo.env.update(dict(env_pairs))
-    memo.env["MEMO_EMBEDDING_MODEL"] = "e5-small"
+    # memo 0.131.50 always embeds with e5-small; no MEMO_EMBEDDING_MODEL is needed.
     names = {f"r{i + 1:04}": json.loads(l)["id"] for i, l in enumerate((B / "kg-fixture-v3/corpus.jsonl").read_text().splitlines())}
     plain = {q["id"]: q["question"] for q in json.loads((B / "kg-fixture-v3/queries.json").read_text())}
     other = {q["id"]: q["question"] for q in json.loads((B / "kg-fixture-v3-paraphrased/queries.json").read_text())}
