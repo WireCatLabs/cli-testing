@@ -244,7 +244,12 @@ breaks. Budget: $10 in total for answers and judge.
   prompt. The prompt asks for reasoning in Chinese; it was left so. [judge.py](judge.py).
 - **Cost**: from each answer's token counts at Anthropic's list price for Sonnet 5.5 ($2 in, $10 out, $0.20 cache
   read, $2.50 cache write per million tokens). OpenClaw's own estimate is shown beside it; it is about 20% lower,
-  probably because it prices cache writes lower. The judge at OpenRouter's list price ($0.32 in, $0.89 out).
+  for a reason not checked. Cache writes are the 5-minute kind: the stored usage shows no 1-hour write in 701 answer
+  messages, and OpenClaw's `resolveCacheRetention` falls back to "short" for Anthropic when nothing is configured.
+  The judge at OpenRouter's list price ($0.32 in, $0.89 out). All are list prices, not the billed amounts.
+- **The `computer` tool**: OpenClaw offers its agents a desktop tool. Sonnet called it 3 times (once for memo, twice
+  for files: a screenshot and a wait); each call failed because the throwaway root has no gateway credentials, so
+  nothing reached a desktop. A full run should deny the tool.
 
 ```sh
 python3 -I pilot.py --fixture ~/.cache/wirecat-bench/lifebench/fixtures/fenghaoran \
@@ -277,8 +282,8 @@ judging.
 22 answers written by hand on 8 subset questions: for 6 answerable ones the gold answer, a paraphrase, and one with a
 wrong key value (a date two days off, another pace, a made-up reason); for 2 unanswerable ones a refusal and a
 made-up answer. deepseek-chat labelled all 22 as a careful reader would, with no split vote
-([judge-validation-deepseek.json](judge-validation-deepseek.json), $0.04). The items are clear-cut; partly right
-answers were not tested this way. In the run, no answer got a split vote (CORRECT and WRONG on the same answer); 4
+([judge-validation-deepseek.json](judge-validation-deepseek.json), $0.04). The items are short and clear-cut. The real
+answers run to several paragraphs; long answers that mix right and wrong claims were not tested this way. In the run, no answer got a split vote (CORRECT and WRONG on the same answer); 4
 votes failed (empty or unparseable reply after three tries) on 4 files answers, and the other two votes decided.
 
 A side note: an earlier draft of this pilot judged with Claude Haiku 5.5 and the English translation. It also agreed
@@ -320,7 +325,7 @@ The questions both setups got wrong, or one did:
 | Question | memo | files | What went wrong |
 | --- | --- | --- | --- |
 | q164 April health habits (Multi-hop, Pattern) | WRONG | WRONG | both described the parents' blood-pressure care; the gold is the owner's own five habits |
-| q173 date of the Cotti Coffee meeting (Conflict) | WRONG | right | memo saw both dates and chose a note written five days later (16 March); files weighed the calendar, photo and chat (15 March) |
+| q173 date of the Cotti Coffee meeting (Conflict) | WRONG | right | memo saw both dates and chose a note written on 20 March that gives 16 March; files weighed the calendar, photo and chat (15 March) |
 | q300 recently completed photo project (Knowledge update) | WRONG | right | memo named another street series and said it could not confirm one was finished |
 | q294 best 10 km pace (Knowledge update) | right | WRONG | files gave a faster run from the records; probably a gold flaw, see above |
 
@@ -328,11 +333,11 @@ The questions both setups got wrong, or one did:
 
 1. **A strong agent answers almost everything, with or without memo.** 93% and 96% on 46 questions; every
    unanswerable question was declined. The search numbers above (memo hybrid finds an evidence record in the first 10
-   for 70% of questions) are not a ceiling for an agent: it searches 13 to 18 times per question, reads what it
-   finds and searches again.
+   for 70% of questions) are not a ceiling for an agent: it makes 13 to 18 tool calls per question (median), reads
+   what it finds and searches again.
 2. **The plain files did as well for less.** Same accuracy within one question, 16% cheaper, 30% faster at the
-   median, 634 tool calls against 1,376. The files agent never called OpenClaw's memory search tool: every tool call
-   was `exec`, shell commands over the 4,986 small dated files. Probably that works because the records fit in one
+   median, 634 tool calls against 1,376. The files agent never called OpenClaw's memory search tool: apart from two
+   failed `computer` calls (see below), every tool call was `exec`, shell commands over the 4,986 small dated files. Probably that works because the records fit in one
    folder with a date on each; it would probably not hold for a store of years of real mail.
 3. **memo's cost has a long tail.** One unanswerable question (q272) took 176 tool calls, 243 s and $0.46 before the
    agent declined; the files agent's worst was $0.20. Probably a refusal is expensive when every search returns
@@ -360,11 +365,12 @@ comparable** with those, for these reasons:
 
 ### Before a full run
 
+- **Deny the `computer` tool** in the agents' config, so a run never depends on its credentials being absent.
 - **Cap the spend per question, not only per run.** One memo question cost $0.46. A cap per question (or a
   tool-call limit) would stop runs like q272. The run cap stopped memo 4 questions early; a full run needs the
   budget set from these numbers: about $0.10 a question per setup, so $35 per setup for this person's 348.
-- **Price cache writes in the cap.** OpenClaw's estimate runs about 20% under the list price, so the cap lets more
-  through than it says.
+- **Cap on the list price, not OpenClaw's estimate.** The estimate runs about 20% under the list price, so the cap
+  lets more through than it says.
 - **Add a harder setup or a smaller model.** At 93–96% the two setups cannot be told apart. A model that answers in
   one call from what memo returns (as the leaderboard does), or a smaller answer model, would show where memo's
   search matters.
