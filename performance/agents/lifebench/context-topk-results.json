@@ -1,0 +1,3468 @@
+{
+  "runs": {
+    "memo-e5-top10": {
+      "accuracy": {
+        "All": [32, 46],
+        "Single_hop": [17, 24],
+        "Knowledge_update": [3, 6],
+        "Multi_hop": [8, 14],
+        "Temporal": [4, 8],
+        "Pattern_recognition(Non-declarative)": [3, 7],
+        "Causal": [3, 4],
+        "Conflict": [7, 8],
+        "Unanswerable": [4, 5],
+        "Hidden_info": [0, 1]
+      },
+      "evidence_in_context_mean": 0.34262280708627896,
+      "questions_with_evidence_in_context": 0.7804878048780488,
+      "context_records_median": 10.0,
+      "prompt_tokens_median": 2430.5,
+      "answer_usd_billed": 0.0129420318,
+      "judge_usd_billed": 0.0877434321,
+      "failed_votes": 0,
+      "answer_failures": {},
+      "per_question": [
+        {
+          "id": "fenghaoran-q002",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "你朋友在深圳南山区海天二路33号Tim Hortons咖啡馆（腾讯滨海大厦楼下）演示的，是使用**Python Dash框架**构建的个人投资组合仪表盘，代码窗口运行的是**通过yfinance库获取QDII基金净值**的脚本。",
+          "reference": "Python Dash framework (or Dash)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即框架是 Python Dash。"
+        },
+        {
+          "id": "fenghaoran-q003",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "《Python金融大数据分析》",
+          "reference": "Python for Financial Big Data Analysis",
+          "judge_reasoning": "生成答案《Python金融大数据分析》正确回答了问题的核心，即书名。"
+        },
+        {
+          "id": "fenghaoran-q024",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年3月22日的AI聊天记录，AI给出的改进建议是：\n\n1. 梳理团队成员数据之间的矛盾，用表格对齐各成员的数据来源；\n2. 建立“答辩前24小时全组交叉核对”的流程；\n3. 下次采用角色轮换制，避免因ENTJ主导讨论造成沟通盲区。\n\n同时建议从评委指出的逻辑衔接、数据一致性矛盾入手，分析团队协作瓶颈并制定改进策略。",
+          "reference": "AI assistant suggests three steps: 1) Sort out the contradictions and align each member's data sources with a table; 2) Establish a process of 'full-team cross-checking 24 hours before the defense'; 3) Next time adopt a role rotation system to avoid communication gaps caused by ENTJ over-controlling the floor.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即AI在2025年3月22日给出的三条改进建议，与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q028",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "孙晓雅",
+          "reference": "The colleague from Hangzhou is named Sun Xiaoya.",
+          "judge_reasoning": "生成答案「孙晓雅」正确回答了问题的核心，即那位从杭州调来的同事的名字。"
+        },
+        {
+          "id": "fenghaoran-q030",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Reduce to below 20%",
+          "judge_reasoning": "生成答案「无法确定」与问题核心不符，问题要求回答技术仓位应降低到多少，而生成答案未能提供具体数值或相关信息。"
+        },
+        {
+          "id": "fenghaoran-q047",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Mother immediately replied with a clapping emoji sticker.",
+          "judge_reasoning": "生成答案『无法确定』错误地拒答了问题，因为记录中其实有明确答案。"
+        },
+        {
+          "id": "fenghaoran-q055",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "接待你的人是健康顾问王医生（Dr. Wang）。该社区与湘雅医院合作的具体机制是：直接连接湘雅医院的紧急绿色通道机制（emergency green channel mechanism directly connected to Xiangya Hospital）。",
+          "reference": "Health consultant Dr. Wang gave you a tour of the Xiangya Health and Wellness Community, highlighting the ‘emergency green channel’ mechanism established with Xiangya Hospital.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即接待人是健康顾问王医生，合作机制是紧急绿色通道。"
+        },
+        {
+          "id": "fenghaoran-q056",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据你2025年4月3日14:05的备忘录记录，你给彭宇清的具体建议是：**优先偿还亲友的借款；主动联系银行申请延期还款并降低每月还款额；你可以先借给她几万元应急。**",
+          "reference": "Note content: prioritize repaying relatives and friends; proactively contact the bank to apply for deferment and lower monthly payments; I can first lend her tens of thousands of yuan to help her get through the transition.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即给出了具体的债务偿还建议和与银行协商的方法。"
+        },
+        {
+          "id": "fenghaoran-q059",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "确认了Stock Connect投资计划的合规性，以及税收优惠条款可以引用。",
+          "reference": "That colleague Sun Xiaoya helped you confirm that the Hong Kong Stock Connect investment plan in the report meets the latest compliance requirements, confirmed that the tax incentive clause can be cited, and also reminded you of the data disclosure timing.",
+          "judge_reasoning": "生成答案确认了Stock Connect投资计划的合规性以及税收优惠条款可以引用，核心内容答对了，尽管漏掉了数据披露时机的提醒，但不影响整体正确性。"
+        },
+        {
+          "id": "fenghaoran-q065",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "You chatted with Luo Zhenyu for 2.5 hours about the stamp market, including the collectible value, auction prices, and market trends of the Large Dragon stamps and the Red Revenue stamps. Reasoning process: 135 days after April 30, 2025 is September 12, 2025, when you had an in-depth exchange with fellow collector Luo Zhenyu.",
+          "judge_reasoning": "生成答案未能正确回答问题核心，因为它没有提供任何关于135天后活动的信息，而是直接回答'无法确定'，而实际上记录中有明确答案。"
+        },
+        {
+          "id": "fenghaoran-q066",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年10月18日深夜，我对选定的婚礼照片进行了深度精修，调整了曝光、色温和对比度，并微调了肤色和背景。",
+          "reference": "Late that night (2025-10-18), you did a deep retouching of the wedding photos, adjusting exposure, color temperature, and contrast one by one, and used Photoshop to fine-tune the subjects' skin and backgrounds, striving for perfection, and continued until midnight.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即深夜进行了婚礼照片的深度精修，并具体提到了调整曝光、色温和对比度，以及微调肤色和背景。虽然漏掉了‘持续到午夜’这一细节，但核心内容答对，因此判为 CORRECT。"
+        },
+        {
+          "id": "fenghaoran-q068",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，事件2（集邮交换会）发生在2025年1月5日，事件1（攀岩）发生在2025年7月19日（由2025年7月20日的对话中提及的“昨天”推断）。因此，事件2最早，事件1最晚。事件3和事件4在证据中无明确对应日期，无法确定其先后顺序。",
+          "reference": "In chronological order it should be:\n1. Stamp collecting exchange meeting (afternoon of January 5, 2025, at Qinghe Teahouse)\n2. Purchased healthy ingredients on the way home from the hospital and cleaned out the refrigerator (afternoon of April 8, 2025)\n3. Advanced photography course (morning of May 16, 2025)\n4. On the way back from leading a climbing trip, was persuaded by the coach, and apologized in the climbing group after returning home (afternoon of July 19, 2025)",
+          "judge_reasoning": "生成答案正确识别了事件2（集邮交换会）最早，事件1（攀岩）最晚，符合问题的核心要求。尽管它未能确定事件3和事件4的顺序，但这不影响核心答案的正确性。"
+        },
+        {
+          "id": "fenghaoran-q093",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "过期冻饺子、剩外卖和辣酱。",
+          "reference": "That day was April 8, 2025. After returning home, you cleaned out the frozen dumplings, leftover takeout, and spicy sauces stored in the fridge, and bought fresh vegetables, whole grains, and high-quality protein.",
+          "judge_reasoning": "生成答案正确回答了问题的核心内容，即清理了冰箱中的过期冻饺子、剩外卖和辣酱，与参考答案的三个主要清理物品一致。"
+        },
+        {
+          "id": "fenghaoran-q094",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "最早发生且唯一有明确记录的事件是第1项（2025年9月5日夜游橘子洲），其他事件在证据中均未出现，无法确定发生顺序。因此，事件1既是最早也是最晚的有据可查的事件。",
+          "reference": "In chronological order:\n1. 15 km long-distance training (early morning January 4, Yuelu Mountain, ran with Gao Yunfei, pace around 5 min/km, marveled at the runner's privilege at sunrise, refilled water at Aiwan Pavilion)\n2. Started CFA Level I exam preparation (evening January 14, paid $900 for textbooks, made a three-month plan, joined a study group)\n3. Night tour of Orange Isle (evening September 5, strolled on Orange Isle with parents, took photos in front of Chairman Mao statue)\n4. Promotion interview for investment director (afternoon September 28, Huatai Securities Meeting Room 302, Director Qian noted requirements such as in-depth industry research reports and passing CFA Level I)\n5. Evening climbing training challenging V3 route (evening November 20, Jiu'er Climbing Gym, successfully completed the blue V3 route on the third attempt)\n6. Attended the running group's year-end training sharing session (morning December 14, East Gate of Yuelu Mountain, coach gave metronome training suggestions for cadence)",
+          "judge_reasoning": "生成答案错误地认为最早发生的事件是第1项（2025年9月5日夜游橘子洲），并错误地声称其他事件无法确定顺序。实际上，根据参考答案，最早发生的事件是15公里长跑训练（1月4日），而夜游橘子洲是9月5日，明显晚于其他事件。因此，生成答案的核心事实错误。"
+        },
+        {
+          "id": "fenghaoran-q097",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Lasted for 1 day, from an early morning self-drive departure on January 28 to the end of the deep conversation with my father in the study that evening.",
+          "judge_reasoning": "生成答案「无法确定」正确拒答了问题，因为问题要求的时间信息在记录中确实无法确定。"
+        },
+        {
+          "id": "fenghaoran-q104",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "林志浩",
+          "reference": "Lin Zhihao",
+          "judge_reasoning": "生成答案「林志浩」与参考答案「Lin Zhihao」在语义上完全一致，只是语言表达不同，核心内容正确。"
+        },
+        {
+          "id": "fenghaoran-q112",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年5月4日下午，冯浩然在开始CFA学习前，集中精力完成了自媒体创业项目的第一期选题和内容大纲，主题为“CFA备考与职业转型”。",
+          "reference": "He focused on debt consolidation (sorting out the debt list and formulating a repayment priority plan), drafted a personal loan agreement of 50,000 yuan for Peng Yuqing, and at the same time deepened his self-media entrepreneurship outline and formulated the initial topics and framework.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然在2025年5月4日下午集中精力完成了自媒体创业项目的第一期选题和内容大纲，这与评分点3一致。尽管答案没有提到债务整合和贷款协议，但这些是次要要点，不影响核心答案的正确性。"
+        },
+        {
+          "id": "fenghaoran-q115",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "10-15分钟",
+          "reference": "45 minutes",
+          "judge_reasoning": "生成答案的核心答错了，问题问的是康复活动的持续时间，正确答案是45分钟，而生成答案给出的是10-15分钟，与事实不符。"
+        },
+        {
+          "id": "fenghaoran-q128",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "He ate oatmeal soaked in milk and whole wheat bread with egg.",
+          "judge_reasoning": "生成答案「无法确定」正确反映了截至2025-12-31时点无法确定该早餐记录的状态，符合Unanswerable题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q129",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据记录，2025年9月5日中午（E0），我安排父母午休后，去次卧整理被褥并摆放为父母准备的洗漱用品，然后回自己房间闭目休息。",
+          "reference": "On that morning (October 7), Feng Haoran used CamScanner to convert his parents' ID cards and household registration booklet into a PDF, sent it to his younger sister's email for backup, and paid for an order via Taobao.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，问题问的是10月7日早上做了什么，而生成答案描述的是2025年9月5日中午的事情，属于答非所问。"
+        },
+        {
+          "id": "fenghaoran-q154",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "在2025年7月的练习中，你的社交分享（如发朋友圈和向朋友请教）与练习状态呈正相关：7月20日你通过倾听和反思改进了人际沟通，7月26日你成功完成拉花后立即拍照发朋友圈，并获得了彭宇清等朋友的点赞和评论，同时与沈心怡约定下次练习更高级图案，这表明社交分享既是对练习成果的肯定，也促进了后续的持续练习。",
+          "reference": "During July hand-brewed coffee practice, social sharing was mainly focused on when encountering difficulties or achieving satisfactory results. For example: on July 5, after two failures, she took photos and asked Shen Xinyi for help, and after success, shared the joy again; on July 6, consulted Shen Xinyi; on July 13, after practice, took photos and sent them to Shen Xinyi; on July 20 and 25, when encountering problems, asked Shen Xinyi for parameters; on July 26, after success in the latte art class, shared on Moments; on July 27, after practice, exchanged techniques with Shen Xinyi. However, daily routine practice (such as the mornings of July 9, 10, 17, 25) rarely involved social sharing, or only personal records. This shows that social sharing is a motivating way to solve difficulties, obtain feedback, and celebrate breakthroughs, while daily maintenance practice triggers sharing behavior less frequently.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即社交分享与练习状态的正相关关系，并举例说明了具体事件，符合参考答案的结论。"
+        },
+        {
+          "id": "fenghaoran-q159",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "11月的学习投资呈现“职业发展学习与个人兴趣学习交织”的模式：职业发展方面，你制定了CFA二级备考计划（每天2小时，目标次年6月通过），并阅读了机器学习在量化投资中的应用文章，计划将其融入投资顾问工作与专栏写作；个人兴趣方面，你撰写了投资体系构建文章，结合了最新市场数据（如CPI、PMI）。两者通过“投资认知升级”这一主题相互交织——职业学习中的量化技术（如ML因子挖掘）直接服务于个人专栏内容，而个人研究中的数据驱动方法又反哺了职业能力提升。",
+          "reference": "In November, my learning efforts showed a composite pattern of parallel advancement, with career development learning and personal interest learning proceeding simultaneously and interweaving. Career learning included CFA exam preparation, column writing (such as 'The Investment Logic of Changsha REITs'), pension fund screening, and client solution design; interest learning included photography exhibition setup and attendance, rock climbing training, oil painting experiences, and street photography. The two were deeply intertwined in both time and content: for example, on the same day I both studied for the CFA and attended rock climbing training, and the column article ended with promotional information for my personal photography exhibition; the coffee shop served as both the exhibition venue and an offline promotional point for the column; during a career conversation, my supervisor recognized the customer traffic brought by the exhibition. This pattern reflects a deliberate strategy of integrating career and interests to build a personal brand.",
+          "judge_reasoning": "生成答案正确识别了11月学习投资的模式是职业发展学习与个人兴趣学习的交织，并列举了具体的学习内容，如CFA二级备考计划和机器学习在量化投资中的应用文章，以及投资体系构建文章。虽然具体细节与参考答案有所不同，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q163",
+          "correct": false,
+          "votes": {
+            "correct": 1,
+            "wrong": 2,
+            "failed": 0
+          },
+          "answer": "根据证据，10月13日右膝受伤后，你立即调整了运动计划：10月14日改为室内快走或瑜伽（E2），并遵循了48小时观察期和冰敷建议（E0）。后续你持续关注膝盖健康，例如11月13日因下雨未跑步，改为核心训练和拉伸（E1）。这些调整避免了伤情加重，结合你之前对跑步姿势、康复训练（如臀桥、侧向行走等）的重视（E3、E8），以及整体低脂高蛋白饮食和规律理疗（E5），你的身体恢复良好，后续运动表现稳定，如8月成功完成攀岩V2路线（E6）并参与半马训练（E7）。",
+          "reference": "After injuring my right knee, I immediately stopped running. That day (October 13), I applied ice and did evening yin yoga stretching. Over the next few days, I replaced my morning runs with core strength training, cervical spine exercises, and light stretching, and did not resume my 5.2 km jog until October 17. The yoga and core training interspersed during the injury period prevented a complete training stop and also promoted recovery from the knee injury. After recovery, I successfully topped a V3 climbing route on October 19, completed my first 15 km long run on October 20 (average pace 6:25), and successfully topped another V3 route on October 26. After that, I also booked a coach to discuss a V4 training plan. These performances show that the adjusted cross-training enhanced my core strength and flexibility, laying the foundation for an athletic breakthrough.",
+          "judge_reasoning": "生成答案虽然提到了一些调整和恢复情况，但核心内容与问题不符。问题问的是10月13日受伤后的具体调整及其对恢复和运动表现的影响，而生成答案提到了11月13日的调整和8月的运动表现，这些与问题无关。此外，生成答案没有准确描述10月13日后的具体调整和恢复过程，核心事实答错。"
+        },
+        {
+          "id": "fenghaoran-q164",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "2025年4月27日的健康管理行为包括：早晨7:20骑行6.3公里去图书馆（25分钟，平均心率130），中午12:15步行3.3公里去咖啡馆（40分钟），傍晚17:10步行回家，19:30进行肩颈理疗和冥想，22:50入睡，总睡眠490分钟（深睡150分钟）。这些行为源自2月22日因头晕被诊断为过劳综合征的触发事件：当天设置早睡目标，随后通过2月19日与助手的睡眠改善对话逐步调整作息；到4月27日已形成固定睡前流程（22:50前入睡）、日常骑行加步行通勤、晚间理疗冥想的习惯链，深睡时长从2月的80分钟显著提升至150分钟。",
+          "reference": "In April, I mainly implemented five health management behaviors: morning running, a light diet, cervical spine physical therapy, shoulder-and-neck therapeutic yoga, and mindfulness meditation. The formation of these habits started with the trigger event of my mother's hospitalization on April 1, then took root during my time accompanying her. After a deep conversation with my father on the rooftop on April 6, I seriously decided to adjust my lifestyle. After returning to Changsha, starting from the evening of April 7, I made my own light dinner and did mindful breathing meditation for the first time; on April 8, I did neck rehabilitation exercises (cervical exercise), continued cervical physical therapy (5th session), and bought light ingredients; on April 9, I went for my first morning run (alternating brisk walking and jogging) and tried a new meditation app for a 3-minute breathing exercise; on April 10, I did shoulder-and-neck yoga and established a habit of 10 minutes of daily mindfulness meditation. Since then, various habits have progressed steadily: morning running gradually increased from 2-3 times a week and 3 kilometers to 6 kilometers; a light diet became part of every meal; cervical physical therapy remained at 1-2 times a week, reducing to once in the latter half of the month; yoga 3-4 times a week; meditation fixed every night. In the latter half of the month, these behaviors no longer required deliberate reminders, forming a mutually reinforcing closed loop and becoming a natural daily routine.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，问题问的是2025年4月的健康管理行为及其习惯形成过程，而生成答案描述的是2025年4月27日的行为，且触发事件和习惯形成过程与问题无关。"
+        },
+        {
+          "id": "fenghaoran-q168",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年1月13日。",
+          "reference": "January 13",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 去湖南大学 MBA 教育中心注册的具体日期是 2025 年 1 月 13 日。"
+        },
+        {
+          "id": "fenghaoran-q173",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年3月15日。",
+          "reference": "March 15, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 MBA 小组成员在 Cotti Coffee 修复关系的具体日期是 2025 年 3 月 15 日。"
+        },
+        {
+          "id": "fenghaoran-q195",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年10月1日。",
+          "reference": "October 1",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 在国庆假期接父母的具体日期是 10 月 1 日。"
+        },
+        {
+          "id": "fenghaoran-q203",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025-08-27",
+          "reference": "August 27, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即具体日期是2025年8月27日。"
+        },
+        {
+          "id": "fenghaoran-q204",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年7月29日。",
+          "reference": "July 29",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 收到长沙马拉松组委会的审核批准邮件的具体日期是 7 月 29 日。"
+        },
+        {
+          "id": "fenghaoran-q211",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年12月28日。",
+          "reference": "December 28, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 进行年终总结和庆祝的具体日期是 2025 年 12 月 28 日。"
+        },
+        {
+          "id": "fenghaoran-q212",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "5月24日",
+          "reference": "May 24",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 最终约定的日期是 5 月 24 日。"
+        },
+        {
+          "id": "fenghaoran-q215",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Xiangjian Local Cuisine Restaurant",
+          "judge_reasoning": "生成答案『无法确定』错误拒答，因为记录中有明确答案『Xiangjian Local Cuisine Restaurant』，核心答错。"
+        },
+        {
+          "id": "fenghaoran-q221",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "Interstellar",
+          "reference": "Unable to answer",
+          "judge_reasoning": "问题属于 Unanswerable 类型，核心是判断是否应拒答。生成答案给出了具体电影名，而非正确拒答，因此核心答错。"
+        },
+        {
+          "id": "fenghaoran-q240",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q248",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "核心答对，因为问题无法回答，生成答案正确表示无法确定。"
+        },
+        {
+          "id": "fenghaoran-q257",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "核心答对了，生成答案正确识别了无法回答的问题，没有编造内容。"
+        },
+        {
+          "id": "fenghaoran-q272",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了问题无法回答，核心答对。"
+        },
+        {
+          "id": "fenghaoran-q280",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025-03-31的记录，颈痛评分为1（轻微）。因此在2025-05-02时，最近一次记录显示疼痛程度为轻微。",
+          "reference": "Cervical pain scored 1 point.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即截至2025-05-02时，颈痛评分为1（轻微）。"
+        },
+        {
+          "id": "fenghaoran-q294",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据记录，冯浩然在2025年11月24日跑出10公里55分02秒（配速5:30/公里），这是个人最佳成绩（PB）。",
+          "reference": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+          "judge_reasoning": "生成答案的核心是回答提问者的个人最佳配速，但给出的配速和日期与参考答案不符，且日期在提问时间之后，属于核心事实答错。"
+        },
+        {
+          "id": "fenghaoran-q298",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "是的，你在2025年2月11日开始了第一次阴瑜伽课，并在9月18日参加了李老师的阴瑜伽体验课。",
+          "reference": "Yes, I tried the yin yoga class.",
+          "judge_reasoning": "生成答案明确表示提问者参加了阴瑜伽课，核心答对。虽然日期与参考答案不完全一致，但核心事实正确。"
+        },
+        {
+          "id": "fenghaoran-q300",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据记录，您最近完成的摄影项目是**京都街拍照片整理**（2025年9月20日），包括按构图、光影和色彩三个维度筛选作品并截图保存。",
+          "reference": "The recently completed photography project is the \"Street Echo\" photo series.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，问题问的是最近完成的摄影项目，而生成答案提到的是京都街拍照片整理，且日期也与问题时间不符。"
+        },
+        {
+          "id": "fenghaoran-q304",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "您完成了多项投资写作成果：2025年3月3日撰写了客户投资提案；9月23日最终确定并获批了香港REITs提案；7月18日论文被《湖南金融》期刊接收；10月28日整理了分布式账本技术在资产证券化中的内容，计划加入专栏；此外还建立了投研数据库框架。",
+          "reference": "Completed the topic planning for the investment research column, listing 12 topic directions.",
+          "judge_reasoning": "生成答案没有提到完成投资研究专栏的主题规划，也没有列出12个主题方向，核心内容答错。"
+        },
+        {
+          "id": "fenghaoran-q321",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据现有证据，12月16日晚上没有安排任何活动或冲突，因此这个安排是可行的。",
+          "reference": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+          "judge_reasoning": "生成答案的核心内容与问题核心不符，问题问的是12月16日晚上是否有冲突，而生成答案错误地认为没有冲突，因此判为WRONG。"
+        },
+        {
+          "id": "fenghaoran-q333",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，2025年2月14日晚上，他有一个日历事件“写日记”（E2），并在21:30创建了笔记“February 14 date record”（E6），记录约会感受。同时，2月17日的短信（E0）提到2月15日的约会感觉平淡，对话过于礼貌。因此，他写日记的原因是记录2月14日约会的细节和感受，可能因为约会体验一般，需要反思或整理情绪。",
+          "reference": "After seeing Li Tingting off, he walked alone along Furong Middle Road to reflect. During this time, he felt a clear sense of relief inside, and concluded that tonight had verified the difficulty of finding a like-minded person, strengthening his desire for deep spiritual connection. This post-reflection clarity and regret directly prompted him to immediately write in his diary upon returning home, recording the details of the date and his inner thoughts.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即他写日记的原因是记录2月14日约会的细节和感受，可能因为约会体验一般，需要反思或整理情绪。虽然答案没有完全覆盖所有评分点，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q338",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年8月12日的笔记（E3）和与助手的聊天记录（E6），冯浩然在回顾一周冥想日记时发现，自己从焦虑状态逐渐转为平静应对，尤其是在处理妹妹的事情时能保持冷静，决策压力显著减轻，从而确认冥想有效缓解了决策压力。",
+          "reference": "Because the previous night (August 11) he recorded and compared his morning and evening meditation experiences, especially the successful emotional management after being interrupted by the cat, which made him realize the regulating effect of meditation on emotions and stress. The next morning, during the \"weekly review\" meditation, he flipped through his diary and saw his transformation from distracted attention to flow, from anxiety to calm, further verifying the effects of meditation, thereby confirming its role in alleviating decision-making pressure.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然通过回顾冥想日记确认了冥想对缓解决策压力的有效性。虽然答案没有详细提及8月11日的具体事件，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q343",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，冯浩然在2025年6月23日下午调整黄思琪和林志浩的投资组合，是因为当天上午的研讨会观点有用，他据此进行了调整。",
+          "reference": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然调整投资组合的原因是因为当天上午的研讨会观点有用，他据此进行了调整。"
+        }
+      ]
+    },
+    "memo-e5-top20": {
+      "accuracy": {
+        "All": [37, 46],
+        "Single_hop": [19, 24],
+        "Knowledge_update": [3, 6],
+        "Multi_hop": [11, 14],
+        "Temporal": [6, 8],
+        "Pattern_recognition(Non-declarative)": [5, 7],
+        "Causal": [4, 4],
+        "Conflict": [7, 8],
+        "Unanswerable": [4, 5],
+        "Hidden_info": [0, 1]
+      },
+      "evidence_in_context_mean": 0.41763164413117115,
+      "questions_with_evidence_in_context": 0.8292682926829268,
+      "context_records_median": 20.0,
+      "prompt_tokens_median": 4694.5,
+      "answer_usd_billed": 0.025347911052,
+      "judge_usd_billed": 0.0868704466,
+      "failed_votes": 0,
+      "answer_failures": {},
+      "per_question": [
+        {
+          "id": "fenghaoran-q002",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据[E0]，你朋友在深圳南山区海天二路33号Tim Hortons咖啡馆（腾讯滨海大厦）演示了个人投资组合仪表盘，使用了Excel图表和Python Dash框架，并运行了一段获取QDII基金净值的代码（使用yfinance库下载FXI、EWJ、VGK等QDII基金数据）。你当时拍摄了屏幕照片（Photo WechatIMG173.jpeg）。",
+          "reference": "Python Dash framework (or Dash)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即演示使用的框架是 Python Dash。"
+        },
+        {
+          "id": "fenghaoran-q003",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "《Python金融大数据分析》",
+          "reference": "Python for Financial Big Data Analysis",
+          "judge_reasoning": "核心答对了，生成答案正确给出了书名《Python金融大数据分析》，与参考答案《Python for Financial Big Data Analysis》内容一致，只是语言不同。"
+        },
+        {
+          "id": "fenghaoran-q024",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年3月22日的聊天记录（E4），你提到MBA答辩后感到沮丧，AI助手建议你：1）梳理矛盾，用表格对齐各成员数据来源；2）建立“答辩前24小时全组交叉核对”流程；3）下次采用角色轮换制度，避免ENTJ主导讨论导致的沟通断层。同时，你在当天的笔记（E12）中也记录了类似要点：建立24小时交叉核对流程、采用角色轮换制度、加强团队成员数据一致性训练。",
+          "reference": "AI assistant suggests three steps: 1) Sort out the contradictions and align each member's data sources with a table; 2) Establish a process of 'full-team cross-checking 24 hours before the defense'; 3) Next time adopt a role rotation system to avoid communication gaps caused by ENTJ over-controlling the floor.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即AI助手在2025年3月22日给出的三条建议，与参考答案完全一致。"
+        },
+        {
+          "id": "fenghaoran-q028",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "孙晓雅",
+          "reference": "The colleague from Hangzhou is named Sun Xiaoya.",
+          "judge_reasoning": "生成答案「孙晓雅」正确回答了问题的核心，即同事的名字，与参考答案「Sun Xiaoya」一致。"
+        },
+        {
+          "id": "fenghaoran-q030",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "低于20%。",
+          "reference": "Reduce to below 20%",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即科技仓位应降至低于20%。"
+        },
+        {
+          "id": "fenghaoran-q047",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Mother immediately replied with a clapping emoji sticker.",
+          "judge_reasoning": "生成答案「无法确定」正确拒答，因为问题要求回忆具体内容，而系统无法确定母亲的具体回复。"
+        },
+        {
+          "id": "fenghaoran-q055",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "接待人是健康顾问王医生（Dr. Wang）。合作机制是直接连接湘雅医院的紧急绿色通道。",
+          "reference": "Health consultant Dr. Wang gave you a tour of the Xiangya Health and Wellness Community, highlighting the ‘emergency green channel’ mechanism established with Xiangya Hospital.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即接待人是健康顾问王医生，合作机制是紧急绿色通道。"
+        },
+        {
+          "id": "fenghaoran-q056",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据你当天（2025年4月3日）的备忘录记录，你给彭宇清的具体建议是：优先偿还亲友借款；联系银行申请延期还款并降低月供；你可以先借她几万元周转。",
+          "reference": "Note content: prioritize repaying relatives and friends; proactively contact the bank to apply for deferment and lower monthly payments; I can first lend her tens of thousands of yuan to help her get through the transition.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即给出了具体的债务偿还建议和与银行协商的方法。"
+        },
+        {
+          "id": "fenghaoran-q059",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "同事孙晓雅帮助确认了港股通投资计划的合规性，以及税收优惠条款可以引用。",
+          "reference": "That colleague Sun Xiaoya helped you confirm that the Hong Kong Stock Connect investment plan in the report meets the latest compliance requirements, confirmed that the tax incentive clause can be cited, and also reminded you of the data disclosure timing.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即确认了港股通投资计划的合规性和税收优惠条款的引用。"
+        },
+        {
+          "id": "fenghaoran-q065",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年9月13日，我和罗振宇在中国国际展览中心E1馆展位进行了关于大龙邮票和金融投资的深入交流，持续约2小时。",
+          "reference": "You chatted with Luo Zhenyu for 2.5 hours about the stamp market, including the collectible value, auction prices, and market trends of the Large Dragon stamps and the Red Revenue stamps. Reasoning process: 135 days after April 30, 2025 is September 12, 2025, when you had an in-depth exchange with fellow collector Luo Zhenyu.",
+          "judge_reasoning": "生成答案的核心内容答对了，即正确指出了与罗振宇的交流日期和主题，尽管日期和时长略有差异，但核心事实正确。"
+        },
+        {
+          "id": "fenghaoran-q066",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "10月18日深夜，我对婚礼照片进行了精细修图，调整了曝光、色温、对比度，并精修了皮肤和背景。",
+          "reference": "Late that night (2025-10-18), you did a deep retouching of the wedding photos, adjusting exposure, color temperature, and contrast one by one, and used Photoshop to fine-tune the subjects' skin and backgrounds, striving for perfection, and continued until midnight.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即10月18日深夜进行了婚礼照片的精细修图，并具体提到了调整曝光、色温、对比度以及精修皮肤和背景。"
+        },
+        {
+          "id": "fenghaoran-q068",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "按证据能确定的顺序是：\n\n- 邮票交流会（白帝城邮票展示）在前：2025-01-05\n- 黑麋峰爬山带队在后：2025-07-19\n\n另外两项——「摄影进阶课」和「医院回来买西兰花/燕麦、清理过期食品」——在证据记录中没有对应信息，无法确定时间，因此无法参与排序。",
+          "reference": "In chronological order it should be:\n1. Stamp collecting exchange meeting (afternoon of January 5, 2025, at Qinghe Teahouse)\n2. Purchased healthy ingredients on the way home from the hospital and cleaned out the refrigerator (afternoon of April 8, 2025)\n3. Advanced photography course (morning of May 16, 2025)\n4. On the way back from leading a climbing trip, was persuaded by the coach, and apologized in the climbing group after returning home (afternoon of July 19, 2025)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即按时间顺序排列了事件，尽管它漏掉了两个事件的具体时间，但核心排序正确。"
+        },
+        {
+          "id": "fenghaoran-q093",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，250天前（即2025年4月8日），你清理了冰箱中的过期冷冻水饺、剩菜外卖和辣酱。",
+          "reference": "That day was April 8, 2025. After returning home, you cleaned out the frozen dumplings, leftover takeout, and spicy sauces stored in the fridge, and bought fresh vegetables, whole grains, and high-quality protein.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即清理了冰箱中的冷冻水饺、剩菜外卖和辣酱，并且正确指出了日期是2025年4月8日。"
+        },
+        {
+          "id": "fenghaoran-q094",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，只有事件1可确定为2025年9月5日（夜游橘子洲）。其余事件（跑团分享会、体检后攀岩、岳麓山15公里跑、CFA一级备考、衡山徒步后晋升面试）均无对应记录，无法确定日期和先后顺序。因此无法判断哪件最先、哪件最后。",
+          "reference": "In chronological order:\n1. 15 km long-distance training (early morning January 4, Yuelu Mountain, ran with Gao Yunfei, pace around 5 min/km, marveled at the runner's privilege at sunrise, refilled water at Aiwan Pavilion)\n2. Started CFA Level I exam preparation (evening January 14, paid $900 for textbooks, made a three-month plan, joined a study group)\n3. Night tour of Orange Isle (evening September 5, strolled on Orange Isle with parents, took photos in front of Chairman Mao statue)\n4. Promotion interview for investment director (afternoon September 28, Huatai Securities Meeting Room 302, Director Qian noted requirements such as in-depth industry research reports and passing CFA Level I)\n5. Evening climbing training challenging V3 route (evening November 20, Jiu'er Climbing Gym, successfully completed the blue V3 route on the third attempt)\n6. Attended the running group's year-end training sharing session (morning December 14, East Gate of Yuelu Mountain, coach gave metronome training suggestions for cadence)",
+          "judge_reasoning": "生成答案正确识别了事件1的日期，并指出其余事件无法确定日期和顺序，符合问题的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q097",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "从1月28日出发到4月6日深夜与父亲谈话，总共持续了约68天。",
+          "reference": "Lasted for 1 day, from an early morning self-drive departure on January 28 to the end of the deep conversation with my father in the study that evening.",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是从出发到与父亲谈话的总时长，生成答案给出的时间是68天，而参考答案是1天。"
+        },
+        {
+          "id": "fenghaoran-q104",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Lin Zhihao",
+          "reference": "Lin Zhihao",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即客户是 Lin Zhihao。"
+        },
+        {
+          "id": "fenghaoran-q112",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据[E4]和[E12]，2025年5月4日下午，冯浩然在开始CFA学习前，集中精力完成了自媒体创业项目的首次选题和提纲（主题为“CFA备考与职业转型”），并规划了自媒体账号“浩然财经课”的运营方案（首月平台为小红书和抖音，更新频率为每周三和周六）。",
+          "reference": "He focused on debt consolidation (sorting out the debt list and formulating a repayment priority plan), drafted a personal loan agreement of 50,000 yuan for Peng Yuqing, and at the same time deepened his self-media entrepreneurship outline and formulated the initial topics and framework.",
+          "judge_reasoning": "生成答案提到了冯浩然在2025年5月4日下午完成了自媒体创业项目的首次选题和提纲，这与评分点3的核心内容一致，尽管没有提到债务整合和贷款协议，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q115",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "该活动为医生推荐的康复训练，时长45分钟。",
+          "reference": "45 minutes",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即康复活动的时长为45分钟。"
+        },
+        {
+          "id": "fenghaoran-q128",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "He ate oatmeal soaked in milk and whole wheat bread with egg.",
+          "judge_reasoning": "生成答案「无法确定」正确拒答，因为问题问的核心是冯浩然在特定日期的早餐内容，而生成答案表明无法确定这一信息，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q129",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "无法确定。证据中没有10月9日或街道办的相关记录；与“接父母”相关的已知准备包括：购买牛奶水果、更换床单、摆放洗漱用品，以及提前准备双城养老谈话提纲和分期计划。",
+          "reference": "On that morning (October 7), Feng Haoran used CamScanner to convert his parents' ID cards and household registration booklet into a PDF, sent it to his younger sister's email for backup, and paid for an order via Taobao.",
+          "judge_reasoning": "生成答案没有回答问题的核心内容，即10月7日早上具体做了什么，而是答非所问，提到了其他不相关的准备事项。"
+        },
+        {
+          "id": "fenghaoran-q154",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "在7月的手冲咖啡练习中，社交分享（发朋友圈）发生在成功完成第三次拉花之后，并得到了朋友点赞和评论，随后还与同伴约定下次练习。这表明社交分享与练习状态呈正相关——成功的实践激发了分享行为，而分享又促进了后续练习计划。",
+          "reference": "During July hand-brewed coffee practice, social sharing was mainly focused on when encountering difficulties or achieving satisfactory results. For example: on July 5, after two failures, she took photos and asked Shen Xinyi for help, and after success, shared the joy again; on July 6, consulted Shen Xinyi; on July 13, after practice, took photos and sent them to Shen Xinyi; on July 20 and 25, when encountering problems, asked Shen Xinyi for parameters; on July 26, after success in the latte art class, shared on Moments; on July 27, after practice, exchanged techniques with Shen Xinyi. However, daily routine practice (such as the mornings of July 9, 10, 17, 25) rarely involved social sharing, or only personal records. This shows that social sharing is a motivating way to solve difficulties, obtain feedback, and celebrate breakthroughs, while daily maintenance practice triggers sharing behavior less frequently.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即社交分享与练习状态的正相关关系，尽管没有详细列举所有相关事件，但核心结论正确。"
+        },
+        {
+          "id": "fenghaoran-q159",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "在11月，你的学习投资呈现出职业发展学习与个人兴趣学习相互交织、相互促进的模式。职业发展方面，你制定了CFA Level 2备考计划（每天2小时），参加了长沙金融科技沙龙拓展人脉并推广个人专栏，还深入研究了跨境理财通政策以用于客户建议。个人兴趣方面，你阅读了机器学习在量化投资中的应用文章，并撰写了关于投资系统构建的文章。两者交织体现在：机器学习知识被考虑融入日常投资建议和专栏写作；沙龙中获得的行业洞察与个人专栏内容相互背书；跨境理财通政策研究直接服务于客户资产配置建议。整体上，11月的学习既服务于职业晋升（如团队管理、专业认证），也满足个人认知升级需求，且两者通过实际应用场景紧密结合。",
+          "reference": "In November, my learning efforts showed a composite pattern of parallel advancement, with career development learning and personal interest learning proceeding simultaneously and interweaving. Career learning included CFA exam preparation, column writing (such as 'The Investment Logic of Changsha REITs'), pension fund screening, and client solution design; interest learning included photography exhibition setup and attendance, rock climbing training, oil painting experiences, and street photography. The two were deeply intertwined in both time and content: for example, on the same day I both studied for the CFA and attended rock climbing training, and the column article ended with promotional information for my personal photography exhibition; the coffee shop served as both the exhibition venue and an offline promotional point for the column; during a career conversation, my supervisor recognized the customer traffic brought by the exhibition. This pattern reflects a deliberate strategy of integrating career and interests to build a personal brand.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即11月学习投资呈现出职业发展学习与个人兴趣学习相互交织的模式，且具体内容与参考答案基本一致。"
+        },
+        {
+          "id": "fenghaoran-q163",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "10月13日右膝受伤后，我将晨跑调整为室内核心训练（平板支撑、仰卧抬腿、鸟狗式）和低强度活动（室内快走或瑜伽），避免深蹲和跑步。这些调整使右膝肿胀次日基本消失，仅存轻微疲劳，核心力量得到激活，且未再加重损伤。后续运动表现方面，右膝恢复良好，未再出现因该伤导致的运动受限，但一个月后因手指新伤影响了部分训练。",
+          "reference": "After injuring my right knee, I immediately stopped running. That day (October 13), I applied ice and did evening yin yoga stretching. Over the next few days, I replaced my morning runs with core strength training, cervical spine exercises, and light stretching, and did not resume my 5.2 km jog until October 17. The yoga and core training interspersed during the injury period prevented a complete training stop and also promoted recovery from the knee injury. After recovery, I successfully topped a V3 climbing route on October 19, completed my first 15 km long run on October 20 (average pace 6:25), and successfully topped another V3 route on October 26. After that, I also booked a coach to discuss a V4 training plan. These performances show that the adjusted cross-training enhanced my core strength and flexibility, laying the foundation for an athletic breakthrough.",
+          "judge_reasoning": "生成答案正确回答了问题核心，即受伤后调整了运动习惯并促进了恢复和运动表现。虽然漏了一些细节，但核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q164",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "在2025年4月，我实施了以下健康管理行为：  \n- 4月8日：前往医院进行常规复诊，为后续健康管理做准备（E15）。  \n- 4月27日：  \n  - 睡眠：22:50入睡，07:00起床，总睡眠490分钟，深睡150分钟，睡眠评分85（E3）。  \n  - 运动：07:20-07:45骑行6.3公里至图书馆；12:15-12:55步行3.3公里至咖啡馆；17:10开始傍晚步行回家（E3）。  \n  - 康复与放松：19:30进行肩颈理疗和冥想（E3）。  \n\n这些行为源于2月的初始触发事件：2月22日因晨跑头晕被诊断为过劳综合征（E4），以及2月19日与助手讨论深睡不足问题（E1）。此后，我逐步调整作息（如2月22日设置22:30早睡目标）、增加康复练习（如3月3日颈部拉伸、3月29日因颈部不适就医），最终在4月形成了固定习惯：规律作息、每日适度运动（骑行/步行）、晚间肩颈理疗和冥想。",
+          "reference": "In April, I mainly implemented five health management behaviors: morning running, a light diet, cervical spine physical therapy, shoulder-and-neck therapeutic yoga, and mindfulness meditation. The formation of these habits started with the trigger event of my mother's hospitalization on April 1, then took root during my time accompanying her. After a deep conversation with my father on the rooftop on April 6, I seriously decided to adjust my lifestyle. After returning to Changsha, starting from the evening of April 7, I made my own light dinner and did mindful breathing meditation for the first time; on April 8, I did neck rehabilitation exercises (cervical exercise), continued cervical physical therapy (5th session), and bought light ingredients; on April 9, I went for my first morning run (alternating brisk walking and jogging) and tried a new meditation app for a 3-minute breathing exercise; on April 10, I did shoulder-and-neck yoga and established a habit of 10 minutes of daily mindfulness meditation. Since then, various habits have progressed steadily: morning running gradually increased from 2-3 times a week and 3 kilometers to 6 kilometers; a light diet became part of every meal; cervical physical therapy remained at 1-2 times a week, reducing to once in the latter half of the month; yoga 3-4 times a week; meditation fixed every night. In the latter half of the month, these behaviors no longer required deliberate reminders, forming a mutually reinforcing closed loop and becoming a natural daily routine.",
+          "judge_reasoning": "生成答案未正确回答问题的核心，它提到的健康管理行为和触发事件与参考答案不符，且日期和事件内容存在明显错误。"
+        },
+        {
+          "id": "fenghaoran-q168",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年1月13日。",
+          "reference": "January 13",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 在 2025 年 1 月 13 日到湖南大学 MBA 教育中心注册。"
+        },
+        {
+          "id": "fenghaoran-q173",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年3月15日。",
+          "reference": "March 15, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 MBA 小组成员在 Cotti Coffee 修复关系的具体日期是 2025 年 3 月 15 日。"
+        },
+        {
+          "id": "fenghaoran-q195",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年10月1日。",
+          "reference": "October 1",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 在国庆假期接父母的具体日期是 10 月 1 日。"
+        },
+        {
+          "id": "fenghaoran-q203",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年8月27日。",
+          "reference": "August 27, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 Lin Zhihao 视频通话并设置工作台的具体日期是 2025 年 8 月 27 日。"
+        },
+        {
+          "id": "fenghaoran-q204",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年7月29日",
+          "reference": "July 29",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 收到长沙马拉松组委会的审核批准邮件的具体日期是 7 月 29 日。"
+        },
+        {
+          "id": "fenghaoran-q211",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年12月28日。",
+          "reference": "December 28, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 进行年终总结和庆祝的具体日期是 2025 年 12 月 28 日。"
+        },
+        {
+          "id": "fenghaoran-q212",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "2025年5月25日。",
+          "reference": "May 24",
+          "judge_reasoning": "生成答案的核心日期答错了，问题问的是5月24日，而生成答案给出的是5月25日。"
+        },
+        {
+          "id": "fenghaoran-q215",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Xiangjian Local Food Restaurant",
+          "reference": "Xiangjian Local Cuisine Restaurant",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然带父母去吃饭的餐厅名称，尽管用词略有不同（Local Food 而非 Local Cuisine），但核心事实正确。"
+        },
+        {
+          "id": "fenghaoran-q221",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "Interstellar",
+          "reference": "Unable to answer",
+          "judge_reasoning": "问题核心是判断该问题是否可回答，生成答案错误地给出了一个具体电影名，而非正确拒答，因此判错。"
+        },
+        {
+          "id": "fenghaoran-q240",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q248",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案『无法确定』正确反映了问题无法回答的核心，符合 Unanswerable 题型的预期。"
+        },
+        {
+          "id": "fenghaoran-q257",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q272",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案『无法确定』正确反映了问题无法回答的核心，符合 Unanswerable 题型的要求。"
+        },
+        {
+          "id": "fenghaoran-q280",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年3月24日的记录，颈部疼痛评分为7分（满分10分）。",
+          "reference": "Cervical pain scored 1 point.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即颈部疼痛的评分，尽管评分值与参考答案不同，但核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q294",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据，你的10公里个人最佳配速是5:30/公里（55分02秒），记录于2025年11月24日的晨跑中。",
+          "reference": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+          "judge_reasoning": "生成答案的核心事实答错，配速和记录时间与参考答案不符，因此判为 WRONG。"
+        },
+        {
+          "id": "fenghaoran-q298",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "是的，您已经尝试过阴瑜伽课程。根据记录，您于2025年9月18日参加了静心瑜伽工作室李老师的阴瑜伽试听课，并在2025年9月19日进行了首次自我练习。",
+          "reference": "Yes, I tried the yin yoga class.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即用户已经尝试过阴瑜伽课程。"
+        },
+        {
+          "id": "fenghaoran-q300",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据记录，你最近完成的摄影项目是**2025年9月27日**完成的电子相册《**One Day at Hengshan and the Cloud Stone Book**》，包含20张按四个主题（晨间寺庙、光影森林、云峰、山民）处理的作品。",
+          "reference": "The recently completed photography project is the \"Street Echo\" photo series.",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是最近完成的摄影项目，而生成答案给出的项目名称和完成日期都与参考答案不符。"
+        },
+        {
+          "id": "fenghaoran-q304",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "截至2025年11月1日，我在投资写作方面已完成：\n\n1. 撰写新客户投资建议书（2025-03-03）\n2. 完成投资案例PPT并定稿（2025-03-18）\n3. 论文被《湖南金融》接收录用（2025-07-18）\n4. 完成月度投资策略报告（2025-08-06）\n5. 定稿香港REITs提案并获老板批准（2025-09-23）",
+          "reference": "Completed the topic planning for the investment research column, listing 12 topic directions.",
+          "judge_reasoning": "生成答案没有提到完成投资研究专栏的主题规划或列出12个主题方向，核心内容答错。"
+        },
+        {
+          "id": "fenghaoran-q321",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据现有证据，12月16日晚上没有安排任何活动，因此这个时间是可以的。不过，你计划庆祝的奖项是在12月9日获得的，而提问时间是12月31日，所以这个庆祝安排是可行的。",
+          "reference": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+          "judge_reasoning": "生成答案错误地认为12月16日晚上没有安排任何活动，且错误地认为奖项是在12月9日获得的，这与实际情况不符，核心事实答错。"
+        },
+        {
+          "id": "fenghaoran-q333",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "他刚结束一次情人节约会，想要记录下约会细节和内心感受。",
+          "reference": "After seeing Li Tingting off, he walked alone along Furong Middle Road to reflect. During this time, he felt a clear sense of relief inside, and concluded that tonight had verified the difficulty of finding a like-minded person, strengthening his desire for deep spiritual connection. This post-reflection clarity and regret directly prompted him to immediately write in his diary upon returning home, recording the details of the date and his inner thoughts.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即他想要记录下约会细节和内心感受，这与参考答案中的核心内容一致。"
+        },
+        {
+          "id": "fenghaoran-q338",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据[E3]和[E6]，冯浩然在2025年8月12日早晨回顾了过去一周的冥想日记，发现自己在处理妹妹的事情时能够保持冷静，决策压力显著减轻，因此确认冥想有效缓解了决策压力。",
+          "reference": "Because the previous night (August 11) he recorded and compared his morning and evening meditation experiences, especially the successful emotional management after being interrupted by the cat, which made him realize the regulating effect of meditation on emotions and stress. The next morning, during the \"weekly review\" meditation, he flipped through his diary and saw his transformation from distracted attention to flow, from anxiety to calm, further verifying the effects of meditation, thereby confirming its role in alleviating decision-making pressure.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然通过回顾冥想日记确认了冥想对缓解决策压力的有效性。虽然答案没有详细提及8月11日的具体事件，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q343",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，冯浩然在2025年6月23日下午调整黄思琪和林志浩的投资组合，是因为当天上午的研讨会观点有用（E1），并且他根据此前的资产配置讨论（E0）和笔记中的调仓要点（E6）进行了操作。",
+          "reference": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然调整投资组合的原因与当天上午的研讨会有关。"
+        }
+      ]
+    },
+    "memo-e5": {
+      "accuracy": {
+        "All": [39, 46],
+        "Single_hop": [21, 24],
+        "Knowledge_update": [4, 6],
+        "Multi_hop": [11, 14],
+        "Temporal": [6, 8],
+        "Pattern_recognition(Non-declarative)": [6, 7],
+        "Causal": [4, 4],
+        "Conflict": [8, 8],
+        "Unanswerable": [4, 5],
+        "Hidden_info": [0, 1]
+      },
+      "evidence_in_context_mean": 0.47098854593425826,
+      "questions_with_evidence_in_context": 0.8536585365853658,
+      "context_records_median": 40.0,
+      "prompt_tokens_median": 8275.5,
+      "answer_usd_billed": 0.03838112286,
+      "judge_usd_billed": 0.08750835,
+      "failed_votes": 0,
+      "answer_failures": {
+        "fenghaoran-q129": "empty"
+      },
+      "per_question": [
+        {
+          "id": "fenghaoran-q002",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，您朋友在深圳南山区Tim Hortons咖啡馆（腾讯滨海大厦）演示的是**Python Dash个人投资组合仪表盘**，使用了Excel图表和Python Dash框架。他运行的代码是用于获取QDII基金资产净值的脚本，具体为通过`yfinance`库下载`FXI`、`EWJ`、`VGK`等QDII列表的三个月数据。",
+          "reference": "Python Dash framework (or Dash)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即演示使用的框架是Python Dash。"
+        },
+        {
+          "id": "fenghaoran-q003",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "《Python金融大数据分析》",
+          "reference": "Python for Financial Big Data Analysis",
+          "judge_reasoning": "生成答案《Python金融大数据分析》与参考答案《Python for Financial Big Data Analysis》核心内容一致，答对了问题的核心。"
+        },
+        {
+          "id": "fenghaoran-q024",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年3月22日的AI聊天记录，AI给出的改进建议是三步：1）梳理矛盾，用表格对齐各成员的数据来源；2）建立“答辩前24小时全组交叉核对”流程；3）下次采用角色轮换制度，避免ENTJ主导讨论造成的沟通断层。",
+          "reference": "AI assistant suggests three steps: 1) Sort out the contradictions and align each member's data sources with a table; 2) Establish a process of 'full-team cross-checking 24 hours before the defense'; 3) Next time adopt a role rotation system to avoid communication gaps caused by ENTJ over-controlling the floor.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即AI在2025年3月22日给出的改进建议，且内容与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q028",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "孙晓雅（Sun Xiaoya）",
+          "reference": "The colleague from Hangzhou is named Sun Xiaoya.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即指出了来自杭州的同事是孙晓雅。"
+        },
+        {
+          "id": "fenghaoran-q030",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据[E17]，在分析美联储加息情景时，建议将科技股仓位降至20%以下。",
+          "reference": "Reduce to below 20%",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即建议将科技股仓位降至20%以下。"
+        },
+        {
+          "id": "fenghaoran-q047",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "根据证据，签署咖啡店投资协议当天（2025年7月11日），你将签约合影发到家庭群后，母亲回复了内容。但证据中未记录母亲的具体回复文字。",
+          "reference": "Mother immediately replied with a clapping emoji sticker.",
+          "judge_reasoning": "生成答案正确指出了母亲回复了内容，但未记录具体回复文字，符合问题的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q055",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "接待我的是健康顾问王医生。他们与湘雅医院合作的具体机制是**急诊绿色通道机制**，可以直接对接湘雅医院。",
+          "reference": "Health consultant Dr. Wang gave you a tour of the Xiangya Health and Wellness Community, highlighting the ‘emergency green channel’ mechanism established with Xiangya Hospital.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即接待人是健康顾问王医生，合作机制是急诊绿色通道。"
+        },
+        {
+          "id": "fenghaoran-q056",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "你当天（2025年4月3日）在备忘录中写下的建议是：优先偿还亲友的借款；联系银行申请延期和降低月供；你可以先借她几万元以解燃眉之急。",
+          "reference": "Note content: prioritize repaying relatives and friends; proactively contact the bank to apply for deferment and lower monthly payments; I can first lend her tens of thousands of yuan to help her get through the transition.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即给出了具体的债务偿还建议和与银行协商的方法，与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q059",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "同事帮助确认的合规事项是：港股通投资计划的合规性，以及税收优惠条款是否可以引用。",
+          "reference": "That colleague Sun Xiaoya helped you confirm that the Hong Kong Stock Connect investment plan in the report meets the latest compliance requirements, confirmed that the tax incentive clause can be cited, and also reminded you of the data disclosure timing.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，提到了港股通投资计划的合规性和税收优惠条款的引用，符合问题的要求。"
+        },
+        {
+          "id": "fenghaoran-q065",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "2025年9月13日，我与罗振宇在展位深入交流了大龙邮票和金融投资；9月14日上午10点，罗振宇来展馆帮忙撤展，随后乘高铁回深圳。",
+          "reference": "You chatted with Luo Zhenyu for 2.5 hours about the stamp market, including the collectible value, auction prices, and market trends of the Large Dragon stamps and the Red Revenue stamps. Reasoning process: 135 days after April 30, 2025 is September 12, 2025, when you had an in-depth exchange with fellow collector Luo Zhenyu.",
+          "judge_reasoning": "生成答案的核心内容答对了，即135天后与罗振宇交流了大龙邮票，尽管日期有误但不影响核心事实。"
+        },
+        {
+          "id": "fenghaoran-q066",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "10月18日深夜（22:00-23:59），我对选定的婚礼照片进行了深度修图，包括调整曝光、色温、对比度，并用Photoshop微调肤色和背景细节。",
+          "reference": "Late that night (2025-10-18), you did a deep retouching of the wedding photos, adjusting exposure, color temperature, and contrast one by one, and used Photoshop to fine-tune the subjects' skin and backgrounds, striving for perfection, and continued until midnight.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即10月18日深夜进行了深度修图，包括调整曝光、色温、对比度，并用Photoshop微调肤色和背景细节。"
+        },
+        {
+          "id": "fenghaoran-q068",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "按时间顺序：先参加集邮交流会（2025-01-05），然后从医院回来购物（2025-04-08），接着上高级摄影课（2025-05-16），最后是带队攀岩返回（2025-07-19）。",
+          "reference": "In chronological order it should be:\n1. Stamp collecting exchange meeting (afternoon of January 5, 2025, at Qinghe Teahouse)\n2. Purchased healthy ingredients on the way home from the hospital and cleaned out the refrigerator (afternoon of April 8, 2025)\n3. Advanced photography course (morning of May 16, 2025)\n4. On the way back from leading a climbing trip, was persuaded by the coach, and apologized in the climbing group after returning home (afternoon of July 19, 2025)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即按时间顺序排列了四个事件，且顺序与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q093",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "过期的冷冻饺子、剩的外卖和辣酱（酱料），并用湿布擦了冰箱隔板。",
+          "reference": "That day was April 8, 2025. After returning home, you cleaned out the frozen dumplings, leftover takeout, and spicy sauces stored in the fridge, and bought fresh vegetables, whole grains, and high-quality protein.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，清理了冷冻饺子、剩外卖和辣酱，符合参考答案的主要内容。"
+        },
+        {
+          "id": "fenghaoran-q094",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "最早发生的事件是事件4（1月4日与跑友高云飞在岳麓山进行15公里长距离训练），最晚发生的事件是事件2（12月14日参加跑团年终训练分享会）。",
+          "reference": "In chronological order:\n1. 15 km long-distance training (early morning January 4, Yuelu Mountain, ran with Gao Yunfei, pace around 5 min/km, marveled at the runner's privilege at sunrise, refilled water at Aiwan Pavilion)\n2. Started CFA Level I exam preparation (evening January 14, paid $900 for textbooks, made a three-month plan, joined a study group)\n3. Night tour of Orange Isle (evening September 5, strolled on Orange Isle with parents, took photos in front of Chairman Mao statue)\n4. Promotion interview for investment director (afternoon September 28, Huatai Securities Meeting Room 302, Director Qian noted requirements such as in-depth industry research reports and passing CFA Level I)\n5. Evening climbing training challenging V3 route (evening November 20, Jiu'er Climbing Gym, successfully completed the blue V3 route on the third attempt)\n6. Attended the running group's year-end training sharing session (morning December 14, East Gate of Yuelu Mountain, coach gave metronome training suggestions for cadence)",
+          "judge_reasoning": "生成答案正确识别了最早和最晚发生的事件，符合问题的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q097",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "从4月1日2:25出发到4月6日22:00深夜谈话，总共持续5天19小时35分钟。",
+          "reference": "Lasted for 1 day, from an early morning self-drive departure on January 28 to the end of the deep conversation with my father in the study that evening.",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是今年春节回武汉的行程总时长，而生成答案给出的日期和时长与问题不符。"
+        },
+        {
+          "id": "fenghaoran-q104",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，2025年2月5日（星期四）有一场正式的客户交接会议，涉及4位高净值客户。2月6日（星期五）冯浩然原以为有客户交接会议，但经查证后确认没有会议安排。2月10日（星期一）是下一个工作日，冯浩然计划与重要客户会面。在2月7日（星期五）下午，他整理了客户林志浩的资产配置方案。因此，这位客户是林志浩。",
+          "reference": "Lin Zhihao",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即客户是林志浩。"
+        },
+        {
+          "id": "fenghaoran-q112",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年5月4日下午，冯浩然集中精力完成了自媒体创业的第一期选题和内容大纲，主题为“CFA备考与职业转型”，并计划于5月10日在B站和微信公众号发布。",
+          "reference": "He focused on debt consolidation (sorting out the debt list and formulating a repayment priority plan), drafted a personal loan agreement of 50,000 yuan for Peng Yuqing, and at the same time deepened his self-media entrepreneurship outline and formulated the initial topics and framework.",
+          "judge_reasoning": "生成答案提到了冯浩然完成了自媒体创业的第一期选题和内容大纲，这与评分点3的核心内容一致，因此核心答对。"
+        },
+        {
+          "id": "fenghaoran-q115",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "45分钟",
+          "reference": "45 minutes",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即康复活动的持续时间为45分钟，与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q128",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "He ate oatmeal soaked in milk and whole wheat bread with egg.",
+          "judge_reasoning": "生成答案「无法确定」正确拒答了问题，因为问题要求的具体信息在记录中不存在，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q129",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "(no answer)",
+          "reference": "On that morning (October 7), Feng Haoran used CamScanner to convert his parents' ID cards and household registration booklet into a PDF, sent it to his younger sister's email for backup, and paid for an order via Taobao.",
+          "judge_reasoning": "生成答案未提供任何内容，无法回答问题核心，因此判为错误。"
+        },
+        {
+          "id": "fenghaoran-q154",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，2025年7月27日你进行了手冲咖啡练习，并向朋友沈心怡（Shen Xinyi）请教了注水技巧，她即时回复了建议。此外，7月26日你曾将咖啡拉花作品拍照发朋友圈，获得彭玉清（Peng Yuqing）等人的点赞和评论。这表明你的社交分享（向朋友请教和发朋友圈）与练习状态是相互促进的：练习中主动寻求专业反馈以改进技术，练习后通过社交分享获得认可和互动，从而增强练习的动力和成就感。",
+          "reference": "During July hand-brewed coffee practice, social sharing was mainly focused on when encountering difficulties or achieving satisfactory results. For example: on July 5, after two failures, she took photos and asked Shen Xinyi for help, and after success, shared the joy again; on July 6, consulted Shen Xinyi; on July 13, after practice, took photos and sent them to Shen Xinyi; on July 20 and 25, when encountering problems, asked Shen Xinyi for parameters; on July 26, after success in the latte art class, shared on Moments; on July 27, after practice, exchanged techniques with Shen Xinyi. However, daily routine practice (such as the mornings of July 9, 10, 17, 25) rarely involved social sharing, or only personal records. This shows that social sharing is a motivating way to solve difficulties, obtain feedback, and celebrate breakthroughs, while daily maintenance practice triggers sharing behavior less frequently.",
+          "judge_reasoning": "生成答案正确总结了社交分享与练习状态的关系，核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q159",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "在11月，你的学习投资表现为系统化与碎片化结合：每天固定2小时用于CFA Level 2备考（E6），同时通过阅读机器学习量化投资文章（E9）、参加长沙金融科技沙龙并整理笔记（E11、E14）、撰写投资系统文章（E7）等方式进行拓展。个人兴趣学习（如机器学习、投资建模、沙龙交流）直接服务于职业发展（专栏内容、模型优化、专业输出），两者高度融合、相互促进。",
+          "reference": "In November, my learning efforts showed a composite pattern of parallel advancement, with career development learning and personal interest learning proceeding simultaneously and interweaving. Career learning included CFA exam preparation, column writing (such as 'The Investment Logic of Changsha REITs'), pension fund screening, and client solution design; interest learning included photography exhibition setup and attendance, rock climbing training, oil painting experiences, and street photography. The two were deeply intertwined in both time and content: for example, on the same day I both studied for the CFA and attended rock climbing training, and the column article ended with promotional information for my personal photography exhibition; the coffee shop served as both the exhibition venue and an offline promotional point for the column; during a career conversation, my supervisor recognized the customer traffic brought by the exhibition. This pattern reflects a deliberate strategy of integrating career and interests to build a personal brand.",
+          "judge_reasoning": "生成答案正确识别了11月学习投资的并行复合模式，职业发展和个人兴趣学习同时进行并相互交织，核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q163",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "10月13日右膝受伤后，我的运动调整包括：\n\n- 当天按建议冰敷、观察，并取消次日晨跑，改为室内快走或瑜伽；\n- 10月14日改做低冲击核心训练：平板支撑、仰卧举腿、鸟狗式，替代跑步；\n- 10月17日恢复首次慢跑5.2公里，配速6:50，全程无痛；\n- 10月20日已完成15公里长跑，配速6:25，膝盖仅在后段有不适且很快缓解，并计划周末进行18公里训练，按建议控制配速。\n\n这些调整让右膝的酸痛肿胀基本消退，逐步从康复慢跑过渡到正常长跑，跑步能力没有明显下降，后续运动表现逐步恢复。",
+          "reference": "After injuring my right knee, I immediately stopped running. That day (October 13), I applied ice and did evening yin yoga stretching. Over the next few days, I replaced my morning runs with core strength training, cervical spine exercises, and light stretching, and did not resume my 5.2 km jog until October 17. The yoga and core training interspersed during the injury period prevented a complete training stop and also promoted recovery from the knee injury. After recovery, I successfully topped a V3 climbing route on October 19, completed my first 15 km long run on October 20 (average pace 6:25), and successfully topped another V3 route on October 26. After that, I also booked a coach to discuss a V4 training plan. These performances show that the adjusted cross-training enhanced my core strength and flexibility, laying the foundation for an athletic breakthrough.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即运动调整及其对恢复和运动表现的影响。虽然具体细节与参考答案不完全一致，但核心内容答对，且没有关键事实错误。"
+        },
+        {
+          "id": "fenghaoran-q164",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据记录，2025年4月，你实施了以下健康管理行为：\n\n1. **医院常规检查**：2025年4月8日14:00-15:30，前往医院进行常规检查，为后续健康管理做准备（E15）。\n2. **健康监督计划**：2025年4月24日，你与高云峰（Brother Bo）通过短信讨论固定收益提案框架，但未直接涉及健康管理（E22）。此外，2025年5月2日你与父母约定每周视频通话汇报饮食、作息和运动（E23），但此行为发生在5月，非4月。\n3. **日常活动与睡眠**：2025年4月27日，你进行了户外骑行（07:20-07:45，6.3公里）、户外步行（12:15-12:55，3.3公里）和晚间步行回家（17:10），总步数8000步，活动时长2.5小时。当晚22:50入睡，深睡150分钟，睡眠评分85（E3）。\n\n这些行为从初始触发事件到形成固定习惯的演变过程如下：\n- **初始触发**：2025年2月22日，你因头晕中断晨跑，被诊断为过度疲劳综合征（E4），这成为健康管理的直接触发事件。随后，你于2025年3月29日因颈部不适前往湘雅三医院（E13），并预约了2025年3月21日的物理治疗（E39）。\n- **逐步形成习惯**：从2025年1月至4月，你持续记录每日活动、睡眠和饮食（如E8、E19、E21），并逐步调整作息。2025年4月27日的数据显示，你已形成规律作息（22:50入睡、07:00起床）和多样化运动（骑行、步行），深睡时间从2月22日的80分钟提升至150分钟，睡眠评分从70升至85（E3 vs E4）。这些行为通过持续记录和调整，逐渐固化为日常习惯。",
+          "reference": "In April, I mainly implemented five health management behaviors: morning running, a light diet, cervical spine physical therapy, shoulder-and-neck therapeutic yoga, and mindfulness meditation. The formation of these habits started with the trigger event of my mother's hospitalization on April 1, then took root during my time accompanying her. After a deep conversation with my father on the rooftop on April 6, I seriously decided to adjust my lifestyle. After returning to Changsha, starting from the evening of April 7, I made my own light dinner and did mindful breathing meditation for the first time; on April 8, I did neck rehabilitation exercises (cervical exercise), continued cervical physical therapy (5th session), and bought light ingredients; on April 9, I went for my first morning run (alternating brisk walking and jogging) and tried a new meditation app for a 3-minute breathing exercise; on April 10, I did shoulder-and-neck yoga and established a habit of 10 minutes of daily mindfulness meditation. Since then, various habits have progressed steadily: morning running gradually increased from 2-3 times a week and 3 kilometers to 6 kilometers; a light diet became part of every meal; cervical physical therapy remained at 1-2 times a week, reducing to once in the latter half of the month; yoga 3-4 times a week; meditation fixed every night. In the latter half of the month, these behaviors no longer required deliberate reminders, forming a mutually reinforcing closed loop and becoming a natural daily routine.",
+          "judge_reasoning": "生成答案未正确回答问题的核心，它列出的健康管理行为与参考答案不符，且触发事件和习惯形成过程也未准确描述。"
+        },
+        {
+          "id": "fenghaoran-q168",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年1月13日",
+          "reference": "January 13",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 去湖南大学 MBA 教育中心报到的具体日期是 2025 年 1 月 13 日。"
+        },
+        {
+          "id": "fenghaoran-q173",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025-03-15",
+          "reference": "March 15, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 MBA 小组成员在 Cotti Coffee 修复关系的具体日期是 2025 年 3 月 15 日。"
+        },
+        {
+          "id": "fenghaoran-q195",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年10月1日。",
+          "reference": "October 1",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 在国庆节假期接父母回家的日期是 10 月 1 日。"
+        },
+        {
+          "id": "fenghaoran-q203",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年8月27日。",
+          "reference": "August 27, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 Lin Zhihao 视频通话并设置工作台的具体日期是 2025 年 8 月 27 日。"
+        },
+        {
+          "id": "fenghaoran-q204",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年7月29日。",
+          "reference": "July 29",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 收到长沙马拉松组委会的审核批准邮件的具体日期是 7 月 29 日。"
+        },
+        {
+          "id": "fenghaoran-q211",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年12月28日。",
+          "reference": "December 28, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 进行年终总结和庆祝的具体日期是 2025 年 12 月 28 日。"
+        },
+        {
+          "id": "fenghaoran-q212",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "5月24日。",
+          "reference": "May 24",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 最终约定的日期是 5 月 24 日。"
+        },
+        {
+          "id": "fenghaoran-q215",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Xiangjian Tujia Restaurant",
+          "reference": "Xiangjian Local Cuisine Restaurant",
+          "judge_reasoning": "生成答案的核心内容答对了，虽然餐厅名称略有差异，但核心信息正确。"
+        },
+        {
+          "id": "fenghaoran-q221",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "星际穿越",
+          "reference": "Unable to answer",
+          "judge_reasoning": "问题属于 Unanswerable 题型，核心是判断是否应拒答。生成答案给出了具体电影名，但根据题型要求应拒答，因此核心答错。"
+        },
+        {
+          "id": "fenghaoran-q240",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确地识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q248",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案『无法确定』正确拒答了问题，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q257",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q272",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案「无法确定」正确反映了问题无法回答的核心，符合 Unanswerable 题型的预期。"
+        },
+        {
+          "id": "fenghaoran-q280",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据最近一次（2025-03-31）的记录，你的颈部疼痛评分为1分，属于轻微程度。",
+          "reference": "Cervical pain scored 1 point.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即颈部疼痛评分为1分，属于轻微程度。"
+        },
+        {
+          "id": "fenghaoran-q294",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "5:30/km",
+          "reference": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+          "judge_reasoning": "生成答案的核心是回答提问者的10公里跑最佳配速，虽然漏掉了部分细节，但核心配速值正确。"
+        },
+        {
+          "id": "fenghaoran-q298",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Yes, you tried a yin yoga class on 2025-09-18 at Jingxin Yoga Studio with Teacher Li.",
+          "reference": "Yes, I tried the yin yoga class.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，确认了提问者参加了阴瑜伽课程，并且提供了具体的时间、地点和教练信息。"
+        },
+        {
+          "id": "fenghaoran-q300",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "The recently completed photography project is the \"Street Echo\" photo series.",
+          "judge_reasoning": "生成答案「无法确定」错误拒答，因为记录中有明确答案。"
+        },
+        {
+          "id": "fenghaoran-q304",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "截至2025年11月1日，你在投资写作方面已完成的主要成果包括：\n\n- 论文被《湖南金融》接收（7月）\n- 香港REITs提案最终定稿并获老板批准（9月）\n- 月度投资策略报告（8月，含A股展望、债券分析）\n- 半导体周报（9月）\n- 跨境电商投资机会简报（8月草稿）\n- 固定收益提案框架（4月，哑铃配置思路）\n- REITs研讨会PPT及案例PPT（3月）\n- 客户投资建议文件（3月，曾因计算错误更正）\n- 第一篇投资专栏（10月，主题为分布式账本重塑信任）",
+          "reference": "Completed the topic planning for the investment research column, listing 12 topic directions.",
+          "judge_reasoning": "生成答案没有提到完成投资研究专栏的主题规划，也没有提到列出了12个主题方向，核心内容答错。"
+        },
+        {
+          "id": "fenghaoran-q321",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "这个安排可行。证据显示你于12月9日获知赢得创新奖，12月10日参加颁奖仪式，之后没有12月16日的日程记录，也没有其他冲突安排。建议提前邀请朋友并确认时间。",
+          "reference": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+          "judge_reasoning": "生成答案的核心是判断12月16日的晚餐安排是否合适，但答案错误地认为安排可行，忽略了CFA和ESG课程的时间冲突，因此核心答错。"
+        },
+        {
+          "id": "fenghaoran-q333",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据[E2]和[E6]，2025年2月14日晚上9点，他计划在书房写日记记录约会细节和感受，并在9点30分记录了约会感受。结合证据[E0]中2月17日他对约会的评价（感觉一般、对话太客气），可以推断他写日记的原因是记录和反思这次情人节约会的感受。",
+          "reference": "After seeing Li Tingting off, he walked alone along Furong Middle Road to reflect. During this time, he felt a clear sense of relief inside, and concluded that tonight had verified the difficulty of finding a like-minded person, strengthening his desire for deep spiritual connection. This post-reflection clarity and regret directly prompted him to immediately write in his diary upon returning home, recording the details of the date and his inner thoughts.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即他写日记的原因是记录和反思这次情人节约会的感受。虽然答案没有详细描述他反思的具体内容，但核心原因答对了。"
+        },
+        {
+          "id": "fenghaoran-q338",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "冯浩然在2025年8月12日早上回顾了过去一周的冥想日记，发现自己在处理妹妹放弃CFA、转行新媒体运营一事时，能够保持冷静、克制住反对冲动并选择支持，决策压力显著降低，因此确认冥想有效缓解了决策压力。",
+          "reference": "Because the previous night (August 11) he recorded and compared his morning and evening meditation experiences, especially the successful emotional management after being interrupted by the cat, which made him realize the regulating effect of meditation on emotions and stress. The next morning, during the \"weekly review\" meditation, he flipped through his diary and saw his transformation from distracted attention to flow, from anxiety to calm, further verifying the effects of meditation, thereby confirming its role in alleviating decision-making pressure.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然通过回顾冥想日记确认了冥想对缓解决策压力的有效性。虽然答案中没有提到8月11日的冥想记录和猫的干扰事件，但这些是次要内容，不影响核心答案的正确性。"
+        },
+        {
+          "id": "fenghaoran-q343",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Feng Haoran调整黄思琪和林志浩的投资组合，是因为他在当天下午的研讨会上获得了有用的观点，并据此对两人的资产配置进行了优化。",
+          "reference": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即Feng Haoran调整投资组合的原因与研讨会相关，尽管没有提到具体日期和调整细节，但核心内容答对。"
+        }
+      ]
+    },
+    "memo-gemma-top10": {
+      "accuracy": {
+        "All": [32, 46],
+        "Single_hop": [17, 24],
+        "Knowledge_update": [3, 6],
+        "Multi_hop": [8, 14],
+        "Temporal": [4, 8],
+        "Pattern_recognition(Non-declarative)": [5, 7],
+        "Causal": [4, 4],
+        "Conflict": [6, 8],
+        "Unanswerable": [4, 5],
+        "Hidden_info": [0, 1]
+      },
+      "evidence_in_context_mean": 0.4163471252407906,
+      "questions_with_evidence_in_context": 0.8536585365853658,
+      "context_records_median": 10.0,
+      "prompt_tokens_median": 1996.0,
+      "answer_usd_billed": 0.011163086908,
+      "judge_usd_billed": 0.0872046898,
+      "failed_votes": 0,
+      "answer_failures": {},
+      "per_question": [
+        {
+          "id": "fenghaoran-q002",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Python Dash框架。",
+          "reference": "Python Dash framework (or Dash)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即框架是 Python Dash。"
+        },
+        {
+          "id": "fenghaoran-q003",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "《Python金融大数据分析》",
+          "reference": "Python for Financial Big Data Analysis",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即书名《Python金融大数据分析》与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q024",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年3月22日的聊天记录，AI给出的改进建议是：1）梳理矛盾，用表格对齐各成员的数据来源；2）建立“答辩前24小时全组交叉核对”的流程；3）下次采用角色轮换制度，避免ENTJ主导讨论导致的沟通断层。",
+          "reference": "AI assistant suggests three steps: 1) Sort out the contradictions and align each member's data sources with a table; 2) Establish a process of 'full-team cross-checking 24 hours before the defense'; 3) Next time adopt a role rotation system to avoid communication gaps caused by ENTJ over-controlling the floor.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即AI在2025年3月22日给出的改进建议，包括梳理矛盾、建立交叉核对流程和采用角色轮换制度。"
+        },
+        {
+          "id": "fenghaoran-q028",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "孙晓雅（Sun Xiaoya）",
+          "reference": "The colleague from Hangzhou is named Sun Xiaoya.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即指出了来自杭州的同事是孙晓雅（Sun Xiaoya）。"
+        },
+        {
+          "id": "fenghaoran-q030",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "低于20%。",
+          "reference": "Reduce to below 20%",
+          "judge_reasoning": "生成答案「低于20%」正确回答了问题的核心，即科技仓位应降低到的具体比例。"
+        },
+        {
+          "id": "fenghaoran-q047",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。签约日（7月11日）发送合影后妈妈的回复在证据中没有记录；仅有一条4月11日来自家庭群的“😊”消息，无法确认是那次回复。",
+          "reference": "Mother immediately replied with a clapping emoji sticker.",
+          "judge_reasoning": "生成答案正确地指出了无法确定妈妈的回复，符合问题的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q055",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "接待您的是健康顾问王医生。该社区与湘雅医院建立了急诊绿色通道机制。",
+          "reference": "Health consultant Dr. Wang gave you a tour of the Xiangya Health and Wellness Community, highlighting the ‘emergency green channel’ mechanism established with Xiangya Hospital.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即接待人是健康顾问王医生，且合作机制是急诊绿色通道。"
+        },
+        {
+          "id": "fenghaoran-q056",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年4月3日14:05的手机备忘录记录，你给彭宇清的具体建议是：  \n1. 优先偿还亲朋好友的债务；  \n2. 联系银行申请展期并降低月供；  \n3. 你可以先借她几万周转。",
+          "reference": "Note content: prioritize repaying relatives and friends; proactively contact the bank to apply for deferment and lower monthly payments; I can first lend her tens of thousands of yuan to help her get through the transition.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即给出了具体的债务偿还建议和与银行协商的方法。"
+        },
+        {
+          "id": "fenghaoran-q059",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "关于客户年度资产配置报告的合规沟通部分，具体是：在10:30致电孙晓雅，确认港股通投资方案的合规性，并确认可以引用税收优惠条款。",
+          "reference": "That colleague Sun Xiaoya helped you confirm that the Hong Kong Stock Connect investment plan in the report meets the latest compliance requirements, confirmed that the tax incentive clause can be cited, and also reminded you of the data disclosure timing.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即确认了港股通投资方案的合规性并确认可以引用税收优惠条款。"
+        },
+        {
+          "id": "fenghaoran-q065",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "2025年9月13日，我和冯浩然（Feng Haoran）整理了大龙邮票分析模型，他通过短信告知已将模型发送到我的邮箱。",
+          "reference": "You chatted with Luo Zhenyu for 2.5 hours about the stamp market, including the collectible value, auction prices, and market trends of the Large Dragon stamps and the Red Revenue stamps. Reasoning process: 135 days after April 30, 2025 is September 12, 2025, when you had an in-depth exchange with fellow collector Luo Zhenyu.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，问题问的是与 Luo Zhenyu 的对话，而生成答案提到的是与冯浩然的活动，且日期也错误。"
+        },
+        {
+          "id": "fenghaoran-q066",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "10月18日婚礼拍摄（11:50至18:00）结束后，我从当晚22:00起戴上耳机，在家用Photoshop对选定的婚礼照片进行深度精修，逐一调整曝光、色温、对比度，并微调肤色和背景；工作一直持续到午夜，随后又继续从凌晨0:00修到1:30，最终完成全部120张婚礼照片的精修。期间在22:35还拍了一张修图时的照片。",
+          "reference": "Late that night (2025-10-18), you did a deep retouching of the wedding photos, adjusting exposure, color temperature, and contrast one by one, and used Photoshop to fine-tune the subjects' skin and backgrounds, striving for perfection, and continued until midnight.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即当晚进行了深度精修婚礼照片的活动，并具体列出了调整曝光、色温、对比度等操作，以及使用Photoshop微调肤色和背景，且工作持续到午夜。"
+        },
+        {
+          "id": "fenghaoran-q068",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，这些事件中只有两件有明确时间记录：2（邮票交流会在2025年1月5日）和1（7月19日黑麋峰带队攀岩返回）。因此，最先发生的是事件2，之后是事件1。事件3和事件4在证据中未找到对应记录，无法确定。",
+          "reference": "In chronological order it should be:\n1. Stamp collecting exchange meeting (afternoon of January 5, 2025, at Qinghe Teahouse)\n2. Purchased healthy ingredients on the way home from the hospital and cleaned out the refrigerator (afternoon of April 8, 2025)\n3. Advanced photography course (morning of May 16, 2025)\n4. On the way back from leading a climbing trip, was persuaded by the coach, and apologized in the climbing group after returning home (afternoon of July 19, 2025)",
+          "judge_reasoning": "生成答案正确识别了邮票交流会为最先发生的事件，以及攀岩返回为第二事件，符合问题的核心要求。尽管未提及摄影课程和医院返回的具体时间，但问题核心在于排序，而非所有事件的详细时间。"
+        },
+        {
+          "id": "fenghaoran-q093",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "清理冰箱时扔掉了过期的冷冻饺子、剩余的（外卖）食物和辣酱，并用湿布擦拭了搁架。",
+          "reference": "That day was April 8, 2025. After returning home, you cleaned out the frozen dumplings, leftover takeout, and spicy sauces stored in the fridge, and bought fresh vegetables, whole grains, and high-quality protein.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，清理了冰箱中的冷冻饺子、剩余外卖和辣酱，符合参考答案的主要内容。"
+        },
+        {
+          "id": "fenghaoran-q094",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据提供的证据，这些事件中最早发生的是第5项（CFA Level I考试准备），最晚发生的是第1项（带父母游橘子洲）。",
+          "reference": "In chronological order:\n1. 15 km long-distance training (early morning January 4, Yuelu Mountain, ran with Gao Yunfei, pace around 5 min/km, marveled at the runner's privilege at sunrise, refilled water at Aiwan Pavilion)\n2. Started CFA Level I exam preparation (evening January 14, paid $900 for textbooks, made a three-month plan, joined a study group)\n3. Night tour of Orange Isle (evening September 5, strolled on Orange Isle with parents, took photos in front of Chairman Mao statue)\n4. Promotion interview for investment director (afternoon September 28, Huatai Securities Meeting Room 302, Director Qian noted requirements such as in-depth industry research reports and passing CFA Level I)\n5. Evening climbing training challenging V3 route (evening November 20, Jiu'er Climbing Gym, successfully completed the blue V3 route on the third attempt)\n6. Attended the running group's year-end training sharing session (morning December 14, East Gate of Yuelu Mountain, coach gave metronome training suggestions for cadence)",
+          "judge_reasoning": "生成答案正确识别了最早和最晚发生的事件，核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q097",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "从1月28日7:00出发到4月6日22:00与父亲谈话，总时长约68天15小时。",
+          "reference": "Lasted for 1 day, from an early morning self-drive departure on January 28 to the end of the deep conversation with my father in the study that evening.",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是从出发到与父亲谈话的总时长，而生成答案给出的时间跨度明显错误，从1月28日到4月6日，与参考答案不符。"
+        },
+        {
+          "id": "fenghaoran-q104",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "钱永强",
+          "reference": "Lin Zhihao",
+          "judge_reasoning": "生成答案答错了核心事实，问题问的是客户是谁，但生成答案给出了错误的名字。"
+        },
+        {
+          "id": "fenghaoran-q112",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "冯浩然在2025年5月4日下午专注于自媒体创业的选题策划，即“CFA备考与职业转型”第一期内容的主题与大纲制定。",
+          "reference": "He focused on debt consolidation (sorting out the debt list and formulating a repayment priority plan), drafted a personal loan agreement of 50,000 yuan for Peng Yuqing, and at the same time deepened his self-media entrepreneurship outline and formulated the initial topics and framework.",
+          "judge_reasoning": "生成答案提到了冯浩然专注于自媒体创业的选题策划，这与评分点3的核心内容一致，因此核心答对。"
+        },
+        {
+          "id": "fenghaoran-q115",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "25分钟",
+          "reference": "45 minutes",
+          "judge_reasoning": "生成答案的核心是回答康复活动的时长，但给出的时长与参考答案不符，因此核心答错。"
+        },
+        {
+          "id": "fenghaoran-q128",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "Feng Haoran ate beef rice noodles and jianbing for breakfast on the morning after the run when he smelled osmanthus fragrance at West Lake Park.",
+          "reference": "He ate oatmeal soaked in milk and whole wheat bread with egg.",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是 Feng Haoran 在闻到桂花香后的早餐，生成答案给出了错误的食物。"
+        },
+        {
+          "id": "fenghaoran-q129",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "我准备了早餐（燕麦牛奶和全麦面包鸡蛋），并将父母的身份证、户口本和医保材料清单放入文件袋。",
+          "reference": "On that morning (October 7), Feng Haoran used CamScanner to convert his parents' ID cards and household registration booklet into a PDF, sent it to his younger sister's email for backup, and paid for an order via Taobao.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，问题问的是在另一个早晨具体做了什么，而生成答案描述的是准备早餐和整理文件，与参考答案中的内容完全不一致。"
+        },
+        {
+          "id": "fenghaoran-q154",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "在7月的冲煮练习中，社交分享与练习状态紧密相关：练习后常通过微信向沈欣怡请教参数调整（如7月6日、7月27日），并记录其建议用于优化；同时，练习成果（如拉花作品）会拍照发朋友圈分享（如7月26日），获得朋友点赞评论。社交互动直接反馈到后续练习中，形成“练习-请教-优化-分享”的循环。",
+          "reference": "During July hand-brewed coffee practice, social sharing was mainly focused on when encountering difficulties or achieving satisfactory results. For example: on July 5, after two failures, she took photos and asked Shen Xinyi for help, and after success, shared the joy again; on July 6, consulted Shen Xinyi; on July 13, after practice, took photos and sent them to Shen Xinyi; on July 20 and 25, when encountering problems, asked Shen Xinyi for parameters; on July 26, after success in the latte art class, shared on Moments; on July 27, after practice, exchanged techniques with Shen Xinyi. However, daily routine practice (such as the mornings of July 9, 10, 17, 25) rarely involved social sharing, or only personal records. This shows that social sharing is a motivating way to solve difficulties, obtain feedback, and celebrate breakthroughs, while daily maintenance practice triggers sharing behavior less frequently.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即社交分享与练习状态的关系，尽管没有逐字复述所有日期和事件，但核心内容正确。"
+        },
+        {
+          "id": "fenghaoran-q159",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "11月的学习投资呈现以下模式：职业发展学习（如CFA备考、内容创作、团队管理）与个人兴趣学习（如ESG投资课程、阅读《周期》并关联运动训练）相互交织，两者在时间上并行推进，且个人兴趣学习常被用于反哺职业发展（如将投资周期理论应用于运动心态管理）。",
+          "reference": "In November, my learning efforts showed a composite pattern of parallel advancement, with career development learning and personal interest learning proceeding simultaneously and interweaving. Career learning included CFA exam preparation, column writing (such as 'The Investment Logic of Changsha REITs'), pension fund screening, and client solution design; interest learning included photography exhibition setup and attendance, rock climbing training, oil painting experiences, and street photography. The two were deeply intertwined in both time and content: for example, on the same day I both studied for the CFA and attended rock climbing training, and the column article ended with promotional information for my personal photography exhibition; the coffee shop served as both the exhibition venue and an offline promotional point for the column; during a career conversation, my supervisor recognized the customer traffic brought by the exhibition. This pattern reflects a deliberate strategy of integrating career and interests to build a personal brand.",
+          "judge_reasoning": "生成答案正确识别了11月学习投资的并行复合模式，职业发展学习与个人兴趣学习同时进行并相互交织，核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q163",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，10月13日右膝受伤后，我立即调整了运动习惯：10月14日改为核心训练（平板支撑、仰卧举腿、鸟狗式），10月21日继续低强度核心训练并推迟了与跑友的周六晨跑，11月13日因下雨改为居家核心训练和拉伸。这些调整避免了加重损伤，使右膝在10月17日即能无痛完成5.2公里康复慢跑（配速6:50），并在后续训练中保持了良好状态，未再出现明显疼痛或肿胀。",
+          "reference": "After injuring my right knee, I immediately stopped running. That day (October 13), I applied ice and did evening yin yoga stretching. Over the next few days, I replaced my morning runs with core strength training, cervical spine exercises, and light stretching, and did not resume my 5.2 km jog until October 17. The yoga and core training interspersed during the injury period prevented a complete training stop and also promoted recovery from the knee injury. After recovery, I successfully topped a V3 climbing route on October 19, completed my first 15 km long run on October 20 (average pace 6:25), and successfully topped another V3 route on October 26. After that, I also booked a coach to discuss a V4 training plan. These performances show that the adjusted cross-training enhanced my core strength and flexibility, laying the foundation for an athletic breakthrough.",
+          "judge_reasoning": "生成答案正确回答了问题核心，即受伤后如何调整运动习惯及其对恢复和运动表现的影响。虽然漏了一些细节，但核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q164",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据记录，2025年4月你实施了以下健康管理行为：\n\n1. **每日血压监测**：4月3日设置了每日血压打卡提醒，要求在每晚20:00前记录。\n2. **晨间锻炼**：4月18日完成了20分钟晨间快走和颈椎拉伸。\n3. **综合健身活动**：4月21日在长沙进行了户外步行（18:50-19:20，2.5公里）、家庭核心训练，并检查了步数。\n4. **家庭健康管理**：4月5日在武汉为母亲确认饮食计划、测量父亲血压并记录，创建家庭健康群组分享数据，还进行了拉伸和正念呼吸。\n\n这些行为从初始触发事件逐步形成固定习惯的过程：\n- **触发事件**：1月30日与母亲长谈后，你感到愧疚，制定了2月家庭健康计划（减少外出就餐、恢复晨跑、每周称重等）；1月31日又制定了2025年个人健康执行计划（晨跑、核心力量、饮食调整、体检安排）。这些计划为后续行为提供了明确目标。\n- **习惯形成**：4月3日设置每日血压打卡，表明监测行为已制度化；4月5日、18日、21日的记录显示，晨间锻炼、步行、家庭健康管理（如记录父母数据）已融入日常，且4月21日你主动检查步数、设置提醒，说明这些行为已从计划转化为固定习惯。",
+          "reference": "In April, I mainly implemented five health management behaviors: morning running, a light diet, cervical spine physical therapy, shoulder-and-neck therapeutic yoga, and mindfulness meditation. The formation of these habits started with the trigger event of my mother's hospitalization on April 1, then took root during my time accompanying her. After a deep conversation with my father on the rooftop on April 6, I seriously decided to adjust my lifestyle. After returning to Changsha, starting from the evening of April 7, I made my own light dinner and did mindful breathing meditation for the first time; on April 8, I did neck rehabilitation exercises (cervical exercise), continued cervical physical therapy (5th session), and bought light ingredients; on April 9, I went for my first morning run (alternating brisk walking and jogging) and tried a new meditation app for a 3-minute breathing exercise; on April 10, I did shoulder-and-neck yoga and established a habit of 10 minutes of daily mindfulness meditation. Since then, various habits have progressed steadily: morning running gradually increased from 2-3 times a week and 3 kilometers to 6 kilometers; a light diet became part of every meal; cervical physical therapy remained at 1-2 times a week, reducing to once in the latter half of the month; yoga 3-4 times a week; meditation fixed every night. In the latter half of the month, these behaviors no longer required deliberate reminders, forming a mutually reinforcing closed loop and becoming a natural daily routine.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，问题问的是2025年4月实施的健康管理行为及其习惯形成过程，但生成答案提到的行为（如每日血压监测、晨间锻炼、综合健身活动等）与参考答案中的行为（如晨跑、轻食、颈椎物理治疗等）完全不同，且触发事件和习惯形成过程也完全不一致。因此，核心答错。"
+        },
+        {
+          "id": "fenghaoran-q168",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年1月13日",
+          "reference": "January 13",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 去湖南大学 MBA 教育中心注册的具体日期是 2025 年 1 月 13 日。"
+        },
+        {
+          "id": "fenghaoran-q173",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年3月15日",
+          "reference": "March 15, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 MBA 小组成员在 Cotti Coffee 修复关系的具体日期是 2025 年 3 月 15 日。"
+        },
+        {
+          "id": "fenghaoran-q195",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年10月1日。",
+          "reference": "October 1",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 接父母的日期是 10 月 1 日。"
+        },
+        {
+          "id": "fenghaoran-q203",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年8月27日。",
+          "reference": "August 27, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即Feng Haoran与Lin Zhihao视频通话并设置工作台的具体日期是2025年8月27日。"
+        },
+        {
+          "id": "fenghaoran-q204",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年7月29日。",
+          "reference": "July 29",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然收到长沙马拉松组委会的审核批准邮件的具体日期是7月29日。"
+        },
+        {
+          "id": "fenghaoran-q211",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年12月28日。",
+          "reference": "December 28, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 进行年终总结和庆祝的具体日期是 2025 年 12 月 28 日。"
+        },
+        {
+          "id": "fenghaoran-q212",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "5月25日。",
+          "reference": "May 24",
+          "judge_reasoning": "生成答案答错了核心事实，问题问的是 Feng Haoran 和 Shen Xinyi 最终约定的日期，而生成答案给出了错误的日期 5 月 25 日。"
+        },
+        {
+          "id": "fenghaoran-q215",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "Xiangjian Tujia Restaurant",
+          "reference": "Xiangjian Local Cuisine Restaurant",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是冯浩然带父母去吃饭的餐厅，生成答案给出了错误的餐厅名称。"
+        },
+        {
+          "id": "fenghaoran-q221",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "《星际穿越》",
+          "reference": "Unable to answer",
+          "judge_reasoning": "问题问的是今天下午在万达影院观看的科幻电影名称，但系统生成的答案《星际穿越》是编造的具体答案，不符合 Unanswerable 题型的核心要求，即该不该拒答。"
+        },
+        {
+          "id": "fenghaoran-q240",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确地识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q248",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "核心答对，因为问题无法回答，生成答案明确表示无法确定。"
+        },
+        {
+          "id": "fenghaoran-q257",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q272",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了问题无法回答，核心对。"
+        },
+        {
+          "id": "fenghaoran-q280",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据现有证据，无法确定2025年5月2日时您的颈部疼痛程度。证据中仅记录了2025年3月24日疼痛评分为7分，以及2025年6月11日至18日期间的急性发作和诊断，但未提供5月2日当天的具体疼痛评分或描述。",
+          "reference": "Cervical pain scored 1 point.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即无法确定2025年5月2日时的颈部疼痛程度，符合Unanswerable题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q294",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+          "judge_reasoning": "生成答案未能正确回答问题，因为记录中确实有答案，但生成答案却回答'无法确定'，属于错误拒答。"
+        },
+        {
+          "id": "fenghaoran-q298",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "是的，你在2025年9月18日参加了李老师的阴瑜伽试听课。",
+          "reference": "Yes, I tried the yin yoga class.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，确认提问者参加了阴瑜伽课程，且提供了具体的时间和教师信息。"
+        },
+        {
+          "id": "fenghaoran-q300",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据，您最近完成的摄影项目是名为《一日衡山与云石书》的电子摄影集，包含20张作品，主题为“晨寺”、“光林”、“云峰”和“山人”。",
+          "reference": "The recently completed photography project is the \"Street Echo\" photo series.",
+          "judge_reasoning": "生成答案的核心事实错误，问题问的是最近完成的摄影项目，而生成答案给出的项目名称与参考答案不符。"
+        },
+        {
+          "id": "fenghaoran-q304",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据，在投资写作方面，我建立了投资研究数据库（含行业研究、个股分析等板块），撰写了第一篇投资专栏并完成初稿（基于投资者生命周期配置策略），并在10月30日的结业演讲中引用了该专栏。此外，还涉及投资提案和投资心得笔记等写作活动。",
+          "reference": "Completed the topic planning for the investment research column, listing 12 topic directions.",
+          "judge_reasoning": "生成答案没有提到完成投资研究专栏的主题规划，也没有提到列出了12个主题方向，因此核心内容答错。"
+        },
+        {
+          "id": "fenghaoran-q321",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "这个安排听起来不错，12月16日晚上没有其他计划冲突，适合与朋友庆祝。",
+          "reference": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+          "judge_reasoning": "生成答案的核心结论与参考答案相反，认为12月16日晚上没有冲突适合庆祝，而实际存在CFA课程冲突，因此判错。"
+        },
+        {
+          "id": "fenghaoran-q333",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "他感到与约会对象（李婷婷）缺乏精神共鸣，认为对方虽礼貌得体但并非灵魂伴侣，这加深了他对寻找知音的渴望，促使他回家后立即写日记记录感受。",
+          "reference": "After seeing Li Tingting off, he walked alone along Furong Middle Road to reflect. During this time, he felt a clear sense of relief inside, and concluded that tonight had verified the difficulty of finding a like-minded person, strengthening his desire for deep spiritual connection. This post-reflection clarity and regret directly prompted him to immediately write in his diary upon returning home, recording the details of the date and his inner thoughts.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即他感到与李婷婷缺乏精神共鸣，这促使他回家后立即写日记记录感受。"
+        },
+        {
+          "id": "fenghaoran-q338",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年8月12日的笔记记录（E0），冯浩然在回顾过去一周的冥想日记时，发现自己在处理妹妹的事情时能够保持冷静，决策压力显著减轻，从而确认冥想有效缓解了决策压力。",
+          "reference": "Because the previous night (August 11) he recorded and compared his morning and evening meditation experiences, especially the successful emotional management after being interrupted by the cat, which made him realize the regulating effect of meditation on emotions and stress. The next morning, during the \"weekly review\" meditation, he flipped through his diary and saw his transformation from distracted attention to flow, from anxiety to calm, further verifying the effects of meditation, thereby confirming its role in alleviating decision-making pressure.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然通过回顾冥想日记确认了冥想对缓解决策压力的有效性。虽然答案没有详细提及8月11日的具体事件，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q343",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "因为当天早上的研讨会观点很有用，所以根据该观点对两人的投资组合进行了调整。",
+          "reference": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 根据当天早上的研讨会观点调整了投资组合，尽管没有详细说明具体调整内容，但核心因果关系已答对。"
+        }
+      ]
+    },
+    "memo-gemma-top20": {
+      "accuracy": {
+        "All": [35, 46],
+        "Single_hop": [19, 24],
+        "Knowledge_update": [3, 6],
+        "Multi_hop": [9, 14],
+        "Temporal": [4, 8],
+        "Pattern_recognition(Non-declarative)": [4, 7],
+        "Causal": [4, 4],
+        "Conflict": [7, 8],
+        "Unanswerable": [4, 5],
+        "Hidden_info": [0, 1]
+      },
+      "evidence_in_context_mean": 0.45256030418501436,
+      "questions_with_evidence_in_context": 0.9024390243902439,
+      "context_records_median": 20.0,
+      "prompt_tokens_median": 3807.0,
+      "answer_usd_billed": 0.014198559312,
+      "judge_usd_billed": 0.087368344,
+      "failed_votes": 0,
+      "answer_failures": {},
+      "per_question": [
+        {
+          "id": "fenghaoran-q002",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Python Dash框架。",
+          "reference": "Python Dash framework (or Dash)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即朋友在深圳展示的投资仪表板所使用的框架是 Python Dash。"
+        },
+        {
+          "id": "fenghaoran-q003",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "《Python金融大数据分析》（Python Financial Big Data Analysis）",
+          "reference": "Python for Financial Big Data Analysis",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即书名是《Python金融大数据分析》（Python Financial Big Data Analysis），与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q024",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年3月22日的聊天记录，你当时因MBA答辩后团队协作问题感到沮丧，AI给出的具体改进建议是：  \n1. 梳理矛盾，用表格对齐每位成员的数据来源；  \n2. 建立“答辩前24小时全组交叉检查”流程；  \n3. 下次采用角色轮换制度，避免因ENTJ主导讨论导致沟通断层。",
+          "reference": "AI assistant suggests three steps: 1) Sort out the contradictions and align each member's data sources with a table; 2) Establish a process of 'full-team cross-checking 24 hours before the defense'; 3) Next time adopt a role rotation system to avoid communication gaps caused by ENTJ over-controlling the floor.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即AI在2025年3月22日给出的具体改进建议，且三个评分点均命中。"
+        },
+        {
+          "id": "fenghaoran-q028",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Sun Xiaoya。",
+          "reference": "The colleague from Hangzhou is named Sun Xiaoya.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即指出了从杭州调来的同事的名字是孙晓雅。"
+        },
+        {
+          "id": "fenghaoran-q030",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年2月28日与AI的对话（证据E2），在“加息”情形下，AI建议将科技仓位降至20%以下。",
+          "reference": "Reduce to below 20%",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即在加息情形下，AI建议将科技仓位降至20%以下。"
+        },
+        {
+          "id": "fenghaoran-q047",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Mother immediately replied with a clapping emoji sticker.",
+          "judge_reasoning": "生成答案『无法确定』正确拒答了问题，因为问题要求回忆母亲的具体回复，而生成答案表明无法确定这一信息。"
+        },
+        {
+          "id": "fenghaoran-q055",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "接待我的是健康顾问王医生（Dr. Wang）。他们与湘雅医院建立了直接连接的紧急绿色通道机制。",
+          "reference": "Health consultant Dr. Wang gave you a tour of the Xiangya Health and Wellness Community, highlighting the ‘emergency green channel’ mechanism established with Xiangya Hospital.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即接待者是健康顾问王医生，并且正确指出了与湘雅医院的合作机制是紧急绿色通道。"
+        },
+        {
+          "id": "fenghaoran-q056",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据你当天（2025年4月3日）14:05在手机备忘录里写下的笔记，你给彭宇清的具体建议是：优先偿还亲友的债务；联系银行申请延期还款并降低月供；同时表示你可以先借她几万元周转。",
+          "reference": "Note content: prioritize repaying relatives and friends; proactively contact the bank to apply for deferment and lower monthly payments; I can first lend her tens of thousands of yuan to help her get through the transition.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即给出了具体的债务偿还建议和与银行协商的方法，与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q059",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "关于客户年度资产配置报告的合规事项，同事协助确认了**港股通投资计划的合规性**以及**税务优惠条款是否可以引用**。",
+          "reference": "That colleague Sun Xiaoya helped you confirm that the Hong Kong Stock Connect investment plan in the report meets the latest compliance requirements, confirmed that the tax incentive clause can be cited, and also reminded you of the data disclosure timing.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，确认了港股通投资计划的合规性以及税务优惠条款的引用，符合评分点1和2的要求。"
+        },
+        {
+          "id": "fenghaoran-q065",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "我给罗振宇发了一条短信，告知他已整理好大龙邮票分析模型并发送到他的邮箱。",
+          "reference": "You chatted with Luo Zhenyu for 2.5 hours about the stamp market, including the collectible value, auction prices, and market trends of the Large Dragon stamps and the Red Revenue stamps. Reasoning process: 135 days after April 30, 2025 is September 12, 2025, when you had an in-depth exchange with fellow collector Luo Zhenyu.",
+          "judge_reasoning": "生成答案的核心内容是正确的，它提到了与罗振宇的交流以及大龙邮票的相关内容，符合问题的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q066",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，10月18日婚礼拍摄结束后，当晚（22:00至23:59）我进行了婚礼照片的精细修图，包括调整曝光、色温、对比度，以及微调肤色和背景。",
+          "reference": "Late that night (2025-10-18), you did a deep retouching of the wedding photos, adjusting exposure, color temperature, and contrast one by one, and used Photoshop to fine-tune the subjects' skin and backgrounds, striving for perfection, and continued until midnight.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即当晚进行了婚礼照片的精细修图，并具体列出了调整曝光、色温、对比度等操作，符合参考答案的核心内容。"
+        },
+        {
+          "id": "fenghaoran-q068",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，按照时间顺序排列如下：\n\n1. 邮票交换会（2025年1月5日）\n2. 黑麋峰攀岩带队返回并道歉（2025年7月19日）\n\n事件3（高级摄影课）和事件4（医院回家买健康食材）在证据中未找到对应记录，无法确定时间。",
+          "reference": "In chronological order it should be:\n1. Stamp collecting exchange meeting (afternoon of January 5, 2025, at Qinghe Teahouse)\n2. Purchased healthy ingredients on the way home from the hospital and cleaned out the refrigerator (afternoon of April 8, 2025)\n3. Advanced photography course (morning of May 16, 2025)\n4. On the way back from leading a climbing trip, was persuaded by the coach, and apologized in the climbing group after returning home (afternoon of July 19, 2025)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即按照时间顺序排列了事件，尽管它漏掉了两个事件，但已给出的两个事件的顺序是正确的。"
+        },
+        {
+          "id": "fenghaoran-q093",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "过期的冷冻饺子、剩下的外卖和辣酱。",
+          "reference": "That day was April 8, 2025. After returning home, you cleaned out the frozen dumplings, leftover takeout, and spicy sauces stored in the fridge, and bought fresh vegetables, whole grains, and high-quality protein.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即清理了冰箱中的冷冻饺子、外卖和辣酱，尽管没有提到日期，但日期不是核心内容。"
+        },
+        {
+          "id": "fenghaoran-q094",
+          "correct": false,
+          "votes": {
+            "correct": 1,
+            "wrong": 2,
+            "failed": 0
+          },
+          "answer": "最早发生的是事件5（开始准备CFA Level I考试），最晚发生的是事件3（完成年度体检并挑战V3攀岩路线成功）。",
+          "reference": "In chronological order:\n1. 15 km long-distance training (early morning January 4, Yuelu Mountain, ran with Gao Yunfei, pace around 5 min/km, marveled at the runner's privilege at sunrise, refilled water at Aiwan Pavilion)\n2. Started CFA Level I exam preparation (evening January 14, paid $900 for textbooks, made a three-month plan, joined a study group)\n3. Night tour of Orange Isle (evening September 5, strolled on Orange Isle with parents, took photos in front of Chairman Mao statue)\n4. Promotion interview for investment director (afternoon September 28, Huatai Securities Meeting Room 302, Director Qian noted requirements such as in-depth industry research reports and passing CFA Level I)\n5. Evening climbing training challenging V3 route (evening November 20, Jiu'er Climbing Gym, successfully completed the blue V3 route on the third attempt)\n6. Attended the running group's year-end training sharing session (morning December 14, East Gate of Yuelu Mountain, coach gave metronome training suggestions for cadence)",
+          "judge_reasoning": "生成答案错误地识别了最早和最晚发生的事件，核心事实答错。"
+        },
+        {
+          "id": "fenghaoran-q097",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "5天19小时35分钟",
+          "reference": "Lasted for 1 day, from an early morning self-drive departure on January 28 to the end of the deep conversation with my father in the study that evening.",
+          "judge_reasoning": "生成答案的核心是回答整个事件持续了多久，但给出的时长与参考答案不符，因此核心答错。"
+        },
+        {
+          "id": "fenghaoran-q104",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "客户是林志豪。",
+          "reference": "Lin Zhihao",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即客户是林志豪。"
+        },
+        {
+          "id": "fenghaoran-q112",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年5月4日下午，冯浩然在整理自媒体创业计划，主题为“CFA备考与职业转型”，并完成了第一期选题和内容框架。",
+          "reference": "He focused on debt consolidation (sorting out the debt list and formulating a repayment priority plan), drafted a personal loan agreement of 50,000 yuan for Peng Yuqing, and at the same time deepened his self-media entrepreneurship outline and formulated the initial topics and framework.",
+          "judge_reasoning": "生成答案提到了冯浩然整理自媒体创业计划并完成了第一期选题和内容框架，这与评分点3的核心内容一致，因此核心答对。"
+        },
+        {
+          "id": "fenghaoran-q115",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "30分钟",
+          "reference": "45 minutes",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是康复活动持续了多久，参考答案是45分钟，而生成答案是30分钟，与事实不符。"
+        },
+        {
+          "id": "fenghaoran-q128",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "He ate oatmeal soaked in milk and whole wheat bread with egg.",
+          "judge_reasoning": "生成答案『无法确定』正确拒答，因为问题询问的是未来事件，截至提问时点（2025-12-31）无法确定2025年10月9日的早餐内容。"
+        },
+        {
+          "id": "fenghaoran-q129",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "在10月9日早晨，我快速吃完早餐（燕麦牛奶、全麦面包鸡蛋），同时将父母的身份证、户口本和准备好的医保材料清单放入文件袋。",
+          "reference": "On that morning (October 7), Feng Haoran used CamScanner to convert his parents' ID cards and household registration booklet into a PDF, sent it to his younger sister's email for backup, and paid for an order via Taobao.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，日期和具体行为都答错了。"
+        },
+        {
+          "id": "fenghaoran-q154",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "在7月的手冲咖啡练习中，社交分享与练习状态形成了“练习—请教—优化—分享”的良性循环：每次练习后，你都会向沈心怡（Shen Xinyi）请教参数或发送照片，并根据她的建议调整手法（如降低注水速度、扩大绕圈范围），从而提升风味；同时，将成功作品（如拉花、手冲成品）发到朋友圈，获得朋友点赞和鼓励，进一步激发练习动力。",
+          "reference": "During July hand-brewed coffee practice, social sharing was mainly focused on when encountering difficulties or achieving satisfactory results. For example: on July 5, after two failures, she took photos and asked Shen Xinyi for help, and after success, shared the joy again; on July 6, consulted Shen Xinyi; on July 13, after practice, took photos and sent them to Shen Xinyi; on July 20 and 25, when encountering problems, asked Shen Xinyi for parameters; on July 26, after success in the latte art class, shared on Moments; on July 27, after practice, exchanged techniques with Shen Xinyi. However, daily routine practice (such as the mornings of July 9, 10, 17, 25) rarely involved social sharing, or only personal records. This shows that social sharing is a motivating way to solve difficulties, obtain feedback, and celebrate breakthroughs, while daily maintenance practice triggers sharing behavior less frequently.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即社交分享与练习状态的关系，并描述了良性循环的过程。"
+        },
+        {
+          "id": "fenghaoran-q159",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "你在11月的学习投资呈现出“职业发展学习为主轴，个人兴趣学习为调节与灵感来源”的双轨并行模式，二者在时间上同步推进，在内容上相互启发。\n\n职业发展学习方面，你持续备考CFA（每日2小时，计划次年6月通过二级），撰写投资类文章（11月30日回顾显示6篇文章带来436名新关注及5位意向客户），阅读《周期》《行为金融学》等专业书籍，并记录投资系统构建框架。个人兴趣学习则包括每周的跑步与攀岩训练（V3级别稳定）、参观摄影展并反思与投资的共通之处，以及经营咖啡店的尝试（首月亏损2000元，作为商业实践）。\n\n两者交织的典型场景是：你将《周期》中的“情绪钟摆”理论用于管理攀岩获奖后的心态，将摄影展的构图评价思路迁移至投资分析中，同时也通过运动突破来调节职业学习中的压力。整体来看，11月以职业能力积累为核心目标，兴趣活动既提供了情绪释放，也催生了跨界思考。",
+          "reference": "In November, my learning efforts showed a composite pattern of parallel advancement, with career development learning and personal interest learning proceeding simultaneously and interweaving. Career learning included CFA exam preparation, column writing (such as 'The Investment Logic of Changsha REITs'), pension fund screening, and client solution design; interest learning included photography exhibition setup and attendance, rock climbing training, oil painting experiences, and street photography. The two were deeply intertwined in both time and content: for example, on the same day I both studied for the CFA and attended rock climbing training, and the column article ended with promotional information for my personal photography exhibition; the coffee shop served as both the exhibition venue and an offline promotional point for the column; during a career conversation, my supervisor recognized the customer traffic brought by the exhibition. This pattern reflects a deliberate strategy of integrating career and interests to build a personal brand.",
+          "judge_reasoning": "生成答案正确识别了11月学习投资的并行模式，并详细描述了职业发展和个人兴趣学习的具体内容及其交织方式，核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q163",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，10月13日右膝受伤后，我立即调整了运动习惯：当天取消晨跑，改为室内快走或瑜伽（E2）；10月14日进行核心强化训练（平板支撑、仰卧举腿、鸟狗式）（E9）；10月17日首次康复慢跑5.2公里无痛（E4）；10月21日因长跑后不适，继续核心训练并推迟与跑友的周六晨跑（E3）；10月20日完成15公里长跑后，采用冰敷和低强度拉伸恢复（E10）；11月13日因下雨改为核心训练和拉伸（E1）。这些调整促进了右膝软组织修复（E19），使我逐步恢复无痛跑步，并在10月20日完成15公里长跑（E10），10月21日仍能进行低强度核心训练（E3），最终在11月26日完成8公里间歇跑训练（E15），整体运动表现稳步提升。",
+          "reference": "After injuring my right knee, I immediately stopped running. That day (October 13), I applied ice and did evening yin yoga stretching. Over the next few days, I replaced my morning runs with core strength training, cervical spine exercises, and light stretching, and did not resume my 5.2 km jog until October 17. The yoga and core training interspersed during the injury period prevented a complete training stop and also promoted recovery from the knee injury. After recovery, I successfully topped a V3 climbing route on October 19, completed my first 15 km long run on October 20 (average pace 6:25), and successfully topped another V3 route on October 26. After that, I also booked a coach to discuss a V4 training plan. These performances show that the adjusted cross-training enhanced my core strength and flexibility, laying the foundation for an athletic breakthrough.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即受伤后如何调整运动习惯以及这些调整对恢复和运动表现的影响。虽然答案中有些细节与参考答案不完全一致，但核心内容正确，因此判为 CORRECT。"
+        },
+        {
+          "id": "fenghaoran-q164",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "2025年4月，你实施的主要健康管理行为包括：\n\n**运动锻炼**\n- 4月5日早晨在武汉晨跑约20分钟；4月8日完成10分钟拉伸＋5分钟颈部练习；4月10日在社区快走15分钟；4月18日早晨快走20分钟并做颈椎拉伸；4月21日清晨完成居家核心训练，傍晚到健身房进行力量训练。\n\n**健步走/户外活动**\n- 4月1日在医院花园站立、拉伸10分钟；4月5日午后花园散步20分钟；4月21日傍晚户外步行30分钟（2.5公里）；4月25日午间步行30分钟（3公里）；4月30日在双塘路步行20分钟。\n\n**冥想与放松**\n- 4月5日晚进行拉伸放松和正念呼吸；4月25日19:40—20:10在客厅瑜伽垫上做15分钟正念冥想和肩颈拉伸。\n\n**健康监测与记录**\n- 4月3日设置每日血压打卡提醒，要求每晚20:00前记录；\n- 4月5日与医生确认母亲饮食计划并记录摄入，测量父亲血压并记录，建立家庭健康群发布数据；\n- 4月21日设置“写中期冥想总结”提醒，并记录体重75.9kg；\n- 4月25日晨起称重并记录75.5kg，晚上参与家庭康复后检查当日活动完成度和睡眠准备；\n- 多次查看当日步数和活动进度，并持续记录热量摄入、睡眠、体重等指标。\n\n这些行为是从1月底的触发事件逐步固化的：1月30日与母亲长谈后制定家庭健康计划，1月31日形成个人年度健康执行计划并设置每日提醒；2月4日已开始晨跑、冥想、家庭血压/用药提醒；2月19日又根据深睡改善建议调整睡前习惯。到4月，这些原本靠计划和提醒驱动的行为已变成固定日程：晨间运动、健步走、冥想拉伸、体重/血压记录、家庭健康数据同步在不同日期反复出现，说明已从单次触发行动固化为规律性习惯。",
+          "reference": "In April, I mainly implemented five health management behaviors: morning running, a light diet, cervical spine physical therapy, shoulder-and-neck therapeutic yoga, and mindfulness meditation. The formation of these habits started with the trigger event of my mother's hospitalization on April 1, then took root during my time accompanying her. After a deep conversation with my father on the rooftop on April 6, I seriously decided to adjust my lifestyle. After returning to Changsha, starting from the evening of April 7, I made my own light dinner and did mindful breathing meditation for the first time; on April 8, I did neck rehabilitation exercises (cervical exercise), continued cervical physical therapy (5th session), and bought light ingredients; on April 9, I went for my first morning run (alternating brisk walking and jogging) and tried a new meditation app for a 3-minute breathing exercise; on April 10, I did shoulder-and-neck yoga and established a habit of 10 minutes of daily mindfulness meditation. Since then, various habits have progressed steadily: morning running gradually increased from 2-3 times a week and 3 kilometers to 6 kilometers; a light diet became part of every meal; cervical physical therapy remained at 1-2 times a week, reducing to once in the latter half of the month; yoga 3-4 times a week; meditation fixed every night. In the latter half of the month, these behaviors no longer required deliberate reminders, forming a mutually reinforcing closed loop and becoming a natural daily routine.",
+          "judge_reasoning": "生成答案虽然详细列出了多项健康管理行为，但并未准确回答核心问题，即2025年4月实施的五种具体健康管理行为及其习惯形成过程。答案中提到的行为与参考答案不符，且触发事件和习惯形成过程也未准确描述。"
+        },
+        {
+          "id": "fenghaoran-q168",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年1月13日。",
+          "reference": "January 13",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 在 2025 年 1 月 13 日去湖南大学 MBA 教育中心注册。"
+        },
+        {
+          "id": "fenghaoran-q173",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年3月15日",
+          "reference": "March 15, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 MBA 小组成员在 Cotti Coffee 修复关系的具体日期是 2025 年 3 月 15 日。"
+        },
+        {
+          "id": "fenghaoran-q195",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025-10-01",
+          "reference": "October 1",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 接父母的具体日期是 10 月 1 日。"
+        },
+        {
+          "id": "fenghaoran-q203",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年8月27日。",
+          "reference": "August 27, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 Lin Zhihao 视频通话并设置工作台的具体日期是 2025 年 8 月 27 日。"
+        },
+        {
+          "id": "fenghaoran-q204",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年7月29日",
+          "reference": "July 29",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 收到长沙马拉松组委会的审核批准邮件的具体日期是 7 月 29 日。"
+        },
+        {
+          "id": "fenghaoran-q211",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年12月28日。",
+          "reference": "December 28, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 进行年终总结和庆祝的具体日期是 2025 年 12 月 28 日。"
+        },
+        {
+          "id": "fenghaoran-q212",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "5月25日。",
+          "reference": "May 24",
+          "judge_reasoning": "生成答案答错了核心事实，问题问的是最终约定的日期，而生成答案给出了错误的日期5月25日。"
+        },
+        {
+          "id": "fenghaoran-q215",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Xiangjian Local Food Restaurant（湘见土家菜馆）",
+          "reference": "Xiangjian Local Cuisine Restaurant",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然带父母去吃饭的餐厅名称，尽管用词略有不同，但核心事实正确。"
+        },
+        {
+          "id": "fenghaoran-q221",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "Interstellar（星际穿越）",
+          "reference": "Unable to answer",
+          "judge_reasoning": "问题属于 Unanswerable 题型，核心是判断是否应拒答。生成答案给出了具体电影名，属于编造具体答案，未正确拒答。"
+        },
+        {
+          "id": "fenghaoran-q240",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确地识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q248",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "核心答对，生成答案明确表示无法确定，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q257",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "核心对，因为生成答案正确地识别了无法回答该问题，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q272",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案「无法确定」正确反映了问题无法回答的核心，符合 Unanswerable 题型的要求。"
+        },
+        {
+          "id": "fenghaoran-q280",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据最接近提问时间的记录（2025-03-31），颈痛评分为1分。",
+          "reference": "Cervical pain scored 1 point.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即颈痛评分为1分，且指出了评分来源的时间点。"
+        },
+        {
+          "id": "fenghaoran-q294",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "4:53 min/km",
+          "reference": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+          "judge_reasoning": "生成答案的核心是回答提问者的个人最佳10公里配速，但给出的配速与参考答案不符，核心事实答错。"
+        },
+        {
+          "id": "fenghaoran-q298",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "是的，你在2025年9月18日参加了李老师的阴瑜伽试听课。",
+          "reference": "Yes, I tried the yin yoga class.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，确认了提问者参加了阴瑜伽课程，并且提供了具体的日期和教师信息。"
+        },
+        {
+          "id": "fenghaoran-q300",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "个人摄影展。",
+          "reference": "The recently completed photography project is the \"Street Echo\" photo series.",
+          "judge_reasoning": "生成答案「个人摄影展」与参考答案「Street Echo 照片系列」不符，核心事实答错，因此判为 WRONG。"
+        },
+        {
+          "id": "fenghaoran-q304",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据记录，您在投资写作方面取得了以下成果：\n\n1. 2025年10月28日，完成了专栏初稿，撰写了基于投资者生命周期的配置策略部分，并进行了通读和润色。\n2. 2025年10月30日，完成了专栏初稿文档（约2200字），并记录了风险警告关键词。\n3. 2025年11月25日，撰写了文章《构建你的投资系统：从认知升级到长期主义》，包含引言、第一性原理、数据驱动决策和长期主义实践策略等框架。\n4. 2025年11月16日，发布了关于另类投资（艺术投资）的入门文章，发表在个人知乎专栏和微信公众号。\n5. 2025年11月30日，通过6篇文章获得了436名新粉丝（微信公众号255名，知乎181名），并计划维持每周更新以转化付费客户。",
+          "reference": "Completed the topic planning for the investment research column, listing 12 topic directions.",
+          "judge_reasoning": "生成答案没有提到完成投资研究专栏的主题规划，也没有列出12个主题方向，而是描述了其他与投资写作相关的内容，因此核心内容答错。"
+        },
+        {
+          "id": "fenghaoran-q321",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据现有证据，12月16日晚上没有其他安排，可以庆祝。",
+          "reference": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+          "judge_reasoning": "生成答案的核心内容答错了，它声称12月16日晚上没有其他安排，但实际上存在CFA和ESG课程的冲突，因此无法庆祝。"
+        },
+        {
+          "id": "fenghaoran-q333",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2月14日和 Li Tingting 的约会结束后，他独自走回家，路上感到一种释然，确认了“找到灵魂契合者很难”，更渴望深层次的精神共鸣。回家后，他在日记里写下：对方虽然礼貌、得体、有品味，但两人不在同一个精神波长；他要的是能一起攀登精神世界“5.10”路线的伴侣，而不是只适合平路散步的陪伴。正是这种“约会后仍感孤独、清醒”的内心触动，促使他当晚立即拿出笔记本记录约会细节和真实感受。",
+          "reference": "After seeing Li Tingting off, he walked alone along Furong Middle Road to reflect. During this time, he felt a clear sense of relief inside, and concluded that tonight had verified the difficulty of finding a like-minded person, strengthening his desire for deep spiritual connection. This post-reflection clarity and regret directly prompted him to immediately write in his diary upon returning home, recording the details of the date and his inner thoughts.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即他因为感到与 Li Tingting 不在同一精神波长，渴望深层次的精神共鸣，而促使他当晚立即写日记记录约会细节和内心感受。"
+        },
+        {
+          "id": "fenghaoran-q338",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "因为他在2025年8月12日早上回顾了过去一周的冥想记录，发现自己从焦虑、容易分心的状态，逐渐转为平静、能快速进入专注状态；尤其在处理妹妹的事情时能保持冷静，决策压力明显降低，因此确认冥想显著缓解了决策压力。",
+          "reference": "Because the previous night (August 11) he recorded and compared his morning and evening meditation experiences, especially the successful emotional management after being interrupted by the cat, which made him realize the regulating effect of meditation on emotions and stress. The next morning, during the \"weekly review\" meditation, he flipped through his diary and saw his transformation from distracted attention to flow, from anxiety to calm, further verifying the effects of meditation, thereby confirming its role in alleviating decision-making pressure.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 通过回顾冥想记录确认了冥想对缓解决策压力的效果。虽然答案没有提及具体日期和猫的干扰事件，但这些细节不影响核心答案的正确性。"
+        },
+        {
+          "id": "fenghaoran-q343",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "因为当天上午参加的一个研讨会上的观点很有用，所以他根据这些观点调整了两人的投资组合。",
+          "reference": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 根据当天上午研讨会上的观点调整了两人的投资组合。"
+        }
+      ]
+    },
+    "memo-gemma": {
+      "accuracy": {
+        "All": [37, 46],
+        "Single_hop": [19, 24],
+        "Knowledge_update": [3, 6],
+        "Multi_hop": [11, 14],
+        "Temporal": [5, 8],
+        "Pattern_recognition(Non-declarative)": [6, 7],
+        "Causal": [4, 4],
+        "Conflict": [7, 8],
+        "Unanswerable": [4, 5],
+        "Hidden_info": [0, 1]
+      },
+      "evidence_in_context_mean": 0.4832852430433395,
+      "questions_with_evidence_in_context": 0.9024390243902439,
+      "context_records_median": 40.0,
+      "prompt_tokens_median": 6868.5,
+      "answer_usd_billed": 0.0353159832,
+      "judge_usd_billed": 0.08830894,
+      "failed_votes": 0,
+      "answer_failures": {},
+      "per_question": [
+        {
+          "id": "fenghaoran-q002",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "你朋友演示的是 **Python Dash** 框架，运行的代码是：\n\n```python\nimport yfinance as yf\nqdii_list = ['FXI', 'EWJ', 'VGK']\nfor ticker in qdii_list:\n    data = yf.download(ticker, period='3mo')\n    print(data)\n```",
+          "reference": "Python Dash framework (or Dash)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即朋友演示的框架是 Python Dash，因此判为 CORRECT。"
+        },
+        {
+          "id": "fenghaoran-q003",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "那本书是《Python金融大数据分析》（Python Financial Big Data Analysis），是张明轩借给你的。",
+          "reference": "Python for Financial Big Data Analysis",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即书名是《Python金融大数据分析》（Python Financial Big Data Analysis），并且提到了朋友是张明轩。"
+        },
+        {
+          "id": "fenghaoran-q024",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据3月22日的聊天记录，AI给出的改进建议是：1）梳理矛盾，用表格对齐每个成员的数据源；2）建立“答辩前24小时全组交叉检查”流程；3）下次采用角色轮换制度，避免ENTJ主导讨论造成的沟通断层。",
+          "reference": "AI assistant suggests three steps: 1) Sort out the contradictions and align each member's data sources with a table; 2) Establish a process of 'full-team cross-checking 24 hours before the defense'; 3) Next time adopt a role rotation system to avoid communication gaps caused by ENTJ over-controlling the floor.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，完整地复述了AI给出的三条改进建议，且内容与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q028",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "Sun Xiaoya。",
+          "reference": "The colleague from Hangzhou is named Sun Xiaoya.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即指出了来自杭州的同事是孙晓雅。"
+        },
+        {
+          "id": "fenghaoran-q030",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据[E2]（2025-02-28的对话），在加息情景下，AI建议将科技仓位降至20%以下。",
+          "reference": "Reduce to below 20%",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即AI建议将科技仓位降至20%以下，并且提到了加息情景和2025-02-28的对话。"
+        },
+        {
+          "id": "fenghaoran-q047",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据现有证据，无法确定你母亲在收到合同签署合影后的具体回复内容。",
+          "reference": "Mother immediately replied with a clapping emoji sticker.",
+          "judge_reasoning": "生成答案正确地指出了无法确定母亲的具体回复内容，符合问题的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q055",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "接待我的是健康顾问王医生。合作机制是直接连接湘雅医院的紧急绿色通道。",
+          "reference": "Health consultant Dr. Wang gave you a tour of the Xiangya Health and Wellness Community, highlighting the ‘emergency green channel’ mechanism established with Xiangya Hospital.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即接待人是健康顾问王医生，合作机制是紧急绿色通道。"
+        },
+        {
+          "id": "fenghaoran-q056",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据你2025年4月3日14:05的备忘录记录，你给彭宇清的具体建议是：优先偿还亲友的借款；联系银行申请延期并降低月供；你可以先借给她几万元应急。",
+          "reference": "Note content: prioritize repaying relatives and friends; proactively contact the bank to apply for deferment and lower monthly payments; I can first lend her tens of thousands of yuan to help her get through the transition.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即给出了具体的债务偿还建议和与银行协商的方法，与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q059",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "是同事孙晓娅（Sun Xiaoya）帮忙确认的：**港股通投资计划的合规性，以及报告中的税收优惠条款是否可以引用**；同时提醒注意数据披露时点。",
+          "reference": "That colleague Sun Xiaoya helped you confirm that the Hong Kong Stock Connect investment plan in the report meets the latest compliance requirements, confirmed that the tax incentive clause can be cited, and also reminded you of the data disclosure timing.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，明确提到了港股通投资计划的合规性、税收优惠条款的引用以及数据披露时点的提醒，与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q065",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "135天后（2025年9月12日），我发短信给罗振宇，告知房间已整理好，茶具、展品照片和大龙邮票都已备好，等待他到来。",
+          "reference": "You chatted with Luo Zhenyu for 2.5 hours about the stamp market, including the collectible value, auction prices, and market trends of the Large Dragon stamps and the Red Revenue stamps. Reasoning process: 135 days after April 30, 2025 is September 12, 2025, when you had an in-depth exchange with fellow collector Luo Zhenyu.",
+          "judge_reasoning": "核心答错，生成答案中描述的是发短信告知房间已整理好，茶具、展品照片和大龙邮票已备好，等待罗振宇到来，而参考答案中描述的是与罗振宇进行了2.5小时的聊天，讨论了大龙邮票和红印花邮票的收藏价值、拍卖价格和市场趋势。生成答案与参考答案的核心内容不符。"
+        },
+        {
+          "id": "fenghaoran-q066",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "10月18日晚，我进行了婚礼照片的精修工作，包括调整曝光、色温、对比度，以及精细处理肤色和背景，一直工作到深夜。",
+          "reference": "Late that night (2025-10-18), you did a deep retouching of the wedding photos, adjusting exposure, color temperature, and contrast one by one, and used Photoshop to fine-tune the subjects' skin and backgrounds, striving for perfection, and continued until midnight.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即10月18日晚进行了婚礼照片的精修工作，包括调整曝光、色温、对比度，以及精细处理肤色和背景，一直工作到深夜。"
+        },
+        {
+          "id": "fenghaoran-q068",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，这些事件按时间顺序排列如下：\n\n1. 最早：2025年1月5日，参加集邮交流会，展示“长江三峡白帝城”邮票，并欣赏清代红印花邮票（证据E0、E20、E28）。\n2. 2025年5月16日，参加高级摄影课程，主题为色彩管理和Lightroom调色，做了4页笔记（证据E24、E26、E27）。\n3. 2025年4月8日，从医院返回，途中在便利店购买西兰花、燕麦等健康食材（证据E22）。\n4. 最晚：2025年7月19日，从黑麋峰带队攀岩返回，因节奏控制过强导致队友退出，教练在车上建议，回家后在群里公开道歉（证据E8、E11、E35）。\n\n因此，最早发生的是集邮交流会，最晚发生的是黑麋峰攀岩返回事件。",
+          "reference": "In chronological order it should be:\n1. Stamp collecting exchange meeting (afternoon of January 5, 2025, at Qinghe Teahouse)\n2. Purchased healthy ingredients on the way home from the hospital and cleaned out the refrigerator (afternoon of April 8, 2025)\n3. Advanced photography course (morning of May 16, 2025)\n4. On the way back from leading a climbing trip, was persuaded by the coach, and apologized in the climbing group after returning home (afternoon of July 19, 2025)",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即按时间顺序排列了事件，且每个事件的日期和顺序都与参考答案一致。"
+        },
+        {
+          "id": "fenghaoran-q093",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "过期的冷冻水饺、剩外卖和辣酱。",
+          "reference": "That day was April 8, 2025. After returning home, you cleaned out the frozen dumplings, leftover takeout, and spicy sauces stored in the fridge, and bought fresh vegetables, whole grains, and high-quality protein.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即清理了冰箱中的冷冻水饺、剩外卖和辣酱，符合参考答案的主要内容。"
+        },
+        {
+          "id": "fenghaoran-q094",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，这些事件按时间顺序排列如下：\n\n1. 最早发生：事件5（开始准备CFA Level I考试，支付约900美元订购学习材料，制定三个月学习计划，加入学习小组）——证据E13显示2025年5月28日与钱永强总监的月度会议中，钱总监建议报名CFA，证据E18显示2025年6月26日确认注册2025年11月考试窗口，证据E17显示2025年1月13日购买了CFA Level 1备考指南，但正式准备始于2025年5月28日之后。\n\n2. 其次：事件6（衡山徒步后的恢复训练日，与投资总监钱永强进行晋升面试，他指出了晋升要求与时间线）——证据E13显示2025年5月28日与钱永强总监的月度会议，证据E19显示2025年9月28日准备晋升面试要点。\n\n3. 再次：事件1（期刊论文上线当天，接父母来长沙，在湘悦楼晚餐后夜游橘子洲，在毛主席雕像前合影）——证据E0和E25显示2025年9月5日。\n\n4. 再次：事件4（与跑友高云飞在岳麓山进行15公里长距离训练，配速5分30秒/公里，在爱晚亭补水）——证据E30显示2025年1月4日。\n\n5. 再次：事件3（当天上午完成年度体检，所有指标正常；晚上去攀岩馆挑战V3路线，第三次尝试成功，确认手指灵活性已恢复）——证据E36显示2025年11月20日完成V3路线第三次尝试并成功登顶。\n\n6. 最晚发生：事件2（参加跑团年终训练分享会，教练针对步频问题给出节拍器训练建议）——证据E23显示2025年12月14日。\n\n因此，最早发生的是事件5，最晚发生的是事件2。",
+          "reference": "In chronological order:\n1. 15 km long-distance training (early morning January 4, Yuelu Mountain, ran with Gao Yunfei, pace around 5 min/km, marveled at the runner's privilege at sunrise, refilled water at Aiwan Pavilion)\n2. Started CFA Level I exam preparation (evening January 14, paid $900 for textbooks, made a three-month plan, joined a study group)\n3. Night tour of Orange Isle (evening September 5, strolled on Orange Isle with parents, took photos in front of Chairman Mao statue)\n4. Promotion interview for investment director (afternoon September 28, Huatai Securities Meeting Room 302, Director Qian noted requirements such as in-depth industry research reports and passing CFA Level I)\n5. Evening climbing training challenging V3 route (evening November 20, Jiu'er Climbing Gym, successfully completed the blue V3 route on the third attempt)\n6. Attended the running group's year-end training sharing session (morning December 14, East Gate of Yuelu Mountain, coach gave metronome training suggestions for cadence)",
+          "judge_reasoning": "生成答案正确地将所有事件按时间顺序排列，核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q097",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "从1月28日7:00出发到4月6日22:00与父亲谈话结束，总共持续约69天15小时。",
+          "reference": "Lasted for 1 day, from an early morning self-drive departure on January 28 to the end of the deep conversation with my father in the study that evening.",
+          "judge_reasoning": "生成答案错误地将事件持续时间从1天延长到了69天15小时，核心事实答错。"
+        },
+        {
+          "id": "fenghaoran-q104",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "客户是林志豪。",
+          "reference": "Lin Zhihao",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即客户是林志豪。"
+        },
+        {
+          "id": "fenghaoran-q112",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据，2025年5月4日下午，冯浩然在开始CFA学习前，集中处理了与自媒体创业相关的事项：他总结了“CFA备考与职业转型”第一期自媒体选题和提纲（E6），并与彭雨晴约好次日见面讨论债务和自媒体计划（E30）。",
+          "reference": "He focused on debt consolidation (sorting out the debt list and formulating a repayment priority plan), drafted a personal loan agreement of 50,000 yuan for Peng Yuqing, and at the same time deepened his self-media entrepreneurship outline and formulated the initial topics and framework.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然在2025年5月4日下午处理了与自媒体创业相关的事项，包括总结自媒体选题和提纲，并与彭雨晴讨论债务和自媒体计划。"
+        },
+        {
+          "id": "fenghaoran-q115",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "35分钟（20分钟颈部拉伸 + 15分钟颈椎牵引）。",
+          "reference": "45 minutes",
+          "judge_reasoning": "生成答案的核心是回答康复活动的持续时间，虽然具体时间与参考答案不符，但核心方向正确，且时间差异不大，因此判为正确。"
+        },
+        {
+          "id": "fenghaoran-q128",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "He ate oatmeal soaked in milk and whole wheat bread with egg.",
+          "judge_reasoning": "生成答案「无法确定」正确反映了截至2025-12-31的状态，因为问题询问的是2025年10月的事件，而生成答案表明无法确定该信息，符合Unanswerable题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q129",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "根据证据，2025年10月9日早晨，我快速吃了早餐（燕麦牛奶和全麦面包鸡蛋），并将父母的身份证、户口本和准备好的医保材料清单放入文件袋中。",
+          "reference": "On that morning (October 7), Feng Haoran used CamScanner to convert his parents' ID cards and household registration booklet into a PDF, sent it to his younger sister's email for backup, and paid for an order via Taobao.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，日期和具体行为都答错了。"
+        },
+        {
+          "id": "fenghaoran-q154",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "在7月的手冲咖啡练习中，社交分享（向沈心怡请教和发朋友圈）与练习状态呈正相关：每次练习后，冯浩然都会向沈心怡发送参数或照片寻求建议，并根据反馈调整手法（如降低注水速度、延长闷蒸时间），从而改善风味；同时，成功作品（如拉花）会发朋友圈获得点赞，进一步激励练习。分享行为直接促进了技能优化和练习积极性。",
+          "reference": "During July hand-brewed coffee practice, social sharing was mainly focused on when encountering difficulties or achieving satisfactory results. For example: on July 5, after two failures, she took photos and asked Shen Xinyi for help, and after success, shared the joy again; on July 6, consulted Shen Xinyi; on July 13, after practice, took photos and sent them to Shen Xinyi; on July 20 and 25, when encountering problems, asked Shen Xinyi for parameters; on July 26, after success in the latte art class, shared on Moments; on July 27, after practice, exchanged techniques with Shen Xinyi. However, daily routine practice (such as the mornings of July 9, 10, 17, 25) rarely involved social sharing, or only personal records. This shows that social sharing is a motivating way to solve difficulties, obtain feedback, and celebrate breakthroughs, while daily maintenance practice triggers sharing behavior less frequently.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即社交分享与练习状态的正相关关系，并提到了分享对技能优化和练习积极性的促进作用。"
+        },
+        {
+          "id": "fenghaoran-q159",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "11月的学习投资呈现以下模式：职业发展学习（如CFA备考、ESG课程、行为金融学阅读）与个人兴趣学习（如摄影、跑步、投资系统构建）相互交织，且两者均围绕长期目标（如晋升投资总监）展开。职业发展学习在11月集中体现在CFA备考（如11月11日记录CFA学习计划、12月17日CFA复习准确率达80%）、ESG投资策略课程（12月10日学习）及行为金融学阅读（12月11日笔记）；个人兴趣学习则包括摄影（11月23日摄影展反思）、跑步（11月30日长跑突破）及投资系统构建（11月25日文章框架）。两者通过时间管理（如每日2小时CFA学习）和主题关联（如将投资周期理论应用于运动训练）相互促进，形成协同效应。",
+          "reference": "In November, my learning efforts showed a composite pattern of parallel advancement, with career development learning and personal interest learning proceeding simultaneously and interweaving. Career learning included CFA exam preparation, column writing (such as 'The Investment Logic of Changsha REITs'), pension fund screening, and client solution design; interest learning included photography exhibition setup and attendance, rock climbing training, oil painting experiences, and street photography. The two were deeply intertwined in both time and content: for example, on the same day I both studied for the CFA and attended rock climbing training, and the column article ended with promotional information for my personal photography exhibition; the coffee shop served as both the exhibition venue and an offline promotional point for the column; during a career conversation, my supervisor recognized the customer traffic brought by the exhibition. This pattern reflects a deliberate strategy of integrating career and interests to build a personal brand.",
+          "judge_reasoning": "生成答案正确识别了11月学习投资的并行复合模式，职业发展学习与个人兴趣学习同时进行并相互交织，核心内容答对。"
+        },
+        {
+          "id": "fenghaoran-q163",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "10月13日右膝受伤后，我立即停止了晨跑，改为室内核心训练（如平板支撑、仰卧抬腿、鸟狗式）、室内快走和瑜伽等低冲击运动，并坚持冰敷和拉伸。经过2-4天的恢复，10月15日右膝已无痛感；10月17日首次康复慢跑5.2公里无痛；10月20日完成15公里长跑（虽后期有不适但缓解）；10月21日根据反馈再次调整，继续核心训练并休息；随后逐步恢复跑步，11月26日能完成6×800米间歇跑（8公里）。这些调整使右膝快速消肿止痛，避免了伤情加重，并成功过渡到正常训练，后续保持了长距离跑、间歇跑和攀岩等运动能力，未再出现严重右膝问题。",
+          "reference": "After injuring my right knee, I immediately stopped running. That day (October 13), I applied ice and did evening yin yoga stretching. Over the next few days, I replaced my morning runs with core strength training, cervical spine exercises, and light stretching, and did not resume my 5.2 km jog until October 17. The yoga and core training interspersed during the injury period prevented a complete training stop and also promoted recovery from the knee injury. After recovery, I successfully topped a V3 climbing route on October 19, completed my first 15 km long run on October 20 (average pace 6:25), and successfully topped another V3 route on October 26. After that, I also booked a coach to discuss a V4 training plan. These performances show that the adjusted cross-training enhanced my core strength and flexibility, laying the foundation for an athletic breakthrough.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即受伤后如何调整运动习惯以及这些调整对恢复和运动表现的影响。虽然答案中有些日期和细节与参考答案不完全一致，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q164",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "在2025年4月，你具体实施的健康管理行为包括：  \n- **晨间运动**：每日晨间快走、拉伸、颈椎练习（4月8日、10日、18日等），以及晨跑（4月12日25分钟、4月22日6公里）。  \n- **正念冥想/呼吸**：4月5日进行15分钟正念呼吸，4月25日进行15分钟正念冥想。  \n- **散步**：4月18日、30日、25日等多次户外散步，每次20-30分钟。  \n- **力量与康复训练**：4月21日进行家庭核心训练和健身房力量训练；4月22日完成第8次颈椎物理治疗及肩颈理疗瑜伽。  \n- **饮食与体重管理**：记录每日饮食摄入，4月25日体重75.5kg。  \n- **健康监测与家人护理**：设置每日血压打卡提醒，为父母测量血压、制定低盐低脂饮食计划，协调分工监督母亲康复（4月4-5日多次短信记录）。  \n\n这些行为从初始触发事件（2025年1月底与母亲长谈后制定家庭健康计划、2月与助理讨论培养习惯、3月因颈椎问题调整运动方式）逐步固化为习惯的过程：  \n- 通过设定每日提醒（晨跑、核心训练、饮食日志）和公开承诺（向家人、朋友宣布冥想计划）增强执行力度。  \n- 利用正向反馈（3月底颈椎疼痛评分从7降至1）巩固行为，并在4月持续执行晨间、晚间固定流程。  \n- 依靠家人监督与分工（视频周报、健康群记录）形成外部约束，最终使晨练、冥想、颈椎康复、家庭健康监控成为4月的日常固定习惯。",
+          "reference": "In April, I mainly implemented five health management behaviors: morning running, a light diet, cervical spine physical therapy, shoulder-and-neck therapeutic yoga, and mindfulness meditation. The formation of these habits started with the trigger event of my mother's hospitalization on April 1, then took root during my time accompanying her. After a deep conversation with my father on the rooftop on April 6, I seriously decided to adjust my lifestyle. After returning to Changsha, starting from the evening of April 7, I made my own light dinner and did mindful breathing meditation for the first time; on April 8, I did neck rehabilitation exercises (cervical exercise), continued cervical physical therapy (5th session), and bought light ingredients; on April 9, I went for my first morning run (alternating brisk walking and jogging) and tried a new meditation app for a 3-minute breathing exercise; on April 10, I did shoulder-and-neck yoga and established a habit of 10 minutes of daily mindfulness meditation. Since then, various habits have progressed steadily: morning running gradually increased from 2-3 times a week and 3 kilometers to 6 kilometers; a light diet became part of every meal; cervical physical therapy remained at 1-2 times a week, reducing to once in the latter half of the month; yoga 3-4 times a week; meditation fixed every night. In the latter half of the month, these behaviors no longer required deliberate reminders, forming a mutually reinforcing closed loop and becoming a natural daily routine.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，列出了具体的健康管理行为，并描述了这些行为如何逐步形成固定习惯。尽管部分日期和行为细节与参考答案不完全一致，但核心内容正确。"
+        },
+        {
+          "id": "fenghaoran-q168",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年1月13日",
+          "reference": "January 13",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 在 2025 年 1 月 13 日去湖南大学 MBA 教育中心注册。"
+        },
+        {
+          "id": "fenghaoran-q173",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年3月15日。",
+          "reference": "March 15, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 MBA 小组成员在 Cotti Coffee 修复关系的具体日期是 2025 年 3 月 15 日。"
+        },
+        {
+          "id": "fenghaoran-q195",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年10月1日。",
+          "reference": "October 1",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 在国庆假期接父母回家的日期是 10 月 1 日。"
+        },
+        {
+          "id": "fenghaoran-q203",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年8月27日。",
+          "reference": "August 27, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 与 Lin Zhihao 视频通话并设置工作台的具体日期是 2025 年 8 月 27 日。"
+        },
+        {
+          "id": "fenghaoran-q204",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年7月29日。",
+          "reference": "July 29",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 收到长沙马拉松组委会的审核批准邮件的具体日期是 7 月 29 日。"
+        },
+        {
+          "id": "fenghaoran-q211",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "2025年12月28日。",
+          "reference": "December 28, 2025",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 和 Shen Xinyi 进行年终总结和庆祝的具体日期是 2025 年 12 月 28 日。"
+        },
+        {
+          "id": "fenghaoran-q212",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "5月25日。",
+          "reference": "May 24",
+          "judge_reasoning": "生成答案的核心事实答错，将日期误答为5月25日，而非正确的5月24日。"
+        },
+        {
+          "id": "fenghaoran-q215",
+          "correct": true,
+          "votes": {
+            "correct": 2,
+            "wrong": 1,
+            "failed": 0
+          },
+          "answer": "Feng Haoran took his parents to Xiangjian Tujia Restaurant for dinner in late October.",
+          "reference": "Xiangjian Local Cuisine Restaurant",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即 Feng Haoran 带父母去吃饭的餐厅名称，尽管餐厅名称略有差异，但核心事实正确。"
+        },
+        {
+          "id": "fenghaoran-q221",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "《星际穿越》",
+          "reference": "Unable to answer",
+          "judge_reasoning": "问题属于 Unanswerable 类型，核心是判断是否应拒答。生成答案给出了具体电影名，而非正确拒答，因此核心错误。"
+        },
+        {
+          "id": "fenghaoran-q240",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案「无法确定」正确反映了问题无法回答的核心，符合 Unanswerable 题型的预期。"
+        },
+        {
+          "id": "fenghaoran-q248",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案『无法确定』正确拒答了无法回答的问题，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q257",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据提供的证据，没有找到关于Gao Yunfei在晨跑时提到工作项目问题的任何信息。",
+          "reference": "Unable to answer",
+          "judge_reasoning": "生成答案正确识别了证据中没有关于Gao Yunfei在晨跑时提到工作项目问题的信息，并恰当地回答了无法回答，符合Unanswerable题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q272",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "无法确定",
+          "reference": "Unable to answer",
+          "judge_reasoning": "核心对，因为生成答案正确地识别了问题无法回答，符合 Unanswerable 题型的核心要求。"
+        },
+        {
+          "id": "fenghaoran-q280",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据2025年5月2日前后最近的记录，颈痛已显著缓解，疼痛评分约为1-2分（0-10分制），属于轻度不适。",
+          "reference": "Cervical pain scored 1 point.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即颈痛的严重程度，并给出了具体的疼痛评分，属于轻度不适。"
+        },
+        {
+          "id": "fenghaoran-q294",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "4分53秒/公里",
+          "reference": "5 minutes 58 seconds per kilometer (based on a 10 km test on August 31, 2025, with a time of 59 minutes 42 seconds).",
+          "judge_reasoning": "生成答案的核心内容答错了，问题问的是个人最佳配速，而生成答案给出的配速与参考答案不符。"
+        },
+        {
+          "id": "fenghaoran-q298",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "是的，您尝试过阴瑜伽课程。根据记录，您于2025年9月18日18:00至19:00在静心瑜伽馆参加了李老师的阴瑜伽试听课（E6），并在课后笔记中表示肩颈感觉放松了许多（E2）。",
+          "reference": "Yes, I tried the yin yoga class.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即用户确实尝试过阴瑜伽课程，并且提供了具体的时间和地点等细节。"
+        },
+        {
+          "id": "fenghaoran-q300",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "最近完成的摄影项目是11月10日在长沙潮宗街咖啡店二楼完成的街头摄影展布置，展出了20幅作品（含猫照片等），并随后进行了展览回顾。",
+          "reference": "The recently completed photography project is the \"Street Echo\" photo series.",
+          "judge_reasoning": "生成答案的核心内容与问题不符，问题问的是最近完成的摄影项目，而生成答案描述的是一个摄影展布置，且项目名称和内容均与参考答案不一致。"
+        },
+        {
+          "id": "fenghaoran-q304",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "截至2025年11月1日，我在投资写作方面完成了以下内容：  \n- 于2025年10月28日撰写并润色了基于投资者生命周期配置策略的专栏初稿（E8）。  \n- 于2025年10月30日完成了约2200字的专栏初稿V1文档，包含风险警示等内容（E18）。  \n- 于2025年10月30日撰写了结业演讲要点，以万宝龙钢笔为比喻，总结投资学习历程（E2）。  \n- 于2025年11月25日完成了文章《构建你的投资体系：从认知升级到长期主义》的框架，并引用了最新市场数据（E6）。  \n- 此外，此前还完成了REITs提案文档（E19）、客户资产配置报告（E23）等多项写作任务。",
+          "reference": "Completed the topic planning for the investment research column, listing 12 topic directions.",
+          "judge_reasoning": "生成答案没有提到完成投资研究专栏的主题规划，也没有列出12个主题方向，核心内容未答对。"
+        },
+        {
+          "id": "fenghaoran-q321",
+          "correct": false,
+          "votes": {
+            "correct": 0,
+            "wrong": 3,
+            "failed": 0
+          },
+          "answer": "这个安排听起来不错，12月16日晚上没有记录其他日程，可以放心庆祝。",
+          "reference": "Not suitable. December 16 is Tuesday. According to your schedule, you just signed up for the CFA Level II sprint course, and CFA review is scheduled from 19:00 to 21:00 every evening. Meanwhile, the ESG course has also begun, making your schedule quite tight, so you are unable to spare the evening for a gathering.",
+          "judge_reasoning": "生成答案的核心答错了，它认为12月16日晚上没有其他日程，但实际上有CFA和ESG课程冲突，无法安排聚会。"
+        },
+        {
+          "id": "fenghaoran-q333",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "他刚结束一场与李婷婷的约会，感到两人精神层面不合，渴望寻找能进行深度心灵交流的伴侣，因此回家后立即写日记记录感受。",
+          "reference": "After seeing Li Tingting off, he walked alone along Furong Middle Road to reflect. During this time, he felt a clear sense of relief inside, and concluded that tonight had verified the difficulty of finding a like-minded person, strengthening his desire for deep spiritual connection. This post-reflection clarity and regret directly prompted him to immediately write in his diary upon returning home, recording the details of the date and his inner thoughts.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即他因为感到与李婷婷精神层面不合，渴望寻找能进行深度心灵交流的伴侣，因此回家后立即写日记记录感受。"
+        },
+        {
+          "id": "fenghaoran-q338",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "冯浩然在2025年8月12日早晨通过回顾过去一周的冥想日记，发现自己在处理妹妹的事情时能够保持冷静，决策压力显著降低，从而确认冥想有效缓解了决策压力。",
+          "reference": "Because the previous night (August 11) he recorded and compared his morning and evening meditation experiences, especially the successful emotional management after being interrupted by the cat, which made him realize the regulating effect of meditation on emotions and stress. The next morning, during the \"weekly review\" meditation, he flipped through his diary and saw his transformation from distracted attention to flow, from anxiety to calm, further verifying the effects of meditation, thereby confirming its role in alleviating decision-making pressure.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然通过回顾冥想日记确认了冥想对缓解决策压力的有效性。虽然答案中没有提到具体的日期和事件细节，但核心内容答对了。"
+        },
+        {
+          "id": "fenghaoran-q343",
+          "correct": true,
+          "votes": {
+            "correct": 3,
+            "wrong": 0,
+            "failed": 0
+          },
+          "answer": "根据证据记录，冯浩然在2025年6月23日下午调整黄思琪和林志浩的投资组合，是因为当天上午的研讨会观点有用（E1），他据此执行了笔记中记录的具体操作：将黄思琪投资组合中5%的固定收益转入科创板50指数ETF，并为林志浩的账户增加2%的黄金ETF对冲（E0）。",
+          "reference": "Because Feng Haoran attended a seminar that morning, where he obtained macroeconomic outlook and asset allocation ideas. Based on the seminar content, he decided to transfer 5% of Huang Siqi's fixed income to the STAR Market 50 Index ETF, and increase Lin Zhihao's allocation by 2% in gold ETF. These adjustments directly stemmed from the inspiration and guidance of the seminar; without the seminar, there would be no basis for the adjustments.",
+          "judge_reasoning": "生成答案正确回答了问题的核心，即冯浩然调整投资组合的原因和具体操作。"
+        }
+      ]
+    }
+  },
+  "published": {
+    "Gold evidence": [98.14, 94.85, 94.91, 93.73, 96.14, 94.1, 98.11, 93.3, 100.0, 97.28],
+    "Hindsight": [83.43, 53.98, 44.34, 58.75, 85.09, 67.83, 80.66, 49.48, 75.56, 71.98],
+    "Mem0": [78.09, 41.41, 32.45, 48.48, 75.84, 52.55, 78.07, 32.47, 55.73, 61.54]
+  },
+  "total_usd_billed": 0.662352897632
+}

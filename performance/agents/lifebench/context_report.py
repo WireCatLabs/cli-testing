@@ -10,6 +10,7 @@ unless named).
 
 import argparse
 import json
+import math
 import statistics
 from collections import defaultdict
 from pathlib import Path
@@ -21,6 +22,14 @@ PUBLISHED = {
     "Hindsight": (83.43, 53.98, 44.34, 58.75, 85.09, 67.83, 80.66, 49.48, 75.56, 71.98),
     "Mem0": (78.09, 41.41, 32.45, 48.48, 75.84, 52.55, 78.07, 32.47, 55.73, 61.54),
 }
+
+
+def wilson(right, total, z=1.96):
+    """95% interval of a share, in percent; Wilson's, so it stays inside 0-100 on small categories."""
+    share, scale = right / total, 1 + z * z / total
+    centre = share + z * z / (2 * total)
+    half = z * math.sqrt(share * (1 - share) / total + z * z / (4 * total * total))
+    return round(100 * (centre - half) / scale), round(100 * (centre + half) / scale)
 
 
 def main():
@@ -68,7 +77,7 @@ def main():
         count = report[names[0]]["accuracy"].get(category, [0, 0])[1]
         if not count:
             continue
-        cells = [f"{right} ({right / total:.0%})" for right, total in
+        cells = [f"{right / total:.0%} ({'–'.join(map(str, wilson(right, total)))})" for right, total in
                  (report[n]["accuracy"].get(category, [0, 0]) for n in names)]
         published = [f"{values[-1 if category == 'All' else ORDER.index(category)]:.1f}%" for values in
                      PUBLISHED.values()]

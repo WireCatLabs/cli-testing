@@ -500,3 +500,93 @@ same contest:
 - Day-by-day loading, if a number is to stand next to the leaderboard.
 - All 348 questions of this person: about $3 for the three setups at these prices (answers and judge). The stores
   already hold all 4,986 records, so no new embedding.
+
+## Context size, and all 348 questions
+
+Run 2026-11-08, the same flow as above (memo's hits once, `deepseek-v4-flash` answers, the deepseek-chat judge).
+
+### Why this was run
+
+Two questions from the 46-question run: does memo's score depend on giving the model 40 whole records (NEED-4), and
+does it hold on the whole person rather than 46 questions (NEED-3)? Budget about $3.
+
+### Is the Gemma store searched with Gemma?
+
+Checked before the full run, because `MEMO_EMBEDDING_MODEL` (which `memo_baseline.py` sets for the sync) may not be
+read by memo 0.131.57. In the Gemma store `memo models list --json` shows `embeddinggemma` as the default text model
+and the only one downloaded (e5-small is not there), and every vector is `local:embeddinggemma:768`. `memo models set
+embeddinggemma` was then run in that store, and the 46 searches repeated: all 46 hit lists came back identical to the
+ones the answers used. So the Gemma numbers are Gemma's on both the store and the query side; probably Gemma became the
+default because it was the only text model the store had.
+
+### Context size (46 questions)
+
+The first 10, 20 or 40 records of the same ranked hit lists. Accuracy, with the 95% interval (Wilson):
+
+| Records | memo e5-small | memo Gemma | Evidence in the context, e5 / Gemma (mean share) | Prompt tokens, e5 / Gemma (median) |
+| ---: | ---: | ---: | ---: | ---: |
+| 10 | 70% (55–81) | 70% (55–81) | 0.34 / 0.42 | 2,430 / 1,996 |
+| 20 | 80% (67–89) | 76% (62–86) | 0.42 / 0.45 | 4,694 / 3,807 |
+| 40 | 85% (72–92) | 80% (67–89) | 0.47 / 0.48 | 8,276 / 6,868 |
+
+From 10 to 20 records e5-small gains 5 questions and Gemma 3; from 20 to 40 both gain 2, inside the noise. 40 is not clearly
+better than 20, so the full run uses **20**. Per category: [context-topk-results.json](context-topk-results.json).
+
+### All 348 questions (20 records)
+
+[pilot-subset-fenghaoran-348.json](pilot-subset-fenghaoran-348.json) is every question of fenghaoran (60
+unanswerable). memo's searches of the two stores built above, repeated for 348 questions by
+[context_search.py](context_search.py) without rebuilding them (it checks that the corpus is the one the store was
+built from; 0 unmapped hits; the 46 questions searched before came back unchanged).
+
+| Category | Questions | Gold evidence | memo e5-small | memo Gemma | Gold (published) | Hindsight (published) | Mem0 (published) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| All | 348 | 97% (95–99) | 76% (71–80) | 80% (76–84) | 97.3% | 72.0% | 61.5% |
+| Single-hop | 175 | 97% (93–98) | 77% (70–83) | 84% (78–89) | 98.1% | 83.4% | 78.1% |
+| Multi-hop | 104 | 97% (92–99) | 62% (53–71) | 64% (55–73) | 94.8% | 54.0% | 41.4% |
+| Temporal | 46 | 93% (82–98) | 57% (42–70) | 63% (49–75) | 94.9% | 44.3% | 32.5% |
+| Pattern recognition | 49 | 98% (89–100) | 67% (53–79) | 76% (62–85) | 93.7% | 58.8% | 48.5% |
+| Knowledge update | 48 | 96% (86–99) | 77% (63–87) | 83% (70–91) | 96.1% | 85.1% | 75.8% |
+| Causal | 39 | 97% (87–100) | 72% (56–83) | 72% (56–83) | 94.1% | 67.8% | 52.5% |
+| Conflict | 49 | 96% (86–99) | 80% (66–89) | 86% (73–93) | 98.1% | 80.7% | 78.1% |
+| Hidden information | 12 | 83% (55–95) | 50% (25–75) | 50% (25–75) | 93.3% | 49.5% | 32.5% |
+| Unanswerable | 60 | 100% (94–100) | 95% (86–98) | 93% (84–97) | 100% | 75.6% | 55.7% |
+
+| Setup | Evidence in the context (mean share) | Questions with some evidence in the context | Prompt tokens (median) | Answers, billed | Judge, billed |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Gold evidence | 1.00 | 100% | 880 | $0.052 | $0.666 |
+| memo e5-small | 0.34 | 76% | 4,588 | $0.165 | $0.667 |
+| memo Gemma | 0.42 | 83% | 3,720 | $0.126 | $0.670 |
+
+Billed for this section: 10- and 20-record runs on 46 questions $0.43, the 348-question runs $2.34; **$2.77**. No
+failed answer and no failed judge vote in the 348-question runs. Every answer and verdict:
+[context-348-results.json](context-348-results.json).
+
+### What it showed
+
+1. **Gold evidence reproduces LifeBench's ceiling on the whole person:** 97% against the published 97.3%.
+2. **memo with Gemma: 80%, with e5-small: 76%,** at 20 records. The published DeepSeek-V4-Flash rows: Hindsight
+   72.0%, Mem0 61.5%. Both memo setups are 17 to 21 points under the gold ceiling.
+3. **Gemma leads on 348 questions; on 46 it trailed.** Of the 54 questions the two setups disagree on, Gemma alone
+   was right on 34 and e5-small alone on 20 (exact McNemar test p = 0.08): probably a real gain, not yet a certain
+   one. It follows retrieval: Gemma puts some evidence in the context for 83% of questions, e5-small for 76%. The 46
+   questions pointed the other way, which is what 46 questions are worth.
+4. **Where memo loses most is where evidence is spread:** Multi-hop (62–64% against 97% with gold) and Temporal
+   (57–63%), whose questions cite many records. Over all questions, 20 records hold 34% (e5-small) and 42% (Gemma)
+   of a question's evidence.
+5. **memo declines well:** 93–95% on Unanswerable, against 75.6% (Hindsight) and 55.7% (Mem0) published.
+
+### Against LifeBench's published numbers
+
+The same answer model, answer prompt and judge prompt; the remaining differences:
+
+- **Whole-year store** (the owner's choice, NEED-2): records dated after a question compete with its evidence; the
+  question carries its ask time instead. Probably hardest on Knowledge update; it is the gap to day-by-day loading,
+  not a measured penalty.
+- **Context**: 20 whole records (median about 4,000 prompt tokens), against each system's own units (Mem0: 40 short
+  facts).
+- **English data**, the judge's language line set to English; the judge model is `deepseek/deepseek-chat` on
+  OpenRouter, and the leaderboard names no judge model.
+- **One person** of ten (348 of 3,380 questions); the published rows are over all ten.
+- **Record format**: this fixture's text, not LifeBench's `format_evidence`; and the ask time is added to the question.
+- Not run: 40 records on 348 questions (about $1.9 more, mostly the judge).
