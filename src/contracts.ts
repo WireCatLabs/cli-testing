@@ -32,6 +32,7 @@ export interface ContractCase {
   files?: ContractFileCheck[]
   allowSensitiveOutput?: boolean
   diagnostic?: string
+  diagnosticPattern?: string
 }
 export interface ContractPlan {
   command: string
@@ -188,6 +189,18 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
     new Set(plan.cases.map((c) => c.id)).size !== plan.cases.length
   )
     throw new Error("contract plan needs a command and distinct cases")
+  const patterns = new Map<string, RegExp>()
+  for (const item of plan.cases) {
+    if (item.diagnosticPattern === undefined) continue
+    if (item.diagnostic !== undefined)
+      throw new Error(`case ${item.id}: diagnostic and diagnosticPattern are exclusive`)
+    if (item.stream !== "stdout") throw new Error(`case ${item.id}: diagnosticPattern needs stream "stdout"`)
+    try {
+      patterns.set(item.id, new RegExp(`^(?:${item.diagnosticPattern})$`))
+    } catch {
+      throw new Error(`case ${item.id}: diagnosticPattern is not a valid regular expression`)
+    }
+  }
   const root = mkdtempSync(join(tmpdir(), "wirecat-contract-"))
   const guard = join(root, "guard.cjs")
   const marker = join(root, "denied")
@@ -265,9 +278,19 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
           throw new Error("sensitive data detected in command output")
         if (result.exit !== item.exit) throw new Error(`expected exit ${item.exit}, received ${result.exit}`)
         const other = item.stream === "stdout" ? result.stderr : result.stdout
-        const expectedOther = item.stream === "stdout" ? (item.diagnostic ?? "") : ""
-        if (other.replaceAll("\r\n", "\n") !== expectedOther)
-          throw new Error(`unexpected output on ${item.stream === "stdout" ? "stderr" : "stdout"}`)
+        const normalizedOther = other.replaceAll("\r\n", "\n")
+        const pattern = patterns.get(item.id)
+        if (pattern) {
+          if (!pattern.test(normalizedOther))
+            throw new Error(
+              `stderr does not match diagnosticPattern ${JSON.stringify(item.diagnosticPattern)}; ` +
+                `received ${JSON.stringify(normalizedOther.slice(0, 500))}`,
+            )
+        } else {
+          const expectedOther = item.stream === "stdout" ? (item.diagnostic ?? "") : ""
+          if (normalizedOther !== expectedOther)
+            throw new Error(`unexpected output on ${item.stream === "stdout" ? "stderr" : "stdout"}`)
+        }
         const output = result[item.stream].replaceAll("\r\n", "\n")
         if (item.kind === "json") {
           let value: unknown

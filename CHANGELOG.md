@@ -6,6 +6,16 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- **A contract case can match its stderr with `diagnosticPattern`.** It is a regular expression matched against the
+  whole normalized stderr, for a message with a number in it such as "the store moved to schema 58", which made every
+  tool's upgrade contract fail whenever the shared store schema moved. A mismatch names the pattern and the stderr
+  received. It cannot be combined with `diagnostic`, needs `stream: "stdout"`, and an invalid expression fails the
+  plan before any case runs. Escape a backslash twice in the plan's JSON.
+
 ## 0.6.2 — 07.11.2026
 
 ### Fixed

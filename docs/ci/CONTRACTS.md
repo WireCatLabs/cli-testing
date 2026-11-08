@@ -123,6 +123,22 @@ SHA256. Paths cannot escape the root or pass through symlinks.
 uses that binary. `entry` can name a reviewed local synthetic fixture generator. Entry paths resolve
 relative to the plan, while fixture and artifact paths stay relative to the temporary root.
 `diagnostic` permits one exact reviewed stderr string on a stdout case; leak checks still apply.
+`diagnosticPattern` does the same with a regular expression, for a message that carries a number or a version:
+it is matched against the whole normalized stderr (anchored, no flags), and a mismatch names the pattern and the
+stderr received. It replaces `diagnostic`, which it cannot be combined with, and needs `stream: "stdout"`. An
+invalid expression or both fields fail the whole plan before any case runs. In JSON the backslash is doubled:
+
+```json
+{
+  "id": "store-newer-than-cli",
+  "args": ["upgrade", "--check", "--json"],
+  "exit": 0,
+  "stream": "stdout",
+  "kind": "json",
+  "diagnosticPattern": "the store moved to schema \\d+; every other WireCat CLI that uses it needs a version that speaks it — run `<cli> upgrade` for each\n"
+}
+```
+
 `canaries` names synthetic sensitive values and `artifacts` selects generated logs to scan.
 `allowSensitiveOutput: true` permits only canaries in requested stdout data; credential and phone
 patterns are still checked. See [upgrade checks](UPGRADES.md) for the concrete CLI coverage.
