@@ -660,3 +660,20 @@ from [persons_report.py](persons_report.py).
 5. **memo is 17 to 25 points under the ceiling** (Gemma 17 and 23, e5-small 21 and 25), most on Multi-hop and Temporal.
 
 The leaderboard caveats above all still hold: a whole-year store, 20 whole records, English, two people of ten.
+
+## Date-bounded search: only records from before the question (in progress)
+
+Run 2026-11-08: the leaderboard-fairness check. Same two persons, stores, 20 records, answer model and judge as above,
+but memo may return only records dated on or before the question's ask time (memo's own `date<<day after>` bound,
+`--timezone UTC`). Questions whose 20 records did not change keep their earlier answer and verdict.
+
+To resume after an interruption (every step skips what is already on disk):
+
+```sh
+/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh search
+/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh changed
+/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh answer
+```
+
+Search rows, answers and verdicts land one per line in `~/.cache/wirecat-bench/lifebench/runs/leaderboard-style/bounded/`
+(`*.partial.jsonl`). Results follow here when the run ends.

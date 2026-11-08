@@ -22,6 +22,8 @@ PUBLISHED = {
     "Hindsight": (83.43, 53.98, 44.34, 58.75, 85.09, 67.83, 80.66, 49.48, 75.56, 71.98),
     "Mem0": (78.09, 41.41, 32.45, 48.48, 75.84, 52.55, 78.07, 32.47, 55.73, 61.54),
 }
+# Macro: the mean of the nine category accuracies, as LifeBench_eval's README reports it.
+PUBLISHED_MACRO = {"Gold evidence": 95.92, "Hindsight": 66.57, "Mem0": 55.01}
 
 
 def wilson(right, total, z=1.96):
@@ -62,7 +64,8 @@ def main():
                 sum(any_hit) / len(any_hit),
             "context_records_median": statistics.median(len(a["context_records"]) for a in answers.values()),
             "prompt_tokens_median": statistics.median(a["usage"].get("prompt_tokens", 0) for a in answers.values()),
-            "answer_usd_billed": sum(a["usage"].get("cost", 0) for a in answers.values()),
+            "answer_usd_billed": sum(a["usage"].get("cost", 0) for a in answers.values() if not a.get("reused")),
+            "answers_reused": sum(bool(a.get("reused")) for a in answers.values()),
             "judge_usd_billed": judged.get("judge_usd_billed"), "failed_votes": judged["failed_votes"],
             "answer_failures": {qid: a["problem"] for qid, a in answers.items() if a["problem"]},
             "per_question": [{"id": v["id"], "correct": v["is_correct"], "votes": v["votes"], "answer": v["answer"],
@@ -82,6 +85,12 @@ def main():
         published = [f"{values[-1 if category == 'All' else ORDER.index(category)]:.1f}%" for values in
                      PUBLISHED.values()]
         print(f"| {category} | {count} | " + " | ".join(cells) + " | " + " | ".join(published) + " |")
+    macro = {n: statistics.mean(report[n]["accuracy"][c][0] / report[n]["accuracy"][c][1] for c in ORDER
+                                if report[n]["accuracy"].get(c, [0, 0])[1]) for n in names}
+    for name in names:
+        report[name]["macro"] = macro[name]
+    print("| Macro (mean of categories) | | " + " | ".join(f"{macro[n]:.0%}" for n in names) + " | "
+          + " | ".join(f"{PUBLISHED_MACRO[p]:.1f}%" for p in PUBLISHED) + " |")
     print("\n| Setup | Evidence records in context (mean) | Questions with any evidence in context | Records given "
           "(median) | Prompt tokens (median) | Answers, billed | Judge, billed | Failed answers |")
     print("| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |")

@@ -14,6 +14,9 @@ under "[E<n>] <source> | <time> | <title>", not LifeBench's own format_evidence.
 
 memo: the hits of one run in a memo_clean.py per-query.json, mapped to records, first --top distinct ones (40 is
 LifeBench_eval's config/systems/mem0.yaml search.top_k). gold: the question's evidence records.
+--reuse <answers dir> copies that run's answer for every question whose context records are the same, in the same
+order, and asks the model only for the others (rows say "reused": true). Each answer goes to
+<output>/per-question.partial.jsonl as it finishes; a rerun with the same arguments skips the questions already there.
 The key is the keyring entry openrouter/AIX125, read in-process and never printed.
 """
 
@@ -21,6 +24,7 @@ import argparse
 import json
 import re
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -88,16 +92,35 @@ def main():
     parser.add_argument("--top", type=int, default=40)
     parser.add_argument("--model", default="deepseek/deepseek-v4-flash")
     parser.add_argument("--workers", type=int, default=8)
+    parser.add_argument("--reuse", type=Path, help="an earlier answers dir; same context, same answer")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    args.output.mkdir(parents=True, exist_ok=False)
+    if (args.output / "per-question.json").exists():
+        raise SystemExit(f"{args.output} is complete")
+    args.output.mkdir(parents=True, exist_ok=True)
     records = {r["id"]: r for r in map(json.loads, (args.fixture / "corpus.jsonl").read_text().splitlines())}
     oracle = {row["id"]: row for row in json.loads((args.fixture / "oracle.json").read_text())}
     chosen, source = contexts(args, oracle, records)
     system, template, empty = prompts()
     key = api_key("openrouter", "AIX125")
+    partial = args.output / "per-question.partial.jsonl"
+    done = {r["id"]: r for r in map(json.loads, partial.read_text().splitlines())} if partial.exists() else {}
+    earlier = ({r["id"]: r for r in json.loads((args.reuse / "per-question.json").read_text())} if args.reuse else {})
+    lock = threading.Lock()
 
     def one(qid):
+        if qid in done:
+            return done[qid]
+        old = earlier.get(qid)
+        if old and old["context_records"] == chosen[qid] and not old["problem"]:
+            row = {**old, "reused": True}
+        else:
+            row = {**answer_one(qid), "reused": False}
+        with lock, partial.open("a") as sink:
+            sink.write(json.dumps(row, ensure_ascii=False) + "\n")
+        return row
+
+    def answer_one(qid):
         truth = oracle[qid]
         question = f"{truth['question']}\n提问时间：{truth['ask_time']}"
         user = template.format(evidence=render(records, chosen[qid], empty), question=question)
@@ -113,7 +136,8 @@ def main():
         rows = list(pool.map(one, list(oracle)))
     (args.output / "per-question.json").write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n")
     meta = {"setup": args.setup, "context": source, "model": args.model, "questions": len(rows),
-            "usd": sum(r["list_price_usd_estimate"] for r in rows), "failures": [r["id"] for r in rows if r["problem"]],
+            "reused_from": str(args.reuse) if args.reuse else None, "reused": sum(bool(r.get("reused")) for r in rows),
+            "usd": sum(r["list_price_usd_estimate"] for r in rows if not r.get("reused")), "failures": [r["id"] for r in rows if r["problem"]],
             "records_per_question": sorted(len(r["context_records"]) for r in rows)}
     (args.output / "run.json").write_text(json.dumps(meta, indent=2) + "\n")
     print(json.dumps({k: v for k, v in meta.items() if k != "records_per_question"}, indent=2))

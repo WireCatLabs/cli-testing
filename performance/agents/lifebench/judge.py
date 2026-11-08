@@ -27,6 +27,7 @@ import json
 import re
 import subprocess
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -225,14 +226,34 @@ def run_judge(args):
     for spec in args.run:
         name, folder = spec.split("=", 1)
         rows = json.loads((Path(folder).expanduser() / "per-question.json").read_text())
-        def one(row, name=name):
-            truth = oracle[row["id"]]
-            verdict = judge_one(args, client, templates, truth, judged_answer(row))
-            print(f"{name} {row['id']} {'CORRECT' if verdict['is_correct'] else 'WRONG'} {verdict['votes']}",
-                  file=sys.stderr)
-            return {"id": row["id"], "categories": truth["categories"], "question": truth["question"],
-                    "reference": truth["answer"], "answer": judged_answer(row),
-                    "agent_usd": row.get("list_price_usd_estimate"), **verdict}
+        # One verdict per line as it lands, so a killed run resumes; a reused answer keeps its earlier verdict.
+        partial = args.output.with_suffix(f".{name}.partial.jsonl")
+        done = {r["id"]: r for r in map(json.loads, partial.read_text().splitlines())} if partial.exists() else {}
+        earlier = {}
+        for spec_reuse in args.reuse or []:
+            reuse_name, reuse_path = spec_reuse.split("=", 1)
+            if reuse_name == name:
+                old = json.loads(Path(reuse_path).read_text())["runs"]
+                earlier = {r["id"]: r for r in next(iter(old.values()))["results"]}
+        lock = threading.Lock()
+
+        def one(row, name=name, partial=partial, done=done, earlier=earlier, lock=lock):
+            if row["id"] in done:
+                return done[row["id"]]
+            if row.get("reused") and row["id"] in earlier:
+                result = {**earlier[row["id"]], "reused": True,
+                          "usage": {"prompt_tokens": 0, "completion_tokens": 0, "cost": 0.0}}
+            else:
+                truth = oracle[row["id"]]
+                verdict = judge_one(args, client, templates, truth, judged_answer(row))
+                print(f"{name} {row['id']} {'CORRECT' if verdict['is_correct'] else 'WRONG'} {verdict['votes']}",
+                      file=sys.stderr)
+                result = {"id": row["id"], "categories": truth["categories"], "question": truth["question"],
+                          "reference": truth["answer"], "answer": judged_answer(row),
+                          "agent_usd": row.get("list_price_usd_estimate"), "reused": False, **verdict}
+            with lock, partial.open("a") as sink:
+                sink.write(json.dumps(result, ensure_ascii=False) + "\n")
+            return result
 
         with ThreadPoolExecutor(args.workers) as pool:
             results = list(pool.map(one, rows))
@@ -325,6 +346,8 @@ def main():
     judge.add_argument("--fixture", type=Path, required=True)
     judge.add_argument("--run", action="append", required=True, metavar="NAME=DIR")
     judge.add_argument("--workers", type=int, default=1, help="questions judged at once; votes stay in order")
+    judge.add_argument("--reuse", action="append", metavar="NAME=JUDGE.JSON",
+                       help="verdicts to copy for that run's answers marked reused")
     sub.choices["validate"].add_argument("--items", type=Path, required=True)
     estimate = sub.choices["estimate"]
     estimate.add_argument("--questions", type=int, required=True)
