@@ -421,6 +421,60 @@ run the CLI's sync over the window and count what it saves (`mail <profile> sync
 as held, and `--all` passes a chat whose newest message is held. So a hole inside a held stretch is not fetched
 again. `<cli> <profile> messages sync <chat> --last <n>` re-reads at least the newest page of each chat.
 
+### refill.mjs: ordinary syncs after the recovery
+
+Why: the owner asked that a rebuilt store fill itself again ("надо пытаться починить автоматом"). The section above
+shows a messenger sync jumps over a hole inside a stretch the store marks as fetched, so after a recovery the lost
+messages stayed lost. cli-core's `store recover run` now marks as not fetched what each chat and mail folder held
+from a day before the last deep check that passed (`last_ok_at` in `<store>.health.json`). The question: after that,
+do ordinary syncs from a service that still holds every message bring the lost rows back, and does a sync without it
+not?
+
+Setup: 2026-11-08, the three stores T1-roles broke on 0.593.0 (`kept/`, never written; each copied first), node
+24.19.0, the `sqlite3` shell 3.46.1. `refill.mjs` gives each copy what a whole sync of every chat would have left
+(one held stretch per chat from its first committed message to its newest, and the start mark) and a deep check that
+passed one day after the send time of message `--cut`, so the cut falls at that message. Then cli-core's
+`recoverStore`, then ordinary syncs: cli-core's own `fetchInto` per chat, 1 000 messages a run, 100 a page, over a fake
+history made of every message the ledgers say was committed. The harness's send times are the message id in seconds
+from 2026-01-01 in every chat, so one cut applies to all chats at the same id. The control is cli-core 0.613.0, which
+has no such step.
+
+```sh
+# a pack of the cli-core branch installed as cores/0.615.0-refill, as installCore lays a version out
+node refill.mjs /var/tmp/claude/store-harness/runs/T1-roles-0.593.0-<stamp> --core 0.615.0-refill --cut 900 --runs 25
+node refill.mjs /var/tmp/claude/store-harness/runs/T1-roles-0.593.0-<stamp> --core 0.613.0 --cut 900 --runs 25
+# result.json in the new refill-* folder: recovery.refetch, missing_after_recovery (ids per chat), syncs per run
+```
+
+| Broken run | Messages committed | Lost after the recovery (ids) | cli-core | Marked not fetched | Missing after sync 1 | After 25 syncs | Sync 1: requests, messages read |
+|---|---|---|---|---|---|---|---|
+| T1-roles run 1 | 30 020 | 60 (the `serve` chat's newest) | branch | 5 chats | 0 | | 52, 5 100 |
+| | | | 0.613.0 | | 0 | | 12, 600 |
+| T1-roles run 2 | 21 540 | 291 (`tg` chat, 901 to 1 200 less 9) | branch | 5 chats | **0** | | 47, 4 500 |
+| | | | 0.613.0 | | 200 | **200** | 12, 600 |
+| T1-roles run 3 | 30 540 | 80 (the `serve` chat's newest) | branch | 5 chats | 0 | | 52, 5 100 |
+| | | | 0.613.0 | | 0 | | 12, 600 |
+
+What it showed:
+
+- Run 2 is the case that matters: the damage took a stretch inside the chat (ids 901 to 1 100) below its newest page.
+  Without the step a sync reads the newest page (100 back), jumps to the start of the held stretch and stops; 200 stay
+  missing after 25 syncs. With it the first sync reads down to the last message before the cut and all 291 are back.
+- Losses at a chat's newest end (runs 1 and 3) come back with any sync, with the step or without it.
+- The cost is a re-read of everything sent after the cut. Here that is most of the store, since the synthetic send
+  times put every chat after id 900; on a real store it is the last day or so before the last passing check and
+  everything since, in the chats that moved.
+- Messages lost from before the cut are not marked and do not come back (none were in these runs). Neither do notes,
+  memories or anything else only the store held, nor WhatsApp history its phone does not push again.
+
+Mail is not in this harness (its writer saves threads directly, with no IMAP resume point). cli-core's own test
+`src/store/refill.test.ts` takes 10 of 40 emails out of a store synced from its fake mail source, with and without a
+quick server: one more sync stores none of them before the step and all 10 after it.
+
+Not measured: a real messenger's history (rate limits, Telegram's pauses), stores with a passing deep check that is
+weeks old (everything since is re-read), and `messages sync --all` over a chat list, which this script replaces with
+one `fetchInto` per chat.
+
 ## What can happen again
 
 - **A program that drops the store's locks.** Any code that opens and closes its own handle on `wirecat.db` in a
