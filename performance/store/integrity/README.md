@@ -416,7 +416,10 @@ from B) came back with 10 and 1 missing, 2 chats and 1 mailbox, and exit code 1.
 
 What it cannot see: rows the damaged file never held (the BUG-627 rows). For those, the only check is the source:
 run the CLI's sync over the window and count what it saves (`mail <profile> sync --rescan --since-time …` reports
-`saved` against `already_stored`).
+`saved` against `already_stored`). A messenger sync is weaker here: from reading cli-core 0.608.0
+(`dist/services/archive.js`, `fetchInto`), after its first page it jumps to the start of the stretch the store marks
+as held, and `--all` passes a chat whose newest message is held. So a hole inside a held stretch is not fetched
+again. `<cli> <profile> messages sync <chat> --last <n>` re-reads at least the newest page of each chat.
 
 ## What can happen again
 
