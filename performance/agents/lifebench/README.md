@@ -22,6 +22,8 @@ model cannot answer from records it never sees, so this sets the ceiling for the
 - Persona: `fenghaoran` (Feng Haoran), 4,986 records, 348 questions. All 10 were converted; only this one was run
   (see "What was not measured").
 - memo 0.131.50, mail CLI 0.18.0, e5-small in memo; fastembed 0.9.1, onnxruntime 1.31.1 for vectors alone.
+  memo ships e5-small in 8 bits; the vectors-alone run loads the full-precision ONNX, so the two e5-small columns
+  do not use the same weights.
   Python 3.14.4, AMD Ryzen AI 9 HX 470 (24 threads), 30 GB, Linux 7.0. One worker.
 - Store runs use moved folders and `DBUS_SESSION_BUS_ADDRESS=disabled:`, so nothing reaches the owner's store or
   keyring.
@@ -47,7 +49,7 @@ python3 -I score.py --fixtures ~/.cache/wirecat-bench/lifebench/fixtures \
 | [memo_clean.py](memo_clean.py) | `memo_baseline.py` with each record's own sender, subject and note title |
 | [eval_embeddings.py](eval_embeddings.py) | one vector per record, no store; a copy of the knowledge-graph one with @1 and saved rankings |
 | [score.py](score.py) | recall, hit rate and ceiling per LifeBench category |
-| [run-persona.sh](run-persona.sh) | the store runs and both vector runs for one persona |
+| [run-persona.sh](run-persona.sh) | the store runs and both vector runs for one persona (its steps were run one by one, not the script as a whole) |
 | [results-fenghaoran.json](results-fenghaoran.json) | every number below |
 
 ### How LifeBench records became memo sources
@@ -75,8 +77,8 @@ they would hand the search the answer key.
 
 Each question's `evidence` is a list of full copies of phone records. Every copy matches exactly one record by
 source and `phone_id` (30,075 of 30,075 items across the 10 people; nine of them drop an empty `summarized_info`
-field). LifeBench_eval matches its evidence the same way, by content
-(`datasets/lifebench_raw/build_question_evidence_mapping.py`).
+field). LifeBench_eval's own recall scripts also compare evidence by content: `recall_text_match.py` looks for the
+evidence text in the top K, `recall_evaluator.py` asks an LLM.
 
 - 585 of 3,380 questions (17%) have no evidence. All 585 are Unanswerable, and every Unanswerable question has none.
   They are left out of recall. For fenghaoran: 60 of 348, so 288 are scored.
@@ -137,30 +139,31 @@ note's file name is its source, date and title. The unchanged baseline on the sa
 | memo hybrid e5-small, question as typed | real | 0.10 | 0.23 | 0.32 | 0.35 | 0.60 | 0.70 |
 | memo hybrid e5-small, question as typed | rNNNN | 0.11 | 0.23 | 0.30 | 0.35 | 0.56 | 0.68 |
 
-Here the noise costs little: 0.02 recall@10 and 0.02 to 0.04 hit rate for hybrid, nothing for words. Probably
+Here the difference is small: 0.02 recall@10 and 0.02 to 0.04 hit rate for hybrid, nothing for words. It is not a
+pure noise test: the real titles also add words (source, date, title) that the rNNNN run does not have. Probably
 because each LifeBench record is long and starts with its own source, people and time, so the shared title is a
 small part of each chunk; the v3 records are one sentence. Not tested further.
 
 ## What it showed
 
-1. **Most questions get at least one right record; few get all of them.** memo hybrid puts an evidence record in
-   the first 10 for 70% of questions, but only 32% of all evidence records. The answer model will usually see part
-   of what it needs. Multi-hop, temporal, causal and pattern questions cite many records (the ceiling there is
-   0.58 to 0.73), and memo finds about a fifth of them.
+1. **Most questions get at least one right record; few get all of them.** memo hybrid puts an evidence record in the
+   first 10 for 70% of questions, but on average a question gets only 32% of its evidence records (ceiling 0.87).
+   The answer model will usually see part of what it needs. Multi-hop, temporal, causal and pattern questions cite
+   many records (the ceiling there is 0.58 to 0.73), and memo hybrid reaches recall@10 0.11 to 0.17 on them.
 2. **EmbeddingGemma alone beats memo's hybrid search with e5-small** on every category except Conflict and Hidden
    information: 0.38 against 0.32 recall@10, 0.76 against 0.70 hit@10. It took 51 minutes to embed 4,986
    records on this machine, against 8 minutes for e5-small.
-3. **Hybrid helps most where words fail.** Knowledge update goes from 0.06 (words) to 0.23 (hybrid); the question
-   names the topic, not the words of the latest record.
-4. **Conflict questions are the easy ones** (hit@10 0.90 to 0.96): the conflicting records share the question's
-   words.
-5. **Hidden information is nearly unreachable** (hit@10 0.17 to 0.25, 12 questions): the evidence does not use the
-   question's words or meaning.
+3. **Hybrid helps most where words fail.** Knowledge update goes from 0.06 (words) to 0.23 (hybrid). Probably
+   because the question names the topic, not the words of the latest record.
+4. **Conflict questions are the easy ones** (hit@10 0.90 to 0.96). Probably because the conflicting records share
+   the question's words.
+5. **Hidden information is nearly unreachable** (hit@10 0.17 to 0.25, 12 questions). Probably because the evidence does
+   not use the question's words or meaning; 12 questions are too few to say more.
 6. **The question as typed works without `--exact`.** With `--exact` every word must match and 345 of 348 searches
    come back empty; the default words search returns hits for 299.
-
 7. **Real titles and senders help a little here.** Hybrid recall@10 0.32 with them, 0.30 with `rNNNN` and
-   "Synthetic Sender"; much less than the 0.21 drop on the knowledge-graph set.
+   "Synthetic Sender"; much less than the 0.21 drop on the knowledge-graph set
+   (and not a pure noise test, see above).
 
 ## What was not measured
 
@@ -168,9 +171,10 @@ small part of each chunk; the v3 records are one sentence. Not tested further.
   evidence is Unanswerable) but not searched. One memo run takes 32 minutes and one Gemma run 51; all ten is about
   14 hours on this machine. One person's 348 questions give the shape, not a tight number per category: Hidden
   information has 12 questions.
-- **Search as of the question's date.** LifeBench_eval adds records and asks questions day by day, so a system
-  never holds a record dated after the question. Here the store holds the whole year, so later records compete with
-  the evidence. That makes this harder than the official setup, mostly for Knowledge update.
+- **Search as of the question's date.** LifeBench_eval adds records and asks questions day by day, so a system never
+  holds a record dated after the question. Here the store holds the whole year, so later records compete with the
+  evidence. That probably makes this harder than the official setup, most of all for Knowledge update (not
+  measured).
 - **The question's date.** Questions say "last week" or "today" relative to `ask_time`; nothing here tells memo
   that date.
 - **LifeBench_eval's own recall.** Its `recall_evaluator.py` asks an LLM which hits cover which evidence (union over
@@ -184,14 +188,17 @@ small part of each chunk; the v3 records are one sentence. Not tested further.
 
 From LifeBench_eval `master` at `7f16350` (files read, not run):
 
-- **The judge is an LLM, prompted in Chinese.** `src/evaluators/llm_judge.py` tells the judge "被评内容为中文" (the
-  content is Chinese). The default model is `deepseek-chat`; `config/datasets/lifebench.yaml` sends it through
-  OpenRouter, three votes per question, majority wins. An English run needs either that prompt as is (the judge is
-  told the content is Chinese) or an English copy, and then scores are not comparable with the leaderboard.
+- **The judge is an LLM, prompted in Chinese.** `src/evaluators/llm_judge.py` tells the judge "被评内容为中文" (the content
+  is Chinese). `config/datasets/lifebench.yaml` takes the model from `${LLM_MODEL}` (the code falls back to
+  `deepseek-chat`), sends it through OpenRouter by default, three votes per question, majority wins. An English run
+  needs either that prompt as is (the judge is told the content is Chinese) or an English copy. Which language the
+  leaderboard ran on is not stated next to it; the default config is Chinese, so an English score may not be
+  comparable.
 - **The dataset config is Chinese.** `lifebench.yaml` sets `memory_language: zh` and points at the Chinese LoCoMo
   file; the English one is `locomo_format/lifebench_locomo_conversation_format_v2.0_3380QA_en.json`.
 - **The judge reads the score points and `ask_time`.** Knowledge update is judged "as of the question's time", so
-  the agent must get `ask_time` with the question (the LoCoMo file prefixes it to the question text).
+  the agent must get `ask_time` with the question (`build_question_evidence_mapping.py` strips an ask-time prefix
+  from the Chinese LoCoMo questions; the English file was not checked).
 - **Answers are free text**, judged CORRECT or WRONG on "the core of the question"; an Unanswerable question is
   correct only when the answer declines. No fixed format.
 - **The leaderboard feeds records day by day** (ADD and SEARCH interleaved by date). A fair comparison builds the
