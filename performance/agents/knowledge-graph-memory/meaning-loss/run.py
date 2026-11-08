@@ -2,7 +2,7 @@
 import json, os, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from memo_baseline import Memo
+from memo_baseline import Memo, mail_name
 
 S = Path(__file__).resolve().parent
 B = Path.home() / ".cache/wirecat-bench"
@@ -29,7 +29,7 @@ def main(label, env_pairs, limit="10"):
         typed = plain[qid] if os.environ.get("QSET") == "plain" else other[qid]
         reply, _ = memo.json("search", "all", typed, "--limit", limit)
         (out / f"{qid}.json").write_text(json.dumps(reply, ensure_ascii=False, indent=1))
-        rows[qid] = [names.get(i.get("title", ""), i.get("ref")) for i in reply["items"]]
+        rows[qid] = [names.get(i.get("title", "")) or names.get(mail_name(i.get("ref", "")), i.get("ref")) for i in reply["items"]]
     score = lambda qs: round(sum(len(oracle[q] & set(rows[q][:10])) / len(oracle[q]) for q in qs) / len(qs), 3)
     found = {q: f"{len(oracle[q] & set(rows[q][:10]))}/{len(oracle[q])}" for q in reworded}
     print(json.dumps({"run": label, "reworded@10": score(reworded), "all46@10": score(asked), "per_q": found}))

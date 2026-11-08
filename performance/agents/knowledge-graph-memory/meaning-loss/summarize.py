@@ -1,6 +1,9 @@
 """Recompute recall@10 of every saved run from its replies in runs/<label>/; writes results.jsonl."""
-import json
+import json, sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from memo_baseline import mail_name  # noqa: E402
 
 S = Path(__file__).resolve().parent
 B = Path.home() / ".cache/wirecat-bench"
@@ -15,7 +18,7 @@ for run in sorted(p for p in (S / "runs").iterdir() if p.is_dir()):
     rows, words_only, slots = {}, 0, 0
     for q in asked:
         items = json.loads((run / f"{q}.json").read_text())["items"]
-        rows[q] = [names.get(i.get("title", ""), i.get("ref")) for i in items][:10]
+        rows[q] = [names.get(i.get("title", "")) or names.get(mail_name(i.get("ref", "")), i.get("ref")) for i in items][:10]
         slots += len(items[:10])
         words_only += sum(i.get("found_by") == ["words"] for i in items[:10])
     score = lambda qs: round(sum(len(oracle[q] & set(rows[q])) / len(oracle[q]) for q in qs) / len(qs), 3)

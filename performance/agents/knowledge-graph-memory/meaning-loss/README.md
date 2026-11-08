@@ -74,8 +74,25 @@ Per-source traces: [`trace-baseline.md`](trace-baseline.md) and [`trace-fix.md`]
 - **Cost of the merge fix:** a hit only words found, below its source's first place, now sorts after every hit meaning
   found. Such hits in the top ten fell from 82 to 13 of 460 slots.
 
+## With real mail headers, and words-only hits (cli-core#2667)
+
+`memo_baseline.py` now gives each mail its record's speaker as sender and its first sentence as subject (BUG-618).
+The same runs on a copy of that store, `memo-0.131.50-realmail-v3` ([`realmail.sh`](realmail.sh)). Mail hits are
+mapped to records by their Gmail id (`mail_name`), since the subject is no longer `rNNNN`. `SPIKE_WORDS=above|below`
+gives a hit only words found the cosine of the hit above or below it in its own source.
+
+| Run | 17 reworded | all 46 | 17 original | all 46 original | words-only hits in top 10 (reworded) |
+|---|---:|---:|---:|---:|---:|
+| memo 0.131.50 | 0.529 | 0.761 | 0.941 | 0.913 | 74/460 |
+| merge + mail text (cli-core#2665) | 0.618 | 0.793 | 1.0 | 0.935 | 15/460 |
+| + words-only takes the cosine above (cli-core#2667) | 0.588 | 0.783 | 1.0 | 0.935 | 92/460 |
+| + words-only takes the cosine below | 0.588 | 0.783 | 1.0 | 0.935 | 76/460 |
+
+- The real headers alone bring memo from 0.48 to 0.529. #2665 adds the same 0.09 as on the old store.
+- Giving words-only hits a cosine brings them back onto the page, more than memo 0.131.50 had. It costs one cited
+  source on q04: two words-only mails move ahead of it, and it goes from 9th to 11th.
+
 ## What was not measured
 
 - A build of cli-core with the fix: the numbers come from the bundle patch.
 - `search messages --discover` for chats, which uses the same mail meaning lane.
-- Stores with real mail headers (the store here predates BUG-618).

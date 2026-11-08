@@ -46,13 +46,19 @@ sub('  const ordered = oneList(lists, cosines);\n',
 sub('var oneList = /* @__PURE__ */ __name((lists, cosines) => {',
     '''var byCosine = (lists, cosines) => {
   const place = new Map();
-  for (const list3 of lists)
+  const given = new Map();
+  for (const list3 of lists) {
+    const known = list3.map((item2) => cosines.get(item2.ref));
     list3.forEach((item2, rank) => {
+      let c = known[rank];
+      if (c === void 0 && process.env.SPIKE_WORDS === "above") for (let r = rank - 1; r >= 0 && c === void 0; r--) c = known[r];
+      if (c === void 0 && process.env.SPIKE_WORDS === "below") for (let r = rank + 1; r < known.length && c === void 0; r++) c = known[r];
       const held = place.get(item2.ref);
-      if (!held || rank < held.rank) place.set(item2.ref, { item: item2, rank });
+      if (!held || rank < held.rank) { place.set(item2.ref, { item: item2, rank }); if (c !== void 0) given.set(item2.ref, c); }
     });
+  }
   const head = Number(process.env.SPIKE_HEAD ?? 0);
-  const cos = (ref) => cosines.get(ref) ?? Number.NEGATIVE_INFINITY;
+  const cos = (ref) => given.get(ref) ?? Number.NEGATIVE_INFINITY;
   const tier = (x) => Math.min(x.rank, head);
   return [...place.values()].sort((a, b) => tier(a) - tier(b) || cos(b.item.ref) - cos(a.item.ref) || a.rank - b.rank).map(({ item: item2 }) => item2);
 };
