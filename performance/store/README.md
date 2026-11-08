@@ -22,4 +22,7 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   2026-11-06 damage (a second open in a live process) on cli-core 0.593.0, and 0.608.0 survives it; only the older
   `sqlite3` shell's close deleted the WAL; `store recover run` makes a sound file from each broken store but cannot
   bring back rows the damage destroyed. Its [What can happen again](integrity/README.md#what-can-happen-again)
-  lists the risks that remain after the fix (2026-11-08).
+  lists the risks that remain after the fix (2026-11-08). S4 adds T2 to T16, P2 and role writers for tg, mail and
+  memo: nothing a CLI does broke cli-core 0.611.0; deleting `-shm`, swapping `-wal` and a sync client did; `store
+  recover run` lost 50 to 300 committed rows in each of 6 recoveries and reported them in none (BUG-627)
+  (2026-11-08).
