@@ -31,6 +31,7 @@ import time
 import urllib.error
 import urllib.request
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -100,8 +101,8 @@ def vote(args, client, system, user):
 
 
 def vote_openrouter(args, key, system, user):
-    """As llm_judge.py:328-410: system + user message, temperature 0, three attempts."""
-    usage = {"prompt_tokens": 0, "completion_tokens": 0}
+    """As llm_judge.py:328-410: system + user message, temperature 0, three attempts; cost is OpenRouter's billed one."""
+    usage = {"prompt_tokens": 0, "completion_tokens": 0, "cost": 0.0}
     body = json.dumps({"model": args.model, "temperature": 0,
                        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
     reason = ""
@@ -116,7 +117,7 @@ def vote_openrouter(args, key, system, user):
             reason = f"{type(error).__name__} {getattr(error, 'code', '')}".strip()
             time.sleep(2 ** attempt)
             continue
-        for field in usage:
+        for field in ("prompt_tokens", "completion_tokens", "cost"):
             usage[field] += (data.get("usage") or {}).get(field, 0)
         content = ((data.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
         parsed = parse(content) if content else None
@@ -189,7 +190,7 @@ def judge_one(args, client, templates, truth, generated):
     return {"is_correct": is_correct, "votes": {"correct": correct, "wrong": sum(v[0] == "WRONG" for v in votes),
                                                 "failed": sum(v[0] is None for v in votes)},
             "weighted_score": weighted, "point_hits": hits, "reasoning": representative[2],
-            "usage": {f: sum(v[3][f] for v in votes) for f in ("prompt_tokens", "completion_tokens")}}
+            "usage": {f: sum(v[3].get(f, 0) for v in votes) for f in ("prompt_tokens", "completion_tokens", "cost")}}
 
 
 def table(results, oracle):
@@ -224,19 +225,23 @@ def run_judge(args):
     for spec in args.run:
         name, folder = spec.split("=", 1)
         rows = json.loads((Path(folder).expanduser() / "per-question.json").read_text())
-        results = []
-        for row in rows:
+        def one(row, name=name):
             truth = oracle[row["id"]]
             verdict = judge_one(args, client, templates, truth, judged_answer(row))
-            results.append({"id": row["id"], "categories": truth["categories"], "question": truth["question"],
-                            "reference": truth["answer"], "answer": judged_answer(row),
-                            "agent_usd": row.get("list_price_usd_estimate"), **verdict})
             print(f"{name} {row['id']} {'CORRECT' if verdict['is_correct'] else 'WRONG'} {verdict['votes']}",
                   file=sys.stderr)
+            return {"id": row["id"], "categories": truth["categories"], "question": truth["question"],
+                    "reference": truth["answer"], "answer": judged_answer(row),
+                    "agent_usd": row.get("list_price_usd_estimate"), **verdict}
+
+        with ThreadPoolExecutor(args.workers) as pool:
+            results = list(pool.map(one, rows))
         tokens = {f: sum(r["usage"][f] for r in results) for f in ("prompt_tokens", "completion_tokens")}
         judge_usd = (tokens["prompt_tokens"] * price_in + tokens["completion_tokens"] * price_out) / 1e6
         agent_usd = sum(r["agent_usd"] or 0 for r in results)
+        billed = sum(r["usage"].get("cost", 0) for r in results)
         report["runs"][name] = {"questions": len(results), "judge_tokens": tokens, "judge_usd": judge_usd,
+                                "judge_usd_billed": billed,
                                 "agent_usd": agent_usd, "failed_votes": sum(r["votes"]["failed"] for r in results),
                                 "results": results}
         print(f"\n{name}: {len(results)} questions, agent ${agent_usd:.4f}, judge ${judge_usd:.4f} "
@@ -319,6 +324,7 @@ def main():
     judge = sub.choices["judge"]
     judge.add_argument("--fixture", type=Path, required=True)
     judge.add_argument("--run", action="append", required=True, metavar="NAME=DIR")
+    judge.add_argument("--workers", type=int, default=1, help="questions judged at once; votes stay in order")
     sub.choices["validate"].add_argument("--items", type=Path, required=True)
     estimate = sub.choices["estimate"]
     estimate.add_argument("--questions", type=int, required=True)

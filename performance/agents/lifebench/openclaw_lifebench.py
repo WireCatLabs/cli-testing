@@ -48,6 +48,7 @@ WHERE = {
 ANSWER_KEY_WORDS = ("QA_all", "QA.json", "oracle.json", "score_points", "required_citations", "life_bench_data",
                     "lifebench/fixtures", "lifebench/pilots", "wirecat-bench/lifebench")
 LLAMA_PORT = 35958
+DENIED = ("computer",)
 
 
 def load(path):
@@ -88,6 +89,21 @@ def setup_root(runner, root, old):
     runner.configure_agents(root)
     print(runner.openclaw(root, "--version").stdout.strip())
     print(f"Next: openclaw-anthropic-key.sh {root}")
+
+
+def deny_computer(runner):
+    """Sonnet 5.5 called OpenClaw's desktop tool 3 times in the pilot; it failed only for want of gateway credentials."""
+    configure = runner.configure_agents
+
+    def configure_without_computer(root, model=None):
+        configure(root, model)
+        config = json.loads(runner.config_path(root).read_text())
+        for entry in config["agents"]["entries"].values():
+            tools = entry.setdefault("tools", {})
+            tools["deny"] = sorted({*tools.get("deny", []), *DENIED})
+        runner.config_path(root).write_text(json.dumps(config, indent=2) + "\n")
+
+    runner.configure_agents = configure_without_computer
 
 
 def install(runner, baseline):
@@ -179,6 +195,7 @@ def main():
     ans.add_argument("--max-usd", type=float, required=True, help="stop before the next question once this is spent")
     args = parser.parse_args()
     runner = load(args.runner.resolve())
+    deny_computer(runner)
     root = args.root.expanduser().resolve()
     if args.command == "setup-root":
         setup_root(runner, root, args.old.expanduser().resolve())

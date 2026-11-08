@@ -1,0 +1,121 @@
+{
+  "persona": "fenghaoran",
+  "owner": "Feng Haoran",
+  "records": 4986,
+  "corpus_sha256": "b81ba83191d4bf29580b60f3e88bddd87adc5b2906e6d29b511f772a41fa5a78",
+  "questions_in_persona": 348,
+  "size": 46,
+  "seed": 20261108,
+  "stratified_by": "rarest category of each question",
+  "min_per_stratum": 2,
+  "unanswerable_seats": 5,
+  "strata": {
+    "Causal": {
+      "in_persona": 34,
+      "picked": 5
+    },
+    "Conflict": {
+      "in_persona": 47,
+      "picked": 7
+    },
+    "Hidden_info": {
+      "in_persona": 12,
+      "picked": 2
+    },
+    "Knowledge_update": {
+      "in_persona": 46,
+      "picked": 7
+    },
+    "Multi_hop": {
+      "in_persona": 14,
+      "picked": 2
+    },
+    "Pattern_recognition(Non-declarative)": {
+      "in_persona": 16,
+      "picked": 3
+    },
+    "Single_hop": {
+      "in_persona": 76,
+      "picked": 12
+    },
+    "Temporal": {
+      "in_persona": 43,
+      "picked": 7
+    },
+    "Unanswerable": {
+      "in_persona": 60,
+      "picked": 5
+    }
+  },
+  "questions_by_category": {
+    "Single_hop": 27,
+    "Multi_hop": 15,
+    "Conflict": 9,
+    "Temporal": 8,
+    "Knowledge_update": 7,
+    "Pattern_recognition(Non-declarative)": 7,
+    "Causal": 5,
+    "Unanswerable": 5,
+    "Hidden_info": 2
+  },
+  "persona_questions_by_category": {
+    "Single_hop": 175,
+    "Multi_hop": 104,
+    "Unanswerable": 60,
+    "Pattern_recognition(Non-declarative)": 49,
+    "Conflict": 49,
+    "Knowledge_update": 48,
+    "Temporal": 46,
+    "Causal": 39,
+    "Hidden_info": 12
+  },
+  "ids": [
+    "fenghaoran-q002",
+    "fenghaoran-q003",
+    "fenghaoran-q024",
+    "fenghaoran-q028",
+    "fenghaoran-q030",
+    "fenghaoran-q047",
+    "fenghaoran-q055",
+    "fenghaoran-q056",
+    "fenghaoran-q059",
+    "fenghaoran-q065",
+    "fenghaoran-q066",
+    "fenghaoran-q068",
+    "fenghaoran-q093",
+    "fenghaoran-q094",
+    "fenghaoran-q097",
+    "fenghaoran-q104",
+    "fenghaoran-q112",
+    "fenghaoran-q115",
+    "fenghaoran-q128",
+    "fenghaoran-q129",
+    "fenghaoran-q154",
+    "fenghaoran-q159",
+    "fenghaoran-q163",
+    "fenghaoran-q164",
+    "fenghaoran-q168",
+    "fenghaoran-q173",
+    "fenghaoran-q195",
+    "fenghaoran-q203",
+    "fenghaoran-q204",
+    "fenghaoran-q211",
+    "fenghaoran-q212",
+    "fenghaoran-q215",
+    "fenghaoran-q221",
+    "fenghaoran-q240",
+    "fenghaoran-q248",
+    "fenghaoran-q257",
+    "fenghaoran-q272",
+    "fenghaoran-q280",
+    "fenghaoran-q294",
+    "fenghaoran-q298",
+    "fenghaoran-q300",
+    "fenghaoran-q304",
+    "fenghaoran-q321",
+    "fenghaoran-q333",
+    "fenghaoran-q338",
+    "fenghaoran-q343"
+  ],
+  "dropped": ["fenghaoran-q317", "fenghaoran-q331", "fenghaoran-q334", "fenghaoran-q339"]
+}

@@ -58,7 +58,7 @@ def file_name(title, taken):
     return name
 
 
-def install(baseline):
+def install(baseline, limit=10):
     def write_sources(records, data):
         notes = data / "notes"
         notes.mkdir(parents=True)
@@ -83,7 +83,7 @@ def install(baseline):
         return names.get(item.get("title", ""), f"unmapped:{item.get('ref')}")
 
     def search(memo, names, query, extra, raw_path):
-        reply, elapsed = memo.json("search", "all", query, "--limit", "10", *extra)
+        reply, elapsed = memo.json("search", "all", query, "--limit", str(limit), *extra)
         raw_path.write_text(baseline.json.dumps(reply, ensure_ascii=False, indent=2) + "\n")
         return [hit_id(names, item) for item in reply["items"]], elapsed, reply["meta"].get("complete", True)
 
@@ -93,9 +93,10 @@ def install(baseline):
 def main():
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--baseline", type=Path, required=True)
+    parser.add_argument("--limit", type=int, default=10, help="hits per search; recall is scored on the first 10")
     known, rest = parser.parse_known_args()
     baseline = load_baseline(known.baseline)
-    install(baseline)
+    install(baseline, known.limit)
     sys.argv = [sys.argv[0], *rest]
     baseline.main()
 

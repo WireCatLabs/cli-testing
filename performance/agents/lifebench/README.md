@@ -365,7 +365,8 @@ comparable** with those, for these reasons:
 
 ### Before a full run
 
-- **Deny the `computer` tool** in the agents' config, so a run never depends on its credentials being absent.
+- **Deny the `computer` tool**: done. [openclaw_lifebench.py](openclaw_lifebench.py) now denies it for both agents on
+  every run (`tools.deny` per agent; OpenClaw's `config validate` accepts it; no paid run has used it yet).
 - **Cap the spend per question, not only per run.** One memo question cost $0.46. A cap per question (or a
   tool-call limit) would stop runs like q272. The run cap stopped memo 4 questions early; a full run needs the
   budget set from these numbers: about $0.10 a question per setup, so $35 per setup for this person's 348.
@@ -378,3 +379,124 @@ comparable** with those, for these reasons:
 - **Look at the gold.** q294's gold looks wrong; on a full run, a hand check of every WRONG verdict is cheap.
 - **Run the judge in parallel.** It calls deepseek-chat one vote at a time, and OpenRouter answers slowly; 3,380
   questions would probably take hours.
+
+## Leaderboard-style: memo's search once, one model call answers
+
+Run 2026-11-08, on the same 46 questions. No agent loop: the way LifeBench_eval scores a memory system.
+
+### Why this was run
+
+At 93% and 96% the agent pilot could not tell memo from plain files: an agent that searches as often as it likes
+makes up for a weak search. The owner chose (NEED-1, option A) a setup where search matters: the memory system
+returns context once and one model call answers, as on LifeBench's leaderboard. Three contexts: the gold evidence
+(the ceiling, which should come out near LifeBench's 97.3%), memo with e5-small, memo with EmbeddingGemma.
+Budget $5 for this step.
+
+### Setup
+
+- **Answer flow**: LifeBench_eval's gold-evidence baseline (`src/utils/direct_evidence_baseline.py` at `7f16350`),
+  its system and user prompt word for word ([answer-prompt-zh.txt](answer-prompt-zh.txt), read out of the source with
+  `ast`), temperature 0, max_tokens 32,768, "（无证据记录）" (no evidence records) when a question has none. Each
+  memory system's adapter has its own answer prompt (Mem0's is an English seven-step one); the baseline's is the only
+  one no system owns, so all three setups use it. [context_answer.py](context_answer.py).
+- **Answer model**: `deepseek/deepseek-v4-flash` on OpenRouter, the baseline's default (`deepseek-v4-flash`, line 67)
+  and the leaderboard's base model. The prompt is Chinese, so the answers are Chinese; the judge reads them.
+- **Two changes from the baseline**: the ask time follows the question as "提问时间：<date>" (the baseline passes no
+  date; Mem0's adapter passes the date of the last day it was fed, which day-by-day loading makes the ask time). And
+  each record is this fixture's text under `[E<n>] <source> | <time> | <title>`, not LifeBench's own `format_evidence`.
+- **Context size**: 40 records, LifeBench_eval's `config/systems/mem0.yaml` `search.top_k`. The leaderboard sets no
+  shared size; each system has its own. memo was asked for 40 hits (`memo search all <question> --limit 40`, hybrid,
+  the question as typed), and every hit list held 40 distinct records. Gold gives a question its own evidence records
+  (median 4).
+- **memo**: 0.131.57 from npm (cli-core 0.609.0), mail CLI 0.20.0, the store rebuilt with
+  [memo_clean.py](memo_clean.py) (`--limit 40`; recall is still scored on the first 10) and `memo_baseline.py` of
+  `perf/kg-memory-10k-prep` at `2a59831`. Gemma: `models download embeddinggemma --accept-terms` and
+  `MEMO_EMBEDDING_MODEL=embeddinggemma` for the sync (the baseline's way; it sets the same model `memo models set`
+  would). Both stores hold 6,070 vectors of their model (`embeddings.model` is `local:e5-small:384` and
+  `local:embeddinggemma:768`). Embedding took 2 minutes with e5-small (102 s, 10 sync runs) and 16 minutes with Gemma (959 s, 142 sync runs).
+- **Judge**: as in the pilot, deepseek-chat on OpenRouter, three votes, LifeBench's prompt with the language line set
+  to English. Now six questions at a time (`--workers 6`); the votes of one question still run in order.
+- **Cost**: OpenRouter's billed cost (`usage.cost` on every reply), not a list price.
+
+```sh
+export PATH=~/.cache/wirecat-bench/memo-pkg-0.131.57/node_modules/.bin:$PATH
+flock heavy.lock python3 -I -B memo_clean.py --baseline <kg>/memo_baseline.py --limit 40 \
+  --fixture ~/.cache/wirecat-bench/lifebench/pilots/fenghaoran-46 --output <store> --memo memo --mail mail \
+  --model e5-small        # then --model embeddinggemma
+python3 -I context_answer.py --fixture <pilot-46> --setup gold --output <gold>
+python3 -I context_answer.py --fixture <pilot-46> --setup "memo=<store>/per-query.json#hybrid (e5-small), question verbatim" \
+  --output <memo-e5>
+python3 -I judge.py judge --fixture <pilot-46> --run gold=<gold> --workers 6 --output <judge-gold.json>
+python3 -I context_report.py --fixture <pilot-46> --run gold=<gold>:<judge-gold.json> --run memo-e5=... \
+  --run memo-gemma=... --output context-results.json
+```
+
+### Results (46 questions)
+
+| Category | Questions | Gold evidence | memo e5-small | memo Gemma | Gold (published) | Hindsight (published) | Mem0 (published) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| All | 46 | 44 (96%) | 39 (85%) | 37 (80%) | 97.3% | 72.0% | 61.5% |
+| Single-hop | 24 | 24 | 21 | 19 | 98.1% | 83.4% | 78.1% |
+| Multi-hop | 14 | 12 | 11 | 11 | 94.8% | 54.0% | 41.4% |
+| Temporal | 8 | 6 | 6 | 5 | 94.9% | 44.3% | 32.5% |
+| Pattern recognition | 7 | 7 | 6 | 6 | 93.7% | 58.8% | 48.5% |
+| Knowledge update | 6 | 6 | 4 | 3 | 96.1% | 85.1% | 75.8% |
+| Causal | 4 | 4 | 4 | 4 | 94.1% | 67.8% | 52.5% |
+| Conflict | 8 | 8 | 8 | 7 | 98.1% | 80.7% | 78.1% |
+| Hidden information | 1 | 0 | 0 | 0 | 93.3% | 49.5% | 32.5% |
+| Unanswerable | 5 | 5 | 4 | 4 | 100% | 75.6% | 55.7% |
+
+Published: LifeBench_eval's README at `7f16350`, all 3,380 questions over ten people, DeepSeek-V4-Flash answering.
+Hindsight's best is 74.4% with GLM-5.2 answering; 72.0% is its DeepSeek-V4-Flash row, the same answer model as here.
+95% intervals (Wilson) on 46 questions: 39 is 72–92%, 37 is 67–89%.
+
+| Setup | Evidence records in the context (mean share) | Questions with some evidence in the context | Prompt tokens (median) | Answers, billed | Judge, billed |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Gold evidence | 1.00 | 100% | 912 | $0.008 | $0.082 |
+| memo e5-small | 0.47 | 85% | 8,276 | $0.038 | $0.088 |
+| memo Gemma | 0.48 | 90% | 6,868 | $0.035 | $0.088 |
+
+Total billed for this step: **$0.34**. Failures: one memo e5-small answer (q129) came back empty: the model spent all
+32,768 output tokens thinking (LifeBench_eval's limit, so it would fail there too) and is judged WRONG. Two judge
+votes failed on gold answers; the other two decided. All per-question answers, verdicts and judge reasons are in
+[context-results.json](context-results.json).
+
+### What it showed
+
+1. **The flow reproduces LifeBench's ceiling.** Gold evidence: 44 of 46 (96%) against the published 97.3%. The two
+   misses are q068 (ordering eight events) and q321 (the dinner plan, Hidden information); the same answer model
+   and prompt, so the rest of the table is on the same footing as theirs, apart from the caveats below.
+2. **memo with e5-small: 85%,** above the published DeepSeek-V4-Flash rows of every memory system (Hindsight 72.0%,
+   Mem0 61.5%). It is 11 points under the gold ceiling; 40 records hold about half of a question's evidence, and some
+   of it for 85% of questions.
+3. **Gemma finds more but did not score more.** It puts evidence in the context for 90% of questions (e5-small 85%)
+   and its recall@10 is 0.42 (e5-small 0.34), but it answered 37 against 39. Two questions is inside the noise at
+   this size; this does not show Gemma is worse, only that better recall did not show up as accuracy here.
+4. **The whole-year store costs answers.** q300 ("the photography project I recently completed", asked 19 February)
+   got a November exhibition from the Gemma context; LifeBench's day-by-day loading would never hold that record.
+   q221 (unanswerable, "the film watched this afternoon") got "Interstellar" from a June record in both memo setups:
+   not a later record, but a wrong day the model did not rule out.
+5. **Both memo setups miss where gold does not:** q097, q129, q300, q304 and q221. Probably the evidence was not
+   among the 40 records, or the model chose a nearby record (q221, q300 above); the other three were not read.
+
+### Against LifeBench's published numbers
+
+Closer than the agent pilot: the same answer model, the same answer prompt and the same judge prompt. Still not the
+same contest:
+
+- **Whole-year store** (NEED-2, the owner's choice): memo holds all of 2025; LifeBench adds records day by day and
+  asks each question on its date. Later records compete with the evidence (q300 above). The question carries its ask
+  time instead.
+- **Context size**: 40 full records (median about 7,000 to 8,000 prompt tokens). LifeBench's systems return their own units (Mem0
+  40 short facts); a whole record carries more than a fact, so 40 records is probably more context than theirs.
+- **English data**, with the judge's language line set to English; the leaderboard's language is not stated next to
+  it. The judge model is `deepseek/deepseek-chat` on OpenRouter; the leaderboard does not name its judge model.
+- **One person, 46 questions** (Unanswerable 5 of 46), against ten people and 3,380 questions.
+- **Record format**: this fixture's text, not LifeBench's `format_evidence`.
+
+### Next
+
+- The same flow with `--top 10` and `--top 20`, to see what accuracy costs per token of context (a few cents).
+- Day-by-day loading, if a number is to stand next to the leaderboard.
+- All 348 questions of this person: about $3 for the three setups at these prices (answers and judge). The stores
+  already hold all 4,986 records, so no new embedding.
