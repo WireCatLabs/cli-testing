@@ -21,8 +21,8 @@ guard against before anything is called "hardening".
 - Machine: AMD Ryzen AI 9 HX 470, 30 GB RAM, NVMe disk (ext4), Linux 7.0, Node 24.19.0 (SQLite 3.53.3),
   `sqlite3` shell 3.46.1 (Ubuntu package). The machine was running other test suites at the same time.
 - cli-core from npm: 0.593.0 (what memo bundled on 2026-11-06), 0.608.0 (what mail, tg, max and wa bundle on
-  2026-11-08) and 0.611.0 (current on 2026-11-08, `npm view @wirecat/cli-core version`). Each is installed in its
-  own folder under `/var/tmp/claude/store-harness/cores/<version>` on first use.
+  2026-11-08), 0.611.0 (current when the S4 runs began) and 0.613.0 (current when they ended, the default). Each is
+  installed in its own folder under `/var/tmp/claude/store-harness/cores/<version>` on first use.
 - Every run gets a new folder under `/var/tmp/claude/store-harness/runs/`: the store, a moved `HOME` and `XDG_*`
   folders, `MESSAGING_STORE` pointing at the run's store, and `DBUS_SESSION_BUS_ADDRESS=disabled:` on every child
   process. No real account, message or keyring entry is read.
@@ -158,6 +158,11 @@ cli-core (0.593.0, then 0.611.0) on 2026-11-08, on a fresh synthetic store of 5 
 notes (20 000 messages where noted), with a vector for every chunk. The store is a small one on purpose: it crosses
 an auto-checkpoint every few seconds, which is what the scenarios need, and it keeps each run under 150 MB of disk.
 Every command is run from this folder. A scenario's own file holds its writers and its timing.
+
+cli-core 0.613.0 came out while the runs went on. Its store code differs from 0.611.0 only in mail enrichment
+chunks (`transaction.js`, `migrations.js`, `open-store.js`, `recover.js` and the store commands are the same files),
+and T1, T2, T3 and T11 on 0.613.0 came out as on 0.611.0: ok, ok with one "database is locked" at `migrate()`, ok
+with 50 batches cut and none partial, ok with "cannot rollback" in place of the I/O error.
 
 "Writer errors" are failures a writer saw and exited on. The store can be whole with them. **broke**, **lost** and
 **ok** are the verdicts above.

@@ -7,7 +7,7 @@ import { pathToFileURL } from "node:url"
 export const HARNESS = process.env.STORE_HARNESS_DIR ?? "/var/tmp/claude/store-harness"
 export const ACCOUNT = { provider: "telegram", account: "harness-1" }
 export const MAIL_ACCOUNT = { provider: "email", account: "harness@example.test" }
-export const CURRENT = "0.611.0"
+export const CURRENT = "0.613.0"
 export const MODEL = "harness-e5"
 export const DIMS = 16
 
