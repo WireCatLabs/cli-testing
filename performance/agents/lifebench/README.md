@@ -589,4 +589,74 @@ The same answer model, answer prompt and judge prompt; the remaining differences
   OpenRouter, and the leaderboard names no judge model.
 - **One person** of ten (348 of 3,380 questions); the published rows are over all ten.
 - **Record format**: this fixture's text, not LifeBench's `format_evidence`; and the ask time is added to the question.
-- Not run: 40 records on 348 questions (about $1.9 more, mostly the judge).
+- Not run: 40 records on 348 questions (about $1.9 more, mostly the judge). The owner chose 20 records as the
+  standard context (NEED-5).
+
+## A second person: maxiulan
+
+Run 2026-11-08, the same flow and the same 20 records, on every question of a second person.
+
+### Why this was run
+
+On fenghaoran, Gemma led e5-small 80% to 76%, with p = 0.08: probably real, not certain. The owner chose (NEED-6,
+option C) one more person before deciding which model memo should recommend.
+
+### Setup
+
+- **Persona**: maxiulan (Ma Xiulan), 4,605 records, 352 questions (58 unanswerable,
+  [pilot-subset-maxiulan-352.json](pilot-subset-maxiulan-352.json)). Of the nine others, her mix of sources differs
+  most from fenghaoran's (sum of the differences in each source's share: 0.185; the next is 0.156): more photos (15%
+  against 10%) and text messages (13% against 11%), fewer calendar entries (12% against 15%) and notifications (10%
+  against 14%).
+- **memo 0.131.57** for both persons, so they compare. The newest on npm is 0.131.59, but it is built on cli-core
+  0.610.0; the cli-core 0.611.0 bump (with #2667) had not landed.
+- **Gemma through `memo models set embeddinggemma`**: [memo_clean.py](memo_clean.py) now runs it before the
+  embedding sync. The store's only and default text model is `embeddinggemma`, and its 5,453 vectors are
+  `local:embeddinggemma:768`. Embedding: e5-small 80 s, Gemma 632 s.
+- Everything else as for fenghaoran: 40 hits per search, the first 20 distinct records as context,
+  `deepseek-v4-flash` answering with LifeBench's gold-evidence prompt, the deepseek-chat judge.
+
+### Results
+
+Accuracy with the 95% interval (Wilson). "Both" counts all 700 questions once.
+
+| Category | fenghaoran gold | fenghaoran e5-small | fenghaoran Gemma | maxiulan gold | maxiulan e5-small | maxiulan Gemma | Both: gold | Both: e5-small | Both: Gemma |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| All | 97% (95–99) | 76% (71–80) | 80% (76–84) | 98% (96–99) | 73% (68–77) | 75% (71–80) | 98% (96–98) | 74% (71–78) | 78% (74–81) |
+| Single-hop | 97% (93–98) | 77% (70–83) | 84% (78–89) | 98% (95–99) | 75% (68–81) | 81% (75–87) | 97% (95–99) | 76% (71–80) | 83% (78–86) |
+| Multi-hop | 97% (92–99) | 62% (53–71) | 64% (55–73) | 97% (92–99) | 63% (55–71) | 66% (57–74) | 97% (94–98) | 63% (57–69) | 65% (59–71) |
+| Temporal | 93% (82–98) | 57% (42–70) | 63% (49–75) | 98% (91–100) | 59% (47–71) | 64% (52–75) | 96% (91–99) | 58% (49–67) | 64% (54–72) |
+| Pattern recognition | 98% (89–100) | 67% (53–79) | 76% (62–85) | 96% (88–99) | 63% (50–74) | 65% (52–76) | 97% (92–99) | 65% (56–73) | 70% (61–78) |
+| Knowledge update | 96% (86–99) | 77% (63–87) | 83% (70–91) | 96% (85–99) | 76% (62–86) | 70% (55–81) | 96% (90–98) | 77% (67–84) | 77% (67–84) |
+| Causal | 97% (87–100) | 72% (56–83) | 72% (56–83) | 96% (85–99) | 67% (53–79) | 74% (60–84) | 96% (90–99) | 69% (59–78) | 73% (63–81) |
+| Conflict | 96% (86–99) | 80% (66–89) | 86% (73–93) | 98% (88–100) | 80% (65–89) | 86% (73–94) | 97% (91–99) | 80% (70–87) | 86% (78–92) |
+| Hidden information | 83% (55–95) | 50% (25–75) | 50% (25–75) | 96% (80–99) | 75% (55–88) | 75% (55–88) | 92% (78–97) | 67% (50–80) | 67% (50–80) |
+| Unanswerable | 100% (94–100) | 95% (86–98) | 93% (84–97) | 100% (94–100) | 84% (73–92) | 78% (65–86) | 100% (97–100) | 90% (83–94) | 86% (78–91) |
+
+Gemma against e5-small, question by question (exact McNemar test on the questions where only one is right):
+
+| Person | Only e5-small right | Only Gemma right | p |
+| --- | ---: | ---: | ---: |
+| fenghaoran | 20 | 34 | 0.076 |
+| maxiulan | 29 | 38 | 0.33 |
+| Both | 49 | 72 | 0.045 |
+
+maxiulan: evidence in the context (mean share) 0.32 with e5-small and 0.43 with Gemma; some evidence for 70% and 83%
+of questions. Recall@10 0.28 and 0.37. No failed answer or vote. Billed $2.49 (answers $0.45, judge $2.04).
+[context-maxiulan-results.json](context-maxiulan-results.json), [persons-results.json](persons-results.json),
+from [persons_report.py](persons_report.py).
+
+### What it showed
+
+1. **Gemma is better than e5-small over both persons:** 78% against 74%, p = 0.045 on 700 questions. Each person on
+   their own leans the same way without settling it (p 0.076 and 0.33). The gain follows retrieval: with Gemma some
+   evidence reaches the model for 83% of questions in both persons, with e5-small for 70% to 76%.
+2. **It gains most on Single-hop and Conflict** (+7 and +6 points pooled) and nothing on Knowledge update or Hidden
+   information.
+3. **Gemma declines a little worse:** Unanswerable 86% against 90% pooled (78% against 84% for maxiulan). Probably
+   because its hits are closer in meaning, so the model finds something that looks like an answer more often. It is
+   the one category where e5-small is ahead in both persons.
+4. **The gold ceiling holds on the second person:** 98%, so the flow and the judge behave the same on her data.
+5. **memo is 17 to 25 points under the ceiling** (Gemma 17 and 23, e5-small 21 and 25), most on Multi-hop and Temporal.
+
+The leaderboard caveats above all still hold: a whole-year store, 20 whole records, English, two people of ten.

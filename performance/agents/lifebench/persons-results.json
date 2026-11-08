@@ -1,0 +1,61 @@
+{
+  "pooled": {
+    "gold": {
+      "All": [683, 700],
+      "Single_hop": [332, 341],
+      "Pattern_recognition(Non-declarative)": [103, 106],
+      "Knowledge_update": [90, 94],
+      "Multi_hop": [220, 227],
+      "Temporal": [101, 105],
+      "Causal": [82, 85],
+      "Hidden_info": [33, 36],
+      "Conflict": [90, 93],
+      "Unanswerable": [118, 118]
+    },
+    "memo-e5-top20": {
+      "All": [521, 700],
+      "Single_hop": [260, 341],
+      "Pattern_recognition(Non-declarative)": [69, 106],
+      "Knowledge_update": [72, 94],
+      "Multi_hop": [143, 227],
+      "Temporal": [61, 105],
+      "Causal": [59, 85],
+      "Hidden_info": [24, 36],
+      "Conflict": [74, 93],
+      "Unanswerable": [106, 118]
+    },
+    "memo-gemma-top20": {
+      "All": [544, 700],
+      "Single_hop": [282, 341],
+      "Pattern_recognition(Non-declarative)": [74, 106],
+      "Knowledge_update": [72, 94],
+      "Multi_hop": [148, 227],
+      "Temporal": [67, 105],
+      "Causal": [62, 85],
+      "Hidden_info": [24, 36],
+      "Conflict": [80, 93],
+      "Unanswerable": [101, 118]
+    }
+  },
+  "paired": {
+    "fenghaoran": {
+      "memo-e5-top20_only": 20,
+      "memo-gemma-top20_only": 34,
+      "p": 0.07590472948910143
+    },
+    "maxiulan": {
+      "memo-e5-top20_only": 29,
+      "memo-gemma-top20_only": 38,
+      "p": 0.3284320626971899
+    },
+    "both": {
+      "memo-e5-top20_only": 49,
+      "memo-gemma-top20_only": 72,
+      "p": 0.045051739725735895
+    }
+  },
+  "usd_billed": {
+    "fenghaoran": 2.34434757828,
+    "maxiulan": 2.48898322158
+  }
+}

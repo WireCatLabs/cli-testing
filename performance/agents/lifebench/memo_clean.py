@@ -87,7 +87,16 @@ def install(baseline, limit=10):
         raw_path.write_text(baseline.json.dumps(reply, ensure_ascii=False, indent=2) + "\n")
         return [hit_id(names, item) for item in reply["items"]], elapsed, reply["meta"].get("complete", True)
 
-    baseline.write_sources, baseline.search = write_sources, search
+    embed = baseline.embed
+
+    def embed_with_model_set(memo, folder_id):
+        # memo 0.131.57 does not read MEMO_EMBEDDING_MODEL, which memo_baseline sets; `models set` is its way.
+        model = memo.env.get("MEMO_EMBEDDING_MODEL")
+        if model and model != "e5-small":
+            memo.json("models", "set", model)
+        return embed(memo, folder_id)
+
+    baseline.write_sources, baseline.search, baseline.embed = write_sources, search, embed_with_model_set
 
 
 def main():
