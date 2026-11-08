@@ -44,6 +44,7 @@ node prep.mjs <store> <out> bare && python3 vec.py <store>
 | + mail without its sender | EmbeddingGemma | 0.788 | 0.39 / 0.82 / 0.86 | 0.50 / 0.93 / 0.93 | 1.5 s |
 | **+ sender at the end (#2721)** | e5-small | **0.676** | 0.39 / 0.72 / 0.82 | 0.56 / 0.93 / 0.93 | 1.4 s |
 | **+ sender at the end (#2721)** | EmbeddingGemma | **0.788** | 0.39 / 0.83 / 0.86 | 0.52 / 0.91 / 0.93 | 2.3 s |
+| + sender at the end, `embeddinggemma-full` (full precision) | EmbeddingGemma | 0.800 | 0.34 / 0.81 / 0.86 | 0.50 / 0.91 / 0.93 | 3.5 s |
 
 The six "who" questions (q12, q13, q30, q31, q42, q43): 6 of 6 with the record's own words and 4 of 6 reworded in
 every row. One reworded question is 0.059 of the 17-question score. p50 varied with the other jobs on the machine.
@@ -82,7 +83,8 @@ after the re-cut took 7 syncs and 31 to 40 s with e5-small and 43 syncs and 350 
 - **The 4-bit weights cost about one question on the record text** (0.941 full precision, 0.871 4-bit). On memo's
   chunk text the order changes from file to file (8-bit 0.871, full 0.824, 4-bit 0.788) within two questions, so
   17 questions cannot rank them. Full precision needs four times the memory at the same speed: worth a separate
-  catalogue entry only (`embeddinggemma-full`, a later PR), not a replacement.
+  catalogue entry at most, not a replacement. Inside memo it gains less than one question (0.800 against 0.788),
+  loses at @1 (0.34 against 0.39) and embeds 10,444 records in 667 s against 417 s.
 - **EmbeddingGemma's catalogued speed was 2 chunks a second; it is 5** on the scale where e5-small is 31 (8.3 against
   52.7 measured). memo's sync bound derives from it, so a sync now does real work.
 - **Not the cause:** the question text (memo already embeds the question as typed: `plainQuery` quotes `?` and
@@ -94,6 +96,5 @@ after the re-cut took 7 syncs and 31 to 40 s with e5-small and 43 syncs and 350 
 ## What was not measured
 
 - Real mail, where the body does not repeat the subject and the sender as these records do.
-- Whether full-precision Gemma inside memo beats the 4-bit model at store level (run in progress when #2721 shipped).
 - LifeBench with Gemma inside memo.
 - Store sizes beyond 10,444 records; machines other than this one.
