@@ -26,3 +26,6 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   memo: nothing a CLI does broke cli-core 0.611.0; deleting `-shm`, swapping `-wal` and a sync client did; `store
   recover run` lost 50 to 300 committed rows in each of 6 recoveries and reported them in none (BUG-627)
   (2026-11-08).
+- [records-jsonl-stream](records-jsonl-stream/README.md) — the streaming JSONL records import (cli-core 0.612.0),
+  1,000 to 300,000 synthetic business records: peak memory levels off at 340–365 MB from 100,000 records while the
+  file triples, so large imports need no chunking advice for memory (2026-11-08).
