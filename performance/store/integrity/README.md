@@ -171,7 +171,7 @@ with 50 batches cut and none partial, ok with "cannot rollback" in place of the 
 |---|---|---|---|---|
 | T1 | the incident: a second open in a live `serve`, short writers and the `sqlite3` shell | broke, 3 of 3 (H0) | ok (0.608.0: 3 of 3, 0.611.0: 1 of 1) | `node run.mjs T1 --core <v>` |
 | T1-roles | T1 with the tg, mail and memo writers | broke 2, lost 1, of 3 | ok | `node run.mjs T1-roles --core <v>` |
-| T2 | tg ×2, mail ×2, memo and a reader, 120 s | ok, writer errors | ok, writer errors | `node run.mjs T2 --core <v>` |
+| T2 | tg ×2, mail ×2, memo and a reader, 120 s | ok, writer errors (3 of 6) | ok, writer errors (3 and 3 of 6; 0.613.0: 1 of 6). With the fix ([cli-core #2738](https://github.com/WireCatLabs/cli-core/pull/2738)), 3 runs: 0, 0 and 1 of 6 | `node run.mjs T2 --core <v>` |
 | T2-mixed | tg on 0.593.0, mail on 0.608.0, memo on current, store made by 0.593.0 | ok: the older ones are refused once memo migrates | (one run for both) | `node run.mjs T2-mixed` |
 | T3 | 50 × `kill -9` inside `BEGIN IMMEDIATE` | ok, 50 batches cut, none partial | ok, 50 cut, none partial | `node run.mjs T3 --core <v>` |
 | T4 | 50 × `kill -9` of a `wal_checkpoint(TRUNCATE)` loop | ok | ok | `node run.mjs T4 --core <v>` |
@@ -183,7 +183,7 @@ with 50 batches cut and none partial, ok with "cannot rollback" in place of the 
 | T8 | two more SQLite builds: writers on Node 22.23.2 and the `sqlite3` shell inserting rows | ok | ok | `node run.mjs T8 --core <v>` |
 | T9 | the same store through a symlinked folder, a symlinked file and a relative path | ok | ok | `node run.mjs T9 --core <v>` |
 | T10 | rsync puts a 10 s old copy of the db back over the live file | **broke** | **broke** | `node run.mjs T10 --core <v>` |
-| T11 | disk full for one writer (`prlimit --fsize`) | ok | ok, the real error is replaced | `node run.mjs T11 --core <v>` |
+| T11 | disk full for one writer (`prlimit --fsize`) | ok | ok, the real error is replaced. With the fix ([cli-core #2738](https://github.com/WireCatLabs/cli-core/pull/2738)), 2 runs: the writer reports "disk I/O error" | `node run.mjs T11 --core <v>` |
 | T12 | a migration (52 to 57) while 0.593.0 writes | ok: the 0.593.0 writers are refused after it | (one run for both) | `node run.mjs T12` |
 | T12-kill | 20 × `kill -9` during the open that migrates | ok: 7 migrations killed and rolled back, the 8th finished | (one run for both) | `node run.mjs T12-kill` |
 | T13 | 5 × `store backup` while four writers write | ok, 5 whole backups | ok, 5 whole backups | `node run.mjs T13 --core <v>` |
