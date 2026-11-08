@@ -18,3 +18,5 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   statement again on each call. A per-connection cache made a calendar sync 3–5 times faster (2026-10-30).
 - [records-import-sheets](records-import-sheets/README.md) — the first real import of two payment spreadsheets into
   memo's records store: split payments needed a per-link amount, and 7 of 7 totals matched the sheets (2026-11-05).
+- [integrity](integrity/README.md) — a harness that damages a synthetic store on purpose: T1 rebuilds the
+  2026-11-06 damage (a second open in a live process) on cli-core 0.593.0, and 0.608.0 survives it (2026-11-08).
