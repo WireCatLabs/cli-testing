@@ -17,7 +17,8 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
 
 - [write-time-enrichment](write-time-enrichment/README.md) — Memo with a hosted model's facts and reworded questions
   kept beside each record (cli-core #2690), off against on, one store of 10,444 synthetic records: reworded
-  questions @10 0.62 → 0.79, first place in the record's own words 0.54 → 0.48, $0.49 with gpt-4o-mini (2026-11-08).
+  questions @10 0.62 → 0.79, first place in the record's own words 0.54 → 0.48, $0.49 with gpt-4o-mini; with EmbeddingGemma 0.78 → 0.94
+  (2026-11-08).
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).

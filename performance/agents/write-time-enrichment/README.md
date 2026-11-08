@@ -74,6 +74,25 @@ missing from a reply), 7 got no facts (small talk).
 The whole set gives the same @10 as the small run (0.79 on reworded questions): the small run's bias did not show at
 @10, only at @1 (below).
 
+### With EmbeddingGemma
+
+Run later with [gemma_bench.py](gemma_bench.py), at no new cost: it copies the whole-set store twice, with its 9,840
+enrichments, and gives both copies the EmbeddingGemma vectors another run already computed for the records' own
+chunks (9,669, matched by text hash, [copy_vectors.mjs](copy_vectors.mjs)). Only the enrichment chunks are embedded
+here (9,827, 7 minutes, [gemma_embed.mjs](gemma_embed.mjs)). One copy keeps the enrichments, the other deletes them
+with `memo models consents revoke`. Memo 0.131.58 built against cli-core #2690 (the e5-small rows above used 0.131.55
+on the same cli-core code). [results-gemma.json](results-gemma.json).
+
+| Questions, @1 / @5 / @10 | e5-small | e5-small + enrichment | EmbeddingGemma | EmbeddingGemma + enrichment |
+|---|---|---|---|---|
+| 17 reworded, other words | 0.20 / 0.50 / 0.62 | 0.25 / 0.68 / 0.79 | 0.20 / 0.61 / 0.78 | 0.25 / 0.78 / **0.94** |
+| all 46, other words | 0.39 / 0.73 / 0.79 | 0.39 / 0.81 / 0.86 | 0.35 / 0.79 / 0.85 | 0.35 / 0.85 / **0.91** |
+| all 46, record's words | 0.54 / 0.91 / 0.93 | 0.48 / 0.92 / 0.93 | 0.48 / 0.93 / 0.93 | 0.41 / 0.93 / 0.93 |
+
+The two add up: the bigger model and the model-written text each close part of the gap, and together reworded
+questions find their record at @10 in 16 of 17. First place for questions in the record's own words drops with each
+(0.54 → 0.48 → 0.41).
+
 ### Real cost
 
 | Run | Records | Tokens in / out | Cost |
