@@ -75,23 +75,31 @@ they can run in parallel. That combined delay is inferred, not timed end to end.
 
 ### Ranked: what to build
 
-| # | Hypothesis | v3 reworded @10 | v3 all @10 | LifeBench R@10 / hit@10 | Added delay | Added cost / question | Verdict |
-| ---: | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| - | memo 0.131.50 (earlier page, not rerun) | 0.53 | | 0.32 / 0.70 | | | reference |
-| - | Gemma alone (baseline) | 0.94 | 0.94 | 0.38 / 0.76 | | | baseline |
-| 1 | **Haiku listwise rerank** over the top 30 of stack C | **1.00** | 0.94 | **0.55 / 0.93** (+158/-9) | stack C + 0.9 s | ~$0.0007 | biggest gain; opt-in "deep search" |
-| 2 | **Stack C**: date cut + words/vectors weighted 0.7 + Haiku date-range boost + Haiku dated rewrites | 0.94 | 0.94 | 0.49 / 0.90 (+135/-18) | ~1.3 s (2 calls in parallel) | ~$0.00013 | best without a rerank |
-| 3 | Date-range boost: Haiku names the period, records inside it move up (+0.5) | 0.94 | 0.94 | 0.44 / 0.84 (+69/-2) | 0.8 s | ~$0.00003 | cheap; try a local date parser |
-| 4 | Dated rewrites + words with Haiku's keywords, RRF | 1.00 | 0.91 | 0.45 / 0.87 | 1.3 s | ~$0.0001 | good; part of stack C |
-| 5 | Words + vectors, weighted 0.7 (min-max) | 0.56 | 0.94 | 0.45 / 0.84 | ~5 ms | 0 | helps LifeBench, **breaks reworded** |
-| 6 | Date cut: drop records dated after the question | 0.94 | 0.94 | 0.41 / 0.79 (+16/-0) | 0 | 0 | a measurement fix, not a product gain (see 3 below) |
-| 7 | Words + vectors, RRF k=60 | 0.41 | 0.94 | 0.42 / 0.82 | ~3 ms | 0 | **breaks reworded** |
-| 8 | Haiku 3 rewrites, mean vector | 0.94 | 0.91 | 0.40 / 0.81 | 1.4 s | ~$0.0001 | small gain alone |
-| 9 | e5-small + Haiku 3 rewrites, RRF | 0.96 | 0.93 | not run | 1.4 s | ~$0.0001 | lifts e5-small from 0.71 to Gemma's level |
-| 10 | Local cross-encoders over the top 50 of words + vectors RRF (best: jina-reranker-v2 0.82, bge-reranker-base 0.79) | 0.68–0.82 | 0.87–0.94 | not run | 0.4–1.9 s | 0 | below Gemma alone; not worth it as tested |
-| 11 | Recency boost (newer records up among the top 10 or 30) | 0.92–0.94 | 0.94 | 0.40–0.41 / 0.79–0.80 | 0 | 0 | no gain over the date cut |
-| 12 | Gemma query prefix variants | 0.71–0.94 | 0.91–0.94 | 0.35–0.38 / 0.68–0.73 | 0 | 0 | worse; keep `task: search result` |
-| 13 | HyDE (Haiku writes a record, embedded as a passage) | 0.65–0.88 | 0.78–0.91 | 0.27–0.36 / 0.66–0.76 | 1.3 s | ~$0.00007 | worse everywhere; drop |
+**Fair LifeBench baseline: 0.41 / 0.79.** That is Gemma alone with the records dated after the question dropped
+(the "date cut"). A real store holds nothing from the future, and LifeBench's own harness adds data day by day, so
+a gain counts only against this row. The "Cut" column says whether a row uses the cut. Rows without it are compared
+with Gemma alone at 0.38 / 0.76. The +a/-b counts are always against Gemma alone without the cut.
+
+Gemma alone already reaches 0.94 on the reworded set, above Supermemory's 0.88. That gap is Gemma's, not the
+work of anything below.
+
+| # | Hypothesis | Cut | v3 reworded @10 | v3 all @10 | LifeBench R@10 / hit@10 | Gain over the fair baseline | Added delay | Added cost / question | Verdict |
+| ---: | --- | :-: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| - | memo 0.131.50 (earlier page, not rerun) | no | 0.53 | | 0.32 / 0.70 | | | | reference |
+| - | Gemma alone | no | 0.94 | 0.94 | 0.38 / 0.76 | | | | |
+| - | **Gemma alone, date cut (fair baseline)** | yes | 0.94 | 0.94 | **0.41 / 0.79** (+16/-0) | | 0 | 0 | use in every LifeBench run |
+| 1 | **Haiku listwise rerank** over the top 30 of stack C | yes | **1.00** | 0.94 | **0.55 / 0.93** (+158/-9) | +0.14 / +0.14 | stack C + 0.9 s | ~$0.0007 | biggest gain; opt-in "search harder" |
+| 2 | **Stack C**: words + vectors weighted 0.7, Haiku date-range boost, Haiku dated rewrites | yes | 0.94 | 0.94 | 0.49 / 0.90 (+135/-18) | +0.08 / +0.11 | ~1.3 s (2 calls in parallel) | ~$0.00013 | best without a rerank |
+| 3 | Date-range boost: Haiku names the period, records inside it move up (+0.5) | yes | 0.94 | 0.94 | 0.44 / 0.84 (+69/-2) | +0.03 / +0.05 | 0.8 s | ~$0.00003 | cheap; try a local date parser |
+| 4 | Dated rewrites + words with Haiku's keywords, RRF | no | 1.00 | 0.91 | 0.45 / 0.87 | (+0.07 / +0.11 over Gemma alone) | 1.3 s | ~$0.0001 | good; part of stack C |
+| 5 | Words + vectors, weighted 0.7 (min-max) | no | 0.56 | 0.94 | 0.45 / 0.84 | (+0.07 / +0.08 over Gemma alone) | ~5 ms | 0 | helps LifeBench, **breaks reworded** |
+| 6 | Words + vectors, RRF k=60 | no | 0.41 | 0.94 | 0.42 / 0.82 | (+0.04 / +0.06 over Gemma alone) | ~3 ms | 0 | **breaks reworded** |
+| 7 | Haiku 3 rewrites, mean vector | no | 0.94 | 0.91 | 0.40 / 0.81 | (+0.02 / +0.05 over Gemma alone) | 1.4 s | ~$0.0001 | small gain alone |
+| 8 | e5-small + Haiku 3 rewrites, RRF | no | 0.96 | 0.93 | not run | | 1.4 s | ~$0.0001 | lifts e5-small from 0.71 to Gemma's level |
+| 9 | Recency boost (newer records up among the top 10 or 30) | yes | 0.92–0.94 | 0.94 | 0.40–0.41 / 0.79–0.80 | 0 | 0 | 0 | no gain |
+| 10 | Local cross-encoders over the top 50 of words + vectors RRF k=60 (best: jina-reranker-v2 0.82, bge-reranker-base 0.79) | no | 0.68–0.82 | 0.87–0.94 | not run | | 0.4–1.9 s | 0 | **open**: tested only over a first stage already broken at 0.41 |
+| 11 | Gemma query prefix variants | no | 0.71–0.94 | 0.91–0.94 | 0.35–0.38 / 0.68–0.73 | (worse) | 0 | 0 | worse; keep `task: search result` |
+| 12 | HyDE (Haiku writes a record, embedded as a passage) | no | 0.65–0.88 | 0.78–0.91 | 0.27–0.36 / 0.66–0.76 | (worse) | 1.3 s | ~$0.00007 | worse everywhere; drop |
 
 ### Every row
 
@@ -199,12 +207,13 @@ the sample, both scored 0.53.
 
 ## What it showed
 
-1. **Rewriting the question with Haiku, then a Haiku rerank, gives the largest gain.** LifeBench goes from 0.38 /
-   0.76 to 0.55 / 0.93, and every category rises. Knowledge update goes from 0.33 to 0.57. The reworded v3 set
-   reaches 1.00, above Supermemory's 0.88. Cost is about $0.0007 and 2 to 2.5 s per question (inferred from
-   single-call medians). It suits an agent's "search harder" call, not search as you type.
-2. **Stack C is the best ranking without a rerank** (0.49 / 0.90 on LifeBench, 0.94 reworded). It needs two small
-   Haiku calls that can run in parallel (~1.3 s, ~$0.00013).
+1. **Rewriting the question with Haiku, then a Haiku rerank, gives the largest gain.** Against the fair baseline,
+   LifeBench goes from 0.41 / 0.79 to 0.55 / 0.93 (+0.14 / +0.14), and every category rises. Knowledge update goes
+   from 0.44 to 0.57. The reworded v3 set goes from 0.94 to 1.00 (one question). Cost is about $0.0007 and 2 to
+   2.5 s per question (inferred from single-call medians). It suits an agent's "search harder" call, not search as
+   you type.
+2. **Stack C is the best ranking without a rerank** (0.49 / 0.90 on LifeBench, +0.08 / +0.11 over the fair
+   baseline, 0.94 reworded). It needs two small Haiku calls that can run in parallel (~1.3 s, ~$0.00013).
 3. **The date cut is a test fix, not a feature.** It drops records dated after the question: +0.03 recall@10,
    +16/-0 questions, and Knowledge update 0.33 → 0.44. LifeBench's own harness never holds those records, because
    it adds data day by day. A real store holds nothing from the future either. Any LifeBench run of memo should
@@ -218,9 +227,10 @@ the sample, both scored 0.53.
 5. **The question's date range is the cheapest strong signal.** Haiku names the period (0.8 s, $0.00003). Moving
    records inside it up adds +0.03 recall@10 and +0.05 hit@10 over the date cut, with 69 questions up and 2 down.
    It does no harm on v3. A local date parser could probably do the same for free (not tested).
-6. **Local cross-encoders did not beat Gemma alone.** They ran over the top 50 of words + vectors, and none got
-   v3 reworded above 0.82 against Gemma's 0.94. They repair part of what word fusion broke, at 0.4 to 1.6 s per
-   question on this loaded CPU. They were not run on LifeBench, nor over stack C (see below).
+6. **Local cross-encoders are still an open question.** They ran only over the top 50 of words + vectors with RRF
+   k=60. That list is already at 0.41 on the reworded set, so the rerankers repaired damage (up to 0.82) instead of
+   competing with Gemma's 0.94. The intended test, over the top 50 of Gemma alone (`--base gemma`), was queued and
+   lost (see below). So were LifeBench and stack C. Their speed here was 0.4 to 1.6 s per question on a loaded CPU.
 7. **HyDE and other Gemma prompts make it worse.** HyDE alone drops LifeBench to 0.27. The QA and fact-checking
    prompts drop hit@10 by 0.05 to 0.08. Keep `task: search result`.
 8. **A recency boost adds nothing** beyond the date cut, on Knowledge update or overall.
@@ -229,7 +239,7 @@ the sample, both scored 0.53.
 
 ## What was not measured
 
-- **The local rerankers over stack C, on LifeBench, bge-reranker-v2-m3-int8, chunked LifeBench records and the
+- **The local rerankers over Gemma alone (the actual question (a)), over stack C, on LifeBench, bge-reranker-v2-m3-int8, chunked LifeBench records and the
   title slot.** Their runs were queued. Then a cleanup batch at 23:20 removed the scratch folder (3.2 GB of vectors,
   caches and `results.json`), treating the job as finished. The scripts here were rebuilt from the session. The
   rebuilt `lab.py` reproduces the words-only row exactly (0.20 / 0.85 / 0.40 / 0.76 / 0.39). The other rows come
