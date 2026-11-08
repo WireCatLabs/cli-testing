@@ -2,6 +2,8 @@
 
 **Results so far, explained for a reader new to the test: [RESULTS.md](RESULTS.md).**
 
+The November round (v2 and v3, agents, search, models, where it stands): [RESULTS-2026-11-07.md](RESULTS-2026-11-07.md)
+
 Where memo's search loses what its own model finds, step by step, and the fix: [meaning-loss](meaning-loss/README.md)
 (2026-11-08).
 
