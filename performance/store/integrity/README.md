@@ -34,6 +34,8 @@ guard against before anything is called "hardening".
 | [`run.mjs`](run.mjs) | makes the store, starts the scenario's writers as separate processes, keeps a copy of a broken store, writes `result.json` |
 | [`scenarios/`](scenarios/) | one file per scenario: writers, roles, timing |
 | [`T1-minimal.mjs`](T1-minimal.mjs) | the first reproduction from 2026-11-06, a dozen lines, no cli-core |
+| [`closers.mjs`](closers.mjs) | which program's close deletes `-wal` and `-shm` under a process that lost its locks, and under one that kept them |
+| [`recover.mjs`](recover.mjs) | runs cli-core's `store recover run` on a copy of a broken store a run kept, then the same checks |
 
 Roles:
 
@@ -88,17 +90,84 @@ node run.mjs T1-node-closers --core 0.593.0
 - **The damage is reproducible in about 6 s** on the cli-core of the incident, and the current cli-core survives the
   same run with 17–18 second opens. The lock drop itself is visible in `/proc/locks`: after the first
   second open, the `serve` process holds no lock on the database file, only its `-shm` locks.
-- **In this setup, only the `sqlite3` shell's close deleted the WAL.** With the lock dropped, a close in Node 24.19
-  (SQLite 3.53.3) or Bun 1.3.14 (SQLite 3.53.0) left `-wal` and `-shm` in place, even after an explicit
-  `wal_checkpoint(TRUNCATE)`; the `sqlite3` shell 3.46.1, even for a plain `SELECT`, deleted both. Why the newer
-  SQLite holds back was not found out. So the CLIs alone probably did not trigger the 2026-11-06 deletion on this
-  machine; something with an older SQLite opened the store. The fix does not depend on which one: with 0.608.0 no
-  lock is lost, so no close can delete a WAL that is still in use.
+- **In this setup, only the `sqlite3` shell's close deleted the WAL** (see [Which close deletes the
+  WAL](#which-close-deletes-the-wal)). The fix does not depend on which program it was: with 0.608.0 no lock is lost,
+  so no close can delete a WAL that is still in use.
 - **The ledger is not meaningful on a broken store**: counts through damaged indexes come back too high or too low,
   so `missing` is reported but the verdict is `broke` from the checks alone.
 - The first tuning runs were ok on 0.593.0 for a second reason: a fast `serve` checkpoints often, and SQLite skips
   the checkpoint-on-close (and with it the deletion) when the file changed since the closer last read it. The
   incident's `wa serve` wrote rarely; T1's `serve` writes a batch every 300 ms.
+
+## Which close deletes the WAL
+
+The plan's first account of the incident said a Node close after `wal_checkpoint(TRUNCATE)` deleted the WAL. T1 did
+not break without the `sqlite3` reader, so each closer was tried on its own. One process opens a small WAL store and
+keeps it open; a second program opens it, does one thing and closes; the script then looks for `-wal` and `-shm`.
+Every closer runs twice: once after the first process lost its locks to `writeFileSync(path, "", { flag: "a" })`,
+the 0.593.0 bug, and once with its locks kept.
+
+```sh
+node closers.mjs
+```
+
+2026-11-08, Node 24.19.0 (SQLite 3.53.3), Bun 1.3.14 (SQLite 3.53.0), `sqlite3` shell 3.46.1:
+
+| Closer | Holder lost its locks | Holder kept its locks |
+|---|---|---|
+| Node: open and close, a `SELECT`, an `INSERT`, an `INSERT` then `wal_checkpoint(PASSIVE)` or `(TRUNCATE)` | WAL kept | WAL kept |
+| Bun: an `INSERT` | WAL kept | WAL kept |
+| `sqlite3` shell: a `SELECT` or an `INSERT` | **WAL and shm deleted** | WAL kept |
+
+What this does and does not show:
+
+- Measured: on this machine only the older shell deletes the files, and only when the holder has lost its locks.
+  With the locks kept, nothing deletes them.
+- Inferred, not shown: that on 2026-11-06 a program with an older SQLite (the shell or another tool) opened the
+  owner's store and its close deleted the WAL under `wa serve`. Nothing logged which program opened the file that
+  day; the CLIs' own Node closes did not delete it in any run here. Why SQLite 3.53 holds back where 3.46.1 does not
+  was not found out.
+
+## R1: recover a broken store
+
+On 2026-11-07 the owner's store was rebuilt with `store recover run` (cli-core 0.599.0 and later): it copies the
+readable rows with the `sqlite3` shell's `.recover`, refills every FTS5 and vector index, checks the copy and swaps it
+in. That run was on real data and cannot be repeated. R1 runs the same function on the three stores T1 broke.
+
+```sh
+node recover.mjs /var/tmp/claude/store-harness/runs/T1-0.593.0-<stamp> --core 0.608.0
+```
+
+It copies the run's `kept/` store into a new folder beside it and never writes the kept file. The `.recover` step
+used the `sqlite3` shell 3.46.1. After the recovery the indexes are new, so the ledger count is meaningful again.
+
+| Broken run | Recovery time (copy, rebuild, check) | Rows the recovery reported lost | Checks after | Messages the writers committed during T1 / missing after |
+|---|---|---|---|---|
+| 1 | 4.0 s (1.0, 2.6, 0.4) | none | all pass, 25 FTS5 tables | 970 / 50 |
+| 2 | 4.0 s (0.9, 2.7, 0.4) | 97 messages, 97 involvements | all pass, 25 FTS5 tables | 1 490 / 250 |
+| 3 | 4.7 s (1.1, 2.8, 0.8) | none | all pass, 25 FTS5 tables | 910 / 50 |
+
+- The recovery makes a sound file every time: `quick_check`, `integrity_check` and every FTS5 check pass.
+- It does not bring back what the damage already destroyed: 50 to 250 committed messages are gone, and in two of
+  three runs the recovery reported none lost. It counts rows before and after its own copy, so rows that a stale
+  checkpoint overwrote before the recovery never show up. On 2026-11-07 the 31 lost emails were found by their ids,
+  not by this count.
+
+## What can happen again
+
+- **A program that drops the store's locks.** Any code that opens and closes its own handle on `wirecat.db` in a
+  process that also holds a SQLite connection to it drops that connection's locks on Linux: `writeFileSync`,
+  `readFileSync`, `copyFileSync`, a hash of the file, a backup that reads it with `fs`. cli-core no longer does it in
+  `openStore`; new code in any CLI or script can do it again. T1 catches it.
+- **An older SQLite next to a process without locks.** Opening the live store with the `sqlite3` shell 3.46.1 is safe
+  while every process keeps its locks (table above), and deletes the WAL as soon as one does not. Copy the store with
+  `store backup`, `node:sqlite` `backup()` or `.backup` on a copy, not with a shell on the live file, when in doubt.
+- **A contentless FTS5 table cannot be rebuilt in place.** SQLite refuses `rebuild` on a table with `content=''`
+  ("'rebuild' may not be used with a contentless fts5 table"), and 22 of the 25 FTS5 tables in a new store are
+  contentless. A damaged one is fixed only by refilling it from its source rows, which `store recover run` does; a
+  hand-written repair script that runs `rebuild` cannot fix them.
+- **The recovery's "lost" count misses rows lost before it.** After any damage, compare ids or counts with a backup
+  or the source (the mail server, the messenger), not only the recovery's report.
 
 ## Not measured
 

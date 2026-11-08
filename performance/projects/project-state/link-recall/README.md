@@ -1,4 +1,4 @@
-# Link proposal recall on a synthetic project
+# Link proposal recall: an invented project, then a copy of the real store
 
 ## Why
 
@@ -9,17 +9,40 @@ answer fed [cli-core#2639](https://github.com/WireCatLabs/cli-core/pull/2639).
 
 ## Setup
 
-- Script: [`recall.test.ts`](https://github.com/WireCatLabs/cli-core/blob/fix/relationships-scan-recall/src/services/link-scorers/recall.test.ts)
-  in cli-core. It builds an invented store with code; no real messages.
-- The project is shaped like PMED. Its client groups are in MAX. The contractor and the 1C person have dialogs in
-  Telegram, and three people are linked across both messengers by identity. Gold: 8 chats and 7 people. One gold
-  link, a reminder bot's dialog, has no signal at all.
+- The project is invented and shaped like the owner's. Its client groups are in MAX. The contractor and the 1C person
+  have dialogs in Telegram, and three people are linked across both messengers by identity. Gold: 8 chats and 7
+  people. One gold link, a reminder bot's dialog, has no signal at all.
 - Decoys: the owner's team chat, a 40-person market group the client people are in, the owner's dialogs with client
   people, a namesake of the 1C person in Telegram, and a partner who is in another project.
-- Each round scans with `write: false`. The owner then confirms the proposals that are in the gold set, the way the
-  PMED run emulated it.
-- Command: `pnpm vitest run src/services/link-scorers/recall.test.ts --maxWorkers=1` in cli-core. The baseline is the
-  same test against the scorers of cli-core origin/main `b26074120`.
+- Each round scans without writing. The owner then confirms the proposals that are in the gold set, the way the
+  owner's run emulated it.
+- Two ways to run it, with the same numbers:
+  - [`recall.test.ts`](https://github.com/WireCatLabs/cli-core/blob/a2f4ecd8b1bb269d69d32dd1747593160719f9ad/src/services/link-scorers/recall.test.ts)
+    in cli-core (merged with #2639), which builds the store in memory and calls the scan directly. The baseline was
+    the same test against the scorers of cli-core `b26074120`.
+  - [`fixture.mjs`](fixture.mjs) writes the same invented store to a file through cli-core from npm, and
+    [`recall.mjs`](recall.mjs) runs the installed `memo relationships scan` on it round by round. This is the same
+    script as the real-store check below.
+
+```sh
+# in cli-core, after pnpm install
+git checkout a2f4ecd8b && pnpm vitest run src/services/link-scorers/recall.test.ts --maxWorkers=1
+
+# in this folder, with any memo installed; --core must not be newer than the memo's own cli-core
+node fixture.mjs /var/tmp/link-recall/fixture.db --core 0.606.0
+node recall.mjs copy /var/tmp/link-recall/fixture.db /var/tmp/link-recall/run/store.db
+node recall.mjs /var/tmp/link-recall/run/store.db --project LKM --sources max:1,telegram:2 --rounds 2
+
+# before #2639: memo 0.131.43 (cli-core 0.589.0) in its own folder
+npm install --prefix /var/tmp/link-recall/memo-old @wirecat/cli-memo@0.131.43
+node fixture.mjs /var/tmp/link-recall/fixture-old.db --core 0.589.0
+node recall.mjs copy /var/tmp/link-recall/fixture-old.db /var/tmp/link-recall/run-old/store.db
+node recall.mjs /var/tmp/link-recall/run-old/store.db --project LKM --sources max:1,telegram:2 --rounds 2 \
+  --memo /var/tmp/link-recall/memo-old/node_modules/.bin/memo
+```
+
+Rerun 2026-11-08 with `recall.mjs`: memo 0.131.43 gave recall 7 % then 27 %, precision 100 %; memo 0.131.54 gave
+93 % and 93 %, precision 74 %, 5 false, the reminder bot missed. Both match the table.
 
 ## Results
 
@@ -35,7 +58,7 @@ answer fed [cli-core#2639](https://github.com/WireCatLabs/cli-core/pull/2639).
 ## Scan time
 
 The plan's limit is 5 s for one scan of 2 000 chats. The fixture is
-[`scan-time.test.ts`](https://github.com/WireCatLabs/cli-core/blob/fix/relationships-scan-recall/src/services/link-scorers/scan-time.test.ts)
+[`scan-time.test.ts`](https://github.com/WireCatLabs/cli-core/blob/a2f4ecd8b1bb269d69d32dd1747593160719f9ad/src/services/link-scorers/scan-time.test.ts)
 in cli-core: 2 041 chats (1 000 MAX groups, a third of them with 6 people and the rest with 40; 600 Telegram groups of
 8; 440 dialogs), 400 people, 40 of them with accounts in both messengers, and 86 000 messages. The command is
 `LINK_SCAN_TIME=1 pnpm vitest run src/services/link-scorers/scan-time.test.ts --maxWorkers=1`, one worker, on the
@@ -59,7 +82,67 @@ messages again. No cache was added.
   false proposals are the owner's dialogs with client people, the owner's team chat and one of its members, and the
   market group.
 
+## On a copy of the owner's store (2026-11-08)
+
+### Why
+
+The fixture said 93 %. The owner asked to check it where run 3 measured 27 %: on a copy of the real store, the
+same project, the same 15 removed links, with only totals leaving the copy.
+
+### Setup
+
+- memo 0.131.52 (cli-core 0.605.0), Node 24.19.0, Linux 7.0. The store copy was 5.9 GB; `recall.mjs copy` needs that much free disk.
+- The method `recall.mjs` now scripts, done by hand that day: the project's 15 confirmed member links (8 chats: 5 in
+  MAX, 3 in Telegram; 7 people) saved in a table of the copy and deleted, then up to three scans of the two
+  messenger accounts, each scored against the 15, with the gold proposals put back as confirmed. The run on the day
+  wrote the proposals (`--yes`); `recall.mjs` scans without writing, which lists the same proposals.
+- Every run had its config, data and state folders inside the copy's folder and no D-Bus. No sync, no network. The
+  copy was deleted afterwards.
+- Chat titles, names and ids are in a private report in cli-private (`reports/2026-11-08-pmed-stepc-real-store.md`).
+
+```sh
+node recall.mjs copy ~/.local/share/WireCat/wirecat.db /var/tmp/stepc/store.db
+node recall.mjs /var/tmp/stepc/store.db --project <key> --sources <account>,<account> --rounds 3
+```
+
+`recall.mjs` refuses the live store path, refuses a copy it already used, and prints totals only. The proposed and
+missed references go to `<copy>.recall.json` beside the copy, which stays on the machine. `--extra-gold <file>` (one
+reference per line) recomputes the totals with links the owner later ruled in.
+
+### Results
+
+| | Run 3 (memo 0.131.43) | memo 0.131.52, as measured | Same, after the owner's ruling |
+| --- | --- | --- | --- |
+| Gold links | 15 | 15 | 20 |
+| Recall after round 1 / 2 / 3 | 7 % / 27 % / 47 % | 53 % / 53 % / 53 % | 65 % |
+| Precision | 100 % after 2, 78 % after 3 | 47 % (8 of 17) | 76 % (13 of 17) |
+| False proposals | 2 | 9 | 4 |
+| Proposed by name only | 0 | 0 | 0 |
+| Messengers of found links | MAX only | MAX only | MAX only |
+
+The ruling: five of the nine false proposals were frequent senders of the client's large sales group. The owner said
+they belong to the project (sales and client questions need them), though he rarely talks to them, so they count as
+gold. The other four false ones are three dialogs with group members and one more group sender.
+
+Scan time (memo's `duration_ms`): 0.7 s, 17.8 s, 10.9 s for rounds 1 to 3; later runs 0.3 to 2.6 s.
+
+### What it showed
+
+- The spread within one run works on real data: round 1 found everything it would ever find (53 %), more than run
+  3 found in three rounds (47 %). It is still short of the 80 % target.
+- The 7 missed links are all on the Telegram side or behind a dialog: 3 Telegram dialogs, 1 MAX dialog, and 3 people
+  with only a Telegram identity. None of them writes in a project group, and no gold person had identities in both
+  messengers, so no path led there. After the owner joined one person's Telegram and MAX identities, a dry run on the
+  live store proposed a Telegram dialog for the first time (not scored).
+- A large group's senders are proposed like the owner's working circle. The scan should name the group in such a
+  proposal's reason so the owner can confirm them as a batch.
+- Two scans took 17.8 s and 10.9 s right after the confirmed links were put back with SQL, against 0.3 to 2.6 s for
+  every other run. The cause is not known. `recall.mjs` records every round's time, so a rerun shows whether it
+  repeats.
+
 ## Not measured
 
-- The real store: agents may not read it. A contact reachable only by the project name in messages stays unfound.
-  Inflected Russian forms of the name are not matched.
+- In the fixture: a contact reachable only by the project name in messages stays unfound. Inflected Russian forms of
+  the name are not matched.
+- On the real store: re-proposal of rejected links (rejecting needs the owner), other projects, and the cause of the
+  two slow scans. `recall.mjs` itself ran only on the fixture; the real-store numbers above were scored by hand.

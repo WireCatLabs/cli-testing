@@ -19,4 +19,7 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
 - [records-import-sheets](records-import-sheets/README.md) — the first real import of two payment spreadsheets into
   memo's records store: split payments needed a per-link amount, and 7 of 7 totals matched the sheets (2026-11-05).
 - [integrity](integrity/README.md) — a harness that damages a synthetic store on purpose: T1 rebuilds the
-  2026-11-06 damage (a second open in a live process) on cli-core 0.593.0, and 0.608.0 survives it (2026-11-08).
+  2026-11-06 damage (a second open in a live process) on cli-core 0.593.0, and 0.608.0 survives it; only the older
+  `sqlite3` shell's close deleted the WAL; `store recover run` makes a sound file from each broken store but cannot
+  bring back rows the damage destroyed. Its [What can happen again](integrity/README.md#what-can-happen-again)
+  lists the risks that remain after the fix (2026-11-08).
