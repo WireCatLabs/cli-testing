@@ -91,24 +91,26 @@ and after.
 
 | N | before: first / rescan | before: peak RSS | after: first / rescan | after: peak RSS |
 |---|---|---|---|---|
-| 1,000 | 1.3 s / 0.85 s | 409 MB | 0.97 s / 0.50 s | 203 MB |
-| 5,000 | 7.1 s / 4.8 s | 1,179 MB | 4.5 s / 2.7 s | 247 MB |
-| 20,000 | 29.7 s / 21.0 s | 3,653 MB | 19.4 s / 12.3 s | 418 MB |
-| 50,000 | 85.7 s / 71.8 s | 5,771 MB | 59.2 s / 41.3 s | 748 MB |
+| 1,000 | 1.3 s / 0.85 s | 409 MB | 0.98 s / 0.50 s | 203 MB |
+| 5,000 | 7.1 s / 4.8 s | 1,179 MB | 4.4 s / 2.7 s | 312 MB |
+| 20,000 | 29.7 s / 21.0 s | 3,653 MB | 19.3 s / 12.8 s | 551 MB |
+| 50,000 | 85.7 s / 71.8 s | 5,771 MB | 59.1 s / 41.9 s | 772 MB |
 
-Per-deal cost, first and last tenth of the deal pages, at 20,000: 0.35 → 0.60 ms before, 0.21 → 0.21 ms after. At
-50,000: 0.37 → 0.35 ms before, 0.22 → 0.27 ms after.
+Per-deal cost, first and last tenth of the deal pages, at 20,000: 0.35 → 0.60 ms before, 0.20 → 0.22 ms after. At
+50,000: 0.37 → 0.35 ms before, 0.23 → 0.22 ms after. A first try of the fix bound the id as a numbered `?2`; it
+measured the same within noise (peak RSS 418 MB at 20,000) but does not bind on Node 22.16, so the numbers above are
+of the anonymous `?` that was merged.
 
-- **The memory was the one-off statements.** Peak RSS fell to a tenth or less at every size, and grows with N far
-  more slowly. The driver keeps an evicted statement until the store closes; with one text per kind nothing is
+- **The memory was the one-off statements.** Peak RSS fell to a sixth or less at 5,000 and above, and grows with N
+  far more slowly. The driver keeps an evicted statement until the store closes; with one text per kind nothing is
   evicted on this path. The bench itself keeps every SQL text it saw, to explain them afterwards; at a few KB each
   that is probably some hundreds of MB of the "before" figure, not measured apart.
-- **A third of the time, or more in a rescan**: the 20,000 first sync takes 19 s instead of 30 s, its rescan 12 s
+- **A third of the time, or more in a rescan**: the 20,000 first sync takes 19 s instead of 30 s, its rescan 13 s
   instead of 21 s.
 - **Nothing else changed.** The involvement rows of the 1,000 and 5,000 stores are the same before and after in every
   column but `occurred_at`, which is each run's wall-clock link time. The query plan of each bound statement equals
   the one with the id written in, for every kind of item.
-- From 20,000 to 50,000 (2.5 times the data) the first sync now takes 3.0 times as long and the rescan 3.4 times;
+- From 20,000 to 50,000 (2.5 times the data) the first sync now takes 3.1 times as long and the rescan 3.3 times;
   per-deal cost stays nearly flat, so the growth past linear is outside the deal pages, not found here.
 
 ## What was not measured
