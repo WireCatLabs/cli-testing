@@ -31,7 +31,8 @@ def main():
     memo.json("models", "set", args.model)
     embedded, seconds = mb.embed(memo, "1")
     records = [json.loads(l) for l in (B / "kg-fixture-v3/corpus.jsonl").read_text().splitlines()]
-    names = {mb.name_of(i): r["id"] for i, r in enumerate(records)}
+    saved = Path(args.store) / "names.json"
+    names = json.loads(saved.read_text()) if saved.exists() else {mb.name_of(i): r["id"] for i, r in enumerate(records)}
     oracle = json.loads((B / "kg-fixture-v3/oracle.json").read_text())
     expected = {r["id"]: set(r["required_citations"]) for r in oracle}
     raw = out / "raw"

@@ -86,16 +86,29 @@ def mbox_entry(index, record):
             f"{record['text']}\n\n")
 
 
-def write_sources(records, data):
+def note_title(text, taken):
+    """A note's file name from its first words, as an owner's note is named for what it says; unique in the folder."""
+    base = " ".join(re.findall(r"[\w'-]+", text)[:8])[:80] or "note"
+    title, n = base, 2
+    while title.casefold() in taken:
+        title, n = f"{base} ({n})", n + 1
+    taken.add(title.casefold())
+    return title
+
+
+def write_sources(records, data, titles="words"):
+    """Notes named rNNNN.md put "rNNNN" into every note's vector, the noise BUG-618 was for mail (8 Nov 2026)."""
     notes = data / "notes"
     notes.mkdir(parents=True)
-    names, mbox = {}, []
+    names, mbox, taken = {}, [], set()
     for index, record in enumerate(records):
         names[name_of(index)] = record["id"]
         if record["kind"] == "mail":
             mbox.append(mbox_entry(index, record))
             continue
-        path = notes / f"{name_of(index)}.md"
+        title = name_of(index) if titles == "rnnnn" else note_title(record["text"], taken)
+        names[title] = record["id"]
+        path = notes / f"{title}.md"
         path.write_text(record["text"] + "\n")
         stamp = datetime.fromisoformat(record["timestamp"]).timestamp()
         os.utime(path, (stamp, stamp))
@@ -222,6 +235,8 @@ def main():
     parser.add_argument("--memo", default="memo", help="the memo binary to drive")
     parser.add_argument("--mail", default="mail", help="the mail CLI binary, for memo 0.131.28 and later")
     parser.add_argument("--model", default="e5-small", help="local embedding model for the hybrid run")
+    parser.add_argument("--note-titles", choices=("words", "rnnnn"), default="words",
+                        help="name note files by their first words (default) or rNNNN, as before 8 Nov 2026")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
     root = args.output.resolve()
@@ -233,7 +248,8 @@ def main():
 
     version, _ = memo.run("--version")
     startup = [memo.run("--version")[1] for _ in range(20)]
-    names = write_sources(records, root / "data")
+    names = write_sources(records, root / "data", args.note_titles)
+    (root / "names.json").write_text(json.dumps(names, ensure_ascii=False) + "\n")
     timings = {}
     folder, timings["folders_add_s"] = memo.json("folders", "add", str(root / "data/notes"), "--format", "markdown")
     notes, timings["sync_notes_no_embed_s"] = memo.json("sync", "--only", "notes", "--no-embed")
