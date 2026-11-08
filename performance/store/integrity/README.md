@@ -40,6 +40,7 @@ guard against before anything is called "hardening".
 | [`T1-minimal.mjs`](T1-minimal.mjs) | the first reproduction from 2026-11-06, a dozen lines, no cli-core |
 | [`closers.mjs`](closers.mjs) | which program's close deletes `-wal` and `-shm` under a process that lost its locks, and under one that kept them |
 | [`recover.mjs`](recover.mjs) | runs cli-core's `store recover run` on a copy of a broken store a run kept, then the same checks, and counts lost rows per table against the ledgers |
+| [`gap.mjs`](gap.mjs) | compares two stores read only, per source account and day: what one holds that the other lacks; totals on stdout, per-chat ids only to a private file |
 
 Roles that write like the real CLIs, table by table:
 
@@ -391,6 +392,34 @@ node run.mjs T1-roles --core 0.593.0                       # breaks the store: 2
 node recover.mjs /var/tmp/claude/store-harness/runs/T1-roles-0.593.0-<stamp> --core 0.611.0
 # result.json in the new recover-* folder: lost_by_table, recovery.lost, after.ledger.tables.*.missing_by_writer
 ```
+
+### gap.mjs: what a real store lacks against an older copy
+
+Why: after a recovery the owner wants to know whether the store lost messages, mail or notes, and which sources
+to fetch again. `recoverStore`'s own count cannot say (above), but a copy taken before the recovery can say part of
+it. `gap.mjs` reads both stores read only and prints, per table (messages, emails, documents, records, notes,
+memories, facts, tasks, decisions), source account and UTC day: rows in each, rows only in A, rows only in B, and
+how many chats or mailboxes the missing rows are in. Accounts are labelled `telegram 1`, `email 2` and so on, never
+by their ids. It walks every table by rowid and skips what a damaged page will not give up, printing the skipped
+range, so the damaged copy itself can be side A. Rows are matched by their source ids (account, chat and message
+id; account and email id), not by store ids, so a store whose ids moved still compares.
+
+```sh
+node gap.mjs "file:/path/wirecat-corrupt.db?immutable=1" ~/.local/share/WireCat/wirecat.db \
+  --from 2026-11-01 --to 2026-11-08 --detail /var/tmp/claude/<yours>/detail.json   # exits 1 when A has rows B lacks
+```
+
+`--detail` writes the store ids of each missing row, grouped by chat or mailbox, to a file with mode 600; keep it
+out of any repository. `?immutable=1` is for a copy nothing writes to; for the live store give the plain path, which
+opens it read only. A synthetic control (100 messages in two chats and 20 emails; 10 messages and 1 email removed
+from B) came back with 10 and 1 missing, 2 chats and 1 mailbox, and exit code 1.
+
+What it cannot see: rows the damaged file never held (the BUG-627 rows). For those, the only check is the source:
+run the CLI's sync over the window and count what it saves (`mail <profile> sync --rescan --since-time …` reports
+`saved` against `already_stored`). A messenger sync is weaker here: from reading cli-core 0.608.0
+(`dist/services/archive.js`, `fetchInto`), after its first page it jumps to the start of the stretch the store marks
+as held, and `--all` passes a chat whose newest message is held. So a hole inside a held stretch is not fetched
+again. `<cli> <profile> messages sync <chat> --last <n>` re-reads at least the newest page of each chat.
 
 ## What can happen again
 
