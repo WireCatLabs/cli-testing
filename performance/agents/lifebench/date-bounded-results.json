@@ -1,0 +1,159 @@
+{
+  "resume": "/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh search && /home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh answer",
+  "persons": {
+    "fenghaoran": {
+      "memo-e5-top20": {
+        "unbounded": 265,
+        "bounded": 264,
+        "questions": 348,
+        "answers_reused": 207,
+        "contexts_changed": 141,
+        "verdicts_wrong_to_right": 5,
+        "verdicts_right_to_wrong": 6,
+        "p": 1.0,
+        "answer_usd_billed": 0.0853558786,
+        "judge_usd_billed": 0.2435428172
+      },
+      "memo-gemma-top20": {
+        "unbounded": 279,
+        "bounded": 271,
+        "questions": 348,
+        "answers_reused": 218,
+        "contexts_changed": 130,
+        "verdicts_wrong_to_right": 2,
+        "verdicts_right_to_wrong": 10,
+        "p": 0.03857421875,
+        "answer_usd_billed": 0.1833192796,
+        "judge_usd_billed": 0.2227762
+      }
+    },
+    "maxiulan": {
+      "memo-e5-top20": {
+        "unbounded": 256,
+        "bounded": 263,
+        "questions": 352,
+        "answers_reused": 218,
+        "contexts_changed": 134,
+        "verdicts_wrong_to_right": 10,
+        "verdicts_right_to_wrong": 3,
+        "p": 0.09228515625,
+        "answer_usd_billed": 0.0753910551,
+        "judge_usd_billed": 0.2320137284
+      },
+      "memo-gemma-top20": {
+        "unbounded": 265,
+        "bounded": 273,
+        "questions": 352,
+        "answers_reused": 214,
+        "contexts_changed": 138,
+        "verdicts_wrong_to_right": 10,
+        "verdicts_right_to_wrong": 2,
+        "p": 0.03857421875,
+        "answer_usd_billed": 0.1551199138,
+        "judge_usd_billed": 0.2380674908
+      }
+    }
+  },
+  "pooled": {
+    "unbounded": {
+      "memo-e5-top20": {
+        "micro": 0.7442857142857143,
+        "macro": 0.71611787082609,
+        "questions": 700,
+        "per_category": {
+          "Single_hop": 0.7624633431085044,
+          "Multi_hop": 0.6299559471365639,
+          "Temporal": 0.580952380952381,
+          "Pattern_recognition(Non-declarative)": 0.6509433962264151,
+          "Knowledge_update": 0.7659574468085106,
+          "Causal": 0.6941176470588235,
+          "Conflict": 0.7956989247311828,
+          "Hidden_info": 0.6666666666666666,
+          "Unanswerable": 0.8983050847457628
+        }
+      },
+      "memo-gemma-top20": {
+        "micro": 0.7771428571428571,
+        "macro": 0.7437059368857919,
+        "questions": 700,
+        "per_category": {
+          "Single_hop": 0.8269794721407625,
+          "Multi_hop": 0.6519823788546255,
+          "Temporal": 0.638095238095238,
+          "Pattern_recognition(Non-declarative)": 0.6981132075471698,
+          "Knowledge_update": 0.7659574468085106,
+          "Causal": 0.7294117647058823,
+          "Conflict": 0.8602150537634409,
+          "Hidden_info": 0.6666666666666666,
+          "Unanswerable": 0.8559322033898306
+        }
+      },
+      "gold": {
+        "micro": 0.9757142857142858,
+        "macro": 0.9647704668715896,
+        "questions": 700,
+        "per_category": {
+          "Single_hop": 0.9736070381231672,
+          "Multi_hop": 0.9691629955947136,
+          "Temporal": 0.9619047619047619,
+          "Pattern_recognition(Non-declarative)": 0.9716981132075472,
+          "Knowledge_update": 0.9574468085106383,
+          "Causal": 0.9647058823529412,
+          "Conflict": 0.967741935483871,
+          "Hidden_info": 0.9166666666666666,
+          "Unanswerable": 1.0
+        }
+      }
+    },
+    "bounded": {
+      "memo-e5-top20": {
+        "micro": 0.7528571428571429,
+        "macro": 0.7203031561654656,
+        "questions": 700,
+        "per_category": {
+          "Single_hop": 0.7800586510263929,
+          "Multi_hop": 0.6299559471365639,
+          "Temporal": 0.580952380952381,
+          "Pattern_recognition(Non-declarative)": 0.660377358490566,
+          "Knowledge_update": 0.776595744680851,
+          "Causal": 0.6941176470588235,
+          "Conflict": 0.7956989247311828,
+          "Hidden_info": 0.6666666666666666,
+          "Unanswerable": 0.8983050847457628
+        }
+      },
+      "memo-gemma-top20": {
+        "micro": 0.7771428571428571,
+        "macro": 0.7452995314966498,
+        "questions": 700,
+        "per_category": {
+          "Single_hop": 0.8269794721407625,
+          "Multi_hop": 0.6607929515418502,
+          "Temporal": 0.638095238095238,
+          "Pattern_recognition(Non-declarative)": 0.6886792452830188,
+          "Knowledge_update": 0.7978723404255319,
+          "Causal": 0.7294117647058823,
+          "Conflict": 0.8602150537634409,
+          "Hidden_info": 0.6666666666666666,
+          "Unanswerable": 0.8389830508474576
+        }
+      },
+      "gold": {
+        "micro": 0.9757142857142858,
+        "macro": 0.9647704668715896,
+        "questions": 700,
+        "per_category": {
+          "Single_hop": 0.9736070381231672,
+          "Multi_hop": 0.9691629955947136,
+          "Temporal": 0.9619047619047619,
+          "Pattern_recognition(Non-declarative)": 0.9716981132075472,
+          "Knowledge_update": 0.9574468085106383,
+          "Causal": 0.9647058823529412,
+          "Conflict": 0.967741935483871,
+          "Hidden_info": 0.9166666666666666,
+          "Unanswerable": 1.0
+        }
+      }
+    }
+  }
+}

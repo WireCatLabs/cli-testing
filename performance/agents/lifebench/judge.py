@@ -23,6 +23,7 @@ Keys are keyring entries, read in-process and never printed: openrouter/AIX125, 
 """
 
 import argparse
+import http.client
 import json
 import re
 import subprocess
@@ -114,7 +115,7 @@ def vote_openrouter(args, key, system, user):
         try:
             with urllib.request.urlopen(request, timeout=180) as reply:
                 data = json.loads(reply.read())
-        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
+        except (OSError, http.client.HTTPException, json.JSONDecodeError) as error:
             reason = f"{type(error).__name__} {getattr(error, 'code', '')}".strip()
             time.sleep(2 ** attempt)
             continue

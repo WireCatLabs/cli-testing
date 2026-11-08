@@ -21,6 +21,7 @@ The key is the keyring entry openrouter/AIX125, read in-process and never printe
 """
 
 import argparse
+import http.client
 import json
 import re
 import sys
@@ -79,7 +80,7 @@ def ask(key, model, system, user):
                 data = json.loads(reply.read())
             return (((data.get("choices") or [{}])[0].get("message") or {}).get("content") or "",
                     data.get("usage") or {}, None)
-        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as caught:
+        except (OSError, http.client.HTTPException, json.JSONDecodeError) as caught:
             error = f"{type(caught).__name__} {getattr(caught, 'code', '')}".strip()
             time.sleep(2 ** attempt)
     return "", {}, error

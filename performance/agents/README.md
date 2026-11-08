@@ -23,6 +23,7 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
   memo EmbeddingGemma 80% (published: gold 97.3%, Hindsight 72.0%, Mem0 61.5%), $0.34.
   All 348 questions, 20 records: gold 97%, memo Gemma 80%, memo e5-small 76% ($2.77).
   Two persons, 700 questions: memo Gemma 78%, e5-small 74% (paired p 0.045), gold 98%.
+  With search limited to records from before each question: Gemma 77.7% micro, 74.5% macro (unchanged).
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).

@@ -661,23 +661,83 @@ from [persons_report.py](persons_report.py).
 
 The leaderboard caveats above all still hold: a whole-year store, 20 whole records, English, two people of ten.
 
-## Date-bounded search: only records from before the question (in progress)
+## Date-bounded search: only records from before the question
 
-Run 2026-11-08: the leaderboard-fairness check. Same two persons, stores, 20 records, answer model and judge as above,
-but memo may return only records dated on or before the question's ask time (memo's own `date<<day after>` bound,
-`--timezone UTC`). Questions whose 20 records did not change keep their earlier answer and verdict.
+Run 2026-11-08 to 11-09: the leaderboard-fairness check.
 
-To resume after an interruption (every step skips what is already on disk):
+### Why this was run
 
-```sh
-/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh search
-/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh changed
-/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-date-bounded.sh answer
-```
+LifeBench feeds a memory system day by day, so a search never sees a record dated after its question. The runs above
+search the whole year, and the caveat on every number has been "later records compete with the evidence". This run
+removes that difference for search, on the two persons already built, to see how much it moves the score.
 
-Search rows, answers and verdicts land one per line in `~/.cache/wirecat-bench/lifebench/runs/leaderboard-style/bounded/`
-(`*.partial.jsonl`). Results follow here when the run ends. `ONLY=e5-small` or `ONLY=embeddinggemma` limits a phase
-to one model (Gemma searches wait for the heavy lock; the tables need both).
+### Setup
 
-So far: e5-small searched with the bound for both persons; memo returned no record dated after the ask day (0 dropped
-by the script's own check), and the 20 records changed for 141 of fenghaoran's 348 questions and 134 of maxiulan's 352.
+- **Same** stores (memo 0.131.57, e5-small and Gemma, both persons), 20 records, `deepseek-v4-flash` answering with
+  LifeBench's prompt, the deepseek-chat judge.
+- **The bound is memo's own**: `<question> date<<day after ask_time>` with `--timezone UTC`
+  (cli-core `docs/search/query-language.md`: notes and mail take a `date` field; a date-only bound means the start of
+  that day, so `date<=<ask day>` would drop the ask day itself). Meaning search still runs with the bound (every hit
+  `found_by: meaning` in a check); the reply says `complete: false` only because memo's CRM source rejects the field,
+  and this store has no CRM data. The script drops any hit dated later as a check: memo returned none in 1,400
+  searches. No over-fetching was needed.
+- **Only changed contexts are re-asked**: a question whose 20 records came out the same, in the same order, keeps its
+  earlier answer and verdict ("reused"). The 20 records changed for 130 to 141 questions per person and model (268 to
+  275 of 700 per model).
+- **Resumable**: [run-date-bounded.sh](run-date-bounded.sh) `search`, `changed`, `answer`; search rows, answers and
+  verdicts land one per line as they finish and a rerun skips them. One answer run was cut by a dropped connection
+  (now retried, `http.client.HTTPException`) and resumed from 347 of 348 saved answers.
+- Gold evidence does not depend on search and is reused.
+
+### Results
+
+Both persons pooled (700 questions), in the leaderboard's row format (accuracy per category in percent, micro over
+all questions, macro the mean of the nine categories):
+
+| Setup | SH | MH | TR | ND | KU | CR | CD | HI | UA | Micro | Macro |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Gold evidence | 97.4 | 96.9 | 96.2 | 97.2 | 95.7 | 96.5 | 96.8 | 91.7 | 100.0 | 97.6 | 96.5 |
+| memo Gemma, date-bounded | 82.7 | 66.1 | 63.8 | 68.9 | 79.8 | 72.9 | 86.0 | 66.7 | 83.9 | 77.7 | 74.5 |
+| memo Gemma, whole year | 82.7 | 65.2 | 63.8 | 69.8 | 76.6 | 72.9 | 86.0 | 66.7 | 85.6 | 77.7 | 74.4 |
+| memo e5-small, date-bounded | 78.0 | 63.0 | 58.1 | 66.0 | 77.7 | 69.4 | 79.6 | 66.7 | 89.8 | 75.3 | 72.0 |
+| memo e5-small, whole year | 76.2 | 63.0 | 58.1 | 65.1 | 76.6 | 69.4 | 79.6 | 66.7 | 89.8 | 74.4 | 71.6 |
+| *Published, all ten people:* Hindsight (DeepSeek-V4-Flash) | 83.43 | 53.98 | 44.34 | 58.75 | 85.09 | 67.83 | 80.66 | 49.48 | 75.56 | 71.98 | 66.57 |
+| *Published:* Mem0 (DeepSeek-V4-Flash) | 78.09 | 41.41 | 32.45 | 48.48 | 75.84 | 52.55 | 78.07 | 32.47 | 55.73 | 61.54 | 55.01 |
+| *Published:* gold evidence | 98.14 | 94.85 | 94.91 | 93.73 | 96.14 | 94.10 | 98.11 | 93.30 | 100.00 | 97.28 | 95.92 |
+
+SH single-hop, MH multi-hop, TR temporal, ND pattern recognition, KU knowledge update, CR causal, CD conflict, HI
+hidden information, UA unanswerable.
+
+Question by question, against the whole-year run (exact McNemar test on the verdicts that changed):
+
+| Person | Setup | Whole year | Date-bounded | Contexts changed | Wrong to right | Right to wrong | p |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| fenghaoran | memo e5-small | 265 | 264 | 141 | 5 | 6 | 1.0 |
+| fenghaoran | memo Gemma | 279 | 271 | 130 | 2 | 10 | 0.039 |
+| maxiulan | memo e5-small | 256 | 263 | 134 | 10 | 3 | 0.092 |
+| maxiulan | memo Gemma | 265 | 273 | 138 | 10 | 2 | 0.039 |
+
+Billed: $1.44 (answers $0.50, judge $0.94 for the 543 re-asked questions). Every row:
+[date-bounded-results.json](date-bounded-results.json), [context-bounded-fenghaoran-results.json](context-bounded-fenghaoran-results.json),
+[context-bounded-maxiulan-results.json](context-bounded-maxiulan-results.json), from [bounded_compare.py](bounded_compare.py).
+
+### What it showed
+
+1. **The whole-year store was not what lifted memo's score.** Pooled, Gemma stays at 77.7% micro (macro 74.4% →
+   74.5%) and e5-small moves 74.4% → 75.3% (macro 71.6% → 72.0%). Knowledge update, the category later records should
+   hurt most, gains 3 points with Gemma and 1 with e5-small.
+2. **The per-person swings cancel and point both ways.** Gemma loses 8 verdicts on fenghaoran and gains 8 on maxiulan,
+   each with p = 0.039. A real effect of the bound would not flip sign between two people; probably most of these are
+   answers and verdicts that would also change on a plain rerun (the answer model and judge are not deterministic at
+   temperature 0). That rerun noise was not measured.
+3. **With the leaderboard's search rule, memo still scores above the published memory systems:** Gemma 77.7% micro
+   and 74.5% macro against Hindsight's 72.0% and 66.6% and Mem0's 61.5% and 55.0% (same answer model). memo's
+   largest leads over Hindsight are Temporal (+19.5), Hidden information (+17.2) and Multi-hop (+12.1); Hindsight leads
+   on Knowledge update (85.1% against 79.8%) and, by 0.7, on Single-hop.
+
+### Against LifeBench's published numbers
+
+What still differs: memo holds every record from the start and only the search is bounded (LifeBench adds records
+day by day, so any processing at ingest time sees only the past; memo does none here), 20 whole records as context,
+English data and an English language line for the judge, two people of ten, this fixture's record text instead of
+LifeBench's `format_evidence`, and the ask time added to the question.
