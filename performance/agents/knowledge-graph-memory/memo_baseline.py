@@ -61,19 +61,27 @@ def name_of(index):
     return f"r{index + 1:04}"
 
 
+SPEAKER = re.compile(r"\b([A-Z][a-z]+ [A-Z][a-z]+):")
+
+
 def mbox_entry(index, record):
     when = datetime.fromisoformat(record["timestamp"]).astimezone(UTC)
     first = int(re.search(r"/thread-(\d+)/", record["id"]).group(1)) - 1
     reply = f"In-Reply-To: <{name_of(first)}@example.test>\n" if first != index else ""
+    # A record reads "Subject. Name: body"; one fixed sender and an id as subject went into every chunk's
+    # vector and cost memo 0.2 of recall on reworded questions (BUG-618), which no other engine paid.
+    speaker = SPEAKER.search(record["text"])
+    sender = speaker.group(1) if speaker else "Team Mail"
+    subject = record["text"].split(". ", 1)[0][:120]
     # Takeout's "From <gmail id>@xxx <asctime>" line is what memo's mbox reader requires.
     return (f"From {1_000_000_000_000_000 + index}@xxx {when.strftime('%a %b %d %H:%M:%S +0000 %Y')}\n"
             f"X-GM-THRID: {2_000_000_000_000_000 + first}\n"
             "X-Gmail-Labels: Inbox,Opened\n"
             f"Message-ID: <{name_of(index)}@example.test>\n{reply}"
             f"Date: {when.strftime('%a, %d %b %Y %H:%M:%S +0000')}\n"
-            "From: Synthetic Sender <sender@example.test>\n"
+            f"From: {sender} <{sender.lower().replace(' ', '.')}@example.test>\n"
             "To: synthetic@example.test\n"
-            f"Subject: {name_of(index)}\n"
+            f"Subject: {subject}\n"
             "Content-Type: text/plain; charset=utf-8\n\n"
             f"{record['text']}\n\n")
 
@@ -155,10 +163,17 @@ def or_query(question):
     return " OR ".join(f'"{word}"' for word in words)
 
 
+def mail_name(ref):
+    # A mail's subject is its own now, so its record comes from the Gmail id mbox_entry gave it.
+    found = re.search(r"/(1\d{15})$", ref)
+    return name_of(int(found.group(1)) - 1_000_000_000_000_000) if found else ""
+
+
 def search(memo, names, query, extra, raw_path):
     reply, elapsed = memo.json("search", "all", query, "--limit", "10", *extra)
     raw_path.write_text(json.dumps(reply, ensure_ascii=False, indent=2) + "\n")
-    hits = [names.get(item.get("title", ""), f"unmapped:{item.get('ref')}") for item in reply["items"]]
+    hits = [names.get(item.get("title", "")) or names.get(mail_name(item.get("ref", "")), f"unmapped:{item.get('ref')}")
+            for item in reply["items"]]
     return hits, elapsed, reply["meta"].get("complete", True)
 
 
