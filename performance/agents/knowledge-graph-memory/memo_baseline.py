@@ -141,7 +141,9 @@ def load_mail(memo, data, mail_binary="mail"):
 def embed(memo, folder_id):
     """Embed the notes folder and the stored mail: (the last reply's item with the number of runs, seconds).
 
-    One sync embeds at most 600 chunks of notes and 600 of mail and says what is left, so it runs until nothing is.
+    One sync embeds a bounded number of chunks of notes and of mail and says what is left, so it runs until nothing
+    is. The bound is 600 for e5-small; memo with cli-memo #676 scales it by the model's catalogued speed, 39 for
+    EmbeddingGemma, so 10K records take about 160 runs.
     """
     if reads_mbox(memo):
         command = ("sync", "--since-time", "2000-01-01", "--limit", "50000", "--source", "email:synthetic", "--folder",
@@ -149,13 +151,13 @@ def embed(memo, folder_id):
     else:
         command = ("sync",)
     seconds = 0.0
-    for runs in range(1, 101):
+    for runs in range(1, 1001):
         reply, elapsed = memo.json(*command)
         seconds += elapsed
         parts = [value for value in reply["item"].values() if isinstance(value, dict) and "left" in value]
         if not any(part["left"] for part in parts):
             return {**reply["item"], "sync_runs": runs}, seconds
-    raise RuntimeError("memo sync still had chunks to embed after 100 runs")
+    raise RuntimeError("memo sync still had chunks to embed after 1000 runs")
 
 
 def or_query(question):
@@ -250,7 +252,10 @@ def main():
     # EmbeddingGemma comes under the Gemma Terms of Use; the owner accepted them for this benchmark (7 Nov 2026).
     terms = ["--accept-terms"] if args.model == "embeddinggemma" else []
     timings["model_download_s"] = memo.json("models", "download", args.model, *terms)[1]
-    # memo embeds with MEMO_EMBEDDING_MODEL (default e5-small), not with whichever model was downloaded last.
+    # A download does not choose the model. Memo with cli-memo #676 embeds with the one `models set` chose for every
+    # CLI; older memo read MEMO_EMBEDDING_MODEL (default e5-small).
+    if "set" in memo.run("models", "--help")[0].split():
+        memo.json("models", "set", args.model)
     memo.env["MEMO_EMBEDDING_MODEL"] = args.model
     embedded, timings["sync_embed_s"] = embed(memo, folder["item"]["id"])
     size_embedded = store_bytes(memo.json("store", "info")[0]["item"])
