@@ -78,6 +78,39 @@ One lookup of a deal's owner link on the 20,000 store: 0.985 ms before, 0.002 ms
   per-deal cost flat. The growth past linear is outside the deal lookups; the involvement drain and that memory are
   the next suspects, not measured apart here.
 
+## After cli-core#2682: the involvement drain
+
+[cli-core#2682](https://github.com/WireCatLabs/cli-core/issues/2682) took the next suspect. `drainInvolvementQueue`
+wrote each item's id into its SQL text, so every item it recomputed was a new statement for SQLite to prepare.
+[cli-core#2683](https://github.com/WireCatLabs/cli-core/pull/2683) binds the id as a parameter, so there is one
+statement per kind of item. The question: how much of the time and the memory left after #2681 was this?
+
+Setup as above, same day and machine; "before" is `main` at `ddad19e61` (#2681 merged), "after" the same tree with
+#2683. Free memory before each series: 17-18 GB available of 30 GB; swap held 6 GB the whole time, the same before
+and after.
+
+| N | before: first / rescan | before: peak RSS | after: first / rescan | after: peak RSS |
+|---|---|---|---|---|
+| 1,000 | 1.3 s / 0.85 s | 409 MB | 0.97 s / 0.50 s | 203 MB |
+| 5,000 | 7.1 s / 4.8 s | 1,179 MB | 4.5 s / 2.7 s | 247 MB |
+| 20,000 | 29.7 s / 21.0 s | 3,653 MB | 19.4 s / 12.3 s | 418 MB |
+| 50,000 | 85.7 s / 71.8 s | 5,771 MB | 59.2 s / 41.3 s | 748 MB |
+
+Per-deal cost, first and last tenth of the deal pages, at 20,000: 0.35 → 0.60 ms before, 0.21 → 0.21 ms after. At
+50,000: 0.37 → 0.35 ms before, 0.22 → 0.27 ms after.
+
+- **The memory was the one-off statements.** Peak RSS fell to a tenth or less at every size, and grows with N far
+  more slowly. The driver keeps an evicted statement until the store closes; with one text per kind nothing is
+  evicted on this path. The bench itself keeps every SQL text it saw, to explain them afterwards; at a few KB each
+  that is probably some hundreds of MB of the "before" figure, not measured apart.
+- **A third of the time, or more in a rescan**: the 20,000 first sync takes 19 s instead of 30 s, its rescan 12 s
+  instead of 21 s.
+- **Nothing else changed.** The involvement rows of the 1,000 and 5,000 stores are the same before and after in every
+  column but `occurred_at`, which is each run's wall-clock link time. The query plan of each bound statement equals
+  the one with the id written in, for every kind of item.
+- From 20,000 to 50,000 (2.5 times the data) the first sync now takes 3.0 times as long and the rescan 3.4 times;
+  per-deal cost stays nearly flat, so the growth past linear is outside the deal pages, not found here.
+
 ## What was not measured
 
 - Real portal latency and Bitrix24's rate limit: the fake CRM answers at once. On a real portal the requests add a
