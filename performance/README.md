@@ -9,6 +9,8 @@
 - [crm](crm/README.md): cli-core's CRM sync — how saving deals scales with a portal's size.
 - [output](output/README.md): what each output form costs an agent — `--compact` against JSON, in bytes and
   tokens.
+- [events](events/README.md): how processes that share the store learn about each other's changes — polling
+  against file watching.
 - [agents](agents/README.md): what the CLIs cost the AI agent that reads their answers — output size and meeting workflows.
 - [tasks](tasks/README.md): tasks found in messages — duplicate detection.
 - [startup](startup/README.md): install size and cold start of the five CLIs, and which packages a simple
