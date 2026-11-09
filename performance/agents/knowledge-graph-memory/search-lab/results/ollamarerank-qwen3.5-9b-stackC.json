@@ -1,0 +1,386 @@
+{
+  "v3\tq01\tWhat is the current agreed yearly price of the Juniper Valley hosting agreement? Answer as an amount like EUR 12,500.": {
+    "order": [0, 4],
+    "raw": "{\n  \"records\": [0, 4]\n}",
+    "ms": 46912,
+    "in": 1593,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq02\tWhat is the current agreed yearly price of the Grove Atlas hosting agreement? Answer as an amount like EUR 12,500.": {
+    "order": [0, 4, 5],
+    "raw": "{ \"records\": [0, 4, 5] }",
+    "ms": 24907,
+    "in": 1501,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq03\tWhat is the current agreed yearly price of the Hazel Bridge hosting agreement? Answer as an amount like EUR 12,500.": {
+    "order": [0, 4, 6],
+    "raw": "{ \"records\": [ 0, 4, 6 ] }",
+    "ms": 23595,
+    "in": 1459,
+    "out": 17,
+    "truncated": false
+  },
+  "v3\tq04\tHow much has been paid in total toward the Iris Summit consulting retainer so far? Answer as an amount like EUR 12,500.": {
+    "order": [0, 2, 3],
+    "raw": "{ \"records\": [0, 2, 3] }",
+    "ms": 44535,
+    "in": 1374,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq05\tHow much has been paid in total toward the Amber Kite consulting retainer so far? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2, 5],
+    "raw": "{\n\"records\": [\n0,\n1,\n2,\n5\n]\n}",
+    "ms": 26676,
+    "in": 1321,
+    "out": 22,
+    "truncated": false
+  },
+  "v3\tq06\tHow much has been paid in total toward the Birch Compass consulting retainer so far? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2, 4],
+    "raw": "{\n\"records\": [\n0,\n1,\n2,\n4\n]\n}",
+    "ms": 22873,
+    "in": 1457,
+    "out": 22,
+    "truncated": false
+  },
+  "v3\tq07\tHow much is still owed on the Cedar Lantern hardware order? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2],
+    "raw": "{\n\"records\": [0, 1, 2]\n}",
+    "ms": 23911,
+    "in": 1550,
+    "out": 17,
+    "truncated": false
+  },
+  "v3\tq08\tHow much is still owed on the Flint Meadow hardware order? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2],
+    "raw": "{\n  \"records\": [\n    0,\n    1,\n    2\n  ]\n}",
+    "ms": 23973,
+    "in": 1487,
+    "out": 27,
+    "truncated": false
+  },
+  "v3\tq09\tHow much is still owed on the Dune Harbor hardware order? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2],
+    "raw": "{ \"records\": [0, 1, 2] }",
+    "ms": 19342,
+    "in": 1356,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq10\tWhat did the Elm Beacon conference tickets cost in the end, after any refund? Answer as an amount like EUR 12,500.": {
+    "order": [1, 5],
+    "raw": "{ \"records\": [1, 5] }",
+    "ms": 19024,
+    "in": 1249,
+    "out": 12,
+    "truncated": false
+  },
+  "v3\tq11\tWhat did the Juniper Valley conference tickets cost in the end, after any refund? Answer as an amount like EUR 12,500.": {
+    "order": [1, 0],
+    "raw": "{ \"records\": [ 1, 0 ] }",
+    "ms": 22749,
+    "in": 1583,
+    "out": 14,
+    "truncated": false
+  },
+  "v3\tq12\tWho paid the Grove Atlas team retreat deposit?": {
+    "order": [0],
+    "raw": "{\"records\": [0]}",
+    "ms": 20448,
+    "in": 1479,
+    "out": 7,
+    "truncated": false
+  },
+  "v3\tq13\tWho paid the Hazel Bridge team retreat deposit?": {
+    "order": [0],
+    "raw": "{\n  \"records\": [0]\n}",
+    "ms": 21476,
+    "in": 1351,
+    "out": 12,
+    "truncated": false
+  },
+  "v3\tq14\tWhen is the Iris Summit steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": {
+    "order": [0, 1, 21],
+    "raw": "{\n  \"records\": [0, 1, 21]\n}",
+    "ms": 26735,
+    "in": 1669,
+    "out": 19,
+    "truncated": false
+  },
+  "v3\tq15\tWhen is the Amber Kite steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": {
+    "order": [0, 1, 2, 3, 4, 5, 8, 9, 16, 17],
+    "raw": "{\n  \"records\": [0, 1, 2, 3, 4, 5, 8, 9, 16, 17]\n}",
+    "ms": 28031,
+    "in": 1695,
+    "out": 41,
+    "truncated": false
+  },
+  "v3\tq16\tWhen is the Birch Compass steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": {
+    "order": [0, 1],
+    "raw": "{\n  \"records\": [0, 1]\n}",
+    "ms": 28786,
+    "in": 1941,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq17\tWhen is the Cedar Lantern partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": {
+    "order": [0, 1],
+    "raw": "{\"records\": [0, 1]}",
+    "ms": 22358,
+    "in": 1570,
+    "out": 10,
+    "truncated": false
+  },
+  "v3\tq18\tWhen is the Flint Meadow partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": {
+    "order": [1, 0],
+    "raw": "{\n  \"records\": [1, 0]\n}",
+    "ms": 30153,
+    "in": 1642,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq19\tWhen is the Dune Harbor partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": {
+    "order": [0, 1],
+    "raw": "{\n  \"records\": [0, 1]\n}",
+    "ms": 24928,
+    "in": 1554,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq20\tOn what date is the Elm Beacon design critique? Answer as YYYY-MM-DD.": {
+    "order": [0, 1],
+    "raw": "{\n  \"records\": [0, 1]\n}",
+    "ms": 34788,
+    "in": 2036,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq21\tOn what date is the Juniper Valley design critique? Answer as YYYY-MM-DD.": {
+    "order": [0, 1],
+    "raw": "{ \"records\": [0, 1] }",
+    "ms": 25193,
+    "in": 1766,
+    "out": 12,
+    "truncated": false
+  },
+  "v3\tq22\tOn what date is the Grove Atlas design critique? Answer as YYYY-MM-DD.": {
+    "order": [0, 1, 2, 3, 8, 15, 16, 24, 25, 29],
+    "raw": "{\n  \"records\": [0, 1, 2, 3, 8, 15, 16, 24, 25, 29]\n}",
+    "ms": 25070,
+    "in": 1469,
+    "out": 44,
+    "truncated": false
+  },
+  "v3\tq23\tWhen is the Hazel Bridge customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [0, 1],
+    "raw": "{ \"records\": [0, 1] }",
+    "ms": 28389,
+    "in": 1962,
+    "out": 12,
+    "truncated": false
+  },
+  "v3\tq24\tWhen is the Iris Summit customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [2, 0, 1],
+    "raw": "{\n  \"records\": [2, 0, 1]\n}",
+    "ms": 30371,
+    "in": 2086,
+    "out": 18,
+    "truncated": false
+  },
+  "v3\tq25\tWhen is the Amber Kite customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [1, 2, 5, 6, 23],
+    "raw": "{ \"records\": [1, 2, 5, 6, 23] }",
+    "ms": 36101,
+    "in": 2378,
+    "out": 23,
+    "truncated": false
+  },
+  "v3\tq26\tWhen is the Birch Compass hackathon? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [1, 0, 2],
+    "raw": "{ \"records\": [1, 0, 2] }",
+    "ms": 34748,
+    "in": 2393,
+    "out": 15,
+    "truncated": false
+  },
+  "v3\tq27\tWhen is the Cedar Lantern hackathon? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [0, 1, 2],
+    "raw": "{\n  \"records\": [0, 1, 2]\n}",
+    "ms": 31904,
+    "in": 2234,
+    "out": 18,
+    "truncated": false
+  },
+  "v3\tq28\tOn which weekday does the Flint Meadow weekly design sync take place now?": {
+    "order": [1, 24, 8],
+    "raw": "{ \"records\": [1, 24, 8] }",
+    "ms": 18590,
+    "in": 1266,
+    "out": 17,
+    "truncated": false
+  },
+  "v3\tq29\tOn which weekday does the Dune Harbor weekly design sync take place now?": {
+    "order": [1, 9, 26],
+    "raw": "{ \"records\": [1, 9, 26] }",
+    "ms": 19366,
+    "in": 1339,
+    "out": 17,
+    "truncated": false
+  },
+  "v3\tq30\tWho signed off the Elm Beacon vendor shortlist?": {
+    "order": [0, 1, 2, 11, 18, 15, 16, 19],
+    "raw": "{\"records\": [0, 1, 2, 11, 18, 15, 16, 19]}",
+    "ms": 24430,
+    "in": 1622,
+    "out": 33,
+    "truncated": false
+  },
+  "v3\tq31\tWho signed off the Juniper Valley vendor shortlist?": {
+    "order": [0, 1, 2],
+    "raw": "{ \"records\": [ 0, 1, 2 ] }",
+    "ms": 19345,
+    "in": 1308,
+    "out": 17,
+    "truncated": false
+  },
+  "v3\tq32\tWhich venue is booked for the Grove Atlas launch party?": {
+    "order": [1, 0],
+    "raw": "{ \"records\": [1, 0] }",
+    "ms": 21817,
+    "in": 1565,
+    "out": 12,
+    "truncated": false
+  },
+  "v3\tq33\tWhich venue is booked for the Hazel Bridge launch party?": {
+    "order": [3, 0, 1, 2],
+    "raw": "{\n  \"records\": [3, 0, 1, 2]\n}",
+    "ms": 21577,
+    "in": 1485,
+    "out": 21,
+    "truncated": false
+  },
+  "v3\tq34\tWhich venue is booked for the Iris Summit launch party?": {
+    "order": [2, 3],
+    "raw": "{\n  \"records\": [\n    2,\n    3\n  ]\n}",
+    "ms": 24319,
+    "in": 1685,
+    "out": 22,
+    "truncated": false
+  },
+  "v3\tq35\tHow many times has the Amber Kite security drill been rescheduled? Answer with a number.": {
+    "order": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 20],
+    "raw": "{\n  \"records\": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 20]\n}",
+    "ms": 33039,
+    "in": 2074,
+    "out": 47,
+    "truncated": false
+  },
+  "v3\tq36\tHow many times has the Birch Compass security drill been rescheduled? Answer with a number.": {
+    "order": [0, 1, 2, 3, 6, 9, 10, 25, 28, 29],
+    "raw": "{\n  \"records\": [0, 1, 2, 3, 6, 9, 10, 25, 28, 29]\n}",
+    "ms": 35581,
+    "in": 2303,
+    "out": 43,
+    "truncated": false
+  },
+  "v3\tq39\tWhat is the current confirmed delivery date for the Juniper Valley launch?": {
+    "order": [0, 13, 20],
+    "raw": "{ \"records\": [0, 13, 20] }",
+    "ms": 27518,
+    "in": 1964,
+    "out": 18,
+    "truncated": false
+  },
+  "v3\tq40\tWhat is the current confirmed delivery date for the Flint Meadow security hardening?": {
+    "order": [2, 7, 8, 15, 16, 17, 20, 25, 28, 3],
+    "raw": "{\n  \"records\": [\n    2,\n    7,\n    8,\n    15,\n    16,\n    17,\n    20,\n    25,\n    28,\n    3\n  ]\n}",
+    "ms": 28775,
+    "in": 1725,
+    "out": 68,
+    "truncated": false
+  },
+  "v3\tq41\tWhat was the original delivery date agreed for the Birch Compass pilot, before it changed?": {
+    "order": [1, 2, 5, 14, 16, 12, 11, 10, 29, 27],
+    "raw": "{ \"records\": [1, 2, 5, 14, 16, 12, 11, 10, 29, 27] }",
+    "ms": 32647,
+    "in": 2144,
+    "out": 44,
+    "truncated": false
+  },
+  "v3\tq42\tWho is the confirmed delivery owner of the Hazel Bridge security hardening?": {
+    "order": [1, 5, 0],
+    "raw": "{ \"records\": [1, 5, 0] }",
+    "ms": 24010,
+    "in": 1612,
+    "out": 16,
+    "truncated": false
+  },
+  "v3\tq43\tWho is the confirmed delivery owner of the Grove Atlas billing revamp?": {
+    "order": [1, 6],
+    "raw": "{ \"records\": [1, 6] }",
+    "ms": 24930,
+    "in": 1754,
+    "out": 13,
+    "truncated": false
+  },
+  "v3\tq44\tWhat did Dee Lake commit to delivering for the Dune Harbor pilot?": {
+    "order": [2, 3, 7, 14],
+    "raw": "{ \"records\": [2, 3, 7, 14] }",
+    "ms": 22495,
+    "in": 1566,
+    "out": 20,
+    "truncated": false
+  },
+  "v3\tq45\tWhat did Sol Mendez commit to delivering for the Cedar Lantern data migration?": {
+    "order": [1, 2, 8],
+    "raw": "{ \"records\": [ 1, 2, 8 ] }",
+    "ms": 24126,
+    "in": 1700,
+    "out": 17,
+    "truncated": false
+  },
+  "v3\tq48\tIn which city is the current delivery owner of the Cedar Lantern data migration based?": {
+    "order": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10],
+    "raw": "{\n  \"records\": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10]\n}",
+    "ms": 28585,
+    "in": 1712,
+    "out": 40,
+    "truncated": false
+  },
+  "v3\tq49\tIn which city is the current delivery owner of the Juniper Valley launch based?": {
+    "order": [0, 3, 5],
+    "raw": "{\"records\": [0, 3, 5]}",
+    "ms": 21739,
+    "in": 1445,
+    "out": 13,
+    "truncated": false
+  },
+  "v3\tq50\tIn which city is the current delivery owner of the Amber Kite launch based?": {
+    "order": [0, 2],
+    "raw": "{\"records\": [0, 2]}",
+    "ms": 19793,
+    "in": 1354,
+    "out": 10,
+    "truncated": false
+  },
+  "v3\tq01\tWhat is the yearly fee we now pay for Juniper Valley's rented servers? Answer as an amount like EUR 12,500.": {
+    "order": [0, 2, 4, 5],
+    "raw": "{\"records\": [0, 2, 4, 5]}",
+    "ms": 23741,
+    "in": 1619,
+    "out": 16,
+    "truncated": false
+  },
+  "v3\tq04\tWhat sum has come in so far for Iris Summit's advisory arrangement? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2],
+    "raw": "{\n  \"records\": [\n    0,\n    1,\n    2\n  ]\n}",
+    "ms": 26966,
+    "in": 1658,
+    "out": 27,
+    "truncated": false
+  }
+}

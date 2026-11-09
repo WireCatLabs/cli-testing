@@ -34,7 +34,8 @@ memo, and rewriting records when they are written.
   memo's own words search.
 - Rewriting and LLM rerank: Claude Haiku 5.5 (`claude-haiku-5-5`), thinking off, effort low, at $0.10 / $0.50 per
   million tokens. It is the only model used for rewriting in this lab.
-- Rerankers: fastembed `TextCrossEncoder` over the top 50, each record cut to 2,000 characters.
+- Rerankers: fastembed `TextCrossEncoder` over the top 50, each record cut to 2,000 characters. Local LLM rerank:
+  Ollama (see Local rerank).
 - Machine: AMD Ryzen AI 9 HX 470 (24 threads), 30 GB, Linux 7.0, Python 3.14.4. Other agents' jobs ran at the same
   time, with load average 16 to 35 and swap full. Every millisecond figure here is from a loaded machine.
 
@@ -50,7 +51,9 @@ $U embed.py --cache cache --fixture $B/kg-fixture-v3 --model intfloat/multilingu
 uv run -q --with anthropic==2.6.0 python3 -I rewrite.py --v3 $B/kg-fixture-v3 \
   --v3-reworded $B/kg-fixture-v3-paraphrased --lifebench $B/lifebench/fixtures/fenghaoran --cache cache/rewrites.json
 $U lab.py queries --cache cache
-$U lab.py rerank --cache cache --models-dir models --model BAAI/bge-reranker-base --set v3-all,v3-rew --base hybrid
+$U lab.py rerank --cache cache --models-dir models --model BAAI/bge-reranker-base --set v3-all,v3-rew,lb-s20 \
+  --base gemma-cut          # and --base stackC, and jinaai/jina-reranker-v2-base-multilingual
+$U lab.py ollamarerank --cache cache --model qwen3.5:9b --set v3-all,v3-rew,lb-s20 --num-ctx 8192   # needs ollama serve
 uv run -q --with fastembed==0.9.1 --with anthropic==2.6.0 python3 -I lab.py llmrerank --cache cache --base stackC \
   --set v3-all,v3-rew,lb-s20
 $U lab.py eval --cache cache --output results.json
@@ -62,6 +65,7 @@ Each embedding, query and rerank step ran alone under one machine-wide `flock`.
 | --- | --- |
 | [embed.py](embed.py) | one vector per record (or per chunk of a long record), saved once per model |
 | [rewrite.py](rewrite.py) | Haiku paraphrases, HyDE record, dated paraphrases, date range; cached, cost logged |
+| [periods.ts](periods.ts) | the period cli-core's local parser reads from each question, for the date-boost rows |
 | [lab.py](lab.py) | every hypothesis, the cross-encoder and Haiku rerank runs, and the scoring |
 
 ## Results
@@ -97,9 +101,34 @@ work of anything below.
 | 7 | Haiku 3 rewrites, mean vector | no | 0.94 | 0.91 | 0.40 / 0.81 | (+0.02 / +0.05 over Gemma alone) | 1.4 s | ~$0.0001 | small gain alone |
 | 8 | e5-small + Haiku 3 rewrites, RRF | no | 0.96 | 0.93 | not run | | 1.4 s | ~$0.0001 | lifts e5-small from 0.71 to Gemma's level |
 | 9 | Recency boost (newer records up among the top 10 or 30) | yes | 0.92–0.94 | 0.94 | 0.40–0.41 / 0.79–0.80 | 0 | 0 | 0 | no gain |
-| 10 | Local cross-encoders over the top 50 of words + vectors RRF k=60 (best: jina-reranker-v2 0.82, bge-reranker-base 0.79) | no | 0.68–0.82 | 0.87–0.94 | not run | | 0.4–1.9 s | 0 | **open**: tested only over a first stage already broken at 0.41 |
+| 10 | Local cross-encoders (bge-reranker-base, jina-reranker-v2) over the top 50 of the date-cut Gemma or of stack C | yes | 0.88 (0.94 fused back with stack C) | 0.87–0.94 | sample 0.35–0.48 | at best +0.01 over stack C on the sample | 1.3–1.9 s v3, 9 s LifeBench | 0 | **no**: lose a reworded question, LifeBench gain is stack C's (see Local rerank) |
 | 11 | Gemma query prefix variants | no | 0.71–0.94 | 0.91–0.94 | 0.35–0.38 / 0.68–0.73 | (worse) | 0 | 0 | worse; keep `task: search result` |
 | 12 | HyDE (Haiku writes a record, embedded as a passage) | no | 0.65–0.88 | 0.78–0.91 | 0.27–0.36 / 0.66–0.76 | (worse) | 1.3 s | ~$0.00007 | worse everywhere; drop |
+
+### The date-range boost without Haiku (cli-core `search all`)
+
+Row 3 was built into `search all` with a local parser instead of Haiku (`questionPeriod` in cli-core, the PR that
+links here). [periods.ts](periods.ts) runs that parser over every lab question with "now" set to the question's own
+date and writes [ts-periods.json](ts-periods.json); `lab.py` reads it from `cache/`. Of the 288 LifeBench questions the
+parser names a period for 208, Haiku for 203, both for 193; no v3 question names one.
+
+`search all` merges sources whose scores do not compare (a hit found only by words has no cosine), so it boosts by
+rank: each of the top 100 keeps `1 - rank/100` and gains 0.5 inside the period. Row 3 boosted min-max cosines instead.
+
+| Base | Period | Boost | v3 reworded @10 | v3 all @10 | LifeBench R@10 / hit@10 |
+| --- | --- | --- | ---: | ---: | ---: |
+| Gemma, date cut | none | none | 0.94 | 0.94 | 0.41 / 0.79 |
+| Gemma, date cut | Haiku | min-max score + 0.5 (row 3) | 0.94 | 0.94 | 0.44 / 0.84 |
+| Gemma, date cut | Haiku | rank + 0.5 | 0.94 | 0.94 | 0.42 / 0.82 |
+| Gemma, date cut | **parser** | rank + 0.5 | 0.94 | 0.94 | 0.42 / 0.82 |
+| words + Gemma RRF k=60, date cut | none | none | 0.41 | 0.94 | 0.44 / 0.84 |
+| words + Gemma RRF k=60, date cut | **parser** | rank + 0.5 | 0.41 | 0.94 | **0.47 / 0.88** |
+
+- **The parser is as good as Haiku here**: the same 0.42 / 0.82 with the same boost, for free and with no delay.
+- **The rank boost gives less than the score boost over Gemma alone** (+0.01 / +0.03 against +0.03 / +0.05). That is the
+  formula, not the parser. Over words and meaning merged, closer to what `search all` does, it gives +0.03 / +0.04.
+- **v3 does not move**: its questions name no period. The words + Gemma base breaks the reworded set (0.41) with or
+  without the boost; that is row 6, not the boost.
 
 ### Every row
 
@@ -172,6 +201,14 @@ work of anything below.
 | jina-reranker-v2-base-multilingual (1,623 ms) | 0.82 | 0.87 | | |
 | the same five, rank-fused back with the first stage | 0.53–0.65 | 0.94 | | |
 | **LLM rerank (Haiku, top 30 of stack C)** | 1.00 | 0.94 | 0.55 / 0.93 | 0.53 |
+| **(a) again, 9 November: local rerank over the fair baselines** (details under Local rerank) | | | | |
+| bge-reranker-base over the date-cut Gemma | 0.88 | 0.94 | | 0.35 |
+| bge-reranker-base over stack C | 0.88 | 0.94 | | 0.39 |
+| jina-reranker-v2-base-multilingual over the date-cut Gemma | 0.88 | 0.87 | | 0.38 |
+| jina-reranker-v2-base-multilingual over stack C | 0.88 | 0.87 | | 0.44 |
+| jina-reranker-v2 over stack C, rank-fused back with stack C | 0.94 | 0.94 | | 0.48 |
+| Haiku over the rebuilt stack C (rerun) | 0.94 | 0.94 | | 0.55 |
+| Ollama qwen3.5:9b over stack C | stopped | 0.94 | | stopped |
 
 The MiniLM-L-6 time is a load spike: the larger L-12 ran in a quarter of it. The other millisecond numbers are
 medians over 46 or 17 questions.
@@ -197,7 +234,9 @@ medians over 46 or 17 questions.
 | Date range, first run (keyed without the ask date, thrown away) and second run | 338 + 351 | $0.018 |
 | Haiku rerank, free-text answer (thrown away, see below) | 351 | $0.163 |
 | Haiku rerank, JSON answer: v3 + sample first, then the rest of LifeBench | 122 + 229 | $0.167 |
-| **Total** | | **$0.44** |
+| 9 November rebuild: dated paraphrases and date ranges again | 702 | $0.047 |
+| 9 November: Haiku rerank over the rebuilt stack C (v3 + sample) | 122 | $0.046 |
+| **Total** | | **$0.53** |
 
 The rewrites ran on all 288 LifeBench questions before the owner's rule "sample first" reached this lab. The
 Haiku rerank followed the rule: first v3 plus the 59-question sample (0.46 to 0.53 against stack C), then the rest,
@@ -227,20 +266,80 @@ the sample, both scored 0.53.
 5. **The question's date range is the cheapest strong signal.** Haiku names the period (0.8 s, $0.00003). Moving
    records inside it up adds +0.03 recall@10 and +0.05 hit@10 over the date cut, with 69 questions up and 2 down.
    It does no harm on v3. A local date parser could probably do the same for free (not tested).
-6. **Local cross-encoders are still an open question.** They ran only over the top 50 of words + vectors with RRF
-   k=60. That list is already at 0.41 on the reworded set, so the rerankers repaired damage (up to 0.82) instead of
-   competing with Gemma's 0.94. The intended test, over the top 50 of Gemma alone (`--base gemma`), was queued and
-   lost (see below). So were LifeBench and stack C. Their speed here was 0.4 to 1.6 s per question on a loaded CPU.
+6. **A local reranker does not replace the Haiku rerank** (details under Local rerank below). Both cross-encoders
+   push one reworded question out of the top ten (0.94 to 0.88), and on LifeBench they do less than stack C alone.
+   Ollama with qwen3.5:9b matched stack C on v3 (0.94) at 25 s per question; the rest of its run was stopped.
 7. **HyDE and other Gemma prompts make it worse.** HyDE alone drops LifeBench to 0.27. The QA and fact-checking
    prompts drop hit@10 by 0.05 to 0.08. Keep `task: search result`.
 8. **A recency boost adds nothing** beyond the date cut, on Knowledge update or overall.
 9. **Haiku rewrites lift e5-small to Gemma's level on reworded questions** (0.71 → 0.96). Not measured on
    LifeBench.
 
+## Local rerank (9 November)
+
+### Why
+
+The Haiku rerank was the biggest gain, but it sends the question and 30 records to a paid API. The owner wants a
+local option, off by default, for people who will not send their records out. The question: **does a model that
+runs on this computer come close to the Haiku rerank, and at what time and memory per question?** The earlier
+cross-encoder rows ran over a first stage already broken on reworded questions, so they did not answer it.
+
+### Setup
+
+- The same lab, caches rebuilt on 9 November (`embed.py`, `rewrite.py`, `lab.py queries`). The rebuild reproduced
+  Gemma alone 0.38 / 0.76, the date cut 0.41 / 0.79 and stack C 0.49 / 0.89 (0.90 before; the rewrites vary).
+- Two first stages: **gemma-cut** (Gemma with the date cut, the fair baseline) and **stack C**.
+- **Cross-encoders**: fastembed 0.9.1 `TextCrossEncoder`, `BAAI/bge-reranker-base` and
+  `jinaai/jina-reranker-v2-base-multilingual`, over the top 50, records cut to 2,000 characters, 8 threads.
+- **Ollama**: 0.32.13 on CPU, `qwen3.5:9b` (6.6 GB, the only model on the machine), the Haiku prompt and JSON schema
+  through `format`, thinking off, temperature 0, `num_ctx` 8192 (the longest prompt was 2,393 tokens, none cut).
+  Top 30 of stack C, records cut to 400 characters, as for Haiku.
+- **Haiku** rerun over the rebuilt stack C so it sits beside the local models.
+- The cached answers are in [results/](results/) (copy them into the cache folder to rescore without a rerun).
+- Sets: v3 all (46), v3 reworded (17), the LifeBench sample (59). Peak memory is `/usr/bin/time -v`'s maximum
+  resident size of the whole lab process (vectors, SQLite and the model; the lab without a model peaked at
+  0.1 GB). For Ollama it is `VmHWM` of the model process.
+
+### Results
+
+| Reranker | First stage | v3 reworded @10 | v3 all @10 | LifeBench sample R@10 | Seconds per question, v3 / LifeBench | Peak memory |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| none (fair baseline) | gemma-cut | 0.94 | 0.94 | 0.31 | 0 | |
+| none | stack C | 0.94 | 0.94 | 0.47 | 0 (two Haiku calls, ~1.3 s) | |
+| bge-reranker-base | gemma-cut | 0.88 | 0.94 | 0.35 | 1.9 / 9.0 | 2.4 GB |
+| bge-reranker-base | stack C | 0.88 | 0.94 | 0.39 | 1.3 / 8.7 | 2.3 GB |
+| jina-reranker-v2-base-multilingual | gemma-cut | 0.88 | 0.87 | 0.38 | 1.5 / 9.0 | 5.8 GB |
+| jina-reranker-v2-base-multilingual | stack C | 0.88 | 0.87 | 0.44 | 1.4 / 9.3 | 5.7 GB |
+| jina-reranker-v2, fused back with the first stage (RRF k=60) | stack C | 0.94 | 0.94 | 0.48 | 1.4 / 9.3 | 5.7 GB |
+| **Ollama qwen3.5:9b** | stack C | stopped (2 of 17) | **0.94** | stopped | **25** / not measured | **7.7 GB** |
+| **Haiku 5.5** (paid) | stack C | 0.94 | 0.94 | **0.55** | 1.0 | – (API) |
+
+Seconds are medians on a machine shared with other agents' jobs. The cross-encoders score 50 pairs per question,
+and LifeBench records are about three times longer than v3's, so LifeBench takes 9 s. Haiku's 1.0 s is the median
+single call. The Haiku rerun scores 0.94 on the reworded set where the first run scored 1.00: one question, with
+rewrites that differ a little between runs. Its sample score rose from 0.53 to 0.55.
+
+The Ollama run was stopped after all 46 v3 questions and 2 reworded ones, because the computer ran low on
+memory (the 9B model held 7.7 GB beside other agents' jobs). It was not restarted.
+
+### What it showed
+
+1. **No local model came close to Haiku here.** On the LifeBench sample, the best local row (jina fused back with
+   stack C, 0.48) is +0.01 over stack C alone. Haiku reaches 0.55 and costs about $0.0004 per question.
+2. **The cross-encoders lose a reworded question** (0.94 to 0.88) over either first stage, and jina also drops the
+   questions in the record's words (0.94 to 0.87 recall@10). Fusing the result back with the first stage recovers
+   that loss, and the gain goes with it.
+3. **Over the fair baseline they help LifeBench a little** (0.31 to 0.35 or 0.38). Stack C helps much more (0.47)
+   for two small Haiku calls.
+4. **A local LLM reranker is too slow on this CPU for search as you type**: 25 s per question with qwen3.5:9b and
+   7.7 GB of memory, on prompts of about 1,500 tokens. LifeBench prompts are longer. On v3 it matched stack C and
+   Haiku (0.94). Whether it gains on LifeBench was not measured.
+5. So: keep the Haiku rerank as the opt-in "search harder". A local option is not worth building on these numbers.
+   A smaller model or a GPU might change that (not tested).
+
 ## What was not measured
 
-- **The local rerankers over Gemma alone (the actual question (a)), over stack C, on LifeBench, bge-reranker-v2-m3-int8, chunked LifeBench records and the
-  title slot.** Their runs were queued. Then a cleanup batch at 23:20 removed the scratch folder (3.2 GB of vectors,
+- **bge-reranker-v2-m3-int8, chunked LifeBench records and the title slot.** Their runs were queued. Then a cleanup batch at 23:20 removed the scratch folder (3.2 GB of vectors,
   caches and `results.json`), treating the job as finished. The scripts here were rebuilt from the session. The
   rebuilt `lab.py` reproduces the words-only row exactly (0.20 / 0.85 / 0.40 / 0.76 / 0.39). The other rows come
   from the run before the removal. Running them again needs about 40 minutes of embedding, and $0.44 for the Haiku
