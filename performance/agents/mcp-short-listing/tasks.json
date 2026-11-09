@@ -1,0 +1,139 @@
+[
+  {
+    "id": "q01",
+    "kind": "search",
+    "prompt": "What is the current agreed yearly price of the Juniper Valley hosting agreement? Answer as an amount like EUR 12,500.",
+    "answers": ["EUR 16,000"]
+  },
+  {
+    "id": "q05",
+    "kind": "search",
+    "prompt": "How much has been paid in total toward the Amber Kite consulting retainer so far? Answer as an amount like EUR 12,500.",
+    "answers": ["EUR 17,250"]
+  },
+  {
+    "id": "q07",
+    "kind": "search",
+    "prompt": "How much is still owed on the Cedar Lantern hardware order? Answer as an amount like EUR 12,500.",
+    "answers": ["EUR 8,250"]
+  },
+  {
+    "id": "q10",
+    "kind": "search",
+    "prompt": "What did the Elm Beacon conference tickets cost in the end, after any refund? Answer as an amount like EUR 12,500.",
+    "answers": ["EUR 900"]
+  },
+  {
+    "id": "q12",
+    "kind": "search",
+    "prompt": "Who paid the Grove Atlas team retreat deposit?",
+    "answers": ["Tess Ng"]
+  },
+  {
+    "id": "q15",
+    "kind": "search",
+    "prompt": "When is the Amber Kite steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.",
+    "answers": ["2026-11-21 12:00"]
+  },
+  {
+    "id": "q20",
+    "kind": "search",
+    "prompt": "On what date is the Elm Beacon design critique? Answer as YYYY-MM-DD.",
+    "answers": ["2026-03-29"]
+  },
+  {
+    "id": "q23",
+    "kind": "search",
+    "prompt": "When is the Hazel Bridge customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.",
+    "answers": ["cancelled"]
+  },
+  {
+    "id": "q28",
+    "kind": "search",
+    "prompt": "On which weekday does the Flint Meadow weekly design sync take place now?",
+    "answers": ["Monday"]
+  },
+  {
+    "id": "q30",
+    "kind": "search",
+    "prompt": "Who signed off the Elm Beacon vendor shortlist?",
+    "answers": ["Ira Brook"]
+  },
+  {
+    "id": "q32",
+    "kind": "search",
+    "prompt": "Which venue is booked for the Grove Atlas launch party?",
+    "answers": ["Harbour Loft"]
+  },
+  {
+    "id": "q36",
+    "kind": "search",
+    "prompt": "How many times has the Birch Compass security drill been rescheduled? Answer with a number.",
+    "answers": ["3"]
+  },
+  {
+    "id": "q39",
+    "kind": "search",
+    "prompt": "What is the current confirmed delivery date for the Juniper Valley launch?",
+    "answers": ["2027-09-11"]
+  },
+  {
+    "id": "q44",
+    "kind": "search",
+    "prompt": "What did Dee Lake commit to delivering for the Dune Harbor pilot?",
+    "answers": ["usability study"]
+  },
+  {
+    "id": "page-12",
+    "kind": "page",
+    "prompt": "List notes 5 at a time, newest first, with notes list and limit 5. What is the id of the 12th note in that order?",
+    "answers": ["5501"]
+  },
+  {
+    "id": "page-14",
+    "kind": "page",
+    "prompt": "Page through notes list with limit 5. Give the id of the 14th note.",
+    "answers": ["5499"]
+  },
+  {
+    "id": "missing-kind",
+    "kind": "missing",
+    "prompt": "Search everything for the Amber Kite steering committee. Was every kind of item searched by meaning, or was one kind searched by words only? Answer with that kind, or all.",
+    "answers": ["message"]
+  },
+  {
+    "id": "missing-fix",
+    "kind": "missing",
+    "prompt": "Search everything for the Amber Kite steering committee. If the answer says something is missing from it, which command does it say would fix that? Answer with the command words only.",
+    "answers": ["conversations rebuild"]
+  },
+  {
+    "id": "write-reply",
+    "kind": "write",
+    "prompt": "Propose (do not send) a reply in the email account synthetic@example.test to Ira Brook, confirming the Amber Kite steering committee time.",
+    "write": {
+      "command": "actions add",
+      "args": {
+        "kind": "reply"
+      }
+    }
+  },
+  {
+    "id": "write-fact",
+    "kind": "write",
+    "prompt": "Record as a fact that Tess Ng paid the Grove Atlas team retreat deposit.",
+    "write": {
+      "command": "facts add",
+      "text": "Tess Ng"
+    }
+  },
+  {
+    "id": "write-memory",
+    "kind": "write",
+    "prompt": "Save a memory that the owner prefers Monday design syncs for Flint Meadow.",
+    "write": {
+      "command": "memories add",
+      "text": "Monday"
+    }
+  }
+]

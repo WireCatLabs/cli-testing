@@ -33,3 +33,5 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).
+- [mcp-short-listing](mcp-short-listing/README.md) — an agent succeeds as often with the short MCP answer schema
+  (3,323 characters for the three tools) as with the full one (17,278), on half the input tokens (2026-11-09).

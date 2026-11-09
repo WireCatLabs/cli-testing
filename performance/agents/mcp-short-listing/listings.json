@@ -1,0 +1,702 @@
+{
+  "short": {
+    "memo_read": {
+      "type": "object",
+      "properties": {
+        "items": { "type": "array", "items": {} },
+        "item": {},
+        "page": { "type": "object", "properties": { "has_more": { "type": "boolean" } }, "required": ["has_more"] },
+        "next": {
+          "type": "array",
+          "items": { "type": "object", "properties": {}, "required": [] },
+          "description": "steps to run next: command and args"
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": { "field": { "type": "string" }, "why": { "type": "string" } },
+            "required": ["field", "why"]
+          }
+        },
+        "meta": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "description": "run facts; memo_tools_search shows the full answer"
+        }
+      },
+      "required": ["meta"],
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "memo_write": {
+      "type": "object",
+      "properties": {
+        "item": {},
+        "next": {
+          "type": "array",
+          "items": { "type": "object", "properties": {}, "required": [] },
+          "description": "steps to run next: command and args"
+        },
+        "meta": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "description": "run facts; memo_tools_search shows the full answer"
+        }
+      },
+      "required": ["meta"],
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    }
+  },
+  "full": {
+    "memo_read": {
+      "type": "object",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "items": { "type": "array", "items": {} },
+            "page": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "mode": { "const": "page" },
+                    "limit": { "type": "integer", "minimum": 1 },
+                    "has_more": { "type": "boolean" },
+                    "next_page": { "type": "integer", "minimum": 2 },
+                    "total": {
+                      "type": "object",
+                      "properties": {
+                        "value": { "type": "integer", "minimum": 0 },
+                        "relation": { "enum": ["eq", "gte"], "type": "string" }
+                      },
+                      "required": ["value", "relation"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["mode", "limit", "has_more"],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "mode": { "const": "cursor" },
+                    "limit": { "type": "integer", "minimum": 1 },
+                    "has_more": { "type": "boolean" },
+                    "next_cursor": { "type": "string", "pattern": "\\S" },
+                    "total": {
+                      "type": "object",
+                      "properties": {
+                        "value": { "type": "integer", "minimum": 0 },
+                        "relation": { "enum": ["eq", "gte"], "type": "string" }
+                      },
+                      "required": ["value", "relation"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["mode", "limit", "has_more"],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "next": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "command" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "command": { "type": "string", "pattern": "\\S" },
+                      "args": { "type": "object", "propertyNames": { "type": "string" }, "additionalProperties": {} },
+                      "line": { "type": "string", "pattern": "\\S" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "type": "boolean" }
+                    },
+                    "required": ["kind", "step", "command", "args", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "user_action" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "const": false }
+                    },
+                    "required": ["kind", "step", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "maxItems": 2
+            },
+            "missing": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "field": { "type": "string", "pattern": "\\S" },
+                  "why": { "type": "string", "pattern": "\\S" },
+                  "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" }
+                },
+                "required": ["field", "why"],
+                "additionalProperties": false
+              }
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "run_id": { "type": "string", "pattern": "\\S" },
+                "duration_ms": { "type": "integer", "minimum": 0 },
+                "accounts": { "type": "array", "items": { "type": "string", "pattern": "\\S" } },
+                "complete": { "type": "boolean" },
+                "issues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "enum": [
+                          "validation_error",
+                          "configuration_error",
+                          "authentication_error",
+                          "permission_error",
+                          "not_found",
+                          "confirmation_required",
+                          "rate_limited",
+                          "timeout",
+                          "network_error",
+                          "provider_error",
+                          "provider_unavailable",
+                          "invalid_response",
+                          "outcome_unknown",
+                          "conflict",
+                          "cancelled"
+                        ],
+                        "type": "string"
+                      },
+                      "reason": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "source": { "type": "string", "pattern": "\\S" }
+                    },
+                    "required": ["code", "source"],
+                    "additionalProperties": false
+                  }
+                },
+                "truncated": { "type": "boolean" },
+                "timezone": { "type": "string", "pattern": "\\S" },
+                "now": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                "now_local": {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}[+-]\\d{2}:\\d{2}$"
+                },
+                "window": {
+                  "type": "object",
+                  "properties": {
+                    "since": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                    "until": { "type": "string", "format": "date-time", "pattern": "Z$" }
+                  },
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "ranking": {
+                  "type": "object",
+                  "properties": {
+                    "applied": { "type": "boolean" },
+                    "reason_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                    "provider": { "type": "string", "pattern": "\\S" },
+                    "model": { "type": "string", "pattern": "\\S" },
+                    "endpoint": { "type": "string", "pattern": "\\S" },
+                    "sent": { "type": "integer", "minimum": 0 },
+                    "cost_usd": { "anyOf": [{ "type": "number", "minimum": 0 }, { "type": "null" }] },
+                    "usage": {
+                      "type": "object",
+                      "properties": {
+                        "input": { "type": "integer", "minimum": 0 },
+                        "output": { "type": "integer", "minimum": 0 }
+                      },
+                      "required": ["input", "output"],
+                      "additionalProperties": false
+                    },
+                    "ms": { "type": "integer", "minimum": 0 }
+                  },
+                  "required": ["applied", "provider", "model", "endpoint", "sent", "cost_usd", "ms"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["run_id", "duration_ms", "complete"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["items", "page", "meta"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "item": {},
+            "next": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "command" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "command": { "type": "string", "pattern": "\\S" },
+                      "args": { "type": "object", "propertyNames": { "type": "string" }, "additionalProperties": {} },
+                      "line": { "type": "string", "pattern": "\\S" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "type": "boolean" }
+                    },
+                    "required": ["kind", "step", "command", "args", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "user_action" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "const": false }
+                    },
+                    "required": ["kind", "step", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "maxItems": 2
+            },
+            "missing": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "field": { "type": "string", "pattern": "\\S" },
+                  "why": { "type": "string", "pattern": "\\S" },
+                  "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" }
+                },
+                "required": ["field", "why"],
+                "additionalProperties": false
+              }
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "run_id": { "type": "string", "pattern": "\\S" },
+                "duration_ms": { "type": "integer", "minimum": 0 },
+                "accounts": { "type": "array", "items": { "type": "string", "pattern": "\\S" } },
+                "complete": { "type": "boolean" },
+                "issues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "enum": [
+                          "validation_error",
+                          "configuration_error",
+                          "authentication_error",
+                          "permission_error",
+                          "not_found",
+                          "confirmation_required",
+                          "rate_limited",
+                          "timeout",
+                          "network_error",
+                          "provider_error",
+                          "provider_unavailable",
+                          "invalid_response",
+                          "outcome_unknown",
+                          "conflict",
+                          "cancelled"
+                        ],
+                        "type": "string"
+                      },
+                      "reason": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "source": { "type": "string", "pattern": "\\S" }
+                    },
+                    "required": ["code", "source"],
+                    "additionalProperties": false
+                  }
+                },
+                "truncated": { "type": "boolean" },
+                "timezone": { "type": "string", "pattern": "\\S" },
+                "now": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                "now_local": {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}[+-]\\d{2}:\\d{2}$"
+                },
+                "window": {
+                  "type": "object",
+                  "properties": {
+                    "since": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                    "until": { "type": "string", "format": "date-time", "pattern": "Z$" }
+                  },
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "ranking": {
+                  "type": "object",
+                  "properties": {
+                    "applied": { "type": "boolean" },
+                    "reason_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                    "provider": { "type": "string", "pattern": "\\S" },
+                    "model": { "type": "string", "pattern": "\\S" },
+                    "endpoint": { "type": "string", "pattern": "\\S" },
+                    "sent": { "type": "integer", "minimum": 0 },
+                    "cost_usd": { "anyOf": [{ "type": "number", "minimum": 0 }, { "type": "null" }] },
+                    "usage": {
+                      "type": "object",
+                      "properties": {
+                        "input": { "type": "integer", "minimum": 0 },
+                        "output": { "type": "integer", "minimum": 0 }
+                      },
+                      "required": ["input", "output"],
+                      "additionalProperties": false
+                    },
+                    "ms": { "type": "integer", "minimum": 0 }
+                  },
+                  "required": ["applied", "provider", "model", "endpoint", "sent", "cost_usd", "ms"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["run_id", "duration_ms", "complete"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["item", "meta"],
+          "additionalProperties": false
+        }
+      ],
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "memo_write": {
+      "type": "object",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "items": { "type": "array", "items": {} },
+            "page": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "mode": { "const": "page" },
+                    "limit": { "type": "integer", "minimum": 1 },
+                    "has_more": { "type": "boolean" },
+                    "next_page": { "type": "integer", "minimum": 2 },
+                    "total": {
+                      "type": "object",
+                      "properties": {
+                        "value": { "type": "integer", "minimum": 0 },
+                        "relation": { "enum": ["eq", "gte"], "type": "string" }
+                      },
+                      "required": ["value", "relation"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["mode", "limit", "has_more"],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "mode": { "const": "cursor" },
+                    "limit": { "type": "integer", "minimum": 1 },
+                    "has_more": { "type": "boolean" },
+                    "next_cursor": { "type": "string", "pattern": "\\S" },
+                    "total": {
+                      "type": "object",
+                      "properties": {
+                        "value": { "type": "integer", "minimum": 0 },
+                        "relation": { "enum": ["eq", "gte"], "type": "string" }
+                      },
+                      "required": ["value", "relation"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["mode", "limit", "has_more"],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "next": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "command" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "command": { "type": "string", "pattern": "\\S" },
+                      "args": { "type": "object", "propertyNames": { "type": "string" }, "additionalProperties": {} },
+                      "line": { "type": "string", "pattern": "\\S" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "type": "boolean" }
+                    },
+                    "required": ["kind", "step", "command", "args", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "user_action" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "const": false }
+                    },
+                    "required": ["kind", "step", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "maxItems": 2
+            },
+            "missing": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "field": { "type": "string", "pattern": "\\S" },
+                  "why": { "type": "string", "pattern": "\\S" },
+                  "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" }
+                },
+                "required": ["field", "why"],
+                "additionalProperties": false
+              }
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "run_id": { "type": "string", "pattern": "\\S" },
+                "duration_ms": { "type": "integer", "minimum": 0 },
+                "accounts": { "type": "array", "items": { "type": "string", "pattern": "\\S" } },
+                "complete": { "type": "boolean" },
+                "issues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "enum": [
+                          "validation_error",
+                          "configuration_error",
+                          "authentication_error",
+                          "permission_error",
+                          "not_found",
+                          "confirmation_required",
+                          "rate_limited",
+                          "timeout",
+                          "network_error",
+                          "provider_error",
+                          "provider_unavailable",
+                          "invalid_response",
+                          "outcome_unknown",
+                          "conflict",
+                          "cancelled"
+                        ],
+                        "type": "string"
+                      },
+                      "reason": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "source": { "type": "string", "pattern": "\\S" }
+                    },
+                    "required": ["code", "source"],
+                    "additionalProperties": false
+                  }
+                },
+                "truncated": { "type": "boolean" },
+                "timezone": { "type": "string", "pattern": "\\S" },
+                "now": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                "now_local": {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}[+-]\\d{2}:\\d{2}$"
+                },
+                "window": {
+                  "type": "object",
+                  "properties": {
+                    "since": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                    "until": { "type": "string", "format": "date-time", "pattern": "Z$" }
+                  },
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "ranking": {
+                  "type": "object",
+                  "properties": {
+                    "applied": { "type": "boolean" },
+                    "reason_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                    "provider": { "type": "string", "pattern": "\\S" },
+                    "model": { "type": "string", "pattern": "\\S" },
+                    "endpoint": { "type": "string", "pattern": "\\S" },
+                    "sent": { "type": "integer", "minimum": 0 },
+                    "cost_usd": { "anyOf": [{ "type": "number", "minimum": 0 }, { "type": "null" }] },
+                    "usage": {
+                      "type": "object",
+                      "properties": {
+                        "input": { "type": "integer", "minimum": 0 },
+                        "output": { "type": "integer", "minimum": 0 }
+                      },
+                      "required": ["input", "output"],
+                      "additionalProperties": false
+                    },
+                    "ms": { "type": "integer", "minimum": 0 }
+                  },
+                  "required": ["applied", "provider", "model", "endpoint", "sent", "cost_usd", "ms"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["run_id", "duration_ms", "complete"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["items", "page", "meta"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "item": {},
+            "next": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "command" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "command": { "type": "string", "pattern": "\\S" },
+                      "args": { "type": "object", "propertyNames": { "type": "string" }, "additionalProperties": {} },
+                      "line": { "type": "string", "pattern": "\\S" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "type": "boolean" }
+                    },
+                    "required": ["kind", "step", "command", "args", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "user_action" },
+                      "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "why": { "type": "string", "pattern": "\\S" },
+                      "safe_to_auto_execute": { "const": false }
+                    },
+                    "required": ["kind", "step", "why", "safe_to_auto_execute"],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "maxItems": 2
+            },
+            "missing": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "field": { "type": "string", "pattern": "\\S" },
+                  "why": { "type": "string", "pattern": "\\S" },
+                  "step": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" }
+                },
+                "required": ["field", "why"],
+                "additionalProperties": false
+              }
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "run_id": { "type": "string", "pattern": "\\S" },
+                "duration_ms": { "type": "integer", "minimum": 0 },
+                "accounts": { "type": "array", "items": { "type": "string", "pattern": "\\S" } },
+                "complete": { "type": "boolean" },
+                "issues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "enum": [
+                          "validation_error",
+                          "configuration_error",
+                          "authentication_error",
+                          "permission_error",
+                          "not_found",
+                          "confirmation_required",
+                          "rate_limited",
+                          "timeout",
+                          "network_error",
+                          "provider_error",
+                          "provider_unavailable",
+                          "invalid_response",
+                          "outcome_unknown",
+                          "conflict",
+                          "cancelled"
+                        ],
+                        "type": "string"
+                      },
+                      "reason": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                      "source": { "type": "string", "pattern": "\\S" }
+                    },
+                    "required": ["code", "source"],
+                    "additionalProperties": false
+                  }
+                },
+                "truncated": { "type": "boolean" },
+                "timezone": { "type": "string", "pattern": "\\S" },
+                "now": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                "now_local": {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}[+-]\\d{2}:\\d{2}$"
+                },
+                "window": {
+                  "type": "object",
+                  "properties": {
+                    "since": { "type": "string", "format": "date-time", "pattern": "Z$" },
+                    "until": { "type": "string", "format": "date-time", "pattern": "Z$" }
+                  },
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "ranking": {
+                  "type": "object",
+                  "properties": {
+                    "applied": { "type": "boolean" },
+                    "reason_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+$" },
+                    "provider": { "type": "string", "pattern": "\\S" },
+                    "model": { "type": "string", "pattern": "\\S" },
+                    "endpoint": { "type": "string", "pattern": "\\S" },
+                    "sent": { "type": "integer", "minimum": 0 },
+                    "cost_usd": { "anyOf": [{ "type": "number", "minimum": 0 }, { "type": "null" }] },
+                    "usage": {
+                      "type": "object",
+                      "properties": {
+                        "input": { "type": "integer", "minimum": 0 },
+                        "output": { "type": "integer", "minimum": 0 }
+                      },
+                      "required": ["input", "output"],
+                      "additionalProperties": false
+                    },
+                    "ms": { "type": "integer", "minimum": 0 }
+                  },
+                  "required": ["applied", "provider", "model", "endpoint", "sent", "cost_usd", "ms"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["run_id", "duration_ms", "complete"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["item", "meta"],
+          "additionalProperties": false
+        }
+      ],
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    }
+  }
+}

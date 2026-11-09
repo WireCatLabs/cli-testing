@@ -1,0 +1,249 @@
+{
+  "model": "claude-haiku-5-5",
+  "max_turns": 8,
+  "result_chars": 12000,
+  "spent_usd": 0.27996309999999985,
+  "summary": {
+    "full": {
+      "tasks": 21,
+      "ok": 19,
+      "tool_calls": 173,
+      "input_tokens": 2678981,
+      "output_tokens": 24130,
+      "listing_chars": 19793
+    }
+  },
+  "runs": [
+    {
+      "repeat": 0,
+      "id": "q01",
+      "kind": "search",
+      "arm": "full",
+      "ok": false,
+      "calls": 13,
+      "input": 189072,
+      "output": 1421,
+      "final": ""
+    },
+    {
+      "repeat": 0,
+      "id": "q05",
+      "kind": "search",
+      "arm": "full",
+      "ok": false,
+      "calls": 15,
+      "input": 174707,
+      "output": 1680,
+      "final": ""
+    },
+    {
+      "repeat": 0,
+      "id": "q07",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 14,
+      "input": 162379,
+      "output": 1591,
+      "final": " 2026) and EUR 1,250 (31 March 2026), together EUR 1,750. Searches for other Cedar Lantern ledger entries turned up no further instalments, so the balance is 10,000 − 1,750 = 8,250.\n\nANSWER: EUR 8,250"
+    },
+    {
+      "repeat": 0,
+      "id": "q10",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 8,
+      "input": 113858,
+      "output": 1029,
+      "final": "re bought for EUR 1,050 in total. Team Mail's email of 15 May 2026 says one attendee cancelled and the organiser refunded €150. 1,050 − 150 = 900. I did not find any later adjustment.\n\nANSWER: EUR 900"
+    },
+    {
+      "repeat": 0,
+      "id": "q12",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 6,
+      "input": 110537,
+      "output": 761,
+      "final": "has Bo Reed offering to cover the deposit on his card, but it is only an offer, not a record of payment.\n\nANSWER: Tess Ng paid the Grove Atlas team retreat deposit (€1,800), per her 7 June 2026 email."
+    },
+    {
+      "repeat": 0,
+      "id": "q15",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 7,
+      "input": 129899,
+      "output": 1222,
+      "final": "hed an hour later, but it says \"No answer yet\", so I didn't treat it as a change. I could not check the calendar event itself, since no calendar events matched in the search.\n\nANSWER: 2026-11-21 12:00"
+    },
+    {
+      "repeat": 0,
+      "id": "q20",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 9,
+      "input": 180426,
+      "output": 1174,
+      "final": "ng 9 days from 2026-03-20 gives 2026-03-29. A search of the calendar found no event for the critique, so the date rests on that note alone and is not confirmed by a calendar entry.\n\nANSWER: 2026-03-29"
+    },
+    {
+      "repeat": 0,
+      "id": "q23",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 10,
+      "input": 185351,
+      "output": 1224,
+      "final": "ays the customer withdrew and it will not take place. That supersedes his earlier 2026-09-26 email, which had booked it for 2026-11-17. No calendar event for the workshop turned up.\n\nANSWER: cancelled"
+    },
+    {
+      "repeat": 0,
+      "id": "q28",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 12,
+      "input": 178724,
+      "output": 1396,
+      "final": "ime.\" That supersedes the older note (document:2442, dated 1 April 2026), which says every Friday at 10:00. I didn't check the calendar events, so the move is based on the email alone.\n\nANSWER: Monday"
+    },
+    {
+      "repeat": 0,
+      "id": "q30",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 6,
+      "input": 97973,
+      "output": 617,
+      "final": "had signed off as head of purchasing and said \"Go ahead.\" I opened that message to confirm the wording.\n\nANSWER: Ira Brook (head of purchasing), per the 2026-08-25 email \"Elm Beacon vendor shortlist.\""
+    },
+    {
+      "repeat": 0,
+      "id": "q32",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 6,
+      "input": 110438,
+      "output": 727,
+      "final": "rbour Loft, the deposit is paid, and Old Mill Hall is off. An older planning note (9 June 2026) still lists Old Mill Hall as \"to be confirmed,\" but the later email supersedes it.\n\nANSWER: Harbour Loft"
+    },
+    {
+      "repeat": 0,
+      "id": "q36",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 13,
+      "input": 149663,
+      "output": 1667,
+      "final": "11-15, and most recently to 2026-11-23. I opened all four emails to confirm. A later note from Quin Roy asks whether to move it again, but it records nothing decided, so I did not count it.\n\nANSWER: 3"
+    },
+    {
+      "repeat": 0,
+      "id": "q39",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 8,
+      "input": 113072,
+      "output": 1432,
+      "final": "rom 2027-07-31 to 2027-09-11, confirmed by Max Dorn. A later proposal of 2027-10-02 from Eli Paine was parked on 2026-09-11 (\"let us not decide over mail\"), so it is not confirmed.\n\nANSWER: 2027-09-11"
+    },
+    {
+      "repeat": 0,
+      "id": "q44",
+      "kind": "search",
+      "arm": "full",
+      "ok": true,
+      "calls": 8,
+      "input": 139887,
+      "output": 877,
+      "final": "he load test report, but it is marked as an older copy.\n\nANSWER: Dee Lake will deliver the usability study for the Dune Harbor pilot, replacing her original commitment to deliver the load test report."
+    },
+    {
+      "repeat": 0,
+      "id": "page-12",
+      "kind": "page",
+      "arm": "full",
+      "ok": true,
+      "calls": 4,
+      "input": 69842,
+      "output": 625,
+      "final": "ough 3 at 5 per page. Page 3 holds the 11th to 15th notes, and 5501 is second on that page. The list order is the tool's own newest-first ordering; I did not check the timestamps myself.\n\nANSWER: 5501"
+    },
+    {
+      "repeat": 0,
+      "id": "page-14",
+      "kind": "page",
+      "arm": "full",
+      "ok": true,
+      "calls": 3,
+      "input": 41851,
+      "output": 720,
+      "final": "–5 (ids 5512 to 5508), 6–10 (5507 to 5503), and 11–15 (5502 to 5498), so the 14th is the fourth item on page 3: \"Tess Ng pushed the seat plan for the Amber Kite launch, reviews welcome.\"\n\nANSWER: 5499"
+    },
+    {
+      "repeat": 0,
+      "id": "missing-kind",
+      "kind": "missing",
+      "arm": "full",
+      "ok": true,
+      "calls": 2,
+      "input": 46887,
+      "output": 502,
+      "final": "onversations rebuild` for the messenger accounts (tg, max, wa) before meaning search covers them.\n\nANSWER: Messages were searched by words only; mail and notes were searched by both meaning and words."
+    },
+    {
+      "repeat": 0,
+      "id": "missing-fix",
+      "kind": "missing",
+      "arm": "full",
+      "ok": true,
+      "calls": 2,
+      "input": 46816,
+      "output": 459,
+      "final": "ing` list says messages are searched by words only because they have no vectors yet. It names the command that would fix this: `conversations rebuild` (for tg, max, wa).\n\nANSWER: conversations rebuild"
+    },
+    {
+      "repeat": 0,
+      "id": "write-reply",
+      "kind": "write",
+      "arm": "full",
+      "ok": true,
+      "calls": 11,
+      "input": 149016,
+      "output": 2216,
+      "final": " Ira Brook (ira.brook@example.test) from synthetic@example.test confirming the Amber Kite steering committee on Saturday 21 November 2026 at 12:00 Madrid time; it is not sent and awaits your approval."
+    },
+    {
+      "repeat": 0,
+      "id": "write-fact",
+      "kind": "write",
+      "arm": "full",
+      "ok": true,
+      "calls": 11,
+      "input": 202565,
+      "output": 1470,
+      "final": ""
+    },
+    {
+      "repeat": 0,
+      "id": "write-memory",
+      "kind": "write",
+      "arm": "full",
+      "ok": true,
+      "calls": 5,
+      "input": 86018,
+      "output": 1320,
+      "final": "a project because I couldn't confirm the project key.\n\nANSWER: Saved memory:1, \"The owner prefers Monday design syncs for Flint Meadow.\" (proposed, work scope, cited to Cy Ross's April 4, 2026 email)."
+    }
+  ]
+}
