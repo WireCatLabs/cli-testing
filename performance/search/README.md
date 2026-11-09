@@ -57,6 +57,9 @@ messages, and how many of each it finds, totals only.
 
 [Startup stages](startup/README.md) separates process start, built store import, empty-store opening and text-model loading.
 
+[A larger embedding model](embedding-models/README.md): multilingual-e5-large 8-bit downloads with its pinned hashes,
+gives 1024-length vectors and embeds about 3.4 chunks a second, about eight times slower than e5-small (2026-11-07).
+
 [Vector index](vector-index/README.md) compares Core's current vector scan with an index on chunks, int8 vectors,
 sqlite-vec, usearch, hnswlib and packed blocks of vectors, on synthetic stores of 100k and 1M chunks (2026-10-25).
 Its [Core implementation](vector-index/README.md#core-implementation-cli-core2001) section measures the `vec0` index
@@ -87,6 +90,7 @@ archive copy, and released `memo search all` 6.6 s → 1.4 s with identical resu
 | [local-documents/](local-documents/README.md) | qmd compared with memo and drive search on the owner's notes and Drive documents (2026-10-13) |
 | [messages-meaning-filters/](messages-meaning-filters/README.md) | `search messages --discover`: meaning hits for `-`, `NOT`, `OR` and groups that obey the query, and ranking inside a narrow filter, before and after cli-core #2254 (2026-10-31) |
 | [notes-meaning-filters/](notes-meaning-filters/README.md) | Hits found by meaning that break the query's `date:` and `tag:` in memo and drive, before and after cli-core 0.496.0 (2026-10-31) |
+| [business-lane/](business-lane/README.md) | The business lane of `search all` on stores seeded with 1,000 to 300,000 synthetic records: about 1 ms to 250–330 ms, growing with the store (2026-11-08) |
 | [vector-scan/](vector-scan/README.md) | Bare vector scan time as the number of vectors grows, 10,000 to 300,000; superseded by vector-index (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |
 | [migration.json](migration.json) | Original file hashes and source commit before the transfer |

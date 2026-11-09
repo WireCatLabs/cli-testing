@@ -35,7 +35,9 @@ an invented store built by code, with four planted claims checked from the JSON.
 time, not an agent; do not compare its numbers with the rerun's tokens.
 
 The [link recall fixture](project-state/link-recall/README.md) checks `relationships scan` on an invented project
-shaped like the same one: recall and precision of its proposals against a gold set, round by round.
+shaped like the same one: recall and precision of its proposals against a gold set, round by round. Its second part
+runs the same scoring on a copy of the owner's store and publishes totals only; `recall.mjs` refuses the live store
+and keeps the proposed references in a file beside the copy.
 
 | Study | What is measured | Runtime provenance | What it does not establish |
 | --- | --- | --- | --- |

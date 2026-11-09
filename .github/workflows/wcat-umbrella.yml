@@ -42,17 +42,21 @@ jobs:
         shell: bash
         run: |
           if [ "$RUNNER_OS" = "macOS" ]; then asset=macos; sum="$VOLTA_SHA256_MACOS"; else asset=linux; sum="$VOLTA_SHA256_LINUX"; fi
-          curl -sSfLo volta.tar.gz "https://github.com/volta-cli/volta/releases/download/v${VOLTA_VERSION}/volta-${VOLTA_VERSION}-${asset}.tar.gz"
+          # Release downloads fail with 5xx or hang at times.
+          curl -sSfL --retry 5 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 60 --retry-max-time 120 \
+            -o volta.tar.gz "https://github.com/volta-cli/volta/releases/download/v${VOLTA_VERSION}/volta-${VOLTA_VERSION}-${asset}.tar.gz"
           echo "${sum}  volta.tar.gz" | shasum -a 256 -c -
           mkdir -p "$RUNNER_TEMP/volta-install"
           tar -xzf volta.tar.gz -C "$RUNNER_TEMP/volta-install"
           echo "$RUNNER_TEMP/volta-install" >> "$GITHUB_PATH"
       - name: Install Volta (Windows)
         if: runner.os == 'Windows'
+        # -MaximumRetryCount retries HTTP errors only; a stalled download stops here.
+        timeout-minutes: 10
         shell: pwsh
         run: |
           $zip = Join-Path $env:RUNNER_TEMP "volta.zip"
-          Invoke-WebRequest -Uri "https://github.com/volta-cli/volta/releases/download/v$env:VOLTA_VERSION/volta-$env:VOLTA_VERSION-windows.zip" -OutFile $zip
+          Invoke-WebRequest -Uri "https://github.com/volta-cli/volta/releases/download/v$env:VOLTA_VERSION/volta-$env:VOLTA_VERSION-windows.zip" -OutFile $zip -MaximumRetryCount 5 -RetryIntervalSec 5
           if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne $env:VOLTA_SHA256_WINDOWS) { throw "volta checksum mismatch" }
           $dir = Join-Path $env:RUNNER_TEMP "volta-install"
           Expand-Archive $zip -DestinationPath $dir

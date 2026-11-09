@@ -1,0 +1,7 @@
+{
+  "engine": "Hermes + wirecat, claude-sonnet-5-5, 10K",
+  "correct": 45,
+  "cited_correctly": 32,
+  "stale": 0,
+  "correct_strict": 40
+}

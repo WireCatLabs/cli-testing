@@ -6,6 +6,7 @@
 - [mail](mail/README.md): reading a mailbox into the store — Gmail import speed and limits, the sender score
   against Gmail's Spam, and re-indexing after a large rules change.
 - [store](store/README.md): the shared SQLite store — filters, migrations, write-lock contention, table sizes.
+- [crm](crm/README.md): cli-core's CRM sync — how saving deals scales with a portal's size.
 - [output](output/README.md): what each output form costs an agent — `--compact` against JSON, in bytes and
   tokens.
 - [agents](agents/README.md): what the CLIs cost the AI agent that reads their answers — output size and meeting workflows.
@@ -19,3 +20,5 @@
 - [calendar](calendar/README.md): gcal and cli-core's calendar engine — start, offline reads on a large store, sync
   cost without the network, MCP.
 - [ci](ci/README.md): how long the pull-request checks take, and where the time goes.
+- [funnel](funnel/README.md): wirecat-funnel, the tsnet helper for Tailscale Funnel: whether Tailscale's
+  log upload stays off, and Funnel end to end.

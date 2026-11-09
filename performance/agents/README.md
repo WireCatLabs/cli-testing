@@ -13,7 +13,12 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
 
 - [meeting-series-inventory](meeting-series-inventory/README.md) — published CLI/MCP scheduled candidates, retained uncertainty, strict arguments and no SQLite access.
 
-- [knowledge-graph-memory](knowledge-graph-memory/README.md) — a 2,000-record synthetic corpus and 50-question scorer for changing agreements; Memo, OpenClaw, Supermemory and Mem0 retrieval, five agent setups answering with Claude Sonnet, and memo after its search fixes: the question as typed reaches recall@1/5/10 0.40/1.00/1.00 with e5-small (2026-11-05); index variants in memory: one vector per record with EmbeddingGemma 0.50/1.00/1.00, facts from Claude Haiku did worse (2026-11-03). Plain-words summary: [RESULTS.md](knowledge-graph-memory/RESULTS.md).
+- [knowledge-graph-memory](knowledge-graph-memory/README.md) — a 2,000-record synthetic corpus and 50-question scorer for changing agreements; Memo, OpenClaw, Supermemory and Mem0 retrieval, five agent setups answering with Claude Sonnet, and memo after its search fixes: the question as typed reaches recall@1/5/10 0.40/1.00/1.00 with e5-small (2026-11-05); index variants in memory: one vector per record with EmbeddingGemma 0.50/1.00/1.00, facts from Claude Haiku did worse (2026-11-03); a 10K archive corpus with 50 questions on the hardest milestones and a 6,500-record Mem0 subset, OpenClaw + Supermemory and + Mem0 setups, and cost and limit estimates for that round, nothing run yet (2026-11-05); where memo's search lost 0.23 recall@10 against its own model, and the fix that brings the reworded questions from 0.48 to 0.62 ([meaning-loss](knowledge-graph-memory/meaning-loss/README.md), 2026-11-08); EmbeddingGemma inside memo: 0.72 of the reworded questions, 0.79 once a mail's sender moves to the end of its vector text, and why Gemma alone finds 0.94 ([gemma-in-memo](knowledge-graph-memory/meaning-loss/gemma-in-memo/README.md), 2026-11-08). Plain-words summary: [RESULTS.md](knowledge-graph-memory/RESULTS.md).
+
+- [write-time-enrichment](write-time-enrichment/README.md) — Memo with a hosted model's facts and reworded questions
+  kept beside each record (cli-core #2690), off against on, one store of 10,444 synthetic records: reworded
+  questions @10 0.62 → 0.79, first place in the record's own words 0.54 → 0.48, $0.49 with gpt-4o-mini; with EmbeddingGemma 0.78 → 0.94
+  (2026-11-08).
 
 - [lifebench](lifebench/README.md) — LifeBench 2.0 (public, synthetic) English phone data in memo, search only, no
   answer model: memo hybrid with e5-small finds an evidence record in the first 10 for 70% of one persona's 288

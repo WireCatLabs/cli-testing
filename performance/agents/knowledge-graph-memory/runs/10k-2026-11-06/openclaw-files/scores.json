@@ -1,0 +1,7 @@
+{
+  "engine": "OpenClaw 2026.10.9 + files, claude-sonnet-5-5, 10K",
+  "correct": 50,
+  "cited_correctly": 47,
+  "stale": 0,
+  "correct_strict": 50
+}

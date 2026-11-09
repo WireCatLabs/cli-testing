@@ -338,6 +338,49 @@ it("permits only explicitly reviewed diagnostics and preserves numeric capture t
   expect(changed.passed).toBe(false)
 })
 
+describe("diagnosticPattern", () => {
+  const schema = "the store moved to schema \\d+; every other WireCat CLI that uses it needs a version that speaks it"
+  const pattern = `${schema} — run \`<cli> upgrade\` for each\\n`
+  const withPattern = { ...good, diagnosticPattern: pattern }
+  const message = (n: number) =>
+    `the store moved to schema ${n}; every other WireCat CLI that uses it needs a version that speaks it — run \`<cli> upgrade\` for each\n`
+
+  it("matches stderr whatever the schema number is", async () => {
+    for (const n of [57, 58, 1234]) {
+      const report = await runContracts(plan([withPattern]), {
+        run: () => ({ exit: 0, stdout: '{"commands":[]}', stderr: message(n) }),
+      })
+      expect(report.passed).toBe(true)
+    }
+  })
+
+  it("fails with the pattern and the actual stderr", async () => {
+    const report = await runContracts(plan([withPattern]), {
+      run: () => ({ exit: 0, stdout: '{"commands":[]}', stderr: "something else\n" }),
+    })
+    expect(report.passed).toBe(false)
+    expect(report.results[0]?.failure).toContain("diagnosticPattern")
+    expect(report.results[0]?.failure).toContain("schema \\\\d+")
+    expect(report.results[0]?.failure).toContain("something else")
+  })
+
+  it("is anchored to the whole stderr", async () => {
+    const report = await runContracts(plan([withPattern]), {
+      run: () => ({ exit: 0, stdout: '{"commands":[]}', stderr: `warning\n${message(58)}` }),
+    })
+    expect(report.passed).toBe(false)
+  })
+
+  it("refuses diagnostic together with diagnosticPattern, an invalid expression and a stderr case", async () => {
+    const run = success
+    await expect(runContracts(plan([{ ...withPattern, diagnostic: "x\n" }]), { run })).rejects.toThrow("exclusive")
+    await expect(runContracts(plan([{ ...good, diagnosticPattern: "(" }]), { run })).rejects.toThrow(
+      "regular expression",
+    )
+    await expect(runContracts(plan([{ ...withPattern, stream: "stderr" }]), { run })).rejects.toThrow("stdout")
+  })
+})
+
 it("checks MCP stderr for synthetic leaks and bounds diagnostics before returning schemas", async () => {
   const server = join(tmpdir(), "diagnostic-mcp.mjs")
   writeFileSync(

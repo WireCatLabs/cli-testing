@@ -1,0 +1,16 @@
+{"run": "e5-c2667", "top3": 5, "ranks": [null, 1, null, 2, 1, 1, 1, null]}
+{"run": "e5-cos-h1", "top3": 5, "ranks": [null, 1, null, 2, 1, 1, 1, null]}
+{"run": "e5-k10-wm2", "top3": 4, "ranks": [null, 1, null, 8, 3, 1, 1, null]}
+{"run": "e5-k3-h0", "top3": 5, "ranks": [null, 1, null, 1, 1, 1, 1, null]}
+{"run": "e5-k3-h1", "top3": 5, "ranks": [null, 1, null, 1, 1, 1, 1, null]}
+{"run": "e5-k3-wm1.5", "top3": 5, "ranks": [null, 1, null, 3, 2, 1, 1, null]}
+{"run": "e5-k3-wm2", "top3": 4, "ranks": [null, 1, null, 5, 3, 1, 1, null]}
+{"run": "e5-k60-h0", "top3": 5, "ranks": [null, 1, null, 1, 1, 1, 1, null]}
+{"run": "gemma-c2667", "top3": 8, "ranks": [3, 1, 1, 1, 1, 1, 1, 2]}
+{"run": "gemma-cos-h1", "top3": 8, "ranks": [3, 1, 1, 1, 1, 1, 1, 2]}
+{"run": "gemma-k10-wm2", "top3": 8, "ranks": [2, 1, 1, 1, 1, 1, 1, 2]}
+{"run": "gemma-k3-h0", "top3": 8, "ranks": [2, 1, 1, 1, 1, 1, 1, 2]}
+{"run": "gemma-k3-h1", "top3": 8, "ranks": [3, 1, 1, 1, 1, 1, 1, 2]}
+{"run": "gemma-k3-wm1.5", "top3": 8, "ranks": [2, 1, 1, 1, 1, 1, 1, 2]}
+{"run": "gemma-k3-wm2", "top3": 8, "ranks": [2, 1, 1, 1, 1, 1, 1, 2]}
+{"run": "gemma-k60-h0", "top3": 8, "ranks": [2, 1, 1, 1, 1, 1, 1, 2]}
