@@ -6,6 +6,7 @@
 - [mail](mail/README.md): reading a mailbox into the store — Gmail import speed and limits, the sender score
   against Gmail's Spam, and re-indexing after a large rules change.
 - [store](store/README.md): the shared SQLite store — filters, migrations, write-lock contention, table sizes.
+- [people](people/README.md): cli-core's people list — telling people the owner knows from background ones.
 - [crm](crm/README.md): cli-core's CRM sync — how saving deals scales with a portal's size.
 - [output](output/README.md): what each output form costs an agent — `--compact` against JSON, in bytes and
   tokens.
