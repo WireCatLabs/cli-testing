@@ -1,0 +1,9 @@
+4372 mails with a stored vector of 4372
+stored by memo                     | query 8-bit            | mail answers 20 | in top5 0.40 top10 0.50 top30 0.70 | median rank 10
+stored by memo                     | query full             | mail answers 20 | in top5 0.40 top10 0.50 top30 0.65 | median rank 10
+stored by memo                     | query 8-bit, no prefix | mail answers 20 | in top5 0.30 top10 0.50 top30 0.60 | median rank 21
+Synthetic Sender: subject + text   | query 8-bit            | mail answers 20 | in top5 0.40 top10 0.45 top30 0.65 | median rank 20
+author: subject + text             | query 8-bit            | mail answers 20 | in top5 0.35 top10 0.45 top30 0.80 | median rank 15
+subject + text, no sender          | query 8-bit            | mail answers 20 | in top5 0.40 top10 0.55 top30 0.80 | median rank 9
+record text                        | query 8-bit            | mail answers 20 | in top5 0.40 top10 0.55 top30 0.70 | median rank 7
+record text, full precision        | query full             | mail answers 20 | in top5 0.40 top10 0.55 top30 0.65 | median rank 9

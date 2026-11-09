@@ -7,6 +7,9 @@ The November round (v2 and v3, agents, search, models, where it stands): [RESULT
 Where memo's search loses what its own model finds, step by step, and the fix: [meaning-loss](meaning-loss/README.md)
 (2026-11-08).
 
+Why memo lost questions asked in other words, and the first ranking fix (cli-core#2620): [hybrid-ranking](hybrid-ranking/README.md)
+(2026-11-07).
+
 Memo searches stored notes, mail and messages, but that does not tell us whether a graph memory engine
 answers changing agreements more accurately. This fixture prepares a comparison with Hindsight first,
 Graphiti second and Cognee third. It asks whether better answers and citations justify another index,
@@ -659,6 +662,13 @@ the same words.
 - Calendar events: the corpus has none.
 - A question that shares no word with its source, where meaning alone must find it.
 - The published, bundled package: this was a local build.
+
+## Memo and questions in other words (7 November 2026)
+
+Why memo `search all` found 0.34 of the reworded v3 questions' answers at @10 where e5-small alone found 0.71, and
+the cli-core ranking change that takes it to 0.44 without moving the plain v3 or 10K sets:
+[hybrid-ranking/README.md](hybrid-ranking/README.md). It also changed this harness: each mail's sender is now its
+record's author, and a mail hit is scored by its ref, not its thread's title.
 
 ## What remains unmeasured
 
