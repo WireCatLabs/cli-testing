@@ -1,0 +1,982 @@
+{
+  "v3\tq02\tWhat is the current agreed yearly price of the Grove Atlas hosting agreement? Answer as an amount like EUR 12,500.": {
+    "order": [0, 2, 6, 9, 1, 3, 4, 5, 7, 8],
+    "raw": "{\"records\":[0,2,6,9,1,3,4,5,7,8]}",
+    "stop": "end_turn",
+    "ms": 1593,
+    "cost": 0.00023160000000000002,
+    "in": 2181
+  },
+  "v3\tq07\tHow much is still owed on the Cedar Lantern hardware order? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\": [0, 1, 2]}",
+    "stop": "end_turn",
+    "ms": 1586,
+    "cost": 0.0002198,
+    "in": 2123
+  },
+  "v3\tq08\tHow much is still owed on the Flint Meadow hardware order? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\":[0,1,2]}",
+    "stop": "end_turn",
+    "ms": 1610,
+    "cost": 0.0002129,
+    "in": 2064
+  },
+  "v3\tq01\tWhat is the current agreed yearly price of the Juniper Valley hosting agreement? Answer as an amount like EUR 12,500.": {
+    "order": [2, 3, 9, 8, 5, 7, 6, 4, 0, 1],
+    "raw": "{\"records\": [2, 3, 9, 8, 5, 7, 6, 4, 0, 1]}",
+    "stop": "end_turn",
+    "ms": 1694,
+    "cost": 0.0002458,
+    "in": 2278
+  },
+  "v3\tq03\tWhat is the current agreed yearly price of the Hazel Bridge hosting agreement? Answer as an amount like EUR 12,500.": {
+    "order": [0, 4, 1, 5, 6],
+    "raw": "{\"records\": [0, 4, 1, 5, 6]}",
+    "stop": "end_turn",
+    "ms": 1726,
+    "cost": 0.00022640000000000003,
+    "in": 2159
+  },
+  "v3\tq04\tHow much has been paid in total toward the Iris Summit consulting retainer so far? Answer as an amount like EUR 12,500.": {
+    "order": [0, 2, 3, 1],
+    "raw": "{\"records\": [0, 2, 3, 1]}",
+    "stop": "end_turn",
+    "ms": 1856,
+    "cost": 0.0001988,
+    "in": 1898
+  },
+  "v3\tq05\tHow much has been paid in total toward the Amber Kite consulting retainer so far? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2, 5, 3, 25, 26, 27, 28],
+    "raw": "{\"records\": [0, 1, 2, 5, 3, 25, 26, 27, 28]}",
+    "stop": "end_turn",
+    "ms": 1918,
+    "cost": 0.0001994,
+    "in": 1829
+  },
+  "v3\tq06\tHow much has been paid in total toward the Birch Compass consulting retainer so far? Answer as an amount like EUR 12,500.": {
+    "order": [0, 2, 1, 4, 3],
+    "raw": "{\"records\":[0,2,1,4,3]}",
+    "stop": "end_turn",
+    "ms": 2291,
+    "cost": 0.00020470000000000002,
+    "in": 1962
+  },
+  "v3\tq12\tWho paid the Grove Atlas team retreat deposit?": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 873,
+    "cost": 0.0002077,
+    "in": 2022
+  },
+  "v3\tq10\tWhat did the Elm Beacon conference tickets cost in the end, after any refund? Answer as an amount like EUR 12,500.": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 972,
+    "cost": 0.00018480000000000002,
+    "in": 1793
+  },
+  "v3\tq14\tWhen is the Iris Summit steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\": [0, 1, 2]}",
+    "stop": "end_turn",
+    "ms": 883,
+    "cost": 0.0002244,
+    "in": 2169
+  },
+  "v3\tq09\tHow much is still owed on the Dune Harbor hardware order? Answer as an amount like EUR 12,500.": {
+    "order": [2, 1, 0],
+    "raw": "{\"records\":[2,1,0]}",
+    "stop": "end_turn",
+    "ms": 1185,
+    "cost": 0.0001914,
+    "in": 1849
+  },
+  "v3\tq11\tWhat did the Juniper Valley conference tickets cost in the end, after any refund? Answer as an amount like EUR 12,500.": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 1179,
+    "cost": 0.0002265,
+    "in": 2210
+  },
+  "v3\tq15\tWhen is the Amber Kite steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": {
+    "order": [0, 1, 2, 5],
+    "raw": "{\"records\":[0,1,2,5]}",
+    "stop": "end_turn",
+    "ms": 1091,
+    "cost": 0.0002279,
+    "in": 2204
+  },
+  "v3\tq13\tWho paid the Hazel Bridge team retreat deposit?": {
+    "order": [0],
+    "raw": "{\"records\":[0]}",
+    "stop": "end_turn",
+    "ms": 1334,
+    "cost": 0.000197,
+    "in": 1925
+  },
+  "v3\tq16\tWhen is the Birch Compass steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": {
+    "order": [0, 1, 7],
+    "raw": "{\"records\":[0,1,7]}",
+    "stop": "end_turn",
+    "ms": 886,
+    "cost": 0.0002569,
+    "in": 2504
+  },
+  "v3\tq17\tWhen is the Cedar Lantern partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 795,
+    "cost": 0.0002218,
+    "in": 2163
+  },
+  "v3\tq18\tWhen is the Flint Meadow partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 1022,
+    "cost": 0.00022380000000000002,
+    "in": 2183
+  },
+  "v3\tq20\tOn what date is the Elm Beacon design critique? Answer as YYYY-MM-DD.": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 912,
+    "cost": 0.0002774000000000001,
+    "in": 2719
+  },
+  "v3\tq19\tWhen is the Dune Harbor partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 1033,
+    "cost": 0.00021070000000000003,
+    "in": 2052
+  },
+  "v3\tq21\tOn what date is the Juniper Valley design critique? Answer as YYYY-MM-DD.": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 1204,
+    "cost": 0.000234,
+    "in": 2285
+  },
+  "v3\tq22\tOn what date is the Grove Atlas design critique? Answer as YYYY-MM-DD.": {
+    "order": [0, 1, 2, 3],
+    "raw": "{\"records\":[0,1,2,3]}",
+    "stop": "end_turn",
+    "ms": 1045,
+    "cost": 0.00021449999999999998,
+    "in": 2070
+  },
+  "v3\tq23\tWhen is the Hazel Bridge customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [1, 0, 2, 6],
+    "raw": "{\"records\":[1,0,2,6]}",
+    "stop": "end_turn",
+    "ms": 1063,
+    "cost": 0.00028050000000000004,
+    "in": 2730
+  },
+  "v3\tq25\tWhen is the Amber Kite customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [1, 0, 2],
+    "raw": "{\"records\":[1,0,2]}",
+    "stop": "end_turn",
+    "ms": 1128,
+    "cost": 0.00030710000000000004,
+    "in": 3006
+  },
+  "v3\tq26\tWhen is the Birch Compass hackathon? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [1, 2, 0],
+    "raw": "{\"records\":[1,2,0]}",
+    "stop": "end_turn",
+    "ms": 970,
+    "cost": 0.000314,
+    "in": 3075
+  },
+  "v3\tq28\tOn which weekday does the Flint Meadow weekly design sync take place now?": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 895,
+    "cost": 0.00018760000000000003,
+    "in": 1821
+  },
+  "v3\tq24\tWhen is the Iris Summit customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [2, 0, 1],
+    "raw": "{\"records\":[2,0,1]}",
+    "stop": "end_turn",
+    "ms": 1500,
+    "cost": 0.00026819999999999996,
+    "in": 2617
+  },
+  "v3\tq30\tWho signed off the Elm Beacon vendor shortlist?": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\": [0, 1, 2]}",
+    "stop": "end_turn",
+    "ms": 999,
+    "cost": 0.000235,
+    "in": 2275
+  },
+  "v3\tq27\tWhen is the Cedar Lantern hackathon? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [0, 2, 1],
+    "raw": "{\"records\":[0,2,1]}",
+    "stop": "end_turn",
+    "ms": 1591,
+    "cost": 0.000302,
+    "in": 2955
+  },
+  "v3\tq32\tWhich venue is booked for the Grove Atlas launch party?": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 932,
+    "cost": 0.0002157,
+    "in": 2102
+  },
+  "v3\tq33\tWhich venue is booked for the Hazel Bridge launch party?": {
+    "order": [3, 0],
+    "raw": "{\"records\":[3,0]}",
+    "stop": "end_turn",
+    "ms": 907,
+    "cost": 0.0002188,
+    "in": 2133
+  },
+  "v3\tq34\tWhich venue is booked for the Iris Summit launch party?": {
+    "order": [3, 2, 0, 1],
+    "raw": "{\"records\": [3, 2, 0, 1]}",
+    "stop": "end_turn",
+    "ms": 959,
+    "cost": 0.0002289,
+    "in": 2199
+  },
+  "v3\tq35\tHow many times has the Amber Kite security drill been rescheduled? Answer with a number.": {
+    "order": [0, 1, 2, 3, 4, 7, 8, 9, 20],
+    "raw": "{\"records\":[0,1,2,3,4,7,8,9,20]}",
+    "stop": "end_turn",
+    "ms": 1073,
+    "cost": 0.00027249999999999996,
+    "in": 2600
+  },
+  "v3\tq31\tWho signed off the Juniper Valley vendor shortlist?": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\": [0, 1, 2]}",
+    "stop": "end_turn",
+    "ms": 1688,
+    "cost": 0.0001888,
+    "in": 1813
+  },
+  "v3\tq29\tOn which weekday does the Dune Harbor weekly design sync take place now?": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 2116,
+    "cost": 0.0002001,
+    "in": 1946
+  },
+  "v3\tq36\tHow many times has the Birch Compass security drill been rescheduled? Answer with a number.": {
+    "order": [3, 0, 2, 1, 9],
+    "raw": "{\"records\":[3,0,2,1,9]}",
+    "stop": "end_turn",
+    "ms": 1133,
+    "cost": 0.000299,
+    "in": 2905
+  },
+  "v3\tq39\tWhat is the current confirmed delivery date for the Juniper Valley launch?": {
+    "order": [0, 7, 8, 5, 3, 13, 14, 18, 15, 20],
+    "raw": "{\"records\": [0, 7, 8, 5, 3, 13, 14, 18, 15, 20]}",
+    "stop": "end_turn",
+    "ms": 1113,
+    "cost": 0.0002615,
+    "in": 2435
+  },
+  "v3\tq41\tWhat was the original delivery date agreed for the Birch Compass pilot, before it changed?": {
+    "order": [1, 5, 14, 12, 2],
+    "raw": "{\"records\":[1,5,14,12,2]}",
+    "stop": "end_turn",
+    "ms": 932,
+    "cost": 0.0002774,
+    "in": 2689
+  },
+  "v3\tq42\tWho is the confirmed delivery owner of the Hazel Bridge security hardening?": {
+    "order": [1, 0, 5, 6, 9],
+    "raw": "{\"records\":[1,0,5,6,9]}",
+    "stop": "end_turn",
+    "ms": 787,
+    "cost": 0.0002378,
+    "in": 2293
+  },
+  "v3\tq44\tWhat did Dee Lake commit to delivering for the Dune Harbor pilot?": {
+    "order": [2, 0, 14, 3],
+    "raw": "{\"records\":[2,0,14,3]}",
+    "stop": "end_turn",
+    "ms": 856,
+    "cost": 0.0002249,
+    "in": 2174
+  },
+  "v3\tq40\tWhat is the current confirmed delivery date for the Flint Meadow security hardening?": {
+    "order": [8, 7, 2, 4, 5, 10, 11, 6, 9, 1, 3],
+    "raw": "{\"records\":[8,7,2,4,5,10,11,6,9,1,3]}",
+    "stop": "end_turn",
+    "ms": 1274,
+    "cost": 0.0002446,
+    "in": 2301
+  },
+  "v3\tq43\tWho is the confirmed delivery owner of the Grove Atlas billing revamp?": {
+    "order": [1, 6, 0, 3, 7],
+    "raw": "{\"records\":[1,6,0,3,7]}",
+    "stop": "end_turn",
+    "ms": 941,
+    "cost": 0.0002534,
+    "in": 2449
+  },
+  "v3\tq45\tWhat did Sol Mendez commit to delivering for the Cedar Lantern data migration?": {
+    "order": [2, 1, 3, 20, 5],
+    "raw": "{\"records\": [2, 1, 3, 20, 5]}",
+    "stop": "end_turn",
+    "ms": 1025,
+    "cost": 0.0002461,
+    "in": 2356
+  },
+  "v3\tq48\tIn which city is the current delivery owner of the Cedar Lantern data migration based?": {
+    "order": [0, 13],
+    "raw": "{\"records\":[0,13]}",
+    "stop": "end_turn",
+    "ms": 990,
+    "cost": 0.00023710000000000002,
+    "in": 2316
+  },
+  "v3\tq50\tIn which city is the current delivery owner of the Amber Kite launch based?": {
+    "order": [0, 2, 17, 6],
+    "raw": "{\"records\":[0,2,17,6]}",
+    "stop": "end_turn",
+    "ms": 873,
+    "cost": 0.000196,
+    "in": 1885
+  },
+  "v3\tq01\tWhat is the yearly fee we now pay for Juniper Valley's rented servers? Answer as an amount like EUR 12,500.": {
+    "order": [2, 3, 0, 1, 6, 8, 7, 9, 4, 5],
+    "raw": "{\"records\": [2, 3, 0, 1, 6, 8, 7, 9, 4, 5]}",
+    "stop": "end_turn",
+    "ms": 922,
+    "cost": 0.0002474,
+    "in": 2294
+  },
+  "v3\tq49\tIn which city is the current delivery owner of the Juniper Valley launch based?": {
+    "order": [0, 6],
+    "raw": "{\"records\":[0,6]}",
+    "stop": "end_turn",
+    "ms": 1012,
+    "cost": 0.00019899999999999999,
+    "in": 1935
+  },
+  "v3\tq07\tWhat is left to pay for Cedar Lantern's equipment purchase? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\":[0,1,2]}",
+    "stop": "end_turn",
+    "ms": 909,
+    "cost": 0.0001967,
+    "in": 1902
+  },
+  "v3\tq04\tWhat sum has come in so far for Iris Summit's advisory arrangement? Answer as an amount like EUR 12,500.": {
+    "order": [0, 1, 2, 3],
+    "raw": "{\"records\": [0, 1, 2, 3]}",
+    "stop": "end_turn",
+    "ms": 988,
+    "cost": 0.00022510000000000002,
+    "in": 2161
+  },
+  "v3\tq10\tWhat was the final spend on Elm Beacon's event passes, money back counted? Answer as an amount like EUR 12,500.": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 1052,
+    "cost": 0.0002551000000000001,
+    "in": 2496
+  },
+  "v3\tq14\tWhen does Iris Summit's oversight board sit next? Answer as YYYY-MM-DD HH:MM in Madrid time.": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\": [0, 1, 2]}",
+    "stop": "end_turn",
+    "ms": 724,
+    "cost": 0.0002231,
+    "in": 2156
+  },
+  "v3\tq17\tAt what moment in Spain is Cedar Lantern's conversation with the outside company? Answer as YYYY-MM-DD HH:MM.": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 756,
+    "cost": 0.00024660000000000003,
+    "in": 2411
+  },
+  "v3\tq23\tWhen will Hazel Bridge's client training day happen? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [1, 0, 2],
+    "raw": "{\"records\":[1,0,2]}",
+    "stop": "end_turn",
+    "ms": 890,
+    "cost": 0.0003343,
+    "in": 3278
+  },
+  "v3\tq20\tWhich day was set for Elm Beacon's feedback session on the designs? Answer as YYYY-MM-DD.": {
+    "order": [0],
+    "raw": "{\"records\":[0]}",
+    "stop": "end_turn",
+    "ms": 965,
+    "cost": 0.00021960000000000003,
+    "in": 2151
+  },
+  "v3\tq12\tWho put down the money for Grove Atlas's offsite advance?": {
+    "order": [0],
+    "raw": "{\"records\":[0]}",
+    "stop": "end_turn",
+    "ms": 1418,
+    "cost": 0.0002367,
+    "in": 2322
+  },
+  "v3\tq26\tWhen will Birch Compass's coding marathon happen? Answer as YYYY-MM-DD, or cancelled if it will not take place.": {
+    "order": [1, 2, 0],
+    "raw": "{\"records\":[1,2,0]}",
+    "stop": "end_turn",
+    "ms": 965,
+    "cost": 0.0003073,
+    "in": 3008
+  },
+  "v3\tq30\tWho gave final approval to Elm Beacon's list of candidate suppliers?": {
+    "order": [0, 1, 2],
+    "raw": "{\"records\":[0,1,2]}",
+    "stop": "end_turn",
+    "ms": 856,
+    "cost": 0.0001876,
+    "in": 1811
+  },
+  "v3\tq28\tWhich day of the week is Flint Meadow's regular design catch-up held on now?": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 971,
+    "cost": 0.00019060000000000003,
+    "in": 1851
+  },
+  "v3\tq42\tWhich person answers for shipping the Hazel Bridge security hardening?": {
+    "order": [5, 0, 3, 1, 6],
+    "raw": "{\"records\":[5,0,3,1,6]}",
+    "stop": "end_turn",
+    "ms": 819,
+    "cost": 0.0002526,
+    "in": 2441
+  },
+  "v3\tq35\tHow often was Amber Kite's safety exercise moved? Answer with a number.": {
+    "order": [0, 1, 2, 3, 4, 5, 6, 7, 10, 25],
+    "raw": "{\"records\":[0,1,2,3,4,5,6,7,10,25]}",
+    "stop": "end_turn",
+    "ms": 1125,
+    "cost": 0.0002767,
+    "in": 2632
+  },
+  "v3\tq32\tWhere will Grove Atlas's release celebration be held?": {
+    "order": [0],
+    "raw": "{\"records\":[0]}",
+    "stop": "end_turn",
+    "ms": 1259,
+    "cost": 0.0002305,
+    "in": 2260
+  },
+  "v3\tq39\tBy when must the Juniper Valley launch be shipped now, as last agreed?": {
+    "order": [1, 11, 15, 6, 13, 10, 9, 26],
+    "raw": "{\"records\":[1,11,15,6,13,10,9,26]}",
+    "stop": "end_turn",
+    "ms": 891,
+    "cost": 0.0002837,
+    "in": 2722
+  },
+  "v3\tq44\tWhat did Dee Lake promise to hand over for the Dune Harbor pilot?": {
+    "order": [2, 0, 14, 3, 29],
+    "raw": "{\"records\": [2, 0, 14, 3, 29]}",
+    "stop": "end_turn",
+    "ms": 834,
+    "cost": 0.0002345,
+    "in": 2240
+  },
+  "lb\tfenghaoran-q004\tRemember at the Xiangjiang Financial Night party earlier this year, I hit it off with a specialist from Pacific Insurance. What were the main topics we discussed then?": {
+    "order": [0, 4, 11],
+    "raw": "{\"records\":[0,4,11]}",
+    "stop": "end_turn",
+    "ms": 1053,
+    "cost": 0.0005738000000000001,
+    "in": 5673
+  },
+  "lb\tfenghaoran-q002\tI remember visiting a friend in Shenzhen at the beginning of the year. He took me to see their company's exhibition hall, and in the café downstairs he demonstrated an investment dashboard using Excel and some framework—what was it? He also ran a long piece of code at the time, and I took a photo of the screen with my phone, but I can't find it.": {
+    "order": [0, 1, 21, 5, 13, 4, 7],
+    "raw": "{\"records\":[0,1,21,5,13,4,7]}",
+    "stop": "end_turn",
+    "ms": 1148,
+    "cost": 0.0006064,
+    "in": 5959
+  },
+  "lb\tfenghaoran-q020\tDuring the May Day holiday, on the day I went back to Wuhan to pick up my mom from the hospital, the attending physician said some rehabilitation precautions in the ward. I noted them down on my phone at the time, but now I can't remember what they were. Help me check what's in my memo.": {
+    "order": [2, 4, 6, 13, 18, 12],
+    "raw": "{\"records\": [2, 4, 6, 13, 18, 12]}",
+    "stop": "end_turn",
+    "ms": 1114,
+    "cost": 0.0005415,
+    "in": 5295
+  },
+  "lb\tfenghaoran-q032\tWhen Zhou Jianhua was handing over clients to me, he mentioned how far Huang Siqi's company financing had progressed. He also suggested something I should pay attention to when communicating with her—what was it again?": {
+    "order": [0, 1, 8, 5],
+    "raw": "{\"records\": [0, 1, 8, 5]}",
+    "stop": "end_turn",
+    "ms": 898,
+    "cost": 0.0005426000000000001,
+    "in": 5336
+  },
+  "lb\tfenghaoran-q041\tI remember that meeting with the investment director. He mentioned the time requirement for the exam, saying that I had to pass CFA Level I by a certain date. What was the exact deadline? I'm quite impressed by it, but I can't remember the date.": {
+    "order": [8, 23, 28, 7],
+    "raw": "{\"records\": [8, 23, 28, 7]}",
+    "stop": "end_turn",
+    "ms": 907,
+    "cost": 0.0005417,
+    "in": 5327
+  },
+  "lb\tfenghaoran-q036\tIn early May, I met a friend near Lushan South Road to discuss plans for doing self-media. At the time, we set the frequency of posting videos every week, but I forgot which day of the week it was updated. Can you help me recall?": {
+    "order": [1, 0, 3, 26, 7],
+    "raw": "{\"records\":[1,0,3,26,7]}",
+    "stop": "end_turn",
+    "ms": 1049,
+    "cost": 0.0005436000000000001,
+    "in": 5351
+  },
+  "lb\tfenghaoran-q029\tIn that online REITs seminar around March, when I was the speaker sharing portfolio allocation, what questions did those two friends each ask? I just remember they asked quite professional questions, but I can't remember the specific content.": {
+    "order": [0, 9, 5, 22, 10, 3],
+    "raw": "{\"records\": [0, 9, 5, 22, 10, 3]}",
+    "stop": "end_turn",
+    "ms": 1181,
+    "cost": 0.0005124999999999999,
+    "in": 5005
+  },
+  "lb\tfenghaoran-q058\tAccording to the schedule, at 10 a.m. on November 18, 2025, what was the main content of the video conference between Feng Haoran and client Huang Siqi?": {
+    "order": [1, 0],
+    "raw": "{\"records\": [1, 0]}",
+    "stop": "end_turn",
+    "ms": 786,
+    "cost": 0.0005061000000000001,
+    "in": 5001
+  },
+  "lb\tfenghaoran-q048\tA few months ago, during a department weekly meeting, I remember a colleague joined remotely from another city. Which area's client needs did she share at that time?": {
+    "order": [2, 1, 5, 15],
+    "raw": "{\"records\":[2,1,5,15]}",
+    "stop": "end_turn",
+    "ms": 1100,
+    "cost": 0.0005507000000000001,
+    "in": 5432
+  },
+  "lb\tfenghaoran-q074\t281 days before December 1, when I performed the first stage of annual review data export and verification, I was at a café having a remote video call with a friend. What was that about?": {
+    "order": [1, 4, 14, 17, 9],
+    "raw": "{\"records\": [1, 4, 14, 17, 9]}",
+    "stop": "end_turn",
+    "ms": 866,
+    "cost": 0.0005348000000000001,
+    "in": 5243
+  },
+  "lb\tfenghaoran-q073\tI experienced a few special things this year. Can you help me put them in chronological order?\n1. Created a column called \"Yuelu Finance Talk\", launched simultaneously on WeChat and Zhihu, using a morning mist photo of Aiwan Pavilion on Yuelu Mountain as the header image.\n2. Had a video call with my friend Xie Yutong in Shenzhen, apologized for canceling the camping last time, and also arranged to try camping in May.\n3. Deep into the night, I fine-tuned wedding photos, adjusting exposure and color temperature, working until midnight.\n4. Successfully completed a V3 route at V-Power Climbing Gym, and the coach praised me (that morning I had just accompanied my parents for a physical examination at Xiangya Hospital).\n5. Went to Hengshan to take photos. After returning home, I imported them into Lightroom for fine editing and made an electronic album called \"One Day at Hengshan and the Cloud Stone Book\".\n6. My photos of the Changsha Marathon were adopted by the official Weibo account, which also @me, and the readership quickly exceeded 10,000.\n\nWhich of these happened first, and which happened later?": {
+    "order": [4, 6, 15, 20, 23, 2, 0, 13, 17, 3, 7, 25, 18, 10, 14, 11],
+    "raw": "{\"records\": [4, 6, 15, 20, 23, 2, 0, 13, 17, 3, 7, 25, 18, 10, 14, 11]}",
+    "stop": "end_turn",
+    "ms": 943,
+    "cost": 0.00062,
+    "in": 5930
+  },
+  "lb\tfenghaoran-q077\tThree weeks before the final lesson and graduation ceremony of “Fintech” on October 30, what did I do at a coffee shop?": {
+    "order": [3, 4, 8, 1, 14, 16],
+    "raw": "{\"records\": [3, 4, 8, 1, 14, 16]}",
+    "stop": "end_turn",
+    "ms": 873,
+    "cost": 0.000534,
+    "in": 5220
+  },
+  "lb\tfenghaoran-q075\tI have done several meaningful things this year. Can you help me sort them in chronological order?\n\n1. Had a video call with my younger sister. She excitedly showed me her self-media account with 10,000 followers, and we finalized the route and shared ledger for the Spring Festival family trip to Yunnan.\n2. Went to the MBA Education Center at Hunan University to register, submitted materials, selected two courses, and exchanged WeChat with a classmate who works as an engineer at Zoomlion.\n3. During the outdoor climbing activity at Heimifeng, two team members couldn't endure it and quit early. The remaining teammates were in low spirits, and the activity ended in a dull atmosphere.\n4. In the morning, I went to Dingwangtai Book Market to buy textbooks on strategic management and investment portfolio, and also had a rice bowl with stir-fried pork and peppers at a nearby small restaurant.\n5. At Lushan Community Activity Center, I gave an anti-fraud lecture to the elderly in Changsha dialect, demonstrated the National Anti-Fraud Center App, and the interaction was enthusiastic.\n6. After the lecture, I provided one-on-one mobile security tutoring to 12 elderly people in the hall, helped an old lady clean up junk software, and set up automatic cleanup.\n\nWhich of these came first and which came later?": {
+    "order": [5, 0, 7, 19, 20, 9, 1, 2, 3, 29],
+    "raw": "{\"records\": [5, 0, 7, 19, 20, 9, 1, 2, 3, 29]}",
+    "stop": "end_turn",
+    "ms": 1032,
+    "cost": 0.0006291000000000001,
+    "in": 6111
+  },
+  "lb\tfenghaoran-q083\tThis year I did several meaningful things. Can you help me arrange them in chronological order?\n1. Participated in a community tree-planting activity and planted five osmanthus trees with my neighbors. After getting home, I edited photos and videos and posted them on Moments, receiving quite a few likes.\n2. Met with Boss Shen at Shangyin Coffee, showed her the screenshot of my paper being published online, tasted new coffee beans, and bought drip bags to bring to my parents.\n3. As team leader, I hosted the online Strategic Management discussion for the MBA group. I had an argument with team member Zhang Ming over data definition issues, and the instructor intervened to mediate.\n4. Had a promotion interview with investment director Qian Yongqiang in the meeting room. He pointed out my strengths and weaknesses and also mentioned requirements for CFA and industry reports.\n5. Went to the rehabilitation department of Xiangya Hospital for a follow-up. The doctor said my cervical spine was recovering well, gave me a new home maintenance plan, and I also asked for advice on half-marathon training.\n\nWhich of these happened first and which happened later?": {
+    "order": [9, 24, 6, 2, 3, 12, 0, 14, 10],
+    "raw": "{\"records\":[9,24,6,2,3,12,0,14,10]}",
+    "stop": "end_turn",
+    "ms": 971,
+    "cost": 0.0006427000000000001,
+    "in": 6302
+  },
+  "lb\tfenghaoran-q088\tOn April 10, 36 days after I prepared video communication and review notes, what activity did I participate in with my classmate Wang Fang?": {
+    "order": [],
+    "raw": "{\"records\":[]}",
+    "stop": "end_turn",
+    "ms": 779,
+    "cost": 0.0005321,
+    "in": 5281
+  },
+  "lb\tfenghaoran-q085\tI did several memorable things this year, but I can't remember the order. Can you help me sort them out?\n1. At the climbing gym, I successfully topped out on an advanced V2 route that I had failed many times before. The coach also suggested I strengthen my core training.\n2. In the evening, I received a mention from the official marathon Weibo account. They used my photos and thanked me. I reposted it and replied to many fellow runners.\n3. I spent the whole afternoon at home processing marathon photos. After selecting and retouching them, I sent them to the organizing committee.\n4. On Sunday morning, I accompanied my parents for a physical exam. My father was advised to control his red meat intake.\n\nWhich of these happened first?": {
+    "order": [1, 29, 23, 24, 0, 9, 15],
+    "raw": "{\"records\":[1,29,23,24,0,9,15]}",
+    "stop": "end_turn",
+    "ms": 1013,
+    "cost": 0.00057,
+    "in": 5595
+  },
+  "lb\tfenghaoran-q097\tI remember the trip back to Wuhan for Spring Festival this year. From setting off to the late-night talk with my father, how long did it last in total?": {
+    "order": [0, 1, 7, 10, 12, 14, 6, 18, 9],
+    "raw": "{\"records\":[0,1,7,10,12,14,6,18,9]}",
+    "stop": "end_turn",
+    "ms": 883,
+    "cost": 0.0005194,
+    "in": 5069
+  },
+  "lb\tfenghaoran-q093\tOn December 14, after I attended the running group's year-end training sharing session, what did I clean out of the refrigerator after returning home 250 days ago?": {
+    "order": [3, 7],
+    "raw": "{\"records\":[3,7]}",
+    "stop": "end_turn",
+    "ms": 1270,
+    "cost": 0.0005214999999999999,
+    "in": 5160
+  },
+  "lb\tfenghaoran-q095\tI experienced several memorable things this year. Can you help me put them in chronological order?\n1. I unboxed a new camera in my study, set the parameters, took a photo, and sent it to a photography buddy.\n2. I arrived at the physical examination center at the scheduled time (that day I took a taxi to the hospital and checked my account balance on the way). After verifying my identity at the front desk and receiving the examination form, I completed blood draw (complete blood count, liver and kidney function, lipid panel), abdominal ultrasound, electrocardiogram, chest X-ray, and urine test in sequence. The whole process took about 1.5 hours and was smooth and efficient. After the examination, I felt my stomach was empty and urgently needed energy, so I went to Zhougong Zhoupou opposite the hospital for breakfast.\n3. In the second half of the outdoor climbing, some team members withdrew, the activity ended early, and the atmosphere was dull.\n4. I returned to the hospital's physical examination center (that morning I had eaten preserved egg and lean pork congee at Zhougong Zhoupou), collected some reports that were available immediately (such as complete blood count and urine routine), and went into Dr. Wang's office to listen to the interpretation. Dr. Wang pointed at the lipid report and seriously stated that total cholesterol and low-density lipoprotein were both slightly above normal, diagnosing mild hyperlipidemia, and recommending reducing high-fat diet, increasing aerobic exercise, and monitoring weight. Although I felt that being young was not a big deal, the doctor's authoritative advice and the records on 'Boohee Health' made me start to take it seriously.\n5. On the way back from climbing, I was persuaded by the coach, and after returning home, I apologized in the group.\n\nWhich of these happened first, and which happened later?": {
+    "order": [1, 3, 4, 5, 10, 11, 12, 15, 22, 27, 26],
+    "raw": "{\"records\":[1,3,4,5,10,11,12,15,22,27,26]}",
+    "stop": "end_turn",
+    "ms": 1186,
+    "cost": 0.0006389999999999999,
+    "in": 6245
+  },
+  "lb\tfenghaoran-q099\tI remember going to Shanghai in April this year for that financial summit. How long did it last in total?": {
+    "order": [1, 18, 15, 2, 27, 9, 3, 6, 24, 12, 4],
+    "raw": "{\"records\": [1, 18, 15, 2, 27, 9, 3, 6, 24, 12, 4]}",
+    "stop": "end_turn",
+    "ms": 1156,
+    "cost": 0.000554,
+    "in": 5345
+  },
+  "lb\tfenghaoran-q106\tOn the evening when his colleague Zheng Wenbo reminded him to go to the hospital for a checkup, Feng Haoran set the date for the hospital visit on his phone, which later prompted him to start physical therapy on March 20. What date did he set?": {
+    "order": [7, 8, 0, 1, 5, 9],
+    "raw": "{\"records\": [7, 8, 0, 1, 5, 9]}",
+    "stop": "end_turn",
+    "ms": 922,
+    "cost": 0.000542,
+    "in": 5300
+  },
+  "lb\tfenghaoran-q124\tIn the early morning two days after Feng Haoran confirmed in early September that his paper had been accepted, an unexpected incident interrupted the activity. What was this incident? What was Feng Haoran doing before the incident?": {
+    "order": [3, 2, 5, 18, 1, 0],
+    "raw": "{\"records\":[3,2,5,18,1,0]}",
+    "stop": "end_turn",
+    "ms": 926,
+    "cost": 0.0005162999999999999,
+    "in": 5068
+  },
+  "lb\tfenghaoran-q103\tIn January 2025, Feng Haoran received verbal praise from his supervisor Qian Yongqiang because of the high recognition from client Lin Zhihao. Prior to this, he had had several lunches with his colleague Zheng Wenbo. During the lunch the day before the praise, what news did Zheng Wenbo reveal to him?": {
+    "order": [1, 3, 5],
+    "raw": "{\"records\": [1, 3, 5]}",
+    "stop": "end_turn",
+    "ms": 1123,
+    "cost": 0.0005387,
+    "in": 5312
+  },
+  "lb\tfenghaoran-q101\tI remember that after I purchased a new camera this December, from that photography session to when I finished organizing the photos and shared them with my family, how long did it take? Also, which old street did I go to for test street photography during that time?": {
+    "order": [5, 4, 6, 3, 8, 20, 7, 24, 14, 23, 18, 19],
+    "raw": "{\"records\": [5, 4, 6, 3, 8, 20, 7, 24, 14, 23, 18, 19]}",
+    "stop": "end_turn",
+    "ms": 1288,
+    "cost": 0.0005398,
+    "in": 5188
+  },
+  "lb\tfenghaoran-q137\tDuring September 7 to 11, 2025, how did my mood fluctuate? What were the main reasons?": {
+    "order": [1, 0, 10, 4, 19, 2, 3, 6, 5, 26],
+    "raw": "{\"records\":[1,0,10,4,19,2,3,6,5,26]}",
+    "stop": "end_turn",
+    "ms": 962,
+    "cost": 0.0004348,
+    "in": 4213
+  },
+  "lb\tfenghaoran-q142\tWhat weekly pattern did my exercise training form in December? Which days each week were relatively fixed for high-intensity training?": {
+    "order": [21, 22, 9, 16, 18, 17, 19, 15, 20, 23, 25, 26, 28, 13, 10, 8, 11, 14, 12, 7, 24, 4, 5, 6, 0, 1, 3, 2],
+    "raw": "{\"records\":[21,22,9,16,18,17,19,15,20,23,25,26,28,13,10,8,11,14,12,7,24,4,5,6,0,1,3,2]}",
+    "stop": "end_turn",
+    "ms": 1016,
+    "cost": 0.0005741,
+    "in": 5426
+  },
+  "lb\tfenghaoran-q138\tLooking back at my June routine, did it form a regular pattern overall? Which days had the worst late nights, and what were the causes?": {
+    "order": [16, 15, 13, 11, 12, 6, 14, 25, 22, 3, 21, 20, 24, 0, 4, 5, 8, 10, 17, 23, 19, 7, 28, 2],
+    "raw": "{\"records\":[16,15,13,11,12,6,14,25,22,3,21,20,24,0,4,5,8,10,17,23,19,7,28,2]}",
+    "stop": "end_turn",
+    "ms": 1083,
+    "cost": 0.0005532,
+    "in": 5257
+  },
+  "lb\tfenghaoran-q156\tIn July, what was the relationship between my exercise volume and major stressful events (July 3 exam, July 8-10 investment negotiation, July 19 outdoor climbing conflict)? Did exercise help me relieve stress?": {
+    "order": [28, 22, 25, 0, 3, 9, 19, 7, 2, 17, 15, 16, 21, 5],
+    "raw": "{\"records\":[28,22,25,0,3,9,19,7,2,17,15,16,21,5]}",
+    "stop": "end_turn",
+    "ms": 961,
+    "cost": 0.0005911000000000001,
+    "in": 5736
+  },
+  "lb\tfenghaoran-q169\tIn August 2025, Feng Haoran met Zhang Mingxuan at Xinyi Cafe. What was the exact date?": {
+    "order": [2, 3, 1, 0, 6, 13, 7],
+    "raw": "{\"records\":[2,3,1,0,6,13,7]}",
+    "stop": "end_turn",
+    "ms": 851,
+    "cost": 0.0005241,
+    "in": 5136
+  },
+  "lb\tfenghaoran-q143\tWhat new eating habits have I formed this month? How did these habits develop step by step?": {
+    "order": [4, 0, 1, 5, 7, 6, 8, 23, 22, 11],
+    "raw": "{\"records\": [4, 0, 1, 5, 7, 6, 8, 23, 22, 11]}",
+    "stop": "end_turn",
+    "ms": 1100,
+    "cost": 0.0005454,
+    "in": 5274
+  },
+  "lb\tfenghaoran-q150\tIn August, in which personal interests or leisure activities were my financial investment work skills applied in a cross-disciplinary way? Please explain with specific events.": {
+    "order": [3, 7, 20, 14, 9, 28, 13, 11],
+    "raw": "{\"records\":[3,7,20,14,9,28,13,11]}",
+    "stop": "end_turn",
+    "ms": 1131,
+    "cost": 0.0005588,
+    "in": 5473
+  },
+  "lb\tfenghaoran-q164\tIn April 2025, what specific health management behaviors did I implement? How did these behaviors gradually form fixed habits from the initial triggering events?": {
+    "order": [7, 3, 28, 0, 13, 8, 10, 2, 4, 1, 14, 16, 17, 29, 23],
+    "raw": "{\"records\":[7,3,28,0,13,8,10,2,4,1,14,16,17,29,23]}",
+    "stop": "end_turn",
+    "ms": 1026,
+    "cost": 0.0005503,
+    "in": 5318
+  },
+  "lb\tfenghaoran-q175\tOn which specific day in November did Feng Haoran go to Wuhan to inspect a retirement community?": {
+    "order": [0, 2, 9],
+    "raw": "{\"records\":[0,2,9]}",
+    "stop": "end_turn",
+    "ms": 1086,
+    "cost": 0.0004927000000000001,
+    "in": 4862
+  },
+  "lb\tfenghaoran-q176\tOn which exact day did Feng Haoran attend the promotion candidate announcement meeting in early October?": {
+    "order": [1, 4, 3, 0, 2, 9, 5],
+    "raw": "{\"records\":[1,4,3,0,2,9,5]}",
+    "stop": "end_turn",
+    "ms": 913,
+    "cost": 0.0004802,
+    "in": 4697
+  },
+  "lb\tfenghaoran-q177\tOn which day did Feng Haoran attend the last class and graduation ceremony of the \"Financial Technology\" course in October 2025?": {
+    "order": [3, 0, 19, 2],
+    "raw": "{\"records\":[3,0,19,2]}",
+    "stop": "end_turn",
+    "ms": 1276,
+    "cost": 0.0005181000000000001,
+    "in": 5106
+  },
+  "lb\tfenghaoran-q182\tFeng Haoran attended the MBA opening ceremony and registered for retaking courses in September. What was the exact date?": {
+    "order": [1, 0, 2, 6],
+    "raw": "{\"records\": [1, 0, 2, 6]}",
+    "stop": "end_turn",
+    "ms": 1065,
+    "cost": 0.0004768,
+    "in": 4678
+  },
+  "lb\tfenghaoran-q183\tWhen exactly did Feng Haoran invite his parents to Changsha to visit the senior living community during the online celebration of his mother's birthday?": {
+    "order": [3, 9, 0, 10, 23, 24],
+    "raw": "{\"records\": [3, 9, 0, 10, 23, 24]}",
+    "stop": "end_turn",
+    "ms": 1060,
+    "cost": 0.0005265,
+    "in": 5145
+  },
+  "lb\tfenghaoran-q198\tOn which specific day in June did Feng Haoran call his sister Feng Xinran to comfort her after she was laid off?": {
+    "order": [7, 8, 9, 0, 2, 1, 5, 22, 4, 3, 6],
+    "raw": "{\"records\":[7,8,9,0,2,1,5,22,4,3,6]}",
+    "stop": "end_turn",
+    "ms": 973,
+    "cost": 0.0004646,
+    "in": 4501
+  },
+  "lb\tfenghaoran-q185\tOn which specific day in June did Feng Haoran conduct the department promotion presentation on the asset allocation model?": {
+    "order": [0, 1, 2, 3, 7],
+    "raw": "{\"records\":[0,1,2,3,7]}",
+    "stop": "end_turn",
+    "ms": 1166,
+    "cost": 0.0005278000000000001,
+    "in": 5193
+  },
+  "lb\tfenghaoran-q190\tDuring what time period did Feng Haoran complete the annual pension contribution operation on November 28?": {
+    "order": [1, 7, 2, 0, 6, 5, 4],
+    "raw": "{\"records\":[1,7,2,0,6,5,4]}",
+    "stop": "end_turn",
+    "ms": 1118,
+    "cost": 0.000517,
+    "in": 5065
+  },
+  "lb\tfenghaoran-q202\tFeng Haoran, think back: after the conversation with Qian Yongqiang on February 17, what training did Mr. Qian arrange for him to attend in the next month (March)?": {
+    "order": [25, 13, 14],
+    "raw": "{\"records\":[25,13,14]}",
+    "stop": "end_turn",
+    "ms": 1140,
+    "cost": 0.0004663,
+    "in": 4598
+  },
+  "lb\tfenghaoran-q205\tWhat was Feng Haoran's accuracy rate in a CFA quiz in June?": {
+    "order": [3, 4, 15, 23, 5, 2, 7, 9, 8, 10, 12, 13, 0, 1, 6, 11, 14, 18, 19, 22, 24, 29, 28, 21, 20],
+    "raw": "{\"records\":[3,4,15,23,5,2,7,9,8,10,12,13,0,1,6,11,14,18,19,22,24,29,28,21,20]}",
+    "stop": "end_turn",
+    "ms": 1257,
+    "cost": 0.0005195,
+    "in": 4910
+  },
+  "lb\tfenghaoran-q211\tWhat was the specific date in December when Feng Haoran conducted the year-end review and celebration with Shen Xinyi?": {
+    "order": [0, 2, 4, 18],
+    "raw": "{\"records\":[0,2,4,18]}",
+    "stop": "end_turn",
+    "ms": 901,
+    "cost": 0.00048750000000000003,
+    "in": 4800
+  },
+  "lb\tfenghaoran-q280\tHow severe is my neck pain?": {
+    "order": [2, 16, 0, 6, 12, 27, 10, 25, 13, 11, 20],
+    "raw": "{\"records\":[2,16,0,6,12,27,10,25,13,11,20]}",
+    "stop": "end_turn",
+    "ms": 953,
+    "cost": 0.000513,
+    "in": 4985
+  },
+  "lb\tfenghaoran-q207\tOn which specific day in November did Feng Haoran write the long article 'Changsha REITs Investment Logic'?": {
+    "order": [1, 2, 10, 3, 0, 20, 7, 4, 17],
+    "raw": "{\"records\":[1,2,10,3,0,20,7,4,17]}",
+    "stop": "end_turn",
+    "ms": 1275,
+    "cost": 0.0005054,
+    "in": 4929
+  },
+  "lb\tfenghaoran-q210\tWhat specific day in November did Feng Haoran accompany his parents to receive the vaccination?": {
+    "order": [4, 5, 6, 18, 0, 1, 3],
+    "raw": "{\"records\": [4, 5, 6, 18, 0, 1, 3]}",
+    "stop": "end_turn",
+    "ms": 1234,
+    "cost": 0.000465,
+    "in": 4515
+  },
+  "lb\tfenghaoran-q284\tWhat is the health condition I was recently diagnosed with?": {
+    "order": [0, 1, 28, 18],
+    "raw": "{\"records\": [0, 1, 28, 18]}",
+    "stop": "end_turn",
+    "ms": 1123,
+    "cost": 0.0005007000000000001,
+    "in": 4917
+  },
+  "lb\tfenghaoran-q281\tHow severe is my neck pain?": {
+    "order": [
+      1, 0, 8, 25, 6, 14, 2, 3, 24, 7, 11, 4, 5, 21, 23, 10, 26, 17, 28, 22, 12, 29, 13, 9, 16, 15, 18, 19, 20, 27
+    ],
+    "raw": "{\"records\":[1,0,8,25,6,14,2,3,24,7,11,4,5,21,23,10,26,17,28,22,12,29,13,9,16,15,18,19,20,27]}",
+    "stop": "end_turn",
+    "ms": 1321,
+    "cost": 0.0004759,
+    "in": 4424
+  },
+  "lb\tfenghaoran-q285\tWhat lifestyle adjustments do I need to make for my health issues?": {
+    "order": [0, 21, 23, 9, 13, 18, 22, 2, 25, 1, 4, 26, 29, 28, 19],
+    "raw": "{\"records\":[0,21,23,9,13,18,22,2,25,1,4,26,29,28,19]}",
+    "stop": "end_turn",
+    "ms": 1116,
+    "cost": 0.0005517,
+    "in": 5332
+  },
+  "lb\tfenghaoran-q296\tWhat is my current running cadence goal?": {
+    "order": [0, 5, 6, 7, 20],
+    "raw": "{\"records\":[0,5,6,7,20]}",
+    "stop": "end_turn",
+    "ms": 1056,
+    "cost": 0.0005617,
+    "in": 5532
+  },
+  "lb\tfenghaoran-q307\tHow is my progress in learning oil painting?": {
+    "order": [1, 0],
+    "raw": "{\"records\":[1,0]}",
+    "stop": "end_turn",
+    "ms": 891,
+    "cost": 0.0004903,
+    "in": 4848
+  },
+  "lb\tfenghaoran-q303\tWhat have I accomplished in stamp collecting?": {
+    "order": [
+      3, 0, 1, 6, 11, 12, 14, 2, 4, 9, 19, 21, 23, 24, 25, 29, 26, 27, 20, 8, 7, 10, 13, 5, 16, 22, 18, 17, 15, 28
+    ],
+    "raw": "{\"records\":[3,0,1,6,11,12,14,2,4,9,19,21,23,24,25,29,26,27,20,8,7,10,13,5,16,22,18,17,15,28]}",
+    "stop": "end_turn",
+    "ms": 1061,
+    "cost": 0.0005518000000000001,
+    "in": 5183
+  },
+  "lb\tfenghaoran-q286\tCan I continue running exercises normally?": {
+    "order": [14, 3, 1, 27, 0, 15, 8, 7, 10, 20, 26],
+    "raw": "{\"records\":[14,3,1,27,0,15,8,7,10,20,26]}",
+    "stop": "end_turn",
+    "ms": 1521,
+    "cost": 0.0005767,
+    "in": 5622
+  },
+  "lb\tfenghaoran-q326\tI plan to directly assign tasks using the same efficient division of labor method as before when I receive the new MBA group assignment in early April. How does this arrangement sound?": {
+    "order": [7, 26, 14, 22, 25, 2, 5, 10, 24, 0, 19],
+    "raw": "{\"records\":[7,26,14,22,25,2,5,10,24,0,19]}",
+    "stop": "end_turn",
+    "ms": 1011,
+    "cost": 0.0005344999999999999,
+    "in": 5200
+  },
+  "lb\tfenghaoran-q324\tI plan to go to Wuhan on the evening of November 1 to attend an old classmate's birthday party. What do you think of this arrangement?": {
+    "order": [1, 5, 0, 26, 19, 23],
+    "raw": "{\"records\":[1,5,0,26,19,23]}",
+    "stop": "end_turn",
+    "ms": 1316,
+    "cost": 0.0005588,
+    "in": 5493
+  },
+  "lb\tfenghaoran-q329\tI plan to attend a friend's barbecue party on the evening of August 14. What do you think of this plan?": {
+    "order": [0, 1, 27],
+    "raw": "{\"records\":[0,1,27]}",
+    "stop": "end_turn",
+    "ms": 1129,
+    "cost": 0.0005411,
+    "in": 5346
+  },
+  "lb\tfenghaoran-q334\tIn September 2025, after a blind date, Feng Haoran went home and reflected on why he would adjust his criteria for choosing a partner and prioritize spiritual resonance.": {
+    "order": [0, 3, 1, 4, 2, 9, 8, 12, 11, 24, 18, 26],
+    "raw": "{\"records\": [0, 3, 1, 4, 2, 9, 8, 12, 11, 24, 18, 26]}",
+    "stop": "end_turn",
+    "ms": 1181,
+    "cost": 0.0005145,
+    "in": 4935
+  },
+  "lb\tfenghaoran-q340\tIn July 2025, why did Feng Haoran put a card written \"the first gift my son won\" in the express package he sent to his mother?": {
+    "order": [1, 0, 6, 7, 2],
+    "raw": "{\"records\": [1, 0, 6, 7, 2]}",
+    "stop": "end_turn",
+    "ms": 835,
+    "cost": 0.00044070000000000003,
+    "in": 4302
+  },
+  "lb\tfenghaoran-q344\tIn July 2025, why did Feng Haoran adjust his regular fund investment plan on the 20th?": {
+    "order": [0, 1],
+    "raw": "{\"records\":[0,1]}",
+    "stop": "end_turn",
+    "ms": 840,
+    "cost": 0.0005014,
+    "in": 4959
+  }
+}
