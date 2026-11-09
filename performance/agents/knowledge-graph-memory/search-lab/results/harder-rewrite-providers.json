@@ -1,0 +1,4294 @@
+{
+  "lb-s20-plain": {
+    "summary": {
+      "set": "lb-s20",
+      "arm": "plain",
+      "provider": null,
+      "questions": 59,
+      "of": 59,
+      "recall_at_10": 0.315,
+      "hit_at_10": 0.78,
+      "ms_median": 2032,
+      "ms_max": 5531,
+      "cost_usd": 0,
+      "unmapped_hits": 0,
+      "rerank_applied": 0,
+      "rewrite_applied": 0,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "fenghaoran-q002",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3339,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q004",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3170,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q020",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2790,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q029",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2168,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q032",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 2238,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q036",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 2011,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q041",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2103,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q048",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2068,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q058",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2400,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q073",
+        "recall": 0.059,
+        "hit": 1,
+        "ms": 3289,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q074",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 1883,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q075",
+        "recall": 0.158,
+        "hit": 1,
+        "ms": 2182,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q077",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 2400,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q083",
+        "recall": 0.15,
+        "hit": 1,
+        "ms": 2276,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q085",
+        "recall": 0.062,
+        "hit": 1,
+        "ms": 1766,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q088",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 1856,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q093",
+        "recall": 0.1,
+        "hit": 1,
+        "ms": 1851,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q095",
+        "recall": 0,
+        "hit": 0,
+        "ms": 10,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q097",
+        "recall": 0.04,
+        "hit": 1,
+        "ms": 2116,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q099",
+        "recall": 0.145,
+        "hit": 1,
+        "ms": 1378,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q101",
+        "recall": 0.133,
+        "hit": 1,
+        "ms": 1853,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q103",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3219,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q106",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 2672,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q124",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1677,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q137",
+        "recall": 0.062,
+        "hit": 1,
+        "ms": 1462,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q138",
+        "recall": 0.022,
+        "hit": 1,
+        "ms": 1863,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q142",
+        "recall": 0.024,
+        "hit": 1,
+        "ms": 1633,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q143",
+        "recall": 0.059,
+        "hit": 1,
+        "ms": 2768,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q150",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 4085,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q156",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3724,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q164",
+        "recall": 0.024,
+        "hit": 1,
+        "ms": 2803,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q169",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 4195,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q175",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 5313,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q176",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 5531,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q177",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 2641,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q182",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 2032,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q183",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 1747,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q185",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 1796,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q190",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 1951,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q198",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1567,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q202",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1628,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q205",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 1341,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q207",
+        "recall": 0.286,
+        "hit": 1,
+        "ms": 1410,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q210",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 1542,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q211",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 1517,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q280",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1337,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q281",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1334,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q284",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 1619,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q285",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1358,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q286",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1412,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q296",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 1605,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q303",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3786,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q307",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 2819,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q324",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2200,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q326",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2032,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q329",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 1985,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q334",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 2060,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q340",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 2276,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q344",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1766,
+        "rerank": null,
+        "rewrite": null
+      }
+    ]
+  },
+  "lb-s20-rerank-anthropic": {
+    "summary": {
+      "set": "lb-s20",
+      "arm": "harder",
+      "provider": "anthropic",
+      "questions": 59,
+      "of": 59,
+      "recall_at_10": 0.392,
+      "hit_at_10": 0.881,
+      "ms_median": 2982,
+      "ms_max": 7652,
+      "cost_usd": 0.016514,
+      "unmapped_hits": 0,
+      "rerank_applied": 58,
+      "rewrite_applied": 0,
+      "fallbacks": ["harder.too-few"]
+    },
+    "per_question": [
+      {
+        "id": "fenghaoran-q002",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 7652,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q004",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4146,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q020",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4316,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q029",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5179,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q032",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4381,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q036",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 4184,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q041",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4149,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q048",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4565,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q058",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3447,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q073",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 4255,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q074",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3448,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q075",
+        "recall": 0.368,
+        "hit": 1,
+        "ms": 3543,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q077",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 2513,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q083",
+        "recall": 0.15,
+        "hit": 1,
+        "ms": 2667,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q085",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 2365,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q088",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 2661,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q093",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 2490,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q095",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5,
+        "rerank": "harder.too-few",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q097",
+        "recall": 0.08,
+        "hit": 1,
+        "ms": 2538,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q099",
+        "recall": 0.161,
+        "hit": 1,
+        "ms": 4353,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q101",
+        "recall": 0.178,
+        "hit": 1,
+        "ms": 2830,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q103",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 2813,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q106",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 2677,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q124",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2598,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q137",
+        "recall": 0.125,
+        "hit": 1,
+        "ms": 3454,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q138",
+        "recall": 0.022,
+        "hit": 1,
+        "ms": 2830,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q142",
+        "recall": 0.048,
+        "hit": 1,
+        "ms": 2407,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q143",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 2463,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q150",
+        "recall": 0.214,
+        "hit": 1,
+        "ms": 3340,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q156",
+        "recall": 0.042,
+        "hit": 1,
+        "ms": 2982,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q164",
+        "recall": 0.049,
+        "hit": 1,
+        "ms": 2869,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q169",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3433,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q175",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 2341,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q176",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 2898,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q177",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3482,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q182",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 3367,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q183",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4682,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q185",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 2778,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q190",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3563,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q198",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3035,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q202",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2190,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q205",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 2468,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q207",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 2257,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q210",
+        "recall": 0.625,
+        "hit": 1,
+        "ms": 2552,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q211",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 2220,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q280",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2721,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q281",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3077,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q284",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 2446,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q285",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3412,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q286",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 2520,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q296",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3097,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q303",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 2682,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q307",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 3025,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q324",
+        "recall": 0,
+        "hit": 0,
+        "ms": 2647,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q326",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 2951,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q329",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 3259,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q334",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3178,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q340",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 3865,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q344",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3556,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "lb-s20-rerank2-anthropic": {
+    "summary": {
+      "set": "lb-s20",
+      "arm": "harder",
+      "provider": "anthropic",
+      "questions": 59,
+      "of": 59,
+      "recall_at_10": 0.385,
+      "hit_at_10": 0.881,
+      "ms_median": 3866,
+      "ms_max": 6462,
+      "cost_usd": 0.016498,
+      "unmapped_hits": 0,
+      "rerank_applied": 58,
+      "rewrite_applied": 0,
+      "fallbacks": ["harder.too-few"]
+    },
+    "per_question": [
+      {
+        "id": "fenghaoran-q002",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4636,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q004",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3866,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q020",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3459,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q029",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3635,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q032",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3613,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q036",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 3854,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q041",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4009,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q048",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4914,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q058",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3479,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q073",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 4201,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q074",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 3938,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q075",
+        "recall": 0.368,
+        "hit": 1,
+        "ms": 4205,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q077",
+        "recall": 0.167,
+        "hit": 1,
+        "ms": 3642,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q083",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 4146,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q085",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 3336,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q088",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 3575,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q093",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 4018,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q095",
+        "recall": 0,
+        "hit": 0,
+        "ms": 13,
+        "rerank": "harder.too-few",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q097",
+        "recall": 0.08,
+        "hit": 1,
+        "ms": 5702,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q099",
+        "recall": 0.145,
+        "hit": 1,
+        "ms": 4301,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q101",
+        "recall": 0.178,
+        "hit": 1,
+        "ms": 4585,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q103",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 4010,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q106",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 4132,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q124",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4005,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q137",
+        "recall": 0.125,
+        "hit": 1,
+        "ms": 3650,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q138",
+        "recall": 0.022,
+        "hit": 1,
+        "ms": 3578,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q142",
+        "recall": 0.048,
+        "hit": 1,
+        "ms": 3787,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q143",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 4076,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q150",
+        "recall": 0.214,
+        "hit": 1,
+        "ms": 3716,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q156",
+        "recall": 0.042,
+        "hit": 1,
+        "ms": 4116,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q164",
+        "recall": 0.049,
+        "hit": 1,
+        "ms": 4313,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q169",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3455,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q175",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4508,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q176",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3653,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q177",
+        "recall": 0.6,
+        "hit": 1,
+        "ms": 3940,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q182",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 4233,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q183",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4005,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q185",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3442,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q190",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3561,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q198",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4616,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q202",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3735,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q205",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3534,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q207",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 4349,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q210",
+        "recall": 0.625,
+        "hit": 1,
+        "ms": 6462,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q211",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 3622,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q280",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3410,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q281",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3717,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q284",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4206,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q285",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5460,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q286",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 4126,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q296",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3779,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q303",
+        "recall": 0.286,
+        "hit": 1,
+        "ms": 3999,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q307",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 3794,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q324",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3381,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q326",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 3824,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q329",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 4237,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q334",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3858,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q340",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 3663,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q344",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3594,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "lb-s20-rerank2-openai": {
+    "summary": {
+      "set": "lb-s20",
+      "arm": "harder",
+      "provider": "openai",
+      "questions": 59,
+      "of": 59,
+      "recall_at_10": 0.369,
+      "hit_at_10": 0.847,
+      "ms_median": 3993,
+      "ms_max": 6286,
+      "cost_usd": 0.01602,
+      "unmapped_hits": 0,
+      "rerank_applied": 58,
+      "rewrite_applied": 0,
+      "fallbacks": ["harder.too-few"]
+    },
+    "per_question": [
+      {
+        "id": "fenghaoran-q002",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4548,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q004",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3168,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q020",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3157,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q029",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4060,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q032",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 6286,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q036",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 3919,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q041",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3967,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q048",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3335,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q058",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3361,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q073",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 4267,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q074",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3624,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q075",
+        "recall": 0.316,
+        "hit": 1,
+        "ms": 4452,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q077",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 4520,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q083",
+        "recall": 0.15,
+        "hit": 1,
+        "ms": 3984,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q085",
+        "recall": 0.125,
+        "hit": 1,
+        "ms": 3858,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q088",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 4034,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q093",
+        "recall": 0.1,
+        "hit": 1,
+        "ms": 3784,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q095",
+        "recall": 0,
+        "hit": 0,
+        "ms": 12,
+        "rerank": "harder.too-few",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q097",
+        "recall": 0.08,
+        "hit": 1,
+        "ms": 3890,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q099",
+        "recall": 0.129,
+        "hit": 1,
+        "ms": 4006,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q101",
+        "recall": 0.133,
+        "hit": 1,
+        "ms": 4016,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q103",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 4146,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q106",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 4254,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q124",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4089,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q137",
+        "recall": 0.125,
+        "hit": 1,
+        "ms": 4037,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q138",
+        "recall": 0.022,
+        "hit": 1,
+        "ms": 4250,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q142",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4123,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q143",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 3883,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q150",
+        "recall": 0.214,
+        "hit": 1,
+        "ms": 3846,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q156",
+        "recall": 0.042,
+        "hit": 1,
+        "ms": 4311,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q164",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3996,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q169",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3380,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q175",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3753,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q176",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3621,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q177",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3389,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q182",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 3894,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q183",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3863,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q185",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3984,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q190",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 4216,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q198",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4404,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q202",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4105,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q205",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4317,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q207",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 4171,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q210",
+        "recall": 0.625,
+        "hit": 1,
+        "ms": 4508,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q211",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 4459,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q280",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4079,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q281",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3885,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q284",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 3575,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q285",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4057,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q286",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 5516,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q296",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 4728,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q303",
+        "recall": 0.286,
+        "hit": 1,
+        "ms": 3923,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q307",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 3583,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q324",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3488,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q326",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 3993,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q329",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 3772,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q334",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4120,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q340",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 3472,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q344",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3397,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "lb-s20-rerank2-openrouter": {
+    "summary": {
+      "set": "lb-s20",
+      "arm": "harder",
+      "provider": "openrouter",
+      "questions": 59,
+      "of": 59,
+      "recall_at_10": 0.369,
+      "hit_at_10": 0.864,
+      "ms_median": 4245,
+      "ms_max": 6559,
+      "cost_usd": 0.034158,
+      "unmapped_hits": 0,
+      "rerank_applied": 58,
+      "rewrite_applied": 0,
+      "fallbacks": ["harder.too-few"]
+    },
+    "per_question": [
+      {
+        "id": "fenghaoran-q002",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4885,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q004",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3655,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q020",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3663,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q029",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4014,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q032",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4344,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q036",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 4199,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q041",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4466,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q048",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3916,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q058",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4557,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q073",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 6050,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q074",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 4038,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q075",
+        "recall": 0.053,
+        "hit": 1,
+        "ms": 5304,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q077",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 4242,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q083",
+        "recall": 0.15,
+        "hit": 1,
+        "ms": 4543,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q085",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 4092,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q088",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 3967,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q093",
+        "recall": 0.1,
+        "hit": 1,
+        "ms": 3618,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q095",
+        "recall": 0,
+        "hit": 0,
+        "ms": 16,
+        "rerank": "harder.too-few",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q097",
+        "recall": 0.12,
+        "hit": 1,
+        "ms": 5720,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q099",
+        "recall": 0.145,
+        "hit": 1,
+        "ms": 4239,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q101",
+        "recall": 0.133,
+        "hit": 1,
+        "ms": 4290,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q103",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 3804,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q106",
+        "recall": 0.429,
+        "hit": 1,
+        "ms": 4847,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q124",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4323,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q137",
+        "recall": 0.125,
+        "hit": 1,
+        "ms": 4258,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q138",
+        "recall": 0.022,
+        "hit": 1,
+        "ms": 3558,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q142",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4688,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q143",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 3695,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q150",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 3297,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q156",
+        "recall": 0.042,
+        "hit": 1,
+        "ms": 4027,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q164",
+        "recall": 0.049,
+        "hit": 1,
+        "ms": 4714,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q169",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 4011,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q175",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4245,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q176",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 4729,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q177",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3965,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q182",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 3871,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q183",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 5115,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q185",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 3763,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q190",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 5085,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q198",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5780,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q202",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3986,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q205",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 5378,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q207",
+        "recall": 0.286,
+        "hit": 1,
+        "ms": 4755,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q210",
+        "recall": 0.625,
+        "hit": 1,
+        "ms": 4762,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q211",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 3773,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q280",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4313,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q281",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5169,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q284",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 4220,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q285",
+        "recall": 0,
+        "hit": 0,
+        "ms": 6559,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q286",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 5587,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q296",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 4279,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q303",
+        "recall": 0.286,
+        "hit": 1,
+        "ms": 5792,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q307",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 4683,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q324",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3923,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q326",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 4155,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q329",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 4020,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q334",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 5030,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q340",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 3536,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "fenghaoran-q344",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3583,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "lb-s20-rewrite-anthropic": {
+    "summary": {
+      "set": "lb-s20",
+      "arm": "harder",
+      "provider": "anthropic",
+      "questions": 59,
+      "of": 59,
+      "recall_at_10": 0.374,
+      "hit_at_10": 0.814,
+      "ms_median": 4799,
+      "ms_max": 8407,
+      "cost_usd": 0.019469,
+      "unmapped_hits": 0,
+      "rerank_applied": 58,
+      "rewrite_applied": 45,
+      "fallbacks": [
+        "harder.not-a-question",
+        "harder.timeout",
+        "harder.not-a-question",
+        "harder.error",
+        "harder.error",
+        "harder.too-few",
+        "harder.not-a-question",
+        "harder.not-a-question",
+        "harder.timeout",
+        "harder.not-a-question",
+        "harder.timeout",
+        "harder.not-a-question",
+        "harder.not-a-question",
+        "harder.not-a-question",
+        "harder.not-a-question"
+      ]
+    },
+    "per_question": [
+      {
+        "id": "fenghaoran-q002",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4385,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q004",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3197,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q020",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 2353,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q029",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3815,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q032",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 5743,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q036",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 3942,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q041",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 6246,
+        "rerank": "applied",
+        "rewrite": "harder.timeout"
+      },
+      {
+        "id": "fenghaoran-q048",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4826,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q058",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3799,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q073",
+        "recall": 0.118,
+        "hit": 1,
+        "ms": 5610,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q074",
+        "recall": 0.25,
+        "hit": 1,
+        "ms": 3400,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q075",
+        "recall": 0.368,
+        "hit": 1,
+        "ms": 4957,
+        "rerank": "applied",
+        "rewrite": "harder.error"
+      },
+      {
+        "id": "fenghaoran-q077",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3759,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q083",
+        "recall": 0.15,
+        "hit": 1,
+        "ms": 4975,
+        "rerank": "applied",
+        "rewrite": "harder.error"
+      },
+      {
+        "id": "fenghaoran-q085",
+        "recall": 0.188,
+        "hit": 1,
+        "ms": 6522,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q088",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 5178,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q093",
+        "recall": 0.1,
+        "hit": 1,
+        "ms": 5024,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q095",
+        "recall": 0,
+        "hit": 0,
+        "ms": 8,
+        "rerank": "harder.too-few",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q097",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4064,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q099",
+        "recall": 0.161,
+        "hit": 1,
+        "ms": 4629,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q101",
+        "recall": 0.089,
+        "hit": 1,
+        "ms": 4178,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q103",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 4052,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q106",
+        "recall": 0.286,
+        "hit": 1,
+        "ms": 4685,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q124",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4799,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q137",
+        "recall": 0.125,
+        "hit": 1,
+        "ms": 5339,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q138",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 3855,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q142",
+        "recall": 0.048,
+        "hit": 1,
+        "ms": 3353,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q143",
+        "recall": 0.235,
+        "hit": 1,
+        "ms": 3951,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q150",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3894,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q156",
+        "recall": 0.042,
+        "hit": 1,
+        "ms": 4384,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q164",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4600,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q169",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3695,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q175",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4911,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q176",
+        "recall": 0.8,
+        "hit": 1,
+        "ms": 7830,
+        "rerank": "applied",
+        "rewrite": "harder.timeout"
+      },
+      {
+        "id": "fenghaoran-q177",
+        "recall": 0.6,
+        "hit": 1,
+        "ms": 4927,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q182",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3916,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q183",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 3879,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q185",
+        "recall": 0.6,
+        "hit": 1,
+        "ms": 3744,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q190",
+        "recall": 0.75,
+        "hit": 1,
+        "ms": 6952,
+        "rerank": "applied",
+        "rewrite": "harder.timeout"
+      },
+      {
+        "id": "fenghaoran-q198",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5207,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q202",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3584,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q205",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4747,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q207",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 5293,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q210",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 6103,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q211",
+        "recall": 0.667,
+        "hit": 1,
+        "ms": 5812,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q280",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5371,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q281",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5595,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q284",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 4957,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q285",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 5656,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q286",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5606,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q296",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4724,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q303",
+        "recall": 0.143,
+        "hit": 1,
+        "ms": 5525,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q307",
+        "recall": 0.333,
+        "hit": 1,
+        "ms": 6146,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q324",
+        "recall": 0.105,
+        "hit": 1,
+        "ms": 7583,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q326",
+        "recall": 0,
+        "hit": 0,
+        "ms": 8407,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q329",
+        "recall": 0.083,
+        "hit": 1,
+        "ms": 8069,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "fenghaoran-q334",
+        "recall": 0.5,
+        "hit": 1,
+        "ms": 5771,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q340",
+        "recall": 0.2,
+        "hit": 1,
+        "ms": 4749,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      },
+      {
+        "id": "fenghaoran-q344",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3855,
+        "rerank": "applied",
+        "rewrite": "harder.not-a-question"
+      }
+    ]
+  },
+  "v3-all-plain": {
+    "summary": {
+      "set": "v3-all",
+      "arm": "plain",
+      "provider": null,
+      "questions": 46,
+      "of": 46,
+      "recall_at_10": 0.935,
+      "hit_at_10": 0.935,
+      "ms_median": 1855,
+      "ms_max": 3069,
+      "cost_usd": 0,
+      "unmapped_hits": 0,
+      "rerank_applied": 0,
+      "rewrite_applied": 0,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1796,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q02",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1590,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q03",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1682,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q04",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1467,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q05",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1317,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q06",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1479,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q07",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1467,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q08",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1514,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q09",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1295,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q10",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1448,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q11",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1370,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q12",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1879,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q13",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2377,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q14",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2268,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q15",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2160,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q16",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2001,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q17",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1908,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q18",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1965,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q19",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1944,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q20",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2312,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q21",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2428,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q22",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2476,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q23",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2397,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q24",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2412,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q25",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2775,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q26",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2328,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q27",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2139,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q28",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2374,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q29",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2420,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q30",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3069,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q31",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1995,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q32",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1760,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q33",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1871,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q34",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1855,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q35",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1602,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q36",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1909,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q39",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1483,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q40",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1549,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q41",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1363,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q42",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1358,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q43",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1598,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q44",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1297,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q45",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1381,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q48",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1409,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q49",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1335,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q50",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1327,
+        "rerank": null,
+        "rewrite": null
+      }
+    ]
+  },
+  "v3-rew-plain": {
+    "summary": {
+      "set": "v3-rew",
+      "arm": "plain",
+      "provider": null,
+      "questions": 17,
+      "of": 17,
+      "recall_at_10": 0.788,
+      "hit_at_10": 0.824,
+      "ms_median": 1769,
+      "ms_max": 2203,
+      "cost_usd": 0,
+      "unmapped_hits": 0,
+      "rerank_applied": 0,
+      "rewrite_applied": 0,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1592,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q04",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1343,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q07",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1334,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q10",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1426,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q12",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1265,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q14",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1835,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q17",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1991,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q20",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1769,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q23",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1778,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q26",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1835,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q28",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2203,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q30",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1926,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q32",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1616,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q35",
+        "recall": 0.4,
+        "hit": 1,
+        "ms": 2068,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q39",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1561,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q42",
+        "recall": 0,
+        "hit": 0,
+        "ms": 1893,
+        "rerank": null,
+        "rewrite": null
+      },
+      {
+        "id": "q44",
+        "recall": 1,
+        "hit": 1,
+        "ms": 1767,
+        "rerank": null,
+        "rewrite": null
+      }
+    ]
+  },
+  "v3-rew-rerank-anthropic": {
+    "summary": {
+      "set": "v3-rew",
+      "arm": "harder",
+      "provider": "anthropic",
+      "questions": 17,
+      "of": 17,
+      "recall_at_10": 0.882,
+      "hit_at_10": 0.882,
+      "ms_median": 3758,
+      "ms_max": 10763,
+      "cost_usd": 0.005519,
+      "unmapped_hits": 0,
+      "rerank_applied": 17,
+      "rewrite_applied": 0,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3758,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q04",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3341,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q07",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3161,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q10",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3273,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q12",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3207,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q14",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3404,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q17",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3262,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q20",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3667,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q23",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4473,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q26",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3169,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q28",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5200,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q30",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5020,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q32",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5751,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q35",
+        "recall": 1,
+        "hit": 1,
+        "ms": 8296,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q39",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5218,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q42",
+        "recall": 0,
+        "hit": 0,
+        "ms": 10763,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q44",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4608,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "v3-rew-rerank2-anthropic": {
+    "summary": {
+      "set": "v3-rew",
+      "arm": "harder",
+      "provider": "anthropic",
+      "questions": 17,
+      "of": 17,
+      "recall_at_10": 0.882,
+      "hit_at_10": 0.882,
+      "ms_median": 3344,
+      "ms_max": 5242,
+      "cost_usd": 0.00551,
+      "unmapped_hits": 0,
+      "rerank_applied": 17,
+      "rewrite_applied": 0,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5242,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q04",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3544,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q07",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3358,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q10",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3235,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q12",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3441,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q14",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3129,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q17",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3364,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q20",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3146,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q23",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3382,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q26",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3439,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q28",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3180,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q30",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3146,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q32",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3035,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q35",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3344,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q39",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3095,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q42",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3703,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q44",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3144,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "v3-rew-rerank2-openai": {
+    "summary": {
+      "set": "v3-rew",
+      "arm": "harder",
+      "provider": "openai",
+      "questions": 17,
+      "of": 17,
+      "recall_at_10": 0.882,
+      "hit_at_10": 0.882,
+      "ms_median": 3702,
+      "ms_max": 6142,
+      "cost_usd": 0.004774,
+      "unmapped_hits": 0,
+      "rerank_applied": 17,
+      "rewrite_applied": 0,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "recall": 1,
+        "hit": 1,
+        "ms": 6142,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q04",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4857,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q07",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4010,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q10",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4148,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q12",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3743,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q14",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3988,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q17",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3814,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q20",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3601,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q23",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3678,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q26",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3702,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q28",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3568,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q30",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2990,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q32",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3342,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q35",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3974,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q39",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3312,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q42",
+        "recall": 0,
+        "hit": 0,
+        "ms": 3348,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q44",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3690,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "v3-rew-rerank2-openrouter": {
+    "summary": {
+      "set": "v3-rew",
+      "arm": "harder",
+      "provider": "openrouter",
+      "questions": 17,
+      "of": 17,
+      "recall_at_10": 0.882,
+      "hit_at_10": 0.882,
+      "ms_median": 3921,
+      "ms_max": 5489,
+      "cost_usd": 0.01028,
+      "unmapped_hits": 0,
+      "rerank_applied": 17,
+      "rewrite_applied": 0,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4785,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q04",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4608,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q07",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5489,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q10",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3331,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q12",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4046,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q14",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3921,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q17",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3333,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q20",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3297,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q23",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3688,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q26",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4069,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q28",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3886,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q30",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4002,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q32",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4214,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q35",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3730,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q39",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3434,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q42",
+        "recall": 0,
+        "hit": 0,
+        "ms": 4280,
+        "rerank": "applied",
+        "rewrite": null
+      },
+      {
+        "id": "q44",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3741,
+        "rerank": "applied",
+        "rewrite": null
+      }
+    ]
+  },
+  "v3-rew-rewrite-anthropic": {
+    "summary": {
+      "set": "v3-rew",
+      "arm": "harder",
+      "provider": "anthropic",
+      "questions": 17,
+      "of": 17,
+      "recall_at_10": 0.882,
+      "hit_at_10": 0.882,
+      "ms_median": 3667,
+      "ms_max": 5514,
+      "cost_usd": 0.006843,
+      "unmapped_hits": 0,
+      "rerank_applied": 17,
+      "rewrite_applied": 17,
+      "fallbacks": []
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "recall": 1,
+        "hit": 1,
+        "ms": 5514,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q04",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3453,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q07",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3450,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q10",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3504,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q12",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3667,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q14",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3796,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q17",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3866,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q20",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3192,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q23",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5435,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q26",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4722,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q28",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3911,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q30",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2704,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q32",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2773,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q35",
+        "recall": 1,
+        "hit": 1,
+        "ms": 3006,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q39",
+        "recall": 1,
+        "hit": 1,
+        "ms": 4923,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q42",
+        "recall": 0,
+        "hit": 0,
+        "ms": 5264,
+        "rerank": "applied",
+        "rewrite": "applied"
+      },
+      {
+        "id": "q44",
+        "recall": 1,
+        "hit": 1,
+        "ms": 2887,
+        "rerank": "applied",
+        "rewrite": "applied"
+      }
+    ]
+  }
+}

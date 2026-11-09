@@ -367,6 +367,78 @@ So the moved records cost nothing measurable here. It matches the lab rerun, and
 because of one question. This set cannot show a gain: stack C already finds 16 of 17. The gain the lab measured is on
 LifeBench (0.41 to 0.55 with rewrites), and that was not run again.
 
+## Rewriting inside cli-core, and the provider choice (9 November)
+
+### Why
+
+The owner asked for the lab's other half too: "давай перефразирование тоже сделаем" (let's add the rewriting as well).
+In the lab, Haiku's dated rewrites plus their keywords lifted stack C, but their gain on top of memo's real
+`search all` (hybrid, with cli-core #2770's date boost) was never measured, and neither was the rerank's. The
+questions: **does rewriting add anything over the shipped rerank, inside cli-core's real search?** And, since the owner
+also wants the provider to be his choice, **how do `gpt-4o-mini` and an OpenRouter model compare with Haiku?** The rule
+set before any paid call: merge the rewriting only if it is not worse than the rerank alone on either set.
+
+### Setup
+
+- cli-core's `searchAll` exactly as memo's `search all` calls it (memo #774's arguments: the meaning lane, `MEMO`
+  account, memo's messenger), run in-process by [harder_rewrite_check.mjs](harder_rewrite_check.mjs) over a copy of a
+  memo store. The question's `as_of` is the search's clock; limit 10.
+- Stores, all synthetic, with EmbeddingGemma vectors for notes **and** mail:
+  - v3: a copy of `memo-titles-words-embeddinggemma` (memo 0.131.61). It had Gemma vectors for notes only, and mail
+    without vectors sinks below every note in cli-core's cosine merge (plain recall@10 0.67 instead of 0.94), so its
+    4,157 mails were embedded first with write-time-enrichment's `gemma_embed.mjs` (150 s).
+  - LifeBench `fenghaoran`: a copy of `lifebench-memo-fenghaoran` (e5-small), embedded with Gemma by the same script
+    (6,070 chunks, 654 s).
+- Sets: v3 reworded (17) and lb-s20 (59), the ids from `lab.py`'s own `sample()` in
+  [results/set-ids.json](results/set-ids.json). v3 all (46) ran plain only, as a check of the wiring.
+- Builds: cli-core 0.620.0 (`main` at 22b932cd9, rerank only); the rewrite build
+  ([cae67a2d3](https://github.com/WireCatLabs/cli-core/commit/cae67a2d3), measured as 87bfb5c07 on 0.620.0, the same
+  code rebased): the lab's `mqdate` prompt word for word, two rewrites and a keyword line, each searched as its own
+  pass on the local archive, merged per resource by reciprocal rank with the question's pass, then the same rerank;
+  the provider build ([cli-core#2792](https://github.com/WireCatLabs/cli-core/pull/2792), rerank only, any provider).
+- Every arm calls one model for all its calls. Haiku 5.5 (thinking off, effort low), `gpt-4o-mini` (JSON mode,
+  temperature 0), `deepseek/deepseek-chat` through OpenRouter (no options; $0.32 / $0.89 per million from OpenRouter's
+  model list on 9 November, counted from the answers' tokens). Keys read from the keyring in the script's process.
+- Machine as above, load average 6 to 9 from other agents' jobs. Each arm ran once.
+
+### Results
+
+| Arm | v3 reworded (17): recall@10 / hit@10 | lb-s20 (59): recall@10 / hit@10 | median / max ms (v3, lb) | cost |
+| --- | ---: | ---: | ---: | ---: |
+| plain `search all` | 0.79 / 0.82 | 0.32 / 0.78 | 1,769 / 2,203 · 2,032 / 5,531 | $0 |
+| + Haiku rerank (0.620.0) | 0.88 / 0.88 | 0.39 / 0.88 | 3,758 / 10,763 · 2,982 / 7,652 | $0.0220 |
+| + Haiku rewrite, then rerank | 0.88 / 0.88 | **0.37 / 0.81** | 3,667 / 5,514 · 4,799 / 8,407 | $0.0263 |
+| + Haiku rerank (provider build) | 0.88 / 0.88 | 0.39 (0.385) / 0.88 | 3,344 / 5,242 · 3,866 / 6,462 | $0.0220 |
+| + `gpt-4o-mini` rerank | 0.88 / 0.88 | 0.37 / 0.85 | 3,702 / 6,142 · 3,993 / 6,286 | $0.0208 |
+| + `deepseek/deepseek-chat` rerank (OpenRouter) | 0.88 / 0.88 | 0.37 / 0.86 | 3,921 / 5,489 · 4,245 / 6,559 | $0.0444 |
+
+v3 all, plain: 0.94 / 0.94 (46 questions, every hit mapped back to its record).
+
+Rewriting against the rerank alone, per question: v3 reworded 1 better, 1 worse, 15 the same; lb-s20 7 better,
+16 worse, 36 the same. The rewrite call answered for 45 of the 59; 9 questions were not questions in words (not
+rewritten), 3 timed out at 5 s and 2 failed. Its call took 1.8 s median on v3 and 2.4 s on LifeBench (max 4.7 s), and
+the whole search grew from 3.0 to 4.8 s median on LifeBench.
+
+Noise: the same Haiku rerank run twice (0.620.0 and the provider build) gave lb-s20 0.392 and 0.385, with 6 of 59
+questions scored differently. On the 14 questions the rewrite never touched, the two Anthropic arms differed by 0.014.
+
+Total spent: $0.136 (cap $0.40).
+
+### What it showed
+
+- **The rerank's gain over memo's real search, measured for the first time:** recall@10 0.79 → 0.88 on the reworded
+  v3 questions and 0.32 → 0.39 on lb-s20; hit@10 0.82 → 0.88 and 0.78 → 0.88. It costs about $0.0003 and 1.5 to 2 s a
+  question with Haiku.
+- **Rewriting on top of it made LifeBench worse**, 0.39 → 0.37 recall@10 and 0.88 → 0.81 hit@10, beyond the noise,
+  and changed nothing on v3. So cli-core does not ship it. In the lab the rewrites helped a first stage of plain
+  vectors plus BM25; memo's search already looks a question up by any of its words and by meaning, and the extra
+  passes mostly pushed the question's own good hits out of the 30 the rerank sees.
+- **Haiku stays the default.** `gpt-4o-mini` ties it on v3 and is 0.02 lower on LifeBench (0.03 hit@10) at the same
+  price; `deepseek/deepseek-chat` through OpenRouter is equally close in recall at twice the price. All three are
+  within the noise of each other on v3. gpt-6-luna is cheaper per token on OpenAI's pricing page but is a reasoning
+  model whose default effort the page does not give, and the OpenAI adapter cannot turn reasoning down, so it was not
+  run.
+
 ## What was not measured
 
 - **bge-reranker-v2-m3-int8, chunked LifeBench records and the title slot.** Their runs were queued. Then a cleanup batch at 23:20 removed the scratch folder (3.2 GB of vectors,
@@ -380,5 +452,5 @@ LifeBench (0.41 to 0.55 with rewrites), and that was not run again.
 - **End-to-end delay.** Haiku delays are medians of single calls, and the stack's two calls are assumed to run in
   parallel. Local delays are from a machine at load 16 to 35.
 - **memo itself.** These are scripts over vectors, not memo's store, chunking or words search. memo's rows are
-  from the earlier pages.
+  from the earlier pages. The 9 November section on rewriting is the exception: it runs cli-core's own `searchAll`.
 - **The other nine LifeBench personas, answer accuracy, and Supermemory or Honcho on LifeBench.**
