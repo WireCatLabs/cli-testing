@@ -138,11 +138,70 @@ Scan time (memo's `duration_ms`): 0.7 s, 17.8 s, 10.9 s for rounds 1 to 3; later
   proposal's reason so the owner can confirm them as a batch.
 - Two scans took 17.8 s and 10.9 s right after the confirmed links were put back with SQL, against 0.3 to 2.6 s for
   every other run. The cause is not known. `recall.mjs` records every round's time, so a rerun shows whether it
-  repeats.
+  repeats. The cause was found later: see [Why two rounds were slow](#why-two-rounds-were-slow-perf-80).
+
+## Why two rounds were slow (PERF-80)
+
+### Why
+
+Rounds 2 and 3 on the copy of the owner's store took 17.8 s and 10.9 s, round 1 took 0.7 s. The question: what in
+the scan makes it slow, and can it be made slow and fast at will? The answer decided whether cli-core needed a fix.
+
+### Setup
+
+- [`spread-time.mjs`](spread-time.mjs) builds a synthetic store (2 600 chats: 1 500 MAX groups of 6 or 40 people, a
+  150-person sales group with 40 000 messages, 600 MAX dialogs, 1 000 Telegram groups, 200 Telegram dialogs; 560 000
+  messages, 412 MB; 17 confirmed member links of project LKM). Each run copies it and, on the copy, scans (dry run)
+  with the links in, takes them out with SQL, scans, and puts them back with SQL, as `recall.mjs` does. It counts the
+  store calls the scan makes and hashes the proposals.
+- Node 24.19.0, Linux 7.0, the owner's laptop, one run at a time, 11 GB free. cli-core 0.612.0 against #2714 (packed
+  from the branch).
+
+```sh
+node spread-time.mjs build /var/tmp/claude/perf80/stores/spread.db --core 0.612.0
+node spread-time.mjs /var/tmp/claude/perf80/stores/spread.db --core 0.612.0 --rounds 2
+node spread-time.mjs /var/tmp/claude/perf80/stores/spread.db --core <version with #2714> --rounds 2
+```
+
+### Results
+
+One dry-run scan, two rounds each:
+
+| | cli-core 0.612.0 | #2714 |
+| --- | --- | --- |
+| Confirmed links in | 4.9 s, 5.8 s | 0.85 s, 0.63 s |
+| Confirmed links taken out | 1.9 s, 1.6 s | 0.33 s, 0.29 s |
+| Person lookups, links in / out | 50 730 / 14 808 | 161 / 102 |
+| Message page reads (up to 2 000 messages each), links in / out | 1 522 / 358 | 452 / 177 |
+| A member's chats read, links in / out | 584 / 132 | 92 / 34 |
+
+The proposals were the same in every row of a column pair (same hash). Putting the links back makes the scan slow
+again, and taking them out makes it fast, every time.
+
+### What it showed
+
+- The scan spreads up to 4 times. Each pass ran the spreading scorers again over every chat and person found so
+  far, not only the new ones: it read each chat's messages again, looked up each sender's person again (twice: in
+  chat-senders and in the scan's identity check), and read each member's chats again.
+- With confirmed links in, the first pass already starts from them, so the passes cover more chats (452 against 177)
+  and each one costs more. That is the shape of the real run: round 1 had its links taken out, rounds 2 and 3 had
+  them back. The 17.8 s against 10.9 s difference is probably a cold disk cache on the 5.9 GB copy; that was not
+  measured.
+- [#2714](https://github.com/WireCatLabs/cli-core/pull/2714) gives a scan a memory of what it read: 6 to 8 times
+  faster here, the same proposals.
+- Ruled out: the queue of work that a link written by SQL leaves for the next store write (18 entries here, all
+  indexed queries; a writing scan took as long as a dry one), and slow single queries: the scan's reads are indexed
+  except the relation list, which scans the links table but did not show among the costly calls.
+
+### Not measured
+
+- The owner's store itself: no copy was opened for this. Why later real runs took only 0.3 to 2.6 s is not
+  known; they ran on other states of the store.
+- The store at the real size (5.9 GB) and a cold disk cache.
 
 ## Not measured
 
 - In the fixture: a contact reachable only by the project name in messages stays unfound. Inflected Russian forms of
   the name are not matched.
 - On the real store: re-proposal of rejected links (rejecting needs the owner), other projects, and the cause of the
-  two slow scans. `recall.mjs` itself ran only on the fixture; the real-store numbers above were scored by hand.
+  two slow scans (found on a synthetic store: [PERF-80](#why-two-rounds-were-slow-perf-80)). `recall.mjs` itself ran only on the fixture; the real-store numbers above were scored by hand.
