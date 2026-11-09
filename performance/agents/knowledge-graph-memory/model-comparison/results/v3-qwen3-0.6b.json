@@ -1,0 +1,1043 @@
+{
+  "model": "Qwen/Qwen3-Embedding-0.6B",
+  "name": "qwen3-0.6b",
+  "query_prefix": "Instruct: Given a question, retrieve the record that answers it\nQuery: ",
+  "passage_prefix": "",
+  "records": 10444,
+  "index_seconds": 1250.2,
+  "query_seconds": 7.1,
+  "batch_size": 32,
+  "threads": 4,
+  "scores": {
+    "all, record's words": {
+      "questions": 46,
+      "recall@5": 0.73,
+      "recall@10": 0.804,
+      "hit@10": 0.804
+    },
+    "reworded, record's words": {
+      "questions": 17,
+      "recall@5": 0.8,
+      "recall@10": 0.941,
+      "hit@10": 0.941
+    },
+    "reworded, other words": {
+      "questions": 17,
+      "recall@5": 0.445,
+      "recall@10": 0.5,
+      "hit@10": 0.529
+    }
+  },
+  "peak_rss_mb": 2459,
+  "runs": {
+    "vectors only (qwen3-0.6b)": [
+      {
+        "id": "q01",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10116/10123",
+          "msg:email/synthetic%40example.test/thread-10032/10035",
+          "msg:telegram/synthetic/team/10023",
+          "msg:telegram/synthetic/team/10108",
+          "msg:email/synthetic%40example.test/thread-10106/10106",
+          "meeting:synthetic/10055/cue/1",
+          "meeting:synthetic/10129/cue/1",
+          "msg:email/synthetic%40example.test/thread-10032/10032",
+          "msg:email/synthetic%40example.test/thread-10116/10116",
+          "meeting:synthetic/9647/cue/1"
+        ]
+      },
+      {
+        "id": "q02",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10258/10276",
+          "msg:email/synthetic%40example.test/thread-10089/10094",
+          "meeting:synthetic/10103/cue/1",
+          "meeting:synthetic/10278/cue/1",
+          "msg:email/synthetic%40example.test/thread-10258/10258",
+          "msg:email/synthetic%40example.test/thread-10089/10089",
+          "msg:telegram/synthetic/team/10087",
+          "msg:telegram/synthetic/team/10244",
+          "msg:email/synthetic%40example.test/thread-5051/5051",
+          "msg:email/synthetic%40example.test/thread-5723/5723"
+        ]
+      },
+      {
+        "id": "q03",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10115/10121",
+          "msg:email/synthetic%40example.test/thread-10085/10085",
+          "meeting:synthetic/10127/cue/1",
+          "msg:telegram/synthetic/team/10088",
+          "msg:email/synthetic%40example.test/thread-10115/10115",
+          "msg:telegram/synthetic/team/3633",
+          "meeting:synthetic/619/cue/1",
+          "meeting:synthetic/6029/cue/1",
+          "msg:email/synthetic%40example.test/thread-4437/4437",
+          "document:6436"
+        ]
+      },
+      {
+        "id": "q04",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10202/10202",
+          "msg:email/synthetic%40example.test/thread-10138/10138",
+          "msg:email/synthetic%40example.test/thread-10200/10200",
+          "msg:email/synthetic%40example.test/thread-10130/10130",
+          "document:3255",
+          "document:7124",
+          "msg:telegram/synthetic/team/5546",
+          "document:620",
+          "msg:telegram/synthetic/team/8912",
+          "meeting:synthetic/3613/cue/1"
+        ]
+      },
+      {
+        "id": "q05",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10352/10352",
+          "msg:email/synthetic%40example.test/thread-10351/10351",
+          "msg:email/synthetic%40example.test/thread-10311/10311",
+          "msg:email/synthetic%40example.test/thread-10353/10353",
+          "meeting:synthetic/9982/cue/1",
+          "msg:telegram/synthetic/team/9965",
+          "msg:email/synthetic%40example.test/thread-5631/5631",
+          "msg:email/synthetic%40example.test/thread-8150/8150",
+          "msg:email/synthetic%40example.test/thread-8746/8746",
+          "msg:email/synthetic%40example.test/thread-6822/6822"
+        ]
+      },
+      {
+        "id": "q06",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10112/10112",
+          "msg:email/synthetic%40example.test/thread-10203/10203",
+          "msg:email/synthetic%40example.test/thread-10136/10136",
+          "msg:email/synthetic%40example.test/thread-10119/10119",
+          "msg:email/synthetic%40example.test/thread-10086/10086",
+          "document:3875",
+          "meeting:synthetic/9716/cue/1",
+          "meeting:synthetic/9980/cue/1",
+          "meeting:synthetic/7341/cue/1",
+          "msg:email/synthetic%40example.test/thread-3355/3355"
+        ]
+      },
+      {
+        "id": "q07",
+        "hits": [
+          "document:10096",
+          "document:10083",
+          "msg:email/synthetic%40example.test/thread-10070/10070",
+          "meeting:synthetic/6362/cue/1",
+          "msg:telegram/synthetic/team/9856",
+          "document:7934",
+          "msg:telegram/synthetic/team/1351",
+          "meeting:synthetic/2904/cue/1",
+          "msg:email/synthetic%40example.test/thread-3030/3030",
+          "meeting:synthetic/6579/cue/1"
+        ]
+      },
+      {
+        "id": "q08",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10194/10194",
+          "document:10199",
+          "document:10217",
+          "meeting:synthetic/5824/cue/1",
+          "msg:telegram/synthetic/team/1729",
+          "msg:email/synthetic%40example.test/thread-2980/2980",
+          "msg:email/synthetic%40example.test/thread-7261/7261",
+          "meeting:synthetic/4511/cue/1",
+          "msg:email/synthetic%40example.test/thread-7061/7061",
+          "msg:email/synthetic%40example.test/thread-10280/10280"
+        ]
+      },
+      {
+        "id": "q09",
+        "hits": [
+          "document:10286",
+          "document:10279",
+          "msg:email/synthetic%40example.test/thread-10271/10271",
+          "meeting:synthetic/9767/cue/1",
+          "document:9854",
+          "msg:email/synthetic%40example.test/thread-9148/9148",
+          "msg:email/synthetic%40example.test/thread-7515/7515",
+          "msg:email/synthetic%40example.test/thread-7751/7751",
+          "msg:email/synthetic%40example.test/thread-4741/4741",
+          "msg:email/synthetic%40example.test/thread-1640/1640"
+        ]
+      },
+      {
+        "id": "q10",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10180/10180",
+          "msg:email/synthetic%40example.test/thread-10173/10173",
+          "meeting:synthetic/9240/cue/1",
+          "msg:email/synthetic%40example.test/thread-4852/4852",
+          "msg:email/synthetic%40example.test/thread-5889/5958",
+          "msg:email/synthetic%40example.test/thread-4299/4328",
+          "msg:email/synthetic%40example.test/thread-6503/6503",
+          "meeting:synthetic/4071/cue/1",
+          "msg:email/synthetic%40example.test/thread-8581/8802",
+          "msg:email/synthetic%40example.test/thread-3516/3590"
+        ]
+      },
+      {
+        "id": "q11",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10113/10113",
+          "msg:email/synthetic%40example.test/thread-10057/10057",
+          "msg:telegram/synthetic/team/10023",
+          "meeting:synthetic/10055/cue/1",
+          "msg:email/synthetic%40example.test/thread-10348/10348",
+          "msg:telegram/synthetic/team/10108",
+          "msg:email/synthetic%40example.test/thread-10335/10335",
+          "meeting:synthetic/10129/cue/1",
+          "msg:email/synthetic%40example.test/thread-10116/10123",
+          "msg:email/synthetic%40example.test/thread-10180/10180"
+        ]
+      },
+      {
+        "id": "q12",
+        "hits": [
+          "msg:telegram/synthetic/team/10147",
+          "msg:email/synthetic%40example.test/thread-10223/10223",
+          "msg:email/synthetic%40example.test/thread-5723/5723",
+          "msg:email/synthetic%40example.test/thread-5051/5051",
+          "document:6151",
+          "meeting:synthetic/6757/cue/1",
+          "meeting:synthetic/8568/cue/1",
+          "meeting:synthetic/10278/cue/1",
+          "document:4222",
+          "document:939"
+        ]
+      },
+      {
+        "id": "q13",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10225/10225",
+          "msg:telegram/synthetic/team/10159",
+          "msg:email/synthetic%40example.test/thread-10316/10316",
+          "msg:email/synthetic%40example.test/thread-10190/10190",
+          "document:10062",
+          "msg:telegram/synthetic/team/10235",
+          "meeting:synthetic/10127/cue/1",
+          "document:10031",
+          "msg:telegram/synthetic/team/3633",
+          "msg:telegram/synthetic/team/10185"
+        ]
+      },
+      {
+        "id": "q14",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10320/10320",
+          "msg:email/synthetic%40example.test/thread-5345/5386",
+          "msg:email/synthetic%40example.test/thread-2479/2606",
+          "meeting:synthetic/5769/cue/1",
+          "msg:email/synthetic%40example.test/thread-2574/2656",
+          "msg:telegram/synthetic/team/6814",
+          "msg:email/synthetic%40example.test/thread-10417/10417",
+          "msg:email/synthetic%40example.test/thread-9261/9399",
+          "msg:email/synthetic%40example.test/thread-4745/4868",
+          "msg:email/synthetic%40example.test/thread-4504/4504"
+        ]
+      },
+      {
+        "id": "q15",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10338/10338",
+          "msg:email/synthetic%40example.test/thread-6822/6822",
+          "msg:email/synthetic%40example.test/thread-5704/5845",
+          "msg:telegram/synthetic/team/10378",
+          "msg:email/synthetic%40example.test/thread-2790/2790",
+          "msg:email/synthetic%40example.test/thread-515/575",
+          "msg:email/synthetic%40example.test/thread-8891/8891",
+          "msg:email/synthetic%40example.test/thread-4514/4616",
+          "msg:email/synthetic%40example.test/thread-3483/3543",
+          "msg:email/synthetic%40example.test/thread-5631/5631"
+        ]
+      },
+      {
+        "id": "q16",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10404/10404",
+          "msg:email/synthetic%40example.test/thread-10406/10406",
+          "msg:email/synthetic%40example.test/thread-128/164",
+          "msg:email/synthetic%40example.test/thread-651/678",
+          "msg:email/synthetic%40example.test/thread-2400/2423",
+          "msg:email/synthetic%40example.test/thread-3092/3149",
+          "msg:email/synthetic%40example.test/thread-3466/3466",
+          "msg:email/synthetic%40example.test/thread-5811/5868",
+          "msg:email/synthetic%40example.test/thread-494/650",
+          "msg:telegram/synthetic/team/10411"
+        ]
+      },
+      {
+        "id": "q17",
+        "hits": [
+          "meeting:synthetic/6362/cue/1",
+          "msg:email/synthetic%40example.test/thread-2784/2784",
+          "document:3552",
+          "msg:email/synthetic%40example.test/thread-4397/4397",
+          "msg:email/synthetic%40example.test/thread-10357/10357",
+          "meeting:synthetic/6579/cue/1",
+          "msg:email/synthetic%40example.test/thread-7855/7855",
+          "msg:email/synthetic%40example.test/thread-1722/1722",
+          "document:7807",
+          "msg:email/synthetic%40example.test/thread-2533/2533"
+        ]
+      },
+      {
+        "id": "q18",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-3569/3569",
+          "msg:email/synthetic%40example.test/thread-7542/7542",
+          "msg:email/synthetic%40example.test/thread-2892/2892",
+          "msg:email/synthetic%40example.test/thread-1956/1956",
+          "meeting:synthetic/3180/cue/1",
+          "msg:email/synthetic%40example.test/thread-7542/8262",
+          "meeting:synthetic/8550/cue/1",
+          "document:9490",
+          "msg:email/synthetic%40example.test/thread-4492/4492",
+          "msg:email/synthetic%40example.test/thread-1297/1297"
+        ]
+      },
+      {
+        "id": "q19",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10362/10362",
+          "document:9854",
+          "meeting:synthetic/10069/cue/1",
+          "meeting:synthetic/9667/cue/1",
+          "msg:email/synthetic%40example.test/thread-2633/2633",
+          "msg:email/synthetic%40example.test/thread-2516/2516",
+          "meeting:synthetic/9767/cue/1",
+          "document:2295",
+          "msg:email/synthetic%40example.test/thread-2996/2996",
+          "msg:email/synthetic%40example.test/thread-6726/6726"
+        ]
+      },
+      {
+        "id": "q20",
+        "hits": [
+          "msg:telegram/synthetic/team/10010",
+          "msg:telegram/synthetic/team/10080",
+          "meeting:synthetic/3395/cue/1",
+          "meeting:synthetic/7338/cue/1",
+          "meeting:synthetic/1588/cue/1",
+          "document:7576",
+          "meeting:synthetic/2942/cue/1",
+          "meeting:synthetic/2959/cue/1",
+          "msg:email/synthetic%40example.test/thread-8624/8624",
+          "meeting:synthetic/8263/cue/1"
+        ]
+      },
+      {
+        "id": "q21",
+        "hits": [
+          "msg:telegram/synthetic/team/10149",
+          "msg:telegram/synthetic/team/10184",
+          "meeting:synthetic/7114/cue/1",
+          "msg:email/synthetic%40example.test/thread-4580/4580",
+          "meeting:synthetic/9663/cue/1",
+          "meeting:synthetic/899/cue/1",
+          "msg:email/synthetic%40example.test/thread-4862/4862",
+          "msg:email/synthetic%40example.test/thread-3471/3471",
+          "meeting:synthetic/4716/cue/1",
+          "msg:email/synthetic%40example.test/thread-5224/5224"
+        ]
+      },
+      {
+        "id": "q22",
+        "hits": [
+          "msg:telegram/synthetic/team/10255",
+          "msg:telegram/synthetic/team/10079",
+          "msg:telegram/synthetic/team/10307",
+          "meeting:synthetic/5324/cue/1",
+          "msg:email/synthetic%40example.test/thread-5051/5051",
+          "meeting:synthetic/2415/cue/1",
+          "msg:email/synthetic%40example.test/thread-4410/4410",
+          "msg:telegram/synthetic/team/6505",
+          "meeting:synthetic/3770/cue/1",
+          "meeting:synthetic/4406/cue/1"
+        ]
+      },
+      {
+        "id": "q23",
+        "hits": [
+          "document:10437",
+          "msg:email/synthetic%40example.test/thread-10428/10428",
+          "msg:email/synthetic%40example.test/thread-10400/10400",
+          "meeting:synthetic/10288/cue/1",
+          "msg:email/synthetic%40example.test/thread-3968/4143",
+          "document:10440",
+          "msg:email/synthetic%40example.test/thread-6437/6563",
+          "meeting:synthetic/7211/cue/1",
+          "msg:email/synthetic%40example.test/thread-5223/5312",
+          "msg:email/synthetic%40example.test/thread-2164/2231"
+        ]
+      },
+      {
+        "id": "q24",
+        "hits": [
+          "document:10432",
+          "msg:email/synthetic%40example.test/thread-10396/10396",
+          "msg:email/synthetic%40example.test/thread-10366/10366",
+          "msg:telegram/synthetic/team/5546",
+          "msg:email/synthetic%40example.test/thread-4856/5040",
+          "msg:email/synthetic%40example.test/thread-1678/1828",
+          "msg:email/synthetic%40example.test/thread-569/671",
+          "msg:email/synthetic%40example.test/thread-1678/1768",
+          "msg:email/synthetic%40example.test/thread-4298/4448",
+          "msg:email/synthetic%40example.test/thread-5345/5386"
+        ]
+      },
+      {
+        "id": "q25",
+        "hits": [
+          "document:10414",
+          "msg:email/synthetic%40example.test/thread-10363/10363",
+          "msg:email/synthetic%40example.test/thread-5631/5631",
+          "msg:email/synthetic%40example.test/thread-8746/8746",
+          "msg:email/synthetic%40example.test/thread-6822/6822",
+          "msg:telegram/synthetic/team/8497",
+          "msg:email/synthetic%40example.test/thread-5366/5366",
+          "msg:email/synthetic%40example.test/thread-2790/2790",
+          "msg:email/synthetic%40example.test/thread-5280/5280",
+          "msg:email/synthetic%40example.test/thread-6952/6952"
+        ]
+      },
+      {
+        "id": "q26",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10393/10393",
+          "msg:email/synthetic%40example.test/thread-10397/10397",
+          "msg:email/synthetic%40example.test/thread-10436/10436",
+          "msg:email/synthetic%40example.test/thread-3466/3466",
+          "document:7040",
+          "msg:email/synthetic%40example.test/thread-3092/3149",
+          "document:5715",
+          "meeting:synthetic/9980/cue/1",
+          "document:1222",
+          "msg:email/synthetic%40example.test/thread-2400/2423"
+        ]
+      },
+      {
+        "id": "q27",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10341/10341",
+          "msg:email/synthetic%40example.test/thread-10433/10433",
+          "msg:email/synthetic%40example.test/thread-10358/10358",
+          "document:3552",
+          "msg:email/synthetic%40example.test/thread-2784/2784",
+          "meeting:synthetic/6362/cue/1",
+          "document:7807",
+          "msg:email/synthetic%40example.test/thread-4397/4397",
+          "msg:email/synthetic%40example.test/thread-7373/7469",
+          "msg:email/synthetic%40example.test/thread-1722/1722"
+        ]
+      },
+      {
+        "id": "q28",
+        "hits": [
+          "meeting:synthetic/10099/cue/1",
+          "msg:email/synthetic%40example.test/thread-10104/10104",
+          "meeting:synthetic/3180/cue/1",
+          "msg:email/synthetic%40example.test/thread-3569/3569",
+          "msg:email/synthetic%40example.test/thread-7542/7542",
+          "msg:email/synthetic%40example.test/thread-2892/2892",
+          "msg:email/synthetic%40example.test/thread-2922/2922",
+          "meeting:synthetic/8550/cue/1",
+          "msg:email/synthetic%40example.test/thread-1956/1956",
+          "meeting:synthetic/5824/cue/1"
+        ]
+      },
+      {
+        "id": "q29",
+        "hits": [
+          "meeting:synthetic/10069/cue/1",
+          "msg:email/synthetic%40example.test/thread-10082/10082",
+          "msg:email/synthetic%40example.test/thread-10104/10104",
+          "meeting:synthetic/9667/cue/1",
+          "meeting:synthetic/8210/cue/1",
+          "meeting:synthetic/10099/cue/1",
+          "meeting:synthetic/9453/cue/1",
+          "document:10416",
+          "document:9854",
+          "msg:email/synthetic%40example.test/thread-6726/6726"
+        ]
+      },
+      {
+        "id": "q30",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10329/10329",
+          "msg:email/synthetic%40example.test/thread-10301/10301",
+          "msg:telegram/synthetic/team/10303",
+          "msg:telegram/synthetic/team/10010",
+          "document:201",
+          "msg:email/synthetic%40example.test/thread-9472/9472",
+          "document:2081",
+          "meeting:synthetic/701/cue/1",
+          "meeting:synthetic/8263/cue/1",
+          "document:7591"
+        ]
+      },
+      {
+        "id": "q31",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10264/10264",
+          "document:325",
+          "msg:telegram/synthetic/team/10257",
+          "msg:email/synthetic%40example.test/thread-3118/3118",
+          "document:9679",
+          "msg:email/synthetic%40example.test/thread-162/162",
+          "document:9688",
+          "msg:email/synthetic%40example.test/thread-5224/5224",
+          "msg:email/synthetic%40example.test/thread-10230/10230",
+          "msg:telegram/synthetic/team/10149"
+        ]
+      },
+      {
+        "id": "q32",
+        "hits": [
+          "document:10228",
+          "msg:email/synthetic%40example.test/thread-10241/10241",
+          "meeting:synthetic/5324/cue/1",
+          "msg:email/synthetic%40example.test/thread-4410/4410",
+          "msg:email/synthetic%40example.test/thread-2318/2318",
+          "msg:email/synthetic%40example.test/thread-9554/9633",
+          "msg:email/synthetic%40example.test/thread-6576/6649",
+          "msg:email/synthetic%40example.test/thread-1436/1472",
+          "msg:email/synthetic%40example.test/thread-8314/8410",
+          "meeting:synthetic/4406/cue/1"
+        ]
+      },
+      {
+        "id": "q33",
+        "hits": [
+          "document:10100",
+          "msg:email/synthetic%40example.test/thread-3968/4143",
+          "msg:email/synthetic%40example.test/thread-6437/6563",
+          "msg:email/synthetic%40example.test/thread-5223/5312",
+          "msg:email/synthetic%40example.test/thread-8082/8136",
+          "msg:email/synthetic%40example.test/thread-2075/2179",
+          "msg:email/synthetic%40example.test/thread-2164/2231",
+          "msg:email/synthetic%40example.test/thread-10044/10044",
+          "msg:email/synthetic%40example.test/thread-3968/4032",
+          "msg:email/synthetic%40example.test/thread-2075/2167"
+        ]
+      },
+      {
+        "id": "q34",
+        "hits": [
+          "document:10198",
+          "msg:telegram/synthetic/team/7729",
+          "document:10240",
+          "msg:email/synthetic%40example.test/thread-4504/4504",
+          "document:3255",
+          "msg:email/synthetic%40example.test/thread-569/671",
+          "msg:email/synthetic%40example.test/thread-4856/4917",
+          "msg:telegram/synthetic/team/5546",
+          "msg:email/synthetic%40example.test/thread-10201/10201",
+          "msg:email/synthetic%40example.test/thread-10366/10366"
+        ]
+      },
+      {
+        "id": "q35",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10398/10398",
+          "msg:email/synthetic%40example.test/thread-10379/10379",
+          "msg:email/synthetic%40example.test/thread-10413/10413",
+          "msg:telegram/synthetic/team/10371",
+          "msg:email/synthetic%40example.test/thread-10326/10326",
+          "msg:email/synthetic%40example.test/thread-10339/10339",
+          "msg:email/synthetic%40example.test/thread-10313/10313",
+          "msg:telegram/synthetic/team/10442",
+          "msg:email/synthetic%40example.test/thread-10312/10312",
+          "msg:email/synthetic%40example.test/thread-5366/5366"
+        ]
+      },
+      {
+        "id": "q36",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10399/10399",
+          "msg:email/synthetic%40example.test/thread-10430/10430",
+          "msg:email/synthetic%40example.test/thread-10425/10425",
+          "msg:email/synthetic%40example.test/thread-10423/10423",
+          "msg:telegram/synthetic/team/10444",
+          "msg:email/synthetic%40example.test/thread-10393/10393",
+          "msg:email/synthetic%40example.test/thread-10397/10397",
+          "msg:email/synthetic%40example.test/thread-3066/3066",
+          "meeting:synthetic/9721/cue/1",
+          "meeting:synthetic/4371/cue/1"
+        ]
+      },
+      {
+        "id": "q37",
+        "hits": [
+          "msg:telegram/synthetic/team/10181",
+          "msg:telegram/synthetic/team/10242",
+          "msg:email/synthetic%40example.test/thread-10209/10209",
+          "msg:email/synthetic%40example.test/thread-10110/10110",
+          "document:7934",
+          "meeting:synthetic/6362/cue/1",
+          "msg:telegram/synthetic/team/9856",
+          "document:8168",
+          "document:864",
+          "document:4614"
+        ]
+      },
+      {
+        "id": "q38",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10280/10280",
+          "msg:telegram/synthetic/team/10298",
+          "msg:email/synthetic%40example.test/thread-10250/10250",
+          "msg:email/synthetic%40example.test/thread-7275/7275",
+          "msg:telegram/synthetic/team/10261",
+          "meeting:synthetic/6917/cue/1",
+          "document:7020",
+          "meeting:synthetic/5824/cue/1",
+          "document:4907",
+          "meeting:synthetic/6588/cue/1"
+        ]
+      },
+      {
+        "id": "q39",
+        "hits": [
+          "meeting:synthetic/7114/cue/1",
+          "msg:telegram/synthetic/team/2426",
+          "msg:email/synthetic%40example.test/thread-6086/6086",
+          "msg:email/synthetic%40example.test/thread-3773/4093",
+          "msg:email/synthetic%40example.test/thread-5226/5789",
+          "msg:telegram/synthetic/team/8368",
+          "msg:email/synthetic%40example.test/thread-4546/4768",
+          "msg:email/synthetic%40example.test/thread-6086/6169",
+          "msg:email/synthetic%40example.test/thread-4240/4240",
+          "msg:email/synthetic%40example.test/thread-5226/5226"
+        ]
+      },
+      {
+        "id": "q40",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-5778/5778",
+          "msg:email/synthetic%40example.test/thread-6267/6267",
+          "msg:email/synthetic%40example.test/thread-6747/6747",
+          "msg:email/synthetic%40example.test/thread-3886/3886",
+          "msg:email/synthetic%40example.test/thread-9185/9185",
+          "msg:telegram/synthetic/team/2891",
+          "meeting:synthetic/9577/cue/1",
+          "msg:email/synthetic%40example.test/thread-9185/9308",
+          "msg:email/synthetic%40example.test/thread-6267/6411",
+          "msg:email/synthetic%40example.test/thread-6747/6805"
+        ]
+      },
+      {
+        "id": "q41",
+        "hits": [
+          "meeting:synthetic/7732/cue/1",
+          "msg:email/synthetic%40example.test/thread-5091/5416",
+          "msg:email/synthetic%40example.test/thread-1456/1456",
+          "msg:telegram/synthetic/team/2466",
+          "msg:email/synthetic%40example.test/thread-3066/3066",
+          "msg:email/synthetic%40example.test/thread-3880/4137",
+          "msg:email/synthetic%40example.test/thread-5091/5091",
+          "msg:email/synthetic%40example.test/thread-6967/6967",
+          "msg:email/synthetic%40example.test/thread-4816/4816",
+          "msg:email/synthetic%40example.test/thread-5689/5873"
+        ]
+      },
+      {
+        "id": "q42",
+        "hits": [
+          "document:1513",
+          "document:6436",
+          "msg:telegram/synthetic/team/3869",
+          "document:4340",
+          "document:3475",
+          "meeting:synthetic/3838/cue/1",
+          "document:148",
+          "document:2206",
+          "msg:email/synthetic%40example.test/thread-3594/3594",
+          "document:6760"
+        ]
+      },
+      {
+        "id": "q43",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-5723/5723",
+          "msg:email/synthetic%40example.test/thread-5051/5051",
+          "meeting:synthetic/8568/cue/1",
+          "meeting:synthetic/3715/cue/1",
+          "msg:email/synthetic%40example.test/thread-4131/4131",
+          "msg:email/synthetic%40example.test/thread-6168/6168",
+          "meeting:synthetic/4622/cue/1",
+          "document:3049",
+          "document:6151",
+          "document:4222"
+        ]
+      },
+      {
+        "id": "q44",
+        "hits": [
+          "document:1495",
+          "document:6854",
+          "msg:telegram/synthetic/team/5829",
+          "meeting:synthetic/4427/cue/1",
+          "document:2268",
+          "meeting:synthetic/1127/cue/1",
+          "document:2842",
+          "meeting:synthetic/7920/cue/1",
+          "document:17",
+          "msg:telegram/synthetic/team/8417"
+        ]
+      },
+      {
+        "id": "q45",
+        "hits": [
+          "msg:telegram/synthetic/team/102",
+          "document:995",
+          "document:5580",
+          "msg:telegram/synthetic/team/952",
+          "meeting:synthetic/6423/cue/1",
+          "document:3912",
+          "msg:email/synthetic%40example.test/thread-5629/5629",
+          "document:6711",
+          "meeting:synthetic/7369/cue/1",
+          "meeting:synthetic/5264/cue/1"
+        ]
+      },
+      {
+        "id": "q46",
+        "hits": [
+          "msg:telegram/synthetic/team/9309",
+          "msg:email/synthetic%40example.test/thread-8965/8965",
+          "meeting:synthetic/9549/cue/1",
+          "msg:email/synthetic%40example.test/thread-4574/4574",
+          "document:5152",
+          "msg:email/synthetic%40example.test/thread-6624/6624",
+          "msg:email/synthetic%40example.test/thread-5912/5912",
+          "msg:email/synthetic%40example.test/thread-9505/9505",
+          "msg:email/synthetic%40example.test/thread-9500/9500",
+          "msg:email/synthetic%40example.test/thread-4061/4061"
+        ]
+      },
+      {
+        "id": "q47",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-9706/9706",
+          "msg:email/synthetic%40example.test/thread-8908/8908",
+          "msg:telegram/synthetic/team/9849",
+          "msg:email/synthetic%40example.test/thread-9923/9923",
+          "meeting:synthetic/9980/cue/1",
+          "msg:telegram/synthetic/team/9223",
+          "msg:telegram/synthetic/team/9949",
+          "meeting:synthetic/9716/cue/1",
+          "meeting:synthetic/9972/cue/1",
+          "meeting:synthetic/6866/cue/1"
+        ]
+      },
+      {
+        "id": "q48",
+        "hits": [
+          "meeting:synthetic/6362/cue/1",
+          "msg:email/synthetic%40example.test/thread-1722/1722",
+          "msg:email/synthetic%40example.test/thread-7855/7855",
+          "msg:email/synthetic%40example.test/thread-4397/4397",
+          "msg:email/synthetic%40example.test/thread-2533/2533",
+          "document:995",
+          "meeting:synthetic/9006/cue/1",
+          "document:7934",
+          "msg:email/synthetic%40example.test/thread-9703/9703",
+          "document:9481"
+        ]
+      },
+      {
+        "id": "q49",
+        "hits": [
+          "document:2520",
+          "meeting:synthetic/7114/cue/1",
+          "meeting:synthetic/5289/cue/1",
+          "msg:telegram/synthetic/team/2426",
+          "meeting:synthetic/4716/cue/1",
+          "msg:email/synthetic%40example.test/thread-5224/5224",
+          "document:3908",
+          "document:2728",
+          "meeting:synthetic/8981/cue/1",
+          "document:5445"
+        ]
+      },
+      {
+        "id": "q50",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-8746/8746",
+          "msg:email/synthetic%40example.test/thread-5631/5631",
+          "document:2273",
+          "msg:email/synthetic%40example.test/thread-5280/5280",
+          "msg:email/synthetic%40example.test/thread-5366/5366",
+          "msg:email/synthetic%40example.test/thread-6952/6952",
+          "msg:telegram/synthetic/team/8497",
+          "msg:email/synthetic%40example.test/thread-2790/2790",
+          "msg:telegram/synthetic/team/9965",
+          "msg:email/synthetic%40example.test/thread-6822/6822"
+        ]
+      }
+    ],
+    "vectors only (qwen3-0.6b), reworded in other words": [
+      {
+        "id": "q01",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10032/10035",
+          "msg:email/synthetic%40example.test/thread-10116/10123",
+          "msg:email/synthetic%40example.test/thread-10106/10106",
+          "meeting:synthetic/10055/cue/1",
+          "msg:telegram/synthetic/team/10023",
+          "meeting:synthetic/10129/cue/1",
+          "msg:email/synthetic%40example.test/thread-5224/5224",
+          "meeting:synthetic/9647/cue/1",
+          "document:325",
+          "msg:telegram/synthetic/team/10108"
+        ]
+      },
+      {
+        "id": "q04",
+        "hits": [
+          "document:3255",
+          "msg:email/synthetic%40example.test/thread-10202/10202",
+          "msg:email/synthetic%40example.test/thread-10138/10138",
+          "msg:email/synthetic%40example.test/thread-10200/10200",
+          "msg:telegram/synthetic/team/8912",
+          "document:620",
+          "document:7124",
+          "msg:telegram/synthetic/team/5546",
+          "document:1766",
+          "msg:telegram/synthetic/team/7729"
+        ]
+      },
+      {
+        "id": "q07",
+        "hits": [
+          "meeting:synthetic/6362/cue/1",
+          "document:10096",
+          "msg:telegram/synthetic/team/9856",
+          "document:10083",
+          "document:7934",
+          "msg:email/synthetic%40example.test/thread-10070/10070",
+          "meeting:synthetic/6579/cue/1",
+          "meeting:synthetic/2904/cue/1",
+          "document:1788",
+          "meeting:synthetic/9006/cue/1"
+        ]
+      },
+      {
+        "id": "q10",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10180/10180",
+          "msg:email/synthetic%40example.test/thread-5015/5015",
+          "meeting:synthetic/9240/cue/1",
+          "msg:email/synthetic%40example.test/thread-6188/6188",
+          "meeting:synthetic/9768/cue/1",
+          "msg:email/synthetic%40example.test/thread-5940/5940",
+          "msg:email/synthetic%40example.test/thread-6811/6811",
+          "msg:email/synthetic%40example.test/thread-5246/5246",
+          "msg:email/synthetic%40example.test/thread-4852/4852",
+          "meeting:synthetic/4072/cue/1"
+        ]
+      },
+      {
+        "id": "q12",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-5051/5051",
+          "msg:email/synthetic%40example.test/thread-5723/5723",
+          "meeting:synthetic/10278/cue/1",
+          "meeting:synthetic/10103/cue/1",
+          "msg:telegram/synthetic/team/2621",
+          "document:5828",
+          "document:8371",
+          "meeting:synthetic/8568/cue/1",
+          "msg:email/synthetic%40example.test/thread-10258/10258",
+          "document:7661"
+        ]
+      },
+      {
+        "id": "q14",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-4504/4504",
+          "msg:telegram/synthetic/team/845",
+          "msg:telegram/synthetic/team/6499",
+          "meeting:synthetic/7082/cue/1",
+          "msg:telegram/synthetic/team/6814",
+          "msg:email/synthetic%40example.test/thread-5345/5386",
+          "msg:email/synthetic%40example.test/thread-6452/6452",
+          "meeting:synthetic/5683/cue/1",
+          "msg:email/synthetic%40example.test/thread-2479/2606",
+          "msg:email/synthetic%40example.test/thread-1777/1777"
+        ]
+      },
+      {
+        "id": "q17",
+        "hits": [
+          "meeting:synthetic/6362/cue/1",
+          "meeting:synthetic/6579/cue/1",
+          "msg:email/synthetic%40example.test/thread-4397/4397",
+          "meeting:synthetic/5271/cue/1",
+          "msg:email/synthetic%40example.test/thread-2784/2784",
+          "msg:email/synthetic%40example.test/thread-2533/2533",
+          "meeting:synthetic/9006/cue/1",
+          "msg:email/synthetic%40example.test/thread-7855/7855",
+          "msg:email/synthetic%40example.test/thread-1722/1722",
+          "document:3552"
+        ]
+      },
+      {
+        "id": "q20",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-8624/8624",
+          "meeting:synthetic/1588/cue/1",
+          "msg:email/synthetic%40example.test/thread-5889/6019",
+          "msg:email/synthetic%40example.test/thread-5144/5144",
+          "msg:email/synthetic%40example.test/thread-2518/2571",
+          "msg:telegram/synthetic/team/10010",
+          "msg:email/synthetic%40example.test/thread-3484/3484",
+          "msg:email/synthetic%40example.test/thread-6126/6126",
+          "msg:email/synthetic%40example.test/thread-6595/6753",
+          "msg:email/synthetic%40example.test/thread-5940/5940"
+        ]
+      },
+      {
+        "id": "q23",
+        "hits": [
+          "document:10437",
+          "meeting:synthetic/7211/cue/1",
+          "msg:email/synthetic%40example.test/thread-6437/6563",
+          "msg:email/synthetic%40example.test/thread-3968/4143",
+          "meeting:synthetic/10288/cue/1",
+          "meeting:synthetic/6029/cue/1",
+          "msg:email/synthetic%40example.test/thread-5548/5728",
+          "msg:email/synthetic%40example.test/thread-2075/2179",
+          "msg:email/synthetic%40example.test/thread-5223/5312",
+          "msg:email/synthetic%40example.test/thread-4437/4437"
+        ]
+      },
+      {
+        "id": "q26",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10393/10393",
+          "msg:email/synthetic%40example.test/thread-3466/3466",
+          "msg:email/synthetic%40example.test/thread-10397/10397",
+          "msg:email/synthetic%40example.test/thread-3092/3149",
+          "msg:email/synthetic%40example.test/thread-10436/10436",
+          "msg:email/synthetic%40example.test/thread-2400/2423",
+          "msg:email/synthetic%40example.test/thread-159/211",
+          "msg:email/synthetic%40example.test/thread-3066/3066",
+          "msg:email/synthetic%40example.test/thread-6094/6217",
+          "msg:email/synthetic%40example.test/thread-5811/5868"
+        ]
+      },
+      {
+        "id": "q28",
+        "hits": [
+          "meeting:synthetic/10099/cue/1",
+          "msg:email/synthetic%40example.test/thread-10104/10104",
+          "msg:email/synthetic%40example.test/thread-7542/7542",
+          "meeting:synthetic/3180/cue/1",
+          "msg:email/synthetic%40example.test/thread-3569/3569",
+          "msg:email/synthetic%40example.test/thread-2922/2922",
+          "msg:email/synthetic%40example.test/thread-2892/2892",
+          "msg:email/synthetic%40example.test/thread-1956/1956",
+          "msg:email/synthetic%40example.test/thread-5016/5016",
+          "meeting:synthetic/1213/cue/1"
+        ]
+      },
+      {
+        "id": "q30",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10329/10329",
+          "msg:email/synthetic%40example.test/thread-10301/10301",
+          "document:3975",
+          "msg:email/synthetic%40example.test/thread-5246/5246",
+          "msg:email/synthetic%40example.test/thread-6188/6188",
+          "msg:email/synthetic%40example.test/thread-4462/4462",
+          "document:2081",
+          "msg:email/synthetic%40example.test/thread-5940/5940",
+          "msg:email/synthetic%40example.test/thread-6811/6811",
+          "msg:email/synthetic%40example.test/thread-9472/9472"
+        ]
+      },
+      {
+        "id": "q32",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-2318/2318",
+          "msg:email/synthetic%40example.test/thread-7147/7204",
+          "msg:email/synthetic%40example.test/thread-8314/8410",
+          "msg:email/synthetic%40example.test/thread-9554/9633",
+          "msg:email/synthetic%40example.test/thread-1436/1472",
+          "meeting:synthetic/5324/cue/1",
+          "msg:email/synthetic%40example.test/thread-6576/6649",
+          "msg:email/synthetic%40example.test/thread-9746/9746",
+          "msg:email/synthetic%40example.test/thread-1436/1436",
+          "msg:email/synthetic%40example.test/thread-8314/8314"
+        ]
+      },
+      {
+        "id": "q35",
+        "hits": [
+          "msg:email/synthetic%40example.test/thread-10379/10379",
+          "msg:email/synthetic%40example.test/thread-10398/10398",
+          "msg:email/synthetic%40example.test/thread-10413/10413",
+          "msg:email/synthetic%40example.test/thread-5366/5366",
+          "msg:email/synthetic%40example.test/thread-6952/6952",
+          "msg:email/synthetic%40example.test/thread-10312/10312",
+          "msg:email/synthetic%40example.test/thread-10326/10326",
+          "msg:email/synthetic%40example.test/thread-10339/10339",
+          "msg:email/synthetic%40example.test/thread-10313/10313",
+          "msg:email/synthetic%40example.test/thread-8891/8891"
+        ]
+      },
+      {
+        "id": "q39",
+        "hits": [
+          "meeting:synthetic/7114/cue/1",
+          "meeting:synthetic/4224/cue/1",
+          "meeting:synthetic/8981/cue/1",
+          "msg:email/synthetic%40example.test/thread-6086/6086",
+          "meeting:synthetic/5289/cue/1",
+          "msg:telegram/synthetic/team/8368",
+          "msg:telegram/synthetic/team/2426",
+          "meeting:synthetic/4716/cue/1",
+          "msg:email/synthetic%40example.test/thread-8544/8892",
+          "msg:email/synthetic%40example.test/thread-4580/4580"
+        ]
+      },
+      {
+        "id": "q42",
+        "hits": [
+          "document:1513",
+          "msg:telegram/synthetic/team/3869",
+          "document:3475",
+          "document:6760",
+          "msg:email/synthetic%40example.test/thread-3655/3655",
+          "msg:email/synthetic%40example.test/thread-2499/2499",
+          "meeting:synthetic/3737/cue/1",
+          "meeting:synthetic/3838/cue/1",
+          "document:6357",
+          "msg:telegram/synthetic/team/1650"
+        ]
+      },
+      {
+        "id": "q44",
+        "hits": [
+          "msg:telegram/synthetic/team/5829",
+          "document:1495",
+          "document:6854",
+          "meeting:synthetic/4427/cue/1",
+          "document:2268",
+          "meeting:synthetic/1127/cue/1",
+          "document:2842",
+          "document:17",
+          "meeting:synthetic/7920/cue/1",
+          "msg:telegram/synthetic/team/8417"
+        ]
+      }
+    ]
+  }
+}
