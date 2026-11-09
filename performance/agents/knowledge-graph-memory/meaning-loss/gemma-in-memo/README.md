@@ -53,6 +53,25 @@ Embedding 10,444 records from nothing with EmbeddingGemma: 142 syncs and 624 to 
 to 39 chunks), 57 syncs and 417 s after (97 chunks). e5-small: 10 syncs, about 70 s. Re-embedding the 4,372 mails
 after the re-cut took 7 syncs and 31 to 40 s with e5-small and 43 syncs and 350 s with EmbeddingGemma.
 
+### Note titles: rNNNN or the note's first words (released memo 0.131.61)
+
+Until 8 November the bench named every note file `rNNNN`, after its record id; since 90c8e73 it names it by its first
+words, as a person would. The rows above are rNNNN. Four new stores, one per model and naming, built with the
+released memo 0.131.61 from npm ([`../../memo_baseline.py`](../../memo_baseline.py) `--note-titles`), then both
+question sets on a copy ([`variant.py`](variant.py)):
+
+| Titles | Model | 17 reworded @10 | reworded wording, all 46 @1 / @5 / @10 | own words, all 46 @1 / @5 / @10 | p50 |
+|---|---|---:|---|---|---:|
+| rNNNN | e5-small | 0.529 | 0.39 / 0.72 / 0.76 | 0.54 / 0.89 / 0.93 | 1.5 s |
+| first words | e5-small | 0.559 | 0.39 / 0.70 / 0.75 | 0.52 / 0.87 / 0.91 | 1.1 s |
+| rNNNN | EmbeddingGemma | 0.718 | 0.35 / 0.79 / 0.83 | 0.48 / 0.90 / 0.93 | 1.5 s |
+| first words | EmbeddingGemma | 0.706 | 0.31 / 0.81 / 0.83 | 0.39 / 0.88 / 0.93 | 2.4 s |
+
+Titles from the first words change @10 by less than one question with either model; the 17-question score moves by
+0.03 at most. They cost EmbeddingGemma at @1 (0.48 to 0.39 with the record's own words): the title repeats the
+note's opening, so more notes look alike at the top. The numbers of the earlier rows still hold for comparison
+among themselves; a new comparison should use first-word titles, the bench default. p50 varied with other jobs.
+
 ### Where Gemma's 0.94 went (plain vector search, 17 reworded, @10)
 
 | Vectors | 17 reworded | all 46 |
