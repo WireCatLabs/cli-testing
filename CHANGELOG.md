@@ -15,6 +15,12 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   tool's upgrade contract fail whenever the shared store schema moved. A mismatch names the pattern and the stderr
   received. It cannot be combined with `diagnostic`, needs `stream: "stdout"`, and an invalid expression fails the
   plan before any case runs. Escape a backslash twice in the plan's JSON.
+- **A synthetic CRM relationships check runs the plan's Acme and Northstar scenario through the built CLIs.** It
+  drives b24's real binary on a strict fake Bitrix24 portal, memo's real binary as the owner at a terminal, and
+  memo's stdio MCP server, and records versions, integrities and executable hashes
+  (`performance/crm/relationships/`). The result is a run on the published b24 0.9.0 and memo 0.131.72: 12 of 13
+  checks pass, and check 11 found an unattended `search all` showing a denied deal (cli-memo #777). It needs
+  util-linux `script` for the owner's writes.
 
 ## 0.6.2 â€” 07.11.2026
 

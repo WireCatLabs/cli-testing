@@ -1,0 +1,767 @@
+{
+  "node": "v24.19.0",
+  "script": "script from util-linux 2.41.3",
+  "build": "registry",
+  "artifacts": {
+    "bitrix24-cli": {
+      "version": "0.9.0",
+      "integrity": "sha512-ED9HB1ICAu0ilsZ8aTQQYO1EsBiE8dLNlZxFT7TE4dPpk7Zqt5Rc/JOO71wL8Kdl1wbSz+/waTFUEIThmdmfCQ==",
+      "entry_sha256": "9af3627a62e2c1bdb9bd8f4e6b848ac2c435680b9430a6fd82dd9f3d037e2ca8"
+    },
+    "cli-memo": {
+      "version": "0.131.72",
+      "integrity": "sha512-OzcERWkp+3JIl1q9VTZjygDyqq2G+tT2pZSaVkZPZL5V2pngzXTpzrJu6MXc1IOMMMHPPAFgUTZST+Q3X3t6+w==",
+      "entry_sha256": "1fdb032b3e331cd873976707d24c194d8c23c8477a62dbb4d90190f5af8d16f2"
+    },
+    "cli-core": {
+      "version": "0.619.0",
+      "b24_core": "0.619.0",
+      "integrity": "sha512-Q99wriU8x7BHOB/nVUpw7XyHiG1p5jg3P6UYU29JL+oO+pDecj8sBURQSbjsHruDm9MBAjMqh1EY8X+VOuzaOw=="
+    }
+  },
+  "first_sync": {
+    "synced": [
+      {
+        "kind": "organization",
+        "saved": 2
+      },
+      {
+        "kind": "person",
+        "saved": 3
+      },
+      {
+        "kind": "deal",
+        "saved": 1
+      },
+      {
+        "kind": "lead",
+        "saved": 0
+      }
+    ],
+    "users": 2
+  },
+  "portal": {
+    "calls": 297,
+    "methods": [
+      "v2 crm.category.list",
+      "v2 crm.company.userfield.list",
+      "v2 crm.contact.userfield.list",
+      "v2 crm.deal.userfield.list",
+      "v2 crm.lead.userfield.list",
+      "v2 crm.status.list",
+      "v2 department.get",
+      "v2 user.get",
+      "v3 crm.company.field.list",
+      "v3 crm.company.list",
+      "v3 crm.contact.field.list",
+      "v3 crm.contact.list",
+      "v3 crm.deal.field.list",
+      "v3 crm.deal.list",
+      "v3 crm.lead.field.list",
+      "v3 crm.lead.list",
+      "v3 crm.mycompany.basic.list"
+    ],
+    "refused": 0
+  },
+  "passed": 12,
+  "failed": [11],
+  "checks": [
+    {
+      "id": 1,
+      "name": "Alice's CRM contact and Telegram identity are one person once the owner links them",
+      "pass": true,
+      "evidence": {
+        "before": {
+          "crm": "person:8",
+          "telegram": "person:2"
+        },
+        "after": {
+          "crm": "person:8",
+          "telegram": "person:8"
+        },
+        "search_people": [
+          {
+            "ref": "person:8",
+            "name": "Alice"
+          }
+        ],
+        "identities": ["bitrix24", "email", "telegram"],
+        "direct_messages": 1,
+        "people_list": [
+          {
+            "ref": "person:8",
+            "name": "Alice"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Bob is Alice's manager only through the owner's link",
+      "pass": true,
+      "evidence": {
+        "portal_derived": [
+          {
+            "to": "person:15",
+            "standing": "reported"
+          }
+        ],
+        "before": [],
+        "after": [
+          {
+            "to": "person:5",
+            "standing": "confirmed"
+          }
+        ],
+        "context_reports_to": ["person:5"]
+      }
+    },
+    {
+      "id": 3,
+      "name": "the deal has Alice contact, Bob decision-maker and Emma owner, each with its standing",
+      "pass": true,
+      "evidence": {
+        "participants": {
+          "person:8": ["contact:reported"],
+          "person:9": ["owner:reported"],
+          "person:5": ["decision-maker:confirmed"]
+        },
+        "owner": "person:9",
+        "project": "project:1"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Acme's context has its people and its deal, each once",
+      "pass": true,
+      "evidence": {
+        "people": {
+          "person:8": ["contact:reported"],
+          "person:5": ["contact:reported"],
+          "person:7": ["contact:reported"]
+        },
+        "deals": ["deal:1"],
+        "categories": ["client"],
+        "customer_of": ["organization:2"],
+        "projects": ["project:1"],
+        "category_client": ["organization:1"]
+      }
+    },
+    {
+      "id": 5,
+      "name": "memo context person: answers for a CRM-only contact and a name-only person",
+      "pass": true,
+      "evidence": {
+        "crm_only": {
+          "name": "Grace Example",
+          "organizations": {
+            "organization:2": ["employee:reported"]
+          },
+          "direct_reports": ["person:9"],
+          "coverage_accounts": ["bitrix24:example.bitrix24.test", "google-calendar:owner@northstar.example"]
+        },
+        "search_people_finds_name_only": 1,
+        "name_only": {
+          "name": "Dana Example",
+          "not_read": ["messages", "mail"]
+        }
+      }
+    },
+    {
+      "id": 6,
+      "name": "the deal's context shows the meeting and messages, marked proposed",
+      "pass": true,
+      "evidence": {
+        "counts": {
+          "messages": 1,
+          "mail": 1,
+          "meetings": 1
+        },
+        "items": [
+          {
+            "kind": "meeting",
+            "standing": "proposed"
+          },
+          {
+            "kind": "mail",
+            "standing": "proposed"
+          },
+          {
+            "kind": "message",
+            "standing": "proposed"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name": "the invoice shows unpaid and no payment appears",
+      "pass": true,
+      "evidence": {
+        "deal": {
+          "invoices": [
+            {
+              "ref": "invoice:1",
+              "status": "issued",
+              "open": "1200.00"
+            }
+          ],
+          "payments": 0
+        },
+        "organization": {
+          "invoices": 1,
+          "payments": 0
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "three b24 syncs leave one link per relationship and no new revisions",
+      "pass": true,
+      "evidence": {
+        "links": {
+          "before": 11,
+          "after": 11
+        },
+        "revisions": {
+          "before": 11,
+          "after": 11
+        },
+        "issues": [0, 0, 0],
+        "duplicate_keys": 0
+      }
+    },
+    {
+      "id": 9,
+      "name": "a wrong identity link, separated by the owner, stays separated after re-sync",
+      "pass": true,
+      "evidence": {
+        "joined_by_sync": {
+          "crm": "person:7",
+          "mail": "person:7"
+        },
+        "after": {
+          "crm": "person:7",
+          "mail": "person:17"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "a CRM change does not overwrite a role the owner set",
+      "pass": true,
+      "evidence": {
+        "alice_links": [
+          {
+            "id": 1,
+            "role": "contact",
+            "confirmed": 0,
+            "account_id": 5,
+            "deleted_at": null
+          },
+          {
+            "id": 12,
+            "role": "manager",
+            "confirmed": 1,
+            "account_id": null,
+            "deleted_at": null
+          }
+        ],
+        "after_sync": [
+          {
+            "proposals": 0,
+            "links": 13
+          },
+          {
+            "proposals": 0,
+            "links": 13
+          }
+        ],
+        "alice_at_acme": ["manager:confirmed"],
+        "bob_on_deal": ["decision-maker:confirmed", "contact:reported"]
+      }
+    },
+    {
+      "id": 11,
+      "name": "a group lock never reads the other group's accounts, and deals: deny hides deals",
+      "pass": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(!evidence.deny_search.some((ref) => ref.startsWith(\"deal:\")))\n",
+      "evidence": {
+        "personal_deals_list": 0,
+        "personal_search_deal": [],
+        "personal_search_work_chat": [],
+        "personal_search_crm_person": [],
+        "personal_context_bob": {
+          "accounts": ["email:owner@northstar.example"],
+          "organizations": 0,
+          "deals": 0
+        },
+        "work_search_personal_chat": [],
+        "work_search_mail": [],
+        "unlocked": {
+          "deal": true,
+          "work_chat": true,
+          "crm_person": true,
+          "personal_chat": true,
+          "mail": true
+        },
+        "owner_made": {
+          "personal": {
+            "projects": 1,
+            "invoices": 5,
+            "tasks": 2
+          },
+          "work": {
+            "projects": 1,
+            "invoices": 5,
+            "tasks": 2
+          }
+        },
+        "deny_search": ["deal:1"]
+      }
+    },
+    {
+      "id": 12,
+      "name": "every new memo command is found by memo_tools_search over a real stdio MCP process",
+      "pass": true,
+      "evidence": {
+        "ranks": {
+          "organization context": 0,
+          "deal context": 0,
+          "lead context": 0,
+          "deal project": 2,
+          "relationships": 3,
+          "add relationship": 0,
+          "end relationship": 0,
+          "organizations": 2,
+          "person context": 0,
+          "account groups": 1,
+          "add account to group": 0,
+          "remove account group": 0,
+          "move account groups": 0
+        },
+        "task_phrases": {
+          "a client company's people, deals and money": -1,
+          "everything about one deal: people, stages, invoices": -1,
+          "one lead with its people and history": -1,
+          "set the project a deal belongs to": 0,
+          "who reports to whom": -1,
+          "record that a person reports to another": -1,
+          "say a relationship ended": 0,
+          "list client organizations": 0,
+          "one person's companies and deals": -1,
+          "which accounts are in the work group": -1,
+          "put an account in a group": 0,
+          "take an account out of a group": 0,
+          "move an account to another group": 0
+        },
+        "mcp_deal_context_matches_cli": true
+      }
+    },
+    {
+      "id": 13,
+      "name": "each documentation example that names these commands runs as written",
+      "pass": true,
+      "evidence": {
+        "results": [
+          {
+            "file": "memo/README.md",
+            "line": 172,
+            "command": "memo relationships add",
+            "ran": true,
+            "code": 2,
+            "reference": "names the command in prose, with no arguments"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 35,
+            "command": "memo context person:7",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 151,
+            "command": "memo organizations list category:client",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 191,
+            "command": "memo relationships add person:PERSON_UID organization:1 --role employee --position CTO --start-date 2026-01-01",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 192,
+            "command": "memo relationships add person:PERSON_UID project:1 --role contributor",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 193,
+            "command": "memo relationships add person:PERSON_UID person:OTHER_UID --kind reports-to",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 194,
+            "command": "memo relationships add organization:2 organization:1 --kind customer-of",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 195,
+            "command": "memo relationships list 'about:\"project:1\"'",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 196,
+            "command": "memo relationships list kind:reports-to 'to:\"person:5\"'",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 197,
+            "command": "memo relationships list standing:reported include:ended --limit 50",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 198,
+            "command": "memo relationships end 4 --end-date 2026-09-30",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 203,
+            "command": "memo relationships end <id> --end-date <date>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 221,
+            "command": "memo relationships update 4 --role client-contact --role-note '<the old words>'",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 228,
+            "command": "memo relationships update 4 --engagement low",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 229,
+            "command": "memo relationships update 4 --role approver --role-note 'signs the acts'",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 230,
+            "command": "memo relationships update 4 --engagement ''",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 233,
+            "command": "memo relationships list",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 240,
+            "command": "memo relationships add chat:telegram/1/123 project:1",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/search.md",
+            "line": 34,
+            "command": "memo context person:12",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/docs/search.md",
+            "line": 35,
+            "command": "memo organizations context",
+            "ran": true,
+            "code": 2,
+            "reference": "names the command in prose, with no arguments"
+          },
+          {
+            "file": "memo/docs/search.md",
+            "line": 35,
+            "command": "memo relationships list",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/usage.md",
+            "line": 146,
+            "command": "memo deals context deal:5",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/docs/usage.md",
+            "line": 150,
+            "command": "memo leads context",
+            "ran": true,
+            "code": 2,
+            "reference": "names the command in prose, with no arguments"
+          },
+          {
+            "file": "memo/docs/usage.md",
+            "line": 151,
+            "command": "memo deals update deal:5 --project HRB",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/usage.md",
+            "line": 155,
+            "command": "memo groups add work bitrix24:example.bitrix24.com",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/usage.md",
+            "line": 246,
+            "command": "memo groups list",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/usage.md",
+            "line": 252,
+            "command": "memo groups remove work telegram:102",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/money.md",
+            "line": 47,
+            "command": "memo deals context deal:7 --brief",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/money.md",
+            "line": 50,
+            "command": "memo organizations context organization:4",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/money.md",
+            "line": 51,
+            "command": "memo organizations list category:client",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/money.md",
+            "line": 52,
+            "command": "memo deals update deal:7 --project HRB",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/projects.md",
+            "line": 4,
+            "command": "memo deals context deal:7 --brief",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/projects.md",
+            "line": 28,
+            "command": "memo relationships add chat:<provider>/<account>/<chat> project:<id>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/projects.md",
+            "line": 53,
+            "command": "memo relationships update <id> --engagement <level>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 18,
+            "command": "memo context person:12",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 18,
+            "command": "memo organizations context <ref>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 19,
+            "command": "memo deals context <ref> --brief",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 20,
+            "command": "memo relationships list kind:reports-to to:<ref>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 22,
+            "command": "memo groups list",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "b24/README.md",
+            "line": 18,
+            "command": "b24 work sync",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 41,
+            "command": "b24 work sync",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 42,
+            "command": "b24 work sync --rescan",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 59,
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.unassigned 15,31",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 60,
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.scope all",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 109,
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.com.links review",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 117,
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.com.company-types CUSTOMER=customer-of,SUPPLIER=supplier",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 132,
+            "command": "b24 work schedule command crm --every 1h -- sync",
+            "skip": "installs or runs an OS timer",
+            "ran": false
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 133,
+            "command": "b24 work schedule list",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 134,
+            "command": "b24 work schedule remove crm",
+            "skip": "installs or runs an OS timer",
+            "ran": false
+          },
+          {
+            "file": "b24/skills/bitrix24-cli/SKILL.md",
+            "line": 27,
+            "command": "b24 work sync",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          }
+        ],
+        "counts": {
+          "examples": 50,
+          "ran": 41
+        }
+      }
+    }
+  ],
+  "coverage": "synthetic portal behind b24's real binary, synthetic Telegram, mail and calendar rows through cli-core's store calls, memo's real binary and stdio MCP; no live Bitrix24, OAuth, Zoom recording, matching beyond exact email or scale"
+}
