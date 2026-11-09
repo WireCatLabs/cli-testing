@@ -1,0 +1,19 @@
+cli-core 3319e0ddc, 2026-11-09T23:35:42Z, load 8.84 8.59 8.52
+$ node bench/command-server/measure.mjs 7 5
+{"ready":true,"protocol":1,"version":"1.0.0","concurrent":8}
+7 reads, one server, one at a time: median 147 ms over 5 rounds
+7 reads, one server, all at once: median 110 ms over 5 rounds
+7 reads, a process each, all at once: median 804 ms over 5 rounds
+7 reads, a process each, one at a time: median 3186 ms over 5 rounds
+$ node bench/command-server/measure.mjs 7 5 work config show --json
+{"ready":true,"protocol":1,"version":"1.0.0","concurrent":8}
+7 reads, one server, one at a time: median 91 ms over 5 rounds
+7 reads, one server, all at once: median 76 ms over 5 rounds
+7 reads, a process each, all at once: median 676 ms over 5 rounds
+7 reads, a process each, one at a time: median 3519 ms over 5 rounds
+$ node bench/command-server/measure.mjs 16 3
+{"ready":true,"protocol":1,"version":"1.0.0","concurrent":8}
+16 reads, one server, one at a time: median 338 ms over 3 rounds
+16 reads, one server, all at once: median 274 ms over 3 rounds
+16 reads, a process each, all at once: median 1482 ms over 3 rounds
+16 reads, a process each, one at a time: median 11119 ms over 3 rounds
