@@ -1,0 +1,249 @@
+{
+  "model": "claude-haiku-5-5",
+  "max_turns": 8,
+  "result_chars": 12000,
+  "spent_usd": 0.13330189999999997,
+  "summary": {
+    "short": {
+      "tasks": 21,
+      "ok": 20,
+      "tool_calls": 149,
+      "input_tokens": 1215839,
+      "output_tokens": 23436,
+      "listing_chars": 3128
+    }
+  },
+  "runs": [
+    {
+      "repeat": 0,
+      "id": "q01",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 8,
+      "input": 60571,
+      "output": 1208,
+      "final": "il) were superseded. A 16 April note mentions 13.5k as a corrected figure, so it does not override the later agreement. I did not run a separate search for anything after 13 April.\n\nANSWER: EUR 16,000"
+    },
+    {
+      "repeat": 0,
+      "id": "q05",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 15,
+      "input": 146486,
+      "output": 2231,
+      "final": "uld be EUR 11,750.\n\nA separate 6 Sep email says a €7,000 payment was sent but bounced and was not received, so I excluded it. I did not find any other Amber Kite retainer payments.\n\nANSWER: EUR 17,250"
+    },
+    {
+      "repeat": 0,
+      "id": "q07",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 11,
+      "input": 65710,
+      "output": 1441,
+      "final": "Vail: EUR 1,250 (31 March 2026) and EUR 500 (24 March 2026), which is EUR 1,750 paid in total. That leaves EUR 8,250 outstanding. I found no other instalment records for this order.\n\nANSWER: EUR 8,250"
+    },
+    {
+      "repeat": 0,
+      "id": "q10",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 10,
+      "input": 85755,
+      "output": 1375,
+      "final": "ser's later mail says one attendee cancelled and €150 was refunded. That leaves EUR 1,050 − EUR 150 = EUR 900. The other refund I saw (Birch Compass, €1,350) is for a different event.\n\nANSWER: EUR 900"
+    },
+    {
+      "repeat": 0,
+      "id": "q12",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 6,
+      "input": 53104,
+      "output": 817,
+      "final": "e deposit on his card \"if that helps.\" That is an offer, not a payment, so it doesn't change the answer.\n\nANSWER: Tess Ng paid the Grove Atlas team retreat deposit (€1,800), per her 7 June 2026 email."
+    },
+    {
+      "repeat": 0,
+      "id": "q15",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 7,
+      "input": 90713,
+      "output": 1173,
+      "final": "from Ari Vale asks whether the meeting could be an hour later, but it records \"No answer yet,\" so I did not treat it as a change. I did not check the calendar event directly.\n\nANSWER: 2026-11-21 12:00"
+    },
+    {
+      "repeat": 0,
+      "id": "q20",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 7,
+      "input": 63699,
+      "output": 965,
+      "final": "ays from today. Decided.\" The note was last modified 2026-03-20, so 9 days from that is 2026-03-29. A calendar search found no matching event, so the date rests on that note alone.\n\nANSWER: 2026-03-29"
+    },
+    {
+      "repeat": 0,
+      "id": "q23",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 5,
+      "input": 41454,
+      "output": 680,
+      "final": "mer withdrew. It will not take place.\" That is the most recent word on it. An earlier email from 2026-09-26 had booked it for 2026-11-17, but the later cancellation supersedes that.\n\nANSWER: cancelled"
+    },
+    {
+      "repeat": 0,
+      "id": "q28",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 8,
+      "input": 71117,
+      "output": 1173,
+      "final": "t 10:00.\" I did not find a later message reversing the change. I did not check the calendar events directly, so the time of 10:00 is from the older note and not confirmed by the email.\n\nANSWER: Monday"
+    },
+    {
+      "repeat": 0,
+      "id": "q30",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 6,
+      "input": 42410,
+      "output": 757,
+      "final": "r email on 2026-08-01 proposed the three-vendor list, so he sent the proposal rather than the sign-off.\n\nANSWER: Ira Brook (head of purchasing), per his 2026-08-25 email \"Elm Beacon vendor shortlist.\""
+    },
+    {
+      "repeat": 0,
+      "id": "q32",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 5,
+      "input": 51212,
+      "output": 748,
+      "final": " An earlier planning note (9 June 2026) listed Old Mill Hall as \"to be confirmed,\" which the later email supersedes.\n\nANSWER: Harbour Loft (booked by Max Dorn, deposit paid; Old Mill Hall was dropped)"
+    },
+    {
+      "repeat": 0,
+      "id": "q36",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 4,
+      "input": 31478,
+      "output": 812,
+      "final": "ct 8). A note from Quin Roy (Oct 15) asks whether to move it \"again\" but says \"Nothing decided,\" so I did not count it. I read these from search excerpts and did not open the full messages.\n\nANSWER: 3"
+    },
+    {
+      "repeat": 0,
+      "id": "q39",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 8,
+      "input": 43663,
+      "output": 1583,
+      "final": " parked it (\"let us not decide over mail\"), so that is not confirmed. I did not find a stored fact or memory for this project, so the answer rests on the note and the email thread.\n\nANSWER: 2027-09-11"
+    },
+    {
+      "repeat": 0,
+      "id": "q44",
+      "kind": "search",
+      "arm": "short",
+      "ok": true,
+      "calls": 7,
+      "input": 40459,
+      "output": 912,
+      "final": "ility study instead of the load test report.\"\n\nI did not find any later note or message reversing the revision.\n\nANSWER: The usability study (revised on 2026-07-10 from the original load test report)."
+    },
+    {
+      "repeat": 0,
+      "id": "page-12",
+      "kind": "page",
+      "arm": "short",
+      "ok": true,
+      "calls": 3,
+      "input": 12882,
+      "output": 615,
+      "final": "e notes 1–5 (5512 to 5508), page 2 gave 6–10 (5507 to 5503), and page 3 gave 11–15, where 11 is 5502 and 12 is 5501 (\"Tess Ng should Kay Stone take over the Amber Kite data migration?\").\n\nANSWER: 5501"
+    },
+    {
+      "repeat": 0,
+      "id": "page-14",
+      "kind": "page",
+      "arm": "short",
+      "ok": true,
+      "calls": 3,
+      "input": 12941,
+      "output": 641,
+      "final": "t` with limit 5 and counted in order across pages 1 to 3: page 1 gave notes 1–5 (5512 to 5508), page 2 gave 6–10 (5507 to 5503), and page 3 gave 11–15 (5502, 5501, 5500, **5499**, 5498).\n\nANSWER: 5499"
+    },
+    {
+      "repeat": 0,
+      "id": "missing-kind",
+      "kind": "missing",
+      "arm": "short",
+      "ok": true,
+      "calls": 5,
+      "input": 41730,
+      "output": 762,
+      "final": "build` (tg, max, wa) would give them vectors. Mail and notes were searched by both words and meaning.\n\nANSWER: messages (searched by words only; mail and notes were searched by both words and meaning)"
+    },
+    {
+      "repeat": 0,
+      "id": "missing-fix",
+      "kind": "missing",
+      "arm": "short",
+      "ok": true,
+      "calls": 2,
+      "input": 18029,
+      "output": 378,
+      "final": "ering committee threads, and the result flags one gap: messages were matched by words only because they have no vectors yet. It names `conversations rebuild` as the fix.\n\nANSWER: conversations rebuild"
+    },
+    {
+      "repeat": 0,
+      "id": "write-reply",
+      "kind": "write",
+      "arm": "short",
+      "ok": true,
+      "calls": 11,
+      "input": 100403,
+      "output": 2265,
+      "final": "ANSWER: Reply proposed (action id 1, not sent) to ira.brook@example.test confirming the Amber Kite steering committee meeting on Saturday 21 November 2026 at 12:00 Madrid time, per Ira's 31 Aug email."
+    },
+    {
+      "repeat": 0,
+      "id": "write-fact",
+      "kind": "write",
+      "arm": "short",
+      "ok": true,
+      "calls": 8,
+      "input": 81016,
+      "output": 1406,
+      "final": " Recorded as proposed fact fact:1 (Tess Ng paid the Grove Atlas team retreat deposit, €1,800; evidence msg:email/synthetic%40example.test/2000000000010222/1000000000010222), pending your confirmation."
+    },
+    {
+      "repeat": 0,
+      "id": "write-memory",
+      "kind": "write",
+      "arm": "short",
+      "ok": false,
+      "calls": 10,
+      "input": 61007,
+      "output": 1494,
+      "final": "ince a project mention alone doesn't make membership.\n\nANSWER: Not saved. No evidence or Flint Meadow project was found in the stored data; please provide a source reference or confirm how to proceed."
+    }
+  ]
+}
