@@ -34,3 +34,6 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
 - [records-jsonl-stream](records-jsonl-stream/README.md) — the streaming JSONL records import (cli-core 0.612.0),
   1,000 to 300,000 synthetic business records: peak memory levels off at 340–365 MB from 100,000 records while the
   file triples, so large imports need no chunking advice for memory (2026-11-08).
+- [relationship-override-lookup](relationship-override-lookup/README.md) — `relationships list include:ended` took
+  325 s on the owner's store: the override check read every link of a person on 25,857 deals for each row. Repeating
+  the relationship key's index condition makes it 0.2 s (2026-11-09).
