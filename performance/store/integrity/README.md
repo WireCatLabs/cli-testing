@@ -41,6 +41,7 @@ guard against before anything is called "hardening".
 | [`closers.mjs`](closers.mjs) | which program's close deletes `-wal` and `-shm` under a process that lost its locks, and under one that kept them |
 | [`recover.mjs`](recover.mjs) | runs cli-core's `store recover run` on a copy of a broken store a run kept, then the same checks, and counts lost rows per table against the ledgers |
 | [`gap.mjs`](gap.mjs) | compares two stores read only, per source account and day: what one holds that the other lacks; totals on stdout, per-chat ids only to a private file |
+| [`write-events.mjs`](write-events.mjs) | the cost of the `store.write` run events (plan S5): the same write loops in a recorded run on a cli-core without and with them, alternated, each in a fresh process and store |
 
 Roles that write like the real CLIs, table by table:
 
@@ -474,6 +475,63 @@ quick server: one more sync stores none of them before the step and all 10 after
 Not measured: a real messenger's history (rate limits, Telegram's pauses), stores with a passing deep check that is
 weeks old (everything since is re-read), and `messages sync --all` over a chat list, which this script replaces with
 one `fetchInto` per chat.
+
+## S5: what the store write events cost
+
+**Why.** The owner asked that every committed write to the store leave a trace in the run records (table, kind of
+change, row count), so that after a damage `store recover` can say what to fetch again (plan S5, O1). The owner's
+rule for it: measure once on a synthetic store, and batch the events if they add more than a few percent.
+
+**What was built** ([cli-core #2767](https://github.com/WireCatLabs/cli-core/pull/2767)):
+a writable store connection counts the rows each write statement changes, per table, and the outermost `write`
+that commits logs one `store.write` event per table and kind of change. Past 100 such events in one run, the rest
+are summed by table and change and written as one event each when the run ends.
+
+**Setup.** Same machine as above, Node 24.19.0, 2026-11-09, load average 6 to 11 from other test suites running at
+the same time. `--base` is cli-core `main` at `f5a394e4a`, `--events` the S5 branch on top of it, both built
+locally. Each round runs both, in alternating order, each in a fresh process with a fresh store and a recorded run
+(`record: true`, events written to `events.jsonl`). Three loops, each timed on its own:
+
+- `rowPerTx`: one `INSERT` into `accounts` per `write` transaction, nothing else. The worst case: the smallest
+  transaction there is.
+- `messagePerTx`: `saveMessages` with one 600-byte message per call, as a writer that saves message by message.
+- `batched`: `saveMessages` with 50 messages per call, as `mail sync` saves its slices.
+
+```sh
+node performance/store/integrity/write-events.mjs --base <cli-core main checkout> --events <cli-core S5 checkout> \
+  --tx 2000 --rounds 9 --dir /var/tmp/claude
+```
+
+**Results** (9 rounds, median, then the fastest round in brackets):
+
+| Loop | Transactions | Without | With events | Added |
+|---|---:|---:|---:|---:|
+| rowPerTx | 200 | 77 ms (74) | 91 ms (87) | +18 % (+18 %) |
+| messagePerTx | 200 | 596 ms (591) | 609 ms (592) | +2.3 % (+0.2 %) |
+| batched | 4 | 82 ms (65) | 85 ms (77) | +3.5 % (+20 %) |
+| rowPerTx | 2,000 | 501 ms (484) | 542 ms (516) | +8.2 % (+6.5 %) |
+| messagePerTx | 2,000 | 6,413 ms (6,087) | 6,378 ms (5,892) | −0.5 % (−3.2 %) |
+| batched | 40 | 1,657 ms (1,305) | 1,674 ms (1,306) | +1.0 % (+0.1 %) |
+
+An earlier run of the same script, with the sum starting after 200 events instead of 100 and a load average of 6,
+gave at 2,000 transactions +2.9 % (rowPerTx), +0.8 % (messagePerTx) and +0.5 % (batched), and at 200 transactions
+about +12 ms for 200 written events: 45 to 60 µs per event written to the run's file.
+
+**What it showed.**
+
+- For writes shaped like the real CLIs (`saveMessages` one at a time or 50 at a time), the events cost 0 to 3 %,
+  inside the noise of a loaded machine.
+- Each event written costs about 50 µs, almost all of it the run log's own write. The sum past 100 events bounds that
+  at about 5 ms per run, however long the run. Without the sum, a long sync would also have filled the run's cap of
+  2,000 events with store events and dropped its request events.
+- The worst case, a transaction that inserts one row and does nothing else, pays about 20 µs per transaction even past
+  the cap (+8 % at 2,000 transactions): the counting on every write statement. The CLIs' sync loops were not checked
+  for such writes; most have a network call between two transactions. The events stay one per transaction and table, as the owner
+  asked; batching them further would lose the time of each write.
+
+**Not measured.** Bun as the runtime. A real `tg sync` or `mail sync`, where network calls dwarf the store. The
+owner's 6 GB store. Reads: the counting only touches write statements, but the check of each statement's text runs
+on every prepare, reads included, and was not timed on its own.
 
 ## What can happen again
 

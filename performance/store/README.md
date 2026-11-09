@@ -28,6 +28,9 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   [refill.mjs](integrity/README.md#refillmjs-ordinary-syncs-after-the-recovery): once the recovery marks what was held
   from a day before the last passing deep check as not fetched, one ordinary sync brought back all 291 messages a hole
   took; on 0.613.0, 200 were still missing after 25 syncs.
+  [S5](integrity/README.md#s5-what-the-store-write-events-cost): a `store.write` run event per committed transaction
+  and table costs 0 to 3 % on writes shaped like the CLIs', about 50 µs per event written, bounded at about 5 ms a run
+  by summing past 100 events (2026-11-09).
 - [records-jsonl-stream](records-jsonl-stream/README.md) — the streaming JSONL records import (cli-core 0.612.0),
   1,000 to 300,000 synthetic business records: peak memory levels off at 340–365 MB from 100,000 records while the
   file triples, so large imports need no chunking advice for memory (2026-11-08).
