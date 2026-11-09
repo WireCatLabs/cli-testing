@@ -663,6 +663,11 @@ if (worker) {
   check(13, "each documentation example that names these commands runs as written", (evidence) => {
     assert.ok(memoDocs && b24Docs, "--memo-docs and --b24-docs name the checked-out repositories")
     const examples = docExamples({ memo: resolve(memoDocs), b24: resolve(b24Docs) })
+    // The docs' engagement examples name a person's place on a project; an earlier example in the same page adds one.
+    const projectLink = () =>
+      memo(["relationships", "list", `from:${ids.alice}`]).items.find((one) =>
+        JSON.stringify(one).includes('"project:'),
+      )?.id
     const substitute = (line) =>
       line
         .replace(/person:(12|7|5|3|PERSON_UID)\b/g, ids.alice)
@@ -673,6 +678,7 @@ if (worker) {
         .replace(/\bHRB\b/g, "ATL")
         .replace(/example\.bitrix24\.com/g, HOST)
         .replace(/relationships end \d+/, `relationships end ${ids.reportsLink}`)
+        .replace(/relationships update \d+/, () => `relationships update ${projectLink()}`)
         .replace(/chat:telegram\/1\/123\b/g, "chat:telegram/300/201")
         .replace(/bitrix24:acme\b/g, PORTAL)
         .replace(/telegram:102\b/g, `telegram:${TELEGRAM.account}`)

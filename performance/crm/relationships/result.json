@@ -1,46 +1,22 @@
 {
   "node": "v24.19.0",
   "script": "script from util-linux 2.41.3",
-  "build": {
-    "kind": "pre-release: unreleased local builds from open pull requests, never published",
-    "cli-core": {
-      "merge": "54108fded21944a914662046109440b952959ae4",
-      "of": {
-        "WireCatLabs/cli-core#2642": "977d0ae29f996c4c85d0c24b7c24258624954c88",
-        "WireCatLabs/cli-core#2632": "37e93c7f2f055732cfc43f5fb1f9bfc3db99c454"
-      },
-      "contains": {
-        "WireCatLabs/cli-core#2641": "2c946fa2b"
-      },
-      "note": "local merge, conflicts in imports and CHANGELOG only, never pushed"
-    },
-    "bitrix24-cli": {
-      "WireCatLabs/bitrix24-cli#39": "66137f59638f64038b10e2bfc15b0349ffb7a995",
-      "override": "uncommitted pnpm add of the cli-core tarball"
-    },
-    "cli-memo": {
-      "WireCatLabs/cli-memo#699": "c583358cf3078054d7869da1753f7d8afe730c98",
-      "stacked_on": {
-        "WireCatLabs/cli-memo#698": "760d846bd675c66f012ebdcfa1a77dfaec9e79c3"
-      },
-      "override": "uncommitted pnpm add of the cli-core tarball"
-    }
-  },
+  "build": "registry",
   "artifacts": {
     "bitrix24-cli": {
-      "version": "0.5.0",
-      "integrity": "sha512-MfDVlTCtAc+cMu05IXKhYr/z0pfNzMwZpBOOTlt2UOe5eRXBKw+LgSIqWfkns6SXxBwiQe3fe5ERW3mneLTfug==",
-      "entry_sha256": "e13340297b1542969464d24a6037889017a66409328b010d0fd47fda973f5769"
+      "version": "0.9.0",
+      "integrity": "sha512-ED9HB1ICAu0ilsZ8aTQQYO1EsBiE8dLNlZxFT7TE4dPpk7Zqt5Rc/JOO71wL8Kdl1wbSz+/waTFUEIThmdmfCQ==",
+      "entry_sha256": "9af3627a62e2c1bdb9bd8f4e6b848ac2c435680b9430a6fd82dd9f3d037e2ca8"
     },
     "cli-memo": {
-      "version": "0.131.48",
-      "integrity": "sha512-qmxI/WM4pXfGpKOXt9EvtxZd9tz2Rac2uJrK1KOd/37tbpjuENKUGtKkhy35eah0AUh9gz01qYEvXGbU8nt8aQ==",
-      "entry_sha256": "946941122a344bf61486d736f1c589fa379844fe8e5049bee2fc3bf94949ce22"
+      "version": "0.131.72",
+      "integrity": "sha512-OzcERWkp+3JIl1q9VTZjygDyqq2G+tT2pZSaVkZPZL5V2pngzXTpzrJu6MXc1IOMMMHPPAFgUTZST+Q3X3t6+w==",
+      "entry_sha256": "1fdb032b3e331cd873976707d24c194d8c23c8477a62dbb4d90190f5af8d16f2"
     },
     "cli-core": {
-      "version": "0.604.0",
-      "b24_core": "0.604.0",
-      "integrity": "sha512-6oQQodQ2f/2Hw/X912inF/RSK3xemhKcn1rNGKIInZo54INbv23s9s1nq6ztZLeC8ehw+Vp7Y29ji30cL+dFzw=="
+      "version": "0.619.0",
+      "b24_core": "0.619.0",
+      "integrity": "sha512-Q99wriU8x7BHOB/nVUpw7XyHiG1p5jg3P6UYU29JL+oO+pDecj8sBURQSbjsHruDm9MBAjMqh1EY8X+VOuzaOw=="
     }
   },
   "first_sync": {
@@ -88,13 +64,12 @@
     "refused": 0
   },
   "passed": 12,
-  "failed": [1],
+  "failed": [11],
   "checks": [
     {
       "id": 1,
       "name": "Alice's CRM contact and Telegram identity are one person once the owner links them",
-      "pass": false,
-      "error": "search people finds one Alice\n\n3 !== 1\n",
+      "pass": true,
       "evidence": {
         "before": {
           "crm": "person:8",
@@ -106,16 +81,16 @@
         },
         "search_people": [
           {
-            "ref": "person:2",
+            "ref": "person:8",
             "name": "Alice"
-          },
+          }
+        ],
+        "identities": ["bitrix24", "email", "telegram"],
+        "direct_messages": 1,
+        "people_list": [
           {
             "ref": "person:8",
             "name": "Alice"
-          },
-          {
-            "ref": "person:10",
-            "name": "Alice Example"
           }
         ]
       }
@@ -309,7 +284,8 @@
     {
       "id": 11,
       "name": "a group lock never reads the other group's accounts, and deals: deny hides deals",
-      "pass": true,
+      "pass": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(!evidence.deny_search.some((ref) => ref.startsWith(\"deal:\")))\n",
       "evidence": {
         "personal_deals_list": 0,
         "personal_search_deal": [],
@@ -341,9 +317,7 @@
             "tasks": 2
           }
         },
-        "deny_search": [],
-        "deny_organization_deals": 0,
-        "deny_deal_context": 5
+        "deny_search": ["deal:1"]
       }
     },
     {
@@ -408,7 +382,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 104,
+            "line": 151,
             "command": "memo organizations list category:client",
             "ran": true,
             "code": 0,
@@ -416,7 +390,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 144,
+            "line": 191,
             "command": "memo relationships add person:PERSON_UID organization:1 --role employee --position CTO --start-date 2026-01-01",
             "ran": true,
             "code": 0,
@@ -424,7 +398,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 145,
+            "line": 192,
             "command": "memo relationships add person:PERSON_UID project:1 --role contributor",
             "ran": true,
             "code": 0,
@@ -432,7 +406,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 146,
+            "line": 193,
             "command": "memo relationships add person:PERSON_UID person:OTHER_UID --kind reports-to",
             "ran": true,
             "code": 0,
@@ -440,7 +414,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 147,
+            "line": 194,
             "command": "memo relationships add organization:2 organization:1 --kind customer-of",
             "ran": true,
             "code": 0,
@@ -448,7 +422,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 148,
+            "line": 195,
             "command": "memo relationships list 'about:\"project:1\"'",
             "ran": true,
             "code": 0,
@@ -456,7 +430,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 149,
+            "line": 196,
             "command": "memo relationships list kind:reports-to 'to:\"person:5\"'",
             "ran": true,
             "code": 0,
@@ -464,7 +438,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 150,
+            "line": 197,
             "command": "memo relationships list standing:reported include:ended --limit 50",
             "ran": true,
             "code": 0,
@@ -472,7 +446,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 151,
+            "line": 198,
             "command": "memo relationships end 4 --end-date 2026-09-30",
             "ran": true,
             "code": 0,
@@ -480,14 +454,53 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 156,
+            "line": 203,
             "command": "memo relationships end <id> --end-date <date>",
             "skip": "placeholder",
             "ran": false
           },
           {
             "file": "memo/docs/people.md",
-            "line": 176,
+            "line": 221,
+            "command": "memo relationships update 4 --role client-contact --role-note '<the old words>'",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 228,
+            "command": "memo relationships update 4 --engagement low",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 229,
+            "command": "memo relationships update 4 --role approver --role-note 'signs the acts'",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 230,
+            "command": "memo relationships update 4 --engagement ''",
+            "ran": true,
+            "code": 0,
+            "shape": "text"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 233,
+            "command": "memo relationships list",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
+            "file": "memo/docs/people.md",
+            "line": 240,
             "command": "memo relationships add chat:telegram/1/123 project:1",
             "ran": true,
             "code": 0,
@@ -495,7 +508,7 @@
           },
           {
             "file": "memo/docs/search.md",
-            "line": 32,
+            "line": 34,
             "command": "memo context person:12",
             "ran": true,
             "code": 0,
@@ -503,7 +516,7 @@
           },
           {
             "file": "memo/docs/search.md",
-            "line": 33,
+            "line": 35,
             "command": "memo organizations context",
             "ran": true,
             "code": 2,
@@ -511,7 +524,7 @@
           },
           {
             "file": "memo/docs/search.md",
-            "line": 33,
+            "line": 35,
             "command": "memo relationships list",
             "ran": true,
             "code": 0,
@@ -519,7 +532,7 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 130,
+            "line": 146,
             "command": "memo deals context deal:5",
             "ran": true,
             "code": 0,
@@ -527,7 +540,7 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 134,
+            "line": 150,
             "command": "memo leads context",
             "ran": true,
             "code": 2,
@@ -535,7 +548,7 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 135,
+            "line": 151,
             "command": "memo deals update deal:5 --project HRB",
             "ran": true,
             "code": 0,
@@ -543,7 +556,7 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 139,
+            "line": 155,
             "command": "memo groups add work bitrix24:example.bitrix24.com",
             "ran": true,
             "code": 0,
@@ -551,7 +564,7 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 196,
+            "line": 246,
             "command": "memo groups list",
             "ran": true,
             "code": 0,
@@ -559,52 +572,15 @@
           },
           {
             "file": "memo/docs/usage.md",
-            "line": 202,
+            "line": 252,
             "command": "memo groups remove work telegram:102",
             "ran": true,
             "code": 0,
             "shape": "text"
           },
           {
-            "file": "memo/skills/cli-memo/SKILL.md",
-            "line": 36,
-            "command": "memo context person:12",
-            "ran": true,
-            "code": 0,
-            "shape": "item"
-          },
-          {
-            "file": "memo/skills/cli-memo/SKILL.md",
-            "line": 36,
-            "command": "memo organizations context <ref>",
-            "skip": "placeholder",
-            "ran": false
-          },
-          {
-            "file": "memo/skills/cli-memo/SKILL.md",
-            "line": 36,
-            "command": "memo deals context <ref> --brief",
-            "skip": "placeholder",
-            "ran": false
-          },
-          {
-            "file": "memo/skills/cli-memo/SKILL.md",
-            "line": 37,
-            "command": "memo relationships list kind:reports-to to:<ref>",
-            "skip": "placeholder",
-            "ran": false
-          },
-          {
-            "file": "memo/skills/cli-memo/SKILL.md",
-            "line": 50,
-            "command": "memo groups list",
-            "ran": true,
-            "code": 0,
-            "shape": "items"
-          },
-          {
             "file": "memo/skills/cli-memo/topics/money.md",
-            "line": 22,
+            "line": 47,
             "command": "memo deals context deal:7 --brief",
             "ran": true,
             "code": 0,
@@ -612,7 +588,7 @@
           },
           {
             "file": "memo/skills/cli-memo/topics/money.md",
-            "line": 25,
+            "line": 50,
             "command": "memo organizations context organization:4",
             "ran": true,
             "code": 0,
@@ -620,7 +596,7 @@
           },
           {
             "file": "memo/skills/cli-memo/topics/money.md",
-            "line": 26,
+            "line": 51,
             "command": "memo organizations list category:client",
             "ran": true,
             "code": 0,
@@ -628,7 +604,7 @@
           },
           {
             "file": "memo/skills/cli-memo/topics/money.md",
-            "line": 27,
+            "line": 52,
             "command": "memo deals update deal:7 --project HRB",
             "ran": true,
             "code": 0,
@@ -650,8 +626,52 @@
             "ran": false
           },
           {
+            "file": "memo/skills/cli-memo/topics/projects.md",
+            "line": 53,
+            "command": "memo relationships update <id> --engagement <level>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 18,
+            "command": "memo context person:12",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 18,
+            "command": "memo organizations context <ref>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 19,
+            "command": "memo deals context <ref> --brief",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 20,
+            "command": "memo relationships list kind:reports-to to:<ref>",
+            "skip": "placeholder",
+            "ran": false
+          },
+          {
+            "file": "memo/skills/cli-memo/topics/search.md",
+            "line": 22,
+            "command": "memo groups list",
+            "ran": true,
+            "code": 0,
+            "shape": "items"
+          },
+          {
             "file": "b24/README.md",
-            "line": 14,
+            "line": 18,
             "command": "b24 work sync",
             "ran": true,
             "code": 0,
@@ -675,7 +695,23 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 84,
+            "line": 59,
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.unassigned 15,31",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 60,
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.scope all",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 109,
             "command": "b24 work config set crm.bitrix24:example.bitrix24.com.links review",
             "ran": true,
             "code": 0,
@@ -683,7 +719,7 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 92,
+            "line": 117,
             "command": "b24 work config set crm.bitrix24:example.bitrix24.com.company-types CUSTOMER=customer-of,SUPPLIER=supplier",
             "ran": true,
             "code": 0,
@@ -691,14 +727,14 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 107,
+            "line": 132,
             "command": "b24 work schedule command crm --every 1h -- sync",
             "skip": "installs or runs an OS timer",
             "ran": false
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 108,
+            "line": 133,
             "command": "b24 work schedule list",
             "ran": true,
             "code": 0,
@@ -706,7 +742,7 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 109,
+            "line": 134,
             "command": "b24 work schedule remove crm",
             "skip": "installs or runs an OS timer",
             "ran": false
@@ -721,8 +757,8 @@
           }
         ],
         "counts": {
-          "examples": 42,
-          "ran": 35
+          "examples": 50,
+          "ran": 41
         }
       }
     }
