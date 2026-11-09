@@ -49,6 +49,10 @@ uv run --with fastembed==0.9.1 python3 -I eval_models.py --model bge-m3 --cache-
 HEAVY_LOCK=<lock file> ./run-all.sh
 python3 -I paired.py --fixture ~/.cache/wirecat-bench/lifebench/fixtures/fenghaoran \
   --baseline results/lifebench-embeddinggemma-300m.json results/lifebench-*.json
+./build-ru.sh            # Russian subset; reads the Anthropic key from the keyring, resumable, stops at $0.90
+HEAVY_LOCK=<lock file> ./run-ru.sh
+python3 -I paired.py --fixture ~/.cache/wirecat-bench/kg-fixture-v3-ru-build/ru \
+  --baseline results/ru-subset-ru-embeddinggemma-300m.json results/ru-subset-ru-bge-m3.json
 ```
 
 ### Models, prefixes and sources
@@ -147,10 +151,72 @@ All per-question top tens are in [results/](results/).
 4. **Sorting records by length before embedding cuts LifeBench indexing about 4.5 times** (3,061 s to 688 s for
    Gemma) with identical results. Worth checking whether Memo batches this way.
 
+## Russian (9 November)
+
+### Why
+
+The owners who will use Memo write in Russian, so the choice between EmbeddingGemma and bge-m3 should hold there
+too (the owner chose a translated subset over waiting for native data). Neither set above has a Russian line.
+
+### Setup
+
+- **Subset of v3**, so Russian is compared with English on the same records: the 46 questions with a source record
+  (17 of them reworded), their 65 source records, the 676 other records that Gemma or bge-m3 ranked in an English
+  top ten, and random v3 records up to 3,000 (seed 20261109). [build_ru.py](build_ru.py) picks them.
+- **Translation**: Claude Haiku 5.5 (`claude-haiku-5-5`), thinking off, effort low, 40 records per call, JSON-schema
+  answer; the prompt is in `build_ru.py`. It asks for natural work Russian and keeps names of people, companies,
+  projects and places in Latin letters on purpose, as Russian work chats often do. 77 batches, one split in two
+  halves after Haiku changed an id twice. **Cost $0.17** (`spent_dollars` in the build's `summary.json`).
+- **Three cases**, each with both models: **en** (the English subset, the control), **ru** (Russian questions,
+  Russian records) and **mixed** (Russian questions, English records: an owner who asks in Russian about English
+  mail). Same machine, fastembed 0.9.1, 4 threads, batch 32.
+- **Translation check**, by a script over all 3,000 records and by eye on 10 (4 of them from the split batch):
+  every number, amount and e-mail address is the same as in English; 46 records write ISO dates as 21.02.2026
+  (the same date). Project names stayed in Latin letters everywhere. **161 records (18 of the 65 source records)
+  wrote a person's name in Cyrillic** ("Ким Хейл" for Kim Hale) against the prompt, and one dropped its speaker's
+  name. The Russian reads naturally.
+
+### Results
+
+| Case | Model | All 46, @5 / @10 | 17 reworded, other words, @10 | Index time, 3,000 records | RAM peak |
+|---|---|---:|---:|---:|---:|
+| en (control) | EmbeddingGemma 300M | **0.91** / 0.94 | **0.94** | 81 s | 1.0 GB |
+| en (control) | bge-m3 | 0.89 / 0.94 | **0.94** | 272 s | 1.8 GB |
+| ru | EmbeddingGemma 300M | **0.80** / 0.85 | **0.82** | 100 s | 1.1 GB |
+| ru | bge-m3 | 0.76 / **0.87** | 0.66 | 166 s | 2.0 GB |
+| mixed | EmbeddingGemma 300M | **0.75** / **0.88** | 0.86 | 82 s | 1.0 GB |
+| mixed | bge-m3 | 0.70 / 0.87 | **0.88** | 361 s | 1.9 GB |
+
+Paired test of bge-m3 against Gemma (hit@10, questions only one of the two finds, exact sign test):
+
+| Case | Set | Gemma | bge-m3 | Only bge-m3 | Only Gemma | p |
+|---|---|---:|---:|---:|---:|---:|
+| en | all 46 | 0.93 | 0.93 | 0 | 0 | 1.00 |
+| en | 17 reworded | 0.94 | 0.94 | 1 | 1 | 1.00 |
+| ru | all 46 | 0.85 | 0.87 | 2 | 1 | 1.00 |
+| ru | 17 reworded | 0.82 | 0.71 | 2 | 4 | 0.69 |
+| mixed | all 46 | 0.89 | 0.87 | 2 | 3 | 1.00 |
+| mixed | 17 reworded | 0.88 | 0.88 | 1 | 1 | 1.00 |
+
+Index times queued behind other agents' jobs and vary by up to two times between runs of the same model (bge-m3
+took 272 s on English and 166 s on Russian), so read them as rough.
+
+### What it showed
+
+1. **Russian costs both models about 0.07 to 0.09 recall@10** on the same records (Gemma 0.94 to 0.85, bge-m3 0.94
+   to 0.87), and Gemma 0.12 on the reworded questions (0.94 to 0.82).
+2. **bge-m3 is not better in Russian either.** On all 46 it is one question ahead, on the 17 reworded two behind
+   (0.66 against 0.82 recall@10). No difference is significant (every p ≥ 0.69); with 17 and 46 questions only a gap
+   of five or more questions would be. Gemma indexed 1.7 to 4.4 times faster with about half the memory.
+3. **Asking in Russian about English records works about as well as all-Russian** (Gemma 0.88 @10, reworded 0.86).
+4. **The names written in Cyrillic did not cause the drop**, as far as this set shows: 3 of the misses in Russian
+   are questions whose source record has such a name, and the English control misses those same 3 questions too.
+5. So the decision stays: EmbeddingGemma remains the default, and Russian gives no reason to offer bge-m3.
+
 ## What was not measured
 
-- **Russian.** Neither set has a Russian record or question, though multilingual search was the reason for the
-  comparison. A Russian set (or the same questions translated) is the next test if it matters.
+- **Native Russian text.** The Russian subset is machine-translated English (see Russian above), with one translator
+  and its habits; real Russian chats and mail may score differently. LifeBench was not translated.
 - Qwen3-Embedding-4B (see ² above) and anything quantized except the earlier Qwen 8-bit run.
 - bge-m3's sparse and multi-vector outputs; only its dense vector was used.
 - Inside Memo: these are vectors alone, without Memo's word search, chunking or 4-bit model files.
