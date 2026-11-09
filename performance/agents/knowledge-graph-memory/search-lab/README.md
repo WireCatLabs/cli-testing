@@ -67,6 +67,7 @@ Each embedding, query and rerank step ran alone under one machine-wide `flock`.
 | [rewrite.py](rewrite.py) | Haiku paraphrases, HyDE record, dated paraphrases, date range; cached, cost logged |
 | [periods.ts](periods.ts) | the period cli-core's local parser reads from each question, for the date-boost rows |
 | [lab.py](lab.py) | every hypothesis, the cross-encoder and Haiku rerank runs, and the scoring |
+| [harder_check.mjs](harder_check.mjs) | cli-core's built `search all --harder` reorder over the stack C top 30 of v3 reworded, key from the keyring |
 
 ## Results
 
@@ -336,6 +337,35 @@ memory (the 9B model held 7.7 GB beside other agents' jobs). It was not restarte
    Haiku (0.94). Whether it gains on LifeBench was not measured.
 5. So: keep the Haiku rerank as the opt-in "search harder". A local option is not worth building on these numbers.
    A smaller model or a GPU might change that (not tested).
+
+## Search harder in cli-core: live check (9 November)
+
+Row 1 became opt-in in cli-core (`searchAll` with `harder`, memo `search all --harder`, [cli-core#2783](https://github.com/WireCatLabs/cli-core/pull/2783)). The question:
+**does the shipped code reach the lab's numbers?** It keeps the lab's prompt, JSON schema, thinking off and effort
+low, but sends the records as the model gateway's untrusted-data message instead of inside the prompt.
+
+[harder_check.mjs](harder_check.mjs) calls the built function on the 17 reworded v3 questions. The candidates are
+stack C's top 30 from the 9 November rebuild, read in order from the bge-reranker result file, so no vectors were
+rebuilt. Each record went as its date, title and first 400 characters. Claude Haiku 5.5, one call at a time, the key
+read from the keyring in the script's process.
+
+```sh
+node harder_check.mjs --core <cli-core checkout, built>
+```
+
+| | recall@10 | hit@10 |
+| --- | ---: | ---: |
+| stack C alone | 0.94 | 0.94 |
+| stack C + cli-core `--harder` | **0.94** | **0.94** |
+| lab, Haiku over the same stack C (row "Haiku over the rebuilt stack C") | 0.94 | 0.94 |
+
+All 17 calls answered. None fell back to the plain order. The median call took 1.1 s and the slowest 2.3 s, under
+the 5 s limit. The 17 calls cost $0.0043 ($0.00025 a question). A first run scored the wrong order (JavaScript sorts
+integer object keys) and cost another $0.0042, so the check spent $0.0085 in all.
+
+So the moved records cost nothing measurable here. It matches the lab rerun, and the lab's first run scored 1.00
+because of one question. This set cannot show a gain: stack C already finds 16 of 17. The gain the lab measured is on
+LifeBench (0.41 to 0.55 with rewrites), and that was not run again.
 
 ## What was not measured
 
