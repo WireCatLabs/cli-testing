@@ -1,6 +1,54 @@
 # LifeBench: does memo find the right phone records?
 
-Measured 2026-11-08 on one LifeBench persona. No answer model, no paid API call: only search, and how many of the
+## Summary
+
+**Why it was run.** The owner wants a public benchmark close to how WireCat is used (one person's messages, notes,
+calendar and chats over a year) before choosing memo's search model and before quoting a score. [LifeBench
+2.0](https://github.com/1754955896/LifeBench) is such a set: 10 synthetic people, a year of phone data, 3,380
+questions, and for each question the records that answer it. The questions: scored the way LifeBench's leaderboard
+scores a memory system, where does memo land, and is EmbeddingGemma better than e5-small?
+
+**Setup.** memo 0.131.57 (cli-core 0.609.0). Two people, every question: fenghaoran (348) and maxiulan (352), 700 in
+all. memo's hybrid search gets the question as typed, limited to records dated before the question; the first 20
+distinct records go once to one model call. `deepseek/deepseek-v4-flash` answers with LifeBench_eval's gold-evidence
+prompt word for word; `deepseek/deepseek-chat` judges, three votes, with LifeBench's judge prompt and its language line
+set to English. Both run on OpenRouter at temperature 0. "Gold" gives the model LifeBench's own evidence records: the
+ceiling of this flow.
+
+**Headline results**, 700 questions, accuracy in percent (micro over all questions, macro the mean of the nine
+categories):
+
+| Setup | Micro | Macro |
+| --- | ---: | ---: |
+| Gold evidence | 97.6 | 96.5 |
+| memo, EmbeddingGemma | 77.7 | 74.5 |
+| memo, e5-small | 75.3 | 72.0 |
+| *Published, all ten people, same answer model:* Hindsight | 72.0 | 66.6 |
+| *Published:* Mem0 | 61.5 | 55.0 |
+| *Published:* gold evidence | 97.3 | 95.9 |
+
+**Measured noise.** The same question, with the same 20 records in the same order, answered and judged again: 49 of
+280 verdicts changed (17.5%, 95% range 13.5–22.4), about 1 in 6. Per person: fenghaoran 30 of 140 (21.4%,
+15.4–28.9), maxiulan 19 of 140 (13.6%, 8.9–20.2). The changes go both ways and cancel (213 right before, 210 after),
+so a score over hundreds of questions holds to about a point, but a single verdict does not. The per-person swings of
+up to 8 verdicts in the date-bounded run are within what a plain rerun gives (fenghaoran with e5-small lost 6 net on
+70 questions by rerunning alone). Gemma's 4-point lead over e5-small is probably real but small: the paired test
+behind its p = 0.045 counts every verdict as fixed.
+
+**Not measured.**
+
+- **8 of the 10 people.** Only fenghaoran and maxiulan ran; the published numbers cover all ten.
+- **The newer memo release** (0.131.60 and later, on cli-core 0.611 and later). Every number here is memo 0.131.57.
+- **Noise beyond a sample:** 70 seeded questions per person and model (280 in all), not every question and not per
+  category.
+- **Day-by-day loading.** Every record is in the store from the start; only the search is limited by date. memo does
+  no processing at load time here, so this should not matter much, but it is not the leaderboard's flow.
+- English data, 20 whole records as context, this fixture's record text, and the ask time added to the question.
+
+Spent on the whole page: about $17.8 (the agent pilot $9.54 at list price, the rest billed by OpenRouter). The
+sections below are the full record, in the order they were run.
+
+The first part, search recall alone, was measured 2026-11-08 on one LifeBench persona. No answer model, no paid API call: only search, and how many of the
 records LifeBench marks as the evidence for a question come back in the first 1, 5 and 10 hits.
 
 ## Why this was run
@@ -729,7 +777,8 @@ Billed: $1.44 (answers $0.50, judge $0.94 for the 543 re-asked questions). Every
 2. **The per-person swings cancel and point both ways.** Gemma loses 8 verdicts on fenghaoran and gains 8 on maxiulan,
    each with p = 0.039. A real effect of the bound would not flip sign between two people; probably most of these are
    answers and verdicts that would also change on a plain rerun (the answer model and judge are not deterministic at
-   temperature 0). That rerun noise was not measured.
+   temperature 0). That noise was measured next: about 1 verdict in 6 changes on a plain rerun, so these swings are
+   within it (see "Run-to-run noise").
 3. **With the leaderboard's search rule, memo still scores above the published memory systems:** Gemma 77.7% micro
    and 74.5% macro against Hindsight's 72.0% and 66.6% and Mem0's 61.5% and 55.0% (same answer model). memo's
    largest leads over Hindsight are Temporal (+19.5), Hidden information (+17.2) and Multi-hop (+12.1); Hindsight leads
@@ -741,3 +790,63 @@ What still differs: memo holds every record from the start and only the search i
 day by day, so any processing at ingest time sees only the past; memo does none here), 20 whole records as context,
 English data and an English language line for the judge, two people of ten, this fixture's record text instead of
 LifeBench's `format_evidence`, and the ask time added to the question.
+
+## Run-to-run noise: the same records, asked and judged again
+
+Run 2026-11-09.
+
+### Why this was run
+
+In the date-bounded run, Gemma lost 8 verdicts on fenghaoran and gained 8 on maxiulan, each with p = 0.039. A real
+effect of the date bound would not change sign between two people. The question: how many verdicts change when nothing
+changes at all, so that the swings above and the Gemma against e5-small gap can be read against it?
+
+### Setup
+
+- **Sample:** 70 questions per person, drawn with seed 20261109 from all of that person's questions, the same 70 for
+  both models. 280 question-and-model pairs in all.
+- **Nothing changed but the run:** each question gets the same 20 records in the same order as in the date-bounded
+  run (the script checks this and stops on any difference), the same `deepseek-v4-flash` answer call and the same
+  deepseek-chat judge, three votes. It is compared with the date-bounded run's verdicts.
+- **Resumable:** [run-noise.sh](run-noise.sh) saves answers and verdicts one per line, and a rerun skips them. The run
+  was stopped once at the spending cap and resumed, stopped once more for an answer request that hung for 16 minutes
+  (the same question had taken 2 seconds before; probably OpenRouter kept the connection alive, so the 600-second
+  socket timeout never fired), and resumed after a reboot. No saved row was lost and no question was paid for twice.
+- [noise_compare.py](noise_compare.py) writes [noise-results.json](noise-results.json).
+
+```sh
+/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-noise.sh
+python3 -I noise_compare.py --output noise-results.json
+```
+
+### Results
+
+| Person | Setup | Sampled | Right, first run | Right, rerun | Verdicts changed | Wrong to right | Right to wrong | Changed share (95%) | Same answer text |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| fenghaoran | memo e5-small | 70 | 52 | 46 | 18 | 6 | 12 | 25.7% (16.9–37.0) | 7 |
+| fenghaoran | memo Gemma | 70 | 52 | 54 | 12 | 7 | 5 | 17.1% (10.1–27.6) | 12 |
+| maxiulan | memo e5-small | 70 | 54 | 51 | 11 | 4 | 7 | 15.7% (9.0–26.0) | 14 |
+| maxiulan | memo Gemma | 70 | 55 | 59 | 8 | 6 | 2 | 11.4% (5.9–21.0) | 6 |
+| fenghaoran | both models | 140 | 104 | 100 | 30 | 13 | 17 | 21.4% (15.4–28.9) | 19 |
+| maxiulan | both models | 140 | 109 | 110 | 19 | 10 | 9 | 13.6% (8.9–20.2) | 20 |
+| **All** | both models | 280 | 213 | 210 | 49 | 23 | 26 | 17.5% (13.5–22.4) | 39 |
+
+The range is Wilson's 95% interval. "Same answer text" counts answers identical to the first run's, character for
+character. No failed answer or vote. Billed: $1.17 (answers $0.63, judge $0.54). Requests cut off when the run was
+stopped are not in this sum; OpenRouter may have billed them.
+
+### What it showed
+
+1. **About 1 verdict in 6 changes on a plain rerun** (17.5%, 13.5–22.4), and only 39 of 280 answers come back with the
+   same text. Temperature 0 does not make this flow repeatable.
+2. **The changes cancel in the total.** 213 right in the first run, 210 in the rerun: 23 wrong to right and 26 right
+   to wrong. A score over hundreds of questions holds to about a point; a single question's verdict does not.
+3. **A plain rerun moves one person and one model by up to 6 net verdicts in 70** (fenghaoran e5-small, 52 to 46).
+   The date-bounded swings of 8 net verdicts in about 135 changed contexts are smaller than that, so they are noise,
+   not an effect of the date bound.
+4. **Open:** the date-bounded run changed a verdict for only 8% to 10% of the questions it re-asked (11 to 13 of 130 to
+   141), half the rate of this plain rerun. A new context should change a verdict at least as often as no change at
+   all. Not explained: possibly OpenRouter sent the requests to different providers on different days.
+5. **The Gemma against e5-small comparison** (78% against 74% pooled, p = 0.045) is a paired test that counts every
+   verdict as fixed. Random flips probably add disagreements to both sides alike, so the lead is probably real, but
+   small next to the noise; a second run of all 700 questions would settle it.

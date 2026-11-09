@@ -1,0 +1,93 @@
+{
+  "resume": "/home/leemour/Projects/AI/cli-testing-wt-lifebench/performance/agents/lifebench/run-noise.sh",
+  "missing": [],
+  "rows": [
+    {
+      "person": "fenghaoran",
+      "setup": "memo-e5-top20",
+      "questions": 70,
+      "first_correct": 52,
+      "second_correct": 46,
+      "flipped": 18,
+      "to_right": 6,
+      "to_wrong": 12,
+      "answer_text_same": 7,
+      "usd": 0.350097981,
+      "flip_share_ci95": [16.9, 37.0]
+    },
+    {
+      "person": "fenghaoran",
+      "setup": "memo-gemma-top20",
+      "questions": 70,
+      "first_correct": 52,
+      "second_correct": 54,
+      "flipped": 12,
+      "to_right": 7,
+      "to_wrong": 5,
+      "answer_text_same": 12,
+      "usd": 0.26755576000000003,
+      "flip_share_ci95": [10.1, 27.6]
+    },
+    {
+      "person": "maxiulan",
+      "setup": "memo-e5-top20",
+      "questions": 70,
+      "first_correct": 54,
+      "second_correct": 51,
+      "flipped": 11,
+      "to_right": 4,
+      "to_wrong": 7,
+      "answer_text_same": 14,
+      "usd": 0.310753118,
+      "flip_share_ci95": [9.0, 26.0]
+    },
+    {
+      "person": "maxiulan",
+      "setup": "memo-gemma-top20",
+      "questions": 70,
+      "first_correct": 55,
+      "second_correct": 59,
+      "flipped": 8,
+      "to_right": 6,
+      "to_wrong": 2,
+      "answer_text_same": 6,
+      "usd": 0.2449538027,
+      "flip_share_ci95": [5.9, 21.0]
+    }
+  ],
+  "by_person": {
+    "fenghaoran": {
+      "questions": 140,
+      "first_correct": 104,
+      "second_correct": 100,
+      "flipped": 30,
+      "to_right": 13,
+      "to_wrong": 17,
+      "answer_text_same": 19,
+      "usd": 0.617653741,
+      "flip_share_ci95": [15.4, 28.9]
+    },
+    "maxiulan": {
+      "questions": 140,
+      "first_correct": 109,
+      "second_correct": 110,
+      "flipped": 19,
+      "to_right": 10,
+      "to_wrong": 9,
+      "answer_text_same": 20,
+      "usd": 0.5557069207,
+      "flip_share_ci95": [8.9, 20.2]
+    }
+  },
+  "totals": {
+    "questions": 280,
+    "first_correct": 213,
+    "second_correct": 210,
+    "flipped": 49,
+    "to_right": 23,
+    "to_wrong": 26,
+    "answer_text_same": 39,
+    "usd": 1.1733606617,
+    "flip_share_ci95": [13.5, 22.4]
+  }
+}
