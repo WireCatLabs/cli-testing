@@ -1,0 +1,18 @@
+{
+  "config": "supermemory",
+  "model": "claude-sonnet-5-5",
+  "model_provider": "anthropic",
+  "reasoning": "medium",
+  "toolsets": "memory",
+  "provider": "supermemory",
+  "date": "2026-11-06T02:31:04+00:00",
+  "questions": 50,
+  "owner_hermes_changed": [],
+  "oracle_seen_in_sessions": false,
+  "scores": {
+    "correct": 16,
+    "cited_correctly": 10,
+    "stale": 7,
+    "correct_strict": 15
+  }
+}

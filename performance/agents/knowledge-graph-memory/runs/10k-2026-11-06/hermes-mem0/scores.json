@@ -1,0 +1,7 @@
+{
+  "engine": "Hermes + mem0, claude-sonnet-5-5, 10K",
+  "correct": 35,
+  "cited_correctly": 10,
+  "stale": 4,
+  "correct_strict": 33
+}

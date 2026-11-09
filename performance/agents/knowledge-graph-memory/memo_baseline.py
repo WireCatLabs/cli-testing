@@ -32,6 +32,8 @@ def isolated_env(root):
         "WIRECAT_STATE_DIR": str(root / "wirecat-state"),
         "WIRECAT_CONFIG_DIR": str(root / "wirecat-config"),
         "MEMO_NO_UPDATE_CHECK": "1",
+        # memo 0.131.47 stops any command after 30 s; importing a 10K mbox takes longer (7 Nov 2026).
+        "MEMO_TIMEOUT": "60m",
         # The keyring is reached over D-Bus even with a throwaway HOME; this run must not see it.
         "DBUS_SESSION_BUS_ADDRESS": "disabled:",
         "TZ": "UTC",
@@ -59,31 +61,54 @@ def name_of(index):
     return f"r{index + 1:04}"
 
 
+SPEAKER = re.compile(r"\b([A-Z][a-z]+ [A-Z][a-z]+):")
+
+
 def mbox_entry(index, record):
     when = datetime.fromisoformat(record["timestamp"]).astimezone(UTC)
+    first = int(re.search(r"/thread-(\d+)/", record["id"]).group(1)) - 1
+    reply = f"In-Reply-To: <{name_of(first)}@example.test>\n" if first != index else ""
+    # A record reads "Subject. Name: body"; one fixed sender and an id as subject went into every chunk's
+    # vector and cost memo 0.2 of recall on reworded questions (BUG-618), which no other engine paid.
+    speaker = SPEAKER.search(record["text"])
+    sender = speaker.group(1) if speaker else "Team Mail"
+    subject = record["text"].split(". ", 1)[0][:120]
     # Takeout's "From <gmail id>@xxx <asctime>" line is what memo's mbox reader requires.
     return (f"From {1_000_000_000_000_000 + index}@xxx {when.strftime('%a %b %d %H:%M:%S +0000 %Y')}\n"
-            f"X-GM-THRID: {2_000_000_000_000_000 + index}\n"
+            f"X-GM-THRID: {2_000_000_000_000_000 + first}\n"
             "X-Gmail-Labels: Inbox,Opened\n"
-            f"Message-ID: <{name_of(index)}@example.test>\n"
+            f"Message-ID: <{name_of(index)}@example.test>\n{reply}"
             f"Date: {when.strftime('%a, %d %b %Y %H:%M:%S +0000')}\n"
-            "From: Synthetic Sender <sender@example.test>\n"
+            f"From: {sender} <{sender.lower().replace(' ', '.')}@example.test>\n"
             "To: synthetic@example.test\n"
-            f"Subject: {name_of(index)}\n"
+            f"Subject: {subject}\n"
             "Content-Type: text/plain; charset=utf-8\n\n"
             f"{record['text']}\n\n")
 
 
-def write_sources(records, data):
+def note_title(text, taken):
+    """A note's file name from its first words, as an owner's note is named for what it says; unique in the folder."""
+    base = " ".join(re.findall(r"[\w'-]+", text)[:8])[:80] or "note"
+    title, n = base, 2
+    while title.casefold() in taken:
+        title, n = f"{base} ({n})", n + 1
+    taken.add(title.casefold())
+    return title
+
+
+def write_sources(records, data, titles="words"):
+    """Notes named rNNNN.md put "rNNNN" into every note's vector, the noise BUG-618 was for mail (8 Nov 2026)."""
     notes = data / "notes"
     notes.mkdir(parents=True)
-    names, mbox = {}, []
+    names, mbox, taken = {}, [], set()
     for index, record in enumerate(records):
         names[name_of(index)] = record["id"]
         if record["kind"] == "mail":
             mbox.append(mbox_entry(index, record))
             continue
-        path = notes / f"{name_of(index)}.md"
+        title = name_of(index) if titles == "rnnnn" else note_title(record["text"], taken)
+        names[title] = record["id"]
+        path = notes / f"{title}.md"
         path.write_text(record["text"] + "\n")
         stamp = datetime.fromisoformat(record["timestamp"]).timestamp()
         os.utime(path, (stamp, stamp))
@@ -99,15 +124,71 @@ def configure_mail(memo, data):
     config.write_text(json.dumps(current, indent=2) + "\n")
 
 
+def reads_mbox(memo):
+    """memo up to 0.131.24 reads an mbox account itself; from 0.131.28 the mail CLI stores mail and memo searches it."""
+    return "--source" in memo.run("sync", "--help")[0]
+
+
+def load_mail(memo, data, mail_binary="mail"):
+    """The mbox into the store without embedding: (the reply's item, seconds)."""
+    if reads_mbox(memo):
+        configure_mail(memo, data)
+        reply, seconds = memo.json("sync", "--source", "email:synthetic", "--since-time", "2000-01-01", "--limit",
+                                   "50000", "--no-embed")
+        return reply["item"]["mail"], seconds
+    # The mail CLI refuses an agent that sets a profile's address, so the run writes its own throwaway config.
+    # `messages import` adds a Google Takeout file to a Gmail profile; no sign-in is needed for it.
+    config = Path(memo.env["XDG_CONFIG_HOME"]) / "mail-cli/config.json"
+    config.parent.mkdir(parents=True, exist_ok=True)
+    profile = {"address": "synthetic@example.test", "imap_host": "imap.gmail.com"}
+    config.write_text(json.dumps({"profiles": {"synthetic": profile}}, indent=2) + "\n")
+    mail = Memo(mail_binary, Path(memo.env["HOME"]).parent)
+    # mail 0.18.0 renamed --limit to --max-messages.
+    cap = "--max-messages" if "--max-messages" in mail.run("synthetic", "messages", "import", "--help")[0] else "--limit"
+    reply, seconds = mail.json("synthetic", "messages", "import", str(data / "mail.mbox"), cap, "50000")
+    if not reply["item"]["complete"]:
+        raise RuntimeError(f"mail import left {reply['item']['remaining']} emails")
+    return reply["item"], seconds
+
+
+def embed(memo, folder_id):
+    """Embed the notes folder and the stored mail: (the last reply's item with the number of runs, seconds).
+
+    One sync embeds a bounded number of chunks of notes and of mail and says what is left, so it runs until nothing
+    is. The bound is 600 for e5-small; memo with cli-memo #676 scales it by the model's catalogued speed, 39 for
+    EmbeddingGemma, so 10K records take about 160 runs.
+    """
+    if reads_mbox(memo):
+        command = ("sync", "--since-time", "2000-01-01", "--limit", "50000", "--source", "email:synthetic", "--folder",
+                   folder_id)
+    else:
+        command = ("sync",)
+    seconds = 0.0
+    for runs in range(1, 1001):
+        reply, elapsed = memo.json(*command)
+        seconds += elapsed
+        parts = [value for value in reply["item"].values() if isinstance(value, dict) and "left" in value]
+        if not any(part["left"] for part in parts):
+            return {**reply["item"], "sync_runs": runs}, seconds
+    raise RuntimeError("memo sync still had chunks to embed after 1000 runs")
+
+
 def or_query(question):
     words = [word for word in re.findall(r"[\w-]+", question.casefold()) if word not in STOP_WORDS]
     return " OR ".join(f'"{word}"' for word in words)
 
 
+def mail_name(ref):
+    # A mail's subject is its own now, so its record comes from the Gmail id mbox_entry gave it.
+    found = re.search(r"/(1\d{15})$", ref)
+    return name_of(int(found.group(1)) - 1_000_000_000_000_000) if found else ""
+
+
 def search(memo, names, query, extra, raw_path):
     reply, elapsed = memo.json("search", "all", query, "--limit", "10", *extra)
     raw_path.write_text(json.dumps(reply, ensure_ascii=False, indent=2) + "\n")
-    hits = [names.get(item.get("title", ""), f"unmapped:{item.get('ref')}") for item in reply["items"]]
+    hits = [names.get(item.get("title", "")) or names.get(mail_name(item.get("ref", "")), f"unmapped:{item.get('ref')}")
+            for item in reply["items"]]
     return hits, elapsed, reply["meta"].get("complete", True)
 
 
@@ -152,7 +233,10 @@ def main():
     parser.add_argument("--fixture", type=Path, required=True, help="a run.py output directory")
     parser.add_argument("--output", type=Path, required=True, help="new directory; existing paths are refused")
     parser.add_argument("--memo", default="memo", help="the memo binary to drive")
+    parser.add_argument("--mail", default="mail", help="the mail CLI binary, for memo 0.131.28 and later")
     parser.add_argument("--model", default="e5-small", help="local embedding model for the hybrid run")
+    parser.add_argument("--note-titles", choices=("words", "rnnnn"), default="words",
+                        help="name note files by their first words (default) or rNNNN, as before 8 Nov 2026")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
     root = args.output.resolve()
@@ -164,13 +248,12 @@ def main():
 
     version, _ = memo.run("--version")
     startup = [memo.run("--version")[1] for _ in range(20)]
-    names = write_sources(records, root / "data")
+    names = write_sources(records, root / "data", args.note_titles)
+    (root / "names.json").write_text(json.dumps(names, ensure_ascii=False) + "\n")
     timings = {}
     folder, timings["folders_add_s"] = memo.json("folders", "add", str(root / "data/notes"), "--format", "markdown")
-    configure_mail(memo, root / "data")
     notes, timings["sync_notes_no_embed_s"] = memo.json("sync", "--only", "notes", "--no-embed")
-    mail, timings["sync_mail_no_embed_s"] = memo.json("sync", "--source", "email:synthetic", "--since-time",
-                                                      "2000-01-01", "--limit", "5000", "--no-embed")
+    mail, timings["sync_mail_no_embed_s"] = load_mail(memo, root / "data", args.mail)
     size_no_embed = store_bytes(memo.json("store", "info")[0]["item"])
 
     runs = {}
@@ -182,9 +265,15 @@ def main():
     runs["words, question verbatim (no model)"] = query_all(memo, names, queries, "words-verbatim", [],
                                                              lambda text: text, raw)
 
-    timings["model_download_s"] = memo.json("models", "download", args.model)[1]
-    embedded, timings["sync_embed_s"] = memo.json("sync", "--since-time", "2000-01-01", "--limit", "5000",
-                                                  "--source", "email:synthetic", "--folder", folder["item"]["id"])
+    # EmbeddingGemma comes under the Gemma Terms of Use; the owner accepted them for this benchmark (7 Nov 2026).
+    terms = ["--accept-terms"] if args.model.startswith("embeddinggemma") else []
+    timings["model_download_s"] = memo.json("models", "download", args.model, *terms)[1]
+    # A download does not choose the model: memo embeds and searches with the one `models set` chose for every CLI
+    # (cli-memo #676). Memo before it always used e5-small: MEMO_EMBEDDING_MODEL, set here until 8 Nov 2026, was read by
+    # no memo version.
+    if "set" in memo.run("models", "--help")[0].split():
+        memo.json("models", "set", args.model)
+    embedded, timings["sync_embed_s"] = embed(memo, folder["item"]["id"])
     size_embedded = store_bytes(memo.json("store", "info")[0]["item"])
     runs[f"hybrid ({args.model}), question verbatim"] = query_all(memo, names, queries, "hybrid-verbatim", [],
                                                                   lambda text: text, raw)
@@ -195,8 +284,8 @@ def main():
     results = {
         "memo_version": version.strip(), "python": platform.python_version(), "machine": platform.machine(),
         "records": len(records), "questions": len(queries),
-        "ingested": {"notes_folder": notes["item"]["notes"], "mail": mail["item"]["mail"],
-                     "embedding": embedded["item"]},
+        "ingested": {"notes_folder": notes["item"]["notes"], "mail": mail,
+                     "embedding": embedded},
         "store_bytes_no_embed": size_no_embed, "store_bytes_embedded": size_embedded,
         "timings": timings,
         "startup_p50_s": statistics.median(startup), "startup_p95_s": percentile(startup, 0.95),

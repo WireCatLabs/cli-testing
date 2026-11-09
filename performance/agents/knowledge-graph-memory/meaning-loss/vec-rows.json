@@ -1,0 +1,252 @@
+[
+  {
+    "q": "q01",
+    "src": "msg:email/synthetic%40example.test/thread-10116/10123",
+    "kind": "mail",
+    "global_rank": 1,
+    "lane_rank": 1,
+    "cos": 0.8667,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q04",
+    "src": "msg:email/synthetic%40example.test/thread-10138/10138",
+    "kind": "mail",
+    "global_rank": 6,
+    "lane_rank": 5,
+    "cos": 0.8574,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q04",
+    "src": "msg:email/synthetic%40example.test/thread-10200/10200",
+    "kind": "mail",
+    "global_rank": 29,
+    "lane_rank": 11,
+    "cos": 0.8435,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q07",
+    "src": "msg:email/synthetic%40example.test/thread-10070/10070",
+    "kind": "mail",
+    "global_rank": 6,
+    "lane_rank": 4,
+    "cos": 0.857,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q07",
+    "src": "document:10083",
+    "kind": "notes",
+    "global_rank": 2,
+    "lane_rank": 2,
+    "cos": 0.8802,
+    "floor_applies": true,
+    "passes_floor": true
+  },
+  {
+    "q": "q07",
+    "src": "document:10096",
+    "kind": "notes",
+    "global_rank": 1,
+    "lane_rank": 1,
+    "cos": 0.8875,
+    "floor_applies": true,
+    "passes_floor": true
+  },
+  {
+    "q": "q10",
+    "src": "msg:email/synthetic%40example.test/thread-10173/10173",
+    "kind": "mail",
+    "global_rank": 5,
+    "lane_rank": 3,
+    "cos": 0.8455,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q10",
+    "src": "msg:email/synthetic%40example.test/thread-10180/10180",
+    "kind": "mail",
+    "global_rank": 2,
+    "lane_rank": 2,
+    "cos": 0.8525,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q12",
+    "src": "msg:email/synthetic%40example.test/thread-10223/10223",
+    "kind": "mail",
+    "global_rank": 51,
+    "lane_rank": 47,
+    "cos": 0.8526,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q14",
+    "src": "msg:email/synthetic%40example.test/thread-10417/10417",
+    "kind": "mail",
+    "global_rank": 9,
+    "lane_rank": 10,
+    "cos": 0.8448,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q17",
+    "src": "msg:email/synthetic%40example.test/thread-10357/10357",
+    "kind": "mail",
+    "global_rank": 33,
+    "lane_rank": 53,
+    "cos": 0.8331,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q20",
+    "src": "msg:telegram/synthetic/team/10080",
+    "kind": "notes",
+    "global_rank": 2,
+    "lane_rank": 2,
+    "cos": 0.8486,
+    "floor_applies": true,
+    "passes_floor": true
+  },
+  {
+    "q": "q23",
+    "src": "msg:email/synthetic%40example.test/thread-10428/10428",
+    "kind": "mail",
+    "global_rank": 63,
+    "lane_rank": 31,
+    "cos": 0.8514,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q26",
+    "src": "msg:email/synthetic%40example.test/thread-10436/10436",
+    "kind": "mail",
+    "global_rank": 59,
+    "lane_rank": 44,
+    "cos": 0.8425,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q28",
+    "src": "msg:email/synthetic%40example.test/thread-10104/10104",
+    "kind": "mail",
+    "global_rank": 2,
+    "lane_rank": 1,
+    "cos": 0.8703,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q30",
+    "src": "msg:email/synthetic%40example.test/thread-10329/10329",
+    "kind": "mail",
+    "global_rank": 1,
+    "lane_rank": 1,
+    "cos": 0.86,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q32",
+    "src": "msg:email/synthetic%40example.test/thread-10241/10241",
+    "kind": "mail",
+    "global_rank": 196,
+    "lane_rank": 68,
+    "cos": 0.8266,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q35",
+    "src": "msg:email/synthetic%40example.test/thread-10313/10313",
+    "kind": "mail",
+    "global_rank": 79,
+    "lane_rank": 29,
+    "cos": 0.8188,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q35",
+    "src": "msg:email/synthetic%40example.test/thread-10326/10326",
+    "kind": "mail",
+    "global_rank": 46,
+    "lane_rank": 17,
+    "cos": 0.822,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q35",
+    "src": "msg:email/synthetic%40example.test/thread-10339/10339",
+    "kind": "mail",
+    "global_rank": 101,
+    "lane_rank": 69,
+    "cos": 0.8136,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q35",
+    "src": "msg:email/synthetic%40example.test/thread-10398/10398",
+    "kind": "mail",
+    "global_rank": 92,
+    "lane_rank": 66,
+    "cos": 0.8138,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q35",
+    "src": "msg:email/synthetic%40example.test/thread-10413/10413",
+    "kind": "mail",
+    "global_rank": 40,
+    "lane_rank": 21,
+    "cos": 0.8197,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q39",
+    "src": "meeting:synthetic/7114/cue/1",
+    "kind": "notes",
+    "global_rank": 2,
+    "lane_rank": 2,
+    "cos": 0.8898,
+    "floor_applies": true,
+    "passes_floor": true
+  },
+  {
+    "q": "q42",
+    "src": "msg:email/synthetic%40example.test/thread-3594/3594",
+    "kind": "mail",
+    "global_rank": 65,
+    "lane_rank": 35,
+    "cos": 0.8673,
+    "floor_applies": false,
+    "passes_floor": true
+  },
+  {
+    "q": "q44",
+    "src": "meeting:synthetic/6484/cue/1",
+    "kind": "notes",
+    "global_rank": 2,
+    "lane_rank": 2,
+    "cos": 0.8992,
+    "floor_applies": true,
+    "passes_floor": true
+  }
+]

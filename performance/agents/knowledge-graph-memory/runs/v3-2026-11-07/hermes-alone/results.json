@@ -1,0 +1,18 @@
+{
+  "config": "alone",
+  "model": "claude-sonnet-5-5",
+  "model_provider": "anthropic",
+  "reasoning": "medium",
+  "toolsets": "file,terminal,memory",
+  "provider": "",
+  "date": "2026-11-07T06:04:35+00:00",
+  "questions": 50,
+  "owner_hermes_changed": [],
+  "oracle_seen_in_sessions": false,
+  "scores": {
+    "correct": 49,
+    "cited_correctly": 35,
+    "stale": 1,
+    "correct_strict": 48
+  }
+}

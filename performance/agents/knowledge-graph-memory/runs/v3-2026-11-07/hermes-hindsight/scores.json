@@ -1,0 +1,37 @@
+{
+  "engine": "hermes-v3-hindsight-r2, Hindsight 1.2.0, claude-sonnet-5-5, v3",
+  "correct": 37,
+  "cited_correctly": 8,
+  "stale": 3,
+  "correct_strict": 37,
+  "by_family": {
+    "money": {
+      "questions": 13,
+      "correct": 9,
+      "correct_strict": 9,
+      "cited_correctly": 1,
+      "stale": 1
+    },
+    "calendar": {
+      "questions": 16,
+      "correct": 13,
+      "correct_strict": 13,
+      "cited_correctly": 2,
+      "stale": 1
+    },
+    "people and decisions": {
+      "questions": 17,
+      "correct": 11,
+      "correct_strict": 11,
+      "cited_correctly": 1,
+      "stale": 1
+    },
+    "not recorded": {
+      "questions": 4,
+      "correct": 4,
+      "correct_strict": 4,
+      "cited_correctly": 4,
+      "stale": 0
+    }
+  }
+}

@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "q01",
+    "exit": 0,
+    "seconds": 28.14,
+    "answer": "2027-04-06",
+    "citations": ["msg:email/synthetic%40example.test/thread-4304/4994"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-04-06\", \"citations\": [\"r4994\"]}",
+    "usage": {
+      "input": 241,
+      "output": 609,
+      "cacheRead": 74130,
+      "cacheWrite": 17959,
+      "total": 92939,
+      "cost": {
+        "total": 0.05888249999999999
+      }
+    },
+    "list_price_usd_estimate": 0.05888249999999999,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q02",
+    "exit": 0,
+    "seconds": 24.5,
+    "answer": "2027-01-04",
+    "citations": ["msg:email/synthetic%40example.test/thread-3396/3469", "msg:telegram/synthetic/team/1898"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-01-04\", \"citations\": [\"r1898\", \"r3469\"]}",
+    "usage": {
+      "input": 181,
+      "output": 378,
+      "cacheRead": 59731,
+      "cacheWrite": 4674,
+      "total": 64964,
+      "cost": {
+        "total": 0.0218001
+      }
+    },
+    "list_price_usd_estimate": 0.0218001,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q03",
+    "exit": 0,
+    "seconds": 29.89,
+    "answer": "Kim Hale",
+    "citations": ["document:2273"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Kim Hale\", \"citations\": [\"r2273\"]}",
+    "usage": {
+      "input": 241,
+      "output": 433,
+      "cacheRead": 84219,
+      "cacheWrite": 10492,
+      "total": 95385,
+      "cost": {
+        "total": 0.039463899999999996
+      }
+    },
+    "list_price_usd_estimate": 0.039463899999999996,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q04",
+    "exit": 0,
+    "seconds": 23.53,
+    "answer": "rollback plan",
+    "citations": ["meeting:synthetic/5513/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"rollback plan\", \"citations\": [\"r5513\"]}",
+    "usage": {
+      "input": 181,
+      "output": 381,
+      "cacheRead": 59726,
+      "cacheWrite": 5447,
+      "total": 65735,
+      "cost": {
+        "total": 0.0237621
+      }
+    },
+    "list_price_usd_estimate": 0.0237621,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q05",
+    "exit": 0,
+    "seconds": 41.26,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 301,
+      "output": 861,
+      "cacheRead": 112435,
+      "cacheWrite": 14237,
+      "total": 127834,
+      "cost": {
+        "total": 0.056048
+      }
+    },
+    "list_price_usd_estimate": 0.056048,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 16,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q06",
+    "exit": 0,
+    "seconds": 36.27,
+    "answer": "2027-03-19",
+    "citations": ["meeting:synthetic/7732/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-03-19\", \"citations\": [\"r7732\"]}",
+    "usage": {
+      "input": 301,
+      "output": 971,
+      "cacheRead": 114596,
+      "cacheWrite": 12781,
+      "total": 128649,
+      "cost": {
+        "total": 0.053724100000000004
+      }
+    },
+    "list_price_usd_estimate": 0.053724100000000004,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 11,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q07",
+    "exit": 0,
+    "seconds": 22.05,
+    "answer": "2026-10-31",
+    "citations": ["msg:email/synthetic%40example.test/thread-3880/4137", "msg:telegram/synthetic/team/2466"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-10-31\", \"citations\": [\"r2466\", \"r4137\"]}",
+    "usage": {
+      "input": 241,
+      "output": 559,
+      "cacheRead": 82551,
+      "cacheWrite": 9227,
+      "total": 92578,
+      "cost": {
+        "total": 0.0373946
+      }
+    },
+    "list_price_usd_estimate": 0.0373946,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q08",
+    "exit": 0,
+    "seconds": 27.62,
+    "answer": "Sol Mendez",
+    "citations": ["document:4364"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Sol Mendez\", \"citations\": [\"r4364\"]}",
+    "usage": {
+      "input": 301,
+      "output": 639,
+      "cacheRead": 107778,
+      "cacheWrite": 7423,
+      "total": 116141,
+      "cost": {
+        "total": 0.0363273
+      }
+    },
+    "list_price_usd_estimate": 0.0363273,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q09",
+    "exit": 0,
+    "seconds": 25.76,
+    "answer": "usability study",
+    "citations": ["meeting:synthetic/2601/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"usability study\", \"citations\": [\"r2601\"]}",
+    "usage": {
+      "input": 301,
+      "output": 589,
+      "cacheRead": 107797,
+      "cacheWrite": 8153,
+      "total": 116840,
+      "cost": {
+        "total": 0.0376542
+      }
+    },
+    "list_price_usd_estimate": 0.0376542,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q10",
+    "exit": 0,
+    "seconds": 29.15,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 241,
+      "output": 464,
+      "cacheRead": 83567,
+      "cacheWrite": 10350,
+      "total": 94622,
+      "cost": {
+        "total": 0.0393537
+      }
+    },
+    "list_price_usd_estimate": 0.0393537,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q11",
+    "exit": 0,
+    "seconds": 29.63,
+    "answer": "2027-02-17",
+    "citations": ["meeting:synthetic/6362/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-02-17\", \"citations\": [\"r6362\"]}",
+    "usage": {
+      "input": 301,
+      "output": 818,
+      "cacheRead": 108222,
+      "cacheWrite": 10963,
+      "total": 120304,
+      "cost": {
+        "total": 0.047011700000000003
+      }
+    },
+    "list_price_usd_estimate": 0.047011700000000003,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q12",
+    "exit": 0,
+    "seconds": 20.51,
+    "answer": "2026-12-04",
+    "citations": ["msg:email/synthetic%40example.test/thread-2130/2462", "msg:telegram/synthetic/team/952"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-12-04\", \"citations\": [\"r0952\", \"r2462\"]}",
+    "usage": {
+      "input": 241,
+      "output": 560,
+      "cacheRead": 83941,
+      "cacheWrite": 8074,
+      "total": 92816,
+      "cost": {
+        "total": 0.0346611
+      }
+    },
+    "list_price_usd_estimate": 0.0346611,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q13",
+    "exit": 0,
+    "seconds": 19.55,
+    "answer": "Sol Mendez",
+    "citations": ["document:995"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Sol Mendez\", \"citations\": [\"r0995\"]}",
+    "usage": {
+      "input": 241,
+      "output": 429,
+      "cacheRead": 83724,
+      "cacheWrite": 7135,
+      "total": 91529,
+      "cost": {
+        "total": 0.030981900000000003
+      }
+    },
+    "list_price_usd_estimate": 0.030981900000000003,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q14",
+    "exit": 0,
+    "seconds": 23.91,
+    "answer": "rollback plan",
+    "citations": ["meeting:synthetic/6423/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"rollback plan\", \"citations\": [\"r6423\"]}",
+    "usage": {
+      "input": 241,
+      "output": 503,
+      "cacheRead": 83938,
+      "cacheWrite": 7469,
+      "total": 92151,
+      "cost": {
+        "total": 0.032578300000000004
+      }
+    },
+    "list_price_usd_estimate": 0.032578300000000004,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q15",
+    "exit": 0,
+    "seconds": 49.2,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 541,
+      "output": 1959,
+      "cacheRead": 222221,
+      "cacheWrite": 18688,
+      "total": 243409,
+      "cost": {
+        "total": 0.0896141
+      }
+    },
+    "list_price_usd_estimate": 0.0896141,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 22,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q16",
+    "exit": 0,
+    "seconds": 25.55,
+    "answer": "2027-01-16",
+    "citations": ["msg:email/synthetic%40example.test/thread-4740/4921"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-01-16\", \"citations\": [\"r4921\"]}",
+    "usage": {
+      "input": 241,
+      "output": 703,
+      "cacheRead": 84256,
+      "cacheWrite": 14047,
+      "total": 99247,
+      "cost": {
+        "total": 0.051055100000000006
+      }
+    },
+    "list_price_usd_estimate": 0.051055100000000006,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q17",
+    "exit": 0,
+    "seconds": 20.89,
+    "answer": "2026-11-24",
+    "citations": ["msg:telegram/synthetic/team/1425"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-24\", \"citations\": [\"r1425\"]}",
+    "usage": {
+      "input": 181,
+      "output": 497,
+      "cacheRead": 59735,
+      "cacheWrite": 5940,
+      "total": 66353,
+      "cost": {
+        "total": 0.0261555
+      }
+    },
+    "list_price_usd_estimate": 0.0261555,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q18",
+    "exit": 0,
+    "seconds": 21.07,
+    "answer": "Dee Lake",
+    "citations": ["document:1495"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Dee Lake\", \"citations\": [\"r1495\"]}",
+    "usage": {
+      "input": 241,
+      "output": 460,
+      "cacheRead": 84283,
+      "cacheWrite": 10311,
+      "total": 95295,
+      "cost": {
+        "total": 0.0392878
+      }
+    },
+    "list_price_usd_estimate": 0.0392878,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q19",
+    "exit": 0,
+    "seconds": 21.72,
+    "answer": "usability study",
+    "citations": ["meeting:synthetic/6484/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"usability study\", \"citations\": [\"r6484\"]}",
+    "usage": {
+      "input": 241,
+      "output": 467,
+      "cacheRead": 83850,
+      "cacheWrite": 7252,
+      "total": 91810,
+      "cost": {
+        "total": 0.031667
+      }
+    },
+    "list_price_usd_estimate": 0.031667,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q20",
+    "exit": 0,
+    "seconds": 26.41,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 301,
+      "output": 643,
+      "cacheRead": 111466,
+      "cacheWrite": 14104,
+      "total": 126514,
+      "cost": {
+        "total": 0.0534386
+      }
+    },
+    "list_price_usd_estimate": 0.0534386,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 12,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q21",
+    "exit": 0,
+    "seconds": 25.69,
+    "answer": "2027-02-23",
+    "citations": ["msg:email/synthetic%40example.test/thread-6811/7146"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-02-23\", \"citations\": [\"r7146\"]}",
+    "usage": {
+      "input": 301,
+      "output": 738,
+      "cacheRead": 113100,
+      "cacheWrite": 13898,
+      "total": 128037,
+      "cost": {
+        "total": 0.054037
+      }
+    },
+    "list_price_usd_estimate": 0.054037,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q22",
+    "exit": 0,
+    "seconds": 21.75,
+    "answer": "2026-11-19",
+    "citations": ["msg:email/synthetic%40example.test/thread-5246/5405", "msg:telegram/synthetic/team/3523"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-19\", \"citations\": [\"r3523\", \"r5405\"]}",
+    "usage": {
+      "input": 241,
+      "output": 561,
+      "cacheRead": 83496,
+      "cacheWrite": 8487,
+      "total": 92785,
+      "cost": {
+        "total": 0.0356591
+      }
+    },
+    "list_price_usd_estimate": 0.0356591,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q23",
+    "exit": 0,
+    "seconds": 22.75,
+    "answer": "Eli Pine",
+    "citations": ["document:3975"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Eli Pine\", \"citations\": [\"r3975\"]}",
+    "usage": {
+      "input": 241,
+      "output": 424,
+      "cacheRead": 83513,
+      "cacheWrite": 8660,
+      "total": 92838,
+      "cost": {
+        "total": 0.0347233
+      }
+    },
+    "list_price_usd_estimate": 0.0347233,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q24",
+    "exit": 0,
+    "seconds": 21.93,
+    "answer": "pricing page copy",
+    "citations": ["meeting:synthetic/4002/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"pricing page copy\", \"citations\": [\"r4002\"]}",
+    "usage": {
+      "input": 301,
+      "output": 599,
+      "cacheRead": 109921,
+      "cacheWrite": 9412,
+      "total": 120233,
+      "cost": {
+        "total": 0.0411141
+      }
+    },
+    "list_price_usd_estimate": 0.0411141,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q25",
+    "exit": 0,
+    "seconds": 27.8,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 301,
+      "output": 711,
+      "cacheRead": 111863,
+      "cacheWrite": 12742,
+      "total": 125617,
+      "cost": {
+        "total": 0.0507533
+      }
+    },
+    "list_price_usd_estimate": 0.0507533,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 13,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q26",
+    "exit": 0,
+    "seconds": 23.25,
+    "answer": "2027-04-28",
+    "citations": ["msg:email/synthetic%40example.test/thread-6747/6805"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-04-28\", \"citations\": [\"r6805\"]}",
+    "usage": {
+      "input": 241,
+      "output": 630,
+      "cacheRead": 83714,
+      "cacheWrite": 11216,
+      "total": 95801,
+      "cost": {
+        "total": 0.0431934
+      }
+    },
+    "list_price_usd_estimate": 0.0431934,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q27",
+    "exit": 0,
+    "seconds": 16.68,
+    "answer": "2026-11-25",
+    "citations": ["msg:telegram/synthetic/team/2891"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2026-11-25\", \"citations\": [\"r2891\"]}",
+    "usage": {
+      "input": 181,
+      "output": 317,
+      "cacheRead": 59738,
+      "cacheWrite": 5690,
+      "total": 65926,
+      "cost": {
+        "total": 0.0237308
+      }
+    },
+    "list_price_usd_estimate": 0.0237308,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q28",
+    "exit": 0,
+    "seconds": 22.21,
+    "answer": "Tess Ng",
+    "citations": ["msg:email/synthetic%40example.test/thread-5439/5439"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Tess Ng\", \"citations\": [\"r5439\"]}",
+    "usage": {
+      "input": 241,
+      "output": 538,
+      "cacheRead": 84847,
+      "cacheWrite": 10291,
+      "total": 95917,
+      "cost": {
+        "total": 0.040074200000000004
+      }
+    },
+    "list_price_usd_estimate": 0.040074200000000004,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q29",
+    "exit": 0,
+    "seconds": 19.83,
+    "answer": "API changelog",
+    "citations": ["meeting:synthetic/7252/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"API changelog\", \"citations\": [\"r7252\"]}",
+    "usage": {
+      "input": 241,
+      "output": 493,
+      "cacheRead": 83740,
+      "cacheWrite": 6079,
+      "total": 90553,
+      "cost": {
+        "total": 0.028983500000000002
+      }
+    },
+    "list_price_usd_estimate": 0.028983500000000002,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 7,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q30",
+    "exit": 0,
+    "seconds": 30.84,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 361,
+      "output": 1163,
+      "cacheRead": 142975,
+      "cacheWrite": 15227,
+      "total": 159726,
+      "cost": {
+        "total": 0.064717
+      }
+    },
+    "list_price_usd_estimate": 0.064717,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 18,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q31",
+    "exit": 0,
+    "seconds": 23.1,
+    "answer": "2027-08-04",
+    "citations": ["msg:email/synthetic%40example.test/thread-6168/6687"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-08-04\", \"citations\": [\"r6687\"]}",
+    "usage": {
+      "input": 241,
+      "output": 608,
+      "cacheRead": 83836,
+      "cacheWrite": 9876,
+      "total": 94561,
+      "cost": {
+        "total": 0.03963560000000001
+      }
+    },
+    "list_price_usd_estimate": 0.03963560000000001,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q32",
+    "exit": 0,
+    "seconds": 17.8,
+    "answer": "2027-03-24",
+    "citations": ["msg:telegram/synthetic/team/2968"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-03-24\", \"citations\": [\"r2968\"]}",
+    "usage": {
+      "input": 181,
+      "output": 419,
+      "cacheRead": 59738,
+      "cacheWrite": 5800,
+      "total": 66138,
+      "cost": {
+        "total": 0.0250258
+      }
+    },
+    "list_price_usd_estimate": 0.0250258,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q33",
+    "exit": 0,
+    "seconds": 22.0,
+    "answer": "Gia Fern",
+    "citations": ["document:3841"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Gia Fern\", \"citations\": [\"r3841\"]}",
+    "usage": {
+      "input": 241,
+      "output": 580,
+      "cacheRead": 83812,
+      "cacheWrite": 8325,
+      "total": 92958,
+      "cost": {
+        "total": 0.0354757
+      }
+    },
+    "list_price_usd_estimate": 0.0354757,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q34",
+    "exit": 0,
+    "seconds": 20.71,
+    "answer": "accessibility review",
+    "citations": ["meeting:synthetic/7298/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"accessibility review\", \"citations\": [\"r7298\"]}",
+    "usage": {
+      "input": 241,
+      "output": 489,
+      "cacheRead": 83865,
+      "cacheWrite": 6672,
+      "total": 91267,
+      "cost": {
+        "total": 0.0304385
+      }
+    },
+    "list_price_usd_estimate": 0.0304385,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q35",
+    "exit": 0,
+    "seconds": 39.59,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 301,
+      "output": 727,
+      "cacheRead": 114376,
+      "cacheWrite": 13183,
+      "total": 128587,
+      "cost": {
+        "total": 0.052267100000000004
+      }
+    },
+    "list_price_usd_estimate": 0.052267100000000004,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 13,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q36",
+    "exit": 0,
+    "seconds": 24.07,
+    "answer": "2027-08-13",
+    "citations": ["msg:email/synthetic%40example.test/thread-7065/7220"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-08-13\", \"citations\": [\"r7220\"]}",
+    "usage": {
+      "input": 241,
+      "output": 611,
+      "cacheRead": 83819,
+      "cacheWrite": 8815,
+      "total": 93486,
+      "cost": {
+        "total": 0.0370114
+      }
+    },
+    "list_price_usd_estimate": 0.0370114,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q37",
+    "exit": 0,
+    "seconds": 16.69,
+    "answer": "2027-04-05",
+    "citations": ["msg:telegram/synthetic/team/1324"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-04-05\", \"citations\": [\"r1324\"]}",
+    "usage": {
+      "input": 181,
+      "output": 259,
+      "cacheRead": 59735,
+      "cacheWrite": 5823,
+      "total": 65998,
+      "cost": {
+        "total": 0.023482999999999997
+      }
+    },
+    "list_price_usd_estimate": 0.023482999999999997,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q38",
+    "exit": 0,
+    "seconds": 21.38,
+    "answer": "Jo Birch",
+    "citations": ["msg:email/synthetic%40example.test/thread-3594/3594"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Jo Birch\", \"citations\": [\"r3594\"]}",
+    "usage": {
+      "input": 301,
+      "output": 561,
+      "cacheRead": 107974,
+      "cacheWrite": 7841,
+      "total": 116677,
+      "cost": {
+        "total": 0.0366119
+      }
+    },
+    "list_price_usd_estimate": 0.0366119,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q39",
+    "exit": 0,
+    "seconds": 16.63,
+    "answer": "accessibility review",
+    "citations": ["meeting:synthetic/2322/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"accessibility review\", \"citations\": [\"r2322\"]}",
+    "usage": {
+      "input": 181,
+      "output": 316,
+      "cacheRead": 59737,
+      "cacheWrite": 5646,
+      "total": 65880,
+      "cost": {
+        "total": 0.023610700000000002
+      }
+    },
+    "list_price_usd_estimate": 0.023610700000000002,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 4,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q40",
+    "exit": 0,
+    "seconds": 27.01,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 301,
+      "output": 693,
+      "cacheRead": 112257,
+      "cacheWrite": 13576,
+      "total": 126827,
+      "cost": {
+        "total": 0.0526977
+      }
+    },
+    "list_price_usd_estimate": 0.0526977,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 12,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q41",
+    "exit": 0,
+    "seconds": 25.21,
+    "answer": "2027-09-24",
+    "citations": ["msg:email/synthetic%40example.test/thread-7269/7328"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-09-24\", \"citations\": [\"r7328\"]}",
+    "usage": {
+      "input": 241,
+      "output": 747,
+      "cacheRead": 83793,
+      "cacheWrite": 12904,
+      "total": 97685,
+      "cost": {
+        "total": 0.0485913
+      }
+    },
+    "list_price_usd_estimate": 0.0485913,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 9,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q42",
+    "exit": 0,
+    "seconds": 20.09,
+    "answer": "2027-05-06",
+    "citations": ["msg:telegram/synthetic/team/3082"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-05-06\", \"citations\": [\"r3082\"]}",
+    "usage": {
+      "input": 181,
+      "output": 356,
+      "cacheRead": 59734,
+      "cacheWrite": 5754,
+      "total": 66025,
+      "cost": {
+        "total": 0.0242804
+      }
+    },
+    "list_price_usd_estimate": 0.0242804,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 5,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q43",
+    "exit": 0,
+    "seconds": 19.38,
+    "answer": "Hal Grove",
+    "citations": ["document:3603"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Hal Grove\", \"citations\": [\"r3603\"]}",
+    "usage": {
+      "input": 241,
+      "output": 411,
+      "cacheRead": 83699,
+      "cacheWrite": 7022,
+      "total": 91373,
+      "cost": {
+        "total": 0.0305169
+      }
+    },
+    "list_price_usd_estimate": 0.0305169,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q44",
+    "exit": 0,
+    "seconds": 19.22,
+    "answer": "pricing page copy",
+    "citations": ["meeting:synthetic/3609/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"pricing page copy\", \"citations\": [\"r3609\"]}",
+    "usage": {
+      "input": 241,
+      "output": 401,
+      "cacheRead": 82724,
+      "cacheWrite": 7091,
+      "total": 90457,
+      "cost": {
+        "total": 0.030491900000000002
+      }
+    },
+    "list_price_usd_estimate": 0.030491900000000002,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q45",
+    "exit": 0,
+    "seconds": 29.27,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 301,
+      "output": 757,
+      "cacheRead": 114535,
+      "cacheWrite": 15553,
+      "total": 131146,
+      "cost": {
+        "total": 0.058508000000000004
+      }
+    },
+    "list_price_usd_estimate": 0.058508000000000004,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 14,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q46",
+    "exit": 0,
+    "seconds": 25.91,
+    "answer": "2027-09-11",
+    "citations": ["meeting:synthetic/7114/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-09-11\", \"citations\": [\"r7114\"]}",
+    "usage": {
+      "input": 241,
+      "output": 834,
+      "cacheRead": 84426,
+      "cacheWrite": 8813,
+      "total": 94314,
+      "cost": {
+        "total": 0.0392971
+      }
+    },
+    "list_price_usd_estimate": 0.0392971,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q47",
+    "exit": 0,
+    "seconds": 25.02,
+    "answer": "2027-05-23",
+    "citations": ["msg:email/synthetic%40example.test/thread-3773/4093", "msg:telegram/synthetic/team/2426"],
+    "problem": null,
+    "final_text": "{\"answer\": \"2027-05-23\", \"citations\": [\"r2426\", \"r4093\"]}",
+    "usage": {
+      "input": 241,
+      "output": 720,
+      "cacheRead": 83836,
+      "cacheWrite": 9033,
+      "total": 93830,
+      "cost": {
+        "total": 0.038648100000000005
+      }
+    },
+    "list_price_usd_estimate": 0.038648100000000005,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q48",
+    "exit": 0,
+    "seconds": 19.57,
+    "answer": "Max Dorn",
+    "citations": ["document:2520"],
+    "problem": null,
+    "final_text": "{\"answer\": \"Max Dorn\", \"citations\": [\"r2520\"]}",
+    "usage": {
+      "input": 241,
+      "output": 462,
+      "cacheRead": 83508,
+      "cacheWrite": 7836,
+      "total": 92047,
+      "cost": {
+        "total": 0.0330428
+      }
+    },
+    "list_price_usd_estimate": 0.0330428,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 6,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q49",
+    "exit": 0,
+    "seconds": 25.69,
+    "answer": "data retention policy",
+    "citations": ["meeting:synthetic/2554/cue/1"],
+    "problem": null,
+    "final_text": "{\"answer\": \"data retention policy\", \"citations\": [\"r2554\"]}",
+    "usage": {
+      "input": 301,
+      "output": 626,
+      "cacheRead": 108159,
+      "cacheWrite": 8756,
+      "total": 117842,
+      "cost": {
+        "total": 0.0395679
+      }
+    },
+    "list_price_usd_estimate": 0.0395679,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 8,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  },
+  {
+    "id": "q50",
+    "exit": 0,
+    "seconds": 42.7,
+    "answer": "unknown",
+    "citations": [],
+    "problem": null,
+    "final_text": "{\"answer\": \"unknown\", \"citations\": []}",
+    "usage": {
+      "input": 421,
+      "output": 1627,
+      "cacheRead": 171601,
+      "cacheWrite": 15769,
+      "total": 189418,
+      "cost": {
+        "total": 0.0736946
+      }
+    },
+    "list_price_usd_estimate": 0.0736946,
+    "tools": ["skills_read", "exec"],
+    "tool_calls": 24,
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "error": null
+  }
+]
