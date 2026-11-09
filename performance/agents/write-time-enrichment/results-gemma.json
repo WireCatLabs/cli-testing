@@ -1,0 +1,256 @@
+{
+  "model": "embeddinggemma",
+  "reworded": [
+    "q01",
+    "q04",
+    "q07",
+    "q10",
+    "q12",
+    "q14",
+    "q17",
+    "q20",
+    "q23",
+    "q26",
+    "q28",
+    "q30",
+    "q32",
+    "q35",
+    "q39",
+    "q42",
+    "q44"
+  ],
+  "copies": {
+    "off": {
+      "vectors_copied": 9669,
+      "enrichments_deleted": 9840,
+      "embedded": {
+        "notes": {
+          "model": "embeddinggemma",
+          "embedded": 0,
+          "left": false
+        },
+        "mail": {
+          "model": "embeddinggemma",
+          "embedded": 0,
+          "left": false
+        },
+        "seconds": 23.859
+      },
+      "embed_s": 25.01159906499379,
+      "enriched": 0
+    },
+    "on": {
+      "vectors_copied": 9669,
+      "enrichments_deleted": null,
+      "embedded": {
+        "notes": {
+          "model": "embeddinggemma",
+          "embedded": 5488,
+          "left": false
+        },
+        "mail": {
+          "model": "embeddinggemma",
+          "embedded": 4339,
+          "left": false
+        },
+        "seconds": 416.283
+      },
+      "embed_s": 418.5992774819897,
+      "enriched": 9840
+    }
+  },
+  "scores": [
+    {
+      "run": "gemma off, record's words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.4753623188405797,
+      "recall@5": 0.9260869565217391,
+      "recall@10": 0.9347826086956522,
+      "p50_s": 1.7611792719908408,
+      "p95_s": 2.6461590510007227,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma off, record's words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.5313725490196078,
+      "recall@5": 0.9764705882352942,
+      "recall@10": 1.0,
+      "p50_s": 1.7345103719999315,
+      "p95_s": 2.598762617999455,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "gemma off, record's words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.5152173913043478,
+      "recall@5": 0.8826086956521739,
+      "recall@10": 0.9130434782608695,
+      "p50_s": 1.9461462094986928,
+      "p95_s": 3.996162005001679,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma off, record's words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.6196078431372549,
+      "recall@5": 0.9764705882352942,
+      "recall@10": 1.0,
+      "p50_s": 1.8979473609942943,
+      "p95_s": 2.191304856998613,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "gemma off, other words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.35144927536231885,
+      "recall@5": 0.7898550724637682,
+      "recall@10": 0.8521739130434783,
+      "p50_s": 2.042222974494507,
+      "p95_s": 2.9079695749969687,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma off, other words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.19607843137254902,
+      "recall@5": 0.607843137254902,
+      "recall@10": 0.776470588235294,
+      "p50_s": 2.0793427850003354,
+      "p95_s": 2.8643487359950086,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "gemma off, other words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.358695652173913,
+      "recall@5": 0.753623188405797,
+      "recall@10": 0.8043478260869565,
+      "p50_s": 1.708292237497517,
+      "p95_s": 2.635733849994722,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma off, other words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.19607843137254902,
+      "recall@5": 0.6274509803921569,
+      "recall@10": 0.7058823529411765,
+      "p50_s": 1.6750200259994017,
+      "p95_s": 2.5604837120044976,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "gemma on, record's words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.4101449275362319,
+      "recall@5": 0.9304347826086956,
+      "recall@10": 0.9347826086956522,
+      "p50_s": 2.517590900490177,
+      "p95_s": 3.4298428109905217,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma on, record's words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.4137254901960784,
+      "recall@5": 0.9882352941176471,
+      "recall@10": 1.0,
+      "p50_s": 2.505341926997062,
+      "p95_s": 3.178121770004509,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "gemma on, record's words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.43913043478260866,
+      "recall@5": 0.8869565217391304,
+      "recall@10": 0.9130434782608695,
+      "p50_s": 2.7516222199919866,
+      "p95_s": 8.854994339024415,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma on, record's words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.4725490196078431,
+      "recall@5": 0.9294117647058824,
+      "recall@10": 1.0,
+      "p50_s": 2.8034670689958148,
+      "p95_s": 8.752574772021035,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "gemma on, other words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.35144927536231885,
+      "recall@5": 0.8536231884057971,
+      "recall@10": 0.9130434782608695,
+      "p50_s": 2.5467761425097706,
+      "p95_s": 4.750908237998374,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma on, other words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.2549019607843137,
+      "recall@5": 0.780392156862745,
+      "recall@10": 0.9411764705882353,
+      "p50_s": 2.6295604959886987,
+      "p95_s": 4.750908237998374,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "gemma on, other words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.3297101449275362,
+      "recall@5": 0.777536231884058,
+      "recall@10": 0.8260869565217391,
+      "p50_s": 2.1637777864962118,
+      "p95_s": 2.8367655689944513,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "gemma on, other words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.17647058823529413,
+      "recall@5": 0.6333333333333333,
+      "recall@10": 0.7647058823529411,
+      "p50_s": 2.285222592006903,
+      "p95_s": 2.7474548500031233,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    }
+  ]
+}

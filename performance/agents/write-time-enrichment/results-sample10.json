@@ -1,0 +1,319 @@
+{
+  "memo_version": "0.131.55",
+  "records": 10444,
+  "questions": 50,
+  "reworded": [
+    "q01",
+    "q04",
+    "q07",
+    "q10",
+    "q12",
+    "q14",
+    "q17",
+    "q20",
+    "q23",
+    "q26",
+    "q28",
+    "q30",
+    "q32",
+    "q35",
+    "q39",
+    "q42",
+    "q44"
+  ],
+  "sample_share": 0.1,
+  "seed": 20261108,
+  "sampled_records": 1103,
+  "sampled_store_rows": 1048,
+  "cited_records": 65,
+  "consent": {
+    "on": true,
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "endpoint": "https://api.openai.com/v1",
+    "consented_at": "2026-11-08T12:03:03.739Z",
+    "records": 9884,
+    "enriched": 0,
+    "pending": 9884,
+    "estimate": {
+      "records": 9884,
+      "input_tokens": 541236,
+      "output_tokens": 889560,
+      "usd": 0.614921
+    },
+    "changed": true,
+    "consent": "Enrichment sends the text of every note, document and email in this store to openai (api.openai.com), model gpt-4o-mini: 9884 records now, and every record added or changed later, at each sync. The model writes facts and questions about each record; they are kept in the store, and search finds the record by them. Enriching what is here now costs about $0.614921 (541236 input and 889560 output tokens). `memo models consents revoke` turns it off and deletes what the model wrote."
+  },
+  "enrichment": {
+    "status": "done",
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "enriched": 1048,
+    "failed": 0,
+    "left": 0,
+    "usage": {
+      "input": 69311,
+      "output": 68523
+    },
+    "cost_usd": 0.05151
+  },
+  "after_enrichment": {
+    "on": true,
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "endpoint": "https://api.openai.com/v1",
+    "consented_at": "2026-11-08T12:03:03.739Z",
+    "records": 9884,
+    "enriched": 1048,
+    "pending": 8836,
+    "estimate": {
+      "records": 8836,
+      "input_tokens": 484009,
+      "output_tokens": 795240,
+      "usd": 0.549745
+    }
+  },
+  "embedded_off": {
+    "notes": [
+      {
+        "folder": "~/.cache/wirecat-bench/memo-enrichment-sample10/data/notes",
+        "folder_id": "1",
+        "notes": 6072,
+        "changed": 0,
+        "renamed": 0,
+        "deleted": 0
+      }
+    ],
+    "failed": [],
+    "notes_embedded": {
+      "chunks": 112,
+      "left": false
+    },
+    "mail_embedded": {
+      "chunks": 0,
+      "left": false
+    },
+    "sync_runs": 10
+  },
+  "embedded_on": {
+    "notes": [
+      {
+        "folder": "~/.cache/wirecat-bench/memo-enrichment-sample10/data/notes",
+        "folder_id": "1",
+        "notes": 6072,
+        "changed": 0,
+        "renamed": 0,
+        "deleted": 0
+      }
+    ],
+    "failed": [],
+    "notes_embedded": {
+      "chunks": 566,
+      "left": false
+    },
+    "mail_embedded": {
+      "chunks": 481,
+      "left": false
+    },
+    "sync_runs": 1
+  },
+  "timings": {
+    "embed_off_s": 67.8971190329903,
+    "enrich_s": 130.25923970701115,
+    "embed_on_s": 9.118535948000499
+  },
+  "scores": [
+    {
+      "run": "off, record's words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.5405797101449276,
+      "recall@5": 0.908695652173913,
+      "recall@10": 0.9347826086956522,
+      "p50_s": 1.1359828034983366,
+      "p95_s": 1.404920722998213,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "off, record's words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.5901960784313726,
+      "recall@5": 0.9882352941176471,
+      "recall@10": 1.0,
+      "p50_s": 1.179967295989627,
+      "p95_s": 1.3987101770035224,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "off, record's words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.5514492753623188,
+      "recall@5": 0.908695652173913,
+      "recall@10": 0.9347826086956522,
+      "p50_s": 1.1159539520085673,
+      "p95_s": 1.3379696350020822,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "off, record's words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.6196078431372549,
+      "recall@5": 0.9882352941176471,
+      "recall@10": 1.0,
+      "p50_s": 1.1148012390040094,
+      "p95_s": 1.352759793997393,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "off, other words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.3949275362318841,
+      "recall@5": 0.7282608695652174,
+      "recall@10": 0.7934782608695652,
+      "p50_s": 1.1421896525062039,
+      "p95_s": 1.3344171670032665,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "off, other words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.19607843137254902,
+      "recall@5": 0.5,
+      "recall@10": 0.6176470588235294,
+      "p50_s": 1.1418887680047192,
+      "p95_s": 1.3175769800000126,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "off, other words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.3731884057971015,
+      "recall@5": 0.7282608695652174,
+      "recall@10": 0.782608695652174,
+      "p50_s": 1.0867216719925636,
+      "p95_s": 1.2286563190136803,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "off, other words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.13725490196078433,
+      "recall@5": 0.5,
+      "recall@10": 0.5882352941176471,
+      "p50_s": 1.0822188860038295,
+      "p95_s": 1.2338597049965756,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "on, record's words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.6057971014492753,
+      "recall@5": 0.9304347826086956,
+      "recall@10": 0.9347826086956522,
+      "p50_s": 1.3679077999986475,
+      "p95_s": 1.8599919190019136,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "on, record's words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.6490196078431373,
+      "recall@5": 0.9882352941176471,
+      "recall@10": 1.0,
+      "p50_s": 1.5330561360024149,
+      "p95_s": 1.8465184509987012,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "on, record's words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.6021739130434782,
+      "recall@5": 0.9304347826086956,
+      "recall@10": 0.9347826086956522,
+      "p50_s": 1.2845807259946014,
+      "p95_s": 1.620574314991245,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "on, record's words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.6196078431372549,
+      "recall@5": 0.9882352941176471,
+      "recall@10": 1.0,
+      "p50_s": 1.251297513008467,
+      "p95_s": 1.3991215379937785,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "on, other words, as typed",
+      "questions_scored": 46,
+      "recall@1": 0.4384057971014493,
+      "recall@5": 0.7934782608695652,
+      "recall@10": 0.8565217391304347,
+      "p50_s": 1.2829456924955593,
+      "p95_s": 2.083790507997037,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "on, other words, as typed",
+      "questions_scored": 17,
+      "recall@1": 0.19607843137254902,
+      "recall@5": 0.6176470588235294,
+      "recall@10": 0.788235294117647,
+      "p50_s": 1.2851593870000215,
+      "p95_s": 2.083790507997037,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    },
+    {
+      "run": "on, other words, OR",
+      "questions_scored": 46,
+      "recall@1": 0.44565217391304346,
+      "recall@5": 0.7717391304347826,
+      "recall@10": 0.8043478260869565,
+      "p50_s": 1.0843287809984758,
+      "p95_s": 1.293908517996897,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "all"
+    },
+    {
+      "run": "on, other words, OR",
+      "questions_scored": 17,
+      "recall@1": 0.19607843137254902,
+      "recall@5": 0.5588235294117647,
+      "recall@10": 0.6470588235294118,
+      "p50_s": 1.0867942339973524,
+      "p95_s": 1.1896905949979555,
+      "incomplete_replies": 0,
+      "empty_replies": 0,
+      "subset": "reworded"
+    }
+  ]
+}
