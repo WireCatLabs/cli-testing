@@ -150,6 +150,8 @@ All per-question top tens are in [results/](results/).
    below Gemma's 0.94. The instruction wording matters for Qwen; no wording was tuned beyond these two.
 4. **Sorting records by length before embedding cuts LifeBench indexing about 4.5 times** (3,061 s to 688 s for
    Gemma) with identical results. Worth checking whether Memo batches this way.
+   Answer (9 November): it does not; memo runs one text at a time, so nothing pads. Real batches failed the bar
+   ([embedding-batches](../embedding-batches/README.md)).
 
 ## Russian (9 November)
 
