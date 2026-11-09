@@ -269,6 +269,7 @@ def score(questions, rankings, k=10):
 
 RERANK_BASES = {
     "gemma": lambda lab, c, q: lab.dense(c, q)[0],
+    "gemma-cut": lambda lab, c, q: lab.dense(c, q, mask=mask_before(c, q))[0],
     "hybrid": lambda lab, c, q: rrf([lab.dense(c, q)[0], c.bm25(q.text)[0]], 60),
     "stackC": lambda lab, c, q: stack(lab, c, q, rewrite_kind="mqdate"),
     "e5-hybrid": lambda lab, c, q: rrf([lab.dense(c, q, model=E5)[0], c.bm25(q.text)[0]], 60),
@@ -350,11 +351,14 @@ class Lab:
     def llm_path(self, base):
         return self.cache / f"llmrerank-{base}-json.json"
 
-    def llm_reranked(self, c, q, base):
-        if base not in self._llm:
-            path = self.llm_path(base)
-            self._llm[base] = json.loads(path.read_text()) if path.exists() else {}
-        entry = self._llm[base].get(f"{c.name}\t{q.id}\t{q.text}")
+    def ollama_path(self, model, base):
+        return self.cache / f"ollamarerank-{model.replace(':', '-')}-{base}.json"
+
+    def llm_reranked(self, c, q, base, path=None):
+        path = path or self.llm_path(base)
+        if path not in self._llm:
+            self._llm[path] = json.loads(path.read_text()) if path.exists() else {}
+        entry = self._llm[path].get(f"{c.name}\t{q.id}\t{q.text}")
         if entry is None:
             return None
         order = self.base_order(c, q, base)
@@ -512,6 +516,34 @@ def run_hypotheses(lab, only=None):
             return in_range_boost(order, s, c, date_range(lab.rw, q), beta)
         add(f"Gemma, date cut + boost records inside Haiku's date range, beta={beta}", fn)
 
+    # The date-range boost as cli-core's search all does it (cli-core feat/search-date-boost): the period from its
+    # TypeScript parser (cache/ts-periods.json, written by periods.ts), and a score by rank, 1 - rank/100.
+    ts_path = lab.cache / "ts-periods.json"
+    ts = json.loads(ts_path.read_text()) if ts_path.exists() else None
+
+    def ts_range(q):
+        got = ts.get(f"{q.as_of[:10]}\t{q.text}") if ts else None
+        return tuple(got) if got else None
+
+    def rank_boost(order, c, rng, boost=0.5, depth=100):
+        if rng is None:
+            return order
+        head = list(order[:depth])
+        inside = ((c.time[head] >= rng[0]) & (c.time[head] < rng[1])).astype(float)
+        base = 1 - np.arange(len(head)) / len(head)
+        return [head[i] for i in np.argsort(-(base + boost * inside), kind="stable")] + list(order[depth:])
+
+    def cut_hybrid(c, q):
+        return rrf([g(c, q, mask=mask_before(c, q)), [d for d in c.bm25(q.text, 300)[0] if c.time[d] <= q.as_of_ts][:100]], 60)
+
+    if ts is not None:
+        add("Gemma, date cut + rank boost 0.5 inside the TS parser's period",
+            lambda c, q: rank_boost(g(c, q, mask=mask_before(c, q)), c, ts_range(q)))
+        add("hybrid RRF k=60, date cut + rank boost 0.5 inside the TS parser's period",
+            lambda c, q: rank_boost(cut_hybrid(c, q), c, ts_range(q)))
+    add("Gemma, date cut + rank boost 0.5 inside Haiku's date range",
+        lambda c, q: rank_boost(g(c, q, mask=mask_before(c, q)), c, date_range(lab.rw, q)))
+
     def range_filter(c, q):
         rng = date_range(lab.rw, q)
         m = mask_before(c, q)
@@ -551,6 +583,10 @@ def run_hypotheses(lab, only=None):
     for base in ("hybrid", "stackC"):
         if lab.llm_path(base).exists():
             add(f"Haiku listwise rerank over top 30 of {base}", lambda c, q, b=base: lab.llm_reranked(c, q, b))
+    for path in sorted(lab.cache.glob("ollamarerank-*.json")):
+        model, base = path.stem[len("ollamarerank-"):].rsplit("-", 1)
+        add(f"Ollama {model} listwise rerank over top 30 of {base}",
+            lambda c, q, b=base, p=path: lab.llm_reranked(c, q, b, p))
 
     # (e) title and chunks
     if lab.has(lab.sets["lb"][0], GEMMA, "title"):
@@ -654,6 +690,46 @@ def cmd_llmrerank(args):
                       "input_tokens_median": sorted(v["in"] for v in data.values())[len(data) // 2]}))
 
 
+def cmd_ollamarerank(args):
+    import urllib.request
+
+    lab = Lab(args.cache)
+    path = lab.ollama_path(args.model, args.base)
+    data = json.loads(path.read_text()) if path.exists() else {}
+    for set_name in args.set.split(","):
+        corpus, qs = lab.sets[set_name]
+        for q in qs[: args.limit or None]:
+            k = f"{corpus.name}\t{q.id}\t{q.text}"
+            if k in data:
+                continue
+            cand = lab.base_order(corpus, q, args.base)[:30]
+            records = "\n".join(f"[{i}] ({corpus.records[d]['timestamp'][:10]}) "
+                                + doc_text(corpus, d, args.chars).replace("\n", " ") for i, d in enumerate(cand))
+            body = {"model": args.model, "stream": False, "think": False, "format": LLM_FORMAT["schema"],
+                    "keep_alive": "30m", "options": {"num_ctx": args.num_ctx, "temperature": 0},
+                    "messages": [{"role": "user", "content": LLM_PROMPT.format(
+                        as_of=q.as_of[:10], n=len(cand), records=records, question=q.text)}]}
+            req = urllib.request.Request(f"{args.host}/api/chat", data=json.dumps(body).encode(),
+                                         headers={"Content-Type": "application/json"})
+            started = time.time()
+            with urllib.request.urlopen(req, timeout=900) as resp:
+                r = json.loads(resp.read())
+            text = r["message"]["content"]
+            try:
+                order = [int(i) for i in json.loads(text)["records"]]
+            except (ValueError, KeyError, TypeError):
+                order = []
+            # A prompt that fills num_ctx was cut by Ollama, so the tail candidates were never read.
+            data[k] = {"order": order, "raw": text, "ms": round((time.time() - started) * 1000),
+                       "in": r.get("prompt_eval_count"), "out": r.get("eval_count"),
+                       "truncated": (r.get("prompt_eval_count") or 0) >= args.num_ctx - 1}
+            path.write_text(json.dumps(data, ensure_ascii=False, indent=1))
+    ms = sorted(v["ms"] for v in data.values())
+    print(json.dumps({"model": args.model, "calls": len(data), "ms_median": ms[len(ms) // 2] if ms else None,
+                      "input_tokens_max": max((v["in"] or 0) for v in data.values()) if data else None,
+                      "truncated": sum(v["truncated"] for v in data.values())}))
+
+
 def cmd_eval(args):
     lab = Lab(args.cache)
     H = run_hypotheses(lab, args.only.split(",") if args.only else None)
@@ -711,6 +787,16 @@ def main():
     p.add_argument("--chars", type=int, default=400)
     p.add_argument("--budget", type=float, default=1.0)
     p.set_defaults(fn=cmd_llmrerank)
+    p = sub.add_parser("ollamarerank")
+    p.add_argument("--cache", type=Path, required=True)
+    p.add_argument("--model", required=True)
+    p.add_argument("--host", default="http://127.0.0.1:11434")
+    p.add_argument("--set", default="v3-all,v3-rew,lb-s20")
+    p.add_argument("--base", default="stackC", choices=list(RERANK_BASES))
+    p.add_argument("--chars", type=int, default=400)
+    p.add_argument("--num-ctx", type=int, default=12288)
+    p.add_argument("--limit", type=int, default=0)
+    p.set_defaults(fn=cmd_ollamarerank)
     p = sub.add_parser("eval")
     p.add_argument("--cache", type=Path, required=True)
     p.add_argument("--only", help="comma-separated parts of hypothesis names")

@@ -62,6 +62,7 @@ Each embedding, query and rerank step ran alone under one machine-wide `flock`.
 | --- | --- |
 | [embed.py](embed.py) | one vector per record (or per chunk of a long record), saved once per model |
 | [rewrite.py](rewrite.py) | Haiku paraphrases, HyDE record, dated paraphrases, date range; cached, cost logged |
+| [periods.ts](periods.ts) | the period cli-core's local parser reads from each question, for the date-boost rows |
 | [lab.py](lab.py) | every hypothesis, the cross-encoder and Haiku rerank runs, and the scoring |
 
 ## Results
@@ -100,6 +101,31 @@ work of anything below.
 | 10 | Local cross-encoders over the top 50 of words + vectors RRF k=60 (best: jina-reranker-v2 0.82, bge-reranker-base 0.79) | no | 0.68–0.82 | 0.87–0.94 | not run | | 0.4–1.9 s | 0 | **open**: tested only over a first stage already broken at 0.41 |
 | 11 | Gemma query prefix variants | no | 0.71–0.94 | 0.91–0.94 | 0.35–0.38 / 0.68–0.73 | (worse) | 0 | 0 | worse; keep `task: search result` |
 | 12 | HyDE (Haiku writes a record, embedded as a passage) | no | 0.65–0.88 | 0.78–0.91 | 0.27–0.36 / 0.66–0.76 | (worse) | 1.3 s | ~$0.00007 | worse everywhere; drop |
+
+### The date-range boost without Haiku (cli-core `search all`)
+
+Row 3 was built into `search all` with a local parser instead of Haiku (`questionPeriod` in cli-core, the PR that
+links here). [periods.ts](periods.ts) runs that parser over every lab question with "now" set to the question's own
+date and writes [ts-periods.json](ts-periods.json); `lab.py` reads it from `cache/`. Of the 288 LifeBench questions the
+parser names a period for 208, Haiku for 203, both for 193; no v3 question names one.
+
+`search all` merges sources whose scores do not compare (a hit found only by words has no cosine), so it boosts by
+rank: each of the top 100 keeps `1 - rank/100` and gains 0.5 inside the period. Row 3 boosted min-max cosines instead.
+
+| Base | Period | Boost | v3 reworded @10 | v3 all @10 | LifeBench R@10 / hit@10 |
+| --- | --- | --- | ---: | ---: | ---: |
+| Gemma, date cut | none | none | 0.94 | 0.94 | 0.41 / 0.79 |
+| Gemma, date cut | Haiku | min-max score + 0.5 (row 3) | 0.94 | 0.94 | 0.44 / 0.84 |
+| Gemma, date cut | Haiku | rank + 0.5 | 0.94 | 0.94 | 0.42 / 0.82 |
+| Gemma, date cut | **parser** | rank + 0.5 | 0.94 | 0.94 | 0.42 / 0.82 |
+| words + Gemma RRF k=60, date cut | none | none | 0.41 | 0.94 | 0.44 / 0.84 |
+| words + Gemma RRF k=60, date cut | **parser** | rank + 0.5 | 0.41 | 0.94 | **0.47 / 0.88** |
+
+- **The parser is as good as Haiku here**: the same 0.42 / 0.82 with the same boost, for free and with no delay.
+- **The rank boost gives less than the score boost over Gemma alone** (+0.01 / +0.03 against +0.03 / +0.05). That is the
+  formula, not the parser. Over words and meaning merged, closer to what `search all` does, it gives +0.03 / +0.04.
+- **v3 does not move**: its questions name no period. The words + Gemma base breaks the reworded set (0.41) with or
+  without the boost; that is row 6, not the boost.
 
 ### Every row
 

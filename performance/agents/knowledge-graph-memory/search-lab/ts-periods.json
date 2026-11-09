@@ -1,0 +1,920 @@
+{
+  "2026-10-20\tWhat is the current agreed yearly price of the Juniper Valley hosting agreement? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWhat is the current agreed yearly price of the Grove Atlas hosting agreement? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWhat is the current agreed yearly price of the Hazel Bridge hosting agreement? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tHow much has been paid in total toward the Iris Summit consulting retainer so far? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tHow much has been paid in total toward the Amber Kite consulting retainer so far? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tHow much has been paid in total toward the Birch Compass consulting retainer so far? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tHow much is still owed on the Cedar Lantern hardware order? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tHow much is still owed on the Flint Meadow hardware order? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tHow much is still owed on the Dune Harbor hardware order? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWhat did the Elm Beacon conference tickets cost in the end, after any refund? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWhat did the Juniper Valley conference tickets cost in the end, after any refund? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWho paid the Grove Atlas team retreat deposit?": null,
+  "2026-10-20\tWho paid the Hazel Bridge team retreat deposit?": null,
+  "2026-10-20\tWhen is the Iris Summit steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": null,
+  "2026-10-20\tWhen is the Amber Kite steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": null,
+  "2026-10-20\tWhen is the Birch Compass steering committee meeting now? Answer as YYYY-MM-DD HH:MM in Madrid time.": null,
+  "2026-10-20\tWhen is the Cedar Lantern partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": null,
+  "2026-10-20\tWhen is the Flint Meadow partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": null,
+  "2026-10-20\tWhen is the Dune Harbor partner call, in Madrid time? Answer as YYYY-MM-DD HH:MM.": null,
+  "2026-10-20\tOn what date is the Elm Beacon design critique? Answer as YYYY-MM-DD.": null,
+  "2026-10-20\tOn what date is the Juniper Valley design critique? Answer as YYYY-MM-DD.": null,
+  "2026-10-20\tOn what date is the Grove Atlas design critique? Answer as YYYY-MM-DD.": null,
+  "2026-10-20\tWhen is the Hazel Bridge customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": null,
+  "2026-10-20\tWhen is the Iris Summit customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": null,
+  "2026-10-20\tWhen is the Amber Kite customer workshop? Answer as YYYY-MM-DD, or cancelled if it will not take place.": null,
+  "2026-10-20\tWhen is the Birch Compass hackathon? Answer as YYYY-MM-DD, or cancelled if it will not take place.": null,
+  "2026-10-20\tWhen is the Cedar Lantern hackathon? Answer as YYYY-MM-DD, or cancelled if it will not take place.": null,
+  "2026-10-20\tOn which weekday does the Flint Meadow weekly design sync take place now?": null,
+  "2026-10-20\tOn which weekday does the Dune Harbor weekly design sync take place now?": null,
+  "2026-10-20\tWho signed off the Elm Beacon vendor shortlist?": null,
+  "2026-10-20\tWho signed off the Juniper Valley vendor shortlist?": null,
+  "2026-10-20\tWhich venue is booked for the Grove Atlas launch party?": null,
+  "2026-10-20\tWhich venue is booked for the Hazel Bridge launch party?": null,
+  "2026-10-20\tWhich venue is booked for the Iris Summit launch party?": null,
+  "2026-10-20\tHow many times has the Amber Kite security drill been rescheduled? Answer with a number.": null,
+  "2026-10-20\tHow many times has the Birch Compass security drill been rescheduled? Answer with a number.": null,
+  "2026-10-20\tWhat fee was approved for the Cedar Lantern translation vendor?": null,
+  "2026-10-20\tWhat fee was approved for the Flint Meadow translation vendor?": null,
+  "2026-10-20\tWhat is the current confirmed delivery date for the Juniper Valley launch?": null,
+  "2026-10-20\tWhat is the current confirmed delivery date for the Flint Meadow security hardening?": null,
+  "2026-10-20\tWhat was the original delivery date agreed for the Birch Compass pilot, before it changed?": null,
+  "2026-10-20\tWho is the confirmed delivery owner of the Hazel Bridge security hardening?": null,
+  "2026-10-20\tWho is the confirmed delivery owner of the Grove Atlas billing revamp?": null,
+  "2026-10-20\tWhat did Dee Lake commit to delivering for the Dune Harbor pilot?": null,
+  "2026-10-20\tWhat did Sol Mendez commit to delivering for the Cedar Lantern data migration?": null,
+  "2026-10-20\tWhat approved budget amount was agreed for the Iris Summit security hardening?": null,
+  "2026-10-20\tWhat approved budget amount was agreed for the Birch Compass pilot?": null,
+  "2026-10-20\tIn which city is the current delivery owner of the Cedar Lantern data migration based?": null,
+  "2026-10-20\tIn which city is the current delivery owner of the Juniper Valley launch based?": null,
+  "2026-10-20\tIn which city is the current delivery owner of the Amber Kite launch based?": null,
+  "2026-10-20\tWhat is the yearly fee we now pay for Juniper Valley's rented servers? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWhat sum has come in so far for Iris Summit's advisory arrangement? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWhat is left to pay for Cedar Lantern's equipment purchase? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWhat was the final spend on Elm Beacon's event passes, money back counted? Answer as an amount like EUR 12,500.": null,
+  "2026-10-20\tWho put down the money for Grove Atlas's offsite advance?": null,
+  "2026-10-20\tWhen does Iris Summit's oversight board sit next? Answer as YYYY-MM-DD HH:MM in Madrid time.": null,
+  "2026-10-20\tAt what moment in Spain is Cedar Lantern's conversation with the outside company? Answer as YYYY-MM-DD HH:MM.": null,
+  "2026-10-20\tWhich day was set for Elm Beacon's feedback session on the designs? Answer as YYYY-MM-DD.": null,
+  "2026-10-20\tWhen will Hazel Bridge's client training day happen? Answer as YYYY-MM-DD, or cancelled if it will not take place.": null,
+  "2026-10-20\tWhen will Birch Compass's coding marathon happen? Answer as YYYY-MM-DD, or cancelled if it will not take place.": null,
+  "2026-10-20\tWhich day of the week is Flint Meadow's regular design catch-up held on now?": null,
+  "2026-10-20\tWho gave final approval to Elm Beacon's list of candidate suppliers?": null,
+  "2026-10-20\tWhere will Grove Atlas's release celebration be held?": null,
+  "2026-10-20\tHow often was Amber Kite's safety exercise moved? Answer with a number.": null,
+  "2026-10-20\tWhat price did we accept from Cedar Lantern's localisation supplier?": null,
+  "2026-10-20\tBy when must the Juniper Valley launch be shipped now, as last agreed?": null,
+  "2026-10-20\tWhich person answers for shipping the Hazel Bridge security hardening?": null,
+  "2026-10-20\tWhat did Dee Lake promise to hand over for the Dune Harbor pilot?": null,
+  "2025-04-01\tThat time in January when I did the monthly financial plan, I adjusted that month's budget because I found I had overspent the previous month. How exactly did I adjust it, again? And what did I decide to do to control spending?": [
+    1735689600, 1743465600
+  ],
+  "2025-03-20\tI remember visiting a friend in Shenzhen at the beginning of the year. He took me to see their company's exhibition hall, and in the café downstairs he demonstrated an investment dashboard using Excel and some framework—what was it? He also ran a long piece of code at the time, and I took a photo of the screen with my phone, but I can't find it.": null,
+  "2025-03-15\tI went to Shenzhen to meet a friend earlier, and he gave me a book about Python at the coffee shop downstairs from his company. Do you remember the name of that book?": null,
+  "2025-04-15\tRemember at the Xiangjiang Financial Night party earlier this year, I hit it off with a specialist from Pacific Insurance. What were the main topics we discussed then?": [
+    1735689600, 1767225600
+  ],
+  "2025-04-15\tI remember after a video call with my mom around Chinese New Year, I looked up management advice for her high blood pressure and high blood lipids on my phone. The agent seemed to recommend two medications, one for lowering blood pressure and one for lowering lipids. I can't remember exactly what they're called. Could you help me look them up?": null,
+  "2025-05-20\tHey, I remember in a client handover meeting, Zhou Jianhua seemed to mention the project progress of a tech company founder. What was it exactly?": null,
+  "2025-07-15\tOn the late night of the day my mom was hospitalized, I drove back to Wuhan from Changsha overnight. Did I stop to rest at a service area on the way? I remember I told my family something—was it a phone call or a voice message? Who did I tell?": null,
+  "2025-06-15\tAt the beginning of the year, I seem to have transferred some money to my securities account for regular investment. How much did I transfer exactly? Which funds were the regular investments in?": null,
+  "2025-05-01\tHey, I remember that in early February we had a client handover meeting with Director Qian and Zhou Jianhua, and the client he transferred was a tech company founder who seemed to be raising funds, but which round of financing was it again?": [
+    1738368000, 1740787200
+  ],
+  "2025-06-15\tI remember the phone call with Lin Zhihao about the REITs plan started at 2 p.m. on March 26. It felt like nearly half an hour, but I didn't note it down carefully. How long did the call actually last?": [
+    1742947200, 1743033600
+  ],
+  "2025-03-24\tAt the financial reception I attended earlier this year, did I scan the QR codes of the people I newly met? I remember sending them messages afterwards, but I'm not sure if I added them by scanning on the spot.": [
+    1735689600, 1767225600
+  ],
+  "2025-03-15\tAt the beginning of the year, I went to Shenzhen for that fintech summit. During the coffee break, I hit it off with a guy in private equity. He seemed to have given me his business card. What topics were we mainly chatting about then?": null,
+  "2025-04-01\tBefore and after the dinner with Peng Yuqing and Wu Junjie, I asked Peng Yuqing to find out about specialists at Wuhan Union Hospital. She gave me a doctor's name at the time, but I can't remember it at all. Can you help me look it up?": null,
+  "2025-06-15\tA few months ago I had a female client. When making an investment plan for her, I made a low-level mistake in the morning. Later the client found that there was a problem with the data. Which formula exactly went wrong?": null,
+  "2025-03-15\tI still remember this year's Spring Festival, on the afternoon of the second day of the new year (January 30), I had a long talk with my mom in the living room, urging her to get a comprehensive physical examination. Judging from that day's conversation records, did my mom finally agree? What were my exact words when I reported to the assistant about her agreeing to the exam?": [
+    1738195200, 1738281600
+  ],
+  "2025-06-20\tA few months ago, during that one-on-one review with my leader, besides reporting my personal improvements, what team suggestion did I proactively raise? The leader was quite approving at the time.": null,
+  "2025-04-15\tAfter watching the Spring Festival Gala on Chinese New Year's Eve, my dad and I closed the door in the study and talked for quite a while. It was about my mom's health, right? What did I say to him then, and how did he finally respond?": null,
+  "2025-04-01\tHey, last time in Shenzhen, my friend showed me his fund dashboard at that coffee shop under Tencent's building. Which overseas funds was he scraping with Python in that demo?": null,
+  "2025-05-10\tThat time when I did the client handover with Zhou Jianhua, he transferred to me a female founder of a tech company. Her company seems to be raising funds. What was that person's name again?": null,
+  "2025-07-15\tDuring the May Day holiday, on the day I went back to Wuhan to pick up my mom from the hospital, the attending physician said some rehabilitation precautions in the ward. I noted them down on my phone at the time, but now I can't remember what they were. Help me check what's in my memo.": null,
+  "2025-07-10\tOn the evening of April 25, I was making a to-do list for May at home. I remember one item was about the coffee shop investment. Did I have a meeting scheduled with Peng Yuqing to discuss it at that time?": [
+    1745539200, 1745625600
+  ],
+  "2025-06-15\tRemember the division of labor my younger sister and I agreed on over the phone when Mom was hospitalized in early April? It's been quite a while—can you help me check the records from that day?": [
+    1743465600, 1746057600
+  ],
+  "2025-05-20\tOne morning in early March, I wasn't feeling well and that caused a problem at work — I think I sent a client the wrong file. What exactly was wrong with me back then?": [
+    1740787200, 1743465600
+  ],
+  "2025-06-15\tI remember after the group official final defense ended on the afternoon of March 22, I felt very down and chatted with the AI on my phone for a while, and it gave me some improvement suggestions. Now I can't recall them. Can you help me look through the chat history from that time and see what it specifically said?": [
+    1742601600, 1742688000
+  ],
+  "2025-04-15\tBy the way, the time I went rock climbing at 2:45 PM on February 9 this year, I met a climbing buddy at the gym who taught me some climbing techniques. How exactly did he say it? I've been thinking of trying again recently, so I want to review them first.": [
+    1739059200, 1739145600
+  ],
+  "2025-08-15\tWhen I went back to my parents' home during the May Day holiday, one afternoon while helping my dad organize his study, I remember talking to him about a cross-border investment product I've been researching. He gave me some reminders, saying something about what risks to watch out for?": null,
+  "2025-07-15\tI remember there was a very important quarterly review meeting at the end of April. At that meeting, which two directions did I suggest everyone focus on adding positions in?": [
+    1743465600, 1746057600
+  ],
+  "2025-07-15\tHey, didn't I once report the results of the Shanghai summit to the director? At the time, he made an on-the-spot decision to set up a cross-border research project team. Besides me and Zheng Wenbo, there was also a colleague who was transferred from Hangzhou to help. What was her name? I can't remember for the moment.": null,
+  "2025-06-15\tIn that online REITs seminar around March, when I was the speaker sharing portfolio allocation, what questions did those two friends each ask? I just remember they asked quite professional questions, but I can't remember the specific content.": [
+    1740787200, 1743465600
+  ],
+  "2025-11-15\tRemember on the last day of February, I discussed the Fed's rate hike with AI? In its analysis of a possible hike, what did it suggest the tech position should be cut to?": [
+    1738368000, 1740787200
+  ],
+  "2025-08-20\tI remember being especially anxious back then because of the MBA warning, and I even wrote an apology letter. In the letter, what unnecessary arrangements did I promise to cancel?": null,
+  "2025-07-15\tWhen Zhou Jianhua was handing over clients to me, he mentioned how far Huang Siqi's company financing had progressed. He also suggested something I should pay attention to when communicating with her—what was it again?": null,
+  "2025-09-12\tOn the morning of February 22, 2025, Feng Haoran took a photo on the hiking trail at the East Gate of Yuelu Mountain. Please describe the content of the photo based on the evidence.": [
+    1740182400, 1740268800
+  ],
+  "2025-11-01\tI previously agreed with a running buddy to systematically train for a half marathon. How exactly did we plan it back then? Which two days each week did we run? What other exercises did we intend to add besides running?": null,
+  "2025-07-15\tThat time when Yuwei and I reviewed the paper remotely, I remember I later sent her a message saying the checklist was all confirmed. What exactly were the items we determined as fine then?": null,
+  "2025-07-28\tIn early May, I met a friend near Lushan South Road to discuss plans for doing self-media. At the time, we set the frequency of posting videos every week, but I forgot which day of the week it was updated. Can you help me recall?": [
+    1746057600, 1748736000
+  ],
+  "2025-08-20\tA while ago, when the company finalized that cross-border research project, Director Qian said we would set up a three-person team. Besides me, there was my buddy Zheng Wenbo. Who was the other colleague in Hangzhou? I remember it was a female colleague, but I can't recall her name at the moment.": null,
+  "2025-05-10\tI went to Wanda Plaza for lunch with a colleague I have a good relationship with. I remember ordering chopped chili fish head and stir-fried yellow beef, but I can't recall the third dish. It seemed to be a vegetable dish, but I can't remember the exact name. Can you help me recall?": null,
+  "2025-12-01\tWhat was the full name of the young agent who helped my parents sign the lease last time? I only remember his surname is Lu, but I can't recall his given name for the moment.": null,
+  "2025-11-30\tPlease help me check: on August 20 this year, starting preparations at 7:30 AM and the online meeting with Shenzhen client Huang Siqi around 8 AM, regarding the tech stock correction issue, what time and what document did I promise to send her?": [
+    1755648000, 1755734400
+  ],
+  "2025-12-01\tI remember that meeting with the investment director. He mentioned the time requirement for the exam, saying that I had to pass CFA Level I by a certain date. What was the exact deadline? I'm quite impressed by it, but I can't remember the date.": null,
+  "2025-08-15\tIn early May this year, I met Peng Yuqing at a café, and at that time we signed a loan agreement to convert a sum of money into interest-free installments. What was the total amount of that loan again?": [
+    1746057600, 1748736000
+  ],
+  "2025-11-15\tIn September, I went on a blind date. That girl I met at Maan Coffee—what exactly was her job again? I remember we talked about her occupation.": [
+    1756684800, 1759276800
+  ],
+  "2025-11-20\tLast month when I went to Shangyin Coffee for my MBA class, during the break I helped my friend with the food delivery platform thing, and I reminded her of a serious problem. What was it again?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-15\tI helped my friend hang a night view photo at his newly opened café. Everyone said it was a great shot at the time, and it was hung on the main wall. But I suddenly can't remember the name of that photo. Can you help me look it up?": null,
+  "2025-10-01\tThere was a department morning meeting before, hosted by Director Qian. During the meeting, I screen-shared an investment analysis PPT about cross-border e-commerce. What was the final title of that PPT?": null,
+  "2025-11-20\tThe day we signed the coffee shop investment agreement, I had just sent the group photo to the family group chat and my mom replied immediately, but I can't remember what she replied. What was it again?": null,
+  "2025-05-20\tA few months ago, during a department weekly meeting, I remember a colleague joined remotely from another city. Which area's client needs did she share at that time?": null,
+  "2025-10-01\tOnce, at night, I was at home teaching my mother to use her new phone. She was thrilled when she learned how to make video calls, and immediately called another person in the family. Who did she call, again?": null,
+  "2025-05-15\tIn early March, I had a meal with Peng Yuqing and Cai Wenjing. Which Hunan restaurant did we go to? I remember it was in Yuelu District, but I can't recall the name.": [
+    1740787200, 1743465600
+  ],
+  "2025-12-01\tBy the way, at the Q4 strategy meeting held by the branch office last time, I think I asked that external expert a question about quantitative CTA. Could you help me check what exactly I asked?": null,
+  "2025-12-15\tHey, I just remembered the day I signed the lease for my parents' rental in Changsha. I remember the monthly rent was 2800, but how much did I pay at once back then? It seems like I paid several months' rent plus a deposit. Could you check the details for me?": null,
+  "2025-12-30\tWhen I completed the last class of my MBA FinTech course, I spoke on stage as the representative for perfect attendance. I remember I even used the new pen my sister gave me as a metaphor, but I can't recall exactly what I said. Can you help me remember?": null,
+  "2025-06-15\tI previously hosted an online REITs seminar. After the meeting, I noted down the questions raised by friends in my notes, but I can't remember the specific contents. Can you help me look up the notes?": null,
+  "2025-09-15\tOn the day I finished the Japanese exam in early July, I took a taxi to Xiangya Road to look at a senior care community. Who received me then? I remember they had a partnership with Xiangya Hospital, but what exactly was the mechanism?": [
+    1751328000, 1754006400
+  ],
+  "2025-08-15\tDuring my hospitalization, one day my friend Peng Yuqing video-called me, saying her company went bankrupt and she owed more than 100,000 yuan, and she was in a bad mood. I gave her some debt repayment advice and later wrote it in my phone memo. Can you help me look through the note I wrote that day and see what specific suggestions I gave her on how to repay the debt and how to negotiate with the bank?": null,
+  "2025-10-18\tHey, it's been a while since I looked at those exam prep records. I remember on the morning of the CFA exam, I went over the things I needed to bring one last time in the study, and also squeezed in a quick look at my formula cards. Can you help me recall what specific gear I brought to the exam center? And which formulas did I focus on when I was reviewing?": null,
+  "2025-12-15\tAccording to the schedule, at 10 a.m. on November 18, 2025, what was the main content of the video conference between Feng Haoran and client Huang Siqi?": [
+    1763424000, 1763510400
+  ],
+  "2025-12-28\tBy the way, on the day I wrote that client's annual asset allocation report, a colleague helped me confirm some compliance matters. Which specific part of compliance was it?": null,
+  "2025-05-10\tIt suddenly occurred to me that on the evening of February 27, I was doing yoga at home and felt especially good. After finishing, I decided to make it a long-term habit. What days did I set for my weekly practice plan? Was it a fixed number of times per week?": [
+    1740614400, 1740700800
+  ],
+  "2025-12-31\tSeven weeks after I participated in the climbing gym's monthly internal exchange competition on June 22, what were my childhood friend Zhang Mingxuan and I discussing?": [
+    1750550400, 1750636800
+  ],
+  "2025-12-31\tI have experienced many important moments of personal growth and career this year. Can you put them in chronological order?\n1. Participated in the year-end exchange competition at Gecko Climbing Gym; after advancing from the preliminaries, conquered a V3 bouldering route in the finals and successfully topped out.\n2. After getting up in the morning, confirmed that the paper \"Practice and Reflection on FinTech Regulation\" was officially published on the official website of Hunan Finance, and shared it with relatives, friends, and superiors.\n3. At my desk, used the Wind terminal and company database to collect financial data and research reports on leading advanced manufacturing companies in Hunan, preparing for my first column.\n4. After returning home from the coffee shop, published the article \"The Investment Logic of Changsha REITs\" on the Zhihu column and WeChat public account, and adjusted the layout.\n5. Simultaneously opened the WeChat public platform and Zhihu, created a column with the ID \"Lushan Lun Cai\", set the cover image, and submitted certification.\n6. At the year-end summary of the climbing gym after the competition, was awarded the annual \"Active Newcomer Award\" and shared a few words of thanks.": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tWhat course did I attend on the afternoon of the day 41 days before June 26, when I completed the CFA mock test and error analysis?": [
+    1750896000, 1750982400
+  ],
+  "2025-12-31\tI have a few things that stood out to me this year. Can you help me put them in chronological order?\n1. At Yantu Climbing Gym, I learned climbing with Coach Lao Zhou and practiced on the V1 route\n2. Received a call from client Ms. Huang Siqi and apologized for errors in her investment proposal\n3. In the evening, I received a call at home from my sister Feng Xinran; she had just been laid off, and I comforted her\n4. After sending an email to Huang Siqi, I did an in-depth review of the mistake\n5. At noon, I boiled buckwheat dumplings at home and paid for photography and Japanese course tuition\nPlease help me sort them.": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tOn April 30, after breakfast, I did financial planning. 135 days later, what did Luo Zhenyu and I do?": [
+    1745971200, 1746057600
+  ],
+  "2025-12-31\tAfter I finished shooting the wedding ceremony on October 18, what did I do late that night?": [
+    1760745600, 1760832000
+  ],
+  "2025-12-31\tI did several meaningful things this year. Can you help me put them in chronological order?\n1. At my desk, used Wind and the company database to collect information on Hunan advanced manufacturing enterprises, and exported financial data and research reports.\n2. After the trial class (that afternoon I also practiced bloom water flow control, using Yunnan Pu'er beans newly roasted by Shen Xinyi), we moved to the corner booth with our own brewed coffee. Shen Xinyi opened a notebook listing in detail the new store site options, equipment list, staffing, and 18-month cash flow forecast. After listening carefully to her plan, I exchanged opinions with her item by item on core issues such as investment amount, equity ratio, financial supervision, and exit mechanism. The atmosphere was pleasant, and we agreed to finalize the drafted agreement details next week.\n3. At home, I packed my luggage, brought camellia oil as a gift for my parents, and also did a thorough cleaning.\n4. Went to Shen Xinyi's coffee shop for a hand-drip coffee trial class, learned blooming and latte art, and finally made an abstract heart.\n5. Provided one-on-one phone security tutoring for an elderly woman at a community activity center, and helped her remove junk apps.\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tI did a few meaningful things this year. Can you help me sort them in chronological order?\n1. Returned from leading a rock climbing trip at Heimifeng. Because I was too strong on pace control, a teammate quit. The coach advised me on the bus, and after getting home I publicly apologized in the group.\n2. Attended a stamp collecting exchange meeting, was the third to present the 'White Emperor City of the Three Gorges' stamp on stage, and also appreciated the Qing Dynasty red revenue stamps.\n3. Took an advanced photography class, with the theme of color management and Lightroom grading, and took 4 pages of notes.\n4. Returned from the hospital, stopped by the convenience store on the way to buy healthy ingredients such as broccoli and oats, and after getting home cleaned out the expired food in the fridge.\n\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tThis year I did a few interesting things. Can you help me put them in chronological order?\n1. Went on a night tour of Orange Isle with my family, enjoying the night view. My father also marveled at how much Changsha had changed.\n2. Took a pour-over coffee and latte art experience class at Shen Xinyi's café, but ended up making an abstract heart shape with the latte art.\n3. Went to Banana Climbing Gym to challenge the advanced V2 route. Failed the first two attempts, but succeeded on the third.\n4. On the G1772 train, reviewed the contract terms of Lin Zhihao's project with Lawyer Wang, and also brewed a drip-bag coffee.\n5. After hanging up the video call, sorted out the capital flow timeline and contradictions, and drafted an information requirements list with Lawyer Wang.\n\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tOn the 60th day after June 1 when I set up the cat safety area and picked up the cat, what did I do at the Jian'er Medical Device Store?": [
+    1748736000, 1748822400
+  ],
+  "2025-12-31\tI did a few interesting things this year. Can you help me put them in chronological order?\n1. Held a personal photography exhibition \"The Warmth of the Street Corner\" at Xinyi Hand-Brewed Coffee Shop on Chaozong Street, with quite a few friends and clients attending\n2. Went to Dingwangtai Book Market to buy CFA exam prep books, and also had a chili-fried pork rice bowl at Xiangcun Kitchen next door\n3. Listened to an open-air jazz concert at the top of Yuelu Mountain, ran into Shen Xinyi and Peng Yuqing, and had drinks and chatted together\n4. Conquered the V3 route at V-Power Climbing Gym that had always failed before, and also did 4 standard pull-ups\n\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tOn the 61st day after I attended the online advanced photography course (morning session) on March 1, what did I go out to purchase?": [
+    1740787200, 1740873600
+  ],
+  "2025-12-31\tI experienced a few special things this year. Can you help me put them in chronological order?\n1. Created a column called \"Yuelu Finance Talk\", launched simultaneously on WeChat and Zhihu, using a morning mist photo of Aiwan Pavilion on Yuelu Mountain as the header image.\n2. Had a video call with my friend Xie Yutong in Shenzhen, apologized for canceling the camping last time, and also arranged to try camping in May.\n3. Deep into the night, I fine-tuned wedding photos, adjusting exposure and color temperature, working until midnight.\n4. Successfully completed a V3 route at V-Power Climbing Gym, and the coach praised me (that morning I had just accompanied my parents for a physical examination at Xiangya Hospital).\n5. Went to Hengshan to take photos. After returning home, I imported them into Lightroom for fine editing and made an electronic album called \"One Day at Hengshan and the Cloud Stone Book\".\n6. My photos of the Changsha Marathon were adopted by the official Weibo account, which also @me, and the readership quickly exceeded 10,000.\n\nWhich of these happened first, and which happened later?": [
+    1746057600, 1748736000
+  ],
+  "2025-12-31\t281 days before December 1, when I performed the first stage of annual review data export and verification, I was at a café having a remote video call with a friend. What was that about?": [
+    1764547200, 1764633600
+  ],
+  "2025-12-31\tI have done several meaningful things this year. Can you help me sort them in chronological order?\n\n1. Had a video call with my younger sister. She excitedly showed me her self-media account with 10,000 followers, and we finalized the route and shared ledger for the Spring Festival family trip to Yunnan.\n2. Went to the MBA Education Center at Hunan University to register, submitted materials, selected two courses, and exchanged WeChat with a classmate who works as an engineer at Zoomlion.\n3. During the outdoor climbing activity at Heimifeng, two team members couldn't endure it and quit early. The remaining teammates were in low spirits, and the activity ended in a dull atmosphere.\n4. In the morning, I went to Dingwangtai Book Market to buy textbooks on strategic management and investment portfolio, and also had a rice bowl with stir-fried pork and peppers at a nearby small restaurant.\n5. At Lushan Community Activity Center, I gave an anti-fraud lecture to the elderly in Changsha dialect, demonstrated the National Anti-Fraud Center App, and the interaction was enthusiastic.\n6. After the lecture, I provided one-on-one mobile security tutoring to 12 elderly people in the hall, helped an old lady clean up junk software, and set up automatic cleanup.\n\nWhich of these came first and which came later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tAfter the night trip to Orange Isle on September 5, 2025, what did I do with my parents 71 days later?": [
+    1757030400, 1757116800
+  ],
+  "2025-12-31\tThree weeks before the final lesson and graduation ceremony of “Fintech” on October 30, what did I do at a coffee shop?": [
+    1761782400, 1761868800
+  ],
+  "2025-12-31\tI experienced several memorable things this year. Can you help me put them in chronological order?\n1. Participated in an exchange competition at Banana Climbing Gym, stably topped out all V1 routes, and received the Newcomer Encouragement Award and a monthly pass.\n2. Moved into my parents' new home; after all items were put in place, the three of us took the first formal family photo in front of the feature wall of the new house.\n3. Took Teacher Li's Yin Yoga trial class at Jingxin Yoga Studio, trying poses such as forward fold and seated angle, which relieved tension in the neck, shoulders, and lower back.\n4. Due to a work mistake, resent the corrected proposal to client Huang Siqi, conducted a deep review, and recorded it in the error reflection log.\n\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tOn the 43rd day after my promotion interview with investment director Qian Yongqiang on September 28, I had more than 20 guests in attendance. What did I do?": [
+    1759017600, 1759104000
+  ],
+  "2025-12-31\tI recently went through a few events and I can't quite remember the order. Can you help me sort them out?\n1. Picked up my mother from the hospital when she was discharged. Director Wang explained the precautions, and I took notes on my phone.\n2. Was woken up by my father's phone call in the early morning, saying my mother had stomach bleeding. I quickly packed up and got ready to leave.\n3. Drove overnight from Changsha back to Wuhan, stopped for a while at Yueyang service area on the way, and also sent a voice message to my sister.\n\nWhich of these happened first and which happened later?": null,
+  "2025-12-31\tI did several memorable things this year. Could you help me put them in chronological order?\n1. Had a video call with my sister; she showed me her self-media account with tens of thousands of followers, and we finalized the family trip to Yunnan during the Spring Festival and created a shared ledger.\n2. At my desk, I built a preliminary asset allocation framework based on the market environment, using Excel and Wind to construct a multi-dimensional main allocation framework.\n3. After ending the call with Peng Yuqing, I called my parents via video to launch a family health monitoring plan, and formulated a CFA Level I catch-up plan to conquer financial statement analysis.\n4. I opened the CFA textbooks and my computer, paid to order the digital textbooks, joined a preparation group, and made a three-month study plan.\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tI did a few things worth recording this year. Can you sort them in chronological order?\n1. Unboxed a new camera in my home study, set the parameters, and took photos to send to a photography buddy.\n2. Organized my exhibition reflections in the rest area of Hunan Provincial Museum and posted them on Moments.\n3. Went with my parents to see an apartment on Tongzipo Road and immediately locked in a preferred high-rise unit.\n4. Attended the Star City Photography Association's photo review session, where three of my works were critiqued and I was unanimously accepted as a member.\n5. Reorganized a data report in my study, apologized to my team members, and sent a comparative analysis.\n\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tThis year I did several meaningful things. Can you help me arrange them in chronological order?\n1. Participated in a community tree-planting activity and planted five osmanthus trees with my neighbors. After getting home, I edited photos and videos and posted them on Moments, receiving quite a few likes.\n2. Met with Boss Shen at Shangyin Coffee, showed her the screenshot of my paper being published online, tasted new coffee beans, and bought drip bags to bring to my parents.\n3. As team leader, I hosted the online Strategic Management discussion for the MBA group. I had an argument with team member Zhang Ming over data definition issues, and the instructor intervened to mediate.\n4. Had a promotion interview with investment director Qian Yongqiang in the meeting room. He pointed out my strengths and weaknesses and also mentioned requirements for CFA and industry reports.\n5. Went to the rehabilitation department of Xiangya Hospital for a follow-up. The doctor said my cervical spine was recovering well, gave me a new home maintenance plan, and I also asked for advice on half-marathon training.\n\nWhich of these happened first and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tWhat did I present third on stage at the exchange meeting 309 days before the opening ceremony of my personal photography exhibition 'The Temperature of the Street Corner' held on November 10?": [
+    1762732800, 1762819200
+  ],
+  "2025-12-31\tI did several memorable things this year, but I can't remember the order. Can you help me sort them out?\n1. At the climbing gym, I successfully topped out on an advanced V2 route that I had failed many times before. The coach also suggested I strengthen my core training.\n2. In the evening, I received a mention from the official marathon Weibo account. They used my photos and thanked me. I reposted it and replied to many fellow runners.\n3. I spent the whole afternoon at home processing marathon photos. After selecting and retouching them, I sent them to the organizing committee.\n4. On Sunday morning, I accompanied my parents for a physical exam. My father was advised to control his red meat intake.\n\nWhich of these happened first?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tOn June 26, after I finished the CFA mock exam and wrong-question analysis, what did I do in the rock climbing community 23 days later?": [
+    1750896000, 1750982400
+  ],
+  "2025-12-31\tI did a few interesting things this year. Can you help me put them in chronological order?\n1. I attended the photo review session of the Xingcheng Photography Association, brought three works, and passed the membership application unanimously, receiving my membership card.\n2. I attended the running group's year-end training sharing session, where the coach explained winter running posture adjustments, and I asked about cadence.\n3. That morning, I accompanied my parents to visit Yuelu Mountain, toured Yuelu Academy and Aiwan Pavilion, and took photos for them.\n4. At the Lushan Community Activity Center, I gave a lecture to seniors on fraud prevention (that day I arrived early to confirm the equipment and debug it together with volunteer Xiao Zhou), opened with Changsha dialect, and taught them to use the anti-fraud app.\n5. In the evening, I watched the moon with my parents on the balcony, ate mooncakes and fruit, and listened to my father's childhood stories.\n6. In the evening, I took the subway to Meixihu West Station, met up with running pal Gao Yunfei, and went to see a show together.\n\nWhich of these things happened first and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tOn April 10, 36 days after I prepared video communication and review notes, what activity did I participate in with my classmate Wang Fang?": [
+    1744243200, 1744329600
+  ],
+  "2025-12-31\tI experienced several memorable things this year. Can you help me arrange them in the order they actually happened?\n1. After leaving the hospital, I stopped by a convenience store on the way and bought healthy ingredients such as broccoli, asparagus, and sole fish. When I got home, I threw away all the unhealthy stock in the refrigerator and wiped it clean.\n2. Late at night, alone in the study, I used Photoshop to meticulously edit wedding photos, adjusting exposure and skin tone, and worked until the early morning.\n3. At the Shenzhen Convention and Exhibition Center, I attended the Fintech Summit, listened to speeches on blockchain and robo-advisory, and had in-depth exchanges with two industry insiders during the coffee break.\n4. I had dinner with my childhood friend Zhang Mingxuan at a Hunan restaurant in Changsha. He detailed his cross-border e-commerce startup plan and invited me to join as a co-founder.\n5. After the summit, I had dinner with my childhood friend Zhang Mingxuan, who came from Shenzhen to meet up, at a Hunan restaurant in Shenzhen Bay MixC, and we talked about ideas on big data and robo-advisory.\nWhich of these events happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tI experienced a few memorable things this year. Can you help me arrange them in chronological order?\n1. During an early morning run with fellow runner Gao Yunfei on Yuelu Mountain, I suddenly felt chest discomfort and was forced to rest.\n2. Had a video conference with my superior Qian Yongqiang in the study, reporting on the customer service plan.\n3. In the morning, I drove to pick up my parents, planning to go to Zhangjiajie together for a trip.\n4. In the afternoon, I went alone to Xiangya Third Hospital for medical treatment and was diagnosed with overwork syndrome.\n5. While writing the monthly investment strategy report in the office, I found out that I had passed the Japanese N5 exam.\n\nThese events each occurred at different points in time. Can you tell me their actual chronological order?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tWhat was the content of the Moments post I made in the rest area of Hunan Museum, 176 days before the initial completion of the new home and the commemorative group photo on November 1?": [
+    1761955200, 1762041600
+  ],
+  "2025-12-31\tOn January 12, the same day I picked up part of the report and did a health review, what did I do near the hospital?": [
+    1736640000, 1736726400
+  ],
+  "2025-12-31\tOn December 14, after I attended the running group's year-end training sharing session, what did I clean out of the refrigerator after returning home 250 days ago?": [
+    1745539200, 1765756800
+  ],
+  "2025-12-31\tThis year I did several interesting things. Can you help me arrange them in chronological order?\n1. On the day my journal paper went live, I picked up my parents and brought them to Changsha. After dinner at Xiangyue Restaurant, I toured Orange Isle with my family at night. We took photos in front of the statue of young Mao Zedong, and my father marveled at the changes in Changsha.\n2. I attended the year-end training sharing session of my running club, and the coach gave me advice on using a metronome to train for my cadence problem.\n3. That morning, I completed my annual physical exam with all indicators normal. In the evening, I went to the climbing gym to challenge a V3 route. I succeeded on my third attempt, confirming that my finger dexterity had recovered.\n4. I did a 15-kilometer long-distance training run with my running buddy Gao Yunfei at Yuelu Mountain, at a pace of 5 minutes 30 seconds per kilometer, and refilled water at Aiwan Pavilion along the way.\n5. I started preparing for the CFA Level I exam, paid about 900 US dollars to order study materials, formulated a three-month study plan, and joined a study group.\n6. The day after a hike at Mount Heng was a recovery training day. I had a promotion interview with investment director Qian Yongqiang, who pointed out the requirements and timeline for promotion.\n\nWhich of these events happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tI experienced several memorable things this year. Can you help me put them in chronological order?\n1. I unboxed a new camera in my study, set the parameters, took a photo, and sent it to a photography buddy.\n2. I arrived at the physical examination center at the scheduled time (that day I took a taxi to the hospital and checked my account balance on the way). After verifying my identity at the front desk and receiving the examination form, I completed blood draw (complete blood count, liver and kidney function, lipid panel), abdominal ultrasound, electrocardiogram, chest X-ray, and urine test in sequence. The whole process took about 1.5 hours and was smooth and efficient. After the examination, I felt my stomach was empty and urgently needed energy, so I went to Zhougong Zhoupou opposite the hospital for breakfast.\n3. In the second half of the outdoor climbing, some team members withdrew, the activity ended early, and the atmosphere was dull.\n4. I returned to the hospital's physical examination center (that morning I had eaten preserved egg and lean pork congee at Zhougong Zhoupou), collected some reports that were available immediately (such as complete blood count and urine routine), and went into Dr. Wang's office to listen to the interpretation. Dr. Wang pointed at the lipid report and seriously stated that total cholesterol and low-density lipoprotein were both slightly above normal, diagnosing mild hyperlipidemia, and recommending reducing high-fat diet, increasing aerobic exercise, and monitoring weight. Although I felt that being young was not a big deal, the doctor's authoritative advice and the records on 'Boohee Health' made me start to take it seriously.\n5. On the way back from climbing, I was persuaded by the coach, and after returning home, I apologized in the group.\n\nWhich of these happened first, and which happened later?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tI remember the annual financial review I did in early December this year—how long did it last?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tI remember the trip back to Wuhan for Spring Festival this year. From setting off to the late-night talk with my father, how long did it last in total?": [
+    1735689600, 1767225600
+  ],
+  "2025-12-31\tI remember going to the National Stamp Exhibition in Beijing this September. How long did it last, all the way until the end? Besides exhibiting the Large Dragon stamps, which important person did I also meet?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tI remember going to Shanghai in April this year for that financial summit. How long did it last in total?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tI remember that business trip to Shenzhen in January this year, attending the Fintech Summit and visiting Tencent, and then taking the high-speed train back to Changsha. How many days did the whole trip last? Besides the summit, who else did I meet up with?": [
+    1735689600, 1738368000
+  ],
+  "2025-12-31\tI remember that after I purchased a new camera this December, from that photography session to when I finished organizing the photos and shared them with my family, how long did it take? Also, which old street did I go to for test street photography during that time?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tOn January 14, Feng Haoran and Zheng Wenbo made an agreement, which was related to a hospital notice that day. What did they agree on? Why did they make this agreement?": [
+    1736812800, 1736899200
+  ],
+  "2025-12-31\tIn January 2025, Feng Haoran received verbal praise from his supervisor Qian Yongqiang because of the high recognition from client Lin Zhihao. Prior to this, he had had several lunches with his colleague Zheng Wenbo. During the lunch the day before the praise, what news did Zheng Wenbo reveal to him?": [
+    1735689600, 1738368000
+  ],
+  "2025-12-31\tOn February 10, 2025, Feng Haoran planned to meet with an important client. On the afternoon of the last working day before the meeting, he organized the electronic files of this client. Who was this client?": [
+    1739145600, 1739232000
+  ],
+  "2025-12-31\tIn March, I recorded a cervical pain score. A few days later, in the evening, when I did a health summary, I recorded the change in cervical pain. May I ask what my recorded pain score dropped from and to?": [
+    1740787200, 1743465600
+  ],
+  "2025-12-31\tOn the evening when his colleague Zheng Wenbo reminded him to go to the hospital for a checkup, Feng Haoran set the date for the hospital visit on his phone, which later prompted him to start physical therapy on March 20. What date did he set?": [
+    1742428800, 1742515200
+  ],
+  "2025-12-31\tIn March 2025, on the day Feng Haoran dined with his colleague Zheng Wenbo and exchanged market views, he hurriedly completed a task before lunch, but still felt uneasy during the lunch break. Which client did that task serve?": [
+    1740787200, 1743465600
+  ],
+  "2025-12-31\tIn March, on the morning after Feng Haoran's conversation with Qian Yongqiang, what action did he take in response to the previous day's conversation requirements?": [
+    1740787200, 1743465600
+  ],
+  "2025-12-31\tBefore booking the high-speed rail ticket, I went to the convenience store where I had bought healthy ingredients in early April. What did I mainly buy?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tIn April 2025, after Feng Haoran completed his annual physical exam and before he and his sister jointly formulated a health management plan for their parents, under what circumstances did the first contact between the siblings occur? What was he doing at the time?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tOne morning in late April, Feng Haoran and Zhou Yuwei discussed the final review of their paper remotely. So, on the night before their discussion, what was the last preparation Feng Haoran made for this discussion?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tOn the afternoon of May 4, 2025, before starting CFA study, what finance- and entrepreneurship-related things did Feng Haoran concentrate on?": [
+    1746316800, 1746403200
+  ],
+  "2025-12-31\tIn June, on the morning Feng Haoran fed Baozi, what was the first recorded thing he did?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tOn the evening of June 29, 2025, the second day of CFA mistake review and categorized study, what training did Feng Haoran do?": [
+    1751155200, 1751241600
+  ],
+  "2025-12-31\tIn June, on the morning Feng Haoran called Zheng Wenbo, the previous afternoon he had done a rehabilitation activity prescribed by the doctor. How long did this activity last?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tOn the second morning of my camping preparation (that morning I first went for a 5-kilometer morning run), I was going to pick up a friend. This friend had joined me in a stamp exhibition mock rehearsal in August. Where did I pick up this friend?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tAt the meeting on June 10 with the Shenzhen institutional client, the supervisor patted him on the shoulder, praised him, and assigned follow-up work. The next morning, before creating the one-week sprint plan - ESG data document, what task did Feng Haoran complete first?": [
+    1749513600, 1749600000
+  ],
+  "2025-12-31\tOne noon in July, Feng Haoran and his colleague Zheng Wenbo arranged to celebrate together in the evening. That morning, what activity did he mainly do in the living room at home?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tOn August 9, 2025, the day Feng Haoran and his friend simulated a stamp exhibition, after his morning run, he first completed a daily practice, and then began making a diet plan for the half marathon. What was this practice?": [
+    1754697600, 1754784000
+  ],
+  "2025-12-31\tOn a weekend in August, Feng Haoran did a stamp exhibition rehearsal with friends. The next day, he had a dinner with his childhood friend. What did he mainly do before the dinner with his childhood friend that day?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tIn August 2025, when meeting again with the friend they had dined with in Shenzhen earlier that year, what did they mainly discuss?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tAt the company meeting on the morning of the day in August when Feng Haoran first went to Shangyin Cafe, which supervisor praised the team's end-of-month performance?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tIn September 2025, after Feng Haoran took a test on a certain day, he asked the health assistant about a jogging recovery plan. The next morning after the test, he did something health-related first. What was it?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tIn the early morning two days after Feng Haoran confirmed in early September that his paper had been accepted, an unexpected incident interrupted the activity. What was this incident? What was Feng Haoran doing before the incident?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tOn the afternoon of Feng Haoran's first attendance at the 'Fintech' course at Hunan University, what did he do in the office?": null,
+  "2025-12-31\tIn the photography works list at Shangyin Coffee on September 25, there is a night scene work titled \"Xiangjiang Night Talk\". On which day was this work selected and sent for framing?": [
+    1758758400, 1758844800
+  ],
+  "2025-12-31\tIn September 2025, after Feng Haoran finished a training session that included Russian twists, before he started eating his quinoa salad, what did he do?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tIn October 2025, what did Feng Haoran eat for breakfast on the morning after the run when he smelled osmanthus fragrance at West Lake Park?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tAfter the lunch break on October 9, I confirmed the logistics and took leave to pick up my parents, then went to the subdistrict office. Before that, I had done some preparation work on another morning. What exactly did I do that morning?": [
+    1759968000, 1760054400
+  ],
+  "2025-12-31\tIn November, on the morning before the physical exam, what side errand did Feng Haoran run during his outdoor workout?": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tTwo days before I went to Changsha South Railway Station to pick up my sister on December 30, from after the morning phone call to before the event celebrating the coffee shop's first monthly break-even, what exercise did I do?": [
+    1767052800, 1767139200
+  ],
+  "2025-12-31\tOn the afternoon of December 31, 2025, after confirming in his study that his investment portfolio exceeded one million, Feng Haoran drove to Yuelu Mountain with his family. At noon that day, he first went to a xiaolongbao restaurant for a meal, then went to a supermarket to buy supplies. Which commercial complex did this midday activity mainly take place in?": [
+    1767139200, 1767225600
+  ],
+  "2025-12-31\tWhat trends does my social interaction in March (offline gatherings, deep conversations) show in terms of time distribution? What might be the reasons?": [
+    1740787200, 1743465600
+  ],
+  "2025-12-31\tIn September 2025, how did my running training gradually transform from casual morning runs to systematic half-marathon preparation? Which key events led me to adjust my training approach?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tWhat photography style did my photography activities in September show a particular interest in? How did that interest develop?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tIn September I spent a lot of time on both photography and running. How are their learning patterns different? Why is that?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tDuring September 7 to 11, 2025, how did my mood fluctuate? What were the main reasons?": [
+    1757203200, 1757289600
+  ],
+  "2025-12-31\tLooking back at my June routine, did it form a regular pattern overall? Which days had the worst late nights, and what were the causes?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tWhat new habits did I mainly develop in June? Are there any inherent connections between these habits?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tWhy did my June morning running habit get interrupted? And what later prompted me to try to resume it?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tLooking back at June, what were the differences in my study state between the first half and the second half of the month? What caused this change?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tWhat weekly pattern did my exercise training form in December? Which days each week were relatively fixed for high-intensity training?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tWhat new eating habits have I formed this month? How did these habits develop step by step?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tIn December, what was the difference in my time investment between running and climbing? Which sport is more likely my deeper preference?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tI started trying rock climbing as a new sport in May. On what exact day did I start? What training routine did I develop afterwards?": [
+    1746057600, 1748736000
+  ],
+  "2025-12-31\tWhat patterns were there in my learning engagement in May? What were the main drivers?": [
+    1746057600, 1748736000
+  ],
+  "2025-12-31\tIn May, when studying, did I prefer systematic scheduling or more often use fragmented time? What were the signs?": [
+    1746057600, 1748736000
+  ],
+  "2025-12-31\tIn August 2025, how did my meditation habit develop step by step? Please describe the key events, motivations, and the intent behind each step.": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tWhat obvious changes were there in my exercise training in the first half of August 2025 (1st-15th) and the second half (16th-31st)?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tIn August, in which personal interests or leisure activities were my financial investment work skills applied in a cross-disciplinary way? Please explain with specific events.": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tFrom August 11 to 12, what emotional changes did I experience while dealing with my younger sister's career choice issue?": [
+    1754870400, 1754956800
+  ],
+  "2025-12-31\tHow did my exercise rhythm change from the beginning to the end of February? What does this change reflect?": [
+    1738368000, 1740787200
+  ],
+  "2025-12-31\tWhat patterns are there in my Wednesday morning runs in July? What caused them?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tIn my July pour-over coffee practice, what was the relationship between my social sharing (such as asking friends for advice and posting on Moments) and my practice status?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tIn July, between pour-over coffee and photography, which interest did I dedicate more energy to? Why was that?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tIn July, what was the relationship between my exercise volume and major stressful events (July 3 exam, July 8-10 investment negotiation, July 19 outdoor climbing conflict)? Did exercise help me relieve stress?": [
+    1751500800, 1752969600
+  ],
+  "2025-12-31\tWhat new regular habits did I develop in November? How did these habits gradually form?": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tBased on my health records in November, analyze the relationship between weight fluctuations and exercise and social meals.": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tWhat pattern did my learning investment show in November? How did career development learning and personal interest learning interweave with each other?": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tDuring the period from January 20 to 31, 2025, what emotional changes did I experience due to my mother's health issues? Please explain the reasons with specific events.": [
+    1737331200, 1737417600
+  ],
+  "2025-12-31\tIn October 2025, how was my exercise plan adjusted based on the weather? Please explain with specific examples.": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tWhat obvious turning points appeared in my learning interests in October? What external events triggered these turns respectively?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tAfter my right knee injury on October 13, what adjustments did I make to my exercise habits? How did these adjustments affect my physical recovery and subsequent athletic performance?": [
+    1760313600, 1760400000
+  ],
+  "2025-12-31\tIn April 2025, what specific health management behaviors did I implement? How did these behaviors gradually form fixed habits from the initial triggering events?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tIn April 2025, I persisted in daily mindfulness meditation and kept an emotion diary. Based on my diary and sleep records, what specific effects did meditation have on my sleep and emotions?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tLooking back at April, what characteristics did my learning style have? How did work-related learning and personal hobbies interleave? Why did this state come about?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tIn April 2025, why did I suddenly start and persist with health management including meditation, yoga, and cervical spine rehabilitation? How are these behaviors related to my family experience?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tOn which exact day in January 2025 did Feng Haoran go to the MBA Education Center of Hunan University to register?": [
+    1735689600, 1738368000
+  ],
+  "2025-12-31\tIn August 2025, Feng Haoran met Zhang Mingxuan at Xinyi Cafe. What was the exact date?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tFeng Haoran's phone was stolen during his commute home from work in October. What specific day was it?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tWhat was the exact date in January when Feng Haoran participated in the in-depth video communication with the client?": [
+    1735689600, 1738368000
+  ],
+  "2025-12-31\tIn September, on which exact date did Feng Haoran confirm the online publication of the paper \"Practice and Reflection on FinTech Regulation\" in the journal Hunan Finance?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tFeng Haoran met with MBA group members at Cotti Coffee in mid-March to repair the relationship. What was the exact date?": [
+    1740787200, 1743465600
+  ],
+  "2025-12-31\tWhat was the specific date in June when Feng Haoran went on a photo shoot with his friend Xu Jianing in the Houhu Art District?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tOn which specific day in November did Feng Haoran go to Wuhan to inspect a retirement community?": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tOn which exact day did Feng Haoran attend the promotion candidate announcement meeting in early October?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tOn which day did Feng Haoran attend the last class and graduation ceremony of the \"Financial Technology\" course in October 2025?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tWhen Feng Haoran went to the Sony store in December for unboxing and pickup, what specific lens model did he purchase?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tWhat specific day in December did Feng Haoran attend the running group's year-end training sharing session?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tOn which specific day in April did Feng Haoran have a video call with Peng Yuqing?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tOn which evening in December did Feng Haoran run into an old classmate at the entrance of the studio?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tFeng Haoran attended the MBA opening ceremony and registered for retaking courses in September. What was the exact date?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tWhen exactly did Feng Haoran invite his parents to Changsha to visit the senior living community during the online celebration of his mother's birthday?": null,
+  "2025-12-31\tWhat decision did Feng Haoran's sister Feng Xinran make during their phone call on August 11, 2025? Please combine the calendar events and call records to point out the consistency of the decision and whether there is any contradictory information.": [
+    1754870400, 1754956800
+  ],
+  "2025-12-31\tOn which specific day in June did Feng Haoran conduct the department promotion presentation on the asset allocation model?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tWhat is the specific date when Feng Haoran gave the departmental plan presentation in May?": [
+    1746057600, 1748736000
+  ],
+  "2025-12-31\tWhat was the specific date in June when Feng Haoran had the quarterly performance interview with Investment Director Qian Yongqiang?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tWhen exactly did Feng Haoran and his running buddy Gao Yunfei start the half-marathon training plan they agreed on?": null,
+  "2025-12-31\tOn which exact day was Feng Haoran's Valentine's Day date in February?": [1738368000, 1740787200],
+  "2025-12-31\tDuring what time period did Feng Haoran complete the annual pension contribution operation on November 28?": [
+    1764288000, 1764374400
+  ],
+  "2025-12-31\tWhat is the exact date of Feng Haoran's first physical therapy appointment in March?": [
+    1740787200, 1743465600
+  ],
+  "2025-12-31\tWhat was the specific date in August when Feng Haoran renovated his workstation?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tOn which specific day in February did Feng Haoran attend the client formal handover meeting?": [
+    1738368000, 1740787200
+  ],
+  "2025-12-31\tOn which specific day in July did Feng Haoran do fluorescent photography creation with Gao Yunfei?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tFeng Haoran recalled in December the exact date he picked up his parents from Changsha South Railway Station and drove home during the National Day holiday. What date was that?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tWhat departure date did Feng Haoran and his friends arrange for the post-Chinese New Year self-driving trip to Zhangjiajie during their meal on January 25?": [
+    1737763200, 1737849600
+  ],
+  "2025-12-31\tOn which specific day in March 2025 did Feng Haoran host the REITs online seminar?": [
+    1740787200, 1743465600
+  ],
+  "2025-12-31\tOn which specific day in June did Feng Haoran call his sister Feng Xinran to comfort her after she was laid off?": [
+    1748736000, 1751328000
+  ],
+  "2025-12-31\tWhat was the exact start time of Feng Haoran's meeting with Peng Yuqing on May 5?": [
+    1746403200, 1746489600
+  ],
+  "2025-12-31\tOn which specific day in May 2025 did Feng Haoran have his monthly meeting with Director Qian Yongqiang?": [
+    1746057600, 1748736000
+  ],
+  "2025-12-31\tOn which exact day in July did Feng Haoran go to Shangyin Coffee for the first negotiation on the branch investment?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tFeng Haoran, think back: after the conversation with Qian Yongqiang on February 17, what training did Mr. Qian arrange for him to attend in the next month (March)?": [
+    1739750400, 1743465600
+  ],
+  "2025-12-31\tWhat was the specific date in August when Feng Haoran had a video call with client Lin Zhihao and set up the workbench?": [
+    1754006400, 1756684800
+  ],
+  "2025-12-31\tFeng Haoran received the review approval email from the Changsha Marathon organizing committee in July; on which exact day?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tWhat was Feng Haoran's accuracy rate in a CFA quiz in June?": [1748736000, 1751328000],
+  "2025-12-31\tOn what date was the main forum of the Guangdong-Hong Kong-Macao Greater Bay Area FinTech Summit that Feng Haoran attended in January held?": [
+    1735689600, 1738368000
+  ],
+  "2025-12-31\tOn which specific day in November did Feng Haoran write the long article 'Changsha REITs Investment Logic'?": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tHow much money did Feng Haoran set aside for the balance payment for the coffee shop branch during his financial planning on the morning of July 1, 2025?": [
+    1751328000, 1751414400
+  ],
+  "2025-12-31\tWhen exactly did Feng Haoran visit the Xiangya Health and Wellness Community in early July 2025?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tWhat specific day in November did Feng Haoran accompany his parents to receive the vaccination?": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tWhat was the specific date in December when Feng Haoran conducted the year-end review and celebration with Shen Xinyi?": [
+    1764547200, 1767225600
+  ],
+  "2025-12-31\tOn which day in May did Feng Haoran arrange with Shen Xinyi to go view the shop?": [
+    1746057600, 1748736000
+  ],
+  "2025-12-31\tOn what specific date in September did Feng Haoran answer the phone call from client Lin Zhihao?": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tHow many days was the Yunnan travel plan that Feng Haoran approved at the bonfire party on December 31?": [
+    1767139200, 1767225600
+  ],
+  "2025-12-31\tWhich restaurant did Feng Haoran take his parents to for dinner in late October?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tOn the afternoon of December 15, 2025, at Tingshan Coffee, besides the latte, what dessert did Feng Haoran additionally order for Zhou Yuwei?": [
+    1765756800, 1765843200
+  ],
+  "2025-12-31\tAfter the anti-fraud lecture on December 6, 2025, a retired elderly man surnamed Wang privately asked Feng Haoran about a specific investment product. What is the name of this product?": [
+    1764979200, 1765065600
+  ],
+  "2025-12-31\tWhat is the name of the old craftsman making sugar paintings in Xinsheng Village Lane on Taiping Street?": null,
+  "2025-12-31\tDuring lunch break on December 16 at Shangyin Coffee, what exactly was the piece Shen Xinyi mentioned she played at her weekend concert?": [
+    1765843200, 1765929600
+  ],
+  "2025-12-31\tOn the evening of December 7, 2025, when his sister Feng Xinran replied to Feng Haoran on WeChat, what specific emoji sticker did she send?": [
+    1765065600, 1765152000
+  ],
+  "2025-09-24\tWhat is the name of the science fiction movie watched this afternoon at Wanda Cinema?": null,
+  "2025-04-18\tAt the community tree-planting activity on the morning of March 9, 2025, what flower varieties suitable for balcony planting did neighbor Aunt Liu recommend to Feng Haoran?": [
+    1741478400, 1741564800
+  ],
+  "2025-07-18\tOn the evening of March 27, 2025, the latest policy interpretation article on affordable rental housing REITs that Feng Haoran downloaded from Huatai Securities' internal knowledge base was published by which institution or department?": [
+    1743033600, 1743120000
+  ],
+  "2025-09-04\tOn the afternoon of March 19, 2025, what was the name of the person that Zheng Wenbo mentioned as the Saturday blind date match?": [
+    1742342400, 1742428800
+  ],
+  "2025-09-01\tWhat was the name of the colleague mentioned by Zheng Wenbo during lunch on March 17, 2025, who took leave to recuperate due to cervical spine problems?": [
+    1742169600, 1742256000
+  ],
+  "2025-08-08\tAt noon on May 29, 2025, during lunch at Fei Dachu's Stir-fried Pork with Chili Peppers with Zheng Wenbo, what was the name of the friend he mentioned who planned to travel together for the Dragon Boat Festival?": [
+    1748476800, 1748563200
+  ],
+  "2025-10-31\tWhat was the name of the trainee who was injured last week, mentioned by Coach Lao Zhou during training at Yantu Climbing Gym on May 14, 2025?": [
+    1747180800, 1761523200
+  ],
+  "2025-06-18\tOn the evening of May 26, 2025, after Feng Haoran had a video call with his younger sister, what was the name of the independent lawyer she decided to hire?": [
+    1748217600, 1748304000
+  ],
+  "2025-07-07\tIn the camping discussion group on May 7, 2025, with Peng Yuqing and Xie Yutong, what specific ingredients did Peng Yuqing purchase?": [
+    1746576000, 1746662400
+  ],
+  "2025-06-08\tOn the way back from rock climbing training, after Feng Haoran sent a voice message to his friend Peng Yuqing, which stock's code did Peng Yuqing specifically ask about in her text message reply?": null,
+  "2025-03-12\tWhen Feng Haoran communicated with Wu Junjie on January 19, 2025, what was the name of the technology stock that Wu Junjie specifically recommended?": [
+    1737244800, 1737331200
+  ],
+  "2025-12-12\tWhat was the name of the new client during the initial communication on the afternoon of January 7, 2025?": [
+    1736208000, 1736294400
+  ],
+  "2025-10-22\tWhat was the specific company name of the Shenzhen private equity fund he mentioned during lunch with Zheng Wenbo on January 16, 2025?": [
+    1736985600, 1737072000
+  ],
+  "2025-04-03\tDuring the video call with his younger sister Feng Xinran on the evening of January 12, 2025, what was the specific name of the internet marketing project Feng Xinran mentioned?": [
+    1736640000, 1736726400
+  ],
+  "2025-09-06\tOn the evening of January 23, 2025, at the Xiangjiang Financial Night Cocktail Party, when Feng Haoran and Zhang Wei were deeply discussing REITs policy, what was the specific project name that Zhang Wei mentioned she was recently evaluating?": [
+    1737590400, 1737676800
+  ],
+  "2025-04-21\tWhat is the name of the company's newly launched popular science short video project that she mentioned during the Hunan cuisine dinner with Peng Yuqing on the evening of February 23, 2025?": [
+    1740268800, 1740355200
+  ],
+  "2025-07-30\tDuring the morning run on February 1, 2025, which investment institution did Gao Yunfei mention as the lead investor in his company's Series B financing?": [
+    1738368000, 1738454400
+  ],
+  "2025-12-02\tDuring lunch on February 21, 2025, what exactly was the weekend arrangement Zheng Wenbo mentioned?": [
+    1740096000, 1740182400
+  ],
+  "2025-10-08\tDuring the video call with my sister Feng Xinran on the evening of February 18, 2025, what specific expense items did she mention for the parents' health fund this month?": [
+    1739836800, 1761955200
+  ],
+  "2025-07-30\tWhat is the name of the tech popular science short video project that Peng Yuqing shared during dinner at Xiangwei Renjia on the evening of February 23, 2025?": [
+    1740268800, 1740355200
+  ],
+  "2025-08-19\tDuring lunch with Zheng Wenbo on July 14, 2025, which specific stock did he recommend in the electric power sector?": [
+    1752451200, 1752537600
+  ],
+  "2025-11-05\tAt 20:45 on the evening of July 2, 2025, what was the name of the new project that his childhood friend Zhang Mingxuan mentioned in WeChat that he had recently been involved with?": [
+    1751414400, 1751500800
+  ],
+  "2025-09-17\tOn the evening of July 10, 2025, what were the names of the three specific funds included in the fund investment plan sent by my sister Feng Xinran?": [
+    1752105600, 1752192000
+  ],
+  "2025-12-15\tOn July 29, 2025, during lunch, what was the name of the project that colleague Zheng Wenbo mentioned his friend was newly starting?": [
+    1753747200, 1753833600
+  ],
+  "2025-11-13\tAt the semi-annual investment strategy meeting on July 10, 2025, what were the specific contents of the chief economist's outlook on the macroeconomy for the second half of the year?": [
+    1752105600, 1752192000
+  ],
+  "2025-08-13\tWhat was the stock code that Zheng Wenbo mentioned he had been following most recently while resting at the climbing gym at CapitaLand One Center on June 28, 2025?": [
+    1751068800, 1751155200
+  ],
+  "2025-12-19\tWhen organizing trading strategy notes on the afternoon of June 4, 2025, in the defensive sector rebalancing logic recorded by Feng Haoran, which specific sub-industry allocation ratios were mentioned?": [
+    1748995200, 1749081600
+  ],
+  "2025-10-06\tWhat was the name of the previous owner of Baozi, which volunteer Sister Li mentioned when picking up the cat at the community stray cat rescue point at 16:00 on June 1, 2025?": [
+    1748736000, 1748822400
+  ],
+  "2025-09-21\tOn the evening of June 30, 2025, at Banana Climbing Gym, I ran into a high school classmate I hadn't seen in two years while practicing in the bouldering area. What was his name?": [
+    1751241600, 1751328000
+  ],
+  "2025-08-27\tWhat was the name of the newly opened Japanese restaurant where Feng Haoran and Peng Yuqing had arranged to have lunch on June 15, 2025?": [
+    1749945600, 1750032000
+  ],
+  "2025-12-22\tDuring the MBA group review on the evening of October 21, 2025, in the customer case mentioned by Li Na, what is the name of the company the customer works for?": [
+    1761004800, 1761091200
+  ],
+  "2025-12-31\tWhat was the name of the salesperson who introduced the refrigerator features to Feng Haoran when he was buying a refrigerator for his parents at Gome on the afternoon of October 4, 2025?": [
+    1759536000, 1759622400
+  ],
+  "2025-12-29\tHow many egg tarts were baked in total when baking egg tarts together at the parents' new home on the afternoon of October 7, 2025?": [
+    1759795200, 1759881600
+  ],
+  "2025-12-31\tAt the closing of the rock climbing training camp, what specific words of encouragement did Coach Li say to Feng Haoran about his successful completion of the climb?": null,
+  "2025-12-15\tIn Lecture 13 of the FinTech course on the evening of October 28, what is the name of the financial institution specifically involved in the case the professor mentioned where asset securitization failed due to regulatory loopholes?": [
+    1761609600, 1761696000
+  ],
+  "2025-10-05\tIn the third blind date on September 11, 2025, what were the respective occupations of Lin Shihan's parents?": [
+    1757548800, 1757635200
+  ],
+  "2025-12-29\tWhat exactly was the project problem at work that Gao Yunfei mentioned during this morning's run?": null,
+  "2025-12-25\tDuring dinner, what was the specific product code that client Lin Zhihao called to ask about?": null,
+  "2025-11-29\tWhat is Xu Jianing's professional review of the 'One Day at Mount Heng' photo collection?": null,
+  "2025-12-25\tOn the afternoon of September 3, 2025, at Shangyin Café, Shen Xinyi recommended a photography book to Feng Haoran. What was the title of this book?": [
+    1756857600, 1756944000
+  ],
+  "2025-12-15\tWhat was the specific name of the product that his father particularly recommended among the conservative wealth management products that Mr. Feng discussed with his father Feng Jianguo on the evening of November 22, 2025?": [
+    1763769600, 1763856000
+  ],
+  "2025-12-06\tIn the tax reduction plan I sent to client Huang Siqi on November 20, 2025, what were the specific operational steps for the pension deferred tax benefit that I recommended she use?": [
+    1763596800, 1763683200
+  ],
+  "2025-12-18\tBefore the interview with Qian Yongqiang on November 12, 2025, what was the third core demand written by Feng Haoran on the sticky note?": [
+    1762905600, 1762992000
+  ],
+  "2025-12-25\tDuring a video call with Xu Jianing on the evening of November 15, she suggested holding an online photography exhibition together in the future and recommended a professional photographer she knows as a collaboration candidate. What is the name of this photographer?": [
+    1763164800, 1763251200
+  ],
+  "2025-12-04\tDuring the tea break exchange session at the fintech salon, what is the name of the CITIC Securities analyst who exchanged WeChat contacts with Feng Haoran?": null,
+  "2025-09-11\tAt noon on April 29, 2025, while dining at Manlao Shixiangli Local Restaurant, what topic caused the two diners at the next table to argue?": [
+    1745884800, 1745971200
+  ],
+  "2025-05-28\tWhen Feng Haoran was organizing ESG paper data on the evening of April 16, 2025, what was the issuance scale (in hundred million yuan) of the Beijing Daxing Airport photovoltaic REITs project he cited?": [
+    1744761600, 1744848000
+  ],
+  "2025-09-15\tOn April 10, 2025, when having lunch with Zheng Wenbo at Xiangyuehui Hunan Restaurant, what specific dishes did Zheng Wenbo recommend?": [
+    1744243200, 1744329600
+  ],
+  "2025-10-02\tDuring lunch, what meeting place did Feng Haoran and Zheng Wenbo agree on for the weekend mountain climbing?": null,
+  "2025-08-08\tWhen chatting with my younger sister at Luckin Coffee on April 5, 2025, what does the friend she mentioned that she recently met in Shanghai do for a living?": [
+    1743811200, 1743897600
+  ],
+  "2025-11-06\tOn August 1, 2025, during lunch with Zheng Wenbo at the 'Xiangtu Fengqing' restaurant, what was the name of the company he mentioned he was considering switching to?": [
+    1754006400, 1754092800
+  ],
+  "2025-10-23\tOn the afternoon of August 12, 2025, while conducting financial analysis at Yuelu District Library, Feng Haoran was on the phone with his childhood friend Zhang Mingxuan. Which niche cross-border e-commerce platform did Zhang Mingxuan suggest he focus on?": [
+    1754956800, 1755043200
+  ],
+  "2025-10-06\tWhat was the name of the diner at the next table who asked him for investment advice during dinner at Weishang Hunan Restaurant on the evening of August 30, 2025?": [
+    1756512000, 1756598400
+  ],
+  "2025-09-17\tWhat is the deadline for the photography contest that the photographer friend, whom Feng Haoran met at Shangyin Coffee on the afternoon of August 9, 2025, recommended to Feng Haoran?": [
+    1754697600, 1754784000
+  ],
+  "2025-10-10\tWhen meeting Gao Yunfei at the east gate of Yuelu Mountain on the morning of August 31, 2025, what was the title of the book he was holding?": [
+    1756598400, 1756684800
+  ],
+  "2025-03-22\tWhat problems does my cervical spine currently have?": null,
+  "2025-06-22\tWhat problems does my cervical spine currently have?": null,
+  "2025-08-05\tWhat problems does my cervical spine currently have?": null,
+  "2025-03-30\tHow severe is my neck pain?": null,
+  "2025-05-02\tHow severe is my neck pain?": null,
+  "2025-08-05\tHow severe is my neck pain?": null,
+  "2025-05-02\tWhat is my current cervical spine rehabilitation plan?": null,
+  "2025-01-15\tWhat is the health condition I was recently diagnosed with?": null,
+  "2025-02-25\tWhat is the health condition I was recently diagnosed with?": null,
+  "2025-01-15\tWhat lifestyle adjustments do I need to make for my health issues?": null,
+  "2025-09-10\tCan I continue running exercises normally?": null,
+  "2025-09-17\tCan I continue running exercises normally?": null,
+  "2025-09-10\tDo I currently have any physical injuries?": null,
+  "2025-09-17\tDo I currently have any physical injuries?": null,
+  "2025-02-12\tHave I ever tried rock climbing?": null,
+  "2025-05-17\tWhat is the highest-difficulty rock climbing route I can currently complete?": null,
+  "2025-12-01\tWhat is the maximum number of standard pull-ups I can do right now?": null,
+  "2025-01-10\tHave I started systematic training for the half marathon?": null,
+  "2025-09-10\tWhat is my personal best pace for a 10 km run?": null,
+  "2025-12-01\tWhat is my personal best pace for a 10 km run?": null,
+  "2025-12-20\tWhat is my current running cadence goal?": null,
+  "2025-03-02\tHave I decided to incorporate yoga into my long-term health plan?": null,
+  "2025-09-22\tHave I tried a yin yoga class?": null,
+  "2025-11-13\tWhat are my latest plans or achievements regarding the photography exhibition?": null,
+  "2025-02-19\tWhat is the photography project I recently completed?": null,
+  "2025-08-01\tWhat photography-related identities or qualifications do I currently have?": null,
+  "2025-02-10\tWhat have I accomplished in stamp collecting?": null,
+  "2025-06-01\tWhat have I accomplished in stamp collecting?": null,
+  "2025-11-01\tWhat have I accomplished in investment writing?": null,
+  "2025-11-10\tWhat have I accomplished in investment writing?": null,
+  "2025-06-14\tHave I mastered making pour-over coffee?": null,
+  "2025-11-11\tHow is my progress in learning oil painting?": null,
+  "2025-12-10\tHow is my progress in learning oil painting?": null,
+  "2025-03-20\tWhat is my current Japanese learning status?": null,
+  "2025-05-05\tWhat is my current Japanese learning status?": null,
+  "2025-12-15\tDid I receive the company's annual innovation award?": null,
+  "2025-12-20\tWhat is the total amount of extra rewards I received?": null,
+  "2025-03-10\tWhat is my current take-home pay?": null,
+  "2025-04-05\tWhat is my current take-home pay?": null,
+  "2025-04-05\tHow does my current after-tax salary compare with January?": [1735689600, 1738368000],
+  "2025-10-30\tWhich city did I visit on my most recent trip?": null,
+  "2025-04-23\tAs of April 23, 2025, how many times have I been to Changsha in total?": [1745366400, 1745452800],
+  "2025-04-21\tAs of April 18, 2025, which cities have I visited?": [1744934400, 1745020800],
+  "2025-09-17\tDid I go to Beijing in September 2025?": [1756684800, 1759276800],
+  "2025-09-17\tWhen did I go to Beijing in September 2025?": [1756684800, 1759276800],
+  "2025-12-31\tI recently won the company innovation award and want to celebrate with friends. I plan to treat everyone to dinner on the evening of December 16. How does that arrangement sound?": [
+    1765843200, 1765929600
+  ],
+  "2025-12-31\tI plan to go rock climbing with friends at the sports center at 7 p.m. on July 9. How does this arrangement sound?": [
+    1752019200, 1752105600
+  ],
+  "2025-12-31\tI plan to organize a night hike up Yuelu Mountain on July 28. I will lead the whole way, strictly control the pace, and keep urging the team to keep up. What do you think of this plan?": [
+    1753660800, 1753747200
+  ],
+  "2025-12-31\tI plan to go to Wuhan on the evening of November 1 to attend an old classmate's birthday party. What do you think of this arrangement?": [
+    1761955200, 1762041600
+  ],
+  "2025-12-31\tI plan to get up at 5 a.m. every day from March 12 to 20, 2025, review CFA Chapter 3 for 3 hours, and complete 100 practice questions. How does this arrangement sound?": [
+    1741737600, 1741824000
+  ],
+  "2025-12-31\tI plan to directly assign tasks using the same efficient division of labor method as before when I receive the new MBA group assignment in early April. How does this arrangement sound?": [
+    1743465600, 1746057600
+  ],
+  "2025-12-31\tI plan to have a video call with friends at 10 p.m. on April 15 to discuss the weekend camping plan. Does this arrangement work?": [
+    1744675200, 1744761600
+  ],
+  "2025-12-31\tI plan to do a high-intensity interval running training with my running buddy Gao Yunfei on the morning of August 30. How does this arrangement sound?": [
+    1756512000, 1756598400
+  ],
+  "2025-12-31\tI plan to attend a friend's barbecue party on the evening of August 14. What do you think of this plan?": [
+    1755129600, 1755216000
+  ],
+  "2025-12-31\tI plan to work overtime continuously from August 27 to 29, using the weekend as well, to try to finish the project as soon as possible. What do you think of this arrangement?": [
+    1756252800, 1756339200
+  ],
+  "2025-12-31\tI plan to spend 2 hours every evening studying for CFA Level II from May 14 to 31, 2025. What do you think of this plan?": [
+    1747180800, 1747267200
+  ],
+  "2025-12-31\tWhy did Feng Haoran suddenly carefully re-examine his father's accident and medical insurance policies in early October 2025?": [
+    1759276800, 1761955200
+  ],
+  "2025-12-31\tOn the evening of February 14, 2025, after returning home, he immediately took out his notebook and wrote in his diary, recording the details of the date and his inner thoughts. What caused him to do this?": [
+    1739491200, 1739577600
+  ],
+  "2025-12-31\tIn September 2025, after a blind date, Feng Haoran went home and reflected on why he would adjust his criteria for choosing a partner and prioritize spiritual resonance.": [
+    1756684800, 1759276800
+  ],
+  "2025-12-31\tOn the afternoon of June 25, 2025, Feng Haoran immediately organized written minutes and formulated an improvement plan after the interview. What prompted him to do this?": [
+    1750809600, 1750896000
+  ],
+  "2025-12-31\tIn May 2025, why did I go to the university town to inspect shops?": [1746057600, 1748736000],
+  "2025-12-31\tIn November 2025, why was Feng Haoran able to quickly complete the initial screening before the pension fund screening?": [
+    1761955200, 1764547200
+  ],
+  "2025-12-31\tOn the morning of August 12, 2025, why was Feng Haoran able to confirm that meditation significantly alleviated decision-making pressure?": [
+    1754956800, 1755043200
+  ],
+  "2025-12-31\tOn the evening of January 17, 2025, Feng Haoran was on the return subway, recalling the wonderful works he had seen. What exhibition did he visit that day?": [
+    1737072000, 1737158400
+  ],
+  "2025-12-31\tIn July 2025, why did Feng Haoran put a card written \"the first gift my son won\" in the express package he sent to his mother?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tWhy did Feng Haoran enjoy a homemade healthy lunch at noon on January 12, 2025?": [
+    1736640000, 1736726400
+  ],
+  "2025-12-31\tOn the evening of December 10, 2025, Feng Haoran made a detailed meal plan and shopping list for the next two weeks. What was his main basis for making this plan?": [
+    1765324800, 1765411200
+  ],
+  "2025-12-31\tOn the afternoon of June 23, 2025, why did Feng Haoran specifically adjust the investment portfolios for Huang Siqi and Lin Zhihao?": [
+    1750636800, 1750723200
+  ],
+  "2025-12-31\tIn July 2025, why did Feng Haoran adjust his regular fund investment plan on the 20th?": [
+    1751328000, 1754006400
+  ],
+  "2025-12-31\tOn the evening of June 9, 2025, why did Feng Haoran specifically record his health habits and add a calendar reminder for climbing a mountain on National Day?": [
+    1749427200, 1749513600
+  ],
+  "2025-12-31\tWhy did Feng Haoran log in to the shared document of the Shangyin Coffee branch on July 11, 2025, to view the 'Opening Preparation Execution Checklist (Draft)' uploaded by Shen Xinyi and add comments?": [
+    1752192000, 1752278400
+  ],
+  "2025-12-31\tOn September 10, 2025, why did Feng Haoran immediately call his mother after a blind date?": [
+    1757462400, 1757548800
+  ],
+  "2025-12-31\tOn the afternoon of September 7, 2025, Feng Haoran bought a Panasonic portable water flosser at Walmart. What is the connection between this and his purchase of a water flosser at Laobaixing Pharmacy the previous day?": [
+    1757203200, 1757289600
+  ]
+}
