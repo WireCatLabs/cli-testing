@@ -1,0 +1,44 @@
+# before: cli-core origin/main cfdb54d07 (0.626.0)
+kind:person, interactions, limit 1               first    686 ms, median   660 ms
+kind:person, interactions, limit 50              first    684 ms, median   704 ms
+kind:person, interactions, limit 5000            first    903 ms, median  1032 ms
+kind:all, interactions, limit 5000               first   1432 ms, median  1433 ms
+kind:all, name, limit 50                         first    748 ms, median   762 ms
+kind:person, recent, limit 50                    first   2588 ms, median  2439 ms
+kind:person, tasks, limit 50                     first    701 ms, median   785 ms
+kind:organization, limit 1 (a tab count)         first    716 ms, median   976 ms
+kind:automated, limit 1 (a tab count)            first    985 ms, median   945 ms
+kind:stranger, limit 1 (a tab count)             first    904 ms, median  1192 ms
+kind:unsorted, limit 1 (a tab count)             first    976 ms, median  1026 ms
+name search, kind:all                            first    121 ms, median   101 ms
+{"person":14902,"organization":3783,"automated":5066,"stranger":88449,"unsorted":1521}
+
+# after: cli-core perf/people-list 80a645d99 (load average about 7)
+kind:person, interactions, limit 1               first   2782 ms, median    40 ms
+kind:person, interactions, limit 50              first     42 ms, median    42 ms
+kind:person, interactions, limit 5000            first    131 ms, median   134 ms
+kind:all, interactions, limit 5000               first    174 ms, median   162 ms
+kind:all, name, limit 50                         first     50 ms, median    58 ms
+kind:person, recent, limit 50                    first     62 ms, median    51 ms
+kind:person, tasks, limit 50                     first     57 ms, median    52 ms
+kind:organization, limit 1 (a tab count)         first     44 ms, median    44 ms
+kind:automated, limit 1 (a tab count)            first     35 ms, median    46 ms
+kind:stranger, limit 1 (a tab count)             first     70 ms, median    68 ms
+kind:unsorted, limit 1 (a tab count)             first     50 ms, median    45 ms
+name search, kind:all                            first     63 ms, median    64 ms
+counts, every kind                               first      7 ms, median     5 ms
+limit 50, 500 people to work out again           first    121 ms, median   113 ms
+limit 50, 2000 people to work out again          first    229 ms, median   211 ms
+limit 50, 5000 people to work out again          first    275 ms, median   322 ms
+{"person":14902,"organization":3783,"automated":5066,"stranger":88449,"unsorted":1521}
+
+# after-sync.mjs: 10,000 messages from 2,000 senders by another connection, then a list
+sync 1: 2000 people to work out, next list 147 ms
+sync 2: 2000 people to work out, next list 146 ms
+sync 3: 2000 people to work out, next list 139 ms
+
+# answers: cmp answers-before.json answers-after.json -> identical (72 pages, a search, the name match)
+
+# write-cost.mjs, 50,000 message inserts, three runs (ms)
+SENDERS=2000   version 61: 1705 2251 1756   version 62: 1875 1861 2076
+SENDERS=110000 version 61: 1606 1664 3322, 2204 2196 2066   version 62: 2287 2285 2329, 2936 2607 3104

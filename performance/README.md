@@ -27,6 +27,6 @@
   cost without the network, MCP.
 - [ci](ci/README.md): how long the pull-request checks take, and where the time goes.
 - [crm](crm/README.md): CRM data across b24 and memo — relationships, deal parts, money and group locks, end to end.
-- [memo](memo/README.md): memo's own lists — paging past 500 rows, and what a brief answer saves.
+- [memo](memo/README.md): memo's own lists — paging past 500 rows, what a brief answer saves, and `people list` with kinds kept in the store.
 - [funnel](funnel/README.md): wirecat-funnel, the tsnet helper for Tailscale Funnel: whether Tailscale's
   log upload stays off, and Funnel end to end.
