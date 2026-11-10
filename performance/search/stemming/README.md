@@ -43,7 +43,7 @@ The gate was run on the product code, not on a prototype. The owner then replace
 Recall, precision, F1 and gain. Gain is the number of extra relevant messages found per query compared with Exact.
 Precision is the mean over queries that returned anything.
 
-**Russian, SynTagRus**
+### Russian, SynTagRus
 
 | row | recall | precision | F1 | gain |
 |---|---|---|---|---|
@@ -57,7 +57,7 @@ Precision is the mean over queries that returned anything.
 
 Russian GSD agrees: Exact 0.245 / 0.993, T1 0.771 / 0.654, S 0.862 / 0.874 (F1 0.868).
 
-**Spanish, AnCora**
+### Spanish, AnCora
 
 | row | recall | precision | F1 | gain |
 |---|---|---|---|---|
