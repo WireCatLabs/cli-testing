@@ -14,6 +14,7 @@
   against file watching.
 - [agents](agents/README.md): what the CLIs cost the AI agent that reads their answers — output size and meeting workflows.
 - [tasks](tasks/README.md): tasks found in messages — duplicate detection.
+- [desktop](desktop/README.md): WireCat Desktop — how long each page waits for its data, and how fast clicks paint.
 - [command-server](command-server/README.md): `commands --serve` for WireCat Desktop — several requests at once
   through one process.
 - [startup](startup/README.md): install size and cold start of the five CLIs, and which packages a simple
