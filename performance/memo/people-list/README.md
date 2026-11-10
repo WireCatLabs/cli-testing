@@ -17,7 +17,7 @@ Desktop's People and Tasks pages can rely on `people list` and the new `people.c
 
 - Machine: AMD Ryzen AI 9 HX 470 (24 threads), 30 GB RAM, NVMe disk, Linux 7.0, Node 24.19.0. Other agents' jobs
   shared the machine (load average 5 to 8), so differences under about 10 ms are noise.
-- Code: before, cli-core `origin/main` at `cfdb54d07` (0.626.0); after, branch `perf/people-list` at `80a645d99` ([cli-core #2817](https://github.com/WireCatLabs/cli-core/pull/2817)). Both
+- Code: before, cli-core `origin/main` at `cfdb54d07` (0.626.0); after, branch `perf/people-list` at `03f80d768` ([cli-core #2817](https://github.com/WireCatLabs/cli-core/pull/2817)). Both
   built with `pnpm build`. The benchmark calls the store directly (`store.people.list`, `store.people.counts`), so
   memo's process start (about 0.65 s cold, 30 to 55 ms on a warm server) is not in these numbers.
 - Data, all synthetic. [`seed.mjs`](seed.mjs) builds on [`../../people/ties/bench.mjs`](../../people/ties/bench.mjs)
@@ -37,6 +37,8 @@ node bench.mjs <after checkout>/dist /tmp/after.db /tmp/answers-after.json
 cmp /tmp/answers-before.json /tmp/answers-after.json
 node after-sync.mjs <after checkout>/dist /tmp/after.db
 node write-cost.mjs <a store at version 61>; node write-cost.mjs <the same at version 62>
+cp /tmp/people.db /tmp/review.db
+node review.mjs <before checkout>/dist /tmp/review.db; node review.mjs <after checkout>/dist /tmp/review.db
 ```
 
 ## Results
@@ -58,6 +60,7 @@ Full output: [`results.txt`](results.txt).
 | limit 50 when 500 / 2,000 / 5,000 people are left to work out | | 113 / 211 / 322 ms |
 | limit 50 after a sync of 10,000 messages from 2,000 senders (`after-sync.mjs`) | | 139 to 147 ms |
 | first list after the upgrade (works out everyone) | | 2,782 ms |
+| `people.linkProposals`, 500 of 25,000 proposals (`memo people review`, [`review.mjs`](review.mjs)) | 190 ms | 12 ms |
 
 - **Answers:** every page of 6 kinds × 4 orders × 3 offsets (0, 50, 4,950), a name search and the add-person name
   match are byte-identical before and after (`cmp` of the two answer files).
@@ -78,7 +81,11 @@ Full output: [`results.txt`](results.txt).
   lock; more are worked out outside it and kept only if no other process wrote meanwhile. The first list after the
   upgrade works out everyone once, as slow as a list was.
 - A sync that writes again what the store holds clears no kind: the triggers compare old and new values, and chat
-  member lists are now updated row by row instead of deleted and written again (a cli-core test checks this).
+  member lists are now updated row by row instead of deleted and written again (a cli-core test checks this). A big
+  group's or channel's size moving by one clears no member's kind either; only a change across the small group limit
+  does.
+- `memo people review` read, parsed and resolved every link proposal before it took the page. It now pages in SQL
+  when it lists everyone's proposals; a list for one person still reads them all.
 - If the owner's store is 6 to 8 times slower than this synthetic one, as the page speed run found for the old list,
   a page there would take about 0.2 to 0.3 s on a warm server. That is inferred, not measured.
 

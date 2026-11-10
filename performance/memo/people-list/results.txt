@@ -42,3 +42,7 @@ sync 3: 2000 people to work out, next list 139 ms
 # write-cost.mjs, 50,000 message inserts, three runs (ms)
 SENDERS=2000   version 61: 1705 2251 1756   version 62: 1875 1861 2076
 SENDERS=110000 version 61: 1606 1664 3322, 2204 2196 2066   version 62: 2287 2285 2329, 2936 2607 3104
+
+$ node review.mjs <before>/dist review.db; node review.mjs <after>/dist review.db
+linkProposals, limit 500 of 25,000: median of 8 190 ms
+linkProposals, limit 500 of 25,000: median of 8 12 ms
