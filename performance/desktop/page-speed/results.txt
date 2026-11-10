@@ -1,0 +1,87 @@
+# memo commands, real store, median of 3 (command, cold ms, served ms, rows, total, KB, status)
+Memory: memories list --limit 500	672	79	2		6	ok
+Memory: facts list --limit 500	652	88	4		3	ok
+Memory: actions list --limit 500 --brief	718	177	500		359	ok
+Memory: agents list --limit 30	631	86	10		2	ok
+Memory: relationships list confirmed:false	686	128	100		77	ok
+Memory: relationships list include:ended	905	278	100		71	ok
+Memory: relationships roles list	653	66	16		1	ok
+Clients: pipelines list kind:deal	663	91	6		12	ok
+Clients: pipelines show <busiest>	799	212			2	ok
+Clients: deals list open --limit 500	964	324	500		1018	ok
+Clients: deals list won --limit 20	650	76	1		2	ok
+Clients: deals list lost --limit 20	706	97	20		31	ok
+People: people list kind:person --limit 1	5074	3726	1	113705	1	ok
+People: people list kind:organization --limit 1	4563	3699	1	1853	1	ok
+People: people list kind:automated --limit 1	4509	3661	1	3854	1	ok
+People: people list kind:stranger --limit 1	692	35			0	failed
+People: people list kind:unsorted --limit 1	4976	3700	1	30240	1	ok
+People: people review --limit 500	771	327	500		189	ok
+People: people list kind:person --sort interactions --limit 5000	5060	4248	5000	113705	1398	ok
+Tasks: tasks list --sort priority --limit 500	678	62			0	failed
+Tasks: people list --limit 5000	5033	3931	5000	113705	1398	ok
+Tasks: projects list kind:project	664	65	3		1	ok
+Digests: digest list	708	33	0		0	ok
+Logs: runs list --limit 500	732	108	500		453	ok
+Groups: groups list	675	63	1		4	ok
+Tasks: tasks list --sort priority --limit 500 project:*	670	78	0	0	0	ok
+Tasks: tasks counts project:*	665	73			1	ok
+Tasks: tasks list --limit 500 (chats)	660	101	96		78	ok
+Probe: people list --limit 50	4750	5945	50	113705	16	ok
+Probe: people list kind:person --limit 50	4794	4006	50	113705	16	ok
+Probe: people list kind:person --sort interactions --limit 50	4599	3812	50	113705	16	ok
+Probe: people list --limit 5000 --json=ref,name	4872	4216	5000	113705	1398	ok
+Probe: actions list --limit 50 --brief	755	104	50		53	ok
+Probe: deals list open --limit 100	956	282	100		194	ok
+Search: memo search meeting	570	32			0	failed
+
+# fan out (Memory, Clients)
+{"page":"Memory:","calls":7,"all_cold_ms":1107,"pool_1_ms":1078,"pool_2_ms":1081,"pool_7_ms":404,"one_server_queued_ms":1039}
+{"page":"Clients:","calls":5,"all_cold_ms":1418,"pool_1_ms":1358,"pool_2_ms":1439,"pool_5_ms":561,"one_server_queued_ms":1022}
+
+# clicks, CPU x1
+{"scenario":"nav Tools→Memory (many)","frame_ms":64,"busy_ms":132,"longest_ms":132,"nodes":2374}
+{"scenario":"nav Tools→Tasks (many)","frame_ms":40,"busy_ms":0,"longest_ms":0,"nodes":8656}
+{"scenario":"nav Tools→People (many)","frame_ms":72,"busy_ms":0,"longest_ms":0,"nodes":1102}
+{"scenario":"nav Tools→Analytics (showcase)","frame_ms":48,"busy_ms":0,"longest_ms":0,"nodes":965}
+{"scenario":"nav Tools→Logs (showcase)","frame_ms":48,"busy_ms":0,"longest_ms":0,"nodes":1958}
+{"scenario":"nav Tools→Agents (showcase)","frame_ms":48,"busy_ms":61,"longest_ms":61,"nodes":603}
+{"scenario":"nav Tools→Search (showcase)","frame_ms":64,"busy_ms":0,"longest_ms":0,"nodes":409}
+{"scenario":"nav Tools→Digests (showcase)","frame_ms":48,"busy_ms":0,"longest_ms":0,"nodes":400}
+{"scenario":"nav Tools→Storage (showcase)","frame_ms":56,"busy_ms":0,"longest_ms":0,"nodes":1111}
+{"scenario":"nav Tools→Settings (showcase)","frame_ms":56,"busy_ms":55,"longest_ms":55,"nodes":1231}
+{"scenario":"Memory: open a row","frame_ms":40,"busy_ms":0,"longest_ms":0,"nodes":2371}
+{"scenario":"Memory: approve one","frame_ms":48,"busy_ms":0,"longest_ms":0,"nodes":2379}
+{"scenario":"Memory: Kind filter","frame_ms":40,"busy_ms":0,"longest_ms":0,"nodes":2371}
+{"scenario":"Tasks: board view","frame_ms":96,"busy_ms":89,"longest_ms":89,"nodes":8666}
+{"scenario":"People: open a person","frame_ms":32,"busy_ms":0,"longest_ms":0,"nodes":1244}
+{"scenario":"People: another kind","frame_ms":32,"busy_ms":0,"longest_ms":0,"nodes":1080}
+{"scenario":"Memory: approve one","frame_ms":24,"busy_ms":0,"longest_ms":0,"nodes":2379}
+{"scenario":"Memory: Kind filter","frame_ms":24,"busy_ms":0,"longest_ms":0,"nodes":2371}
+{"scenario":"Clients: sort by amount","frame_ms":40,"busy_ms":0,"longest_ms":0,"nodes":3326}
+{"scenario":"Clients: open a deal","frame_ms":32,"busy_ms":0,"longest_ms":0,"nodes":3375}
+{"scenario":"Tasks: sort by priority","frame_ms":48,"busy_ms":0,"longest_ms":0,"nodes":8656}
+{"scenario":"Tasks: open a task","frame_ms":72,"busy_ms":54,"longest_ms":54,"nodes":8969}
+{"scenario":"People: sort by last contact","frame_ms":24,"busy_ms":0,"longest_ms":0,"nodes":1100}
+
+# clicks, CPU x4
+{"scenario":"nav Tools→Memory (many)","frame_ms":120,"busy_ms":387,"longest_ms":318,"nodes":2374}
+{"scenario":"nav Tools→Tasks (many)","frame_ms":120,"busy_ms":105,"longest_ms":105,"nodes":8656}
+{"scenario":"nav Tools→People (many)","frame_ms":64,"busy_ms":55,"longest_ms":55,"nodes":1102}
+{"scenario":"Memory: open a row","frame_ms":64,"busy_ms":0,"longest_ms":0,"nodes":2371}
+{"scenario":"Clients: sort by amount","frame_ms":128,"busy_ms":114,"longest_ms":114,"nodes":3326}
+{"scenario":"Clients: board view","frame_ms":136,"busy_ms":119,"longest_ms":118,"nodes":3326}
+{"scenario":"Tasks: open a task","frame_ms":288,"busy_ms":252,"longest_ms":252,"nodes":8969}
+{"scenario":"Tasks: board view","frame_ms":312,"busy_ms":295,"longest_ms":295,"nodes":8666}
+
+# first request on a fresh server (ready ms, first ms, second ms), 3 fresh servers each
+agents list --limit 30: 97/319/33 75/190/36 74/189/31
+memories list --limit 500: 105/190/31 115/224/34 67/191/30
+deals list --limit 20 status:won: 62/323/54 82/199/45 97/202/45
+tasks counts project:*: 85/198/31 96/184/32 61/188/55
+search notes --limit 50 meeting: 84/1309/822 69/1108/836 75/1208/831
+
+# other
+bare memo --version: 20 ms (3 runs)
+search notes --limit 50 meeting, cold process: 2342, 1423, 1391 ms; 50 rows, 25 KB
+cpu profile, cold people list --limit 1: 5324 ms sampled; 1797 in SQLite, about 1500 in name checks and tie reasons, 411 GC
