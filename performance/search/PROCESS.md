@@ -367,3 +367,12 @@ streaming records import with 1,000 to 300,000 synthetic records, one warm lane 
 records, 60–130 ms at 100,000 and 250–330 ms at 300,000. A query that finds one invoice costs about as much as one
 that finds nothing, so the time follows the store's size, not the hits
 ([business-lane](business-lane/README.md), 2026-11-08).
+
+## Word forms in Russian and Spanish
+
+Exact word search found about a quarter of the relevant Russian messages and 39 % of the Spanish ones on public
+treebanks, because it does not know that `квартиру` is a form of `квартира`. An index of Snowball stems, read after
+the exact word index, raised recall to 0.88 in Russian and 0.96 in Spanish at precision 0.84 and 0.69. Trigram
+neighbours reached lower recall with half the precision. The stem index shipped as store migration 15, and it passed
+six of the seven gate numbers, then met the owner's relaxed query target of twice the exact search
+([stemming](stemming/README.md), 2026-10-05).
