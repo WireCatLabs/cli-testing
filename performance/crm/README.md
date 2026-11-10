@@ -11,3 +11,6 @@ CLIs run, what bitrix24-cli syncs, and what memo answers from it.
   lookups read every link of a deal's owner; a fix halved a 20,000-deal first sync and made per-deal cost flat
   (2026-11-08). Binding the involvement drain's id ([cli-core#2682](https://github.com/WireCatLabs/cli-core/issues/2682))
   then cut a 20,000 sync from 30 s to 19 s and its peak memory from 3.7 GB to 0.6 GB.
+- [contact-removal](contact-removal/README.md) — how long removing a whole portal's contacts outside a narrowed
+  scope takes, in one pass on a copy of a real store: 114,165 contacts in 20 s, with store version 64's fixed
+  deal-link triggers (version 63's took 24 ms a link, about 20 minutes for the same pass) (2026-11-10).
