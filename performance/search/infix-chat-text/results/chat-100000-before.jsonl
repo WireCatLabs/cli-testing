@@ -1,0 +1,19 @@
+{"label":"before-100k","query":"*тартус*","p50_ms":38.4,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*артусск*","p50_ms":38.9,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ТАРТУСС*","p50_ms":35.8,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*bernet*","p50_ms":39.2,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ёлкин*","p50_ms":40.1,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*договор*","p50_ms":43.7,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ени*","p50_ms":44.1,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*про*","p50_ms":41.9,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*щюфыжд*","p50_ms":39.1,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*договор* AND chat:12","p50_ms":38.5,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ени* AND chat:12","p50_ms":42.2,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ени* AND date:[2025-02-01 TO 2025-02-07]","p50_ms":42.1,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"NOT *договор* AND chat:12","p50_ms":39.4,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*арендой* OR *ёлкин*","p50_ms":41.9,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ость","p50_ms":39.4,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ени","p50_ms":38.3,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*ени AND chat:12","p50_ms":40.2,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"*дог?вор*","p50_ms":36.3,"refused":"query.too-large","budget":"term expansions"}
+{"label":"before-100k","query":"договор*","p50_ms":100.1,"hits":50,"has_more":true}
