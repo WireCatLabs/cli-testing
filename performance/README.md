@@ -7,7 +7,7 @@
   against Gmail's Spam, and re-indexing after a large rules change.
 - [store](store/README.md): the shared SQLite store — filters, migrations, write-lock contention, table sizes.
 - [people](people/README.md): cli-core's people list — telling people the owner knows from background ones.
-- [crm](crm/README.md): cli-core's CRM sync — how saving deals scales with a portal's size, and how fast a narrowed copy drops a whole portal's contacts.
+- [crm](crm/README.md): cli-core's CRM sync — how saving deals scales with a portal's size, and how fast a narrowed copy drops a whole portal's contacts. Whether `b24 search all` finds the right deal.
 - [output](output/README.md): what each output form costs an agent — `--compact` against JSON, in bytes and
   tokens.
 - [events](events/README.md): how processes that share the store learn about each other's changes — polling
