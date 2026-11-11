@@ -1,0 +1,17 @@
+{"label":"before-1m","step":"chatStats","p50_ms":445.5,"chats":100}
+{"label":"before-1m","query":"договор*","p50_ms":478,"hits":50,"has_more":true}
+{"label":"before-1m","query":"договор","p50_ms":460.3,"hits":50,"has_more":true}
+{"label":"before-1m","query":"*договор*","p50_ms":532.1,"hits":50,"has_more":true}
+{"label":"before-1m","query":"договор AND chat:12","p50_ms":484.7,"hits":50,"has_more":true}
+{"label":"before-1m","query":"*ени","p50_ms":620.3,"refused":"query.too-large","budget":"candidate rows"}
+{"label":"before-1m","query":"*ени*","p50_ms":951.7,"hits":50,"has_more":true}
+{"label":"before-1m","query":"*ость","p50_ms":174.5,"refused":"query.too-large","budget":"body bytes"}
+{"label":"after-1m","step":"chatStats","p50_ms":446.3,"chats":100}
+{"label":"after-1m","step":"chatsNewest","p50_ms":0.2,"chats":100}
+{"label":"after-1m","query":"договор*","p50_ms":30.7,"hits":50,"has_more":true}
+{"label":"after-1m","query":"договор","p50_ms":28.6,"hits":50,"has_more":true}
+{"label":"after-1m","query":"*договор*","p50_ms":80.8,"hits":50,"has_more":true}
+{"label":"after-1m","query":"договор AND chat:12","p50_ms":24.6,"hits":50,"has_more":true}
+{"label":"after-1m","query":"*ени","p50_ms":647.3,"hits":50,"has_more":true}
+{"label":"after-1m","query":"*ени*","p50_ms":511.5,"hits":50,"has_more":true}
+{"label":"after-1m","query":"*ость","p50_ms":179.1,"hits":50,"has_more":true}
