@@ -52,6 +52,9 @@ person's images, totals only.
 [Notes by part of a word](substring-notes/README.md): today's notes search missed two thirds of mixed-case Cyrillic
 matches and read every row; a trigram index over the normalized text finds them all in milliseconds.
 
+[A leading `*`](leading-wildcard/README.md): what `*word*` costs when a search reads every word of the index (1.7-2 s
+at a million distinct words), and why it stays refused there with a hint to write `word*`.
+
 [Mentions](mentions/README.md): how long finding phones, e-mail, links and documents by rules takes on one person's
 messages, and how many of each it finds, totals only.
 
