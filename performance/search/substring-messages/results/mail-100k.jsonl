@@ -1,0 +1,12 @@
+{"kind":"mail","rows":100000,"step":"rows and word index","ms":40463,"bytes":611586048,"text_bytes":356291563,"distinct_words":38034}
+{"kind":"mail","rows":100000,"step":"trigram index of message text","ms":41551,"bytes":1304653824,"growth_bytes":693067776,"growth_pct":113.3}
+{"kind":"mail","rows":100000,"query":"тартус","trigram_ms":0.15,"trigram_rows":51,"trigram_total":250,"vocab_ms":647.21,"vocab_words":2,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"артусск","trigram_ms":0.2,"trigram_rows":51,"trigram_total":250,"vocab_ms":631.97,"vocab_words":2,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"ТАРТУСС","trigram_ms":0.11,"trigram_rows":51,"trigram_total":250,"vocab_ms":605.26,"vocab_words":2,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"bernet","trigram_ms":0.27,"trigram_rows":51,"trigram_total":101,"vocab_ms":601.16,"vocab_words":1,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"ёлкин","trigram_ms":0.27,"trigram_rows":51,"trigram_total":200,"vocab_ms":602.99,"vocab_words":1,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"елкин","trigram_ms":0.26,"trigram_rows":51,"trigram_total":200,"vocab_ms":618.12,"vocab_words":1,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"договор","trigram_ms":1.44,"trigram_rows":51,"trigram_total":667,"vocab_ms":614.43,"vocab_words":1,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"ени","trigram_ms":20.19,"trigram_rows":51,"trigram_total":99813,"vocab_ms":915.99,"vocab_words":2112,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"про","trigram_ms":8.12,"trigram_rows":51,"trigram_total":99597,"vocab_ms":762.8,"vocab_words":1807,"vocab_rows":51}
+{"kind":"mail","rows":100000,"query":"щюфыжд","trigram_ms":0.03,"trigram_rows":0,"trigram_total":0,"vocab_ms":643.6,"vocab_words":0,"vocab_rows":0}

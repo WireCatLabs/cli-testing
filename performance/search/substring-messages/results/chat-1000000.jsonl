@@ -1,0 +1,12 @@
+{"kind":"chat","rows":1000000,"step":"rows and word index","ms":13355,"bytes":353333248,"text_bytes":202271218,"distinct_words":38034}
+{"kind":"chat","rows":1000000,"step":"trigram index of message text","ms":15654,"bytes":769236992,"growth_bytes":415903744,"growth_pct":117.7}
+{"kind":"chat","rows":1000000,"query":"тартус","trigram_ms":0.33,"trigram_rows":51,"trigram_total":2500,"vocab_ms":329.79,"vocab_words":2,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"артусск","trigram_ms":0.42,"trigram_rows":51,"trigram_total":2500,"vocab_ms":315.65,"vocab_words":2,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"ТАРТУСС","trigram_ms":0.41,"trigram_rows":51,"trigram_total":2500,"vocab_ms":310.66,"vocab_words":2,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"bernet","trigram_ms":0.43,"trigram_rows":51,"trigram_total":1004,"vocab_ms":313.55,"vocab_words":1,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"ёлкин","trigram_ms":0.53,"trigram_rows":51,"trigram_total":2000,"vocab_ms":319.71,"vocab_words":1,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"елкин","trigram_ms":0.54,"trigram_rows":51,"trigram_total":2000,"vocab_ms":314.21,"vocab_words":1,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"договор","trigram_ms":3.68,"trigram_rows":51,"trigram_total":6667,"vocab_ms":312.95,"vocab_words":1,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"ени","trigram_ms":34.58,"trigram_rows":51,"trigram_total":471096,"vocab_ms":346.11,"vocab_words":2112,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"про","trigram_ms":28.23,"trigram_rows":51,"trigram_total":411042,"vocab_ms":337.82,"vocab_words":1807,"vocab_rows":51}
+{"kind":"chat","rows":1000000,"query":"щюфыжд","trigram_ms":0.01,"trigram_rows":0,"trigram_total":0,"vocab_ms":303.71,"vocab_words":0,"vocab_rows":0}

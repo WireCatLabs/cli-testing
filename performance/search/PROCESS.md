@@ -384,3 +384,9 @@ The owner asked for part-of-value matching by default. A pattern with a known st
 cli-core's automaton took 1.7-2.0 s, the whole time limit of a search. `*word*` in the text stays under the
 expansion budget and its refusal suggests `word*`; names, chats, subjects, mailboxes and tags take patterns anywhere
 ([leading-wildcard](leading-wildcard/README.md), 2026-11-11).
+
+The owner then asked for `*word*` in every free-text value. Message text already has a trigram index
+(`messages_fts`, since 2026-09-29): on 1M synthetic messages it answers `*word*` in 0.3–35 ms, against 0.3 s for the
+word list, with no migration. A trigram index for mail would add about twice the mail text and 41.6 s per 100k
+emails, over the 30% and 1-minute limits, so mail, transcripts and file text keep the word list and the `word*`
+fallback ([substring-messages](substring-messages/README.md), 2026-11-11).
