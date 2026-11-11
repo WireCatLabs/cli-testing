@@ -376,3 +376,11 @@ the exact word index, raised recall to 0.88 in Russian and 0.96 in Spanish at pr
 neighbours reached lower recall with half the precision. The stem index shipped as store migration 15, and it passed
 six of the seven gate numbers, then met the owner's relaxed query target of twice the exact search
 ([stemming](stemming/README.md), 2026-10-05).
+
+## A pattern that starts with `*`
+
+The owner asked for part-of-value matching by default. A pattern with a known start reads a slice of the word list;
+`*word*` reads all of it. On a synthetic list of a million distinct words, listing them and testing each with
+cli-core's automaton took 1.7-2.0 s, the whole time limit of a search. `*word*` in the text stays under the
+expansion budget and its refusal suggests `word*`; names, chats, subjects, mailboxes and tags take patterns anywhere
+([leading-wildcard](leading-wildcard/README.md), 2026-11-11).
