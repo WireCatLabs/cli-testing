@@ -1,0 +1,19 @@
+{"label":"after-100k","query":"*тартус*","p50_ms":100,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*артусск*","p50_ms":102.9,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*ТАРТУСС*","p50_ms":104.6,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*bernet*","p50_ms":110.8,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*ёлкин*","p50_ms":108.9,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*договор*","p50_ms":111.8,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*ени*","p50_ms":205.7,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*про*","p50_ms":210.5,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*щюфыжд*","p50_ms":102.1,"hits":0,"has_more":false}
+{"label":"after-100k","query":"*договор* AND chat:12","p50_ms":80.6,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*ени* AND chat:12","p50_ms":72,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*ени* AND date:[2025-02-01 TO 2025-02-07]","p50_ms":137,"hits":50,"has_more":true}
+{"label":"after-100k","query":"NOT *договор* AND chat:12","p50_ms":55.2,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*арендой* OR *ёлкин*","p50_ms":70.1,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*ость","p50_ms":106.1,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*ени","p50_ms":104.3,"refused":"query.too-large","budget":"body bytes"}
+{"label":"after-100k","query":"*ени AND chat:12","p50_ms":75.9,"hits":50,"has_more":true}
+{"label":"after-100k","query":"*дог?вор*","p50_ms":76.2,"hits":50,"has_more":true}
+{"label":"after-100k","query":"договор*","p50_ms":84.3,"hits":50,"has_more":true}
