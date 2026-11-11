@@ -27,8 +27,8 @@ reason, and needs four letters before a word beginning counts.
 
   b24's installed cli-core 0.635.0 gave the same quality as 0.640.0 in every class.
 - Data, all synthetic, built by [`data.ts`](data.ts) from a fixed seed: 1,316 deals, 702 leads, 150 companies and
-  600 contacts, in Russian and English. 18 of the deals and leads are planted. Their words appear nowhere else, so
-  each query has a known right answer. The rest is background: "Поставка кабеля в Казань", "Office fit-out",
+  600 contacts, in Russian and English. 18 of the deals and leads are planted. Each has words found nowhere else
+  in the data, so each query has a known right answer. The rest is background: "Поставка кабеля в Казань", "Office fit-out",
   "Заявка с сайта" and the like, often with the company's name in the title.
 - Queries: [`queries.json`](queries.json), 88 queries in 13 classes. 79 have a right answer, 9 have none. A query
   for a company or a contact expects every deal of that company or contact. Five of the no-answer queries are traps,
@@ -74,14 +74,14 @@ of them returned any deal or lead.
 
 | | before | 3 letters | 4 letters |
 | --- | --- | --- | --- |
-| Queries with an answer that found nothing | 45 of 79 | 18 of 79 | 19 of 79 |
+| Queries with an answer and no right hit in the first ten | 45 of 79 | 18 of 79 | 19 of 79 |
 | MRR@10, all with an answer | 0.42 | 0.77 | 0.76 |
 | Warm search in process, p50 / p95 | 22 / 40 ms | 45 / 106 ms | 45 / 106 ms |
 | First sync of the portal | 2.0 s | 1.9 s | 2.1 s |
 
 ## What it showed
 
-- **Before, search found a deal only by the exact words of its title.** "цемент" found "Поставка цемента М500",
+- **Before, search matched only text written as it is in the title.** "цемент" found "Поставка цемента М500",
   but "поставки цемента", "котельной" and "breweries" found nothing. It matched inside words, so "cement" found
   "Windows replacement". A company was found only where its name was
   in a deal's title, and a contact never.

@@ -144,7 +144,7 @@ const EN_SERVICE = [
 const DEAL_STAGES = ["NEW", "PREPARATION", "WON", "LOSE", "APOLOGY"]
 const LEAD_STAGES = ["NEW", "IN_PROCESS", "CONVERTED", "JUNK"]
 
-/** Records the queries are written against; their words appear nowhere in the background. */
+/** Records the queries are written against. Each has words that appear nowhere in the background. */
 export const NEEDLE_COMPANIES: Company[] = [
   { key: "c-gidro", title: "ООО «АкваБарьер»", short: "АкваБарьер" },
   { key: "c-brew", title: "Hopfen Brauhaus GmbH", short: "Hopfen Brauhaus" },
