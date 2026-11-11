@@ -1,0 +1,1436 @@
+{
+  "run": "cli-core#2866 31bb28f29 (3-letter beginnings)",
+  "counts": {
+    "deal": 1316,
+    "lead": 702,
+    "companies": 150,
+    "contacts": 600
+  },
+  "syncs": [
+    {
+      "seconds": 1.856684929
+    }
+  ],
+  "latencyMs": {
+    "p50": 45.190192000000025,
+    "p95": 106.16302200000064,
+    "samples": 176
+  },
+  "sample": "Поставка цемента М500 в Подольск",
+  "results": [
+    {
+      "id": "Q01",
+      "class": "exact_title",
+      "q": "Поставка цемента М500 в Подольск",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 61.262302999999974,
+      "msFirst": 85.034537
+    },
+    {
+      "id": "Q02",
+      "class": "exact_title",
+      "q": "Гидроизоляция подвала на Таганке",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 44.61441300000024,
+      "msFirst": 44.61441300000024
+    },
+    {
+      "id": "Q03",
+      "class": "exact_title",
+      "q": "Звукоизоляция переговорной — 3 этаж",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Звукоизоляция переговорной — 3 этаж"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.64586700000018,
+      "msFirst": 45.64586700000018
+    },
+    {
+      "id": "Q04",
+      "class": "exact_title",
+      "q": "Brewery equipment for Hopfen — пивоварня 500 л",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 47.56635000000006,
+      "msFirst": 49.17905499999961
+    },
+    {
+      "id": "Q05",
+      "class": "exact_title",
+      "q": "Photovoltaic carport installation, Valencia port",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Photovoltaic carport installation, Valencia port"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.46479799999997,
+      "msFirst": 48.645103999999264
+    },
+    {
+      "id": "Q06",
+      "class": "exact_title",
+      "q": "Партнёрская программа «Дилер-2027»",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Партнёрская программа «Дилер-2027»"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 42.66250099999979,
+      "msFirst": 42.66250099999979
+    },
+    {
+      "id": "Q07",
+      "class": "exact_title",
+      "q": "Счет 4471 за монтаж окон ПВХ",
+      "note": "е for ё",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Счёт 4471 за монтаж окон ПВХ"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 52.6925369999999,
+      "msFirst": 64.80610999999953
+    },
+    {
+      "id": "Q08",
+      "class": "exact_title",
+      "q": "Запрос КП на сэндвич-панели",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Запрос КП на сэндвич-панели"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 46.6773519999997,
+      "msFirst": 59.46349800000007
+    },
+    {
+      "id": "Q09",
+      "class": "title_word",
+      "q": "гидроизоляция",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.04917800000021,
+      "msFirst": 40.04917800000021
+    },
+    {
+      "id": "Q10",
+      "class": "title_word",
+      "q": "brewery",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 42.116054999999506,
+      "msFirst": 42.844161999999415
+    },
+    {
+      "id": "Q11",
+      "class": "title_word",
+      "q": "Подольск",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 38.53154099999938,
+      "msFirst": 38.53154099999938
+    },
+    {
+      "id": "Q12",
+      "class": "title_word",
+      "q": "kombucha",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Kombucha bottling line upgrade"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 41.48450099999991,
+      "msFirst": 41.48450099999991
+    },
+    {
+      "id": "Q13",
+      "class": "title_word",
+      "q": "подстанции",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Замена трансформаторной подстанции КТП-630"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.255105000000185,
+      "msFirst": 40.255105000000185
+    },
+    {
+      "id": "Q14",
+      "class": "title_word",
+      "q": "ЁМКОСТЬ",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Ёмкость из нержавейки для молокозавода"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.5598659999996,
+      "msFirst": 40.5598659999996
+    },
+    {
+      "id": "Q15",
+      "class": "title_word",
+      "q": "емкость",
+      "note": "е for ё",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Ёмкость из нержавейки для молокозавода"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 39.90146199999981,
+      "msFirst": 39.90146199999981
+    },
+    {
+      "id": "Q16",
+      "class": "title_word",
+      "q": "КТП-630",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Замена трансформаторной подстанции КТП-630"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 41.58534099999997,
+      "msFirst": 41.58534099999997
+    },
+    {
+      "id": "Q17",
+      "class": "title_word",
+      "q": "4471",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Счёт 4471 за монтаж окон ПВХ"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 39.10630899999978,
+      "msFirst": 38.76708299999973
+    },
+    {
+      "id": "Q18",
+      "class": "title_word",
+      "q": "сэндвич панели",
+      "note": "hyphen typed as space",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Запрос КП на сэндвич-панели"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 42.643175000000156,
+      "msFirst": 43.69230300000072
+    },
+    {
+      "id": "Q19",
+      "class": "ru_forms",
+      "q": "поставка цемента",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 41.95986300000004,
+      "msFirst": 41.95986300000004
+    },
+    {
+      "id": "Q20",
+      "class": "ru_forms",
+      "q": "поставки цемента",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 43.38786100000016,
+      "msFirst": 40.5710569999992
+    },
+    {
+      "id": "Q21",
+      "class": "ru_forms",
+      "q": "поставку цемента",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.934189000000515,
+      "msFirst": 39.737293000000136
+    },
+    {
+      "id": "Q22",
+      "class": "ru_forms",
+      "q": "цемент",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 44.26824300000044,
+      "msFirst": 45.03154500000073
+    },
+    {
+      "id": "Q23",
+      "class": "ru_forms",
+      "q": "Подольске",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.445511999999326,
+      "msFirst": 40.445511999999326
+    },
+    {
+      "id": "Q24",
+      "class": "ru_forms",
+      "q": "гидроизоляции",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 44.31535200000053,
+      "msFirst": 44.71626399999968
+    },
+    {
+      "id": "Q25",
+      "class": "ru_forms",
+      "q": "гидроизоляцию подвала",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 43.58263699999952,
+      "msFirst": 45.4189809999998
+    },
+    {
+      "id": "Q26",
+      "class": "ru_forms",
+      "q": "котельной",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Котельная для ангара в Химках"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.93962899999951,
+      "msFirst": 40.93962899999951
+    },
+    {
+      "id": "Q27",
+      "class": "ru_forms",
+      "q": "котельные",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Котельная для ангара в Химках"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 43.47436300000027,
+      "msFirst": 43.47436300000027
+    },
+    {
+      "id": "Q28",
+      "class": "ru_forms",
+      "q": "ангар Химки",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Котельная для ангара в Химках"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 42.92510299999958,
+      "msFirst": 42.92510299999958
+    },
+    {
+      "id": "Q29",
+      "class": "ru_forms",
+      "q": "лестницу из лиственницы",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Лестница из лиственницы на дачу"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 44.954169999999976,
+      "msFirst": 46.337303999999676
+    },
+    {
+      "id": "Q30",
+      "class": "ru_forms",
+      "q": "звукоизоляция переговорных",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Звукоизоляция переговорной — 3 этаж"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 41.970132000000376,
+      "msFirst": 41.970132000000376
+    },
+    {
+      "id": "Q31",
+      "class": "ru_forms",
+      "q": "трансформаторная подстанция",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Замена трансформаторной подстанции КТП-630"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.81639700000051,
+      "msFirst": 46.35729300000003
+    },
+    {
+      "id": "Q32",
+      "class": "ru_forms",
+      "q": "окна ПВХ",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 107.46480400000019,
+      "msFirst": 107.46480400000019
+    },
+    {
+      "id": "Q33",
+      "class": "en_forms",
+      "q": "window replacement",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Windows replacement at the Leeds depot"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 63.038745000001654,
+      "msFirst": 40.558884999999464
+    },
+    {
+      "id": "Q34",
+      "class": "en_forms",
+      "q": "forklift repairs",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Forklift repair, warehouse 7"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 44.355225999999675,
+      "msFirst": 47.07495899999958
+    },
+    {
+      "id": "Q35",
+      "class": "en_forms",
+      "q": "photovoltaic installations",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Photovoltaic carport installation, Valencia port"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 55.4241809999985,
+      "msFirst": 55.4241809999985
+    },
+    {
+      "id": "Q36",
+      "class": "en_forms",
+      "q": "breweries",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 43.219787,
+      "msFirst": 43.219787
+    },
+    {
+      "id": "Q37",
+      "class": "company",
+      "q": "АкваБарьер",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.601463999999396,
+      "msFirst": 36.33934899999986
+    },
+    {
+      "id": "Q38",
+      "class": "company",
+      "q": "ООО «АкваБарьер»",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.2312890000012,
+      "msFirst": 46.467719000000216
+    },
+    {
+      "id": "Q39",
+      "class": "company",
+      "q": "Hopfen Brauhaus",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л",
+        "+ Редизайн website для Hopfen Brauhaus"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.32627800000046,
+      "msFirst": 41.44947499999944
+    },
+    {
+      "id": "Q40",
+      "class": "company",
+      "q": "Вектор-М",
+      "relevant": 23,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Supply of office chairs to Valencia",
+        "+ Request for quote: laptops",
+        "+ Ремонт кровли",
+        "+ Монтаж вентиляции",
+        "+ Входящий звонок"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 50.74427199999991,
+      "msFirst": 50.74427199999991
+    },
+    {
+      "id": "Q41",
+      "class": "company",
+      "q": "Северный путь Плюс",
+      "relevant": 22,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Ремонт склада — Северный путь Плюс",
+        "+ Обслуживание сигнализации",
+        "+ Cloud migration — Северный путь Плюс",
+        "+ Входящий звонок",
+        "+ Cloud migration"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 46.74303599999985,
+      "msFirst": 47.73920399999952
+    },
+    {
+      "id": "Q42",
+      "class": "company",
+      "q": "Oscorp Systems",
+      "relevant": 22,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка офисной мебели в Уфу — Oscorp Systems",
+        "+ Inbound call — Oscorp Systems",
+        "+ Монтаж сигнализации — Oscorp Systems",
+        "+ Обслуживание видеонаблюдения",
+        "+ Ремонт кухни"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 46.6755090000006,
+      "msFirst": 68.34984799999984
+    },
+    {
+      "id": "Q43",
+      "class": "company",
+      "q": "АО «Альфа-М»",
+      "relevant": 20,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Supply of LED panels to Lyon — Альфа-М",
+        "+ Inbound call",
+        "+ Security audit",
+        "+ Supply of laptops to Valencia",
+        "+ Запрос КП на поставку светильников"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 46.37682800000039,
+      "msFirst": 47.02770899999996
+    },
+    {
+      "id": "Q44",
+      "class": "company",
+      "q": "Севертех-Монтаж",
+      "note": "lead companyTitle",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 46.124024999999165,
+      "msFirst": 44.145973999999114
+    },
+    {
+      "id": "Q45",
+      "class": "contact",
+      "q": "Белоусова",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 41.88024399999995,
+      "msFirst": 38.94637899999907
+    },
+    {
+      "id": "Q46",
+      "class": "contact",
+      "q": "Ольга Белоусова",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.83079400000133,
+      "msFirst": 45.83079400000133
+    },
+    {
+      "id": "Q47",
+      "class": "contact",
+      "q": "Jensen",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л",
+        "+ Редизайн website для Hopfen Brauhaus"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 42.279592999999295,
+      "msFirst": 41.76267300000109
+    },
+    {
+      "id": "Q48",
+      "class": "contact",
+      "q": "Тимофей Гордеев",
+      "note": "lead's own name fields",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 110.04604599999948,
+      "msFirst": 118.42750899999919
+    },
+    {
+      "id": "Q49",
+      "class": "contact",
+      "q": "o.belousova@example.test",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 43.29979699999967,
+      "msFirst": 43.29979699999967
+    },
+    {
+      "id": "Q51",
+      "class": "typo",
+      "q": "гидроизоляцыя",
+      "relevant": 2,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 51.85067700000036,
+      "msFirst": 52.36985100000129
+    },
+    {
+      "id": "Q52",
+      "class": "typo",
+      "q": "поствка цемента",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 53.771560999999565,
+      "msFirst": 51.09345700000085
+    },
+    {
+      "id": "Q53",
+      "class": "typo",
+      "q": "brewrey",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 49.50176099999953,
+      "msFirst": 50.20895699999892
+    },
+    {
+      "id": "Q54",
+      "class": "typo",
+      "q": "Подольсг",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Поставка цемента М500 в Подольск"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 72.89841100000012,
+      "msFirst": 72.89841100000012
+    },
+    {
+      "id": "Q55",
+      "class": "typo",
+      "q": "kombutcha",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Kombucha bottling line upgrade"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 49.438090999999986,
+      "msFirst": 49.438090999999986
+    },
+    {
+      "id": "Q56",
+      "class": "typo",
+      "q": "звукоизаляция",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Звукоизоляция переговорной — 3 этаж"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 48.54113900000084,
+      "msFirst": 44.572674000000916
+    },
+    {
+      "id": "Q57",
+      "class": "typo",
+      "q": "ghblhjbpjkzwbz",
+      "note": "гидроизоляция typed on the EN layout",
+      "relevant": 2,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 43.691500999999334,
+      "msFirst": 42.49299299999984
+    },
+    {
+      "id": "Q58",
+      "class": "amount",
+      "q": "487500",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 43.33565400000043,
+      "msFirst": 43.33565400000043
+    },
+    {
+      "id": "Q59",
+      "class": "amount",
+      "q": "487 500",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 99.60470899999927,
+      "msFirst": 98.55759500000022
+    },
+    {
+      "id": "Q60",
+      "class": "amount",
+      "q": "1250000",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 46.89462999999887,
+      "msFirst": 46.89462999999887
+    },
+    {
+      "id": "Q61",
+      "class": "amount",
+      "q": "3 100 000 RUB",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 163.50060200000007,
+      "msFirst": 160.29535899999973
+    },
+    {
+      "id": "Q62",
+      "class": "stage",
+      "q": "Won",
+      "relevant": 247,
+      "recall10": 0.1,
+      "rr10": 0.5,
+      "falseHits": null,
+      "top": [
+        "- Обслуживание сигнализации",
+        "+ Поставка ноутбуков в Воронеж — Wonka Group",
+        "- Request for quote: LED panels",
+        "- Заявка с сайта — Wonka",
+        "- Supply of office chairs to Porto"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 46.56640399999924,
+      "msFirst": 46.56640399999924
+    },
+    {
+      "id": "Q63",
+      "class": "stage",
+      "q": "Quote sent",
+      "relevant": 266,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 105.65479799999957,
+      "msFirst": 99.23132900000019
+    },
+    {
+      "id": "Q64",
+      "class": "stage",
+      "q": "Lost",
+      "relevant": 293,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 49.750075999998444,
+      "msFirst": 49.750075999998444
+    },
+    {
+      "id": "Q65",
+      "class": "stage",
+      "q": "Junk",
+      "relevant": 185,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 66.35204999999951,
+      "msFirst": 62.111064999999144
+    },
+    {
+      "id": "Q66",
+      "class": "stage",
+      "q": "Example partners",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 112.53523599999971,
+      "msFirst": 113.21344800000043
+    },
+    {
+      "id": "Q67",
+      "class": "stage",
+      "q": "Kombucha won",
+      "note": "title word + stage",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 97.7067189999998,
+      "msFirst": 96.13136400000076
+    },
+    {
+      "id": "Q68",
+      "class": "mix",
+      "q": "brewery пивоварня",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.22944699999971,
+      "msFirst": 52.08693099999982
+    },
+    {
+      "id": "Q69",
+      "class": "mix",
+      "q": "website редизайн",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Редизайн website для Hopfen Brauhaus"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.3563639999993,
+      "msFirst": 46.63184700000056
+    },
+    {
+      "id": "Q70",
+      "class": "mix",
+      "q": "cement",
+      "note": "English word, Russian title",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 46.29027600000154,
+      "msFirst": 43.071938999999475
+    },
+    {
+      "id": "Q71",
+      "class": "mix",
+      "q": "пивоварня Hopfen",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Brewery equipment for Hopfen — пивоварня 500 л"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 44.41430700000092,
+      "msFirst": 44.41430700000092
+    },
+    {
+      "id": "Q72",
+      "class": "mix",
+      "q": "Akvabarer",
+      "note": "transliteration",
+      "relevant": 2,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 45.120560999999725,
+      "msFirst": 45.120560999999725
+    },
+    {
+      "id": "Q73",
+      "class": "mix",
+      "q": "boiler room Khimki",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 137.15969899999982,
+      "msFirst": 156.60535699999855
+    },
+    {
+      "id": "Q74",
+      "class": "question",
+      "q": "кто заказывал гидроизоляцию подвала?",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "- Гидроизоляция фундамента, второй этап"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 48.612301999999545,
+      "msFirst": 48.27887700000065
+    },
+    {
+      "id": "Q75",
+      "class": "question",
+      "q": "which deal was about the kombucha line?",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Kombucha bottling line upgrade",
+        "- Windows replacement at the Leeds depot"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 47.88853399999971,
+      "msFirst": 47.88853399999971
+    },
+    {
+      "id": "Q76",
+      "class": "question",
+      "q": "сколько стоит котельная для ангара?",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Котельная для ангара в Химках",
+        "- Редизайн website для Hopfen Brauhaus",
+        "- Ёмкость из нержавейки для молокозавода"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 46.3417929999996,
+      "msFirst": 46.65506099999948
+    },
+    {
+      "id": "Q77",
+      "class": "field_syntax",
+      "q": "stage:won",
+      "relevant": 247,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "crm not searched: deals and leads are not searched by stage; list them by it with `deals list stage:<value>`nothing found in what the local store holds",
+      "msMedian": 18.44488099999944,
+      "msFirst": 19.736063000000286
+    },
+    {
+      "id": "Q78",
+      "class": "field_syntax",
+      "q": "title:цемент",
+      "relevant": 1,
+      "recall10": 0,
+      "rr10": 0,
+      "falseHits": null,
+      "top": [],
+      "code": 0,
+      "err": "crm not searched: deals and leads are found by the words of their title, company and contacts onlynothing found in what the local store holds",
+      "msMedian": 15.205253000000084,
+      "msFirst": 16.33252800000082
+    },
+    {
+      "id": "Q79",
+      "class": "field_syntax",
+      "q": "гидроизоляция OR звукоизоляция",
+      "relevant": 3,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Гидроизоляция подвала на Таганке",
+        "+ Гидроизоляция фундамента, второй этап",
+        "+ Звукоизоляция переговорной — 3 этаж"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 45.37400700000035,
+      "msFirst": 43.84403700000075
+    },
+    {
+      "id": "Q80",
+      "class": "field_syntax",
+      "q": "\"монтаж окон\"",
+      "relevant": 1,
+      "recall10": 1,
+      "rr10": 1,
+      "falseHits": null,
+      "top": [
+        "+ Счёт 4471 за монтаж окон ПВХ"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 44.30978099999993,
+      "msFirst": 44.3505069999992
+    },
+    {
+      "id": "Q81",
+      "class": "no_answer",
+      "q": "квантовый телепорт",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 0,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 107.16936899999928,
+      "msFirst": 110.55728600000111
+    },
+    {
+      "id": "Q82",
+      "class": "no_answer",
+      "q": "zebra migration",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 0,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 102.83792399999948,
+      "msFirst": 102.83792399999948
+    },
+    {
+      "id": "Q83",
+      "class": "no_answer",
+      "q": "вертолёт",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 0,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 43.67540100000042,
+      "msFirst": 43.05451600000015
+    },
+    {
+      "id": "Q84",
+      "class": "no_answer",
+      "q": "submarine charter",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 0,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 104.91564199999993,
+      "msFirst": 106.9534539999986
+    },
+    {
+      "id": "Q85",
+      "class": "no_answer",
+      "q": "кот",
+      "note": "trap: inside «котельная»",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 1,
+      "top": [
+        "- Котельная для ангара в Химках"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 50.59077400000024,
+      "msFirst": 50.59077400000024
+    },
+    {
+      "id": "Q86",
+      "class": "no_answer",
+      "q": "лес",
+      "note": "trap: inside «лестница»",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 1,
+      "top": [
+        "- Лестница из лиственницы на дачу"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 42.14321700000073,
+      "msFirst": 37.583173000002716
+    },
+    {
+      "id": "Q87",
+      "class": "no_answer",
+      "q": "ice",
+      "note": "trap: inside «office», «services»",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 0,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 44.761609000001044,
+      "msFirst": 41.427223999999114
+    },
+    {
+      "id": "Q88",
+      "class": "no_answer",
+      "q": "ром",
+      "note": "trap: inside «Ромашка», «металлопроката»",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 10,
+      "top": [
+        "- Заявка с сайта — Ромашка-М",
+        "- Поставка светильников в Уфу — Ромашка",
+        "- Security audit — Ромашка",
+        "- Договор на поставку светильников",
+        "- Поставка кабеля в Пермь — Ромашка Групп"
+      ],
+      "code": 0,
+      "err": "",
+      "msMedian": 40.79811399999744,
+      "msFirst": 39.688913000001776
+    },
+    {
+      "id": "Q89",
+      "class": "no_answer",
+      "q": "art",
+      "note": "trap: inside «Stark»",
+      "relevant": 0,
+      "recall10": null,
+      "rr10": null,
+      "falseHits": 0,
+      "top": [],
+      "code": 0,
+      "err": "nothing found in what the local store holds",
+      "msMedian": 41.929165000001376,
+      "msFirst": 41.76578900000095
+    }
+  ]
+}
