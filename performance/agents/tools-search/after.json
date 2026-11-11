@@ -1,0 +1,227 @@
+{
+  "node": "v24.19.0",
+  "memo": "0.131.84",
+  "cli_core": "0.643.0",
+  "short": {
+    "found": 13,
+    "top1": 9,
+    "top3": 12,
+    "of": 13
+  },
+  "task": {
+    "found": 13,
+    "top1": 9,
+    "top3": 10,
+    "of": 13
+  },
+  "rows": [
+    {
+      "command": "organizations context",
+      "form": "short",
+      "query": "organization context",
+      "rank": 0,
+      "shown": 8,
+      "top": ["organizations context", "context", "deals context"]
+    },
+    {
+      "command": "organizations context",
+      "form": "task",
+      "query": "a client company's people, deals and money",
+      "rank": 1,
+      "shown": 8,
+      "top": ["deals context", "organizations context", "leads context"]
+    },
+    {
+      "command": "deals context",
+      "form": "short",
+      "query": "deal context",
+      "rank": 0,
+      "shown": 8,
+      "top": ["deals context", "organizations context", "context"]
+    },
+    {
+      "command": "deals context",
+      "form": "task",
+      "query": "everything about one deal: people, stages, invoices",
+      "rank": 0,
+      "shown": 8,
+      "top": ["deals context", "review agenda", "deals show"]
+    },
+    {
+      "command": "leads context",
+      "form": "short",
+      "query": "lead context",
+      "rank": 0,
+      "shown": 8,
+      "top": ["leads context", "organizations context", "context"]
+    },
+    {
+      "command": "leads context",
+      "form": "task",
+      "query": "one lead with its people and history",
+      "rank": 0,
+      "shown": 8,
+      "top": ["leads context", "leads show", "organizations context"]
+    },
+    {
+      "command": "deals update",
+      "form": "short",
+      "query": "deal project",
+      "rank": 1,
+      "shown": 8,
+      "top": ["deals context", "deals update", "deals add"]
+    },
+    {
+      "command": "deals update",
+      "form": "task",
+      "query": "set the project a deal belongs to",
+      "rank": 0,
+      "shown": 8,
+      "top": ["deals update", "leads update", "relationships update"]
+    },
+    {
+      "command": "relationships list",
+      "form": "short",
+      "query": "relationships",
+      "rank": 3,
+      "shown": 8,
+      "top": ["relationships add", "relationships confirm", "relationships end"]
+    },
+    {
+      "command": "relationships list",
+      "form": "task",
+      "query": "who reports to whom",
+      "rank": 3,
+      "shown": 8,
+      "top": ["vocabulary show", "context", "relationships add"]
+    },
+    {
+      "command": "relationships add",
+      "form": "short",
+      "query": "add relationship",
+      "rank": 0,
+      "shown": 8,
+      "top": ["relationships add", "relationships roles add", "projects evidence"]
+    },
+    {
+      "command": "relationships add",
+      "form": "task",
+      "query": "record that a person reports to another",
+      "rank": 7,
+      "shown": 8,
+      "top": ["records match", "context", "deals add"]
+    },
+    {
+      "command": "relationships end",
+      "form": "short",
+      "query": "end relationship",
+      "rank": 0,
+      "shown": 8,
+      "top": ["relationships end", "relationships add", "relationships list"]
+    },
+    {
+      "command": "relationships end",
+      "form": "task",
+      "query": "say a relationship ended",
+      "rank": 0,
+      "shown": 8,
+      "top": ["relationships end", "relationships add", "relationships list"]
+    },
+    {
+      "command": "organizations list",
+      "form": "short",
+      "query": "organizations",
+      "rank": 2,
+      "shown": 8,
+      "top": ["organizations add", "organizations context", "organizations list"]
+    },
+    {
+      "command": "organizations list",
+      "form": "task",
+      "query": "list client organizations",
+      "rank": 0,
+      "shown": 8,
+      "top": ["organizations list", "people list", "records list"]
+    },
+    {
+      "command": "context",
+      "form": "short",
+      "query": "person context",
+      "rank": 0,
+      "shown": 8,
+      "top": ["context", "meetings prepare", "projects evidence"]
+    },
+    {
+      "command": "context",
+      "form": "task",
+      "query": "one person's companies and deals",
+      "rank": 0,
+      "shown": 8,
+      "top": ["context", "deals add", "people list"]
+    },
+    {
+      "command": "groups list",
+      "form": "short",
+      "query": "account groups",
+      "rank": 1,
+      "shown": 8,
+      "top": ["groups add", "groups list", "groups move"]
+    },
+    {
+      "command": "groups list",
+      "form": "task",
+      "query": "which accounts are in the work group",
+      "rank": 3,
+      "shown": 8,
+      "top": ["groups add", "groups move", "groups remove"]
+    },
+    {
+      "command": "groups add",
+      "form": "short",
+      "query": "add account to group",
+      "rank": 0,
+      "shown": 8,
+      "top": ["groups add", "review agenda", "actions add"]
+    },
+    {
+      "command": "groups add",
+      "form": "task",
+      "query": "put an account in a group",
+      "rank": 0,
+      "shown": 8,
+      "top": ["groups add", "groups list", "groups move"]
+    },
+    {
+      "command": "groups remove",
+      "form": "short",
+      "query": "remove account group",
+      "rank": 0,
+      "shown": 8,
+      "top": ["groups remove", "groups add", "groups list"]
+    },
+    {
+      "command": "groups remove",
+      "form": "task",
+      "query": "take an account out of a group",
+      "rank": 0,
+      "shown": 8,
+      "top": ["groups remove", "groups add", "groups list"]
+    },
+    {
+      "command": "groups move",
+      "form": "short",
+      "query": "move account groups",
+      "rank": 0,
+      "shown": 8,
+      "top": ["groups move", "projects status", "review agenda"]
+    },
+    {
+      "command": "groups move",
+      "form": "task",
+      "query": "move an account to another group",
+      "rank": 0,
+      "shown": 8,
+      "top": ["groups move", "projects status", "review agenda"]
+    }
+  ]
+}

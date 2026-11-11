@@ -35,3 +35,7 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
   and marks one not ready when its CLI is missing (2026-10-29).
 - [mcp-short-listing](mcp-short-listing/README.md) — an agent succeeds as often with the short MCP answer schema
   (3,323 characters for the three tools) as with the full one (17,278), on half the input tokens (2026-11-09).
+
+- [tools-search](tools-search/README.md) — `memo_tools_search` over a real stdio MCP server: task phrases found
+  6 of 13 commands when every word had to match, 13 of 13 when ranked by the words that match; short phrases
+  unchanged at 13 of 13 (2026-11-12).
