@@ -19,3 +19,6 @@ CLIs run, what bitrix24-cli syncs, and what memo answers from it.
   0.76 with [cli-core#2866](https://github.com/WireCatLabs/cli-core/pull/2866) (word forms, company, contacts,
   typos). False hits on queries with no answer: 22 before, none with a four-letter minimum for word beginnings
   (2026-11-11).
+- [live-sync](live-sync/README.md) — b24 0.13.0's sync on a real Professional-plan portal, read-only: a first sync of
+  51,392 deals, 9,312 leads and 108,000 contacts took two runs, 11 min 39 s and 1,263 requests at about 1.8 a second;
+  a daily sync with almost no changes still took 2 min 40 s, re-reading every client (2026-11-11).
