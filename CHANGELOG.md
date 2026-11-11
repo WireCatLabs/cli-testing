@@ -10,6 +10,13 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
 
 ### Added
 
+- **A tools-search measurement asks a real `memo mcp serve` 13 short and 13 task phrases** and records where each
+  command lands (`performance/agents/tools-search/`). Ranking by the words that match (cli-core #2878) finds 13 of 13
+  task phrases instead of 6, with the short phrases unchanged. The after run used local builds; rerun it on the
+  release that carries #2878.
+- **The CRM relationships check was rerun on b24 0.13.0 and memo 0.131.84** and passes 13 of 13: check 11 holds
+  since cli-memo #777. The runner chooses the CRM user whose deals b24 copies, the fake portal answers
+  `user.admin`, and the owner keeps one contact that memo now hides as test data.
 - **A contract case can match its stderr with `diagnosticPattern`.** It is a regular expression matched against the
   whole normalized stderr, for a message with a number in it such as "the store moved to schema 58", which made every
   tool's upgrade contract fail whenever the shared store schema moved. A mismatch names the pattern and the stderr

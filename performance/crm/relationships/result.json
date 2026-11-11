@@ -4,30 +4,30 @@
   "build": "registry",
   "artifacts": {
     "bitrix24-cli": {
-      "version": "0.9.0",
-      "integrity": "sha512-ED9HB1ICAu0ilsZ8aTQQYO1EsBiE8dLNlZxFT7TE4dPpk7Zqt5Rc/JOO71wL8Kdl1wbSz+/waTFUEIThmdmfCQ==",
-      "entry_sha256": "9af3627a62e2c1bdb9bd8f4e6b848ac2c435680b9430a6fd82dd9f3d037e2ca8"
+      "version": "0.13.0",
+      "integrity": "sha512-ejozsGbNIQJBzITYyFTHCodKEeqz+TzslgGD7lWAlw/QwvCZNSV5z/iJj6UheewfvUbRfPXhocju3N4iRLc9KQ==",
+      "entry_sha256": "286dcf755645cc42174678a067a4342c7c4ea61b40beef82d5184f7d5edd99f0"
     },
     "cli-memo": {
-      "version": "0.131.72",
-      "integrity": "sha512-OzcERWkp+3JIl1q9VTZjygDyqq2G+tT2pZSaVkZPZL5V2pngzXTpzrJu6MXc1IOMMMHPPAFgUTZST+Q3X3t6+w==",
-      "entry_sha256": "1fdb032b3e331cd873976707d24c194d8c23c8477a62dbb4d90190f5af8d16f2"
+      "version": "0.131.84",
+      "integrity": "sha512-AvXK64/Ul52QS1ePiNZRbrqJTckq3gKrMYxc9FE2YDQSqwqaHZIkTKGZ1qrE8aGiRWHZ4QNBcbmbFYctB2+Qig==",
+      "entry_sha256": "91db15e58df1fe18bc864b7195f27f989bc4f5ec2ce25efbe88b9c7ac1b0a1a4"
     },
     "cli-core": {
-      "version": "0.619.0",
-      "b24_core": "0.619.0",
-      "integrity": "sha512-Q99wriU8x7BHOB/nVUpw7XyHiG1p5jg3P6UYU29JL+oO+pDecj8sBURQSbjsHruDm9MBAjMqh1EY8X+VOuzaOw=="
+      "version": "0.640.0",
+      "b24_core": "0.635.0",
+      "integrity": "sha512-PyDy79uLq+Y4pjqE37YWvs5GZm1WTGtNzlkkpkUXpsAr/W7B00IKlHbOAz5RW5d6EggFfpK9wSMWWcOZz1WJpA=="
     }
   },
   "first_sync": {
     "synced": [
       {
         "kind": "organization",
-        "saved": 2
+        "saved": 3
       },
       {
         "kind": "person",
-        "saved": 3
+        "saved": 4
       },
       {
         "kind": "deal",
@@ -41,7 +41,7 @@
     "users": 2
   },
   "portal": {
-    "calls": 297,
+    "calls": 421,
     "methods": [
       "v2 crm.category.list",
       "v2 crm.company.userfield.list",
@@ -50,6 +50,7 @@
       "v2 crm.lead.userfield.list",
       "v2 crm.status.list",
       "v2 department.get",
+      "v2 user.admin",
       "v2 user.get",
       "v3 crm.company.field.list",
       "v3 crm.company.list",
@@ -63,8 +64,8 @@
     ],
     "refused": 0
   },
-  "passed": 12,
-  "failed": [11],
+  "passed": 13,
+  "failed": [],
   "checks": [
     {
       "id": 1,
@@ -284,8 +285,7 @@
     {
       "id": 11,
       "name": "a group lock never reads the other group's accounts, and deals: deny hides deals",
-      "pass": false,
-      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(!evidence.deny_search.some((ref) => ref.startsWith(\"deal:\")))\n",
+      "pass": true,
       "evidence": {
         "personal_deals_list": 0,
         "personal_search_deal": [],
@@ -317,7 +317,9 @@
             "tasks": 2
           }
         },
-        "deny_search": ["deal:1"]
+        "deny_search": [],
+        "deny_organization_deals": 0,
+        "deny_deal_context": 5
       }
     },
     {
@@ -374,7 +376,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 35,
+            "line": 75,
             "command": "memo context person:7",
             "ran": true,
             "code": 0,
@@ -382,7 +384,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 151,
+            "line": 251,
             "command": "memo organizations list category:client",
             "ran": true,
             "code": 0,
@@ -390,7 +392,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 191,
+            "line": 291,
             "command": "memo relationships add person:PERSON_UID organization:1 --role employee --position CTO --start-date 2026-01-01",
             "ran": true,
             "code": 0,
@@ -398,7 +400,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 192,
+            "line": 292,
             "command": "memo relationships add person:PERSON_UID project:1 --role contributor",
             "ran": true,
             "code": 0,
@@ -406,7 +408,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 193,
+            "line": 293,
             "command": "memo relationships add person:PERSON_UID person:OTHER_UID --kind reports-to",
             "ran": true,
             "code": 0,
@@ -414,7 +416,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 194,
+            "line": 294,
             "command": "memo relationships add organization:2 organization:1 --kind customer-of",
             "ran": true,
             "code": 0,
@@ -422,7 +424,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 195,
+            "line": 295,
             "command": "memo relationships list 'about:\"project:1\"'",
             "ran": true,
             "code": 0,
@@ -430,7 +432,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 196,
+            "line": 296,
             "command": "memo relationships list kind:reports-to 'to:\"person:5\"'",
             "ran": true,
             "code": 0,
@@ -438,7 +440,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 197,
+            "line": 297,
             "command": "memo relationships list standing:reported include:ended --limit 50",
             "ran": true,
             "code": 0,
@@ -446,7 +448,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 198,
+            "line": 298,
             "command": "memo relationships end 4 --end-date 2026-09-30",
             "ran": true,
             "code": 0,
@@ -454,21 +456,21 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 203,
+            "line": 303,
             "command": "memo relationships end <id> --end-date <date>",
             "skip": "placeholder",
             "ran": false
           },
           {
             "file": "memo/docs/people.md",
-            "line": 221,
+            "line": 324,
             "command": "memo relationships update 4 --role client-contact --role-note '<the old words>'",
             "skip": "placeholder",
             "ran": false
           },
           {
             "file": "memo/docs/people.md",
-            "line": 228,
+            "line": 331,
             "command": "memo relationships update 4 --engagement low",
             "ran": true,
             "code": 0,
@@ -476,7 +478,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 229,
+            "line": 332,
             "command": "memo relationships update 4 --role approver --role-note 'signs the acts'",
             "ran": true,
             "code": 0,
@@ -484,7 +486,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 230,
+            "line": 333,
             "command": "memo relationships update 4 --engagement ''",
             "ran": true,
             "code": 0,
@@ -492,7 +494,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 233,
+            "line": 336,
             "command": "memo relationships list",
             "ran": true,
             "code": 0,
@@ -500,7 +502,7 @@
           },
           {
             "file": "memo/docs/people.md",
-            "line": 240,
+            "line": 343,
             "command": "memo relationships add chat:telegram/1/123 project:1",
             "ran": true,
             "code": 0,
@@ -695,23 +697,23 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 59,
-            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.unassigned 15,31",
-            "ran": true,
-            "code": 0,
-            "shape": "item"
-          },
-          {
-            "file": "b24/docs/usage.md",
             "line": 60,
-            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.scope all",
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.unassigned 3327",
             "ran": true,
             "code": 0,
             "shape": "item"
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 109,
+            "line": 61,
+            "command": "b24 work config set crm.bitrix24:example.bitrix24.ru.scope mine",
+            "ran": true,
+            "code": 0,
+            "shape": "item"
+          },
+          {
+            "file": "b24/docs/usage.md",
+            "line": 119,
             "command": "b24 work config set crm.bitrix24:example.bitrix24.com.links review",
             "ran": true,
             "code": 0,
@@ -719,7 +721,7 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 117,
+            "line": 127,
             "command": "b24 work config set crm.bitrix24:example.bitrix24.com.company-types CUSTOMER=customer-of,SUPPLIER=supplier",
             "ran": true,
             "code": 0,
@@ -727,14 +729,14 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 132,
+            "line": 142,
             "command": "b24 work schedule command crm --every 1h -- sync",
             "skip": "installs or runs an OS timer",
             "ran": false
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 133,
+            "line": 143,
             "command": "b24 work schedule list",
             "ran": true,
             "code": 0,
@@ -742,7 +744,7 @@
           },
           {
             "file": "b24/docs/usage.md",
-            "line": 134,
+            "line": 144,
             "command": "b24 work schedule remove crm",
             "skip": "installs or runs an OS timer",
             "ran": false
