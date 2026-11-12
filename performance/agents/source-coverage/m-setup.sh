@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Contestant M: chigwell/telegram-mcp at a pinned commit, signed in as a NEW Telegram session.
 # Run it in your own terminal, not through an agent: the sign-in prints the session string.
-# Usage: m-setup.sh <run-dir>
+# Usage: m-setup.sh [run-dir, default ~/.cache/wirecat-experiment-b]
 set -euo pipefail
-run=$(realpath -m "$1"); dir="$run/m/telegram-mcp"
+run=$(realpath -m "${1:-$HOME/.cache/wirecat-experiment-b}"); dir="$run/m/telegram-mcp"
 commit=6b3bd9512736211e2a76ab4b1345c81eeed7b931
 start=$(date +%s)
 mkdir -p "$run/m"
