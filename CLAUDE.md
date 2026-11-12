@@ -40,6 +40,12 @@ setup with the exact command, results, what it showed, and what was not measured
 README, and from `PROCESS.md` where the area keeps one. A run on the owner's real data publishes totals only;
 queries, names and per-item rows go to `cli-private` (rule 3).
 
+## Local datasets
+
+Synthetic data a check made and someone may reuse goes to `datasets/<name>/` in the main checkout, not to a
+scratchpad, and gets a row in [`datasets/README.md`](datasets/README.md). The data is git-ignored. Never put the
+owner's real data there (rule 5): no copy of `~/.local/share/WireCat/wirecat.db` or of a tool's real store.
+
 ## Comments
 
 Sparse, and only *why*. No comment restating the line, no banners, no narrating the change.

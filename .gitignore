@@ -10,6 +10,10 @@ coverage/
 .claude/settings.local.json
 .rumdl_cache/
 
+# Synthetic datasets kept on this machine: only their index is in git (datasets/README.md).
+/datasets/*
+!/datasets/README.md
+
 # Worktrees, when kept inside the main checkout: each a checkout of its own, never part of this one.
 /.worktrees/
 
