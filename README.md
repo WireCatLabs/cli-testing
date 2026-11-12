@@ -66,6 +66,12 @@ Offline synthetic search-quality benchmarks, model explanations and resource pro
 [`performance/search/`](performance/search/README.md). They run on demand against an explicitly
 selected cli-messaging build; they are separate from the published suite package.
 
+## Local datasets
+
+Synthetic stores, sandboxes and notes that a check or a benchmark made, kept on the machine for the next run. The
+data is git-ignored, and [`datasets/README.md`](datasets/README.md) lists each one: what it is, what made it, how to
+use it and how to make it again.
+
 ## Engineering reviews
 
 [Code structure reviews](performance/engineering/README.md) assess responsibility, dependency
