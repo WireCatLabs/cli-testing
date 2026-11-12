@@ -158,17 +158,57 @@ describe("offline CLI contracts", () => {
     expect(contractToolSnapshot([{ ...tool, description: "one" }])).toBe(
       contractToolSnapshot([{ ...tool, description: "two" }]),
     )
-    expect(
-      contractToolSnapshot([
-        {
-          name: "b",
-          inputSchema: { properties: {}, type: "object" },
-          outputSchema: { type: "object" },
-          annotations: { readOnlyHint: true },
+    const pinned = contractToolSnapshot([
+      {
+        name: "b",
+        inputSchema: { properties: {}, type: "object" },
+        outputSchema: { type: "object" },
+        annotations: { readOnlyHint: true },
+      },
+      tool,
+    ])
+    expect(pinned).not.toContain('"outputSchema"')
+    expect(pinned).toContain('"readOnlyHint"')
+  })
+
+  it("pins the input schema's structure, not its wording, and keeps arguments named description", () => {
+    const envelope = (sample: string) => ({
+      name: "app_read",
+      inputSchema: {
+        $schema: "https://json-schema.org/draft/2020-12/schema",
+        type: "object",
+        description: "run a command",
+        properties: {
+          command: { type: "string", minLength: 1, description: `a command: "${sample}"` },
+          description: { type: "string", description: "an argument of that name" },
+          arguments: { type: "object", additionalProperties: { description: "any" }, properties: true },
+          flag: { type: "boolean", not: false, items: true },
+          items: { type: "array", items: [{ description: "first" }], anyOf: [{ description: "x", type: "array" }] },
         },
-        tool,
+        required: ["command", "description"],
+      },
+    })
+    const reduced = contractToolSnapshot([envelope("deals list")])
+    expect(reduced).toBe(contractToolSnapshot([envelope("messages list")]))
+    expect(reduced).not.toContain("draft/2020-12")
+    expect(reduced).not.toContain("an argument of that name")
+    expect(JSON.parse(reduced)[0].inputSchema.properties.description).toEqual({ type: "string" })
+    expect(reduced).not.toBe(contractToolSnapshot([{ ...envelope("x"), name: "app_write" }]))
+  })
+
+  it("accepts a snapshot written before output schemas and descriptions were left out", async () => {
+    const snapshot = "older-tools-contract.json"
+    writeFileSync(
+      join(tmpdir(), snapshot),
+      JSON.stringify([
+        { ...tool, outputSchema: { type: "object", properties: { item: {} } }, annotations: { readOnlyHint: true } },
       ]),
-    ).toContain('"outputSchema"')
+    )
+    const tools = async () => [{ ...tool, outputSchema: { type: "object" }, annotations: { readOnlyHint: true } }]
+    const p = { ...plan(), mcp: { args: ["mcp"], snapshot } }
+    expect((await runContracts(p, { run: success, tools, path: tmpdir() })).passed).toBe(true)
+    const changed = async () => [{ ...tool, annotations: { readOnlyHint: false } }]
+    expect((await runContracts(p, { run: success, tools: changed, path: tmpdir() })).passed).toBe(false)
   })
 
   it.each([

@@ -24,8 +24,11 @@ its package integrity matches the npm release.
 - Discovery is exactly one JSON object or array on stdout, with empty stderr.
 - Invalid options and command paths return the documented exit code and one JSON error on stderr,
   with empty stdout and the expected error code.
-- MCP initialization and `tools/list` work through the SDK. Tool names, input/output schemas,
-  and annotations match reviewed snapshots; descriptions and tool ordering are not frozen.
+- MCP initialization and `tools/list` work through the SDK. Tool names, the structure of each input
+  schema, and annotations match a reviewed snapshot. Descriptions (of tools and inside schemas),
+  `$schema`, output schemas and tool ordering are not frozen: they change with each cli-core release
+  and only made every CLI adopt it. A snapshot written with output schemas still passes;
+  `--update` rewrites it in the shorter form.
 
 The first plans cover shared metadata commands and errors. They do not claim coverage of every
 command, store migration, messenger protocol, HTTP MCP transport, or live-account behavior.
@@ -119,8 +122,15 @@ captured string/number type; `{{root}}` identifies the fresh root. Missing/repea
 Per-case `files` check reviewed text, JSON subsets, original fixture bytes (`unchanged: true`) or
 SHA256. Paths cannot escape the root or pass through symlinks.
 
-`previous: {entry, version}` pins a previous installed Node CLI entry; a case with `previous: true`
-uses that binary. `entry` can name a reviewed local synthetic fixture generator. Entry paths resolve
+`previous: {}` tests the upgrade from the newest published release at or below the version in the
+`package.json` above the plan: `cli-contract` asks npm for the versions, installs that one with pnpm
+into `node_modules/.cache/wirecat-contract-previous/` (once per version, without install scripts),
+and reports it as `previous` in its result. A release candidate whose `package.json` already holds the
+next version tests from the last release; a pull request tests from the version on npm. Name the
+executable with `previous: {"bin": "<name>"}` when the package has more than one target. This step
+needs the registry; the cases themselves stay offline. `previous: {entry, version}` still pins an
+installed Node CLI entry, for a plan whose seed script imports a release's own modules. A case with
+`previous: true` uses that binary. `entry` can name a reviewed local synthetic fixture generator. Entry paths resolve
 relative to the plan, while fixture and artifact paths stay relative to the temporary root.
 `diagnostic` permits one exact reviewed stderr string on a stdout case; leak checks still apply.
 `diagnosticPattern` does the same with a regular expression, for a message that carries a number or a version:

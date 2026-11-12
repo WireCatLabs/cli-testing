@@ -120,6 +120,37 @@ const canonical = (value: unknown): unknown => {
   return value
 }
 
+const SCHEMA_MAPS = new Set(["properties", "patternProperties", "$defs", "definitions", "dependentSchemas"])
+const SCHEMA_LISTS = new Set(["allOf", "anyOf", "oneOf", "prefixItems"])
+const SCHEMA_VALUES = new Set([
+  "additionalProperties",
+  "contains",
+  "else",
+  "if",
+  "items",
+  "not",
+  "propertyNames",
+  "then",
+  "unevaluatedItems",
+  "unevaluatedProperties",
+])
+
+// Descriptions carry wording and sample commands that change with each cli-core release; the structure is the contract.
+const schemaShape = (schema: unknown): unknown => {
+  if (!schema || typeof schema !== "object" || Array.isArray(schema)) return schema
+  return Object.fromEntries(
+    Object.entries(schema)
+      .filter(([key]) => key !== "description" && key !== "$schema")
+      .map(([key, value]) => {
+        if (SCHEMA_MAPS.has(key) && value && typeof value === "object" && !Array.isArray(value))
+          return [key, Object.fromEntries(Object.entries(value).map(([name, item]) => [name, schemaShape(item)]))]
+        if (SCHEMA_LISTS.has(key) && Array.isArray(value)) return [key, value.map(schemaShape)]
+        if (SCHEMA_VALUES.has(key)) return [key, Array.isArray(value) ? value.map(schemaShape) : schemaShape(value)]
+        return [key, value]
+      }),
+  )
+}
+
 export const contractToolSnapshot = (tools: unknown[]): string => {
   const names = new Set<string>()
   const contracts = tools
@@ -138,8 +169,7 @@ export const contractToolSnapshot = (tools: unknown[]): string => {
       names.add(tool.name)
       return {
         name: tool.name,
-        inputSchema: tool.inputSchema,
-        ...(tool.outputSchema ? { outputSchema: tool.outputSchema } : {}),
+        inputSchema: schemaShape(tool.inputSchema),
         ...(tool.annotations ? { annotations: tool.annotations } : {}),
       }
     })
@@ -147,13 +177,12 @@ export const contractToolSnapshot = (tools: unknown[]): string => {
   return `${JSON.stringify(canonical(contracts), null, 2)}\n`
 }
 
-const snapshot = (path: string, actual: string, update: boolean, json = false) => {
+const snapshot = (path: string, actual: string, update: boolean, normalize = (text: string) => text) => {
   if (update) {
     mkdirSync(dirname(path), { recursive: true })
     writeFileSync(path, actual)
   } else {
-    const expected = readFileSync(path, "utf8").replaceAll("\r\n", "\n")
-    const normalized = json ? `${JSON.stringify(canonical(JSON.parse(expected)), null, 2)}\n` : expected
+    const normalized = normalize(readFileSync(path, "utf8").replaceAll("\r\n", "\n"))
     if (normalized !== actual) throw new Error("contract snapshot changed; review the diff before updating it")
   }
 }
@@ -329,7 +358,7 @@ export const runContracts = async (plan: ContractPlan, deps: ContractDependencie
           resolve(deps.path ?? ".", plan.mcp?.snapshot ?? ""),
           contractToolSnapshot(tools),
           deps.update === true,
-          true,
+          (expected) => contractToolSnapshot(JSON.parse(expected)),
         )
       })
     if (plan.deny)
