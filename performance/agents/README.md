@@ -32,7 +32,8 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
   Run-to-run noise: 49 of 280 verdicts change on a plain rerun (17.5%), the total holds to about a point.
 
 - [source-coverage](source-coverage/README.md) — can an agent reach months-old messages in a real personal Telegram
-  account: WireCat against telegram-mcp and a Telegram Desktop export, 10 questions on 10 chats (planned 2026-11-12).
+  account: telegram-mcp 9 of 10 answers with a source, WireCat 6 (it held too little old history); Telegram Desktop
+  export pending (2026-11-13).
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).

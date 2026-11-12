@@ -40,9 +40,37 @@ run=~/.cache/wirecat-experiment-b
 
 `chats.txt` holds one chat id per line, `questions.txt` the numbered questions; both stay private.
 
-## Results
+## Results (2026-11-13; E waits for the export)
 
-Not run yet.
+| | W: WireCat | M: telegram-mcp | E: export | O: OpenClaw |
+| --- | --- | --- | --- | --- |
+| Correct with a source, of 10 | **6** | **9** | pending | 0 (docs) |
+| Setup to first answer | 23 min | 4 min | pending | n/a |
+| Answering the 10 questions | 10 min, $0.87 | 1.3 min, $1.56 | pending | n/a |
+
+tg 0.123.0 with cli-core 0.633.0, memo 0.131.87; telegram-mcp `6b3bd95`; Claude Code with Claude Sonnet 5.5. One run each.
+
+## What it showed
+
+- **The rival reached the old history and WireCat did not.** telegram-mcp answers from Telegram's own server search,
+  so a 2020 message cost it nothing. WireCat answered only from what it had synced: 20,000 messages per chat kept large
+  groups to their last 8 to 12 months and one private chat to its last 3 years, so the three oldest answers (2020,
+  2021, 2022) were not on the computer. The agent never used tg's server search (`--backend archive` every time).
+- **WireCat's setup was 6 times longer.** 23 of its minutes went to syncing; one sync stopped at the default 5-minute
+  command timeout with an error and had to be run again; preparing local search refused to run under `TG_READ_ONLY`.
+- **Where WireCat won:** one question (a start date said in passing) that telegram-mcp could not find.
+
+By the thresholds set before the run, the claim "WireCat reaches the whole history and rivals do not" is weakened: a
+rival reached 10 of 10 chats with a setup under 30 minutes and more correct answers.
+
+## What was not measured
+
+- One account, one person's 10 questions, one run per contestant; Claude scored the answers against the expected
+  ones.
+- W with a deeper sync or with the agent told to use server search. Both would raise W; neither is what the agent did
+  on its own.
+- Freshness (a new message seen without a manual step) and staying current over days.
+- Cost of keeping a second Telegram session for M, and the risk of Telegram's limits on it.
 
 ## Cleanup
 

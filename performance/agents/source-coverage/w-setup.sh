@@ -11,7 +11,7 @@ echo "start $(date -Is)" > "$log"
 while read -r chat; do
   [ -z "$chat" ] && continue
   t0=$(date +%s)
-  tg personal messages sync "$chat" --limit "${W_LIMIT:-20000}" --no-catch-up > /dev/null
+  tg personal messages sync "$chat" --limit "${W_LIMIT:-20000}" --timeout "${W_TIMEOUT:-30m}" --no-catch-up > /dev/null
   echo "chat $chat synced in $(( $(date +%s) - t0 ))s" >> "$log"
 done < "$chats"
 t0=$(date +%s)
