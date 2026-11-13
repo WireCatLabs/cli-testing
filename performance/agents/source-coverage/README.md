@@ -112,8 +112,8 @@ both, 1 from the server only, no refusal. Round 2 was scored blind, as before.
 
 - One account, one person's 10 questions, one run per contestant; Claude scored the answers against the expected
   ones.
-- E (Telegram Desktop export, done by a script through telegram-mcp's session): the export is slow. The largest group took
-  81 minutes (461,269 messages) and the next 26 minutes; E has no answers yet.
+- E (Telegram Desktop export, done by a script through telegram-mcp's session): the export is slow. The largest
+  group took 81 minutes (461,269 messages) and the next 26 minutes; E has no answers yet.
 - The rerun used a tg build from main, not a version from npm, and one run per round.
 - WireCat with the full history of every chat (no 20,000 limit).
 - Freshness (a new message seen without a manual step) and staying current over days.
