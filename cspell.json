@@ -21,6 +21,9 @@
     "wikipedia",
     "mbox",
     "himalaya",
-    "chigwell"
+    "chigwell",
+    "dotenv",
+    "Telethon",
+    "telethon"
   ]
 }

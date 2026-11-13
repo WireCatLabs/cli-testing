@@ -31,9 +31,9 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
   With search limited to records from before each question: Gemma 77.7% micro, 74.5% macro (unchanged).
   Run-to-run noise: 49 of 280 verdicts change on a plain rerun (17.5%), the total holds to about a point.
 
-- [source-coverage](source-coverage/README.md) — can an agent reach months-old messages in a real personal Telegram
-  account: telegram-mcp 9 of 10 answers with a source, WireCat 6 (it held too little old history); Telegram Desktop
-  export pending (2026-11-13).
+- [source-coverage](source-coverage/README.md) — a real personal Telegram account, WireCat against telegram-mcp:
+  on questions that share words with the answer, Telegram's search is enough (9 against 8 once tg searched the server);
+  on tasks that need many messages, WireCat 5.0 of 5 against 2.7 (2026-11-13).
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).
