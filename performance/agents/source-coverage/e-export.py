@@ -59,6 +59,9 @@ async def main():
     await client.connect()
     start = time.time()
     for chat_id in chats:
+        # A rerun after a stop keeps what is done: one large group takes over an hour.
+        if (out_dir / f"ChatExport_{chat_id}" / "result.json").exists():
+            continue
         t0 = time.time()
         count = await export_chat(client, chat_id, out_dir)
         print(f"chat {chat_id}: {count} messages in {time.time() - t0:.0f}s", flush=True)
