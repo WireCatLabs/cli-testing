@@ -6,6 +6,15 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Fixed
+
+- **`deny-keys` writes the profile into the config before the `--dry-run` previews.** It ran them in an empty home
+  with no profile, so a CLI whose `account remove` revokes at the provider refused the unknown profile with exit 6,
+  and the check failed with "account remove --dry-run exited 6". meet-cli's contracts pass with this change. The
+  config holds only the profile, with no permission set, until each deny writes its own.
+
 ## 0.7.0 — 12.11.2026
 
 ### Added

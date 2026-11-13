@@ -1,4 +1,4 @@
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs"
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { afterAll, describe, expect, it } from "vitest"
@@ -209,6 +209,23 @@ describe("deny contracts", () => {
             : { exit: 2, stdout: "", stderr: "{}" },
     })
     expect(broken.results.find((item) => item.id === "deny-keys")?.failure).toContain("--dry-run exited 2")
+  })
+
+  it("previews each command with the profile in the config, as a command acting on the profile needs", async () => {
+    const report = await runContracts(plan(fakeCli(true)), {
+      run: (invocation) =>
+        invocation.args.includes("commands")
+          ? { exit: 0, stdout: JSON.stringify(TREE), stderr: "" }
+          : invocation.args.includes("config")
+            ? { exit: 0, stdout: '{"item":{"config_file":"config.json"}}', stderr: "" }
+            : !existsSync(join(invocation.cwd, "config.json"))
+              ? { exit: 6, stdout: "", stderr: '{"error":{"code":"not_found"}}' }
+              : invocation.args.includes("--dry-run")
+                ? { exit: 0, stdout: '{"item":{"permission":{"key":"comments.list"}}}', stderr: "" }
+                : { exit: 5, stdout: "", stderr: '{"error":{"code":"permission_error"}}' },
+      toolSession: async () => session(() => refused),
+    })
+    expect(report.results.find((item) => item.id === "deny-keys")).toEqual({ id: "deny-keys", passed: true })
   })
 
   it("fails when the MCP server does not start", async () => {
