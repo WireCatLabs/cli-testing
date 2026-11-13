@@ -40,6 +40,21 @@ run=~/.cache/wirecat-experiment-b
 
 `chats.txt` holds one chat id per line, `questions.txt` the numbered questions; both stay private.
 
+The other steps:
+
+| Step | Script | What it does |
+| --- | --- | --- |
+| Export without clicks (E) | [e-export.py](e-export.py) | each chat's history as Telegram Desktop's JSON, through the M session; a rerun skips chats already exported |
+| Variants | [ask.sh](ask.sh) | `w2`…`wf2`: the WireCat variants of the results below (store, `TG_READ_ONLY`, hint) |
+| Check an indirect question | [overlap.py](overlap.py) | the question's words whose stem also occurs around the answer message; only names should remain |
+| Score blind | [score.sh](score.sh) | gives each sheet a random letter and has a separate agent score it against the key |
+
+```sh
+./score.sh key.md "$run/score" w=w-answers.md m=m-answers.md   # the letters go to $run/score/blind-key.txt
+```
+
+Scored twice, the rerun's round 2 sheet got the same totals both times (9, 5.0, strict 3.67, 0 confidently wrong).
+
 ## Results
 
 ### Round 1: 10 direct questions (the question shares words with the answer)
