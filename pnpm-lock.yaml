@@ -34,8 +34,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5(vitest@5.0.5)
       '@wirecat/cli-base':
-        specifier: 0.75.2
-        version: 0.75.2(commander@15.0.0)(typescript@7.0.2)(vitest@5.0.5)
+        specifier: 0.95.0
+        version: 0.95.0(commander@15.0.0)(typescript@7.0.2)(vitest@5.0.5)
       cspell:
         specifier: 10.4.0
         version: 10.4.0
@@ -837,8 +837,8 @@ packages:
   '@vitest/spy@5.0.5':
     resolution: {integrity: sha512-lwJRExuH417257Q5wv9QYugN9IMJkoxcrKrYxGPQkBzl7wlNpTUxD/5yNX4ESKVUIShKPgkGchYPFMWOOk0wzw==}
 
-  '@wirecat/cli-base@0.75.2':
-    resolution: {integrity: sha512-S6R4q0KEg0kMQ+HY9eMUj2nAw4LLCh6n0wsUdCF13FI6HUdeOGmsTuCNG7wmkupO3RoLbihEBrcGdsRQ/MfK8w==}
+  '@wirecat/cli-base@0.95.0':
+    resolution: {integrity: sha512-wfBS7Wc5/MJq9HB2WaFCMi0Ul1WwALCKqLb0uuz2bcGYU/kOy/MFxTL+bd7hJ5k2G5griT9HH11fL/pCQlkQGg==}
     engines: {node: '>=22'}
     hasBin: true
     peerDependencies:
@@ -2231,7 +2231,7 @@ snapshots:
 
   '@vitest/spy@5.0.5': {}
 
-  '@wirecat/cli-base@0.75.2(commander@15.0.0)(typescript@7.0.2)(vitest@5.0.5)':
+  '@wirecat/cli-base@0.95.0(commander@15.0.0)(typescript@7.0.2)(vitest@5.0.5)':
     dependencies:
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@7.0.2))
       cli-table3: 0.6.5
