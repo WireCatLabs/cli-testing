@@ -103,9 +103,22 @@ fresh store, `TG_READ_ONLY`, no hint in the prompt. tg built from main (0.124.0 
 | WireCat before the fixes (W) | 6 | 8 (W3) | 5.0 (4.0) (W3) | 0 | n/a |
 | WireCat after the fixes | **9** | **9** | **5.0** (3.67) | 0 | 72 s, $0.72 |
 | telegram-mcp | **9** | 7.5 | 2.7 (1.3) | 1 | 218 s, $2.47 |
+| E: export, read with grep and Python | **10** | **10** | **5.0** (4.0) | 0 | 138 s, $0.78 |
 
 The agent used the default search (archive and server together) without being told to: 20 search answers came from
 both, 1 from the server only, no refusal. Round 2 was scored blind, as before.
+
+### Contestant E (2026-11-13)
+
+The full history of the 10 chats, exported by [e-export.py](e-export.py): 948,709 messages, 299 MB of JSON, about
+2.7 hours of export, of which the two largest groups took 81 and 26 minutes. The agent got the files with `grep`, `jq`
+and `python3 -I`. Two earlier tries are not counted, both because of the setup, not the approach: the files were
+written as one line per chat, so a search returned a 100 MB line (1 of 10); then Python was not allowed, and the agent
+could not filter by date (round 2: 0).
+
+On round 1 question 6, E and telegram-mcp gave the same 2026 thread (the hosting company's own servers), not the 2022 message;
+both are counted as right. WireCat's first run gave that answer too and was counted wrong; by the same rule it scores
+7, not 6.
 
 ## What it showed
 
@@ -120,6 +133,10 @@ both, 1 from the server only, no refusal. Round 2 was scored blind, as before.
   guessed other words and often hit.
 - **After the fixes:** WireCat equals telegram-mcp on direct questions (9 and 9), answers in a third of the time and
   cost, and keeps its lead on tasks that need many messages (5.0 against 2.7).
+- **A full local copy is what wins, not WireCat by itself.** The export gives the agent the whole history (WireCat's
+  copy held at most 20,000 messages per chat), and with `grep` and Python the agent answered everything: 10, 10, 5.0.
+  What WireCat adds is the work around the copy: no manual export, the copy stays current, one search across
+  messengers, a link to each message. This test measured none of those.
 - **Setup:** the local copy costs time once: 23 minutes for 10 chats at 20,000 messages each; one sync stopped at the
   default 5-minute timeout (tg-cli #871); preparing local search is refused under `TG_READ_ONLY` (tg-cli #872).
 
@@ -127,8 +144,8 @@ both, 1 from the server only, no refusal. Round 2 was scored blind, as before.
 
 - One account, one person's 10 questions, one run per contestant; Claude scored the answers against the expected
   ones.
-- E (Telegram Desktop export, done by a script through telegram-mcp's session): the export is slow. The largest
-  group took 81 minutes (461,269 messages) and the next 26 minutes; E has no answers yet.
+- E by hand in Telegram Desktop: the export was done by a script through the same API; Desktop's own export time and
+  clicks were not measured.
 - The rerun used a tg build from main, not a version from npm, and one run per round.
 - WireCat with the full history of every chat (no 20,000 limit).
 - Freshness (a new message seen without a manual step) and staying current over days.

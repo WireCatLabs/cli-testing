@@ -16,6 +16,9 @@ from telethon import TelegramClient
 from telethon.sessions import StringSession
 
 
+# indent=1 as Telegram Desktop writes it: one field per line, so grep finds a message, not a 100 MB line.
+
+
 def text_of(message):
     return message.message or ""
 
@@ -45,7 +48,7 @@ async def export_chat(client, chat_id, out_dir):
     chat_dir = out_dir / f"ChatExport_{chat_id}"
     chat_dir.mkdir(parents=True, exist_ok=True)
     (chat_dir / "result.json").write_text(
-        json.dumps({"name": name, "id": int(chat_id), "messages": messages}, ensure_ascii=False), encoding="utf-8"
+        json.dumps({"name": name, "id": int(chat_id), "messages": messages}, ensure_ascii=False, indent=1), encoding="utf-8"
     )
     return len(messages)
 

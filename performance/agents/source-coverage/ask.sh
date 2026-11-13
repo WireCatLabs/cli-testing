@@ -136,7 +136,8 @@ JSON
   e)
     edir=$(realpath "$4")
     access="The user's Telegram chats are exported as JSON (one result.json per chat) under $edir."
-    tools=("Read" "Grep" "Glob" "Bash(jq:*)" "Bash(ls:*)")
+    # What a person who hands an agent the export folder would allow: reading and filtering, Python in isolated mode.
+    tools=("Read" "Grep" "Glob" "Bash(jq:*)" "Bash(ls:*)" "Bash(grep:*)" "Bash(python3 -I:*)")
     extra=(--add-dir "$edir") ;;
   *) echo "usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wf2|m|e> <questions-file> <run-dir> [export-dir]" >&2; exit 2 ;;
 esac
