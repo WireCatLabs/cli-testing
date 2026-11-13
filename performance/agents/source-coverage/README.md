@@ -76,6 +76,22 @@ Strict: a checklist point counts only with every detail in it. No Telegram rate-
 
 Versions: tg 0.123.0 with cli-core 0.633.0, memo 0.131.87; telegram-mcp `6b3bd95`; Claude Code with Claude Sonnet 5.5.
 
+### After the tg fixes (2026-11-13)
+
+Both problems round 1 found were fixed: `TG_READ_ONLY` lets Telegram's search through
+([cli-core #2907](https://github.com/WireCatLabs/cli-core/pull/2907)), and tg's skill searches the archive and the
+server together ([tg-cli #879](https://github.com/WireCatLabs/tg-cli/pull/879)). Rerun with the first setup W: the
+fresh store, `TG_READ_ONLY`, no hint in the prompt. tg built from main (0.124.0 on cli-core 0.650.0).
+
+| | Round 1, of 10 | Round 2 indirect, of 10 | Round 2 tasks, of 5 (strict) | Confidently wrong | Time, round 1 |
+| --- | --- | --- | --- | --- | --- |
+| WireCat before the fixes (W) | 6 | 8 (W3) | 5.0 (4.0) (W3) | 0 | n/a |
+| WireCat after the fixes | **9** | **9** | **5.0** (3.67) | 0 | 72 s, $0.72 |
+| telegram-mcp | **9** | 7.5 | 2.7 (1.3) | 1 | 218 s, $2.47 |
+
+The agent used the default search (archive and server together) without being told to: 20 search answers came from
+both, 1 from the server only, no refusal. Round 2 was scored blind, as before.
+
 ## What it showed
 
 - **Questions that share words with the answer:** Telegram's own search is enough. telegram-mcp found 2020 messages in
@@ -87,6 +103,8 @@ Versions: tg 0.123.0 with cli-core 0.633.0, memo 0.131.87; telegram-mcp `6b3bd95
   misses points. This is the case a local copy is for.
 - **Indirect questions:** a small edge for WireCat (8–9 against 7.5), less than expected. The agent with telegram-mcp
   guessed other words and often hit.
+- **After the fixes:** WireCat equals telegram-mcp on direct questions (9 and 9), answers in a third of the time and
+  cost, and keeps its lead on tasks that need many messages (5.0 against 2.7).
 - **Setup:** the local copy costs time once: 23 minutes for 10 chats at 20,000 messages each; one sync stopped at the
   default 5-minute timeout (tg-cli #871); preparing local search is refused under `TG_READ_ONLY` (tg-cli #872).
 
@@ -94,8 +112,9 @@ Versions: tg 0.123.0 with cli-core 0.633.0, memo 0.131.87; telegram-mcp `6b3bd95
 
 - One account, one person's 10 questions, one run per contestant; Claude scored the answers against the expected
   ones.
-- E (Telegram Desktop export, done by a script through telegram-mcp's session): the export of one large group was
-  still running after 40 minutes, so E has no answers yet.
+- E (Telegram Desktop export, done by a script through telegram-mcp's session): the export is slow. The largest
+  group took 81 minutes (461,269 messages) and the next 26 minutes; E has no answers yet.
+- The rerun used a tg build from main, not a version from npm, and one run per round.
 - WireCat with the full history of every chat (no 20,000 limit).
 - Freshness (a new message seen without a manual step) and staying current over days.
 - Cost of keeping a second Telegram session for M, and the risk of Telegram's limits on it.
