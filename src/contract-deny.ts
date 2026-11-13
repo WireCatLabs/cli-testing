@@ -150,6 +150,8 @@ export const runDenyContracts = async (
     const file = (shown?.item as { config_file?: unknown } | undefined)?.config_file
     if (typeof file !== "string") throw new Error("config show --json names no config_file")
     config = confinedPath(invocation.cwd, file)
+    // A command that acts on the profile itself (`account remove`) refuses an unknown one before it shows its preview.
+    writeConfig([])
     keyed = leaves.flatMap((node): Keyed[] => {
       const path = node.path ?? []
       const args = argsFor(node)
