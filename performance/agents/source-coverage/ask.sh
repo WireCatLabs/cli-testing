@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Asks one contestant the questions through Claude Code, with the same model, prompt and limits for all.
-# Usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wf2|m|e> <questions-file> <run-dir> [export-dir for e]
+# Usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e> <questions-file> <run-dir> [export-dir for e]
 set -euo pipefail
 who=$1; questions=$(realpath "$2"); run=$(realpath -m "$3")
 model=${ASK_MODEL:-claude-sonnet-5-5}
@@ -23,6 +23,15 @@ case "$who" in
   wf)
     export WIRECAT_STATE_DIR="$run/wf/state" TG_READ_ONLY=1
     access="Telegram is available through the tg command line tool, profile 'personal' (start with: tg personal --help)."
+    tools=("Bash(tg:*)" "Bash(memo:*)")
+    extra=() ;;
+  wfh)
+    # wf plus the change proposed in tg-cli #884, given as a prompt line until the skill carries it.
+    export WIRECAT_STATE_DIR="$run/wf/state" TG_READ_ONLY=1
+    access="Telegram is available through the tg command line tool, profile 'personal' (start with: tg personal --help).
+For a question in loose wording, with no chat named or a name that may be misspelled, search by meaning first
+(tg personal search conversations '<question>'), then tg personal search messages '<question>' --discover, and only
+then by keywords."
     tools=("Bash(tg:*)" "Bash(memo:*)")
     extra=() ;;
   w3)
@@ -139,7 +148,7 @@ JSON
     # What a person who hands an agent the export folder would allow: reading and filtering, Python in isolated mode.
     tools=("Read" "Grep" "Glob" "Bash(jq:*)" "Bash(ls:*)" "Bash(grep:*)" "Bash(python3 -I:*)")
     extra=(--add-dir "$edir") ;;
-  *) echo "usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wf2|m|e> <questions-file> <run-dir> [export-dir]" >&2; exit 2 ;;
+  *) echo "usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e> <questions-file> <run-dir> [export-dir]" >&2; exit 2 ;;
 esac
 start=$(date +%s)
 cd "$work"
