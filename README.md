@@ -60,6 +60,12 @@ publint, the installed executable and an account-free follow-up command. Warning
 commands or missing binaries fail the row. See the [install guide](docs/ci/INSTALL.md) for plans, isolation
 and the on-demand Linux/macOS/Windows workflow.
 
+## Agent tests on real data
+
+Before you design or score a test of an agent that answers from the owner's messages, mail or notes, read
+[docs/dev/AGENT-TESTS.md](docs/dev/AGENT-TESTS.md): realistic questions and data, every contestant at its best, blind
+scoring, and the five mistakes of Experiment B it comes from.
+
 ## Search experiments
 
 Offline synthetic search-quality benchmarks, model explanations and resource probes live in
