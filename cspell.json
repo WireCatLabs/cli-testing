@@ -20,6 +20,10 @@
     "mozilla",
     "wikipedia",
     "mbox",
-    "himalaya"
+    "himalaya",
+    "chigwell",
+    "dotenv",
+    "Telethon",
+    "telethon"
   ]
 }
