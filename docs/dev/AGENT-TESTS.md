@@ -36,6 +36,13 @@ A result is only as wide as its questions and data. Each rule below comes from o
   - a detail the user misremembers (the wrong month or person);
   - tasks that need many messages, across chats;
   - questions with no answer in the data, so a made-up answer shows as confidently wrong.
+- **Vary the form, not only the content.** Users type 3 keywords, a vague list of fragments, a long dictation
+  without punctuation, a mix of languages, as well as full sentences. A set written in one form measures one habit.
+  Give every question a form before it is written, and keep each form to a few questions.
+- **Two asks in one question are their own case.** Use them on purpose in a few questions, not by habit in most: a
+  contestant that answers one half is scored on that.
+- **Ask some facts in 2 or 3 wordings.** The same fact asked as keywords, as a sentence and in English shows whether a
+  hit depends on the wording. Score the variants apart from the main set.
 - **Never only direct questions.** A question that shares its rare words with the answer measures keyword search, and
   every rival has one.
 
