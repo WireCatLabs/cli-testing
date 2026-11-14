@@ -6,6 +6,18 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Fixed
+
+- **`deny-keys` no longer counts sign-in and sign-out as writes that need a permission key.** A read-only CLI
+  whose only remote writes were `session start` and `account remove` failed with "no command that writes to the
+  service names a permission key", though those commands have no key on purpose (cli-base WC-PERM-5). cli-core's
+  `logsInOrOut` mark is not in `commands --json`, so the check leaves out the paths every CLI puts it on:
+  `session start`, `session end`, `account remove` and `setup`. A sign-in command elsewhere still counts as a
+  write. A CLI with any other remote write still fails when none of its writes names a key. gmeet-cli's contracts
+  pass with this change.
+
 ## 0.7.1 — 13.11.2026
 
 ### Fixed

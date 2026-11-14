@@ -176,6 +176,37 @@ describe("deny contracts", () => {
     expect(readsOnly.results.find((item) => item.id === "deny-keys")?.failure).toContain("no command that writes")
   })
 
+  it("passes a read-only CLI whose only writes sign in or out, and fails one with a write that names no key", async () => {
+    const signIn = [
+      { path: ["session", "start"], effects: { remote: "write" }, lifetime: "interactive", mcp: false },
+      { path: ["account", "remove"], effects: { remote: "write" }, mcp: false },
+      { path: ["setup"], effects: { remote: "write" }, lifetime: "interactive", mcp: false },
+    ]
+    const list = { path: ["meetings", "list"], effects: { remote: "read" } }
+    const create = { path: ["meetings", "create"], effects: { remote: "write" } }
+    const answering = (commands: unknown[]) => ({
+      run: (invocation: { args: string[] }) =>
+        invocation.args.includes("commands")
+          ? { exit: 0, stdout: JSON.stringify({ commands }), stderr: "" }
+          : invocation.args.includes("config")
+            ? { exit: 0, stdout: '{"item":{"config_file":"config.json"}}', stderr: "" }
+            : invocation.args.includes("--dry-run")
+              ? {
+                  exit: 0,
+                  stdout: JSON.stringify({
+                    item: { permission: { key: invocation.args.includes("list") ? "meetings.list" : null } },
+                  }),
+                  stderr: "",
+                }
+              : { exit: 5, stdout: "", stderr: '{"error":{"code":"permission_error"}}' },
+      toolSession: async () => session(() => refused),
+    })
+    const readOnly = await runContracts(plan(fakeCli(true)), answering([...signIn, list]))
+    expect(readOnly.results.find((item) => item.id === "deny-keys")).toEqual({ id: "deny-keys", passed: true })
+    const unkeyed = await runContracts(plan(fakeCli(true)), answering([...signIn, list, create]))
+    expect(unkeyed.results.find((item) => item.id === "deny-keys")?.failure).toContain("no command that writes")
+  })
+
   it("fails a refusal that is not permission_error, or that prints on stdout", async () => {
     const refusing = (stdout: string, stderr: string) => ({
       run: (invocation: { args: string[] }) =>
