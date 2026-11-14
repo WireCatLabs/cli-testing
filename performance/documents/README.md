@@ -2,6 +2,10 @@
 
 Measurements of document conversion, shared retrieval and source-backed memories.
 
+- [catalog-scale](catalog-scale/README.md): catalog import, saves and a list page of one documents account at
+  10,000, 50,000 and 100,000 synthetic entries, before and after cli-core lifted its 10,000-entry ceiling
+  (2026-11-14).
+
 - [annotation-transfer](annotation-transfer/README.md): packaged old/new SDK copy, reference and identity collisions, interruption/replay and retention of source annotations.
 
 - [drive-sheets](drive-sheets/README.md): guarded executable acceptance for native spreadsheet ranges, cell writes and generated Sheets methods.
