@@ -60,11 +60,23 @@ publint, the installed executable and an account-free follow-up command. Warning
 commands or missing binaries fail the row. See the [install guide](docs/ci/INSTALL.md) for plans, isolation
 and the on-demand Linux/macOS/Windows workflow.
 
+## Agent tests on real data
+
+Before you design or score a test of an agent that answers from the owner's messages, mail or notes, read
+[docs/dev/AGENT-TESTS.md](docs/dev/AGENT-TESTS.md): realistic questions and data, every contestant at its best, blind
+scoring, and the five mistakes of Experiment B it comes from.
+
 ## Search experiments
 
 Offline synthetic search-quality benchmarks, model explanations and resource probes live in
 [`performance/search/`](performance/search/README.md). They run on demand against an explicitly
 selected cli-messaging build; they are separate from the published suite package.
+
+## Local datasets
+
+Synthetic stores, sandboxes and notes that a check or a benchmark made, kept on the machine for the next run. The
+data is git-ignored, and [`datasets/README.md`](datasets/README.md) lists each one: what it is, what made it, how to
+use it and how to make it again.
 
 ## Engineering reviews
 
@@ -104,8 +116,9 @@ npm already has the version, it commits the next free one and publishes that.
 
 `cli-contract` plans can seed synthetic files, check JSON object subsets and exact array lengths,
 reuse returned IDs, and verify file contents or SHA256. A pinned previous executable can create
-state for the candidate binary to reopen. The CLI repositories supply their own plans and old
-package aliases; the runner never installs a package or connects to a messenger.
+state for the candidate binary to reopen; by default it is the newest published release at or below
+the CLI's own version, which the runner installs before the offline cases. The CLI repositories
+supply their own plans; the runner never connects to a messenger.
 
 ```sh
 cli-testing security no-leak ./artifacts ./no-leak-policy.json

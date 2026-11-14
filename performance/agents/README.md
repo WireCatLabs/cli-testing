@@ -2,6 +2,8 @@
 
 Measurements of what the WireCat CLIs cost the AI agent that reads their answers.
 
+A test on the owner's real data follows [Testing agents on real data](../../docs/dev/AGENT-TESTS.md).
+
 - [output-size](output-size/README.md) — bytes and tokens of one answer under `--json`, `--json=<fields>`,
   `--jsonl`, `--brief` and the default text (2026-10-15).
 
@@ -31,7 +33,15 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
   With search limited to records from before each question: Gemma 77.7% micro, 74.5% macro (unchanged).
   Run-to-run noise: 49 of 280 verdicts change on a plain rerun (17.5%), the total holds to about a point.
 
+- [source-coverage](source-coverage/README.md) — a real personal Telegram account, WireCat against telegram-mcp and a
+  plain export, on clean questions over 10 chats (2026-11-13). The setup was simpler than real use; read
+  [AGENT-TESTS.md](../../docs/dev/AGENT-TESTS.md) before quoting it.
+
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).
 - [mcp-short-listing](mcp-short-listing/README.md) — an agent succeeds as often with the short MCP answer schema
   (3,323 characters for the three tools) as with the full one (17,278), on half the input tokens (2026-11-09).
+
+- [tools-search](tools-search/README.md) — `memo_tools_search` over a real stdio MCP server: task phrases found
+  6 of 13 commands when every word had to match, 13 of 13 when ranked by the words that match; short phrases
+  unchanged at 13 of 13 (2026-11-12).

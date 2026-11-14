@@ -322,6 +322,8 @@ if (worker) {
   const revisions = () => sql("SELECT count(*) AS n FROM link_revisions")[0].n
 
   runWorker("seed")
+  // b24 0.13.0 copies only the deals of the users the owner chooses; the webhook's own user (Emma) owns the deal.
+  b24(["config", "set", `crm.${PORTAL}.unassigned`, "7"])
   const firstSync = b24(["sync"])
   owner(["groups", "add", "work", PORTAL])
   owner(["groups", "add", "work", `telegram:${TELEGRAM.account}`])
@@ -335,6 +337,9 @@ if (worker) {
     grace: personBy("grace@northstar.example"),
     aliceTelegram: personBy("telegram:201"),
   }
+  // Every address in the scenario is at a reserved domain, which memo hides as test data since cli-core#2862. The
+  // owner keeps Grace as a real contact, so check 11's search for her finds her when no lock stops it.
+  owner(["people", "links", "resolve", ids.grace, "keep"])
   const organizations = memo(["organizations", "list"]).items
   ids.acme = organizations.find((one) => one.name === "Acme Ltd")?.ref
   ids.northstar = organizations.find((one) => one.name === "Northstar Consulting")?.ref

@@ -35,6 +35,7 @@ const REST2_PARAMS = {
   "department.get": ["sort", "order", "start", "ID", "NAME", "PARENT", "UF_HEAD"],
   "crm.status.list": ["order", "filter", "start"],
   "crm.category.list": ["entityTypeId"],
+  "user.admin": [],
 }
 const USER_FIELDS = ["ID", "ACTIVE", "NAME", "LAST_NAME", "EMAIL", "WORK_POSITION", "UF_DEPARTMENT", "USER_TYPE"]
 const REST2_PAGE = 50
@@ -130,6 +131,8 @@ const answer = (api, method, body) => {
     )
     return rest2Page(users, start)
   }
+  // apidocs common/users/user-admin: whether the webhook's own user is an administrator
+  if (method === "user.admin") return ok(portal.admin === true)
   if (method === "department.get") return rest2Page(portal.departments, start)
   if (method === "crm.category.list") return ok({ categories: [{ id: 0, name: "Sales", sort: 100, isDefault: "Y" }] })
   const directory = body.filter?.ENTITY_ID

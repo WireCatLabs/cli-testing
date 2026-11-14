@@ -6,10 +6,45 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
-## Unreleased
+## 0.7.2 — 14.11.2026
+
+### Fixed
+
+- **`deny-keys` no longer counts sign-in and sign-out as writes that need a permission key.** A read-only CLI
+  whose only remote writes were `session start` and `account remove` failed with "no command that writes to the
+  service names a permission key", though those commands have no key on purpose (cli-base WC-PERM-5). cli-core's
+  `logsInOrOut` mark is not in `commands --json`, so the check leaves out the paths every CLI puts it on:
+  `session start`, `session end`, `account remove` and `setup`. A sign-in command elsewhere still counts as a
+  write. A CLI with any other remote write still fails when none of its writes names a key. gmeet-cli's contracts
+  pass with this change.
+
+## 0.7.1 — 13.11.2026
+
+### Fixed
+
+- **`deny-keys` writes the profile into the config before the `--dry-run` previews.** It ran them in an empty home
+  with no profile, so a CLI whose `account remove` revokes at the provider refused the unknown profile with exit 6,
+  and the check failed with "account remove --dry-run exited 6". meet-cli's contracts pass with this change. The
+  config holds only the profile, with no permission set, until each deny writes its own.
+
+## 0.7.0 — 12.11.2026
 
 ### Added
 
+- **An upgrade contract can start from the last published release by itself: `"previous": {}`.** `cli-contract`
+  reads the name and version from the `package.json` above the plan, takes the newest release on npm at or below
+  that version, installs it with pnpm into `node_modules/.cache/wirecat-contract-previous/` and reports it as
+  `previous`. Seven of nine CLIs tested the upgrade from a release 3 to 77 versions old, because the pinned
+  version was raised by hand. `"bin"` names the executable when a package has several targets. The step needs the
+  npm registry, and a failure says which tool failed. `{entry, version}` still works, for a seed script that
+  imports one release's own modules: such a script may break when the baseline moves on.
+- **A tools-search measurement asks a real `memo mcp serve` 13 short and 13 task phrases** and records where each
+  command lands (`performance/agents/tools-search/`). Ranking by the words that match (cli-core #2878) finds 13 of 13
+  task phrases instead of 6, with the short phrases unchanged. The after run used local builds; rerun it on the
+  release that carries #2878.
+- **The CRM relationships check was rerun on b24 0.13.0 and memo 0.131.84** and passes 13 of 13: check 11 holds
+  since cli-memo #777. The runner chooses the CRM user whose deals b24 copies, the fake portal answers
+  `user.admin`, and the owner keeps one contact that memo now hides as test data.
 - **A contract case can match its stderr with `diagnosticPattern`.** It is a regular expression matched against the
   whole normalized stderr, for a message with a number in it such as "the store moved to schema 58", which made every
   tool's upgrade contract fail whenever the shared store schema moved. A mismatch names the pattern and the stderr
@@ -21,6 +56,14 @@ Every entry says what changed as a caller sees it, why, and what to watch for �
   (`performance/crm/relationships/`). The result is a run on the published b24 0.9.0 and memo 0.131.72: 12 of 13
   checks pass, and check 11 found an unattended `search all` showing a denied deal (cli-memo #777). It needs
   util-linux `script` for the owner's writes.
+
+### Changed — may break callers
+
+- **The MCP schema check compares tool names, the structure of the input schemas and the annotations only.**
+  Descriptions, `$schema` and output schemas are left out on both sides, so a cli-core release that rewords a
+  description or widens an answer no longer changes every CLI's `contracts/mcp-tools.json` (up to 966 lines per
+  release). Existing snapshots still pass unchanged; `--update` rewrites them in the shorter form, about 80 lines
+  instead of 1,000. A change to an output schema is no longer caught here.
 
 ## 0.6.2 — 07.11.2026
 
