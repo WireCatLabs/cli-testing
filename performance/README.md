@@ -30,3 +30,4 @@
 - [memo](memo/README.md): memo's own lists — paging past 500 rows, what a brief answer saves, and `people list` with kinds kept in the store.
 - [funnel](funnel/README.md): wirecat-funnel, the tsnet helper for Tailscale Funnel: whether Tailscale's
   log upload stays off, and Funnel end to end.
+- [beeline](beeline/README.md): Beeline Cloud PBX call recordings, starting with local transcription speed.
