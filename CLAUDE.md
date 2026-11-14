@@ -40,6 +40,9 @@ setup with the exact command, results, what it showed, and what was not measured
 README, and from `PROCESS.md` where the area keeps one. A run on the owner's real data publishes totals only;
 queries, names and per-item rows go to `cli-private` (rule 3).
 
+A test of an agent on the owner's real data follows [docs/dev/AGENT-TESTS.md](docs/dev/AGENT-TESTS.md) (rules from
+Experiment B: realistic questions and data, every contestant at its best, blind scoring).
+
 ## Local datasets
 
 Synthetic data a check made and someone may reuse goes to `datasets/<name>/` in the main checkout, not to a

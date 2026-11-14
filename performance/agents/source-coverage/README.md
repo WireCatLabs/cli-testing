@@ -120,6 +120,52 @@ On round 1 question 6, E and telegram-mcp gave the same 2026 thread (the hosting
 both are counted as right. WireCat's first run gave that answer too and was counted wrong; by the same rule it scores
 7, not 6.
 
+### Round 3: questions as the owner really asks (2026-11-13..14)
+
+Rounds 1 and 2 used clean questions that named the chat. The owner disagreed with their conclusion, and the setup
+was simpler than real use in five ways ([AGENT-TESTS.md](../../../docs/dev/AGENT-TESTS.md) lists them). Round 3 asks
+20 questions the way the owner asks an agent: 11 name no chat, 5 carry a misspelled or misheard name, 3 a word with two
+meanings, 4 a detail the owner misremembers, 4 need many messages, 3 have no answer. They come in mixed forms: 6
+keyword queries, 4 sentences, 3 with two asks in one, 2 long dictations, 2 lists of fragments, 1 table request, 2 in
+English. Six facts are also asked in two more forms each (12 variants, in separate sessions). The questions were
+written by an agent that did not see the answer key; a first set, all full sentences, was replaced after the owner
+read it. Plan: [product experiment](https://github.com/WireCatLabs/product/blob/main/experiments/2026-11-13-experiment-b-round3-realistic.md).
+
+| Id | Contestant | Data |
+| --- | --- | --- |
+| E | export, `grep`, `jq`, `python3 -I` | full history of the 10 chats |
+| WF | WireCat, default skill | full history of the 10 chats; vectors for the private chats and one group, not for the 4 large groups |
+| WFH | WF plus one prompt line: meaning search first (tg-cli #884) | same as WF |
+| WS | WireCat, default skill | the owner's everyday store: 1,421 chats, but 400 to 900 messages of each test chat out of 3,500 to 5,600 |
+| M | telegram-mcp | Telegram live |
+
+Scored blind ([score.sh](score.sh): a separate scorer agent per sheet, one rules file per set that names the
+checklist points each question asks for):
+
+| | E | WF | WFH | WS | M |
+| --- | --- | --- | --- | --- | --- |
+| 20 questions | 15.33 | 13.17 | 13.17 | 7.17 | 5.0 |
+| the same, bulk scored strictly | 13.83 | 12.67 | 12.67 | 6.5 | 5.0 |
+| confidently wrong | 2 | 0 | 1 | 4 | 1 |
+| 16 questions outside the 4 large groups | 12.33 | 11.84 | 11.84 | | |
+| 12 variants (2 sets of 6) | 11 | 6 | 6.5 | 4 | 4 |
+| 20 questions: seconds, cost, tool calls | 358 s, $1.54, 54 | 236 s, $1.05, 83 | 467 s, $1.06, 81 | 289 s, $0.85, 79 | 68 s, $0.85, 39 |
+
+- **Scoring noise.** A first scoring left the bulk checklist to each scorer, and the same unchanged sheets moved by up
+  to 1.2 points between the two scoring runs (E 16.5, WF 14.08, M 5.5 in the first). One run and one scoring per sheet is
+  noise at 1 or 2 points of 20.
+- **Setup.** WF's full history of the 4 large groups took about 9 hours to sync (one group of about 443,000
+  messages: 7 hours). Vectors run at about 1 chunk a second on a busy 24-core machine; one group has 24,911 chunks,
+  so the 4 groups would take more than a day. WF and WFH ran without them; 4 questions depend on those groups.
+- **What the agent did.** With the default skill the agent rarely used meaning search: WF ran 71 searches on the 20
+  questions, 55 of them limited to the local archive, 1 by meaning. The prompt line of WFH did not change this (2 of
+  72), and its score is the same as WF's.
+- **What meaning search finds by itself.** The questions the agent missed, typed verbatim into `search conversations`
+  on the full store, and counted a hit only when a returned chunk holds a source message: 2 of 6 in the top 10 across
+  the whole store (ranks 1 and 8). Within the right chat, 3 of 6. On the whole store with the 4 large groups, 4 of 6
+  of these long queries stopped at the search's 2-second time limit, three tries each.
+- A first set of 20 questions, all full sentences, scored E 19.0, WS 11.33, M 7.17.
+
 ## What it showed
 
 - **Questions that share words with the answer:** Telegram's own search is enough. telegram-mcp found 2020 messages in
@@ -133,7 +179,13 @@ both are counted as right. WireCat's first run gave that answer too and was coun
   guessed other words and often hit.
 - **After the fixes:** WireCat equals telegram-mcp on direct questions (9 and 9), answers in a third of the time and
   cost, and keeps its lead on tasks that need many messages (5.0 against 2.7).
-- **A full local copy is what wins, not WireCat by itself.** The export gives the agent the whole history (WireCat's
+- **Round 3, questions as the owner asks them:** with the full history of the same 10 chats, WireCat scored 13.17
+  and the export 15.33 (strict 12.67 against 13.83), with 0 confidently wrong against 2; on the 16 questions where
+  WireCat had its vectors, 11.84 against 12.33. The wider gap is in the variants: the export answered 11 of 12 forms
+  of the same facts, WireCat 6. The agent searches by keywords and rarely by meaning, and meaning search over the
+  whole store often stops at its time limit. With the owner's everyday store WireCat scored 7.17: most of the history
+  was not in it.
+- **Rounds 1 and 2: a full local copy is what wins, not WireCat by itself.** The export gives the agent the whole history (WireCat's
   copy held at most 20,000 messages per chat), and with `grep` and Python the agent answered everything: 10, 10, 5.0.
   What WireCat adds is the work around the copy: no manual export, the copy stays current, one search across
   messengers, a link to each message. This test measured none of those.
@@ -147,7 +199,8 @@ both are counted as right. WireCat's first run gave that answer too and was coun
 - E by hand in Telegram Desktop: the export was done by a script through the same API; Desktop's own export time and
   clicks were not measured.
 - The rerun used a tg build from main, not a version from npm, and one run per round.
-- WireCat with the full history of every chat (no 20,000 limit).
+- WireCat with the full history and vectors for the 4 large groups (round 3: more than a day to build).
+- A second run of round 3: one run per contestant, so 1 or 2 points of 20 are within noise.
 - Freshness (a new message seen without a manual step) and staying current over days.
 - Cost of keeping a second Telegram session for M, and the risk of Telegram's limits on it.
 
@@ -155,4 +208,5 @@ both are counted as right. WireCat's first run gave that answer too and was coun
 
 - M signs in as a new Telegram session. End it in Telegram (Settings → Devices) and delete
   `$run/m/telegram-mcp/.env`, which holds the session.
-- `$run` holds copies of private chats. Delete it once the results are written.
+- `$run` holds copies of private chats. Experiment B keeps it outside git to repeat the tests (the owner's decision,
+  2026-11-13).

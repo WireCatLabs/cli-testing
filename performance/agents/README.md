@@ -2,6 +2,8 @@
 
 Measurements of what the WireCat CLIs cost the AI agent that reads their answers.
 
+A test on the owner's real data follows [Testing agents on real data](../../docs/dev/AGENT-TESTS.md).
+
 - [output-size](output-size/README.md) — bytes and tokens of one answer under `--json`, `--json=<fields>`,
   `--jsonl`, `--brief` and the default text (2026-10-15).
 
@@ -31,9 +33,9 @@ Measurements of what the WireCat CLIs cost the AI agent that reads their answers
   With search limited to records from before each question: Gemma 77.7% micro, 74.5% macro (unchanged).
   Run-to-run noise: 49 of 280 verdicts change on a plain rerun (17.5%), the total holds to about a point.
 
-- [source-coverage](source-coverage/README.md) — a real personal Telegram account, WireCat against telegram-mcp:
-  on questions that share words with the answer, Telegram's search is enough (9 against 8 once tg searched the server);
-  on tasks that need many messages, WireCat 5.0 of 5 against 2.7 (2026-11-13).
+- [source-coverage](source-coverage/README.md) — a real personal Telegram account, WireCat against telegram-mcp and a
+  plain export, on clean questions over 10 chats (2026-11-13). The setup was simpler than real use; read
+  [AGENT-TESTS.md](../../docs/dev/AGENT-TESTS.md) before quoting it.
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).
