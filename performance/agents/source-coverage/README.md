@@ -139,25 +139,32 @@ read it. Plan: [product experiment](https://github.com/WireCatLabs/product/blob/
 | WS | WireCat, default skill | the owner's everyday store: 1,421 chats, but 400 to 900 messages of each test chat out of 3,500 to 5,600 |
 | M | telegram-mcp | Telegram live |
 
-Scored blind, all five sheets of a set together ([score.sh](score.sh) with a rules file per set):
+Scored blind ([score.sh](score.sh): a separate scorer agent per sheet, one rules file per set that names the
+checklist points each question asks for):
 
 | | E | WF | WFH | WS | M |
 | --- | --- | --- | --- | --- | --- |
-| 20 questions | 16.5 | 14.08 | 13.67 | 7.67 | 5.5 |
-| the same, bulk scored strictly | 15.33 | 13.42 | 13.17 | 7.0 | 5.5 |
-| confidently wrong | 1 | 0 | 0 | 4 | 2 |
-| 16 questions outside the 4 large groups | 13.0 | 12.75 | 12.33 | | |
+| 20 questions | 15.33 | 13.17 | 13.17 | 7.17 | 5.0 |
+| the same, bulk scored strictly | 13.83 | 12.67 | 12.67 | 6.5 | 5.0 |
+| confidently wrong | 2 | 0 | 1 | 4 | 1 |
+| 16 questions outside the 4 large groups | 12.33 | 11.84 | 11.84 | | |
 | 12 variants (2 sets of 6) | 11 | 6 | 6.5 | 4 | 4 |
+| 20 questions: seconds, cost, tool calls | 358 s, $1.54, 54 | 236 s, $1.05, 83 | 467 s, $1.06, 81 | 289 s, $0.85, 79 | 68 s, $0.85, 39 |
 
+- **Scoring noise.** A first scoring left the bulk checklist to each scorer, and the same unchanged sheets moved by up
+  to 1.2 points between the two scorings (E 16.5, WF 14.08, M 5.5 in the first). One run and one scoring per sheet is
+  noise at 1 or 2 points of 20.
 - **Setup.** WF's full history of the 4 large groups took about 9 hours to sync (one group of about 443,000
   messages: 7 hours). Vectors run at about 1 chunk a second on a busy 24-core machine; one group has 24,911 chunks,
   so the 4 groups would take more than a day. WF and WFH ran without them; 4 questions depend on those groups.
 - **What the agent did.** With the default skill the agent rarely used meaning search: WF ran 71 searches on the 20
-  questions, 55 of them limited to the local archive, 2 by meaning. Typed verbatim into `search conversations` on the
-  same store, 6 of 7 questions the agent had missed in the first set put the right conversation in the top 10. The
-  prompt line of WFH did not change this much (4 searches by meaning of 72), and its score is the same as WF's.
-- A first set of 20 questions, all full sentences, scored E 19.0, WS 11.33, M 7.17. The form of the question cost
-  E 2.5 points.
+  questions, 55 of them limited to the local archive, 1 by meaning. The prompt line of WFH did not change this (2 of
+  72), and its score is the same as WF's.
+- **What meaning search finds by itself.** The questions the agent missed, typed verbatim into `search conversations`
+  on the full store, and counted a hit only when a returned chunk holds a source message: 2 of 6 in the top 10 across
+  the whole store (ranks 1 and 8). Within the right chat, 3 of 6. On the whole store with the 4 large groups, 4 of 6
+  of these long queries stopped at the search's 2-second time limit, three tries each.
+- A first set of 20 questions, all full sentences, scored E 19.0, WS 11.33, M 7.17.
 
 ## What it showed
 
@@ -172,11 +179,12 @@ Scored blind, all five sheets of a set together ([score.sh](score.sh) with a rul
   guessed other words and often hit.
 - **After the fixes:** WireCat equals telegram-mcp on direct questions (9 and 9), answers in a third of the time and
   cost, and keeps its lead on tasks that need many messages (5.0 against 2.7).
-- **Round 3, questions as the owner asks them:** with the full history of the same 10 chats, WireCat and the export
-  are close: 14.08 against 16.5 (strict 13.42 against 15.33), with 0 confidently wrong against 1; on the 16 questions
-  where WireCat had its vectors, 12.75 against 13.0. The gap is in the variants: the export answered 11 of 12 forms of
-  the same facts, WireCat 6. WireCat's answer depends on the wording because the agent searches by keywords and rarely
-  by meaning. With the owner's everyday store WireCat scored 7.67: most of the history was not in it.
+- **Round 3, questions as the owner asks them:** with the full history of the same 10 chats, WireCat scored 13.17
+  and the export 15.33 (strict 12.67 against 13.83), with 0 confidently wrong against 2; on the 16 questions where
+  WireCat had its vectors, 11.84 against 12.33. The wider gap is in the variants: the export answered 11 of 12 forms
+  of the same facts, WireCat 6. The agent searches by keywords and rarely by meaning, and meaning search over the
+  whole store often stops at its time limit. With the owner's everyday store WireCat scored 7.17: most of the history
+  was not in it.
 - **Rounds 1 and 2: a full local copy is what wins, not WireCat by itself.** The export gives the agent the whole history (WireCat's
   copy held at most 20,000 messages per chat), and with `grep` and Python the agent answered everything: 10, 10, 5.0.
   What WireCat adds is the work around the copy: no manual export, the copy stays current, one search across
