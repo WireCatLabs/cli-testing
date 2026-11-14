@@ -15,8 +15,10 @@ request that lifts the ceiling (`feat/documents-catalog-no-ceiling`, plan item C
 ## Setup
 
 - Machine: AMD Ryzen AI 9 HX 470 (24 threads), 30 GB RAM, NVMe disk, Linux 7.0, Node 24.19.0 (SQLite 3.53.3).
-- Before: cli-core `main` at `cab3953bc` (0.660.0). After: branch `feat/documents-catalog-no-ceiling` on the
-  same `main`. Each built with `pnpm build`.
+- Before: cli-core `main` at `cab3953bc` (0.660.0). After: the code of cli-core
+  [#2944](https://github.com/WireCatLabs/cli-core/pull/2944) on that same `cab3953bc`, measured before the branch
+  was rebased onto a newer `main` (`7c067ff16` and later; nothing in between touches the catalog or ingestion).
+  Each built with `pnpm build`.
 - Path: cli-core's own `openStore` and `documentIngestion({ provider: "google-drive" })` on a new temporary
   store. No network, no account, no CLI run.
 - Data, all synthetic: one documents account with 1 root folder, 100 folders and N files spread over them.
@@ -25,11 +27,13 @@ request that lifts the ceiling (`feat/documents-catalog-no-ceiling`, plan item C
   - **import again**: the same list again, which is what every sync does when nothing changed;
   - **save 200**: 200 document texts saved, spread over the account;
   - **list page**: one page of 50 entries at the end of the list.
-- Each step is timed once; the peak RSS is sampled every 5 ms during the step. The heap growth is after a forced GC.
+- Each step is timed once. **Peak RSS** is the process's highest resident memory sampled every 5 ms during that
+  step; it includes what earlier steps left, so it is the process size, not the step's own cost. **Heap growth**
+  is the JavaScript heap after the step minus before it, after a forced GC before the step.
 
 ```sh
 cd <cli-core checkout> && pnpm build
-node --expose-gc performance/documents/catalog-scale/bench.mjs <cli-core checkout> <entries> [saves]
+node --expose-gc <cli-testing checkout>/performance/documents/catalog-scale/bench.mjs <cli-core checkout> <entries> [saves]
 ```
 
 [`bench.mjs`](bench.mjs) prints one JSON line per run.
@@ -39,24 +43,26 @@ node --expose-gc performance/documents/catalog-scale/bench.mjs <cli-core checkou
 Before (`main`): an account over 10,000 entries cannot be imported at all ("catalog scope exceeds 10000
 entries"). Under the cap, at 9,800 files:
 
-| step | time | peak RSS |
-| --- | ---: | ---: |
-| import | 987 ms | 186 MB |
-| import again | 894 ms | 186 MB |
-| save 200 | 2,427 ms | 251 MB |
-| list page | 12 ms | 250 MB |
+| step | time | peak RSS | heap growth |
+| --- | ---: | ---: | ---: |
+| import | 987 ms | 186 MB | 44 MB |
+| import again | 894 ms | 186 MB | 25 MB |
+| save 200 | 2,427 ms | 251 MB | 24 MB |
+| list page | 12 ms | 250 MB | 0 MB |
 
-After:
+After (time · peak RSS · heap growth):
 
-| files | import | import again | save 200 | list page | peak RSS |
-| ---: | ---: | ---: | ---: | ---: | ---: |
-| 10,000 | 753 ms | 688 ms | 330 ms | 9 ms | 186 MB |
-| 50,000 | 3,354 ms | 3,365 ms | 277 ms | 29 ms | 358 MB |
-| 100,000 | 8,624 ms | 7,324 ms | 303 ms | 60 ms | 489 MB |
+| files | import | import again | save 200 | list page |
+| ---: | ---: | ---: | ---: | ---: |
+| 10,000 | 753 ms · 185 MB · 50 MB | 688 ms · 186 MB · 32 MB | 330 ms · 185 MB · 24 MB | 9 ms · 185 MB · 0 MB |
+| 50,000 | 3,354 ms · 357 MB · 121 MB | 3,365 ms · 358 MB · 45 MB | 277 ms · 354 MB · 24 MB | 29 ms · 354 MB · 0 MB |
+| 100,000 | 8,624 ms · 477 MB · 218 MB | 7,324 ms · 489 MB · 125 MB | 303 ms · 480 MB · 24 MB | 60 ms · 480 MB · 0 MB |
+
+The highest peak, 489 MB at 100,000, is from the second import.
 
 ## What it showed
 
-- **The ceiling can go.** 100,000 entries import in under 9 s and need under 500 MB at the peak.
+- **The ceiling can go.** 100,000 entries import in under 9 s; the process peaks under 500 MB (second import).
 - **The import grows linearly**: about 75–85 µs per entry. It runs on every sync, also when nothing changed, so a
   100,000-page workspace pays about 7 s per sync for it. That is the next thing to make faster (write only changed
   entries), not a blocker.
@@ -69,6 +75,9 @@ After:
   entry here; cli-core adds no second full copy.
 
 ## Not measured
+
+- The `observed` callback: the run binds none. A binding that gives one (drive records each file's Google owners
+  with it) makes the import read every entry back and run the callback once per entry, on every sync.
 
 - A real Notion or Drive account, real metadata sizes, or a sync over the network.
 - The sync engine's own state file (`SourceState`), which holds every document and is read and written whole.
