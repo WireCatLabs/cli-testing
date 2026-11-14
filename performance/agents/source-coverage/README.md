@@ -152,7 +152,7 @@ checklist points each question asks for):
 | 20 questions: seconds, cost, tool calls | 358 s, $1.54, 54 | 236 s, $1.05, 83 | 467 s, $1.06, 81 | 289 s, $0.85, 79 | 68 s, $0.85, 39 |
 
 - **Scoring noise.** A first scoring left the bulk checklist to each scorer, and the same unchanged sheets moved by up
-  to 1.2 points between the two scorings (E 16.5, WF 14.08, M 5.5 in the first). One run and one scoring per sheet is
+  to 1.2 points between the two scoring runs (E 16.5, WF 14.08, M 5.5 in the first). One run and one scoring per sheet is
   noise at 1 or 2 points of 20.
 - **Setup.** WF's full history of the 4 large groups took about 9 hours to sync (one group of about 443,000
   messages: 7 hours). Vectors run at about 1 chunk a second on a busy 24-core machine; one group has 24,911 chunks,
