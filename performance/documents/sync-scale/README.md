@@ -101,6 +101,9 @@ entry's parents again. It is now one `parent: [ids]` filter per 200 ids that rea
 
 - A real Notion or Drive account, and the time of a real request. The source here answers at once, so the times
   are the engine's own cost.
+- The word index step at the end of a sync (`settle`). The walk and hub runs use an index without it, and the
+  catalog run does not sync. That step indexes the store's shared queue in batches of 50, for at most 10 s and never
+  past the run's deadline less its margin; its time on a real store is not known from this page.
 - A request budget sized to a deadline (`runBudget`). Only the entry bound was measured. A budget stop goes through
   the same saved walk, and cli-core's unit tests check it.
 - A round of changes cut short across calls on this data (cli-core's unit tests check that too).
