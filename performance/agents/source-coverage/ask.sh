@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Asks one contestant the questions through Claude Code, with the same model, prompt and limits for all.
-# Usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e> <questions-file> <run-dir> [export-dir for e]
+# Usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e|eg> <questions-file> <run-dir> [export-dir for e and eg]
+# ASK_RUNNER replaces `claude` (daily.sh passes budget.py); ASK_RULES adds a line to the rules; M_DIR moves telegram-mcp.
 # WF_STATE moves the wf/wfh store out of <run-dir>/wf, which is also where wf writes its answers.
 set -euo pipefail
 who=$1; questions=$(realpath "$2"); run=$(realpath -m "$3")
@@ -8,7 +9,8 @@ model=${ASK_MODEL:-claude-sonnet-5-5}
 work="$run/$who/agent"; mkdir -p "$work"
 rules="Answer each question about the user's own Telegram. Use only the tools you are given. For every answer give the
 chat and the date of the message it comes from. If you cannot find it, say 'not found'; never guess. Number the
-answers like the questions."
+answers like the questions.${ASK_RULES:+
+$ASK_RULES}"
 case "$who" in
   w)
     export WIRECAT_STATE_DIR="$run/w/state" TG_READ_ONLY=1
@@ -96,7 +98,7 @@ The local archive may not reach back far; when it finds nothing, search Telegram
     extra=() ;;
   m)
     cat > "$work/mcp.json" <<JSON
-{"mcpServers":{"telegram":{"command":"uv","args":["--directory","$run/m/telegram-mcp","run","main.py"]}}}
+{"mcpServers":{"telegram":{"command":"uv","args":["--directory","${M_DIR:-$run/m/telegram-mcp}","run","main.py"]}}}
 JSON
     access="Telegram is available through the telegram MCP tools."
     tools=(
@@ -149,11 +151,17 @@ JSON
     # What a person who hands an agent the export folder would allow: reading and filtering, Python in isolated mode.
     tools=("Read" "Grep" "Glob" "Bash(jq:*)" "Bash(ls:*)" "Bash(grep:*)" "Bash(python3 -I:*)")
     extra=(--add-dir "$edir") ;;
-  *) echo "usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e> <questions-file> <run-dir> [export-dir]" >&2; exit 2 ;;
+  eg)
+    edir=$(realpath "$4")
+    access="The user's Telegram chats are exported as JSON (one result.json per chat) under $edir."
+    # The floor of a daily question: the export searched with grep and jq, no scripts.
+    tools=("Read" "Grep" "Glob" "Bash(jq:*)" "Bash(ls:*)" "Bash(grep:*)")
+    extra=(--add-dir "$edir") ;;
+  *) echo "usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e|eg> <questions-file> <run-dir> [export-dir]" >&2; exit 2 ;;
 esac
 start=$(date +%s)
 cd "$work"
-claude -p "$access
+${ASK_RUNNER:-claude} -p "$access
 
 $rules
 
