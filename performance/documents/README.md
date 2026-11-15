@@ -6,6 +6,10 @@ Measurements of document conversion, shared retrieval and source-backed memories
   10,000, 50,000 and 100,000 synthetic entries, before and after cli-core lifted its 10,000-entry ceiling
   (2026-11-14).
 
+- [sync-scale](sync-scale/README.md): a sync of 25,051 synthetic pages over several bounded calls with no total
+  ceiling, the cost of an edit to a hub page (2 listings instead of 501), and the depth-1 catalog tree read in a
+  12,000-entry account (3.2 s to 0.06 s), before and after cli-core's resumable walk (2026-11-15).
+
 - [annotation-transfer](annotation-transfer/README.md): packaged old/new SDK copy, reference and identity collisions, interruption/replay and retention of source annotations.
 
 - [drive-sheets](drive-sheets/README.md): guarded executable acceptance for native spreadsheet ranges, cell writes and generated Sheets methods.
