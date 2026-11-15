@@ -59,6 +59,10 @@ at a million distinct words), and why it stays refused there with a hint to writ
 of message text, `*договор*` is no longer refused and takes 0.5–1.0 s at 1M messages, half of it a coverage step that
 every search pays.
 
+[The coverage step](coverage-step/README.md): every message search counted and dated every message of every chat
+for its coverage, 0.45 s at 1M messages; read off the chats' counts and time index, `договор*` takes 31 ms instead of
+478 ms, and a frequent word end (`*ени`) answers instead of being refused.
+
 [Mentions](mentions/README.md): how long finding phones, e-mail, links and documents by rules takes on one person's
 messages, and how many of each it finds, totals only.
 
@@ -90,6 +94,7 @@ archive copy, and released `memo search all` 6.6 s → 1.4 s with identical resu
 |---|---|
 | [message-search/](message-search/README.md) | Synthetic corpus, question supplement, benchmark runners, pinned model manifest and historical JSON reports |
 | [substring-notes/](substring-notes/README.md) | Notes, documents, annotations and contact notes found by any part of a word in any letter case: five indexes compared, then cli-core store version 39 measured (2026-10-30) |
+| [coverage-step/](coverage-step/README.md) | The coverage step every message search paid, and word-end patterns checked only up to the page, before and after at 100k and 1M (2026-11-11) |
 | [infix-chat-text/](infix-chat-text/README.md) | `*word*` in chat-message text through `messages_fts`, timed through `searchStore` at 100k and 1M, before and after (2026-11-11) |
 | [stemming/](stemming/README.md) | Do Russian and Spanish word forms get found: Snowball stems against trigrams on UD treebanks, with the cost and the gate of the stem index (2026-10-05) |
 | [everywhere/](everywhere/README.md) | Latency of a bare word that also looks in transcripts, file names and file text (2026-10-13) |

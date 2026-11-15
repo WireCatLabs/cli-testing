@@ -389,3 +389,10 @@ Chat messages already keep a trigram index of their text, so cli-core now answer
 the word list. Timed through the whole search, it is no longer refused and takes 0.5-1.0 s at 1M messages; about
 0.5 s of every search at that size is the coverage step, not the pattern. Mail, transcripts and file text keep the
 word list ([infix-chat-text](infix-chat-text/README.md), 2026-11-11).
+
+## The coverage step every search paid
+
+That coverage step counted and dated every message of every chat on each search. Read off the trigger-kept count and
+each chat's newest message on its time index, it takes 0.2 ms instead of 0.45 s at 1M messages, and `договор*` falls
+from 478 ms to 31 ms. Word-end patterns (`*ени`) are now checked in the answer's order up to the page, so a frequent
+one answers with a page instead of a refusal ([coverage-step](coverage-step/README.md), 2026-11-11).
