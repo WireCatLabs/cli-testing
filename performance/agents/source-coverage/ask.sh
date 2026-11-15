@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Asks one contestant the questions through Claude Code, with the same model, prompt and limits for all.
 # Usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e|eg> <questions-file> <run-dir> [export-dir for e and eg]
-# ASK_RUNNER replaces `claude` (daily.sh passes budget.py); ASK_RULES adds a line to the rules; M_DIR moves telegram-mcp.
+# ASK_RUNNER replaces `claude` (daily.sh passes budget.py); ASK_RULES adds a line to the rules; M_DIR moves telegram-mcp;
+# ASK_SKILL installs a skill folder for the agent.
 # WF_STATE moves the wf/wfh store out of <run-dir>/wf, which is also where wf writes its answers.
 set -euo pipefail
 who=$1; questions=$(realpath "$2"); run=$(realpath -m "$3")
@@ -78,7 +79,7 @@ The local archive may not reach back far; when it finds nothing, search Telegram
     )
     extra=() ;;
   wf2)
-    export WIRECAT_STATE_DIR="$run/wf/state"
+    export WIRECAT_STATE_DIR="${WF_STATE:-$run/wf/state}"
     access="Telegram is available through the tg command line tool, profile 'personal' (start with: tg personal --help)."
     # No TG_READ_ONLY: it also blocks server search (tg-cli #874). Safety comes from allowing read commands only.
     tools=(
@@ -159,6 +160,10 @@ JSON
     extra=(--add-dir "$edir") ;;
   *) echo "usage: ask.sh <w|w2|w3|w4|ws|ws2|wf|wfh|wf2|m|e|eg> <questions-file> <run-dir> [export-dir]" >&2; exit 2 ;;
 esac
+# ASK_SKILL: a SKILL.md folder installed as `tg skill install` would, in the agent's project, with the Skill tool.
+if [ -n "${ASK_SKILL:-}" ]; then
+  mkdir -p "$work/.claude/skills" && cp -r "$ASK_SKILL" "$work/.claude/skills/" && tools+=("Skill")
+fi
 start=$(date +%s)
 cd "$work"
 ${ASK_RUNNER:-claude} -p "$access

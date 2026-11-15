@@ -166,6 +166,34 @@ checklist points each question asks for):
   of these long queries stopped at the search's 2-second time limit, three tries each.
 - A first set of 20 questions, all full sentences, scored E 19.0, WS 11.33, M 7.17.
 
+### Round 4: one question, one minute, 10 tool calls (2026-11-14..15)
+
+The owner pointed out that round 3 is not the daily case: a person types one sentence, wants an answer in seconds and
+has no export. Round 4 asks the same 20 questions and 12 variants, one question per new session, and stops each session
+at 60 seconds or the 11th tool call ([budget.py](budget.py), [daily.sh](daily.sh)). No own scripts for anyone. Plan
+and pass rule, written before the run:
+[product experiment](https://github.com/WireCatLabs/product/blob/main/experiments/2026-11-14-experiment-b-round4-daily.md).
+WF: tg 0.130.0 (cli-core 0.665.0, search fixes of cli-core #2959 and #2972), full history, OpenAI vectors for all 10
+chats, skill installed. EG: the export with `grep` and `jq` only. EF: the export with Python, a ceiling outside the
+score. Each sheet scored twice, blind; the mean counts.
+
+| | WF | WS | M | EG | EF |
+| --- | --- | --- | --- | --- | --- |
+| 20 questions | 9.5 | 6.25 | about 6.0 | 12 | 11.1 |
+| confidently wrong | 0 | 0 | 1 | 1 | 0 |
+| 12 variants | 2 | 4.5 | 1 | 10.5 | 8 |
+| out of budget, of 32 | 4 | 1 | 4 | 3 | 5 |
+| median seconds, tool calls a question | 33 s, 5.6 | 28 s, 6.1 | 15 s, 6.7 | 18 s, 6.2 | 18 s, 6.8 |
+
+- **By the pass rule this is a failure:** WF is more than 2 points below EG. WF is 3.5 above M.
+- **Why.** In 29 of 32 WF sessions the agent began with `tg <profile> --help` and used the word search `search all`.
+  It opened the installed skill once and ran the meaning search once. 17 calls failed on options that do not exist
+  (`--chat`, `--around`, `--since`). Under a budget the agent follows the first help screen
+  ([tg-cli #896](https://github.com/WireCatLabs/tg-cli/issues/896)), not the skill.
+- **Harness fix found on the way:** `claude -p` inside a `while read` loop read the loop's stdin and saw the other
+  questions. `daily.sh` passes `< /dev/null`. Answers are taken from the transcripts; a first scoring that split
+  `answers.md` shifted numbered lists to the wrong question and is not used.
+
 ## What it showed
 
 - **Questions that share words with the answer:** Telegram's own search is enough. telegram-mcp found 2020 messages in
@@ -185,6 +213,9 @@ checklist points each question asks for):
   of the same facts, WireCat 6. The agent searches by keywords and rarely by meaning, and meaning search over the
   whole store often stops at its time limit. With the owner's everyday store WireCat scored 7.17: most of the history
   was not in it.
+- **Round 4, one minute and 10 calls a question:** WireCat 9.5 of 20, telegram-mcp about 6, the export with grep 12.
+  The search fixes help without an agent (14 of 29 sources in the top 10 against 11), but the agent under a budget
+  reads `--help` and searches by words, so it does not reach them.
 - **Rounds 1 and 2: a full local copy is what wins, not WireCat by itself.** The export gives the agent the whole history (WireCat's
   copy held at most 20,000 messages per chat), and with `grep` and Python the agent answered everything: 10, 10, 5.0.
   What WireCat adds is the work around the copy: no manual export, the copy stays current, one search across
@@ -200,6 +231,7 @@ checklist points each question asks for):
   clicks were not measured.
 - The rerun used a tg build from main, not a version from npm, and one run per round.
 - WireCat with the full history and vectors for the 4 large groups (round 3: more than a day to build).
+- A rerun of round 4 after the help fix, and WS with vectors.
 - A second run of round 3: one run per contestant, so 1 or 2 points of 20 are within noise.
 - Freshness (a new message seen without a manual step) and staying current over days.
 - Cost of keeping a second Telegram session for M, and the risk of Telegram's limits on it.
