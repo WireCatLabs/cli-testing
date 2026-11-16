@@ -1,14 +1,19 @@
-"""Builds round 4 answer sheets (main, b, c) per contestant; a rerun answer in fix/ replaces the failed one."""
+"""Builds answer sheets (main and each variant set) per contestant from session transcripts.
+
+R4_DIR: the round folder. QUESTIONS (questions.txt), RUNS (run folders, the first found wins: "fix/run run"),
+WHO (contestants) can be changed for a rerun round.
+"""
 import os
 import json
 import re
 import sys
 
 C = os.environ["R4_DIR"]
-WHO = ["wf2", "ws2", "m", "eg", "e"]
+WHO = os.environ.get("WHO", "wf2 ws2 m eg e").split()
+RUNS = os.environ.get("RUNS", "fix/run run").split()
 questions = {}
-for line in open(f"{C}/questions.txt"):
-    m = re.match(r"(\d+)([bc]?)\. (.*)", line.strip())
+for line in open(os.environ.get("QUESTIONS", f"{C}/questions.txt")):
+    m = re.match(r"(\d+)([a-z]?)\. (.*)", line.strip())
     if m:
         questions[m.group(1) + m.group(2)] = m.group(3)
 
@@ -31,7 +36,7 @@ def blocks(path):
 
 def from_transcript(w, q):
     """The session's own final answer: answers.md cannot be split back, an answer holds numbered lists of its own."""
-    for base in (f"{C}/fix/run", f"{C}/run"):
+    for base in (f"{C}/{r}" for r in RUNS):
         path = f"{base}/q{q}/{w}/transcript.jsonl"
         try:
             events = [json.loads(line) for line in open(path) if line.startswith("{")]
@@ -53,19 +58,27 @@ def times(path):
     return rows
 
 
+os.makedirs(f"{C}/sheets", exist_ok=True)
 summary = []
 for w in WHO:
     answers = {q: from_transcript(w, q) for q in questions}
-    t = times(f"{C}/run/{w}/times.tsv")
-    t.update(times(f"{C}/fix/run/{w}/times.tsv"))
-    for name, keep in [("main", lambda q: q.isdigit()), ("b", lambda q: q.endswith("b")), ("c", lambda q: q.endswith("c"))]:
-        ids = [q for q in questions if keep(q)]
-        num = lambda q: q.rstrip("bc")
+    t = {}
+    for r in reversed(RUNS):
+        t.update(times(f"{C}/{r}/{w}/times.tsv"))
+    suffixes = sorted({q.lstrip("0123456789") for q in questions})
+    for suffix in suffixes:
+        name = suffix or "main"
+        ids = [q for q in questions if q.lstrip("0123456789") == suffix]
+        num = lambda q: q.rstrip("abcdefghijklmnopqrstuvwxyz")
+        if not any(q in t for q in ids):
+            continue
         text = "## Questions\n" + "\n".join(f"{num(q)}. {questions[q]}" for q in ids)
         text += "\n\n## Answers\n" + "\n\n".join(f"{num(q)}. {answers.get(q, 'out of budget: no answer')}" for q in ids)
         with open(f"{C}/sheets/{w}-{name}.md", "w") as f:
             f.write(text + "\n")
     rows = [t[q] for q in questions if q in t]
+    if not rows:
+        continue
     out = sum(1 for r in rows if r[2] == "out")
     secs = sorted(r[0] for r in rows)
     summary.append(f"{w}\t{len(rows)}\t{out}\t{secs[len(secs) // 2]}\t{max(secs)}\t{sum(r[1] for r in rows) / len(rows):.1f}")

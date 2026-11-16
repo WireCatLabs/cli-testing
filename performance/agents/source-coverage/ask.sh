@@ -66,7 +66,8 @@ The local archive may not reach back far; when it finds nothing, search Telegram
     )
     extra=() ;;
   ws2)
-    unset WIRECAT_STATE_DIR
+    # WS_STATE: a snapshot of the owner's store, so a newer tg cannot migrate the store other running apps use.
+    if [ -n "${WS_STATE:-}" ]; then export WIRECAT_STATE_DIR=$WS_STATE; else unset WIRECAT_STATE_DIR; fi
     access="Telegram is available through the tg command line tool, profile 'personal' (start with: tg personal --help)."
     # No TG_READ_ONLY: it also blocks server search (tg-cli #874). Safety comes from allowing read commands only.
     tools=(
