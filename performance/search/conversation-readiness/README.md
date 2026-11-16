@@ -36,7 +36,8 @@ store migration and a query change.
 
 End to end, `search conversations` with tg 0.131.0, warm, `meta.duration_ms` over 3 runs: before 12016 / 12035 /
 12442. With the same change patched into tg's bundle: 3657 / 3252 / 2611. The hits and the `missing` / `next` hint
-were byte-identical.
+were byte-identical. The released build (tg on cli-core 0.675.0, which also migrated the store to version 67), on a
+copy of the store: 2734 / 3584 / 2628, again with byte-identical hits and hint.
 
 ## What it showed
 
