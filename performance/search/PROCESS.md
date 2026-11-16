@@ -396,3 +396,11 @@ That coverage step counted and dated every message of every chat on each search.
 each chat's newest message on its time index, it takes 0.2 ms instead of 0.45 s at 1M messages, and `договор*` falls
 from 478 ms to 31 ms. Word-end patterns (`*ени`) are now checked in the answer's order up to the page, so a frequent
 one answers with a page instead of a refusal ([coverage-step](coverage-step/README.md), 2026-11-11).
+
+## The readiness hint of a conversation search
+
+`search conversations` took 12 s on a store with 950,000 messages. The vector search took under 2 s. The rest went to
+the check behind the "changed since the last build" hint. That check runs for every built chat on every search. No
+index was missing. Without planner statistics, SQLite read every chunk of the store once per chat. Forcing the join
+order with `CROSS JOIN` took the check from 9.4 s to 0.7 s with the same answers, and the search from 12 s to 3 s
+([conversation-readiness](conversation-readiness/README.md), 2026-11-16).
