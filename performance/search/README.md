@@ -30,6 +30,10 @@ The [robustness validation](validation/README.md) challenges negation, condition
 reply context. It shows why the first feature model is not ready for production and distinguishes
 cheap ranking from reliable answer-availability decisions.
 
+The [conversation readiness check](conversation-readiness/README.md) (16 November) found that `search conversations`
+spent about 10 of its 12 s on the "changed since the last build" hint: without planner statistics SQLite read every
+chunk of the store once per chat. With `CROSS JOIN` the check took 0.7 s instead of 9.4 s, with the same answers.
+
 The [mail meaning index](mail-meaning-index/README.md) (6 November) replaced the full scan of mail vectors in
 `search all` with the vector index: same answers, about 5 times faster at 100,000 vectors. The
 [topic-less replies](topicless-replies/README.md) check shows a question in `memo search messages` now finds a short
