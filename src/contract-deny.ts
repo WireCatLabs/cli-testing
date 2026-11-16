@@ -70,9 +70,10 @@ const remoteLeaves = (nodes: Node[]): Node[] =>
         : [],
   )
 
-// cli-core's `logsInOrOut` mark never reaches `commands --json`; every CLI puts it on these paths (WC-PERM-5).
+// cli-core's `logsInOrOut` mark never reaches `commands --json`; every CLI puts it on these paths and on the commands
+// of its `setup` group (WC-PERM-5). None has a key, and `setup apply --dry-run` checks answers it reads from stdin.
 const SIGN_IN_OR_OUT = new Set(["session start", "session end", "account remove", "setup"])
-const signsInOrOut = (path: string[] = []): boolean => SIGN_IN_OR_OUT.has(path.join(" "))
+const signsInOrOut = (path: string[] = []): boolean => SIGN_IN_OR_OUT.has(path.join(" ")) || path[0] === "setup"
 
 /** The words after the command's path in its first example, or a placeholder for each required one. */
 export const argsFor = (node: Node): string[] => {
@@ -156,17 +157,19 @@ export const runDenyContracts = async (
     config = confinedPath(invocation.cwd, file)
     // A command that acts on the profile itself (`account remove`) refuses an unknown one before it shows its preview.
     writeConfig([])
-    keyed = leaves.flatMap((node): Keyed[] => {
-      const path = node.path ?? []
-      const args = argsFor(node)
-      const preview = call([deny.profile, ...path, ...args, "--dry-run", "--json", "--no-input"])
-      if (preview.exit !== 0)
-        throw new Error(`${path.join(" ")} --dry-run exited ${preview.exit}, so its key is unknown`)
-      const key = (parsed(preview.stdout)?.item as { permission?: { key?: unknown } } | undefined)?.permission?.key
-      if (typeof key !== "string") return []
-      const write = node.effects?.remote === "write"
-      return [{ path, args, key, write, mcp: node.mcp !== false && node.lifetime !== "interactive" }]
-    })
+    keyed = leaves
+      .filter((node) => !signsInOrOut(node.path))
+      .flatMap((node): Keyed[] => {
+        const path = node.path ?? []
+        const args = argsFor(node)
+        const preview = call([deny.profile, ...path, ...args, "--dry-run", "--json", "--no-input"])
+        if (preview.exit !== 0)
+          throw new Error(`${path.join(" ")} --dry-run exited ${preview.exit}, so its key is unknown`)
+        const key = (parsed(preview.stdout)?.item as { permission?: { key?: unknown } } | undefined)?.permission?.key
+        if (typeof key !== "string") return []
+        const write = node.effects?.remote === "write"
+        return [{ path, args, key, write, mcp: node.mcp !== false && node.lifetime !== "interactive" }]
+      })
     if (!keyed.some((command) => !command.write))
       throw new Error("no command that reads the service names a permission key in its --dry-run")
     const writes = leaves.some((node) => node.effects?.remote === "write" && !signsInOrOut(node.path))

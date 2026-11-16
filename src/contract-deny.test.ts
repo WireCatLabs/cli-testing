@@ -176,11 +176,13 @@ describe("deny contracts", () => {
     expect(readsOnly.results.find((item) => item.id === "deny-keys")?.failure).toContain("no command that writes")
   })
 
-  it("passes a read-only CLI whose only writes sign in or out, and fails one with a write that names no key", async () => {
+  it("passes a read-only CLI whose only writes sign in or out, setup among them, and fails a write with no key", async () => {
     const signIn = [
       { path: ["session", "start"], effects: { remote: "write" }, lifetime: "interactive", mcp: false },
       { path: ["account", "remove"], effects: { remote: "write" }, mcp: false },
       { path: ["setup"], effects: { remote: "write" }, lifetime: "interactive", mcp: false },
+      { path: ["setup", "apply"], effects: { remote: "read" }, mcp: false },
+      { path: ["setup", "run"], effects: { remote: "read" }, lifetime: "interactive", mcp: false },
     ]
     const list = { path: ["meetings", "list"], effects: { remote: "read" } }
     const create = { path: ["meetings", "create"], effects: { remote: "write" } }
@@ -190,15 +192,17 @@ describe("deny contracts", () => {
           ? { exit: 0, stdout: JSON.stringify({ commands }), stderr: "" }
           : invocation.args.includes("config")
             ? { exit: 0, stdout: '{"item":{"config_file":"config.json"}}', stderr: "" }
-            : invocation.args.includes("--dry-run")
-              ? {
-                  exit: 0,
-                  stdout: JSON.stringify({
-                    item: { permission: { key: invocation.args.includes("list") ? "meetings.list" : null } },
-                  }),
-                  stderr: "",
-                }
-              : { exit: 5, stdout: "", stderr: '{"error":{"code":"permission_error"}}' },
+            : invocation.args.includes("setup")
+              ? { exit: 2, stdout: "", stderr: '{"error":{"code":"validation_error"}}' }
+              : invocation.args.includes("--dry-run")
+                ? {
+                    exit: 0,
+                    stdout: JSON.stringify({
+                      item: { permission: { key: invocation.args.includes("list") ? "meetings.list" : null } },
+                    }),
+                    stderr: "",
+                  }
+                : { exit: 5, stdout: "", stderr: '{"error":{"code":"permission_error"}}' },
       toolSession: async () => session(() => refused),
     })
     const readOnly = await runContracts(plan(fakeCli(true)), answering([...signIn, list]))
