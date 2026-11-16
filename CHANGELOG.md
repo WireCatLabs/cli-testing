@@ -6,6 +6,17 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## 0.7.3 — 16.11.2026
+
+### Fixed
+
+- **`deny-keys` no longer previews the commands of a CLI's `setup` group.** cli-core's `setup apply` has a
+  `--dry-run` of its own that checks answers it reads as JSON on stdin, so with an empty stdin it exits 2, and
+  `deny-keys` failed with "setup apply --dry-run exited 2, so its key is unknown" for every CLI that mounts
+  `setupCommand` (asterisk-cli was the first). The sign-in paths named in 0.7.2 and every command under `setup`
+  are now left out of the previews as well as out of the count of writes: they have no permission key on purpose
+  (cli-base WC-PERM-5). Any other command whose `--dry-run` fails still fails the check.
+
 ## 0.7.2 — 14.11.2026
 
 ### Fixed
