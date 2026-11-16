@@ -23,6 +23,8 @@ def stop(why):
     if stopped is None and child.poll() is None:
         stopped = why
         child.terminate()
+        # claude can ignore SIGTERM for over a minute before its first output
+        threading.Timer(5, lambda: child.poll() is None and child.kill()).start()
 
 
 timer = threading.Timer(seconds, stop, args=[f"{seconds:g} seconds"])
