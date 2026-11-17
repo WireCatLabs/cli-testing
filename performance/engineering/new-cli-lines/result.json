@@ -1,0 +1,31 @@
+{
+  "hubspot": {
+    "commit": "253e6c4",
+    "source": 2636,
+    "tests": 1951,
+    "test_helpers": 656,
+    "generated": 12027,
+    "excluded_source": 0,
+    "written_since_template": {
+      "source": 2340,
+      "tests": 1403,
+      "test_helpers": 598
+    }
+  },
+  "bitrix24": {
+    "commit": "7e2877e",
+    "source": 4148,
+    "tests": 6958,
+    "test_helpers": 810,
+    "generated": 0,
+    "excluded_source": 2293
+  },
+  "amo": {
+    "commit": "99709b4",
+    "source": 5026,
+    "tests": 3719,
+    "test_helpers": 4002,
+    "generated": 0,
+    "excluded_source": 605
+  }
+}
