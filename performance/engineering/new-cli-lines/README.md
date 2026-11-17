@@ -16,7 +16,8 @@ moves into the template next.
 ## Setup
 
 - Linux x86_64, Node 24.19.0. Counted on 2026-11-17.
-- hubspot-cli: made with `new` from cli-template 0.25.0 (commit `28d04db`), measured at `253e6c4`, after two review rounds. It reads
+- hubspot-cli: made with `new` from cli-template 0.25.0 (commit `28d04db`), measured at `253e6c4` on its first pull request's branch, after two review rounds. After that pull request is
+  squash-merged, count the squash commit on `main` instead: the branch is deleted on merge. It reads
   HubSpot's CRM (deals, contacts, companies, leads, activities, owners, pipelines, properties) into cli-core's shared
   store, plus an `api` group generated from 15 HubSpot specs. It writes nothing and has no OAuth yet.
 - bitrix24-cli at `7e2877e` and amo-cli at `99709b4` (their `main` on 2026-11-17). Both were written mostly by hand, on older
@@ -63,9 +64,18 @@ Where hubspot-cli's 2,340 hand-written source lines are:
 | `src/` root | 273 | context, config, store, program, identity, reasons |
 | `src/setup/` | 160 | the setup flow and its texts in three languages |
 
+### On the plan's own baseline
+
+The plan that asked for this measurement counted bitrix24-cli differently on 2026-11-16: its `src/crm/`, sign-in,
+transport and errors, `api` and its keys, the CRM commands' wiring and the fake, without OAuth, writes, products and
+stage history. That came to about 3,700 lines. The same parts of hubspot-cli, written after `new`, are 2,562 lines:
+`src/crm/` 1,209, `src/commands/` 348, `src/hubspot/` 407 and the fake 598. That is **31 % less**. The fake is in
+this count and generated code is not, so the saving here is smaller than in the table above.
+
 ## What it showed
 
-- **The comparable code by hand fell by half:** 2,340 lines against 4,148 in bitrix24-cli and 5,026 in amo-cli.
+- **The comparable code by hand fell by 44 % against bitrix24-cli and 53 % against amo-cli:** 2,340 lines against
+  4,148 and 5,026.
   The `api` group of 157 operations and its types took no hand-written code. The fake service took 640 lines, not
   810 to 4,002.
 - **The earlier estimate was too low.** The plan expected 1,100 to 1,400 lines. The mapping in `src/crm/` alone is
