@@ -55,6 +55,23 @@ The other steps:
 
 Scored twice, the rerun's round 2 sheet got the same totals both times (9, 5.0, strict 3.67, 0 confidently wrong).
 
+### Search checks without an agent
+
+Free checks of the search itself, run before any paid agent run. They read the test store and a private
+`private.json` beside it (the owner's chat ids, the export agent's grep patterns, the focus chat and words); per-query
+rows stay in the private folder, only totals leave it.
+
+| Check | Script | What it does |
+| --- | --- | --- |
+| First search finds the answer | [search-check/retrieval.py](search-check/retrieval.py) | rank of the key's messages in the first `search conversations`, local and OpenAI vectors |
+| Deeper and in-chat | [search-check/diagnose.py](search-check/diagnose.py), [perchat.py](search-check/perchat.py), [chatpick.py](search-check/chatpick.py) | rank at depth 300, inside the answer's chat, and which chat wins the merge |
+| Rare words | [search-check/rareword.py](search-check/rareword.py) | the question's rarest words and the chats that hold them |
+| Grep parity | [search-check/parity.py](search-check/parity.py), [missed.py](search-check/missed.py) | `search messages` finds every message the export agent's grep finds; lists the word forms it misses |
+| Two focus questions | [search-check/q2.py](search-check/q2.py), [msgs.py](search-check/msgs.py), [eval.py](search-check/eval.py) | rank of the answer for the focus pair, all chats and in chat, in both searches |
+| Name to chat | [search-check/names.py](search-check/names.py) | how a word spreads over chats and how often it is capitalised |
+| Time of one query | [search-check/prof.sh](search-check/prof.sh), [exit-time.mjs](search-check/exit-time.mjs) | one query with timestamps per stage |
+| Local build | [search-check/sync.sh](search-check/sync.sh), [tg.sh](search-check/tg.sh), [m.sh](search-check/m.sh), [c.sh](search-check/c.sh) | build a cli-core worktree into tg and run one search |
+
 ## Results
 
 ### Round 1: 10 direct questions (the question shares words with the answer)
