@@ -16,18 +16,18 @@ moves into the template next.
 ## Setup
 
 - Linux x86_64, Node 24.19.0. Counted on 2026-11-17.
-- hubspot-cli: made with `new` from cli-template 0.25.0 (commit `28d04db`), measured at `b3c4725`. It reads
+- hubspot-cli: made with `new` from cli-template 0.25.0 (commit `28d04db`), measured at `253e6c4`, after two review rounds. It reads
   HubSpot's CRM (deals, contacts, companies, leads, activities, owners, pipelines, properties) into cli-core's shared
   store, plus an `api` group generated from 15 HubSpot specs. It writes nothing and has no OAuth yet.
-- bitrix24-cli at `7e2877e` and amo-cli at `99709b4` (`origin/main`). Both were written mostly by hand, on older
+- bitrix24-cli at `7e2877e` and amo-cli at `99709b4` (their `main` on 2026-11-17). Both were written mostly by hand, on older
   versions of the shared packages.
 - The command, from this folder:
 
 ```sh
 python3 count.py \
-  --repo hubspot="$HOME"/Projects/AI/hubspot-cli@b3c4725 --since hubspot=28d04db \
-  --repo bitrix24="$HOME"/Projects/AI/bitrix24-cli@origin/main \
-  --repo amo="$HOME"/Projects/AI/amo-cli@origin/main \
+  --repo hubspot="$HOME"/Projects/AI/hubspot-cli@253e6c4 --since hubspot=28d04db \
+  --repo bitrix24="$HOME"/Projects/AI/bitrix24-cli@7e2877e \
+  --repo amo="$HOME"/Projects/AI/amo-cli@99709b4 \
   --exclude 'bitrix24:src/calls/**' --exclude bitrix24:src/commands/calls.ts \
   --exclude bitrix24:src/commands/meetings.ts --exclude bitrix24:src/commands/sync-calls.ts \
   --exclude bitrix24:src/commands/transcribe.ts --exclude bitrix24:src/commands/models.ts \
@@ -46,30 +46,30 @@ calls, transcription, products, stage history, writes and OAuth. The [raw result
 
 | | hubspot-cli | bitrix24-cli | amo-cli |
 |---|---:|---:|---:|
-| Source lines, comparable | **2,370** (2,064 written after `new`) | 4,148 | 5,026 |
+| Source lines, comparable | **2,636** (2,340 written after `new`) | 4,148 | 5,026 |
 | Source lines left out as not comparable | 0 | 2,293 | 605 |
-| Tests | 1,554 | 6,958 | 3,719 |
-| Test helpers (fakes) | 640 | 810 | 4,002 |
+| Tests | 1,951 | 6,958 | 3,719 |
+| Test helpers (fakes) | 656 | 810 | 4,002 |
 | Generated | 12,027 | 0 | 0 |
-| Time from `new` to `cli-dev ready` (all rows but the live check) | 50 min (03:06 → 03:56) | 11 days, 134 commits | — |
+| Time from `new` to `cli-dev ready` (all rows but the live check) | 50 min (03:06 → 03:56); 1 h 38 min with two review rounds (→ 04:44) | 11 days, 134 commits | — |
 
-Where hubspot-cli's 2,064 hand-written source lines are:
+Where hubspot-cli's 2,340 hand-written source lines are:
 
 | Folder | Lines | What |
 |---|---:|---|
-| `src/crm/` | 1,052 | HubSpot records → cli-core's CRM shapes, incremental search, activities, associations |
-| `src/hubspot/` | 343 | HTTP transport, HubSpot errors, rate limits, account details |
-| `src/commands/` | 316 | sign-in, account, the CRM commands' wiring |
-| `src/` root | 250 | context, config, store, program, identity, reasons |
+| `src/crm/` | 1,209 | HubSpot records → cli-core's CRM shapes, incremental search, activities, associations |
+| `src/hubspot/` | 407 | HTTP transport, HubSpot errors, rate limits, account details |
+| `src/commands/` | 348 | sign-in, account, the CRM commands' wiring |
+| `src/` root | 273 | context, config, store, program, identity, reasons |
 | `src/setup/` | 160 | the setup flow and its texts in three languages |
 
 ## What it showed
 
-- **The comparable code by hand fell by half:** 2,064 lines against 4,148 in bitrix24-cli and 5,026 in amo-cli.
+- **The comparable code by hand fell by half:** 2,340 lines against 4,148 in bitrix24-cli and 5,026 in amo-cli.
   The `api` group of 157 operations and its types took no hand-written code. The fake service took 640 lines, not
   810 to 4,002.
 - **The earlier estimate was too low.** The plan expected 1,100 to 1,400 lines. The mapping in `src/crm/` alone is
-  1,052, because HubSpot's search answers carry no associations and its change feed must be built from search by
+  1,209, because HubSpot's search answers carry no associations and its change feed must be built from search by
   modified time.
 - **About 400 lines are the same in every CRM CLI:** the CRM commands' wiring, the store entry, the context and
   the "account already taken" check. The template does not make them yet for `--category crm`. Moving them into
@@ -82,6 +82,6 @@ Where hubspot-cli's 2,064 hand-written source lines are:
 - hubspot-cli has not been checked against a real HubSpot account yet. The live check waits for the owner's
   test portal, and fixes it needs may add code.
 - No writes, no OAuth: both will add code that bitrix24-cli and amo-cli already have.
-- Lines say nothing about quality. The review of hubspot-cli's first slice was still running when this was
-  counted.
+- Lines say nothing about quality. Two fresh-agent review rounds found 13 and then 10 problems; the fixes added
+  276 source lines and about 400 test lines, which the numbers above include.
 - One CLI is one data point; the Yandex Disk pilot is the second.

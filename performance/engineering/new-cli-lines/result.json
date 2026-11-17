@@ -1,15 +1,15 @@
 {
   "hubspot": {
-    "commit": "b3c4725",
-    "source": 2370,
-    "tests": 1554,
-    "test_helpers": 640,
+    "commit": "253e6c4",
+    "source": 2636,
+    "tests": 1951,
+    "test_helpers": 656,
     "generated": 12027,
     "excluded_source": 0,
     "written_since_template": {
-      "source": 2064,
-      "tests": 986,
-      "test_helpers": 582
+      "source": 2340,
+      "tests": 1403,
+      "test_helpers": 598
     }
   },
   "bitrix24": {
