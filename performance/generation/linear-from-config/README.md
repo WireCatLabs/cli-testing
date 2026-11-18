@@ -77,7 +77,13 @@ The linear-cli lines by hand, by what they are for:
 - **Reviews found what the checks did not.** The first version of the cli-core fake let a change filter on the wrong
   field (`createdAt`) or with the wrong operator (`lt`) pass the contract, and the same for a filter that would drop
   rows from the id pass. On the real service, the first never syncs an edited issue and the second marks live
-  issues deleted. Both were fixed before the push.
+  issues deleted. Both were fixed before the push. The review of linear-cli itself found that a copy keyed by the
+  workspace, as attio-cli's is, lets one member's sync mark another member's private issues deleted (Linear shows
+  each member other teams), and that nested lists with no size cost about 6,000 complexity points a page. Both
+  were fixed in the config: the copy is keyed by the user, and a page holds 50 rows.
+- **The test matrix caught what `cli-dev ready` did not.** After the review, 562 options of linear-cli had no
+  test: `--body-file` and `--all` of the `api` group, the tracker commands, `session list`. attio-cli had written
+  such tests by hand. They are now in the template, so the next CLI from a config starts with none untested.
 
 ## What was not measured
 
