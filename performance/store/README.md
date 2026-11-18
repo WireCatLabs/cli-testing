@@ -39,3 +39,5 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   the relationship key's index condition makes it 0.2 s (2026-11-09).
 - [project-activity](project-activity/README.md) — every project's linked chats, messages in a window and busiest
   chats in one read, at the owner's scale: 2 ms for 30 days, 31 ms for all time (2026-11-10).
+- [vector-purge](vector-purge/README.md) — dropping a rebuild's old vectors: the purge's two lookups by their index,
+  a forum rebuild from 889 s to 52 s (2026-11-18).
