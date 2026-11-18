@@ -1,0 +1,51 @@
+{
+  "attio": {
+    "commit": "003b809",
+    "source": 402,
+    "tests": 811,
+    "test_helpers": 92,
+    "generated": 97839,
+    "excluded_source": 0,
+    "written_since_template": {
+      "source": 42,
+      "tests": 98,
+      "test_helpers": 3
+    }
+  },
+  "hubspot": {
+    "commit": "253e6c4",
+    "source": 2636,
+    "tests": 1951,
+    "test_helpers": 656,
+    "generated": 12027,
+    "excluded_source": 0,
+    "written_since_template": {
+      "source": 2340,
+      "tests": 1403,
+      "test_helpers": 598
+    }
+  },
+  "bitrix24": {
+    "commit": "7e2877e",
+    "source": 4148,
+    "tests": 6958,
+    "test_helpers": 810,
+    "generated": 0,
+    "excluded_source": 2293
+  },
+  "attio_0_1_0": {
+    "commit": "0c33e81",
+    "source": 341,
+    "tests": 1102,
+    "test_helpers": 92,
+    "generated": 98069,
+    "excluded_source": 0,
+    "written_since_template": {
+      "source": 75,
+      "tests": 391,
+      "test_helpers": 3
+    },
+    "config_lines": 126,
+    "hook_lines": 8
+  }
+}
