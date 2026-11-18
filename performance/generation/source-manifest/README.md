@@ -97,7 +97,7 @@ first release, `@wirecat/attio-cli` 0.1.0 (`0c33e81`), counted with the same com
   celebrates is won, one titled "Lost" is lost. cli-core [#3114](https://github.com/WireCatLabs/cli-core/pull/3114)
   (0.700.0) added flat stages, typed attribute values and a live list for a searched kind.
 - **The comparable source fell by 61 lines** because the template's own seeds took over code attio had written by
-  hand. The wiring grew from 19 to 67 lines: hosts, texts, the live lists of people and companies, and the update check.
+  hand. The wiring grew from 19 to 67 lines, among them hosts, texts and the live lists of people and companies.
 - **Most new test lines are coverage, not mapping.** CI's test matrix asked for a test of every command and option
   (540 in all); one api test and one CRM test cover them.
 - **The live check passed on the owner's workspace**: 12 companies, 6 people, one pipeline with 4 stages, and live
