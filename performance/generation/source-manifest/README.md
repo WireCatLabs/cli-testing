@@ -2,7 +2,7 @@
 
 # Attio CLI from a config file: hand-written code and time
 
-Measured 2026-11-18 on the first build of `attio` (`@wirecat/attio-cli`).
+Measured 2026-11-18 on the first build of `attio` (`@wirecat/attio-cli`) and on its first release, 0.1.0.
 
 ## Why it was run
 
@@ -22,7 +22,7 @@ logged as a gap. The answer decides whether the next CRM CLIs start from a confi
 - attio-cli made with `new --from-config` from cli-template 0.28.0, on cli-core 0.696.0 and cli-base 0.114.0 at the
   start; finished on cli-base 0.117.0 and cli-core 0.698.0, which carry the gaps the pilot fixed (below).
 - attio-cli syncs Attio's people, companies and workspace members into cli-core's store, and has an `api` group of
-  108 operations generated from Attio's OpenAPI description. It has no deals, no custom attributes, no writes and no
+  107 operations generated from Attio's OpenAPI description. It has no deals, no custom attributes, no writes and no
   OAuth yet (see "What was not measured").
 - hubspot-cli at `253e6c4` and bitrix24-cli at `7e2877e`, counted as in
   [new-cli-lines](../../engineering/new-cli-lines/README.md), with the same exclusions for bitrix24-cli.
@@ -72,16 +72,41 @@ lines keep only the current value of each Attio attribute (Attio keeps old value
   union (Attio's "token not active" answer), and pattern samples did not match their patterns. Fixing them took
   cli-base [#642](https://github.com/WireCatLabs/cli-base/pull/642) and cli-core
   [#3102](https://github.com/WireCatLabs/cli-core/pull/3102), about 1 h 20 min more with reviews, plus the releases.
-- **Attio's API description generated with no patch** once cli-base #642 was in (108 operations). Before it, the
+- **Attio's API description generated with no patch** once cli-base #642 was in (107 operations; an earlier draft said 108). Before it, the
   builder needed four patches of the description and three command names.
 - **15 findings were logged** in the plan: kit bugs, and places where the config cannot say something. The ones that block more of Attio: deals (a status
   attribute with no fixed stage list and no outcome hook), custom attributes (no per-workspace field list), and OAuth
   as a second sign-in.
 
+## Deals and the workspace's own attributes (0.1.0)
+
+The first build left deals out. The owner asked for attio to work like bitrix24-cli: deals and their pipeline in the
+local copy, people and companies read live from Attio, and each workspace's own attributes kept. That went into the
+first release, `@wirecat/attio-cli` 0.1.0 (`0c33e81`), counted with the same command at `0c33e81`.
+
+| | first build (`003b809`) | 0.1.0 (`0c33e81`) |
+|---|---:|---:|
+| Config (`wirecat.config.ts`) | 64 | **126** |
+| Hooks (`src/hooks.ts`) | 23 | **8** |
+| Source written after `new`, hooks included | 42 | **75** |
+| Source lines, comparable | 402 | 341 |
+| Tests written after `new` | 98 | 391 |
+
+- **Deals cost 62 lines of config and no new hook.** The 23-line hook that kept an attribute's current value became
+  one config option in cli-core (`custom.typed`), and Attio's stage outcomes are the one hook left: a stage Attio
+  celebrates is won, one titled "Lost" is lost. cli-core [#3114](https://github.com/WireCatLabs/cli-core/pull/3114)
+  (0.700.0) added flat stages, typed attribute values and a live list for a searched kind.
+- **The comparable source fell by 61 lines** because the template's own seeds took over code attio had written by
+  hand. The wiring grew from 19 to 67 lines: hosts, texts, the live lists of people and companies, and the update check.
+- **Most new test lines are coverage, not mapping.** CI's test matrix asked for a test of every command and option
+  (540 in all); one api test and one CRM test cover them.
+- **The live check passed on the owner's workspace**: 12 companies, 6 people, one pipeline with 4 stages, and live
+  people and companies answering. It held no deals, so deals were checked against the fake only.
+
 ## What was not measured
 
-- Deals, custom attributes and custom objects, writes, OAuth: attio-cli does not have them yet, so the comparison
-  covers people, companies and users only. hubspot-cli's numbers include deals, leads, activities, owners and
-  pipelines.
-- The live check against a real Attio workspace: it is the owner's and had not run when this was written.
+- The first build's comparison covers people, companies and users only; hubspot-cli's numbers include deals, leads,
+  activities, owners and pipelines. 0.1.0 adds deals and custom attributes, but still no custom objects, writes or
+  OAuth.
+- Deals on real data: the owner's workspace has none, so the deal mapping is checked against the fake only.
 - Hours a person spent: the owner answered three questions.

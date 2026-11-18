@@ -32,5 +32,20 @@
     "test_helpers": 810,
     "generated": 0,
     "excluded_source": 2293
+  },
+  "attio_0_1_0": {
+    "commit": "0c33e81",
+    "source": 341,
+    "tests": 1102,
+    "test_helpers": 92,
+    "generated": 98069,
+    "excluded_source": 0,
+    "written_since_template": {
+      "source": 75,
+      "tests": 391,
+      "test_helpers": 3
+    },
+    "config_lines": 126,
+    "hook_lines": 8
   }
 }
