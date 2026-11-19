@@ -6,6 +6,17 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## 0.7.4 — 19.11.2026
+
+### Fixed
+
+- **`deny-keys` accepts a command whose permission key is `deny` by default.** cli-core's `--dry-run` refuses such a
+  key with exit 5 and `permission_error`, so `deny-keys` failed with "--dry-run exited 5, so its key is unknown"
+  (hubspot-cli's `api contacts-gdpr-delete`, key `people.erase`). The key now comes from the refusal's
+  `details.permission`, and the command takes the same `deny:<path>` run and MCP call as any other: exit 5, nothing
+  on stdout, no network, keyring or child-process access. Any other failed preview, an exit 5 without
+  `permission_error` or without a key among them, still fails the check.
+
 ## 0.7.3 — 16.11.2026
 
 ### Fixed
