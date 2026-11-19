@@ -103,11 +103,18 @@ const parsed = (text: string): Record<string, unknown> | undefined => {
   }
 }
 
-const errorOf = (body: unknown): { code?: unknown; details?: { arguments?: unknown } } | undefined => {
+type ErrorBody = { code?: unknown; details?: { arguments?: unknown; permission?: unknown } }
+const errorOf = (body: unknown): ErrorBody | undefined => {
   const found = (body as { error?: unknown } | undefined)?.error
-  return found && typeof found === "object"
-    ? (found as { code?: unknown; details?: { arguments?: unknown } })
-    : undefined
+  return found && typeof found === "object" ? (found as ErrorBody) : undefined
+}
+
+// A key that is `deny` by default (`people.erase` on a GDPR erase) refuses the preview itself, and names the key.
+const deniedByDefault = (preview: DenyResult): string | undefined => {
+  if (preview.exit !== 5) return undefined
+  const error = errorOf(parsed(preview.stderr))
+  const key = error?.details?.permission
+  return error?.code === "permission_error" && typeof key === "string" ? key : undefined
 }
 
 /** The least each required property of an MCP tool's `arguments` schema needs, so validation lets the call through. */
@@ -132,7 +139,8 @@ export const argumentsFor = (schema: unknown): Record<string, unknown> => {
 /**
  * Each command that reaches the service and names a permission key gets `deny` in an empty home: the command line
  * must exit 5 with `permission_error`, and so must a call over `mcp serve`. The guard around each run fails it if
- * anything opened a connection, the keyring or a child process first (WC-PERM-23).
+ * anything opened a connection, the keyring or a child process first (WC-PERM-23). A command whose key is `deny` by
+ * default refuses its `--dry-run` with exit 5 and the key in `details.permission`; it takes the same runs.
  */
 export const runDenyContracts = async (
   deny: ContractDeny,
@@ -163,9 +171,11 @@ export const runDenyContracts = async (
         const path = node.path ?? []
         const args = argsFor(node)
         const preview = call([deny.profile, ...path, ...args, "--dry-run", "--json", "--no-input"])
-        if (preview.exit !== 0)
+        const byDefault = deniedByDefault(preview)
+        if (preview.exit !== 0 && !byDefault)
           throw new Error(`${path.join(" ")} --dry-run exited ${preview.exit}, so its key is unknown`)
-        const key = (parsed(preview.stdout)?.item as { permission?: { key?: unknown } } | undefined)?.permission?.key
+        const key =
+          byDefault ?? (parsed(preview.stdout)?.item as { permission?: { key?: unknown } } | undefined)?.permission?.key
         if (typeof key !== "string") return []
         const write = node.effects?.remote === "write"
         return [{ path, args, key, write, mcp: node.mcp !== false && node.lifetime !== "interactive" }]

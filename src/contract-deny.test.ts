@@ -33,9 +33,12 @@ const TREE = {
   ],
 }
 
-/** A CLI that answers what the deny check asks; `honours` false is bitrix24-cli's bug: deny ignored, request sent. */
-const fakeCli = (honours: boolean) => {
-  const file = join(fixtures, `fake-${honours}.cjs`)
+/**
+ * A CLI that answers what the deny check asks; `honours` false is bitrix24-cli's bug: deny ignored, request sent.
+ * `erase` makes `comments create` deny by default, as hubspot-cli's GDPR erase is: its own --dry-run is refused.
+ */
+const fakeCli = (honours: boolean, erase = false) => {
+  const file = join(fixtures, `fake-${honours}-${erase}.cjs`)
   writeFileSync(
     file,
     `const fs = require("node:fs")
@@ -64,13 +67,17 @@ else if (args[2] === "serve") {
 else {
   const words = args.slice(1).filter((a) => !a.startsWith("-"))
   const key = words[0] === "doctor" ? null : words.slice(0, 2).join(".")
-  if (args.includes("--dry-run")) out({ item: { permission: { key } } })
-  else {
-    const levels = fs.existsSync(config) ? JSON.parse(fs.readFileSync(config, "utf8")).profiles.personal.permissions : {}
-    if (${honours} && levels[key] === "deny") {
-      process.stderr.write(JSON.stringify({ error: { code: "permission_error" } }) + "\\n")
-      process.exit(5)
-    }
+  const levels = fs.existsSync(config) ? JSON.parse(fs.readFileSync(config, "utf8")).profiles.personal.permissions : {}
+  const level = levels[key] ?? (${erase} && key === "comments.create" ? "deny" : "allow")
+  const refuse = () => {
+    process.stderr.write(JSON.stringify({ error: { code: "permission_error", details: { permission: key } } }) + "\\n")
+    process.exit(5)
+  }
+  if (args.includes("--dry-run")) {
+    if (level === "deny") refuse()
+    out({ item: { permission: { key } } })
+  } else {
+    if (${honours} && level === "deny") refuse()
     try { fetch("https://comments.example.invalid") } catch {}
     process.exit(4)
   }
@@ -244,6 +251,39 @@ describe("deny contracts", () => {
             : { exit: 2, stdout: "", stderr: "{}" },
     })
     expect(broken.results.find((item) => item.id === "deny-keys")?.failure).toContain("--dry-run exited 2")
+  })
+
+  it("takes the key from a --dry-run refused by a deny by default, and still runs that command's deny", async () => {
+    const honest = await runContracts(plan(fakeCli(true, true)), { toolSession: async () => session(() => refused) })
+    expect(honest.results).toEqual([
+      { id: "discovery", passed: true },
+      { id: "deny-keys", passed: true },
+      { id: "deny:comments list", passed: true },
+      { id: "deny:comments create", passed: true },
+      { id: "deny-mcp", passed: true },
+    ])
+    const leaking = await runContracts(plan(fakeCli(false, true)), { toolSession: async () => session(() => refused) })
+    expect(leaking.results.find((item) => item.id === "deny-keys")?.passed).toBe(true)
+    expect(leaking.results.find((item) => item.id === "deny:comments create")?.passed).toBe(false)
+  })
+
+  it("fails a --dry-run that exits 5 without permission_error or without the key it refused", async () => {
+    const previewing = (stderr: string) => ({
+      run: (invocation: { args: string[] }) =>
+        invocation.args.includes("commands")
+          ? { exit: 0, stdout: JSON.stringify(TREE), stderr: "" }
+          : invocation.args.includes("config")
+            ? { exit: 0, stdout: '{"item":{"config_file":"config.json"}}', stderr: "" }
+            : { exit: 5, stdout: "", stderr },
+    })
+    for (const stderr of [
+      '{"error":{"code":"auth_error","details":{"permission":"comments.list"}}}',
+      '{"error":{"code":"permission_error"}}',
+      "not json",
+    ]) {
+      const report = await runContracts(plan(fakeCli(true)), previewing(stderr))
+      expect(report.results.find((item) => item.id === "deny-keys")?.failure).toContain("--dry-run exited 5")
+    }
   })
 
   it("previews each command with the profile in the config, as a command acting on the profile needs", async () => {

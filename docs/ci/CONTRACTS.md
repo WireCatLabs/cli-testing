@@ -101,8 +101,10 @@ service, on the command line and over MCP ([WC-PERM-23](https://github.com/WireC
 It reads `commands --json` and takes each leaf whose `effects.remote` is `read` or `write`, except a `persistent`
 one such as `mcp serve`. Its arguments are the words after its path in its first example that has no `--dry-run`,
 or `x` for each required argument and option. `<profile> <path> --dry-run --json` names the command's key;
-housekeeping such as `session` and `doctor` names none and is left out. `<profile> config show --json` names the
-config file, inside the fresh root.
+housekeeping such as `session` and `doctor` names none and is left out. A key that is `deny` by default refuses the
+preview itself: exit 5 with `permission_error` and the key in `details.permission`. That key is taken like any
+other; any other failed preview fails `deny-keys`. `<profile> config show --json` names the config file, inside the
+fresh root.
 
 - `deny-keys` fails when no read names a key, or no write does in a CLI that has writes: the program then
   dropped its permission table, as one CLI's did.
