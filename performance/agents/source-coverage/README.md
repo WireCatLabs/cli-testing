@@ -211,6 +211,39 @@ score. Each sheet scored twice, blind; the mean counts.
   questions. `daily.sh` passes `< /dev/null`. Answers are taken from the transcripts; a first scoring that split
   `answers.md` shifted numbered lists to the wrong question and is not used.
 
+### Search output, rounds 10 and 11 (2026-11-18..19)
+
+Free checks first, no agent, on a copy of the owner's store (954,027 messages, 220,180 chunks, OpenAI
+`text-embedding-3-small` at 768 dimensions; per-question rows in cli-private):
+
+- **Owner block** (cli-core #3119): up to 5 of the owner's own conversations nearest in meaning, in a block after the
+  hits. Answers visible in the first call: 24 → 31 of 40 questions and variants, the main list unchanged on all 40,
+  +0.24 s a query.
+- **The old questions are skewed:** 12 of 17 are about small private dialogs. Five new ones were added, each answered
+  by another person's message in a big group.
+- **Searching with a guessed reply** (written by a model that saw only the question): the answer in the top 20 or the
+  owner block for 8 of 10 with the question, 9 with the reply, 10 with both.
+
+Agent rounds, same budget as round 4 (60 s, 10 tool calls, Sonnet 5.5), tg reading the copy only (`--offline`), two
+blind scores per set that agreed. Round 10: the skill asked for a second search with a guessed reply. Round 11:
+each hit carries up to 3 of its messages (`lines`, marked untrusted) and `--reply` searches with the guessed reply in
+the same call. The 12 held-out questions were not used to design the change.
+
+| | tg, round 10 | tg, round 11 | grep over the export |
+| --- | --- | --- | --- |
+| 10 questions (5 old, 5 new) | 5.33 | 7.17 | 6.5 |
+| 12 held-out old questions | — | 6.67 | 3.5 |
+| confidently wrong | 1 | 0 | 1 (held-out) |
+| out of budget, held-out | — | 3 of 12 | 0 of 12 |
+| median seconds, tool calls a held-out question | — | 26 s, 5 | 17 s, 6 |
+
+- **Round 10 lost because the agent did not use what the search gave it:** it never ran the second search, read one
+  or two hits and skipped the owner block that held the answer.
+- **Round 11:** the agent passed `--reply` in 9 of 10 sessions, and the lines let it answer from the first call.
+- grep on the 10 questions is round 10's run, one sample. The stand was broken three times before round 10 (wrong
+  embedding model, the read-only lock refused the query's embedding, reads without the keyring failed); runs on it
+  were not counted.
+
 ## What it showed
 
 - **Questions that share words with the answer:** Telegram's own search is enough. telegram-mcp found 2020 messages in
