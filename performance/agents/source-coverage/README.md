@@ -55,6 +55,23 @@ The other steps:
 
 Scored twice, the rerun's round 2 sheet got the same totals both times (9, 5.0, strict 3.67, 0 confidently wrong).
 
+### Search checks without an agent
+
+Free checks of the search itself, run before any paid agent run. They read the test store and a private
+`private.json` beside it (the owner's chat ids, the export agent's grep patterns, the focus chat and words); per-query
+rows stay in the private folder, only totals leave it.
+
+| Check | Script | What it does |
+| --- | --- | --- |
+| First search finds the answer | [search-check/retrieval.py](search-check/retrieval.py) | rank of the key's messages in the first `search conversations`, local and OpenAI vectors |
+| Deeper and in-chat | [search-check/diagnose.py](search-check/diagnose.py), [perchat.py](search-check/perchat.py), [chatpick.py](search-check/chatpick.py) | rank at depth 300, inside the answer's chat, and which chat wins the merge |
+| Rare words | [search-check/rareword.py](search-check/rareword.py) | the question's rarest words and the chats that hold them |
+| Grep parity | [search-check/parity.py](search-check/parity.py), [missed.py](search-check/missed.py) | `search messages` finds every message the export agent's grep finds; lists the word forms it misses |
+| Two focus questions | [search-check/q2.py](search-check/q2.py), [msgs.py](search-check/msgs.py), [eval.py](search-check/eval.py) | rank of the answer for the focus pair, all chats and in chat, in both searches |
+| Name to chat | [search-check/names.py](search-check/names.py) | how a word spreads over chats and how often it is capitalised |
+| Time of one query | [search-check/prof.sh](search-check/prof.sh), [exit-time.mjs](search-check/exit-time.mjs) | one query with timestamps per stage |
+| Local build | [search-check/sync.sh](search-check/sync.sh), [tg.sh](search-check/tg.sh), [m.sh](search-check/m.sh), [c.sh](search-check/c.sh) | build a cli-core worktree into tg and run one search |
+
 ## Results
 
 ### Round 1: 10 direct questions (the question shares words with the answer)
@@ -166,6 +183,67 @@ checklist points each question asks for):
   of these long queries stopped at the search's 2-second time limit, three tries each.
 - A first set of 20 questions, all full sentences, scored E 19.0, WS 11.33, M 7.17.
 
+### Round 4: one question, one minute, 10 tool calls (2026-11-14..15)
+
+The owner pointed out that round 3 is not the daily case: a person types one sentence, wants an answer in seconds and
+has no export. Round 4 asks the same 20 questions and 12 variants, one question per new session, and stops each session
+at 60 seconds or the 11th tool call ([budget.py](budget.py), [daily.sh](daily.sh)). No own scripts for anyone. Plan
+and pass rule, written before the run:
+[product experiment](https://github.com/WireCatLabs/product/blob/main/experiments/2026-11-14-experiment-b-round4-daily.md).
+WF: tg 0.130.0 (cli-core 0.665.0, search fixes of cli-core #2959 and #2972), full history, OpenAI vectors for all 10
+chats, skill installed. EG: the export with `grep` and `jq` only. EF: the export with Python, a ceiling outside the
+score. Each sheet scored twice, blind; the mean counts.
+
+| | WF | WS | M | EG | EF |
+| --- | --- | --- | --- | --- | --- |
+| 20 questions | 9.5 | 6.25 | about 6.0 | 12 | 11.1 |
+| confidently wrong | 0 | 0 | 1 | 1 | 0 |
+| 12 variants | 2 | 4.5 | 1 | 10.5 | 8 |
+| out of budget, of 32 | 4 | 1 | 4 | 3 | 5 |
+| median seconds, tool calls a question | 33 s, 5.6 | 28 s, 6.1 | 15 s, 6.7 | 18 s, 6.2 | 18 s, 6.8 |
+
+- **By the pass rule this is a failure:** WF is more than 2 points below EG. WF is 3.5 above M.
+- **Why.** In 29 of 32 WF sessions the agent began with `tg <profile> --help` and used the word search `search all`.
+  It opened the installed skill once and ran the meaning search once. 17 calls failed on options that do not exist
+  (`--chat`, `--around`, `--since`). Under a budget the agent follows the first help screen
+  ([tg-cli #896](https://github.com/WireCatLabs/tg-cli/issues/896)), not the skill.
+- **Harness fix found on the way:** `claude -p` inside a `while read` loop read the loop's stdin and saw the other
+  questions. `daily.sh` passes `< /dev/null`. Answers are taken from the transcripts; a first scoring that split
+  `answers.md` shifted numbered lists to the wrong question and is not used.
+
+### Search output, rounds 10 and 11 (2026-11-18..19)
+
+Free checks first, no agent, on a copy of the owner's store (954,027 messages, 220,180 chunks, OpenAI
+`text-embedding-3-small` at 768 dimensions; per-question rows in cli-private):
+
+- **Owner block** (cli-core #3119): up to 5 of the owner's own conversations nearest in meaning, in a block after the
+  hits. Answers visible in the first call: 24 → 31 of 40 questions and variants, the main list unchanged on all 40,
+  +0.24 s a query.
+- **The old questions are skewed:** 12 of 17 are about small private dialogs. Five new ones were added, each answered
+  by another person's message in a big group.
+- **Searching with a guessed reply** (written by a model that saw only the question): the answer in the top 20 or the
+  owner block for 8 of 10 with the question, 9 with the reply, 10 with both.
+
+Agent rounds, same budget as round 4 (60 s, 10 tool calls, Sonnet 5.5), tg reading the copy only (`--offline`), two
+blind scores per set that agreed. Round 10: the skill asked for a second search with a guessed reply. Round 11:
+each hit carries up to 3 of its messages (`lines`, marked untrusted) and `--reply` searches with the guessed reply in
+the same call. The 12 held-out questions were not used to design the change.
+
+| | tg, round 10 | tg, round 11 | grep over the export |
+| --- | --- | --- | --- |
+| 10 questions (5 old, 5 new) | 5.33 | 7.17 | 6.5 |
+| 12 held-out old questions | — | 6.67 | 3.5 |
+| confidently wrong | 1 | 0 | 1 (held-out) |
+| out of budget, held-out | — | 3 of 12 | 0 of 12 |
+| median seconds, tool calls a held-out question | — | 26 s, 5 | 17 s, 6 |
+
+- **Round 10 lost because the agent did not use what the search gave it:** it never ran the second search, read one
+  or two hits and skipped the owner block that held the answer.
+- **Round 11:** the agent passed `--reply` in 9 of 10 sessions, and the lines let it answer from the first call.
+- grep on the 10 questions is round 10's run, one sample. The stand was broken three times before round 10 (wrong
+  embedding model, the read-only lock refused the query's embedding, reads without the keyring failed); runs on it
+  were not counted.
+
 ## What it showed
 
 - **Questions that share words with the answer:** Telegram's own search is enough. telegram-mcp found 2020 messages in
@@ -185,6 +263,9 @@ checklist points each question asks for):
   of the same facts, WireCat 6. The agent searches by keywords and rarely by meaning, and meaning search over the
   whole store often stops at its time limit. With the owner's everyday store WireCat scored 7.17: most of the history
   was not in it.
+- **Round 4, one minute and 10 calls a question:** WireCat 9.5 of 20, telegram-mcp about 6, the export with grep 12.
+  The search fixes help without an agent (14 of 29 sources in the top 10 against 11), but the agent under a budget
+  reads `--help` and searches by words, so it does not reach them.
 - **Rounds 1 and 2: a full local copy is what wins, not WireCat by itself.** The export gives the agent the whole history (WireCat's
   copy held at most 20,000 messages per chat), and with `grep` and Python the agent answered everything: 10, 10, 5.0.
   What WireCat adds is the work around the copy: no manual export, the copy stays current, one search across
@@ -200,6 +281,7 @@ checklist points each question asks for):
   clicks were not measured.
 - The rerun used a tg build from main, not a version from npm, and one run per round.
 - WireCat with the full history and vectors for the 4 large groups (round 3: more than a day to build).
+- A rerun of round 4 after the help fix, and WS with vectors.
 - A second run of round 3: one run per contestant, so 1 or 2 points of 20 are within noise.
 - Freshness (a new message seen without a manual step) and staying current over days.
 - Cost of keeping a second Telegram session for M, and the risk of Telegram's limits on it.
