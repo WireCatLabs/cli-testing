@@ -11,3 +11,5 @@ How much of a new CLI the shared foundation writes, and how long a build takes o
 - [wordpress-from-config](wordpress-from-config/README.md): `wordpress`, a content CLI over WordPress's own API
   description, from one `wirecat.config.ts` with no hooks: hand-written lines, time to green and the gaps, against
   attio-cli.
+- notion-cli's existing source moved to a config is measured under
+  [kit/source-manifest](../kit/source-manifest/README.md), against attio-cli.
