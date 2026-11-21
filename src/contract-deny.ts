@@ -70,6 +70,10 @@ const remoteLeaves = (nodes: Node[]): Node[] =>
         : [],
   )
 
+// cli-core's `logsInOrOut` mark never reaches `commands --json`; every CLI puts it on these paths (WC-PERM-5).
+const SIGN_IN_OR_OUT = new Set(["session start", "session end", "account remove", "setup"])
+const signsInOrOut = (path: string[] = []): boolean => SIGN_IN_OR_OUT.has(path.join(" "))
+
 /** The words after the command's path in its first example, or a placeholder for each required one. */
 export const argsFor = (node: Node): string[] => {
   const path = node.path ?? []
@@ -165,7 +169,8 @@ export const runDenyContracts = async (
     })
     if (!keyed.some((command) => !command.write))
       throw new Error("no command that reads the service names a permission key in its --dry-run")
-    if (leaves.some((node) => node.effects?.remote === "write") && !keyed.some((command) => command.write))
+    const writes = leaves.some((node) => node.effects?.remote === "write" && !signsInOrOut(node.path))
+    if (writes && !keyed.some((command) => command.write && !signsInOrOut(command.path)))
       throw new Error("no command that writes to the service names a permission key in its --dry-run")
   })
   for (const command of keyed)
