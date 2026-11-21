@@ -2,6 +2,7 @@
 
 - [generation](generation/README.md): how much of a new CLI the shared foundation writes — `ydisk` against
   notion-cli, and `attio` from a config file.
+- [kit](kit/README.md): an existing CLI moved onto the kit — notion-cli's sync source from `wirecat.config.ts`.
 - [search](search/README.md): message and document search quality and speed.
 - [runs](runs/README.md): run records — the `runs` commands, and secrets hidden in them by content.
 - [documents](documents/README.md): reading documents into text, starting with HTML.

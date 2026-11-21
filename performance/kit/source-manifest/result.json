@@ -1,0 +1,42 @@
+{
+  "before": "ea70b65",
+  "after": "9c59227",
+  "config": 43,
+  "hooks": {
+    "src/sync/browse.ts": 95,
+    "src/sync/cursor.ts": 176,
+    "src/sync/files.ts": 141,
+    "src/sync/from-config.ts": 39,
+    "src/sync/front-matter.ts": 121,
+    "src/sync/markdown.ts": 59,
+    "src/sync/source.ts": 994,
+    "src/sync/users.ts": 82
+  },
+  "hook_lines": 1707,
+  "diff": {
+    "docs": {
+      "added": 29,
+      "removed": 0
+    },
+    "other": {
+      "added": 6,
+      "removed": 6
+    },
+    "scripts": {
+      "added": 46,
+      "removed": 0
+    },
+    "source": {
+      "added": 185,
+      "removed": 131
+    },
+    "generated": {
+      "added": 84,
+      "removed": 0
+    },
+    "tests": {
+      "added": 79,
+      "removed": 19
+    }
+  }
+}
