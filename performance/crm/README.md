@@ -22,3 +22,7 @@ CLIs run, what bitrix24-cli syncs, and what memo answers from it.
 - [live-sync](live-sync/README.md) — b24 0.13.0's sync on a real Professional-plan portal, read-only: a first sync of
   51,392 deals, 9,312 leads and 108,000 contacts took two runs, 11 min 39 s and 1,263 requests at about 1.8 a second;
   a daily sync with almost no changes still took 2 min 40 s, re-reading every client (2026-11-11).
+- [hubspot-agents](hubspot-agents/README.md): can an agent answer a salesperson's questions and make the usual changes
+  through WireCat `hubspot` or HubSpot's own Agent CLI? 20 questions in the owner's style, 2 variants and 5 write
+  tasks on an invented account in a HubSpot test account, scored blind. Baseline: `hubspot` 0.5.0 19 of 20, the Agent
+  CLI 18.5, no confidently wrong answer; HubSpot's remote MCP waits for the owner's sign-in (2026-11-23).

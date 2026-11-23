@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Connects HubSpot's remote MCP server (contestant C of performance/crm/hubspot-agents) to Claude Code for the agent
+# test, in one sitting. HubSpot's MCP needs an MCP connector made in the account's UI and a sign-in in the browser
+# (OAuth with PKCE), which only a person can do. This script asks for the connector's client id and secret (the
+# secret hidden), registers the server in the test's own agent folder, and then shows the one step left in Claude
+# Code. Nothing of the owner's other projects changes; the secret is never printed.
+#
+#   bin/hubspot-mcp-connect          # once, in a terminal
+#   bin/hubspot-mcp-connect --check  # afterwards: is the server signed in?
+
+require "fileutils"
+require "io/console"
+require "open3"
+
+RUN = File.join(Dir.home, ".cache", "wirecat-hubspot-agents")
+AGENT_DIR = File.join(RUN, "c", "agent")
+MCP_JSON = File.join(AGENT_DIR, ".mcp.json")
+CLAUDE_CONFIG_DIR = ENV.fetch("CLAUDE_CONFIG_DIR", File.join(Dir.home, ".claude"))
+SERVER_NAME = "hubspot"
+SERVER_URL = "https://mcp.hubspot.com/"
+CALLBACK_PORT = 33_418
+REDIRECT_URL = "http://localhost:#{CALLBACK_PORT}/callback"
+TEST_ACCOUNT = "149800303"
+
+def check
+  out, status = Open3.capture2e("claude", "mcp", "get", SERVER_NAME, chdir: AGENT_DIR)
+  puts out
+  exit(status.success? ? 0 : 1)
+end
+
+def ask(prompt, hidden: false)
+  print prompt
+  answer = hidden ? $stdin.noecho(&:gets).to_s : $stdin.gets.to_s
+  puts if hidden
+  answer.strip
+end
+
+check if ARGV.include?("--check")
+abort "run it in a terminal: it asks for the connector's secret" unless $stdin.tty?
+
+puts <<~STEPS
+  1. Open HubSpot test account #{TEST_ACCOUNT}: Development > MCP Connectors > Create MCP connector.
+     Name: WireCat agent test. Redirect URL: #{REDIRECT_URL}
+     Click Create. The connector's page shows its client ID and client secret.
+STEPS
+client_id = ask("2. Paste the client ID: ")
+abort "no client ID: nothing done" if client_id.empty?
+secret = ask("3. Paste the client secret (hidden): ", hidden: true)
+abort "no client secret: nothing done" if secret.empty?
+
+FileUtils.mkdir_p(AGENT_DIR)
+Open3.capture2e("claude", "mcp", "remove", SERVER_NAME, "--scope", "project", chdir: AGENT_DIR)
+out, status = Open3.capture2e(
+  { "MCP_CLIENT_SECRET" => secret },
+  "claude", "mcp", "add", "--transport", "http", "--scope", "project", "--client-id", client_id, "--client-secret",
+  "--callback-port", CALLBACK_PORT.to_s, SERVER_NAME, SERVER_URL,
+  chdir: AGENT_DIR
+)
+abort "claude mcp add failed:\n#{out}" unless status.success?
+
+puts <<~NEXT
+  Registered in #{MCP_JSON} (Claude Code settings: #{CLAUDE_CONFIG_DIR}).
+
+  4. Sign in, in this same terminal:
+       cd #{AGENT_DIR} && claude
+     In Claude Code type /mcp, pick "#{SERVER_NAME}", choose Authenticate, sign in to HubSpot in the browser, pick
+     account #{TEST_ACCOUNT} and allow. Then /exit.
+  5. Check it: #{File.expand_path(__FILE__)} --check   (it should say "Connected")
+NEXT
