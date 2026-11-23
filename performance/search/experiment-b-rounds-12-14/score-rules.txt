@@ -1,0 +1,6 @@
+Rules. The key has 20 sections, one per question id (1-20); the sheet answers them by the same ids. Every question asks for one fact.
+1 = the expected fact plus a source (chat and date); 0.5 = the fact without a source, or the fact with a wrong date or wrong chat; 0 = not found, wrong, or a different fact.
+The fact counts when its main substance matches the answer message or an 'Also accepted' one; the same fact from another message with its own chat and date counts too. Extra detail does not cost points; a wrong extra claim presented as the answer does.
+A question with two asks: both halves present = 1, one half = 0.5 (with source).
+Mark CW (confidently wrong) when the sheet asserts a wrong fact as the answer without a hedge. 'Not found' is never CW.
+Layout: a table with one row per question id: score, a short quote of what the sheet answered with its chat and date, and why. Then the total of the 20 scores (out of 20) and the number of CW.

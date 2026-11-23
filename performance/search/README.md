@@ -30,6 +30,11 @@ The [robustness validation](validation/README.md) challenges negation, condition
 reply context. It shows why the first feature model is not ready for production and distinguishes
 cheap ranking from reliable answer-availability decisions.
 
+[Experiment B, rounds 12–14](experiment-b-rounds-12-14/README.md) (19–24 November) tuned `tg search conversations`
+on a copy of one person's Telegram store, totals only. Ranking words by rarity inside each chat gave more than every
+meaning tweak together: shown answers went from 19 to 24 of 30. A fresh set and a held-out set from a separate writer
+told a real gain from a tuned one. With agents, `tg` 0.135.0 and grep over an export tied, 16.0 against 14.75 of 20.
+
 The [conversation readiness check](conversation-readiness/README.md) (16 November) found that `search conversations`
 spent about 10 of its 12 s on the "changed since the last build" hint: without planner statistics SQLite read every
 chunk of the store once per chat. With `CROSS JOIN` the check took 0.7 s instead of 9.4 s, with the same answers.
@@ -109,6 +114,7 @@ archive copy, and released `memo search all` 6.6 s → 1.4 s with identical resu
 | [messages-meaning-filters/](messages-meaning-filters/README.md) | `search messages --discover`: meaning hits for `-`, `NOT`, `OR` and groups that obey the query, and ranking inside a narrow filter, before and after cli-core #2254 (2026-10-31) |
 | [notes-meaning-filters/](notes-meaning-filters/README.md) | Hits found by meaning that break the query's `date:` and `tag:` in memo and drive, before and after cli-core 0.496.0 (2026-10-31) |
 | [business-lane/](business-lane/README.md) | The business lane of `search all` on stores seeded with 1,000 to 300,000 synthetic records: about 1 ms to 250–330 ms, growing with the store (2026-11-08) |
+| [experiment-b-rounds-12-14/](experiment-b-rounds-12-14/README.md) | `tg search conversations` on a real store copy: three question sets, the shipped ranking changes, the dropped ideas, and an agent round against grep (2026-11-24) |
 | [vector-scan/](vector-scan/README.md) | Bare vector scan time as the number of vectors grows, 10,000 to 300,000; superseded by vector-index (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |
 | [migration.json](migration.json) | Original file hashes and source commit before the transfer |

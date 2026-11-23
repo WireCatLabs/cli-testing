@@ -404,3 +404,13 @@ the check behind the "changed since the last build" hint. That check runs for ev
 index was missing. Without planner statistics, SQLite read every chunk of the store once per chat. Forcing the join
 order with `CROSS JOIN` took the check from 9.4 s to 0.7 s with the same answers, and the search from 12 s to 3 s
 ([conversation-readiness](conversation-readiness/README.md), 2026-11-16).
+
+## Search conversations on a real store, and agents again (Experiment B)
+
+An agent with `tg` should do no worse than an agent with a Telegram export and grep. On a copy of one person's store,
+each search idea ran on 2 questions, then 5, then all 30 in two modes, and was rejected when an answer that search
+already found lost more than 2 places. Ranking words by rarity inside each chat gave the biggest gain, and showing more
+lines was always safe. A full-store markup for $7.76 reversed its sample win. A fresh set and a held-out set from a
+separate writer kept one idea and held another. With agents, `tg` 0.135.0 tied with grep, 16.0 against 14.75 of 20. Its
+losses came from usage errors and an unread skill, not from ranking
+([experiment-b-rounds-12-14](experiment-b-rounds-12-14/README.md), 2026-11-24).
