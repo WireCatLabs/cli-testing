@@ -17,8 +17,9 @@ fi
   (cd "$B/agent" && HOME="$B/home" npm_config_cache="$B/npm-cache" npx -y skills add hubspot/agent-cli-skills --agent claude-code -y)
 cat > "$B/bin/hubspot" <<WRAP
 #!/usr/bin/env bash
-token=\$(secret-tool lookup service "$KEYRING_SERVICE" account "$KEYRING_ACCOUNT" 2>/dev/null)
-exec env HOME="$B/home" HUBSPOT_NO_AUTO_UPGRADE=1 HUBSPOT_ACCESS_TOKEN="\$token" "$B/home/.hubspot/bin/hubspot" "\$@"
+# Exported, not passed to env as an argument, so the key never shows in a process's command line.
+export HUBSPOT_ACCESS_TOKEN=\$(secret-tool lookup service "$KEYRING_SERVICE" account "$KEYRING_ACCOUNT" 2>/dev/null)
+exec env HOME="$B/home" HUBSPOT_NO_AUTO_UPGRADE=1 "$B/home/.hubspot/bin/hubspot" "\$@"
 WRAP
 chmod +x "$B/bin/hubspot"
 HUBSPOT_NO_AUTO_UPGRADE=1 HOME="$B/home" "$B/home/.hubspot/bin/hubspot" --version

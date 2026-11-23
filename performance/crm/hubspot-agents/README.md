@@ -32,8 +32,9 @@ pipeline writes, so the data has none and no question needs them.
 
 ## Data
 
-HubSpot test account 149800303 (a free developer test account, one deal pipeline, one user). It held a few
-WireCat live-check records and HubSpot's samples. [seed.mjs](seed.mjs) added an invented sales account
+HubSpot test account 149800303 (a free developer test account, one deal pipeline, one user). Before the seed it held
+WireCat live-check records, HubSpot's samples, and 24 companies and 30 contacts from an earlier mail import, with
+real public sender addresses. No question or key uses those, and nothing here names them. [seed.mjs](seed.mjs) added an invented sales account
 ([seed-data.mjs](seed-data.mjs)): an AI-automation agency selling in Russia and Spain.
 
 | | Seeded | Already there |
@@ -129,8 +130,7 @@ sheet, which knew neither sheet's author. The half points:
 - B: Q6 and V6 (did not name the deal), Q12 (as A), Q14 (did not look up Orbita's deal).
 
 Every refused command was a compound shell line that neither contestant may run; each agent then ran the parts one
-by one. No run failed on the setup: two transcripts of each were read before scoring (A Q1, Q2, Q3, W1; B Q2, Q3, Q17,
-W3).
+by one. No run failed on the setup: transcripts were read in full before scoring (A Q1, Q2, W1; B Q2, Q14, W3).
 
 ### How the write tasks were done
 
@@ -145,7 +145,12 @@ W3).
 
 On this scope (an invented account of 32 deals, questions in the owner's style, Claude Sonnet 5.5), the two command
 lines answered about equally well: 19 against 18.5 of 20 is within the noise of one run. Neither invented an answer.
-The decisions written before the run:
+Both are near the top of the scale, so this question set barely separates them on a small account: a harder set, or
+a large account, is needed to tell them apart.
+
+The decisions are **provisional**: A ran without its local copy of activities, so it was not at its best as
+AGENT-TESTS.md requires. They are final after A's rerun with activities on, and C's run. The decisions written
+before the run:
 
 - **Read score within 2: no claim either way.** compare.md keeps its feature marks only.
 - **A did W3 and W4 in one command each**: compare.md's ✅ for "move by stage name" and "close lost with a reason"

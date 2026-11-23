@@ -9,7 +9,7 @@ the seed and count: `WireCat live test deal` (Discovery Call, 1,200) and `HubSpo
 Scoring: a read question scores 1 when every checklist point is there with its record (deal, contact or note named),
 0.5 when the main fact is there but a point is missing or no record is named, 0 when not found or wrong. **CW**
 (confidently wrong) when the answer states a wrong fact without a hedge, or answers a question that has no answer in
-the data. A write task scores 1 when [verify.mjs](verify.mjs) finds the change and nothing else changed, else 0.
+the data. A write task scores 1 when `node writes.mjs verify` ([writes.mjs](writes.mjs)) finds the change and nothing else changed, else 0.
 
 ## Read questions
 
@@ -116,7 +116,7 @@ Sent, 22,000: (a) 18% of patients do not come; (b) reminders in WhatsApp and Tel
 
 ## Write tasks
 
-Checked by [verify.mjs](verify.mjs) after each contestant, then reset by [reset.mjs](reset.mjs).
+Checked by [writes.mjs](writes.mjs) (`verify`) after each contestant, then put back (`reset`).
 
 **W1. A note on the Кедр catalogue deal.** A new note associated with `Кедр Мебель — генерация описаний каталога`
 that says Стёпа approved the first 20 descriptions and asks for 100 more by 10 December.
