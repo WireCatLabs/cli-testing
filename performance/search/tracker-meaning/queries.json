@@ -1,0 +1,107 @@
+[
+  { "id": "q01", "target": "T01", "kind": "exact", "text": "CSV leading zeros phone" },
+  {
+    "id": "q02",
+    "target": "T01",
+    "kind": "paraphrase",
+    "text": "spreadsheet download loses the first digit of telephone contacts"
+  },
+  { "id": "q03", "target": "T02", "kind": "forms", "text": "счета не отправлены клиентам" },
+  { "id": "q04", "target": "T02", "kind": "question", "text": "почему клиент не получает счёт после оплаты?" },
+  { "id": "q05", "target": "T03", "kind": "typo", "text": "dark mdoe toggel resets" },
+  { "id": "q06", "target": "T03", "kind": "paraphrase", "text": "night theme preference forgotten when relaunching" },
+  { "id": "q07", "target": "T04", "kind": "exact", "text": "поиск буквой ё" },
+  { "id": "q08", "target": "T04", "kind": "typo", "text": "поиск не нахдит докуметы ёлка" },
+  { "id": "q09", "target": "T05", "kind": "forms", "text": "password resetting links expiring" },
+  {
+    "id": "q10",
+    "target": "T05",
+    "kind": "question",
+    "text": "why can't users reset their password with the emailed link?"
+  },
+  { "id": "q11", "target": "T06", "kind": "exact", "text": "large videos stalls" },
+  { "id": "q12", "target": "T06", "kind": "paraphrase", "text": "big movie files never complete transferring" },
+  { "id": "q13", "target": "T07", "kind": "forms", "text": "уведомление опоздало на час" },
+  { "id": "q14", "target": "T07", "kind": "typo", "text": "уведомления приходят с опозднием" },
+  { "id": "q15", "target": "T08", "kind": "typo", "text": "calender invite wrong timzone" },
+  { "id": "q16", "target": "T08", "kind": "question", "text": "why do meetings appear an hour early in Portugal?" },
+  { "id": "q17", "target": "T09", "kind": "exact", "text": "отчёт возвраты выручку" },
+  { "id": "q18", "target": "T09", "kind": "paraphrase", "text": "деньги, вернувшиеся покупателям, попадают в доход" },
+  { "id": "q19", "target": "T10", "kind": "forms", "text": "two-factor code rejection drifting clock" },
+  { "id": "q20", "target": "T10", "kind": "typo", "text": "two-factor cods rejeced clock drift" },
+  { "id": "q21", "target": "T11", "kind": "exact", "text": "billing page crashes coupon empty" },
+  { "id": "q22", "target": "T11", "kind": "typo", "text": "biling page crash cupon" },
+  { "id": "q23", "target": "T12", "kind": "forms", "text": "аватары пользователей не сохранились" },
+  { "id": "q24", "target": "T12", "kind": "question", "text": "почему не получается поменять фото профиля?" },
+  { "id": "q25", "target": "T13", "kind": "question", "text": "why do archived projects still show up in search?" },
+  { "id": "q26", "target": "T13", "kind": "typo", "text": "serach ignores archvied filter" },
+  { "id": "q27", "target": "T14", "kind": "exact", "text": "синхронизация Google Drive удаляет локальные файлы" },
+  {
+    "id": "q28",
+    "target": "T14",
+    "kind": "paraphrase",
+    "text": "после смены имени каталога в облаке исчезают документы на ноутбуке"
+  },
+  { "id": "q29", "target": "T15", "kind": "forms", "text": "webhook retrying flooded endpoints" },
+  { "id": "q30", "target": "T15", "kind": "question", "text": "why does the partner get thousands of webhook calls?" },
+  { "id": "q31", "target": "T16", "kind": "exact", "text": "keyboard shortcuts editor paste" },
+  { "id": "q32", "target": "T16", "kind": "typo", "text": "keybord shortcust stop after paste" },
+  { "id": "q33", "target": "T17", "kind": "forms", "text": "мобильные приложения разряжают батареи" },
+  { "id": "q34", "target": "T17", "kind": "typo", "text": "мобильное прилоожение разряжет батарею" },
+  {
+    "id": "q35",
+    "target": "T18",
+    "kind": "paraphrase",
+    "text": "new user setup progress says finished although tasks were ignored"
+  },
+  { "id": "q36", "target": "T18", "kind": "forms", "text": "onboarding checklists counting skipped step" },
+  { "id": "q37", "target": "C01", "kind": "exact", "text": "SameSite cookie redirect" },
+  {
+    "id": "q38",
+    "target": "C01",
+    "kind": "question",
+    "text": "what was the root cause of the Safari checkout failure?"
+  },
+  { "id": "q39", "target": "C02", "kind": "forms", "text": "кодировки Windows-1251 парсера" },
+  { "id": "q40", "target": "C02", "kind": "question", "text": "почему завис импорт контактов?" },
+  { "id": "q41", "target": "C03", "kind": "typo", "text": "profling separate querys avatars" },
+  {
+    "id": "q42",
+    "target": "C03",
+    "kind": "paraphrase",
+    "text": "combining database calls made the overview page faster"
+  },
+  { "id": "q43", "target": "C04", "kind": "exact", "text": "nginx proxy_read_timeout" },
+  { "id": "q44", "target": "C04", "kind": "paraphrase", "text": "продлили время ожидания прокси-сервера" },
+  { "id": "q45", "target": "C05", "kind": "forms", "text": "DKIM selectors rotating keys" },
+  { "id": "q46", "target": "C05", "kind": "question", "text": "how did we fix gmail putting our emails in spam?" },
+  { "id": "q47", "target": "C06", "kind": "typo", "text": "блокирвка после первго клика" },
+  {
+    "id": "q48",
+    "target": "C06",
+    "kind": "paraphrase",
+    "text": "запретили повторное нажатие, чтобы не создавались копии"
+  },
+  { "id": "q49", "target": "C07", "kind": "exact", "text": "battery saver token refresh killed" },
+  { "id": "q50", "target": "C07", "kind": "question", "text": "why are Android 14 users stuck in a login loop?" },
+  { "id": "q51", "target": "C08", "kind": "forms", "text": "носители языка проверили строки" },
+  {
+    "id": "q52",
+    "target": "C08",
+    "kind": "paraphrase",
+    "text": "испанская локализация вычитана, нужно договориться о словах для биллинга"
+  },
+  { "id": "q53", "target": "P01", "kind": "exact", "text": "payments migration Stripe" },
+  { "id": "q54", "target": "P01", "kind": "paraphrase", "text": "moving checkout charging to a different vendor" },
+  { "id": "q55", "target": "P02", "kind": "forms", "text": "онбординга клиента" },
+  { "id": "q56", "target": "P02", "kind": "question", "text": "какой проект про первые две недели новых покупателей?" },
+  { "id": "q57", "target": "P03", "kind": "typo", "text": "ofline mode techncians" },
+  {
+    "id": "q58",
+    "target": "P03",
+    "kind": "question",
+    "text": "which project lets engineers on site work without internet?"
+  },
+  { "id": "q59", "target": "P04", "kind": "exact", "text": "сокращение облачных расходов" },
+  { "id": "q60", "target": "P04", "kind": "paraphrase", "text": "экономия на серверах и хостинге" }
+]

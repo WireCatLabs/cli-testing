@@ -80,6 +80,11 @@ messages, and how many of each it finds, totals only.
 [A larger embedding model](embedding-models/README.md): multilingual-e5-large 8-bit downloads with its pinned hashes,
 gives 1024-length vectors and embeds about 3.4 chunks a second, about eight times slower than e5-small (2026-11-07).
 
+[Tracker items by meaning](tracker-meaning/README.md): on 2,000 synthetic issues, projects and comments with 60 queries,
+words alone found 25% of the targets in the first ten, and cli-core 0.730.0's words + meaning 87% (e5-small) or 92%
+(EmbeddingGemma), for 0.55–0.85 s more per CLI search, nearly all of it opening the model. A comment embedded with its
+issue's key and title is found more often, but short comments then crowd the page (2026-11-23).
+
 [Vector index](vector-index/README.md) compares Core's current vector scan with an index on chunks, int8 vectors,
 sqlite-vec, usearch, hnswlib and packed blocks of vectors, on synthetic stores of 100k and 1M chunks (2026-10-25).
 Its [Core implementation](vector-index/README.md#core-implementation-cli-core2001) section measures the `vec0` index
@@ -114,6 +119,7 @@ archive copy, and released `memo search all` 6.6 s → 1.4 s with identical resu
 | [messages-meaning-filters/](messages-meaning-filters/README.md) | `search messages --discover`: meaning hits for `-`, `NOT`, `OR` and groups that obey the query, and ranking inside a narrow filter, before and after cli-core #2254 (2026-10-31) |
 | [notes-meaning-filters/](notes-meaning-filters/README.md) | Hits found by meaning that break the query's `date:` and `tag:` in memo and drive, before and after cli-core 0.496.0 (2026-10-31) |
 | [business-lane/](business-lane/README.md) | The business lane of `search all` on stores seeded with 1,000 to 300,000 synthetic records: about 1 ms to 250–330 ms, growing with the store (2026-11-08) |
+| [tracker-meaning/](tracker-meaning/README.md) | Issues, projects and comments in `search all` by words and by words + meaning, e5-small and EmbeddingGemma, comments with and without their issue's title, at 2,000 and 20,000 synthetic items (2026-11-23) |
 | [experiment-b-rounds-12-14/](experiment-b-rounds-12-14/README.md) | `tg search conversations` on a real store copy: three question sets, the shipped ranking changes, the dropped ideas, and an agent round against grep (2026-11-24) |
 | [vector-scan/](vector-scan/README.md) | Bare vector scan time as the number of vectors grows, 10,000 to 300,000; superseded by vector-index (2026-10-13) |
 | [run.py](run.py) | Portable launcher against a chosen cli-messaging build; also checks the benchmark TypeScript |

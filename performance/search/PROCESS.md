@@ -414,3 +414,15 @@ lines was always safe. A full-store markup for $7.76 reversed its sample win. A 
 separate writer kept one idea and held another. With agents, `tg` 0.135.0 tied with grep, 16.0 against 14.75 of 20. Its
 losses came from usage errors and an unread skill, not from ranking
 ([experiment-b-rounds-12-14](experiment-b-rounds-12-14/README.md), 2026-11-24).
+
+## Issues, projects and comments by meaning
+
+cli-core 0.730.0 embeds a tracker's issues, projects and comments and fuses them with the word hits in `search all`. On
+2,000 synthetic items under two accounts and 60 queries written before the runs, words alone found 25% of the targets in
+the first ten: only exact words and some questions, because the tracker word index has no stems. Words + meaning found
+87% with e5-small and 92% with EmbeddingGemma, and put 67% and 83% first. Each CLI search took 0.55 s and 0.85 s longer,
+nearly all of it opening the model; with a warm model the lookup takes 6–25 ms. Putting the issue's key and title in
+front of a comment found more comments (63% → 81%, 75% → 94%), but it turned `LGTM` into a near copy of its issue.
+Leaving short comments out as well scored best or equal for both models, by one to three queries; with e5-small the
+prefix still cost issue targets a little. Two accounts on one workspace show every hit twice, so ten results hold about
+five items ([tracker-meaning](tracker-meaning/README.md), 2026-11-23).
