@@ -44,13 +44,15 @@ words alone, and at what latency and embedding cost? It feeds two open decisions
     that. `exact` was not used: it also changes the word match and turns off question handling.
   - **Words + meaning**: after `embedTracker`, `tracker.by = "words and meaning"`.
   - **Meaning alone**: `nearestTracker` with a warm model. Also the raw nearest list before the floor, to tell "dropped
-    by the floor" from "not near".
+    by the floor" from "not near". These two embed the query as written, less a trailing `?`; the lane plans a
+    question first.
   - **Comments as-is** against **comments prefixed**: a second store where every comment's body is saved as
     `<key> <title>\n\n<body>`. That simulates embedding with the prefix, but the prefix also enters the word index
     and the comment's title in hits, which a real change would not do.
   - **Prefixed, short comments left out**: the prefixed store without the short comments. It stands in for "prefix,
-    and do not embed short comments". Leaving them out of the word index too changes almost nothing, because they
-    hold no query words.
+    and do not embed short comments". It also takes them out of the word index. In the prefixed store a short comment
+    carries its issue's title words, so this removes some word hits too: words alone put short comments in the first
+    ten 10 times at 2,000 items and 6 times at 20,000. A real change would leave the word index alone.
 - Scoring: `searchAll(store, account, { text, limit: 10, only: ["tracker"] })` for the lane, and without `only` for
   the full `search all`. A query hits at rank k when either account's copy of the target is within the first k.
   Recall@10 is the share of the two copies found in the first ten.
@@ -109,7 +111,7 @@ had a median of 0.878, and the best unrelated items scored 0.84–0.91.
 | all 60 | 25 / 25 / 25 / 0.25 | 60 / 65 / 68 / 0.62 |
 | issue / comment / project targets, hit@10 | 22 / 25 / 38 | 69 / 63 / 75 |
 
-EmbeddingGemma was not run at 20,000: it embeds about four times slower, and the e5-small run already shows the trend.
+EmbeddingGemma was not run at 20,000: it embeds about three times slower, and the e5-small run already shows the trend.
 
 ### Comments: as-is, with the issue's key and title in front, and without short comments
 
@@ -142,7 +144,12 @@ comment) went from 75% to 100% hit@10 for both models at 2,000 items.
 | short-comment chunks / their vectors, as-is → prefixed | 456 / 10 → 226 | 456 / 10 → 226 | 4,610 / 10 → 2,284 |
 | embedding time, as-is / prefixed / prefixed without short comments | 5.0 / 8.2 / 8.7 s | 16.0 / 31.9 / 29.6 s | 44.3 / 121.7 / 106.8 s |
 | distinct texts embedded per second, as-is | 181 | 57 | 137 |
+| tracker items (one account's) per second, as-is | 400 | 125 | 451 |
 | store file + WAL before → after embedding, as-is | 10.7 → 24.1 MB | 10.7 → 35.5 MB | 66.4 → 147.7 MB |
+
+The speeds are for one-sentence texts, and only distinct texts are embedded. cli-core's catalogue gives e5-small
+31 chunks a second for chunks of about 300 tokens. A real workspace, with longer and less repeated text, will embed
+several times slower per item than this table shows.
 
 Latency in ms, p50 / p95, 300 calls each, as-is stores:
 
@@ -182,14 +189,25 @@ Latency in ms, p50 / p95, 300 calls each, as-is stores:
   the prefixed comments compete with their own issue. With EmbeddingGemma they held at 100%. A prefixed `LGTM` becomes a
   near copy of its issue, so short comments filled 32–48 of the first-ten slots across the 60 queries instead of 0–8.
   Each one also needs its own vector: 226 instead of 10 at 2,000 items. Leaving the short comments out removed that
-  crowding and gave the best result of the three for every model and size: hit@10 87% (e5-small) and 97%
-  (EmbeddingGemma) at 2,000 items, 72% at 20,000. It also needed fewer vectors than prefixing alone (1,677 against 1,903
-  at 2,000 items). Issue targets with e5-small stayed below as-is (89% against 97% at 2,000 items, 67% against 69% at
-  20,000), so with e5-small the prefix still costs the issues a little.
+  crowding and scored best or equal of the three for every model and size, by one to three queries: hit@10 87%
+  (e5-small) and 97% (EmbeddingGemma) at 2,000 items, 72% at 20,000. It also needed fewer vectors than prefixing alone
+  (1,677 against 1,903 at 2,000 items). Issue targets with e5-small stayed below as-is (89% against 97% at 2,000 items,
+  67% against 69% at 20,000), so with e5-small the prefix still costs the issues a little. Part of this variant's gain
+  comes from the word side of the simulation (see Setup), which a real change would not have.
 - At 20,000 items, e5-small's hit@10 fell from 87% to 68%. More look-alike filler sits in the same cosine band.
 - **Read the variant differences as direction, not size.** One query is 1.7 points of 60, and one comment query is
   6 points of 16. Most gaps between the three comment variants are one to three queries. The words against meaning
   gap (25% against 87–92%) is the only large one.
+
+## For the decisions
+
+- **Prefix a comment with its issue's key and title before embedding?** It finds more comments with both models
+  (hit@10 63% → 81% with e5-small, 75% → 94% with EmbeddingGemma). With EmbeddingGemma, the default, issues lost
+  nothing. With e5-small, issues lost 8 points of hit@10 at 2,000 items.
+- **Skip very short comments when embedding?** It matters only if the prefix ships. Embedded as they are, the short
+  comments cost 10 vectors in all, because identical texts share one, and they took 0–8 of the 600 first-ten slots.
+  Prefixed, each becomes a near copy of its issue: 226 vectors and 32–48 slots. So the two decisions go together:
+  prefix and skip short comments, or neither.
 
 ## Not measured
 
