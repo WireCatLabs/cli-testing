@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Connects Attio's remote MCP server (contestant C of performance/crm/attio-agents) to Claude Code for the agent test.
+# Attio's MCP signs in as an Attio user through OAuth in the browser, which only a person can do. Attio registers the
+# client itself (dynamic client registration at app.attio.com/oauth/register), so there is no client id or secret to
+# paste. This script registers the server in the test's own agent folder only, and shows the one step left in Claude
+# Code. Nothing of the owner's other projects changes.
+#
+#   bin/attio-mcp-connect          # once, in a terminal
+#   bin/attio-mcp-connect --check  # afterwards: is the server signed in?
+
+require "fileutils"
+require "open3"
+
+RUN = File.join(Dir.home, ".cache", "wirecat-attio-agents")
+AGENT_DIR = File.join(RUN, "c", "agent")
+MCP_JSON = File.join(AGENT_DIR, ".mcp.json")
+SERVER_NAME = "attio"
+SERVER_URL = "https://mcp.attio.com/mcp"
+WORKSPACE = "WireCat"
+
+def check
+  out, status = Open3.capture2e("claude", "mcp", "get", SERVER_NAME, chdir: AGENT_DIR)
+  puts out
+  exit(status.success? ? 0 : 1)
+end
+
+check if ARGV.include?("--check")
+
+FileUtils.mkdir_p(AGENT_DIR)
+Open3.capture2e("claude", "mcp", "remove", SERVER_NAME, "--scope", "project", chdir: AGENT_DIR)
+out, status = Open3.capture2e(
+  "claude", "mcp", "add", "--transport", "http", "--scope", "project", SERVER_NAME, SERVER_URL,
+  chdir: AGENT_DIR
+)
+abort "claude mcp add failed:\n#{out}" unless status.success?
+
+puts <<~NEXT
+  Registered in #{MCP_JSON}.
+
+  Sign in, in this same terminal:
+    cd #{AGENT_DIR} && claude
+  In Claude Code type /mcp, pick "#{SERVER_NAME}", choose Authenticate, sign in to Attio in the browser, pick the
+  workspace "#{WORKSPACE}" and allow. Then /exit.
+  Check it: #{File.expand_path(__FILE__)} --check   (it should say "Connected")
+NEXT

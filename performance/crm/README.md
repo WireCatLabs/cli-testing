@@ -26,3 +26,8 @@ CLIs run, what bitrix24-cli syncs, and what memo answers from it.
   through WireCat `hubspot` or HubSpot's own Agent CLI? 20 questions in the owner's style, 2 variants and 5 write
   tasks on an invented account in a HubSpot test account, scored blind. Baseline: `hubspot` 0.5.0 19 of 20, the Agent
   CLI 18.5, no confidently wrong answer; HubSpot's remote MCP waits for the owner's sign-in (2026-11-23).
+- [attio-agents](attio-agents/README.md): does an agent answer a salesperson's questions about Attio deals better
+  through WireCat `attio`, kesslerio's attio MCP server or Attio's own MCP? 30 questions in the owner's style and 6
+  variants on an invented account of 123 deals, scored blind. `attio` 0.3.0 27 of 30 at $3.07, kesslerio 1.7.0 22.5
+  at $5.38, one confidently wrong answer each. kesslerio never sees a task's due date. Attio's MCP waits for the
+  owner's sign-in (2026-11-23).
