@@ -36,7 +36,7 @@ const contestants = {
   c: {
     access: "The user's HubSpot account is available through the HubSpot MCP tools.",
     tools: ["mcp__hubspot", "Read", "Skill"],
-    extra: ["--mcp-config", join(RUN, "c/mcp.json"), "--strict-mcp-config"],
+    extra: ["--mcp-config", join(RUN, "c/agent/.mcp.json"), "--strict-mcp-config"],
   },
 }
 const contestant = contestants[who]
