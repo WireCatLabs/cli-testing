@@ -157,6 +157,34 @@ deal to won), and the agent took the second. Two fields one letter apart is a na
 W1 and W2 now take one command each: `activities create comment --subject deal:16 --text …` and
 `activities create task --subject person:… --subject organization:… --title … --due …`, with no HTTP 400 on the way.
 
+### C, HubSpot's remote MCP, 2026-11-24
+
+C ran on the same questions after the owner's sign-in, through the MCP tools only (`mcp__hubspot`, with `Read` and
+`Skill`). All three read sheets were then scored together, blind, by a fresh scorer per sheet
+(`score.sh key.md "$RUN/runs/score-three" a=… b=… c=…`): A's 0.6.0 sheet with its local copy, B's baseline sheet, C's.
+
+| | A: WireCat `hubspot` 0.6.0 | B: HubSpot Agent CLI | C: HubSpot remote MCP |
+| --- | --- | --- | --- |
+| 20 read questions, scored blind | **19.5** | **18.5** | **18** |
+| confidently wrong | 0 | 0 | 1 (Q15) |
+| variants V3, V6, of 2 | 2 | 1.5 | 2 |
+| write tasks passed, of 5 | 5 | 5 | 5 |
+| time, 22 read questions (median a question) | 481 s (20.5 s) | 486 s (20 s) | 317 s (14.5 s) |
+| cost, 22 read questions (median a question) | $1.82 ($0.083) | $2.42 ($0.10) | $1.86 ($0.084) |
+| tool calls, 22 read questions (median) | 86 (3.5) | 176 (7) | 117 (5) |
+| time, cost and tool calls, 5 write tasks | 113 s, $0.36, 21 | 82 s, $0.50, 39 | 67 s, $0.44, 26 |
+
+C's lost points: Q3 0 (said there was nothing about Sergey's partner offer; the 20% quarterly note exists, and C's
+own Q19 and V3 answers cite it), Q12 and Q20 half each (as A and B on Q12; Q20 without the demo task and with the
+stage as an id), Q15 confidently wrong (an open total of 481,000 for 480,900). A's Q18 is the same half point as in
+the rerun (`closed_date` for the close date): this scorer did not mark it confidently wrong, the earlier one did, so
+one CW either way is within the scorer's own noise.
+
+C's writes: W1 a note and W2 a task through `manage_crm_objects`, W3 to W5 the same way. The first `writes.mjs
+verify`, run seconds after the writes, failed W1 and W2: HubSpot's association read returned nothing yet for the new
+note and task. Read back a few minutes later both were there and linked right, and verify passed them; it now waits a
+minute when it runs within 15 minutes of the writes.
+
 ### How the write tasks were done
 
 | Task | A | B |
@@ -175,7 +203,8 @@ a large account, is needed to tell them apart.
 
 The A against B decisions are **final** after the rerun of 2026-11-24 with A at its best (its local copy on): 19.5
 against 18.5 is still within 2, so no claim either way on answers. With the local copy, A used half B's tool calls
-and three quarters of its cost for the same time. C's run is still to come. The decisions written
+and three quarters of its cost for the same time. C scored 18, within 2 of both: no claim on answers against
+HubSpot's MCP either. C was the fastest (median 14.5 s a question); A used the fewest tool calls. The decisions written
 before the run:
 
 - **Read score within 2: no claim either way.** compare.md keeps its feature marks only.
@@ -202,12 +231,18 @@ Only a person can do that. One sitting, about five minutes:
 3. In that folder, start `claude`, type `/mcp`, pick `hubspot`, Authenticate, sign in and allow. `/exit`.
 4. `bin/hubspot-mcp-connect --check` says `Connected`.
 
+The sign-in lands in the Claude Code config folder of the `claude` you signed in with (`~/.claude` by default). Run C
+with that folder: `CLAUDE_CONFIG_DIR=~/.claude node run.mjs c questions.md`; another folder has no sign-in and C
+answers that HubSpot is not connected. `--check` reads the project's approval, not the sign-in, so it may still
+say pending.
+
 Then the run, by an agent or by hand: `node run.mjs c questions.md`, the write tasks with `writes.mjs verify` and
 `reset`, and the scoring with C's sheet beside A's and B's.
 
 ## What was not measured
 
-- C, HubSpot's remote MCP: it waits for the owner's sign-in.
+- Run-to-run noise: one run per question and contestant. A large account, where an agent cannot list every record
+  and look by eye, is round 2.
 - A with its local copy in the baseline: cli-core refuses `crm.hubspot:<account>.activities on` to a command run
   by an agent ("the owner's to set, in a terminal"). The owner ran [a-setup.sh](a-setup.sh) and the rerun measured
   it. B was not rerun: its sheet is the baseline's, so run-to-run noise is not measured for either.
