@@ -44,6 +44,10 @@ Measurements of document conversion, shared retrieval and source-backed memories
   pages, scanned, turned and photographed; accuracy, speed, memory and install size for `read_scans: local`
   (2026-11-24).
 
+- [ocr-ru-en/real](ocr-ru-en/real/README.md): the follow-up on 125 real pages (Wikisource scans in Russian and
+  English, CORD receipt photos): Tesseract reads real Russian scans better than docTR with a Russian model, so cli-core
+  stays with Tesseract and `--psm 1` (2026-11-24).
+
 - [offline-catalog](offline-catalog/README.md): synthetic Drive hierarchy, metadata queries, folder context, account isolation and released JSON/MCP contracts, including [0.11.1 list-query acceptance](offline-catalog/README.md#released-0111-list-queries); includes a [standards gap review](offline-catalog/standards.md) and an [isolated Google checker and unrun live checklist](offline-catalog/live-checklist.md).
 
 - [Links introduced by message edits](edited-message-links/README.md): compiled sync, old SDK writers and upgrade repair.

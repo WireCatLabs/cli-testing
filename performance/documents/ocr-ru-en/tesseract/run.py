@@ -1,6 +1,7 @@
-"""Runs `tesseract stdin stdout -l rus+eng` once per page, as cli-core does (src/attachments/tesseract.ts).
+"""Runs `tesseract stdin stdout -l rus+eng` once per page, as cli-core 0.742.0 does (src/attachments/tesseract.ts).
 
-tesseract-fast-psm1 adds `--psm 1`: Tesseract's own page orientation and script detection, which cli-core does not use.
+tesseract-fast-psm1 adds `--psm 1`: Tesseract's own page orientation and script detection, which cli-core adds when the
+osd data is installed (WireCatLabs/cli-core#3310).
 """
 
 import json

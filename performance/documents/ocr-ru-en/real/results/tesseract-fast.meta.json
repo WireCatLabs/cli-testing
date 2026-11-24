@@ -1,0 +1,8 @@
+{
+ "engine": "tesseract-fast",
+ "version": "tesseract 5.3.4",
+ "command": "tesseract stdin stdout -l rus+eng",
+ "tessdata": "/usr/share/tesseract-ocr/5/tessdata (Ubuntu packages)",
+ "load_seconds": 0.0881832950108219,
+ "peak_rss_mb": 136.1328125
+}
