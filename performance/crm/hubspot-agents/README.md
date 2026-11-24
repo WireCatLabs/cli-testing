@@ -243,17 +243,35 @@ where the client moved its own start, where "их конкуренты" are the 
 discount. [seed-large.mjs](seed-large.mjs) seeds it through HubSpot's batch API (100 a call, four calls a second, so
 contestants sharing the key keep their share), with a status CSV per batch in `RUN/large/`.
 
-The account's limit: once it held about 3,000 contacts, HubSpot refused every create, of any type, with HTTP 402
-`Portal 149800303 cannot create another BUCKETED_OBJECTS. It has exceeded the limit of 3000`. HubSpot's pages on
-account types and on record limits do not name this limit for a developer test account, and the limits API
-(`/crm/limits/2026-09/records`) answers `limit: 0`. A batch refused at the limit keeps the records it made before it.
+**What the account's limit forced.** The owner asked for about 5,000 contacts, 2,000 deals and 3,000 notes. The test
+account refuses every create, of any type, with HTTP 402 `Portal 149800303 cannot create another BUCKETED_OBJECTS. It
+has exceeded the limit of 3000`. HubSpot's pages on account types and record limits do not name this limit for a
+developer test account, and the limits API (`/crm/limits/2026-09/records`) answers `limit: 0`. What the seed showed
+(inferred from two trips, not documented):
 
-**Seed status (2026-11-24): stopped at the limit.** Made: 820 companies and 3,375 contacts, of which 651 were then
-archived to shrink the plan to 2,780 contacts (`SIZE` in large-data.mjs). No deal, note, task, call or meeting of
-round 2 was made, and so no needle yet: after the archive the limits API showed 2,741 contacts, but creates were still
-refused 15 minutes later. Either the limit counts archived records (HubSpot keeps them in the recycle bin for 90 days)
-or it counts creates over time. Until it clears, the account refuses every create, round 1's write tasks too. The
-seeder is restartable: `node seed-large.mjs seed` goes on from its status CSV, planted records first.
+- Each type seems capped at about 3,000, and once one type is over, every create of every type is refused. It
+  tripped at 3,375 contacts (with 859 companies), then again at 3,021 notes (with 2,840 companies, contacts and deals
+  together, 317 tasks).
+- Archived records count. Creates stayed refused with 2,794 live contacts and 651 archived; they came back only after
+  the contacts were deleted for good (`POST /crm/v3/objects/contacts/gdpr-delete`). HubSpot deletes only contacts
+  that way; a deleted note stays in the recycle bin for 90 days
+  ([HubSpot](https://knowledge.hubspot.com/records/restore-deleted-activity-in-a-record)).
+- The limit is checked late: with three batches of 100 in flight, 3 to 5 more batches go through. A refused batch keeps
+  what it made before the refusal. Reseeding near the limit needs at least 500 headroom per type, or one batch at a
+  time.
+
+**Seed status (2026-11-24).** In the account from round 2: 820 companies, 1,300 contacts, 580 deals, 2,830 notes and
+300 tasks (`SIZE` in large-pools.mjs). 2,075 contacts made beyond the plan were deleted for good. The notes passed
+the limit before the plan was shrunk: 170 notes beyond it and three probe records (a note, a task, a deal) are
+archived and, by the finding above, hold the account over the limit until about 2027-02-22, when HubSpot empties the
+recycle bin. Until then the account refuses every create, by any contestant, round 1's W1 and W2 too; updates still
+work. So no call or meeting of round 2 exists, and the needles of L8 (a meeting) and L10 (a call) are missing: those
+two questions wait, and this round runs L1 to L7 and L9. `node seed-large.mjs seed` makes them when creates come
+back. Every other needle reads back from HubSpot as the key says (`node seed-large.mjs verify`).
+
+The scope of round 2's conclusion is this size: about 1,370 contacts, 860 companies, 610 deals and 2,850 notes. That
+is too many to list and read by eye (HubSpot's list endpoints give 100 a page), but well under the owner's 5,000
+contacts.
 
 Everything round 2 made is tagged: companies and contacts by the domain `l2.seed.wirecat.dev` (round 1 is
 `seed.wirecat.dev`), every record by its id in `RUN/large/seed-status.csv`. Removal: archive those ids with HubSpot's batch archive endpoints, activities first; the owner's local `CLEANUP.md` lists it.
@@ -280,7 +298,7 @@ Run, after the seed:
 node large-data.mjs                     # counts and checksum
 node seed-large.mjs seed                # restartable; planted records first; stops at a 402
 node seed-large.mjs verify && node seed-large.mjs probe
-node run.mjs a questions-large.md --label large   # and b, c
+node run.mjs a questions-large.md --label large --only L1,L2,L3,L4,L5,L6,L7,L9   # and b, c; L8, L10 once seeded
 SCORE_RULES=score-rules-large.md ../../agents/source-coverage/score.sh key-large.md "$RUN/runs/score-large" a=… b=…
 ```
 
@@ -289,15 +307,15 @@ Q8, Q15) would no longer hold.
 
 ### Round 2: thresholds and decisions, written before the run
 
-Ten questions, one run each: a difference of 1 or 2 of 10 is noise.
+Eight questions while L8 and L10 wait (ten when they run), one run each: a difference of 1 or 2 is noise.
 
 | Outcome | Decision |
 | --- | --- |
-| A scores 3 or more above B of 10 | wirecat.dev and compare.md may say, with this scope (about 2,800 contacts, misspelt names and questions by meaning, Claude Sonnet 5.5), that an agent finds records HubSpot's search misses through `hubspot` |
+| A scores 3 or more above B (of 8, or of 10) | wirecat.dev and compare.md may say, with this scope (about 1,370 contacts and 2,850 notes, misspelt names and questions by meaning, Claude Sonnet 5.5), that an agent finds records HubSpot's search misses through `hubspot` |
 | A and B within 2 | no claim either way on answers |
 | B scores 3 or more above A | a hubspot-cli issue for each question A lost, before its next release |
-| A loses 2 or more of L1, L2, L3, L6, L8 | a hubspot-cli issue: typo-tolerant search does not reach contacts and companies the way the skill uses it |
-| A loses 2 or more of L4, L5, L7, L10 | a hubspot-cli issue: search by meaning over notes and calls (vectors built? used by the skill?) |
+| A loses 2 or more of L1, L2, L3, L6 (and L8) | a hubspot-cli issue: typo-tolerant search does not reach contacts and companies the way the skill uses it |
+| A loses 2 or more of L4, L5, L7 (and L10) | a hubspot-cli issue: search by meaning over notes and calls (vectors built? used by the skill?) |
 | A confidently wrong more than once | a hubspot-cli issue on the skill's rules for near-duplicate names |
 | A's median time or cost is twice B's or more, at a score within 2 | a hubspot-cli issue on the store-first path's cost |
 | B's median tool calls or cost is twice A's or more, at a score within 2 | the claim may be about effort only: "the same answers with half the calls", with the scope |

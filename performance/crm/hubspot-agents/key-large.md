@@ -89,7 +89,7 @@ Wrong in the list: notes where the client's own competitors launched a bot (`x-n
 where we gave a 10% discount unasked (`x-n-rival-4`), and round 1's lost deals (ТехноСтрой chose Bitrix24 for its
 ready bot, not for price; ВкусноМаркет found us too expensive, with no rival named).
 
-**L8. The last meeting with Александр (Саша) Петров of Kazan.** Contact `x-petrov-alexandr`, Волга Агрохолдинг,
+**L8 (waits for its seed). The last meeting with Александр (Саша) Петров of Kazan.** Contact `x-petrov-alexandr`, Волга Агрохолдинг,
 Казань. Meeting `x-m-volga`, **2026-11-05** ("Волга Агрохолдинг: встреча в Казани"). Points: (a) the date and the
 meeting; (b) what was decided: a forecast pilot on two elevators (Буинск, Тетюши) from mid-January; sensor data access
 by 15.12; payment 50% at the start, 50% after the report; all 9 elevators only after the pilot. The earlier meeting of
@@ -103,7 +103,7 @@ upfront with no discount (`x-n-prepay-2`), a volume discount for three bots (`x-
 no talk of price (`x-n-prepay-4`), yearly payment ahead as the client's standard with no discount (`x-n-prepay-5`),
 round 1's Nordwind (7% offered by us for a two-year term). Naming any client as having asked is CW.
 
-**L10. The call with the fish people of Bilbao about their fridges.** Call `x-c-itsasoa`, 2026-11-13, "Llamada con
+**L10 (waits for its seed). The call with the fish people of Bilbao about their fridges.** Call `x-c-itsasoa`, 2026-11-13, "Llamada con
 Iker (Itsasoa)", Conservas Itsasoa SL (Bilbao), deal `Conservas Itsasoa — detección de anomalías` (Needs Assessment,
 28,000). Points: (a) the problem: the cold rooms send false temperature alarms almost every night, the night shift
 ignores them, a real failure was missed and about 2 tons of bonito were lost; (b) what we promised: a proposal for
@@ -115,7 +115,39 @@ routes (Pescados Rías Baixas), and a supermarket chain renewing its shop fridge
 
 Every answer is reachable with HubSpot's API alone, given enough effort: by HubSpot's search with the right spelling
 or a `CONTAINS_TOKEN` wildcard, by a filter (city, a company's associations), or, as the last resort, by reading every
-record of a type through the list endpoints (2,850 contacts, 3,000 notes: 29 and 30 pages of 100). None is the first
+record of a type through the list endpoints (about 1,370 contacts and 2,850 notes: 14 and 29 pages of 100). None is the first
 hit of the obvious query. What `node seed-large.mjs probe` returned after the seed:
 
-(not run yet: the seed stopped at the account's limit before the needles were made; see README, Round 2, Data)
+Run on 2026-11-24 after the seed, `query` (HubSpot's default searchable properties) unless marked, the first 100
+hits looked at:
+
+| Question | Search | Hits | Needle |
+| --- | --- | --- | --- |
+| L1 | contacts `Хофман` | 0 | no |
+| L1 | contacts `Hofmann` | 4 | no (Hofmann only: whole tokens) |
+| L1 | contacts `Hoffmann` | 6 | 2nd |
+| L2 | companies `Schmidt` | 2 | no |
+| L2 | companies `Schmid` | 3 | 3rd |
+| L2 | companies `Söhne` | 1 | 1st |
+| L3 | contacts `Хименес` | 0 | no |
+| L3 | contacts `Jimenez` | 2 | no |
+| L3 | contacts `Gimenez`, `Giménez` | 2, 2 | 2nd (accents are ignored) |
+| L4 | notes `сроки` | 251 | no |
+| L4 | notes `delay` | 0 | no |
+| L4 | notes `slipped`, `недовольна` | 1, 1 | 1st (one of the four each) |
+| L5 | notes `kazakh` | 0 | no |
+| L5 | notes `казахском` | 1 | 1st |
+| L5 | notes `hs_note_body` `CONTAINS_TOKEN` `казах*` | 2 | 1st |
+| L6 | companies `Феррара`, `Ferrara` | 0, 1 | no (Ferrara Design) |
+| L6 | tasks `Ferraro` | 1 | 1st |
+| L7 | notes `конкурент`, `cheaper`, `дешевле` | 1, 0, 0 | no (the one hit is a near miss) |
+| L8 | contacts `Петров` | 9 | 4th |
+| L9 | notes `предоплату` | 0 | (no answer) |
+| L10 | companies `Bilbao` | 0 | no (`city` is not a default searchable property) |
+
+L8 (a meeting) and L10 (a call) are not seeded yet: the account refused every create once the notes passed its limit
+(README, Round 2, Data). Their rows come with their seed.
+
+So the misspelt or transliterated form finds nothing, and the right spelling or the right word finds the needle near
+the top: a contestant that guesses the spelling (Hoffmann, Schmid, Gimenez) or the record's own word (slipped,
+казахском) gets there with HubSpot's search; one that does not must filter (`city`, associations) or list.

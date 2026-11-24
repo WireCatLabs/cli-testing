@@ -71,7 +71,8 @@ const call = async (method, path, body) => {
 mkdirSync(join(RUN, "large"), { recursive: true })
 const ids = new Map()
 const started = new Map()
-const archived = new Set()
+const archived = new Map()
+const purged = new Set()
 if (existsSync(STATUS_CSV)) {
   for (const line of readFileSync(STATUS_CSV, "utf8").trim().split("\n").slice(1)) {
     const [batch, status, detail] = line.split(",")
@@ -82,12 +83,15 @@ if (existsSync(STATUS_CSV)) {
       }
       started.delete(batch)
     } else if (status === "started") started.set(batch, [...(started.get(batch) ?? []), ...detail.split(";")])
-    else if (status === "archived")
-      for (const key of detail.split(";")) {
-        ids.delete(key.split("=")[0])
-        archived.add(key.split("=")[0])
+    else if (status === "archived" || status === "purged")
+      for (const pair of detail.split(";")) {
+        const [key, id] = pair.split("=")
+        ids.delete(key)
+        if (status === "archived") archived.set(key, id)
+        else purged.add(key)
       }
   }
+  for (const key of purged) archived.delete(key)
 } else writeFileSync(STATUS_CSV, "id,status,detail,time\n")
 const record = (batch, status, detail) =>
   appendFileSync(
@@ -225,7 +229,7 @@ const seed = async ({ reconcileOnly = false } = {}) => {
   // limit): find what it made before making anything again.
   for (const [batch, keys] of started) {
     const type = batch.split(":")[0]
-    const missing = [...new Set(keys)].filter((k) => !ids.has(k) && !archived.has(k))
+    const missing = [...new Set(keys)].filter((k) => !ids.has(k) && !archived.has(k) && !purged.has(k))
     if (!missing.length) continue
     if (!UNIQUE[type]) throw new Error(`${batch} was started but not finished; check it in HubSpot before a rerun`)
     const byKey = new Map((type === "contacts" ? everyContact : data[type]).map((r) => [keyOf(type, r.key), r]))
@@ -243,7 +247,7 @@ const seed = async ({ reconcileOnly = false } = {}) => {
     record(batch, "done", pairs.map(([k, id]) => `${k}=${id}`).join(";"))
     // Records the generator no longer plans (it was shrunk to fit the account's limit) are made but unwanted.
     const extra = data[type].length ? pairs.filter(([k]) => !byKey.has(k)) : []
-    if (extra.length) say(`${batch}: ${extra.length} made records are no longer planned; run archive-extra`)
+    if (extra.length) say(`${batch}: ${extra.length} made records are no longer planned; run purge-unplanned`)
   }
 
   if (reconcileOnly) {
@@ -418,21 +422,52 @@ const probe = async () => {
   }
 }
 
-// Archives contacts this seed made that the generator no longer plans (it was shrunk to fit the account's limit).
-// Only ids from this seed's own status CSV are touched.
-const archiveExtra = async () => {
-  const planned = new Set(data.contacts.map((r) => keyOf("contacts", r.key)))
-  const extra = [...ids].filter(([k]) => k.startsWith("contacts:") && !planned.has(k))
-  for (let i = 0; i < extra.length; i += BATCH) {
-    const chunk = extra.slice(i, i + BATCH)
-    await call("POST", "/crm/v3/objects/contacts/batch/archive", { inputs: chunk.map(([, id]) => ({ id })) })
-    record(`contacts:archive-${i / BATCH}`, "archived", chunk.map(([k, id]) => `${k}=${id}`).join(";"))
+// Deletes for good the contacts this seed made that the generator no longer plans (it was shrunk to fit the
+// account's limit, which counts archived contacts too), live or archived. Only ids from this seed's own status CSV
+// are touched, one CSV row per delete.
+// Archives notes, tasks, calls or meetings this seed made that the generator no longer plans. HubSpot deletes only
+// contacts for good, so these go to the recycle bin.
+const archiveUnplanned = async () => {
+  for (const type of ["notes", "tasks", "calls", "meetings", "deals"]) {
+    const planned = new Set(data[type].map((r) => keyOf(type, r.key)))
+    const extra = [...ids].filter(([k]) => k.startsWith(`${type}:`) && !planned.has(k))
+    for (let i = 0; i < extra.length; i += BATCH) {
+      const chunk = extra.slice(i, i + BATCH)
+      await call("POST", `/crm/v3/objects/${type}/batch/archive`, { inputs: chunk.map(([, id]) => ({ id })) })
+      record(`${type}:archive`, "archived", chunk.map(([k, id]) => `${k}=${id}`).join(";"))
+    }
+    if (extra.length) say(`archived ${extra.length} ${type} the generator no longer plans`)
   }
-  say(`archived ${extra.length} contacts the generator no longer plans`)
+}
+
+const purgeUnplanned = async () => {
+  const planned = new Set(data.contacts.map((r) => keyOf("contacts", r.key)))
+  const extra = [...ids, ...archived].filter(([k]) => k.startsWith("contacts:") && !planned.has(k) && !purged.has(k))
+  say(`${extra.length} contacts to delete for good`)
+  let n = 0
+  const queue = [...extra]
+  await Promise.all(
+    Array.from({ length: POOL }, async () => {
+      while (queue.length) {
+        const [key, id] = queue.shift()
+        try {
+          await call("POST", "/crm/v3/objects/contacts/gdpr-delete", { objectId: id })
+          record(`contacts:purge`, "purged", `${key}=${id}`)
+        } catch (error) {
+          record(`contacts:purge`, "purge-failed", `${key}=${id} ${error.message}`)
+          say(`${key}: ${error.message}`)
+        }
+        if (++n % 100 === 0) say(`${n} of ${extra.length} deleted`)
+      }
+    }),
+  )
+  say(`deleted ${n} contacts the generator no longer plans`)
 }
 
 const reconcile = async () => {
   await seed({ reconcileOnly: true })
 }
 
-await { seed, verify, probe, "archive-extra": archiveExtra, reconcile }[command]()
+await { seed, verify, probe, "purge-unplanned": purgeUnplanned, "archive-unplanned": archiveUnplanned, reconcile }[
+  command
+]()

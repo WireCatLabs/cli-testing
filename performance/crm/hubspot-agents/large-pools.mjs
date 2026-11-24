@@ -2,11 +2,14 @@
 // shared by both files, so the order of draws, and so every record, stays the same from run to run.
 export const TAG_DOMAIN = "l2.seed.wirecat.dev"
 export const SEED = 20261124
-// The owner asked for 5,000 contacts. The test account refuses every create once it holds about 3,000 contacts
-// (HTTP 402 BUCKETED_OBJECTS, limit 3000), so 2,780 are planned. The random draw still runs to the first plan's 4,944
-// people, so the records already made keep their keys and e-mails, and the cleanup can name the rest.
-export const SIZE = { companies: 820, contacts: 2780, deals: 2000, notes: 3000, tasks: 1200, calls: 300, meetings: 200 }
+// The owner asked for 5,000 contacts and 2,000 deals. The test account refuses every create (HTTP 402
+// BUCKETED_OBJECTS, limit 3000) once its companies, contacts and deals together pass about 3,000, so the plan keeps
+// that sum near 2,700 with round 1 and the write tasks' room on top. The random draw still runs to the first plan's
+// 4,944 people, so the records already made keep their keys and e-mails, and the cleanup can name the rest.
+export const SIZE = { companies: 820, contacts: 1300, deals: 580, notes: 2830, tasks: 1200, calls: 300, meetings: 200 }
 export const CONTACTS_DRAWN = 4944
+// Notes too: each type stays under 3,000 with what round 1 left, so 2,830 are planned from the first plan's 2,969.
+export const NOTES_DRAWN = 2969
 export const everyContact = []
 
 export const rng = (() => {

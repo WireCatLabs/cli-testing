@@ -19,6 +19,7 @@ import {
   LOCALES,
   LOST,
   MEETINGS,
+  NOTES_DRAWN,
   noteBody,
   noteLang,
   PRODUCTS,
@@ -170,7 +171,7 @@ const build = () => {
   })
 
   const notes = []
-  while (notes.length < SIZE.notes - X.notes.length) {
+  while (notes.length < NOTES_DRAWN) {
     const one = activityContext("2025-09-01", "2026-11-22")
     notes.push({
       key: `n${pad(notes.length, 4)}`,
@@ -251,7 +252,7 @@ const build = () => {
     companies: allCompanies.map(({ locale, ...c }) => c),
     contacts: allContacts,
     deals: allDeals,
-    notes: [...notes, ...X.notes],
+    notes: [...notes.slice(0, SIZE.notes - X.notes.length), ...X.notes],
     tasks: [...tasks, ...X.tasks],
     calls: [...calls, ...X.calls],
     meetings: [...meetings, ...X.meetings],
