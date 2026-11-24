@@ -98,6 +98,9 @@ const drift = async () => {
   return changed
 }
 
+// HubSpot's association reads lag a new note or task by some seconds: right after a write they returned nothing.
+if (Date.now() - Date.parse(since) < 15 * 60_000) await new Promise((wait) => setTimeout(wait, 60_000))
+
 if (mode === "verify") {
   const notes = await newNotes()
   const w1 = notes.some(
