@@ -1,0 +1,13 @@
+{
+ "engine": "paddle-eslav-mobile",
+ "versions": {
+  "paddleocr": "3.7.0",
+  "paddlepaddle": "3.2.2",
+  "paddlex": "3.7.2"
+ },
+ "det": "PP-OCRv5_mobile_det",
+ "reco": "eslav_PP-OCRv5_mobile_rec",
+ "options": "use_doc_orientation_classify=True, use_doc_unwarping=False, use_textline_orientation=False",
+ "load_seconds": 2.0972045520029496,
+ "peak_rss_mb": 2818.484375
+}

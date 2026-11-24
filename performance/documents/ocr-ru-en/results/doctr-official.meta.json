@@ -1,0 +1,12 @@
+{
+ "engine": "doctr-official",
+ "versions": {
+  "python-doctr": "1.1.0",
+  "torch": "2.15.0+cpu"
+ },
+ "det": "db_resnet50",
+ "reco": "crnn_vgg16_bn (french vocab)",
+ "options": "assume_straight_pages=False, detect_orientation=True, straighten_pages=True, disable_crop_orientation=True",
+ "load_seconds": 6.777442496997537,
+ "peak_rss_mb": 1759.98828125
+}
