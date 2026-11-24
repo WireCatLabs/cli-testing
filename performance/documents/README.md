@@ -40,6 +40,10 @@ Measurements of document conversion, shared retrieval and source-backed memories
 - [native-markdown](native-markdown/README.md): what programs can do with a `.md` file Google Docs opens natively
   (read yes, piece-by-piece edits no, whole-file replace yes), and when drive's mirrors are still needed (2026-10-25).
 
+- [ocr-ru-en](ocr-ru-en/README.md): Tesseract, docTR and PaddleOCR on 56 synthetic Russian, English and mixed
+  pages, scanned, turned and photographed; accuracy, speed, memory and install size for `read_scans: local`
+  (2026-11-24).
+
 - [offline-catalog](offline-catalog/README.md): synthetic Drive hierarchy, metadata queries, folder context, account isolation and released JSON/MCP contracts, including [0.11.1 list-query acceptance](offline-catalog/README.md#released-0111-list-queries); includes a [standards gap review](offline-catalog/standards.md) and an [isolated Google checker and unrun live checklist](offline-catalog/live-checklist.md).
 
 - [Links introduced by message edits](edited-message-links/README.md): compiled sync, old SDK writers and upgrade repair.

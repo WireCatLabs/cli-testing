@@ -1,0 +1,595 @@
+{
+ "seed": 20261124,
+ "fonts": {
+  "serif": {
+   "path": "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+   "sha256": "350f4ffd773cae53560c63dca3d89a5070595614fde12f772bf43feb63d81064"
+  },
+  "sans": {
+   "path": "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+   "sha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8"
+  },
+  "sans_bold": {
+   "path": "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+   "sha256": "b72c65e551d653b54217ffad0d1454ce0657e4e8d4a28bcc79e0acd2598f4bf3"
+  },
+  "dejavu": {
+   "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+   "sha256": "b4c632e3cdf9acc7f28758fb5a323c8524d7fc6660d46904d9b6cbe2809c419c"
+  },
+  "mono": {
+   "path": "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+   "sha256": "a54dca07c76d6289e717e75e0a58c0128f6d7269ef3faf76417c9d7d3bba37ab"
+  },
+  "noto_serif": {
+   "path": "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
+   "sha256": "9d7583b7dc9e812afd32a14280c5cac3160012efe50c8d08938f4fea266ff67f"
+  },
+  "noto_sans": {
+   "path": "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+   "sha256": "89c3c497f618fdaa0b2d1e98fef93582f28c71debd2c4a8cdf41f190ced2909d"
+  }
+ },
+ "pages": [
+  {
+   "file": "ru-contract__clean-300dpi.png",
+   "doc": "ru-contract",
+   "variant": "clean-300dpi",
+   "lang": "ru",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "ru-contract__scan-150dpi.png",
+   "doc": "ru-contract",
+   "variant": "scan-150dpi",
+   "lang": "ru",
+   "size": [
+    1240,
+    1754
+   ]
+  },
+  {
+   "file": "ru-contract__noise-blur.png",
+   "doc": "ru-contract",
+   "variant": "noise-blur",
+   "lang": "ru",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "ru-contract__rotated-2-5deg.png",
+   "doc": "ru-contract",
+   "variant": "rotated-2-5deg",
+   "lang": "ru",
+   "size": [
+    2724,
+    3676
+   ]
+  },
+  {
+   "file": "ru-contract__rotated-90deg.png",
+   "doc": "ru-contract",
+   "variant": "rotated-90deg",
+   "lang": "ru",
+   "size": [
+    3508,
+    2480
+   ]
+  },
+  {
+   "file": "ru-contract__photo-perspective.png",
+   "doc": "ru-contract",
+   "variant": "photo-perspective",
+   "lang": "ru",
+   "size": [
+    2876,
+    3904
+   ]
+  },
+  {
+   "file": "ru-contract__phone-jpeg.jpg",
+   "doc": "ru-contract",
+   "variant": "phone-jpeg",
+   "lang": "ru",
+   "size": [
+    1179,
+    1600
+   ]
+  },
+  {
+   "file": "ru-invoice__clean-300dpi.png",
+   "doc": "ru-invoice",
+   "variant": "clean-300dpi",
+   "lang": "ru",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "ru-invoice__scan-150dpi.png",
+   "doc": "ru-invoice",
+   "variant": "scan-150dpi",
+   "lang": "ru",
+   "size": [
+    1240,
+    1754
+   ]
+  },
+  {
+   "file": "ru-invoice__noise-blur.png",
+   "doc": "ru-invoice",
+   "variant": "noise-blur",
+   "lang": "ru",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "ru-invoice__rotated-2-5deg.png",
+   "doc": "ru-invoice",
+   "variant": "rotated-2-5deg",
+   "lang": "ru",
+   "size": [
+    2766,
+    3704
+   ]
+  },
+  {
+   "file": "ru-invoice__rotated-90deg.png",
+   "doc": "ru-invoice",
+   "variant": "rotated-90deg",
+   "lang": "ru",
+   "size": [
+    3508,
+    2480
+   ]
+  },
+  {
+   "file": "ru-invoice__photo-perspective.png",
+   "doc": "ru-invoice",
+   "variant": "photo-perspective",
+   "lang": "ru",
+   "size": [
+    2876,
+    3904
+   ]
+  },
+  {
+   "file": "ru-invoice__phone-jpeg.jpg",
+   "doc": "ru-invoice",
+   "variant": "phone-jpeg",
+   "lang": "ru",
+   "size": [
+    1179,
+    1600
+   ]
+  },
+  {
+   "file": "ru-letter__clean-300dpi.png",
+   "doc": "ru-letter",
+   "variant": "clean-300dpi",
+   "lang": "ru",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "ru-letter__scan-150dpi.png",
+   "doc": "ru-letter",
+   "variant": "scan-150dpi",
+   "lang": "ru",
+   "size": [
+    1240,
+    1754
+   ]
+  },
+  {
+   "file": "ru-letter__noise-blur.png",
+   "doc": "ru-letter",
+   "variant": "noise-blur",
+   "lang": "ru",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "ru-letter__rotated-2-5deg.png",
+   "doc": "ru-letter",
+   "variant": "rotated-2-5deg",
+   "lang": "ru",
+   "size": [
+    2682,
+    3648
+   ]
+  },
+  {
+   "file": "ru-letter__rotated-90deg.png",
+   "doc": "ru-letter",
+   "variant": "rotated-90deg",
+   "lang": "ru",
+   "size": [
+    3508,
+    2480
+   ]
+  },
+  {
+   "file": "ru-letter__photo-perspective.png",
+   "doc": "ru-letter",
+   "variant": "photo-perspective",
+   "lang": "ru",
+   "size": [
+    2876,
+    3904
+   ]
+  },
+  {
+   "file": "ru-letter__phone-jpeg.jpg",
+   "doc": "ru-letter",
+   "variant": "phone-jpeg",
+   "lang": "ru",
+   "size": [
+    1179,
+    1600
+   ]
+  },
+  {
+   "file": "ru-receipt__clean-300dpi.png",
+   "doc": "ru-receipt",
+   "variant": "clean-300dpi",
+   "lang": "ru",
+   "size": [
+    945,
+    1500
+   ]
+  },
+  {
+   "file": "ru-receipt__scan-150dpi.png",
+   "doc": "ru-receipt",
+   "variant": "scan-150dpi",
+   "lang": "ru",
+   "size": [
+    472,
+    750
+   ]
+  },
+  {
+   "file": "ru-receipt__noise-blur.png",
+   "doc": "ru-receipt",
+   "variant": "noise-blur",
+   "lang": "ru",
+   "size": [
+    945,
+    1500
+   ]
+  },
+  {
+   "file": "ru-receipt__rotated-2-5deg.png",
+   "doc": "ru-receipt",
+   "variant": "rotated-2-5deg",
+   "lang": "ru",
+   "size": [
+    1019,
+    1546
+   ]
+  },
+  {
+   "file": "ru-receipt__rotated-90deg.png",
+   "doc": "ru-receipt",
+   "variant": "rotated-90deg",
+   "lang": "ru",
+   "size": [
+    1500,
+    945
+   ]
+  },
+  {
+   "file": "ru-receipt__photo-perspective.png",
+   "doc": "ru-receipt",
+   "variant": "photo-perspective",
+   "lang": "ru",
+   "size": [
+    1095,
+    1650
+   ]
+  },
+  {
+   "file": "ru-receipt__phone-jpeg.jpg",
+   "doc": "ru-receipt",
+   "variant": "phone-jpeg",
+   "lang": "ru",
+   "size": [
+    1062,
+    1600
+   ]
+  },
+  {
+   "file": "en-letter__clean-300dpi.png",
+   "doc": "en-letter",
+   "variant": "clean-300dpi",
+   "lang": "en",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "en-letter__scan-150dpi.png",
+   "doc": "en-letter",
+   "variant": "scan-150dpi",
+   "lang": "en",
+   "size": [
+    1240,
+    1754
+   ]
+  },
+  {
+   "file": "en-letter__noise-blur.png",
+   "doc": "en-letter",
+   "variant": "noise-blur",
+   "lang": "en",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "en-letter__rotated-2-5deg.png",
+   "doc": "en-letter",
+   "variant": "rotated-2-5deg",
+   "lang": "en",
+   "size": [
+    2636,
+    3618
+   ]
+  },
+  {
+   "file": "en-letter__rotated-90deg.png",
+   "doc": "en-letter",
+   "variant": "rotated-90deg",
+   "lang": "en",
+   "size": [
+    3508,
+    2480
+   ]
+  },
+  {
+   "file": "en-letter__photo-perspective.png",
+   "doc": "en-letter",
+   "variant": "photo-perspective",
+   "lang": "en",
+   "size": [
+    2876,
+    3904
+   ]
+  },
+  {
+   "file": "en-letter__phone-jpeg.jpg",
+   "doc": "en-letter",
+   "variant": "phone-jpeg",
+   "lang": "en",
+   "size": [
+    1179,
+    1600
+   ]
+  },
+  {
+   "file": "en-invoice__clean-300dpi.png",
+   "doc": "en-invoice",
+   "variant": "clean-300dpi",
+   "lang": "en",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "en-invoice__scan-150dpi.png",
+   "doc": "en-invoice",
+   "variant": "scan-150dpi",
+   "lang": "en",
+   "size": [
+    1240,
+    1754
+   ]
+  },
+  {
+   "file": "en-invoice__noise-blur.png",
+   "doc": "en-invoice",
+   "variant": "noise-blur",
+   "lang": "en",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "en-invoice__rotated-2-5deg.png",
+   "doc": "en-invoice",
+   "variant": "rotated-2-5deg",
+   "lang": "en",
+   "size": [
+    2734,
+    3684
+   ]
+  },
+  {
+   "file": "en-invoice__rotated-90deg.png",
+   "doc": "en-invoice",
+   "variant": "rotated-90deg",
+   "lang": "en",
+   "size": [
+    3508,
+    2480
+   ]
+  },
+  {
+   "file": "en-invoice__photo-perspective.png",
+   "doc": "en-invoice",
+   "variant": "photo-perspective",
+   "lang": "en",
+   "size": [
+    2876,
+    3904
+   ]
+  },
+  {
+   "file": "en-invoice__phone-jpeg.jpg",
+   "doc": "en-invoice",
+   "variant": "phone-jpeg",
+   "lang": "en",
+   "size": [
+    1179,
+    1600
+   ]
+  },
+  {
+   "file": "mix-two-columns__clean-300dpi.png",
+   "doc": "mix-two-columns",
+   "variant": "clean-300dpi",
+   "lang": "mixed",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "mix-two-columns__scan-150dpi.png",
+   "doc": "mix-two-columns",
+   "variant": "scan-150dpi",
+   "lang": "mixed",
+   "size": [
+    1240,
+    1754
+   ]
+  },
+  {
+   "file": "mix-two-columns__noise-blur.png",
+   "doc": "mix-two-columns",
+   "variant": "noise-blur",
+   "lang": "mixed",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "mix-two-columns__rotated-2-5deg.png",
+   "doc": "mix-two-columns",
+   "variant": "rotated-2-5deg",
+   "lang": "mixed",
+   "size": [
+    2758,
+    3698
+   ]
+  },
+  {
+   "file": "mix-two-columns__rotated-90deg.png",
+   "doc": "mix-two-columns",
+   "variant": "rotated-90deg",
+   "lang": "mixed",
+   "size": [
+    3508,
+    2480
+   ]
+  },
+  {
+   "file": "mix-two-columns__photo-perspective.png",
+   "doc": "mix-two-columns",
+   "variant": "photo-perspective",
+   "lang": "mixed",
+   "size": [
+    2876,
+    3904
+   ]
+  },
+  {
+   "file": "mix-two-columns__phone-jpeg.jpg",
+   "doc": "mix-two-columns",
+   "variant": "phone-jpeg",
+   "lang": "mixed",
+   "size": [
+    1179,
+    1600
+   ]
+  },
+  {
+   "file": "mix-contract__clean-300dpi.png",
+   "doc": "mix-contract",
+   "variant": "clean-300dpi",
+   "lang": "mixed",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "mix-contract__scan-150dpi.png",
+   "doc": "mix-contract",
+   "variant": "scan-150dpi",
+   "lang": "mixed",
+   "size": [
+    1240,
+    1754
+   ]
+  },
+  {
+   "file": "mix-contract__noise-blur.png",
+   "doc": "mix-contract",
+   "variant": "noise-blur",
+   "lang": "mixed",
+   "size": [
+    2480,
+    3508
+   ]
+  },
+  {
+   "file": "mix-contract__rotated-2-5deg.png",
+   "doc": "mix-contract",
+   "variant": "rotated-2-5deg",
+   "lang": "mixed",
+   "size": [
+    2660,
+    3632
+   ]
+  },
+  {
+   "file": "mix-contract__rotated-90deg.png",
+   "doc": "mix-contract",
+   "variant": "rotated-90deg",
+   "lang": "mixed",
+   "size": [
+    3508,
+    2480
+   ]
+  },
+  {
+   "file": "mix-contract__photo-perspective.png",
+   "doc": "mix-contract",
+   "variant": "photo-perspective",
+   "lang": "mixed",
+   "size": [
+    2876,
+    3904
+   ]
+  },
+  {
+   "file": "mix-contract__phone-jpeg.jpg",
+   "doc": "mix-contract",
+   "variant": "phone-jpeg",
+   "lang": "mixed",
+   "size": [
+    1179,
+    1600
+   ]
+  }
+ ]
+}

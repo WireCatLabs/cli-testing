@@ -1,0 +1,8 @@
+{
+ "engine": "tesseract-fast-psm1",
+ "version": "tesseract 5.3.4",
+ "command": "tesseract stdin stdout -l rus+eng --psm 1",
+ "tessdata": "/usr/share/tesseract-ocr/5/tessdata (Ubuntu packages)",
+ "load_seconds": 0.12645496998447925,
+ "peak_rss_mb": 198.5703125
+}

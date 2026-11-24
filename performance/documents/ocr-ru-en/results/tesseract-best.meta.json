@@ -1,0 +1,8 @@
+{
+ "engine": "tesseract-best",
+ "version": "tesseract 5.3.4",
+ "command": "tesseract stdin stdout -l rus+eng",
+ "tessdata": "/opt/tessdata_best",
+ "load_seconds": 0.15322433100664057,
+ "peak_rss_mb": 177.60546875
+}

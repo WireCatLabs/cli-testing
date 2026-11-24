@@ -21,7 +21,8 @@
       "!performance/tasks/categories/results.json",
       "!performance/search/evidence-pipeline/corpus",
       "!performance/search/evidence-pipeline/questions",
-      "!performance/search/evidence-pipeline/results"
+      "!performance/search/evidence-pipeline/results",
+      "!performance/documents/ocr-ru-en/results"
     ],
     "maxSize": 16777216
   },
