@@ -132,6 +132,31 @@ sheet, which knew neither sheet's author. The half points:
 Every refused command was a compound shell line that neither contestant may run; each agent then ran the parts one
 by one. No run failed on the setup: transcripts were read in full before scoring (A Q1, Q2, W1; B Q2, Q14, W3).
 
+### Rerun of 2026-11-24: A with its local copy, hubspot-cli 0.6.0
+
+The owner turned activities on with [a-setup.sh](a-setup.sh); the sync stored 51 notes, tasks, calls and meetings.
+A was hubspot-cli 0.6.0, which adds `activities create comment|task` and `activities close`. B is its baseline sheet,
+scored again beside A's new one, blind (`score.sh key.md "$RUN/runs/score-store" a=… b=…`).
+
+| | A, local copy, 0.6.0 | B (baseline sheet) |
+| --- | --- | --- |
+| 20 read questions, scored blind | **19.5** | **18.5** |
+| confidently wrong | 1 (Q18) | 0 |
+| variants V3, V6, of 2 | 2 | 1.5 |
+| write tasks passed, of 5 | 5 | 5 |
+| time, 22 read questions (median a question) | 481 s (20.5 s) | 486 s (20 s) |
+| cost, 22 read questions (median a question) | $1.82 ($0.083) | $2.42 ($0.10) |
+| tool calls, 22 read questions (median) | 86 (3.5) | 176 (7) |
+| time, cost and tool calls, 5 write tasks | 113 s, $0.36, 21 | 82 s, $0.50, 39 |
+| refused shell commands, reads | 5 | 26 |
+
+A's half point: Q18 says the SolarPack deal closed on 23.11, with no hedge; the key says 2026-11-10. `deals show`
+gives both `close_date` (2026-11-10, HubSpot's `closedate`) and `closed_date` (2026-11-23, when the seed moved the
+deal to won), and the agent took the second. Two fields one letter apart is a naming problem for hubspot-cli.
+
+W1 and W2 now take one command each: `activities create comment --subject deal:16 --text …` and
+`activities create task --subject person:… --subject organization:… --title … --due …`, with no HTTP 400 on the way.
+
 ### How the write tasks were done
 
 | Task | A | B |
@@ -148,8 +173,9 @@ lines answered about equally well: 19 against 18.5 of 20 is within the noise of 
 Both are near the top of the scale, so this question set barely separates them on a small account: a harder set, or
 a large account, is needed to tell them apart.
 
-The decisions are **provisional**: A ran without its local copy of activities, so it was not at its best as
-AGENT-TESTS.md requires. They are final after A's rerun with activities on, and C's run. The decisions written
+The A against B decisions are **final** after the rerun of 2026-11-24 with A at its best (its local copy on): 19.5
+against 18.5 is still within 2, so no claim either way on answers. With the local copy, A used half B's tool calls
+and three quarters of its cost for the same time. C's run is still to come. The decisions written
 before the run:
 
 - **Read score within 2: no claim either way.** compare.md keeps its feature marks only.
@@ -182,9 +208,9 @@ Then the run, by an agent or by hand: `node run.mjs c questions.md`, the write t
 ## What was not measured
 
 - C, HubSpot's remote MCP: it waits for the owner's sign-in.
-- A with its local copy of notes, tasks, calls and meetings. cli-core refuses `crm.hubspot:<account>.activities on`
-  to a command run by an agent ("the owner's to set, in a terminal"), so A answered activity questions through `api`
-  reads, live. The owner turns it on by running [a-setup.sh](a-setup.sh) once in a terminal; then A runs again.
+- A with its local copy in the baseline: cli-core refuses `crm.hubspot:<account>.activities on` to a command run
+  by an agent ("the owner's to set, in a terminal"). The owner ran [a-setup.sh](a-setup.sh) and the rerun measured
+  it. B was not rerun: its sheet is the baseline's, so run-to-run noise is not measured for either.
 - A sign-in as a HubSpot user (OAuth) for B: both A and B used the account's service key.
 - Tickets, e-mails and several pipelines: the key has no scope for them.
 - A large account: 32 deals favour live reads.
