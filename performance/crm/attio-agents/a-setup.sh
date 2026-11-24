@@ -15,8 +15,13 @@ if ! at "$PROFILE" session status --check --json >/dev/null 2>&1; then
     WCATTIO_CACHE_DIR="$RUN/a/cache" MESSAGING_STORE="$RUN/a/wirecat.db" DBUS_SESSION_BUS_ADDRESS="disabled:" \
     WCATTIO_NO_UPDATE_CHECK=1 "$ATTIO_BIN" "$PROFILE" session start --credential-storage file --json >/dev/null
 fi
+# Notes and tasks reach the copy only with the owner's activities setting (attio-cli 0.4.0 on). This script is the
+# owner's run, so it sets it with writes on and the agent markers off. The agent under test cannot.
+workspace=$(at "$PROFILE" session status --check --json | jq -r .item.id)
+wirecat_env env -u AI_AGENT -u CLAUDECODE WCATTIO_READ_ONLY= "$ATTIO_BIN" "$PROFILE" config set \
+  "crm.attio:$workspace.activities" on >/dev/null
 at "$PROFILE" sync --json > "$RUN/a/sync.json"
-jq -c '{complete: .item.complete, issues: [.item.issues[]?.reason]}' "$RUN/a/sync.json"
+jq -c '{complete: .item.complete, activities: .item.activities, issues: [.item.issues[]?.reason]}' "$RUN/a/sync.json"
 rm -rf "$RUN/a/agent/.claude/skills/attio-cli"
 cp -r "$RUN/a/npm/node_modules/@wirecat/attio-cli/skills/attio-cli" "$RUN/a/agent/.claude/skills/"
 cat > "$RUN/a/bin/attio" <<WRAP

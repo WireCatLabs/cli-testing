@@ -28,6 +28,6 @@ CLIs run, what bitrix24-cli syncs, and what memo answers from it.
   CLI 18.5, no confidently wrong answer; HubSpot's remote MCP waits for the owner's sign-in (2026-11-23).
 - [attio-agents](attio-agents/README.md): does an agent answer a salesperson's questions about Attio deals better
   through WireCat `attio`, kesslerio's attio MCP server or Attio's own MCP? 30 questions in the owner's style and 6
-  variants on an invented account of 123 deals, scored blind. Attio's MCP 28 of 30 in 477 s at $2.74, `attio` 25 and 27 in
-  two runs in about 1,075 s at $3.07 to $3.18, kesslerio 1.7.0 22.5 at $5.38. Equal accuracy within A's own spread,
-  Attio's MCP faster, and only `attio` found a name with a typo (2026-11-24).
+  variants on an invented account of 123 deals, scored blind. With notes in its copy, `attio` 0.4.0 27.5 of 30 in 588 s at
+  $2.74, Attio's MCP 28 in 477 s at $2.74, kesslerio 1.7.0 23.5 at $5.38. Equal answers, time and cost, and only
+  `attio` found a name with a typo (2026-11-24).

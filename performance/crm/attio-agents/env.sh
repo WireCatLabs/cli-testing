@@ -1,7 +1,7 @@
 # Sourced by the scripts here. Every folder of the run lives under RUN, outside git; nothing reaches the owner's own
 # WireCat store, settings or keyring entries.
 RUN=${ATTIO_AGENTS_RUN:-$HOME/.cache/wirecat-attio-agents}
-ATTIO_VERSION=${ATTIO_VERSION:-0.3.0}
+ATTIO_VERSION=${ATTIO_VERSION:-0.4.0}
 KESSLERIO_VERSION=${KESSLERIO_VERSION:-1.7.0}
 ATTIO_BIN="$RUN/a/npm/node_modules/.bin/attio"
 PROFILE=test
