@@ -24,10 +24,19 @@ CALLBACK_PORT = 33_418
 REDIRECT_URL = "http://localhost:#{CALLBACK_PORT}/callback"
 TEST_ACCOUNT = "149800303"
 
+# `claude mcp get` reports the project's approval of .mcp.json, which the test's runs skip (--strict-mcp-config), not
+# the sign-in: it said "pending" with a working sign-in. So the check makes the call a run makes.
 def check
-  out, status = Open3.capture2e("claude", "mcp", "get", SERVER_NAME, chdir: AGENT_DIR)
-  puts out
-  exit(status.success? ? 0 : 1)
+  out, = Open3.capture2e(
+    { "CLAUDE_CONFIG_DIR" => CLAUDE_CONFIG_DIR },
+    "claude", "-p", "Call the HubSpot tool get_user_details once. Reply with the single word OK if it answered, else FAIL.",
+    "--model", "haiku", "--mcp-config", MCP_JSON, "--strict-mcp-config",
+    "--allowedTools", "mcp__hubspot__get_user_details",
+    chdir: AGENT_DIR
+  )
+  connected = out.strip.end_with?("OK")
+  puts connected ? "Connected (Claude Code settings: #{CLAUDE_CONFIG_DIR})" : "Not connected: #{out.strip.lines.last}"
+  exit(connected ? 0 : 1)
 end
 
 def ask(prompt, hidden: false)
