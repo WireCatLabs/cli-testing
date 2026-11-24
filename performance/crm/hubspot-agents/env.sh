@@ -3,7 +3,7 @@
 RUN=${HUBSPOT_AGENTS_RUN:-$HOME/.cache/wirecat-hubspot-agents}
 KEYRING_SERVICE=hubspot-cli-live
 KEYRING_ACCOUNT=${HUBSPOT_AGENTS_KEYRING_ACCOUNT:-wirecat}
-HUBSPOT_VERSION=${HUBSPOT_VERSION:-0.5.0}
+HUBSPOT_VERSION=${HUBSPOT_VERSION:-0.6.0}
 HUBSPOT_BIN="$RUN/a/npm/node_modules/.bin/hubspot"
 PROFILE=test
 
