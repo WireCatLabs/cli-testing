@@ -16,7 +16,7 @@ if ! at "$PROFILE" session status --check --json >/dev/null 2>&1; then
     WCATTIO_NO_UPDATE_CHECK=1 "$ATTIO_BIN" "$PROFILE" session start --credential-storage file --json >/dev/null
 fi
 # Notes and tasks reach the copy only with the owner's activities setting (attio-cli 0.4.0 on). This script is the
-# owner's run, so it sets it with writes on and the agent markers off; the agent under test cannot.
+# owner's run, so it sets it with writes on and the agent markers off. The agent under test cannot.
 workspace=$(at "$PROFILE" session status --check --json | jq -r .item.id)
 wirecat_env env -u AI_AGENT -u CLAUDECODE WCATTIO_READ_ONLY= "$ATTIO_BIN" "$PROFILE" config set \
   "crm.attio:$workspace.activities" on >/dev/null
