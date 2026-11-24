@@ -217,6 +217,109 @@ before the run:
   `api-batch`, `api-advanced`), and a deal's `deal:16` ref is not the id a note's association needs.
 - **Time and cost**: A's median cost a question was 1.3 times B's, under the threshold of 2.
 
+## Round 2: a large account
+
+### Why
+
+Round 1 scored A 19.5 and B 18.5 of 20: equal. On 40 contacts the agent with the plain CLI tries a few filters, then
+lists every record and finds the name by eye (B's Q12: seven filter guesses, then a search by city). WireCat's local
+store has typo-tolerant search and search by meaning; HubSpot's search API matches tokens of its default searchable
+properties (for a note, `hs_note_body`), with `*` wildcards in `CONTAINS_TOKEN`, at most 200 a page, 10,000 results a
+query and five requests a second ([HubSpot](https://developers.hubspot.com/docs/api-reference/search/guide)). The
+owner ruled (NEED-2903 A, 2026-11-24): fill the test account with invented data, about 5,000 contacts, 2,000 deals and
+3,000 notes, and ask about 10 questions with typos and by the meaning of notes. Round 2 makes the conditions where the
+difference can show. It does not tune the questions to WireCat: every answer is reachable through HubSpot's own API
+with enough effort ([key-large.md](key-large.md), "Reachable through HubSpot's own API").
+
+### Data
+
+[large-data.mjs](large-data.mjs) builds the account from a fixed seed (no clock, no network, no model), from the pools
+of [large-pools.mjs](large-pools.mjs) and the planted records of [large-needles.mjs](large-needles.mjs):
+`node large-data.mjs` prints the counts and a checksum. Russian, Spanish, German, English and a few Italian companies;
+Russian people in Latin script too; notes of two to nine sentences from a pool of about 130, with bullet lists,
+"Sent from my phone" tails and swapped letters. The needles sit among near misses planted on purpose: twelve
+Hoffmann, Hofmann and Hoffman; five Schmid, Schmidt and Schmitt companies; Giménez and Jiménez; seven Петров; notes
+where the client moved its own start, where "их конкуренты" are the client's rivals, where a payment ahead carries no
+discount. [seed-large.mjs](seed-large.mjs) seeds it through HubSpot's batch API (100 a call, four calls a second, so
+contestants sharing the key keep their share), with a status CSV per batch in `RUN/large/`.
+
+**What the account's limit forced.** The owner asked for about 5,000 contacts, 2,000 deals and 3,000 notes. The test
+account refuses every create, of any type, with HTTP 402 `Portal 149800303 cannot create another BUCKETED_OBJECTS. It
+has exceeded the limit of 3000`. HubSpot's pages on account types and record limits do not name this limit for a
+developer test account, and the limits API (`/crm/limits/2026-09/records`) answers `limit: 0`. What the seed showed
+(inferred from two trips, not documented):
+
+- Each type seems capped at about 3,000, and once one type is over, every create of every type is refused. It
+  tripped at 3,375 contacts (with 859 companies), then again at 3,021 notes (with 2,840 companies, contacts and deals
+  together, 317 tasks).
+- Archived records count. Creates stayed refused with 2,794 live contacts and 651 archived; they came back only after
+  the contacts were deleted for good (`POST /crm/v3/objects/contacts/gdpr-delete`). HubSpot deletes only contacts
+  that way; a deleted note stays in the recycle bin for 90 days
+  ([HubSpot](https://knowledge.hubspot.com/records/restore-deleted-activity-in-a-record)).
+- The limit is checked late: with three batches of 100 in flight, 3 to 5 more batches go through. A refused batch keeps
+  what it made before the refusal. Reseeding near the limit needs at least 500 headroom per type, or one batch at a
+  time.
+
+**Seed status (2026-11-24).** In the account from round 2: 820 companies, 1,300 contacts, 580 deals, 2,830 notes and
+300 tasks (`SIZE` in large-pools.mjs). 2,075 contacts made beyond the plan were deleted for good. The notes passed
+the limit before the plan was shrunk: 170 notes beyond it and three probe records (a note, a task, a deal) are
+archived and, by the finding above, hold the account over the limit until about 2027-02-22, when HubSpot empties the
+recycle bin. Until then the account refuses every create, by any contestant, round 1's W1 and W2 too; updates still
+work. So no call or meeting of round 2 exists, and the needles of L8 (a meeting) and L10 (a call) are missing: those
+two questions wait, and this round runs L1 to L7 and L9. `node seed-large.mjs seed` makes them when creates come
+back. Every other needle reads back from HubSpot as the key says (`node seed-large.mjs verify`).
+
+The scope of round 2's conclusion is this size: about 1,370 contacts, 860 companies, 610 deals and 2,850 notes. That
+is too many to list and read by eye (HubSpot's list endpoints give 100 a page), but well under the owner's 5,000
+contacts.
+
+Everything round 2 made is tagged: companies and contacts by the domain `l2.seed.wirecat.dev` (round 1 is
+`seed.wirecat.dev`), every record by its id in `RUN/large/seed-status.csv`. Removal: archive those ids with HubSpot's batch archive endpoints, activities first; the owner's local `CLEANUP.md` lists it.
+
+### Questions and key
+
+[questions-large.md](questions-large.md): L1 to L10. [key-large.md](key-large.md) holds the answers, written from the
+generator before the questions; [score-rules-large.md](score-rules-large.md) the scorer's rules (`SCORE_RULES=… score.sh
+key-large.md …`). A fresh agent wrote the questions. It saw round 1's questions as style samples and, per question, the needle records,
+what the user wants and knows ("heard the surname as …", "names no client"), the hard case to keep, and for L1 the
+near-duplicate people. It did not see the key. The owner has not yet approved the questions.
+
+| Hard case | Questions |
+| --- | --- |
+| a name misspelt or transliterated, with near-duplicates in the account | L1, L2, L3, L6, L8 |
+| found only by the meaning of a note or call, in another language or other words | L4, L5, L7, L10 |
+| a list spread over several records | L4, L7 |
+| a fact spread over a note and a task | L6 |
+| no answer in the data | L9 |
+
+Run, after the seed:
+
+```sh
+node large-data.mjs                     # counts and checksum
+node seed-large.mjs seed                # restartable; planted records first; stops at a 402
+node seed-large.mjs verify && node seed-large.mjs probe
+node run.mjs a questions-large.md --label large --only L1,L2,L3,L4,L5,L6,L7,L9   # and b, c; L8, L10 once seeded
+SCORE_RULES=score-rules-large.md ../../agents/source-coverage/score.sh key-large.md "$RUN/runs/score-large" a=… b=…
+```
+
+Round 1's key was written for the small account. Round 1 is not rerun on the large one: its counts and sums (Q2, Q7,
+Q8, Q15) would no longer hold.
+
+### Round 2: thresholds and decisions, written before the run
+
+Eight questions while L8 and L10 wait (ten when they run), one run each: a difference of 1 or 2 is noise.
+
+| Outcome | Decision |
+| --- | --- |
+| A scores 3 or more above B (of 8, or of 10) | wirecat.dev and compare.md may say, with this scope (about 1,370 contacts and 2,850 notes, misspelt names and questions by meaning, Claude Sonnet 5.5), that an agent finds records HubSpot's search misses through `hubspot` |
+| A and B within 2 | no claim either way on answers |
+| B scores 3 or more above A | a hubspot-cli issue for each question A lost, before its next release |
+| A loses 2 or more of L1, L2, L3, L6 (and L8) | a hubspot-cli issue: typo-tolerant search does not reach contacts and companies the way the skill uses it |
+| A loses 2 or more of L4, L5, L7 (and L10) | a hubspot-cli issue: search by meaning over notes and calls (vectors built? used by the skill?) |
+| A confidently wrong more than once | a hubspot-cli issue on the skill's rules for near-duplicate names |
+| A's median time or cost is twice B's or more, at a score within 2 | a hubspot-cli issue on the store-first path's cost |
+| B's median tool calls or cost is twice A's or more, at a score within 2 | the claim may be about effort only: "the same answers with half the calls", with the scope |
+
 ## C: the owner's steps
 
 HubSpot's remote MCP signs in as a HubSpot user, through a connector made in the account's UI and OAuth with PKCE in

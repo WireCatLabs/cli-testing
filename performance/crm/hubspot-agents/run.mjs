@@ -52,7 +52,7 @@ confirm, and the user allows these changes.`
 
 const questions = readFileSync(resolve(questionsFile), "utf8")
   .split("\n")
-  .map((line) => /^([QVW]\d+):\s*(.+)$/.exec(line.trim()))
+  .map((line) => /^([QVWL]\d+):\s*(.+)$/.exec(line.trim()))
   .filter(Boolean)
   .map(([, id, text]) => ({ id, text }))
   .filter((q) => !only || only.includes(q.id))
