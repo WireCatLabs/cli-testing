@@ -256,7 +256,7 @@ xDeal(
   ["x-brisa-ainhoa"],
   "Closed Won",
   17800,
-  "2026-08-21",
+  "2026-02-20",
 )
 xDeal(
   "x-lindenhof-deal",
@@ -265,7 +265,7 @@ xDeal(
   ["x-lindenhof-maren"],
   "Closed Won",
   24500,
-  "2026-08-14",
+  "2026-03-13",
 )
 xDeal(
   "x-kama-deal",
@@ -289,15 +289,15 @@ xNote(
   "x-brisa-deal",
   "x-brisa",
   ["x-brisa-ainhoa"],
-  "2026-11-04T08:45:00Z",
-  "Ainhoa (Brisa) bastante molesta. La lectura de albaranes tenía que estar en producción a mediados de octubre y seguimos en pruebas; dice que ya van dos veces que les damos una fecha y no la cumplimos. Su gente sigue tecleando los albaranes de los proveedores a mano por la noche.\nPide un plan con fechas cerradas y hablar con alguien por encima del jefe de proyecto.",
+  "2026-04-08T08:45:00Z",
+  "Ainhoa (Brisa) bastante molesta. La lectura de albaranes tenía que estar en producción a mediados de marzo y seguimos en pruebas; dice que ya van dos veces que les damos una fecha y no la cumplimos. Su gente sigue tecleando los albaranes de los proveedores a mano por la noche.\nPide un plan con fechas cerradas y hablar con alguien por encima del jefe de proyecto.",
 )
 xNote(
   "x-n-lindenhof",
   "x-lindenhof-deal",
   "x-lindenhof",
   ["x-lindenhof-maren"],
-  "2026-11-12T13:00:00Z",
+  "2026-06-11T13:00:00Z",
   "Frau Oltmanns hat sich beschwert: der Go-live des Terminbots ist zum zweiten Mal verschoben worden, die Praxen haben ihre Patienten schon über das neue Buchungsportal informiert. Sie ist enttäuscht und erwägt, die zweite Rate zurückzuhalten, bis der Bot live ist.\nSonst: Anbindung an das Praxisverwaltungssystem läuft stabil im Test.",
 )
 xNote(
@@ -505,7 +505,7 @@ xNote(
   "x-volna-deal",
   "x-volna",
   ["x-volna-irina"],
-  "2026-11-13T12:00:00Z",
+  "2026-07-14T12:00:00Z",
   "Ирина Шубина прямо сказала: им пришло предложение от интегратора из Казани на то же самое почти вдвое меньше, 11 тысяч за год с поддержкой. Мы им нравимся больше, но объяснить разницу собственнику она не может. Просит до пятницы ответ, что мы можем сделать по цене или по объёму работ.",
 )
 xNote(
@@ -513,7 +513,7 @@ xNote(
   "x-albora-deal",
   "x-albora",
   ["x-albora-raquel"],
-  "2026-11-15T09:40:00Z",
+  "2026-05-19T09:40:00Z",
   "Raquel nos cuenta que otro proveedor les ha pasado una oferta un 35 % por debajo de la nuestra, con integración con su programa de citas incluida. No quiere cambiar, pero necesita un argumento para dirección.",
 )
 xNote(

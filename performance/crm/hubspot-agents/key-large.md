@@ -55,11 +55,12 @@ another Lucía in Valencia.
 | Client | Note | Said |
 | --- | --- | --- |
 | Pennine Fresh Retail Ltd, Leeds (Ruth Hargreaves) | `x-n-pennine`, 2026-11-09 | "unhappy that the rollout slipped again", returns queue promised for October |
-| Brisa Transportes SL, Zaragoza (Ainhoa Urrutia) | `x-n-brisa`, 2026-11-04 | delivery notes reading due mid-October, still in testing, "dos veces… no la cumplimos" |
-| Lindenhof Praxisverbund GmbH, Düsseldorf (Maren Oltmanns) | `x-n-lindenhof`, 2026-11-12 | go-live moved for the second time, may hold back the second instalment |
+| Brisa Transportes SL, Zaragoza (Ainhoa Urrutia) | `x-n-brisa`, 2026-04-08 | delivery notes reading due mid-March, still in testing, "dos veces… no la cumplimos" |
+| Lindenhof Praxisverbund GmbH, Düsseldorf (Maren Oltmanns) | `x-n-lindenhof`, 2026-06-11 | go-live moved for the second time, may hold back the second instalment |
 | КамаАгроТорг, Пермь (Ольга Вершинина) | `x-n-kama`, 2026-11-16 | bot promised by 1 October, still only in a test group |
 
-Not complaints about us, and wrong in the list: six notes where the client moved its own start, or where "сроки" are
+The four are spread from April to November, and the near misses below over the last year, so no window of recent
+notes holds them all. Not complaints about us, and wrong in the list: six notes where the client moved its own start, or where "сроки" are
 on plan (`x-n-delay-1` … `x-n-delay-6`), and the many random notes that say "Сроки пилота согласовали" or "Сроки
 сдачи отчётности". Round 1's ТехноСтрой asked to move its own start: not a complaint either.
 
@@ -80,8 +81,8 @@ signs only up to 20k EUR, so the CFO **Marco Bellini** approves. Near misses: Fe
 
 | Client | Note | Said |
 | --- | --- | --- |
-| Волна Сервис, Нижний Новгород (Ирина Шубина) | `x-n-volna`, 2026-11-13 | an integrator from Kazan, almost half the price (11 thousand a year) |
-| Albora Clínicas SL, Málaga (Raquel Bermúdez) | `x-n-albora`, 2026-11-15 | another vendor 35% below our offer |
+| Волна Сервис, Нижний Новгород (Ирина Шубина) | `x-n-volna`, 2026-07-14 | an integrator from Kazan, almost half the price (11 thousand a year) |
+| Albora Clínicas SL, Málaga (Raquel Bermúdez) | `x-n-albora`, 2026-05-19 | another vendor 35% below our offer |
 | Kestrel Home Insurance Ltd, Bristol (Owen Pryce) | `x-n-kestrel`, 2026-11-20 | another agency at roughly 60% of our price |
 
 Wrong in the list: notes where the client's own competitors launched a bot (`x-n-rival-1` … `x-n-rival-3`), a note

@@ -179,10 +179,10 @@ const build = () => {
       body: noteBody(noteLang(one.company.locale), one.ctx),
     })
   }
-  // A planted note with no record of its own lands on a random company of its language, dated in the last weeks.
+  // A planted note with no record of its own lands on a random company of its language, dated in the last year.
   const langLocale = { ru: "ru", en: "en", es: "es", de: "de" }
   for (const n of X.notes) {
-    if (n.at === null) n.at = isoHour(dateBetween("2026-10-15", "2026-11-22"))
+    if (n.at === null) n.at = isoHour(dateBetween("2025-11-01", "2026-11-22"))
     if (n.attach) {
       const host = pick(companies.filter((c) => c.locale === langLocale[n.lang]))
       n.company = host.key

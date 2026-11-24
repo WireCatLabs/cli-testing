@@ -262,8 +262,9 @@ Everything round 2 made is tagged: companies and contacts by the domain `l2.seed
 
 [questions-large.md](questions-large.md): L1 to L10. [key-large.md](key-large.md) holds the answers, written from the
 generator before the questions; [score-rules-large.md](score-rules-large.md) the scorer's rules (`SCORE_RULES=… score.sh
-key-large.md …`). A fresh agent, which saw only the needle records and round 1's questions as style samples, wrote the
-questions; the owner has not yet approved them.
+key-large.md …`). A fresh agent wrote the questions. It saw round 1's questions as style samples and, per question, the needle records,
+what the user wants and knows ("heard the surname as …", "names no client"), the hard case to keep, and for L1 the
+near-duplicate people. It did not see the key. The owner has not yet approved the questions.
 
 | Hard case | Questions |
 | --- | --- |
@@ -272,6 +273,16 @@ questions; the owner has not yet approved them.
 | a list spread over several records | L4, L7 |
 | a fact spread over a note and a task | L6 |
 | no answer in the data | L9 |
+
+Run, after the seed:
+
+```sh
+node large-data.mjs                     # counts and checksum
+node seed-large.mjs seed                # restartable; planted records first; stops at a 402
+node seed-large.mjs verify && node seed-large.mjs probe
+node run.mjs a questions-large.md --label large   # and b, c
+SCORE_RULES=score-rules-large.md ../../agents/source-coverage/score.sh key-large.md "$RUN/runs/score-large" a=… b=…
+```
 
 Round 1's key was written for the small account. Round 1 is not rerun on the large one: its counts and sums (Q2, Q7,
 Q8, Q15) would no longer hold.
