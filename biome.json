@@ -22,7 +22,9 @@
       "!performance/search/evidence-pipeline/corpus",
       "!performance/search/evidence-pipeline/questions",
       "!performance/search/evidence-pipeline/results",
-      "!performance/documents/ocr-ru-en/results"
+      "!performance/documents/ocr-ru-en/results",
+      "!performance/documents/ocr-ru-en/real/results",
+      "!performance/documents/ocr-ru-en/real/selection.json"
     ],
     "maxSize": 16777216
   },

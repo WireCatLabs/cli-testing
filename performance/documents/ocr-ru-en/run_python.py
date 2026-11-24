@@ -15,12 +15,14 @@ from pathlib import Path
 
 ENGINE, PAGES, OUT = sys.argv[1], Path(sys.argv[2]), Path(sys.argv[3])
 MODEL_DIR = Path(sys.argv[4]) if len(sys.argv) > 4 else None
-DOCTR_OPTIONS = (
-  "assume_straight_pages=False, detect_orientation=True, straighten_pages=True, disable_crop_orientation=True"
-)
+# On real scans the page orientation model turned upright pages upside down; this reads every page as it lies.
+# The crop orientation model turns some Cyrillic words upside down, so it is off in both.
+STRAIGHT = {"assume_straight_pages": True, "disable_crop_orientation": True}
+TURNING = {"assume_straight_pages": False, "detect_orientation": True, "straighten_pages": True,
+           "disable_crop_orientation": True}
 
 
-def doctr_official():
+def doctr_official(options=TURNING):
   from doctr.io import DocumentFile
   from doctr.models import ocr_predictor
 
@@ -28,21 +30,17 @@ def doctr_official():
     det_arch="db_resnet50",
     reco_arch="crnn_vgg16_bn",
     pretrained=True,
-    assume_straight_pages=False,
-    detect_orientation=True,
-    straighten_pages=True,
-    # The crop orientation model turns some Cyrillic words upside down; the page is already straightened.
-    disable_crop_orientation=True,
+    **options,
   )
   config = {
     "det": "db_resnet50",
     "reco": "crnn_vgg16_bn (french vocab)",
-    "options": DOCTR_OPTIONS,
+    "options": ", ".join(f"{k}={v}" for k, v in options.items()),
   }
   return lambda path: predictor(DocumentFile.from_images(str(path))).render(), config, ["python-doctr", "torch"]
 
 
-def doctr_ru_onnx():
+def doctr_ru_onnx(options=TURNING):
   from onnxtr.io import DocumentFile
   from onnxtr.models import ocr_predictor, parseq
 
@@ -51,16 +49,12 @@ def doctr_ru_onnx():
   predictor = ocr_predictor(
     det_arch="db_resnet50",
     reco_arch=reco,
-    assume_straight_pages=False,
-    detect_orientation=True,
-    straighten_pages=True,
-    # The crop orientation model turns some Cyrillic words upside down; the page is already straightened.
-    disable_crop_orientation=True,
+    **options,
   )
   config = {
     "det": "db_resnet50 (OnnxTR)",
     "reco": "graycat660/doctr-parseq-russian-onnx (community, vocab russian_latin)",
-    "options": DOCTR_OPTIONS,
+    "options": ", ".join(f"{k}={v}" for k, v in options.items()),
   }
   return lambda path: predictor(DocumentFile.from_images(str(path))).render(), config, ["onnxtr", "onnxruntime"]
 
@@ -94,6 +88,8 @@ def paddle_eslav(det="PP-OCRv5_server_det"):
 def main():
   start = time.perf_counter()
   read, config, packages = {"doctr-official": doctr_official, "doctr-ru-onnx": doctr_ru_onnx,
+                            "doctr-official-straight": lambda: doctr_official(STRAIGHT),
+                            "doctr-ru-onnx-straight": lambda: doctr_ru_onnx(STRAIGHT),
                             "paddle-eslav": paddle_eslav,
                             "paddle-eslav-mobile": lambda: paddle_eslav("PP-OCRv5_mobile_det")}[ENGINE]()
   read(PAGES / "blank.png")

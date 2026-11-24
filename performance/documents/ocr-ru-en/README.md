@@ -1,6 +1,8 @@
 # OCR on Russian and English pages: Tesseract, docTR, PaddleOCR
 
-Measured 2026-11-24 on 56 synthetic pages.
+Measured 2026-11-24 on 56 synthetic pages. **Follow-up on real scans: [real/](real/README.md).** On real Russian
+scans Tesseract beat docTR with the Russian model, and the recommendation below to make that model the candidate
+does not hold.
 
 ## Why we ran it
 
@@ -333,7 +335,8 @@ model, run through ONNX, the candidate to replace it.** Do not add PaddleOCR or 
 ## What was not measured
 
 - **Real scans and photos.** Every page is a synthetic render; real paper has stamps, signatures, folds, other fonts
-  and print defects. doctr-ru-onnx's model was trained on renders like these, so its lead may shrink.
+  and print defects. doctr-ru-onnx's model was trained on renders like these, so its lead may shrink. [real/](real/README.md)
+  measured it on real scans: the lead is gone.
 - Tesseract with `--psm 0` first, with `--psm 1` and the best models together, or with any image clean-up (deskew)
   before it.
 - docTR and PaddleOCR through onnxruntime-node or any JavaScript runner. OnnxTR in Python stands in for the ONNX path.

@@ -1,0 +1,12 @@
+{
+ "engine": "doctr-ru-onnx-straight",
+ "versions": {
+  "onnxtr": "0.10.0",
+  "onnxruntime": "1.32.0"
+ },
+ "det": "db_resnet50 (OnnxTR)",
+ "reco": "graycat660/doctr-parseq-russian-onnx (community, vocab russian_latin)",
+ "options": "assume_straight_pages=True, disable_crop_orientation=True",
+ "load_seconds": 3.181918804999441,
+ "peak_rss_mb": 3138.27734375
+}
