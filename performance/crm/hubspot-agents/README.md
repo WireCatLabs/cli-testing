@@ -362,6 +362,30 @@ What it showed, on this scope (about 1,370 contacts, 860 companies, 610 deals an
   a meaning question; one CW; cost under B's). The gap above is filed as [cli-core #3285](https://github.com/WireCatLabs/cli-core/issues/3285) on its own evidence, since a
   claim of typo-tolerant and meaning search on CRM data is not true today.
 
+### Round 2 rerun: A with search by meaning, 2026-11-24
+
+The gaps round 2 found were fixed in cli-core 0.743.0: near-duplicate names after the exact hits (#3290), a Latin name
+typed in Cyrillic (#3291), and `search all` by the meaning of CRM activities after `sync --embed` (#3296), with a
+skill line in hubspot-cli ([#29](https://github.com/WireCatLabs/hubspot-cli/pull/29)) that says to ask by meaning
+before reading every note. **A ran a build of hubspot-cli's #29 branch (0.6.0 + cli-core 0.743.0), not a release**:
+HubSpot's release needs a live check that creates records, and the account refuses creates. A's store was embedded
+first (`sync --embed` five times, 3,145 chunks, EmbeddingGemma, about a minute a run). B and C are their round-2
+sheets; all three were scored again together, blind.
+
+| | A, meaning search | A in round 2 | B: HubSpot Agent CLI | C: HubSpot remote MCP |
+| --- | --- | --- | --- | --- |
+| 8 questions, scored blind | **8** | 6.5 | **7** | **5.5** |
+| confidently wrong | 0 | 1 | 1 | 0 |
+| time, 8 questions (median) | 223 s (26.5 s) | 398 s (41 s) | 407 s (34 s) | 174 s (19 s) |
+| cost, 8 questions (median) | $0.92 ($0.109) | $1.54 ($0.124) | $1.75 ($0.134) | $1.09 ($0.114) |
+| tool calls, 8 questions (median) | 45 (4) | 127 (8.5) | 150 (11) | 72 (6.5) |
+
+A's L4 and L7 took 4 tool calls each, against 48 and 38 in round 2: one `search all` by meaning instead of every note
+in a file. L6 found Ferraro beside the decoy. By the thresholds written before the run: 8 against 7 is within 2, so
+**no claim on answers**; B's median tool calls are 2.75 times A's at a score within 2, so the claim may be about
+effort: on this scope, an agent gives the same answers through `hubspot` with about a third of the tool calls and
+half the cost of HubSpot's Agent CLI. One run per question: the effort gap is large, the score gap is noise.
+
 ## C: the owner's steps
 
 HubSpot's remote MCP signs in as a HubSpot user, through a connector made in the account's UI and OAuth with PKCE in
