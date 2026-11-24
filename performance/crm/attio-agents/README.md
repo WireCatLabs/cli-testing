@@ -1,7 +1,7 @@
 # Attio: WireCat `attio` against Attio's own MCP and kesslerio's MCP server
 
-**Status: all three run and scored blind (2026-11-24). Attio's own MCP answered as well as `attio`, in half the time
-and for a little less.**
+**Status: all three run and scored blind (2026-11-24). With notes in its copy (attio-cli 0.4.0), `attio` answers as
+well as Attio's own MCP, as fast and for the same cost.**
 
 ## Why it was run
 
@@ -19,7 +19,7 @@ scoring, thresholds written before the run.
 
 | Id | Contestant | How the agent reaches Attio | Setup |
 | --- | --- | --- | --- |
-| A | WireCat `attio` 0.3.0, and 0.3.1 in the second run (npm `@wirecat/attio-cli`) | its local copy of deals, people and companies after a full `sync`, and Attio live for notes, tasks and `api`, with its shipped skill | [a-setup.sh](a-setup.sh) |
+| A | WireCat `attio` 0.3.0, then 0.3.1 and 0.4.0 (npm `@wirecat/attio-cli`) | its local copy of deals, people and companies after a full `sync`, and Attio live for notes, tasks and `api`, with its shipped skill | [a-setup.sh](a-setup.sh) |
 | B | kesslerio `attio-mcp` 1.7.0 (npm, [GitHub](https://github.com/kesslerio/attio-mcp-server)) | Attio live, 44 MCP tools, with its `attio-mcp-usage` skill and the workspace-schema skill its own `attio-discover` writes | [b-setup.sh](b-setup.sh) |
 | C | Attio's remote MCP (`https://mcp.attio.com/mcp`) | Attio live, as the Attio user who signs in, 30 MCP tools | the owner's sign-in, see [C: the owner's steps](#c-the-owners-steps) |
 
@@ -116,6 +116,36 @@ The run folder (`RUN`, default `~/.cache/wirecat-attio-agents`) holds the instal
 transcripts and the answer sheets.
 
 ## Results
+
+### attio 0.4.0 with notes in its copy, 2026-11-24
+
+The run below showed A reading notes through raw `api` calls, a different path each time. attio-cli 0.4.0 copies
+Attio's notes and tasks into the store with the `activities` setting on, so `search all` finds a deal by a note's
+words and `deals show` lists its notes. [a-setup.sh](a-setup.sh) turns the setting on. A ran again on 0.4.0, and one
+more blind pass scored it beside the four earlier sheets.
+
+| | A: `attio` 0.4.0 | A: `attio` 0.3.1 | A: `attio` 0.3.0 | B: kesslerio 1.7.0 | C: Attio's MCP |
+| --- | --- | --- | --- | --- | --- |
+| 30 read questions, scored blind | 27.5 | 25 | 27 | 23.5 | **28** |
+| of them, the 11 that need a note | **11** | 8.5 | **11** | 9 | 10 |
+| of them, the 19 that do not | 16.5 | 16.5 | 16 | 14.5 | **18** |
+| confidently wrong | 2 (Q14, Q18) | 0 | 1 (Q23) | 1 (Q17) | 1 (Q17), and 1 variant |
+| variants, of 6 | **6** | 4 | 3 | 4 | 5.5 |
+| time, 30 questions (median a question) | 588 s (15.5 s) | 1,078 s (36.5 s) | 1,072 s (35 s) | 1,267 s (28.5 s) | **477 s (15 s)** |
+| cost, 30 questions (median a question) | **$2.74 ($0.077)** | $3.18 ($0.106) | $3.07 ($0.093) | $5.38 ($0.117) | **$2.74** ($0.093) |
+| tool calls, 30 questions (median) | **161 (4)** | 207 (7) | 231 (7.5) | 405 (12) | 220 (7) |
+
+The scores are per question as the scorer gave them. The scorer's own total for C said 28.5, and its rows add up to 28.
+Between the two passes the same sheets moved by up to 1 point (B 22.5 and 23.5) and the scorer's CW marks changed
+(A 0.3.1 had 1, now 0).
+
+- **Notes in the copy halved A's time and cut its cost by a seventh.** The median question took 15.5 s and 4 tool
+  calls, against 36.5 s and 7 on 0.3.1. A answered every keyword variant (6 of 6), where 0.3.x answered 3 or 4.
+- **A's two confidently wrong answers are not about notes.** Q14: the agent searched "Finpoint" in Latin letters and
+  found nothing, as `search all` does not match ФинПоинт. Q18 (won since September): every won deal had
+  `closed_date` 2026-11-23, the day of the first sync, because Attio keeps no closed day. attio-cli takes the day the
+  deal entered its stage from the next release on. In this seeded workspace that is the seed's day too, so Q18's
+  answer still needs the seeded `close_date` attribute in `provider_metadata`.
 
 ### All three, 2026-11-24
 
@@ -214,23 +244,24 @@ Where they lost points:
 ## What it showed
 
 On this scope (an invented sales account of 123 deals and about 380 people in Attio, questions in the owner's
-style, Claude Sonnet 5.5), an agent answered about as many questions right through Attio's own MCP as through
-WireCat `attio`: 28 of 30 against 25 and 27 in A's two runs. That is within A's own spread from one run to the next.
-But C took half the time and cost a little less, and it answered the keyword variants that A missed. Both beat
-kesslerio's server (22.5).
+style, Claude Sonnet 5.5), an agent answered as many questions right through WireCat `attio` 0.4.0 as through Attio's
+own MCP: 27.5 and 28 of 30, within the noise of one run. It took about as long (588 s and 477 s for 30 questions,
+15.5 s and 15 s at the median) and cost the same ($2.74). It answered all 6 keyword variants. Before notes reached
+its copy, `attio` took twice as long. Both beat kesslerio's server (23.5).
 
 The decisions written before the run, against the best rival, C:
 
 - **A is not 4 or more behind C on questions without a note** (16 and 16.5 against 18), so the comparison does not
   wait for a search fix.
 - **A is not behind only on note questions.** A on 0.3.0 answered all 11, and A on 0.3.1 lost 2.5 of them. The
-  notes go through raw `api` reads, which is why A's runs differ. "Notes in the store" stays the first fix for
-  attio-cli: it would let `search all` find a note by its words, and make the answers stable.
-- **A and C are within 2 on 0.3.0, and 3 apart on 0.3.1.** So the page claims no accuracy lead over Attio's MCP. On
-  time and cost C is ahead too. The attio page may say an agent answers as well through `attio` as through Attio's
-  MCP on this data, finds names with a typo that both MCP servers missed, and works on a local copy. It must not say
-  faster or cheaper than Attio's MCP.
-- **Confidently wrong: 1 each**, and C 1 more on a variant. Each one is described above.
+  notes went through raw `api` reads, which is why A's runs differed. "Notes in the store" was the first fix: 0.4.0
+  answered all 11 and every keyword variant.
+- **A and C are within 2** (27.5 and 28 on 0.4.0). So the page claims no accuracy lead over Attio's MCP. On 0.4.0
+  time and cost are equal too. The attio page may say an agent answers as well, as fast and for the same cost
+  through `attio` as through Attio's MCP on this data, finds a name with a typo that both MCP servers missed, and
+  works on a local copy. It must not say better, faster or cheaper than Attio's MCP.
+- **Confidently wrong: A 2 on 0.4.0, C 1 and 1 on a variant.** A's two are examined above: a Latin spelling of a
+  Cyrillic name, and a closed day Attio does not keep. Neither is about notes.
 
 ### The first run, against B only
 
