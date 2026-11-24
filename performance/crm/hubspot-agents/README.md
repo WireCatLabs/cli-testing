@@ -320,6 +320,48 @@ Eight questions while L8 and L10 wait (ten when they run), one run each: a diffe
 | A's median time or cost is twice B's or more, at a score within 2 | a hubspot-cli issue on the store-first path's cost |
 | B's median tool calls or cost is twice A's or more, at a score within 2 | the claim may be about effort only: "the same answers with half the calls", with the scope |
 
+### Round 2: results, 2026-11-24
+
+Eight questions (L1 to L7 and L9; L8 and L10 wait for the account's create limit), one run each, all three sheets
+scored together, blind (`score.sh key-large.md "$RUN/runs/score-large" a=… b=… c=…` with
+[score-rules-large.md](score-rules-large.md)). A had no vectors: cli-core's search by meaning reads message vectors
+only, not CRM notes, so there was nothing to build for this account and A ran as it ships.
+
+| | A: WireCat `hubspot` 0.6.0 | B: HubSpot Agent CLI | C: HubSpot remote MCP |
+| --- | --- | --- | --- |
+| 8 questions, scored blind | **6.5** | **7** | **5.5** |
+| confidently wrong | 1 (L6) | 1 (L6) | 0 |
+| time, 8 questions | 398 s | 407 s | 174 s |
+| cost, 8 questions | $1.54 | $1.75 | $1.09 |
+| tool calls, 8 questions | 127 | 150 | 72 |
+| refused shell commands | 16 | 17 | 3 |
+
+| Question | A | B | C |
+| --- | --- | --- | --- |
+| L1 Hoffmann among Hofmann and others | 1 | 1 | 1 |
+| L2 Schmid & Söhne's open deals | 1 | 1 | 1 |
+| L3 Giménez, written Gimenez | 1 | 1 | 1 |
+| L4 who complained the launch slipped again (4 clients) | 0.5 (3 of 4) | 1 | 0 (1 of 4) |
+| L5 the Kazakh-language deal | 1 | 1 | 1 |
+| L6 "ферраре", Ferraro beside the decoy Ferrara Design | 0, CW | 0, CW | 0.5 |
+| L7 competitors offered cheaper (3 clients) | 1 | 1 | 0 |
+| L9 nobody asked for a prepay discount | 1 | 1 | 1 |
+
+What it showed, on this scope (about 1,370 contacts, 860 companies, 610 deals and 2,850 notes, Claude Sonnet 5.5):
+
+- **No claim on answers.** A and B are within 2, and B's half point more is noise. C answered fastest and cheapest
+  but missed the questions by meaning (L4, L7): its search did not reach them and it did not read the notes in bulk.
+- **A did not use what WireCat is believed to have.** On L4 and L7 A listed every note into a file and searched it
+  with regular expressions, as B did through the API (38 to 48 tool calls each). On L6 A searched `Ferrara` and took
+  the decoy. Read back by hand on A's store: `search all Ferrara` finds Ferrara Design and not Ferraro Arredamenti,
+  `search all Ferarro` (a word no record holds) is corrected to Ferraro, `search all феррара` and `people list Хофман`
+  find nothing, and `search all "мебель итальян"` finds nothing. So on CRM records a misspelt word is corrected only
+  when it matches no record at all (a near-duplicate that does match hides the right one), Cyrillic is not matched to
+  Latin, and there is no search by meaning.
+- **Thresholds written before the run:** none of the hubspot-cli issues triggered (A lost one name question and half
+  a meaning question; one CW; cost under B's). The gap above is filed as [cli-core #3285](https://github.com/WireCatLabs/cli-core/issues/3285) on its own evidence, since a
+  claim of typo-tolerant and meaning search on CRM data is not true today.
+
 ## C: the owner's steps
 
 HubSpot's remote MCP signs in as a HubSpot user, through a connector made in the account's UI and OAuth with PKCE in
