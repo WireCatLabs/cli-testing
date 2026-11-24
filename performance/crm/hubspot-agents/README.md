@@ -378,8 +378,8 @@ Only a person can do that. One sitting, about five minutes:
 
 The sign-in lands in the Claude Code config folder of the `claude` you signed in with (`~/.claude` by default). Run C
 with that folder: `CLAUDE_CONFIG_DIR=~/.claude node run.mjs c questions.md`; another folder has no sign-in and C
-answers that HubSpot is not connected. `--check` reads the project's approval, not the sign-in, so it may still
-say pending.
+answers that HubSpot is not connected. `--check` makes one MCP call with that folder (`CLAUDE_CONFIG_DIR`, default
+`~/.claude`) and says `Connected` or why not.
 
 Then the run, by an agent or by hand: `node run.mjs c questions.md`, the write tasks with `writes.mjs verify` and
 `reset`, and the scoring with C's sheet beside A's and B's.
