@@ -1,6 +1,7 @@
 # Attio: WireCat `attio` against Attio's own MCP and kesslerio's MCP server
 
-**Status: A and B run and scored blind, C waits for the owner's sign-in. The decisions are provisional until C runs.**
+**Status: all three run and scored blind (2026-11-24). Attio's own MCP answered as well as `attio`, in half the time
+and for a little less.**
 
 ## Why it was run
 
@@ -18,11 +19,11 @@ scoring, thresholds written before the run.
 
 | Id | Contestant | How the agent reaches Attio | Setup |
 | --- | --- | --- | --- |
-| A | WireCat `attio` 0.3.0 (npm `@wirecat/attio-cli`) | its local copy of deals, people and companies after a full `sync`, and Attio live for notes, tasks and `api`, with its shipped skill | [a-setup.sh](a-setup.sh) |
+| A | WireCat `attio` 0.3.0, and 0.3.1 in the second run (npm `@wirecat/attio-cli`) | its local copy of deals, people and companies after a full `sync`, and Attio live for notes, tasks and `api`, with its shipped skill | [a-setup.sh](a-setup.sh) |
 | B | kesslerio `attio-mcp` 1.7.0 (npm, [GitHub](https://github.com/kesslerio/attio-mcp-server)) | Attio live, 44 MCP tools, with its `attio-mcp-usage` skill and the workspace-schema skill its own `attio-discover` writes | [b-setup.sh](b-setup.sh) |
-| C | Attio's remote MCP (`https://mcp.attio.com/mcp`) | Attio live, as the Attio user who signs in | waits for the owner, see [C: the owner's steps](#c-the-owners-steps) |
+| C | Attio's remote MCP (`https://mcp.attio.com/mcp`) | Attio live, as the Attio user who signs in, 30 MCP tools | the owner's sign-in, see [C: the owner's steps](#c-the-owners-steps) |
 
-Every contestant answers through the same agent and settings ([run.mjs](run.mjs)): Claude Code 2.1.330 in print mode,
+Every contestant answers through the same agent and settings ([run.mjs](run.mjs)): Claude Code 2.1.330 (2.1.331 in the second run) in print mode,
 Claude Sonnet 5.5, one fresh session per question, the same instructions, project settings only, the owner's own
 CLAUDE.md off (`CLAUDE_CODE_DISABLE_CLAUDE_MDS=1`). A gets its `attio`, `jq`, `head`, `sort`, `wc`, `Read` and `Skill`.
 B and C get their MCP server's tools, `Read` and `Skill`. The instructions tell the agent not to change anything. A
@@ -106,6 +107,7 @@ node seed.mjs                       # once, reruns skip what is done
 ./a-setup.sh && ./b-setup.sh        # once, a-setup.sh again syncs again
 node run.mjs a questions.md         # one contestant, one fresh session per question
 node run.mjs b questions.md
+node run.mjs c questions.md         # after the sign-in in "C: the owner's steps"
 ../../agents/source-coverage/score.sh key.md "$RUN/score" a=… b=…   # blind, SCORE_RULES=score-rules.md
 node seed.mjs --delete              # when every contestant has run
 ```
@@ -114,6 +116,49 @@ The run folder (`RUN`, default `~/.cache/wirecat-attio-agents`) holds the instal
 transcripts and the answer sheets.
 
 ## Results
+
+### All three, 2026-11-24
+
+C ran on 2026-11-24, and A ran again on attio-cli 0.3.1, which fixed the two A faults the first run found (the
+`organizations show` ref and company descriptions). One blind pass scored four sheets: A on 0.3.1, A on 0.3.0 from
+the first run, B from the first run and C. The scorer knew neither sheet's author.
+
+| | A: `attio` 0.3.1 | A: `attio` 0.3.0 | B: kesslerio 1.7.0 | C: Attio's MCP |
+| --- | --- | --- | --- | --- |
+| 30 read questions, scored blind | 25 | 27 | 22.5 | **28** |
+| of them, the 11 that need a note | 8.5 | **11** | 9 | 10 |
+| of them, the 19 that do not | 16.5 | 16 | 13.5 | **18** |
+| confidently wrong | 1 (Q18) | 1 (Q23) | 1 (Q17) | 1 (Q17), and 1 variant (V9b) |
+| variants, of 6 | 4 | 3 | 4 | **5.5** |
+| time, 30 questions (median a question) | 1,078 s (36.5 s) | 1,072 s (35 s) | 1,267 s (28.5 s) | **477 s (15 s)** |
+| cost, 30 questions (median a question) | $3.18 ($0.106) | $3.07 ($0.093) | $5.38 ($0.117) | **$2.74 ($0.093)** |
+| tool calls, 30 questions (median) | 207 (7) | 231 (7.5) | 405 (12) | 220 (7) |
+| refused calls, all 36 | 24 | 34 | 7 | 0 |
+
+A on 0.3.0 and B scored the same as in the first pass (27 and 22.5), so the scorer is steady. C called only tools
+that read: its most used were `search-records` (70), `get-note-body` (32), `semantic-search-notes` (28) and
+`list-tasks` (21).
+
+Where they lost points:
+
+- A 0.3.1: Q18 (CW: "20 won deals, $574,600" counts every won deal, not those since September), Q20 and Q24 (0: the
+  note was not found), Q13 (the "Pilot scope" note missed), Q10, Q17 and Q23 (half, as 0.3.0).
+- C: Q13 (0: "Brightline" not linked to Brightlane, as B), Q5 (the demo time missing), Q17 (CW: a total of 480,700,
+  not 481,700). V9b (CW: "the conversion rise is not recorded", but it is in a note).
+
+What the transcripts showed:
+
+- **A's two runs differ by 2 points, and not from the code.** On Q18, Q20 and Q24 both versions made the same first
+  calls. Then 0.3.0 filtered the won deals by close date and read every note with `api notes-list --all`, and 0.3.1
+  stopped after the list and read notes by deal id, which found none. A reaches a note through raw `api` calls, and
+  the agent finds a different path each time.
+- **C searches notes by meaning and A by words.** C answered 5.5 of the 6 variants, the keyword forms too. A's
+  `search all` found nothing for "discount" or "payment terms", and the agent then went to `api notes-list`.
+- **A is the only one that found "Brightline".** B and C both missed the name with one wrong letter on Q13.
+- **C is fast because it never retries.** A's agent wrote compound shell lines that its tool rules refused 24 times,
+  then ran the parts one by one. C's MCP calls were never refused.
+
+### A and B, 2026-11-23
 
 Run of 2026-11-23, one run per question, scored in one blind pass by
 [score.sh](../../agents/source-coverage/score.sh) with [score-rules.md](score-rules.md): a scorer agent per sheet,
@@ -169,13 +214,33 @@ Where they lost points:
 ## What it showed
 
 On this scope (an invented sales account of 123 deals and about 380 people in Attio, questions in the owner's
+style, Claude Sonnet 5.5), an agent answered about as many questions right through Attio's own MCP as through
+WireCat `attio`: 28 of 30 against 25 and 27 in A's two runs. That is within A's own spread from one run to the next.
+But C took half the time and cost a little less, and it answered the keyword variants that A missed. Both beat
+kesslerio's server (22.5).
+
+The decisions written before the run, against the best rival, C:
+
+- **A is not 4 or more behind C on questions without a note** (16 and 16.5 against 18), so the comparison does not
+  wait for a search fix.
+- **A is not behind only on note questions.** A on 0.3.0 answered all 11, and A on 0.3.1 lost 2.5 of them. The
+  notes go through raw `api` reads, which is why A's runs differ. "Notes in the store" stays the first fix for
+  attio-cli: it would let `search all` find a note by its words, and make the answers stable.
+- **A and C are within 2 on 0.3.0, and 3 apart on 0.3.1.** So the page claims no accuracy lead over Attio's MCP. On
+  time and cost C is ahead too. The attio page may say an agent answers as well through `attio` as through Attio's
+  MCP on this data, finds names with a typo that both MCP servers missed, and works on a local copy. It must not say
+  faster or cheaper than Attio's MCP.
+- **Confidently wrong: 1 each**, and C 1 more on a variant. Each one is described above.
+
+### The first run, against B only
+
+On this scope (an invented sales account of 123 deals and about 380 people in Attio, questions in the owner's
 style, Claude Sonnet 5.5), an agent answered more questions right through WireCat `attio` than through kesslerio's
 MCP server: 27 against 22.5 of 30. A difference of 4.5 is above the noise of one run, but most of it comes from one
 gap in B (task due dates) and two typos. A was also cheaper: $3.07 against $5.38 for 30 questions, with about half
 the tool calls. B's median answer was faster. Each had one confidently wrong answer.
 
-The decisions written before the run, against B only. They are **provisional**: C, Attio's own MCP, may be the best
-rival, and it has not run.
+The decisions written before the run, against B only. C's run above replaced them where they differ.
 
 - **A is not behind B**, so neither the "fix search first" nor the "notes in the store" decision is triggered by B.
   A answered all 11 note questions, reading notes through `api`, live.
@@ -197,15 +262,15 @@ sign in. One sitting, about two minutes:
    (`~/.cache/wirecat-attio-agents/c/agent/.mcp.json`).
 2. In that folder, start `claude`, type `/mcp`, pick `attio`, Authenticate, sign in to Attio, pick the workspace
    "WireCat" and allow. `/exit`.
-3. `bin/attio-mcp-connect --check` says `Connected`.
+3. `bin/attio-mcp-connect --check` says `Connected`. It may still say "Pending approval" after a good sign-in, when
+   the folder's server was not approved at the start of `claude`. `run.mjs` passes `--mcp-config` and needs no approval,
+   so a one-question `claude -p` with `--mcp-config` in that folder is the real check.
 
 Then the run, by an agent or by hand: `node run.mjs c questions.md`, and the scoring with C's sheet beside A's and
 B's.
 
 ## What was not measured
 
-- C, Attio's remote MCP: it waits for the owner's sign-in. Attio's MCP has semantic search over notes, which the
-  plan expected to beat A on note questions.
 - Writes: the plan measures reads only.
 - Search by meaning for A: `attio` builds no vectors of its own, so A searched words only, as it ships.
 - A sign-in as an Attio user (OAuth) for B: A and B used the same workspace access token.
