@@ -1,9 +1,11 @@
 // Times cli-core store version 77 mail sorting rules on synthetic mail: what the rule check adds to typing every
 // email, and how long a domain rule takes to apply to past mail (a type rule on a company domain and on a free-mail
-// domain, and a rule that moves a domain's senders to bots). Usage: node bench.mjs <cli-core checkout> [N] [senders]
+// domain, and a rule that moves a domain's senders to bots, then its undo and its removal, with lock-probe.mjs as a
+// second writer). Usage: node bench.mjs <cli-core checkout> [N] [senders]
 import { mkdtempSync } from "node:fs"
 import { loadavg, tmpdir } from "node:os"
 import { join } from "node:path"
+import { Worker } from "node:worker_threads"
 
 const repo = process.argv[2]
 const N = Number(process.argv[3] ?? 100000)
@@ -130,18 +132,39 @@ await time("  next typed read: retyped", () => store.mail.emails({ types: ["news
 await time("undo the gmail.com rule", () => store.mail.sorting.undo("owner"))
 await time("  next typed read", () => store.mail.emails({ types: ["newsletter"], limit: 50 }))
 
-// 5. A rule that moves a domain's 500 senders to bots, each through moveToBot.
-const bots = await time(`sender rule bigshop.example → bot: ${SHOP} senders moved`, () =>
-  store.mail.sorting.add({ scope: "domain", value: "bigshop.example", sender: "bot", applyTo: "all" }, "owner"),
+// 5. A rule that moves a domain's 500 senders to bots, each through moveToBot, then its undo and its removal, each
+// with a second writer beside it that times the longest wait for the write lock.
+const probed = async (label, work) => {
+  const stop = new SharedArrayBuffer(4)
+  const probe = new Worker(new URL("./lock-probe.mjs", import.meta.url), { workerData: { repo, path, stop } })
+  const report = new Promise((resolve) => probe.once("message", resolve))
+  await new Promise((resolve) => setTimeout(resolve, 300))
+  const result = await time(label, work)
+  Atomics.store(new Int32Array(stop), 0, 1)
+  Atomics.notify(new Int32Array(stop), 0)
+  const { longest, tries, gaveUp } = await report
+  say(`  second writer: longest wait ${Math.round(longest)} ms over ${tries} tries, gave up ${gaveUp}`)
+  return result
+}
+const bigshop = { scope: "domain", value: "bigshop.example", sender: "bot", applyTo: "all" }
+const bots = await probed(`sender rule bigshop.example → bot: ${SHOP} senders moved`, () =>
+  store.mail.sorting.add(bigshop, "owner"),
 )
 say(`  moved ${bots.preview.senders}, bots now ${count("SELECT count(*) AS n FROM sender_bots")}`)
 await time("  next typed read (bot moves cleared their mail's types)", () =>
   store.mail.emails({ types: ["order"], limit: 50 }),
 )
-await time("  remove it: senders moved back", () => store.mail.sorting.remove(bots.rule.id, "owner"))
-say(
-  `  bots holding an identity after the removal: ${count("SELECT count(DISTINCT bot_id) AS n FROM sender_bot_identities")}`,
-)
+const held = () => count("SELECT count(DISTINCT bot_id) AS n FROM sender_bot_identities")
+const ownerMarked = () =>
+  count(
+    "SELECT count(*) AS n FROM sender_bot_moves m WHERE m.author = 'owner' AND m.to_bot_id IS NULL " +
+      "AND m.id = (SELECT max(id) FROM sender_bot_moves WHERE identity_id = m.identity_id)",
+  )
+await probed("  undo it: senders moved back", () => store.mail.sorting.undo("owner"))
+say(`  bots holding an identity after the undo: ${held()}, senders left with the owner's mark: ${ownerMarked()}`)
+const again = await time("  sender rule added again", () => store.mail.sorting.add(bigshop, "owner"))
+await probed("  remove it: senders moved back", () => store.mail.sorting.remove(again.rule.id, "owner"))
+say(`  bots holding an identity after the removal: ${held()}, senders left with the owner's mark: ${ownerMarked()}`)
 
 await store.close()
 db.close()

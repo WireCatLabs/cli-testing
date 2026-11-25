@@ -67,9 +67,68 @@ senders in the same write as the rule; run 4 is the shipped code, which moves th
   type again). On a free-mail domain with 30,000 emails it is about 1 s to add and 1.5 to 2.8 s on the next typed read.
   Undo costs the same as the add.
 - Moving senders is the slow part: each sender goes through `moveToBot`, about 8 to 12 ms each. In one write, 500
-  senders held the write lock for 4 to 6 s, past the 5 s another writer waits. So the shipped code moves 100 per
-  write: about 1 s of lock each, the same 5.6 s in total. A sender rule on a free-mail domain with 6,000 senders would
-  take about a minute in total by the same rate (an estimate, not measured).
+  senders held the write lock for 4 to 6 s, past the 5 s another writer waits. So the code moves 100 per write, 5.6 s
+  in total. A sender rule on a free-mail domain with 6,000 senders would take about a minute in total by the same rate
+  (an estimate, not measured).
+- **Correction (round 2, below):** 100 per write alone did not protect another writer. A second writer measured
+  beside the add still waited the full 5 s and gave up, because the writes ran back to back.
+
+## Round 2: undo and removal after the owner-mark fix
+
+### Why
+
+Three gaps in store version 77, fixed in cli-core branch `fix/mail-rules-owner`: the owner's rules must win across
+levels; a removed or undone sender rule put its senders back with the owner as author, so the program never sorted
+them again; and removal and undo moved senders back in one write. The owner asked for 100 senders per write, as the
+add does, so the lock stays under about 1 s and other writers do not give up after 5 s. The question: what does the
+undo of a 500-sender rule cost now, and does another writer get the lock meanwhile?
+
+### Setup
+
+- Same machine and data as above. Load average 8.6 to 15.8; other agents' runs wrote to the same disk.
+- A second writer, [lock-probe.mjs](lock-probe.mjs), runs in a worker thread beside steps 5 to 7. It writes through
+  cli-core's own `write` every 5 ms, as another WireCat command would. That `write` retries the lock every
+  millisecond for up to 5 s. The probe reports its longest wait and how often it gave up.
+- Three builds: `main` at `acb6646` (#3366), the fix with 100 per write and no pause between writes, and the fix with
+  a 2 ms pause between writes (the shipped one).
+- A first version of the probe took the lock with a raw `BEGIN IMMEDIATE` and SQLite's own busy handler, which polls
+  every 100 ms. WireCat's writers do not work that way, so those three runs are left out.
+
+```sh
+node bench.mjs <cli-core checkout> 100000 20000
+```
+
+### Results
+
+| Step | `main` (#3366) | fix, no pause | fix, 2 ms pause |
+| --- | ---: | ---: | ---: |
+| load average at start | 15.8 | 10.5 | 8.6 |
+| sender rule: 500 senders moved to bots, 100 per write | 9.5 s | 13.9 s | 6.6 s |
+| second writer: longest wait, gave up | 5.0 s, 1 | 5.0 s, 2 | 2.0 s, 0 |
+| undo of that rule: 500 senders back | 0.5 s (1 write) | 5.8 s (6 writes) | 3.7 s (6 writes) |
+| second writer: longest wait, gave up | 0.2 s, 0 | 4.1 s, 0 | 1.9 s, 0 |
+| senders left with the owner's mark after the undo | 500 | 0 | 0 |
+| removal of the rule added again: 500 senders back | 0.8 s (1 write) | 1.6 s (6 writes) | 7.0 s (6 writes) |
+| second writer: longest wait, gave up | 0.8 s, 0 | 1.3 s, 0 | 2.0 s, 0 |
+| senders left with the owner's mark after the removal | 500 | 0 | 0 |
+
+Where one write's time goes, timed once on 20,000 emails and 2,000 senders (load 5.8), for the writes of 100 senders
+of an undo and a removal: the work 13 to 23 ms, the store's queued work (stems, mentions) 53 to 68 ms, the `COMMIT`
+108 to 3,306 ms.
+
+### What it showed
+
+- **The owner's mark is gone.** On `main`, every one of the 500 senders an undo or a removal put back kept the
+  owner's mark, so the program would never sort them again. With the fix, none do.
+- **Writes back to back starve another writer, however short each is.** The add's 100 per write still made the
+  second writer give up after 5 s, on `main` too. cli-core's `write` pauses after a commit only when it had to wait
+  itself, so a loop of writes never left a gap. With a 2 ms pause between writes (what `writeBatch` already does),
+  no run gave up.
+- **The commit, not the number of senders, sets the lock time.** Putting a sender back takes about 0.2 ms; the
+  commit took 0.1 to 3.3 s on this busy disk. So 100 per write did not bring a write under 1 s here, and an undo in 6
+  writes took 3.7 to 5.8 s where `main` took 0.5 s in one. In one write, `main`'s undo held the lock 0.2 to 0.8 s.
+- Timings that include a commit varied by a factor of 5 between runs (removal 1.6 s and 7.0 s with the same code
+  path), with the load of other runs.
 
 ## Not measured
 
@@ -77,3 +136,4 @@ senders in the same write as the rule; run 4 is the shipped code, which moves th
 - A free-mail domain rule that moves its 6,000 senders.
 - Mail sync with sender rules live: sync settles the senders of each saved batch, and its cost per batch was not timed.
 - Stores over 100,000 emails, and more than 50 rules.
+- Round 2: an idle disk, where the commit is short and the chunk size would matter more.
