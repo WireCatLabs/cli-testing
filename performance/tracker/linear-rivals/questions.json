@@ -1,0 +1,242 @@
+[
+  {
+    "id": "q01",
+    "form": "sentence",
+    "case": "paraphrase, typo",
+    "expect": ["b01"],
+    "question": "the invoice pdf thing where the euro sign disapears, whats the status",
+    "query": "invoice pdf euro sign"
+  },
+  {
+    "id": "q02",
+    "form": "decision",
+    "case": "answer in a comment, paraphrase",
+    "expect": ["b04"],
+    "question": "what did we decide about stripe charging people twice",
+    "query": "stripe charged twice"
+  },
+  {
+    "id": "q03",
+    "form": "why",
+    "case": "answer in a comment",
+    "expect": ["b18"],
+    "question": "why did we drop apple pay?",
+    "query": "apple pay"
+  },
+  {
+    "id": "q04",
+    "form": "keywords",
+    "case": "synonyms, look-alike m16",
+    "expect": ["m01"],
+    "question": "android crashing at startup",
+    "query": "android crashing startup"
+  },
+  {
+    "id": "q05",
+    "form": "sentence",
+    "case": "synonyms",
+    "expect": ["m03"],
+    "question": "people on iphone get every notification double, is someone on it",
+    "query": "iphone notification double"
+  },
+  {
+    "id": "q06",
+    "form": "question",
+    "case": "answer in a comment, word forms",
+    "expect": ["n03"],
+    "question": "how long did restoring the backup take when we tried it",
+    "query": "restoring backup"
+  },
+  {
+    "id": "q07",
+    "form": "question",
+    "case": "answer in a document",
+    "expect": ["d2"],
+    "question": "for the 3.0 mobile rollout, how many percent of users get it on the first day?",
+    "query": "3.0 rollout first day percent"
+  },
+  {
+    "id": "q08",
+    "form": "question",
+    "case": "answer in a document, paraphrase",
+    "expect": ["d3"],
+    "question": "prod is on fire, who do i call first",
+    "query": "production who to call first"
+  },
+  {
+    "id": "q09",
+    "form": "decision",
+    "case": "answer in a document, look-alike b03 b12",
+    "expect": ["d1"],
+    "question": "what did we decide about refunds, store credit or back to the card?",
+    "query": "refunds store credit card"
+  },
+  {
+    "id": "q10",
+    "form": "keywords",
+    "case": "Russian word forms, е for ё",
+    "expect": ["b16"],
+    "question": "платеж завис в обработке",
+    "query": "платеж завис обработке"
+  },
+  {
+    "id": "q11",
+    "form": "keywords",
+    "case": "English question, Russian issue",
+    "expect": ["m14"],
+    "question": "app lags when scrolling a long list",
+    "query": "app lag scrolling long list"
+  },
+  {
+    "id": "q12",
+    "form": "sentence",
+    "case": "word forms, look-alike b08",
+    "expect": ["b07"],
+    "question": "do we have a ticket for checking vat ids of european companies",
+    "query": "vat check european companies"
+  },
+  {
+    "id": "q13",
+    "form": "keywords",
+    "case": "direct words, control",
+    "expect": ["b08"],
+    "question": "canary islands tax",
+    "query": "canary islands tax"
+  },
+  {
+    "id": "q14",
+    "form": "keywords",
+    "case": "direct words, control",
+    "expect": ["n19"],
+    "question": "password reset link expired",
+    "query": "password reset link expired"
+  },
+  {
+    "id": "q15",
+    "form": "sentence",
+    "case": "synonyms",
+    "expect": ["n01"],
+    "question": "welcome mails ending up in junk for hotmail people",
+    "query": "welcome mails junk hotmail"
+  },
+  {
+    "id": "q16",
+    "form": "decision",
+    "case": "answer in a comment",
+    "expect": ["n10"],
+    "question": "what did we agree on to make the CI faster",
+    "query": "CI faster"
+  },
+  {
+    "id": "q17",
+    "form": "keywords",
+    "case": "typo in a name",
+    "expect": ["n04"],
+    "question": "postgress upgade",
+    "query": "postgress upgade"
+  },
+  {
+    "id": "q18",
+    "form": "sentence",
+    "case": "word forms",
+    "expect": ["n05"],
+    "question": "staging keeps dying on mondays, why",
+    "query": "staging mondays"
+  },
+  {
+    "id": "q19",
+    "form": "vague",
+    "case": "no shared rare word",
+    "expect": ["b09"],
+    "question": "something about charging only the difference when someone upgrades halfway through the month",
+    "query": "charge difference upgrade halfway month"
+  },
+  {
+    "id": "q20",
+    "form": "keywords",
+    "case": "look-alike m13",
+    "expect": ["m06"],
+    "question": "face id login",
+    "query": "face id login"
+  },
+  {
+    "id": "q21",
+    "form": "sentence",
+    "case": "word split, word forms",
+    "expect": ["m09"],
+    "question": "deeplinks in the newsletter open the wrong screen",
+    "query": "deeplinks newsletter"
+  },
+  {
+    "id": "q22",
+    "form": "question",
+    "case": "paraphrase",
+    "expect": ["b06"],
+    "question": "is there a task about reminding customers when their card gets declined",
+    "query": "remind declined card"
+  },
+  {
+    "id": "q23",
+    "form": "keywords",
+    "case": "English question, Russian issue",
+    "expect": ["n16"],
+    "question": "ssl certificates renewal",
+    "query": "ssl certificates"
+  },
+  {
+    "id": "q24",
+    "form": "keywords",
+    "case": "Russian word forms",
+    "expect": ["n16"],
+    "question": "сертификат обновление",
+    "query": "сертификат обновление"
+  },
+  {
+    "id": "q25",
+    "form": "question",
+    "case": "term not in the title",
+    "expect": ["n11"],
+    "question": "do we have anything for deleting a user's data on a gdpr request",
+    "query": "gdpr delete user data"
+  },
+  {
+    "id": "q26",
+    "form": "decision",
+    "case": "answer in a comment, look-alike m01",
+    "expect": ["m16"],
+    "question": "are we keeping crashlytics or did we fully move to sentry",
+    "query": "crashlytics sentry"
+  },
+  {
+    "id": "q27",
+    "form": "keywords",
+    "case": "synonyms",
+    "expect": ["m02"],
+    "question": "dark theme unreadable text",
+    "query": "dark theme unreadable"
+  },
+  {
+    "id": "q28",
+    "form": "question",
+    "case": "no answer in the data",
+    "expect": [],
+    "question": "did we ever plan a windows desktop app?",
+    "query": "windows desktop app"
+  },
+  {
+    "id": "q29",
+    "form": "keywords",
+    "case": "no answer in the data",
+    "expect": [],
+    "question": "kubernetes migration status",
+    "query": "kubernetes migration"
+  },
+  {
+    "id": "q30",
+    "form": "question",
+    "case": "no answer in the data, misremembered",
+    "expect": [],
+    "question": "what happened with the apple watch app?",
+    "query": "apple watch app"
+  }
+]

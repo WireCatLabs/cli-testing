@@ -16,6 +16,7 @@
 - [events](events/README.md): how processes that share the store learn about each other's changes — polling
   against file watching.
 - [agents](agents/README.md): what the CLIs cost the AI agent that reads their answers — output size and meeting workflows.
+- [tracker](tracker/README.md): issue trackers — linear-cli against its rivals on the same questions.
 - [tasks](tasks/README.md): tasks found in messages — duplicate detection.
 - [desktop](desktop/README.md): WireCat Desktop — how long each page waits for its data, and how fast clicks paint.
 - [command-server](command-server/README.md): `commands --serve` for WireCat Desktop — several requests at once
