@@ -70,3 +70,70 @@ the commit's sync to disk, which ranged from 18 to 680 ms per commit under the o
   counts kept in SQL.
 - Bodies and attachments: the synthetic mail had none, so attachment parts were never read.
 - What version 76's 14 new triggers add to a mail sync: there is no version 75 baseline run on the same data.
+
+## Search by type and reach
+
+### Why it was run
+
+memo searches mail only through cli-core's search (`memo search mail`). A filter by type that memo ran after the
+search would return short pages, so cli-core's query language gained `type:` and `reach:`, which filter inside the
+query's SQL ([cli-core#3372](https://github.com/WireCatLabs/cli-core/pull/3372)). Types are still kept lazily, so a
+search can meet mail the store has not typed yet. The questions:
+
+1. What does the first `type:` search after the upgrade cost on 100,000 emails, on a writable open (every email typed
+   first, 5,000 per write) and on a read-only open (types worked out in memory, nothing kept)?
+2. The search has a 2 s time limit. Does the read-only path stay inside it?
+3. Do warm searches with `type:` or `reach:` cost more than a plain word search?
+
+The answers decided that the typing runs before the search, outside its time limit, and only when the query names
+one of the two fields.
+
+### Setup
+
+- Machine: AMD Ryzen AI 9 HX 370 (24 threads), Linux 7.0, Node 24.19.0. Other agents' test runs kept the load average
+  at 22 to 28 during the run.
+- Code: cli-core branch `feat/search-mail-type` (store version 77), built with `pnpm build`.
+- Data: the same 100,000 synthetic emails as above, from the same generator, saved through `store.mail.saveThreads`.
+- Search: `searchStore` with `kind: "mail"`, 20 hits per page, the call `memo search mail` makes.
+
+```sh
+node search.mjs <cli-core checkout> 100000
+```
+
+### Results
+
+One run.
+
+| Step | Time |
+| --- | ---: |
+| read-only open of an untyped store: `type:order`, first 20 | 1.83 s |
+| read-only open of an untyped store: `hello reach:direct`, first 20 | 1.49 s |
+| first search on a writable open: type all 100,000 emails, then `type:order`, first 20 | 18.4 s |
+| warm `type:order` | 33 ms |
+| warm `type:order OR type:bill` | 35 ms |
+| warm `reach:broadcast` | 72 ms |
+| warm `hello type:personal` | 105 ms |
+| warm `order -type:promotion` | 65 ms |
+| warm `hello`, no type field (baseline) | 40 ms |
+
+Plain searches typed nothing: 100,000 emails were still untyped after a plain search and after both read-only
+searches, and none after the first writable `type:` search. Every hit carried its type and reach, also on the read-only
+open.
+
+The first plain search after seeding took 564 s. That is the store indexing the words of 100,000 new emails on the
+first search after they were saved, not the type fields: the same happens with no `type:` in the query.
+
+### What it showed
+
+- The first writable `type:` search pays once for typing every email: 18 s here, 1.7–11.6 s in the runs above at a
+  lower load. The time is the commits' sync to disk, as above. Later searches never pay it again.
+- A read-only open of an untyped store answers in 1.5–1.8 s, close to the 2 s limit. Under heavier load it may stop
+  with "out of time". The answer is to run one search on a writable open, which keeps the types.
+- Warm, the type fields cost about as much as a word: 33–105 ms against 40 ms for a plain word search.
+
+### Not measured
+
+- More than one run: the load varied, so the first-search time has a wide range.
+- Stores over 100,000 emails. The read-only path grows with the number of untyped emails and passes the 2 s limit
+  sooner on a larger store.
+- Real mail: the timings depend on how many emails a type matches, and the synthetic mix is not a real inbox.
