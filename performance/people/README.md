@@ -11,3 +11,6 @@ Measurements of cli-core's people: who is listed, and how fast.
 - [kinds](kinds/README.md): what a kind per person, message counts and the newest contact cost the people list. About
   0.5–0.6 s per list on a loaded machine with 1.5 million messages, 1.9 s sorted by the newest contact; a search stays
   under 0.1 s (2026-11-09).
+- [bots](bots/README.md): what moving programs off people costs (cli-core store version 75). With 20,000 program
+  senders, the first list holds the write lock for about 1 s, the upgrade from version 74 takes 0.3–3.2 s, and warm
+  pages of people and bots stay under 60 ms (2026-11-25).
