@@ -41,3 +41,5 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   chats in one read, at the owner's scale: 2 ms for 30 days, 31 ms for all time (2026-11-10).
 - [vector-purge](vector-purge/README.md) — dropping a rebuild's old vectors: the purge's two lookups by their index,
   a forum rebuild from 889 s to 52 s (2026-11-18).
+- [sync-growth](sync-growth/README.md) — a history sync that slowed from 75 to 7 messages/s as the chat grew: one
+  thread-link scan per message, now one per page (2026-11-25).
