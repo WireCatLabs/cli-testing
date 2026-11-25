@@ -1,6 +1,7 @@
 # HubSpot: WireCat `hubspot` against HubSpot's own agent tools
 
-**Status: baseline before WireCat activity writes (notes/tasks), C pending owner sign-in.**
+**Status: done for A, B and C on both accounts (2026-11-24). Round 2's L8, L10 and write tasks wait for the large
+account's create limit (about 2027-02-22).**
 
 ## Why it was run
 
@@ -410,13 +411,10 @@ Then the run, by an agent or by hand: `node run.mjs c questions.md`, the write t
 
 ## What was not measured
 
-- Run-to-run noise: one run per question and contestant. A large account, where an agent cannot list every record
-  and look by eye, is round 2.
+- Run-to-run noise: one run per question and contestant.
 - A with its local copy in the baseline: cli-core refuses `crm.hubspot:<account>.activities on` to a command run
   by an agent ("the owner's to set, in a terminal"). The owner ran [a-setup.sh](a-setup.sh) and the rerun measured
   it. B was not rerun: its sheet is the baseline's, so run-to-run noise is not measured for either.
 - A sign-in as a HubSpot user (OAuth) for B: both A and B used the account's service key.
 - Tickets, e-mails and several pipelines: the key has no scope for them.
-- A large account: 32 deals favour live reads.
-- Run-to-run spread: one run per question and contestant.
 - The owner's own reading of the questions: they were written in his style by agents and not yet approved by him.
