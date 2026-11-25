@@ -370,7 +370,7 @@ skill line in hubspot-cli ([#29](https://github.com/WireCatLabs/hubspot-cli/pull
 before reading every note. **A ran a build of hubspot-cli's #29 branch (0.6.0 + cli-core 0.743.0), not a release**:
 HubSpot's release needs a live check that creates records, and the account refuses creates. A's store was embedded
 first (`sync --embed` five times, 3,145 chunks, EmbeddingGemma, about a minute a run). B and C are their round-2
-sheets; all three were scored again together, blind.
+sheets; all three were scored again together, blind. That build was released unchanged as hubspot-cli 0.7.0 on 2026-11-25.
 
 | | A, meaning search | A in round 2 | B: HubSpot Agent CLI | C: HubSpot remote MCP |
 | --- | --- | --- | --- | --- |
