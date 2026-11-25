@@ -102,6 +102,16 @@
       }
     },
     {
+      "includes": ["performance/tracker/linear-rivals/*.mjs"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    },
+    {
       "includes": ["performance/tasks/duplicates/generate.mjs"],
       "linter": {
         "rules": {

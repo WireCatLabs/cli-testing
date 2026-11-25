@@ -1,0 +1,267 @@
+{
+  "ran_at": "2026-11-25T01:58:56.754Z",
+  "expected_open_unassigned_bugs": 17,
+  "rows": [
+    {
+      "tool": "Linear MCP",
+      "check": "documents list",
+      "result": "yes",
+      "status": 0,
+      "ms": 876,
+      "chars": 2619,
+      "note": null
+    },
+    {
+      "tool": "Linear MCP",
+      "check": "document read",
+      "result": "yes",
+      "status": 0,
+      "ms": 481,
+      "chars": 866,
+      "note": null
+    },
+    {
+      "tool": "Linear MCP",
+      "check": "document search",
+      "result": "yes",
+      "status": 0,
+      "ms": 513,
+      "chars": 870,
+      "note": null
+    },
+    {
+      "tool": "Linear MCP",
+      "check": "cycles",
+      "result": "yes",
+      "status": 0,
+      "ms": 330,
+      "chars": 499,
+      "note": null
+    },
+    {
+      "tool": "Linear MCP",
+      "check": "filter: open bugs, no assignee",
+      "result": "17/17 found, 0 other",
+      "status": 0,
+      "ms": 335,
+      "chars": 15994,
+      "note": null
+    },
+    {
+      "tool": "Linear MCP",
+      "check": "create issue",
+      "result": "yes",
+      "status": 0,
+      "ms": 658,
+      "chars": 821,
+      "note": null
+    },
+    {
+      "tool": "Linear MCP",
+      "check": "comment",
+      "result": "yes",
+      "status": 0,
+      "ms": 535,
+      "chars": 315,
+      "note": null
+    },
+    {
+      "tool": "Linearis",
+      "check": "documents list",
+      "result": "yes",
+      "status": 0,
+      "ms": 1123,
+      "chars": 2137,
+      "note": null
+    },
+    {
+      "tool": "Linearis",
+      "check": "document read",
+      "result": "yes",
+      "status": 0,
+      "ms": 641,
+      "chars": 596,
+      "note": null
+    },
+    {
+      "tool": "Linearis",
+      "check": "document search",
+      "result": "no",
+      "status": null,
+      "ms": 0,
+      "chars": 0,
+      "note": "no search option on documents"
+    },
+    {
+      "tool": "Linearis",
+      "check": "cycles",
+      "result": "yes",
+      "status": 0,
+      "ms": 1030,
+      "chars": 668,
+      "note": null
+    },
+    {
+      "tool": "Linearis",
+      "check": "filter: open bugs, no assignee",
+      "result": "17/17 found, 0 other",
+      "status": 0,
+      "ms": 744,
+      "chars": 29841,
+      "note": null
+    },
+    {
+      "tool": "Linearis",
+      "check": "create issue",
+      "result": "yes",
+      "status": 0,
+      "ms": 995,
+      "chars": 1551,
+      "note": null
+    },
+    {
+      "tool": "Linearis",
+      "check": "comment",
+      "result": "yes",
+      "status": 0,
+      "ms": 1437,
+      "chars": 344,
+      "note": null
+    },
+    {
+      "tool": "schpet/linear-cli",
+      "check": "documents list",
+      "result": "yes",
+      "status": 0,
+      "ms": 445,
+      "chars": 1485,
+      "note": null
+    },
+    {
+      "tool": "schpet/linear-cli",
+      "check": "document read",
+      "result": "yes",
+      "status": 0,
+      "ms": 159,
+      "chars": 816,
+      "note": null
+    },
+    {
+      "tool": "schpet/linear-cli",
+      "check": "document search",
+      "result": "no",
+      "status": null,
+      "ms": 0,
+      "chars": 0,
+      "note": "no search option on documents"
+    },
+    {
+      "tool": "schpet/linear-cli",
+      "check": "cycles",
+      "result": "yes",
+      "status": 0,
+      "ms": 206,
+      "chars": 543,
+      "note": null
+    },
+    {
+      "tool": "schpet/linear-cli",
+      "check": "filter: open bugs, no assignee",
+      "result": "17/17 found, 0 other",
+      "status": 0,
+      "ms": 332,
+      "chars": 20432,
+      "note": null
+    },
+    {
+      "tool": "schpet/linear-cli",
+      "check": "create issue",
+      "result": "yes",
+      "status": 0,
+      "ms": 937,
+      "chars": 120,
+      "note": null
+    },
+    {
+      "tool": "schpet/linear-cli",
+      "check": "comment",
+      "result": "yes",
+      "status": 0,
+      "ms": 127,
+      "chars": 116,
+      "note": null
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "documents list",
+      "result": "yes",
+      "status": 0,
+      "ms": 443,
+      "chars": 1113,
+      "note": null
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "document read",
+      "result": "yes",
+      "status": 0,
+      "ms": 401,
+      "chars": 692,
+      "note": null
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "document search",
+      "result": "yes",
+      "status": 0,
+      "ms": 15996,
+      "chars": 1634,
+      "note": null
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "cycles",
+      "result": "yes",
+      "status": 0,
+      "ms": 1381,
+      "chars": 1389,
+      "note": null
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "filter: open bugs, no assignee (label by name)",
+      "result": "0/17 found, 0 other",
+      "status": 0,
+      "ms": 706,
+      "chars": 154,
+      "note": null
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "filter: open bugs, no assignee",
+      "result": "17/17 found, 0 other",
+      "status": 0,
+      "ms": 3093,
+      "chars": 16498,
+      "note": "labels list, then one list per state type"
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "create issue",
+      "result": "yes",
+      "status": 0,
+      "ms": 16604,
+      "chars": 1004,
+      "note": "first try refused (tracker.reference); passed after sync"
+    },
+    {
+      "tool": "ours (@wirecat/linear-cli)",
+      "check": "comment",
+      "result": "yes",
+      "status": 0,
+      "ms": 2562,
+      "chars": 612,
+      "note": null
+    }
+  ]
+}
