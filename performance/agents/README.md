@@ -33,6 +33,12 @@ A test on the owner's real data follows [Testing agents on real data](../../docs
   With search limited to records from before each question: Gemma 77.7% micro, 74.5% macro (unchanged).
   Run-to-run noise: 49 of 280 verdicts change on a plain rerun (17.5%), the total holds to about a point.
 
+- [locomo-memory-agents](locomo-memory-agents/README.md) — 50 public LoCoMo questions, Hermes, OpenClaw and
+  Claude Code, each with plain files, WireCat memo, Hindsight, Honcho, Mem0 and Supermemory: no engine beat files,
+  WireCat ties with files in every arm, and with DeepSeek Flash in Hermes Hindsight (−5.0), Honcho (−3.0) and Mem0
+  (−6.7) are below files by the paired test. Other models with WireCat: Gemini +3.7 over DeepSeek Flash on one
+  run, Grok partial at 19 questions (2026-11-25).
+
 - [source-coverage](source-coverage/README.md) — a real personal Telegram account, WireCat against telegram-mcp and a
   plain export, on clean questions over 10 chats (2026-11-13). The setup was simpler than real use; read
   [AGENT-TESTS.md](../../docs/dev/AGENT-TESTS.md) before quoting it.
