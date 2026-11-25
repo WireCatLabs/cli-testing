@@ -6,7 +6,7 @@ The owner ruled that every email gets a type of its own, apart from its sender: 
 sales `promotion`, and a tab such as Subscriptions is a filter over those types, not a table (contact-kinds plan in
 cli-core [#3323](https://github.com/WireCatLabs/cli-core/pull/3323), section "Mail categories"). cli-core store
 version 76 keeps each email's type and reach on the `emails` row, cleared by triggers when what decides them changes,
-and works them out lazily ([cli-core pull request](https://github.com/WireCatLabs/cli-core/pulls?q=head%3Afeat%2Fmail-types)).
+and works them out lazily ([#3358](https://github.com/WireCatLabs/cli-core/pull/3358)).
 
 An existing store has no types after the upgrade. The first read that filters by type works out every email, a batch
 per write, under the store's write lock, which other writers wait for at most 5 s. The questions:
