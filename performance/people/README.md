@@ -14,3 +14,7 @@ Measurements of cli-core's people: who is listed, and how fast.
 - [bots](bots/README.md): what moving programs off people costs (cli-core store version 75). With 20,000 program
   senders, the first list holds the write lock for about 1 s, the upgrade from version 74 takes 0.3–3.2 s, and warm
   pages of people and bots stay under 60 ms (2026-11-25).
+- [newsletter-bots](newsletter-bots/README.md): what making senders of a newsletter only bots costs (cli-core
+  `feat/newsletter-bots`, owner's ruling of 2026-11-25). With 20,000 such senders, the check that gives a bot back after
+  a 1-to-1 mail costs 31–51 ms under the write lock on each kept list. The first list takes 3.2–13 s on a machine at
+  load 15 to 52 (2026-11-26).
