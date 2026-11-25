@@ -16,3 +16,6 @@ Measurements of reading a mailbox into the shared store with memo.
   run 4: 2 answered, 2 partly, 2 not found (before the imported years), and what memo made hard (2026-10-16).
 - [types](types/README.md): what typing every email costs cli-core's store (store version 76) — 100,000 emails typed
   on the first filtered read in 1.7–11.6 s, one batch of 5,000 under the write lock in 0.1–0.6 s (2026-11-25).
+- [rules](rules/README.md): what mail sorting rules cost cli-core's store (store version 77) — 50 rules add about 0.35 s
+  per 100,000 emails typed, a `gmail.com` rule over 30,000 emails applies in about 1 s plus 1.5–2 s on the next typed
+  read, and moving 500 senders to bots takes 4–6 s (2026-11-25).
