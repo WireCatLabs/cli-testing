@@ -23,6 +23,7 @@ const NPM = {
 
 const sh = (command, args, options = {}) => execFileSync(command, args, { stdio: "inherit", ...options })
 for (const [name, spec] of Object.entries(NPM)) {
+  if (name === "ours" && process.env.LINEAR_BENCH_OURS) continue
   const dir = join(WORK, "rivals", name)
   mkdirSync(dir, { recursive: true })
   if (!existsSync(join(dir, "package.json"))) writeFileSync(join(dir, "package.json"), "{}\n")
@@ -70,5 +71,5 @@ console.log(
   `sync${embed ? " --embed" : ""}: ${sync.state}, ${Math.round((Date.now() - started) / 1000)} s;`,
   sync.synced.map((one) => `${one.kind} ${one.saved}`).join(", "),
   `; documents ${sync.documents?.saved}`,
-  embed ? `; embedded ${JSON.stringify(sync.embedded ?? sync.embed ?? null)}` : "",
+  embed ? `; embedded ${JSON.stringify(sync.embeddings ?? null)}` : "",
 )

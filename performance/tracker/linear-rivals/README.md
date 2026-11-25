@@ -180,6 +180,63 @@ Features, checked by running each tool:
 - **The paper comparison is out of date for ours.** It said ours writes only through `api` and has no documents in
   the copy. 0.3.1 has `issues create`, `issues comments create` and `documents list/show`, and they worked.
 
+## After the fix: cli-core main, unreleased (2026-11-25)
+
+Why: the run above made meaning search for issues in linear-cli's own commands the next work, and found three more
+gaps: a quoted query was a phrase, `label:Bug` by name found nothing, and a label made after the last sync was
+refused. [cli-core #3346](https://github.com/WireCatLabs/cli-core/pull/3346) fixed all four in the shared tracker
+commands. `issues search` now runs the same lane as `search all`, so it finds by words and meaning. The question:
+does linear-cli alone now find what memo found?
+
+Setup: same machine, workspace, seed and questions as above. Only linear-cli's own rows were run again. cli-core main
+at `cf03902f1` (#3346 merged) was built locally. linear-cli's `release/1.0` branch (`fbb5e86`) was built against it,
+through a `file:` override that was never committed. Neither is on npm yet: cli-core main publishes only 1.0.0-rc.x,
+and linear-cli adopts 1.0 on `release/1.0`. The vectors are built with EmbeddingGemma, as before.
+
+```sh
+export LINEAR_BENCH_WORK=/var/tmp/wirecat-bench/linear-rivals-after LINEAR_BENCH_ACCOUNT=<keyring account>
+export LINEAR_BENCH_OURS=<linear-cli checkout>/dist/bin/linear.js LINEAR_BENCH_RESULTS=results-after
+export LINEAR_BENCH_OURS_LABEL="@wirecat/linear-cli release/1.0 (fbb5e86) on @wirecat/cli-core main (cf03902f1, unreleased)"
+ONLY="ours: issues search,ours: issues search (one quoted argument),ours: both"
+node setup.mjs && node bench.mjs words --only "$ONLY"
+node setup.mjs --embed && node bench.mjs embed --only "$ONLY"
+```
+
+`LINEAR_BENCH_OURS` runs a local build instead of the pinned package, and `LINEAR_BENCH_RESULTS` writes
+[results-after-words.json](results-after-words.json) and [results-after-embed.json](results-after-embed.json), so the
+first run's files stay as they were.
+
+hit@5 of 27, before (linear-cli 0.3.1) and after:
+
+| linear-cli's own search | keywords, before | keywords, after | sentence, before | sentence, after |
+|---|---|---|---|---|
+| `issues search`, after `sync --embed` | 7 | **24** | 2 | **24** |
+| `issues search`, one quoted argument, after `sync --embed` | 1 | **24** | 0 | **24** |
+| both (`issues search` and `search`), after `sync --embed` | 10 | **27** | 5 | **27** |
+| `issues search`, plain sync | 7 | 7 | 2 | 5 |
+| `issues search`, one quoted argument, plain sync | 1 | 7 | 0 | 5 |
+| for comparison: memo `search all`, after `sync --embed` (first run) | 27 | | 27 | |
+
+hit@1 after `sync --embed`: `issues search` 24 with keywords and 23 with sentences, both 27 and 26 (memo had 26 and 25).
+
+What it showed:
+
+- **linear-cli alone now finds what memo finds.** With its two searches, as an agent that does not know the answer's
+  kind runs them, it finds all 27 in the top 5. Before, that took a second program. The thresholds written before
+  the first run no longer fire: ours is above the best rival (Linear MCP's 24) instead of 14 behind it.
+- **`issues search` misses only the 3 questions whose answer is a document.** Documents are not tracker items.
+  `linear search` finds them, so the skill should say to run both.
+- **A quoted query now matches like separate words.** The two forms rank the same on every question.
+- **Without vectors, words still find little.** Keywords stay at 7/27. Sentences go from 2 to 5, because a question
+  now finds what holds some of its words. Meaning search needs `sync --embed`.
+- **The price is time.** The median `issues search` with vectors takes 2.2 s, against 0.35 s with words only. Each
+  command loads the model again, as memo's `search all` does (3.7–4.2 s in the first run).
+- **The no-answer questions now get answers.** All 3 returned 6–9 items with vectors, as every live tool and memo
+  did. With words only, keywords still return nothing.
+
+Not measured again: the rivals, memo, `linear search` alone, the features table (filters by name and the label made
+after the last sync are covered by cli-core's tests in #3346), and the released packages, which do not exist yet.
+
 ## What was not measured
 
 - An agent answering questions. Each tool's search was called directly with a fixed query; no model chose the

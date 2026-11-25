@@ -6,7 +6,7 @@
 //
 // Raw answers stay in WORK_DIR/raw: they hold the workspace's URLs and the account's email. The committed
 // results-<phase>.json holds only seed keys, times, sizes and request counts.
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { mcpClient, run, token, tools, VERSIONS } from "./tools.mjs"
 
@@ -139,8 +139,13 @@ const contestants = {
 
 // --only "<name>,<name>" reruns some contestants and keeps the other rows of an earlier run.
 const only = process.argv.includes("--only") ? process.argv[process.argv.indexOf("--only") + 1].split(",") : null
-const resultsFile = join(HERE, `results-${phase}.json`)
-const rows = only ? JSON.parse(readFileSync(resultsFile, "utf8")).rows.filter((row) => !only.includes(row.tool)) : []
+// LINEAR_BENCH_RESULTS names another file, so a rerun of some contestants keeps the first run's results as they were.
+const resultsName = `${process.env.LINEAR_BENCH_RESULTS ?? "results"}-${phase}.json`
+const resultsFile = join(HERE, resultsName)
+const rows =
+  only && existsSync(resultsFile)
+    ? JSON.parse(readFileSync(resultsFile, "utf8")).rows.filter((row) => !only.includes(row.tool))
+    : []
 for (const [name, contestant] of Object.entries(contestants)) {
   if (only && !only.includes(name)) continue
   for (const question of questions) {
@@ -211,4 +216,4 @@ writeFileSync(
     1,
   )}\n`,
 )
-console.log(`wrote results-${phase}.json, raw answers in ${RAW}`)
+console.log(`wrote ${resultsName}, raw answers in ${RAW}`)

@@ -5,8 +5,11 @@ import { execFileSync, spawn } from "node:child_process"
 import { mkdirSync, readFileSync, rmSync } from "node:fs"
 import { dirname, join } from "node:path"
 
+// LINEAR_BENCH_OURS runs a local build of ours instead of the pinned package, named by LINEAR_BENCH_OURS_LABEL.
+const LOCAL_OURS = process.env.LINEAR_BENCH_OURS
+
 export const VERSIONS = {
-  ours: "@wirecat/linear-cli@0.3.1",
+  ours: LOCAL_OURS ? (process.env.LINEAR_BENCH_OURS_LABEL ?? LOCAL_OURS) : "@wirecat/linear-cli@0.3.1",
   memo: "@wirecat/cli-memo@0.152.0",
   linearis: "linearis@2026.8.0",
   schpet:
@@ -31,7 +34,7 @@ export const token = () => {
 
 export const tools = (work) => {
   const bins = {
-    ours: join(work, "rivals/ours/node_modules/@wirecat/linear-cli/dist/bin/linear.js"),
+    ours: LOCAL_OURS ?? join(work, "rivals/ours/node_modules/@wirecat/linear-cli/dist/bin/linear.js"),
     memo: join(work, "rivals/memo/node_modules/@wirecat/cli-memo/dist/bin/memo.js"),
     linearis: join(work, "rivals/linearis/node_modules/linearis/dist/main.js"),
     schpet: join(work, "rivals/schpet/linear-x86_64-unknown-linux-gnu/linear"),
