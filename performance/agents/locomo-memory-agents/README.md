@@ -217,12 +217,8 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
   Its search also returns hits with empty text. This is the plugin's default behaviour, so the row stays as measured.
   It likely explains much of Supermemory's 1–24 range.
 - **Other plugins also offer write tools, and the agent sometimes used them.** In Hermes + Flash, 4 of 150 answers
-  called `hindsight_retain`, 6 of 150 `honcho_conclude` and 1 of 50 `mem0_update`. The Supermemory runs used a save,
-  store or forget tool in many more. The counts per answer are in the `tools` field of the data.
-- **Hindsight and Honcho stores were shared by every run.** Each conversation had one Hindsight bank and one Honcho
-  workspace, used by all runs and by Hermes and Claude Code alike. So a write such as `hindsight_retain` or
-  `honcho_conclude` in one run could be read by a later one. We did not check whether those writes changed the
-  stores.
+  called `hindsight_retain`, 6 of 150 `honcho_conclude` and 1 of 50 `mem0_update`, into a store shared by all runs.
+  The counts per answer are in the `tools` field of the data. A rerun with a fresh store per run is planned.
 - **Mem0's free plan ran out of reads.** Every read returned HTTP 429 (1,000 a month). The Mem0 rows ran later with
   bring-your-own-key extraction, so Mem0 has 1 Flash run, not 3.
 
