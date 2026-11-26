@@ -43,3 +43,5 @@ Measurements of the SQLite store that tg-cli, max-cli, memo and drive share thro
   a forum rebuild from 889 s to 52 s (2026-11-18).
 - [sync-growth](sync-growth/README.md) — a history sync that slowed from 75 to 7 messages/s as the chat grew: one
   thread-link scan per message, now one per page (2026-11-25).
+- [commit-cost](commit-cost/README.md) — one store commit with WAL and synchronous FULL costs 3 to 5 ms, or 140 to
+  225 ms while other programs write to the disk; NORMAL costs 0.1 to 0.25 ms either way (2026-11-26).
