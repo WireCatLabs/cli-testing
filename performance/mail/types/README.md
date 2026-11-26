@@ -137,3 +137,107 @@ first search after they were saved, not the type fields: the same happens with n
 - Stores over 100,000 emails. The read-only path grows with the number of untyped emails and passes the 2 s limit
   sooner on a larger store.
 - Real mail: the timings depend on how many emails a type matches, and the synthetic mix is not a real inbox.
+
+## The first search after a large save
+
+### Why it was run
+
+The two runs above left two slow first searches (PERF-4 and PERF-5 in the owner's journal):
+
+- **PERF-4.** On a read-only open, the first `type:` search took 1.5–1.8 s against the search's 2 s time limit. Types
+  were kept only by a read on a writable open, so a read-only open worked out every untyped email in memory.
+- **PERF-5.** The first plain search after seeding took 564 s. The store indexed the words of all 100,000 new emails
+  on that search, committing every 200 emails.
+
+The question: what makes both first searches fast without making mail sync much slower? The options weighed were
+indexing and typing inside the save's own write, doing it at the end of mail sync, and a time budget per write for the
+drain. The answers decided cli-core [#3404](https://github.com/WireCatLabs/cli-core/pull/3404): each save indexes and
+types its own mail, and mail sync finishes what an upgrade left.
+
+### Setup
+
+- Machine: AMD Ryzen AI 9 HX 370 (24 threads), 59 GB RAM, NVMe, Linux 7.0, Node 24.19.0. Other agents' runs kept
+  the load average at 11 to 13 during both runs below and at 25 to 32 during the `search.mjs` runs.
+- Code: cli-core `main` at 7cbf47f6e (before) and branch `perf/mail-first-search` (after), built with `pnpm build`.
+- Data: the same synthetic generator as above. [first-search.mjs](first-search.mjs) seeds 100,000 emails through
+  `store.mail.saveThreads`, 2,000 per save, then:
+  1. the first searches: two on a read-only open, then a plain and a `type:` search on a writable open;
+  2. 20 sync-sized saves (50 new threads of 2 emails each: mail sync saves 50 threads per write);
+  3. a store as the upgrade to version 76 leaves it (every type cleared), one sync-sized save, the first searches;
+  4. the same, with the catch-up step mail sync now runs after it saves;
+  5. every email also queued for its words again (as a stemmer change leaves a store), one save, its catch-up.
+
+```sh
+node first-search.mjs <cli-core checkout> 100000
+node search.mjs <cli-core checkout> 100000
+```
+
+### Results
+
+One run each, before and after, on the same machine within an hour.
+
+| Step | Before | After |
+| --- | ---: | ---: |
+| seed 100,000 emails, 50 saves | 45.3 s | 58.5 s |
+| one save of 2,000 emails, median | 850 ms | 1,193 ms |
+| one sync-sized save (100 emails), median of 20 | 67 ms | 103 ms |
+| left after seeding: untyped, queued for words | 100,000, 100,000 | 0, 0 |
+| fresh store, read-only: `type:order` | failed | 74 ms |
+| fresh store, read-only: `hello reach:direct` | failed | 147 ms |
+| fresh store, first plain search `hello` | 12.1 s | 87 ms |
+| fresh store, first `type:order` on a writable open | 2.0 s | 63 ms |
+| upgraded store, read-only: `type:order` | failed | 2.3 s |
+| upgraded store, first `type:order` on a writable open | 2.0 s | 2.0 s |
+| upgraded store, catch-up at the end of the sync | none | 1.9 s |
+| upgraded store after the catch-up, read-only: `type:order` | failed | 53 ms |
+| words queued again, catch-up at the end of the sync | none | 20.9 s |
+| words queued again, first plain search | 20.6 s | 98 ms (after the catch-up) |
+| warm `type:order`, warm `hello` | 56–60 ms, 89–99 ms | 53–61 ms, 81–109 ms |
+
+"Failed" is `attempt to write a readonly database`: on `main`, a read-only search whose store still has mail waiting
+for its words tries to queue that mail's threads first. The runs above never saw it, because a writable search always
+ran first.
+
+The original [search.mjs](search.mjs), at load 25 to 32:
+
+| Step | Before | After |
+| --- | ---: | ---: |
+| seed 100,000 emails | 66.7 s | 67.3 s |
+| first plain search `hello` | 17.3 s | 136 ms |
+| read-only, `type:order` | 2.8 s | 71 ms |
+| read-only, `hello reach:direct` | 2.8 s | 170 ms |
+| first `type:order` on a writable open | 2.2 s | 65 ms |
+
+A CPU profile of 60 sync-sized saves on a store of 20,000 emails put 14 ms per save into the new work: 12 ms indexing
+the words and pieces, 2 ms typing. Most of the rest of a save was the commit's sync to disk.
+
+### What it showed
+
+- **The 564 s did not come back.** The same first search took 12.1 s at load 12 and 17.3 s at load 30. The drain
+  committed every 200 emails, so 500 times, each with a full sync to disk. The [commit cost](../../store/commit-cost/README.md)
+  page measured 140–225 ms per commit when other programs write to the disk, so that run most likely paid for 500
+  slow commits. This is an inference: the commits of that run were not counted.
+- **Work done in the save's own write costs no commit.** The first searches on a fresh store went from 2–12 s (or a
+  failure on a read-only open) to 63–147 ms, the same as warm searches.
+- **Saving costs more CPU.** A save of 2,000 emails took 40 % longer and a sync-sized save 36 ms longer in this run,
+  of which the profile puts 14 ms in the new work; the rest is load and disk noise between runs. A mail sync's slice
+  waits for the mail server far longer than that.
+- **An upgraded store still needs one pass.** Typing mail stored before version 76 takes about 2 s, and indexing
+  100,000 emails again about 21 s. Mail sync now does it once, at its end; the first search after that answers in
+  53–155 ms on a read-only open too. Until that sync runs, a read-only `type:` search still works the types out in
+  memory, 2.3–2.5 s here.
+- **The time limit did not stop the read-only search.** The 2 s limit was passed (2.3–2.8 s) with no "out of time"
+  in both builds. Why was not checked.
+
+### Not measured
+
+- More than one run each. The load moved between runs, so differences under about 30 % are noise.
+- What the time budget per write of the drain (up to 250 ms of batches of 200 instead of one batch) changes: on this
+  machine the commits were fast during the runs, and the upgraded-store drain took about as long either way.
+- Real mail with bodies: the synthetic mail has subjects only, so the word index per email is cheaper than on a real
+  inbox (1.5 ms an email with text in [indexing](../indexing/README.md)).
+- Discussion lists: every synthetic list has one sender, so the trigger that clears a list's types when its third
+  sender appears never fired. On a real inbox a list's first issues are typed at save and typed again later.
+- Other writers than `saveThreads` and `saveThread` (deletes, restores, flags, mail rules) still leave their changes
+  for the next drain or catch-up.
+- Stores over 100,000 emails.
