@@ -33,9 +33,10 @@ A test on the owner's real data follows [Testing agents on real data](../../docs
   With search limited to records from before each question: Gemma 77.7% micro, 74.5% macro (unchanged).
   Run-to-run noise: 49 of 280 verdicts change on a plain rerun (17.5%), the total holds to about a point.
 
-- [locomo-memory-agents](locomo-memory-agents/README.md) — 50 public LoCoMo questions, Hermes, OpenClaw and
-  Claude Code, each with plain files, WireCat memo, Hindsight, Honcho, Mem0 and Supermemory: no engine beat files,
-  WireCat ties with files in every arm, and with DeepSeek Flash in Hermes Hindsight (−5.0), Honcho (−3.0) and Mem0
+- [locomo-memory-agents](locomo-memory-agents/README.md) — 50 public LoCoMo questions (200 for Claude Code), Hermes,
+  OpenClaw and Claude Code, each with plain files, WireCat memo, Hindsight, Honcho, Mem0 and Supermemory: no engine
+  beat files, WireCat is within noise of files in every arm (Claude on 200 questions: 175 against 182, −7, interval
+  −15 to +1), and with DeepSeek Flash in Hermes Hindsight (−5.0), Honcho (−3.0) and Mem0
   (−6.7) are below files by the paired test. Other models with WireCat: Gemini +3.7 over DeepSeek Flash on one
   run, Grok partial at 19 questions (2026-11-25).
 
@@ -51,6 +52,7 @@ A test on the owner's real data follows [Testing agents on real data](../../docs
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).
+
 - [mcp-short-listing](mcp-short-listing/README.md) — an agent succeeds as often with the short MCP answer schema
   (3,323 characters for the three tools) as with the full one (17,278), on half the input tokens (2026-11-09).
 

@@ -304,7 +304,6 @@ the keyring inside the script. Never pass one on the command line.
 
    The four shared modules come unchanged from [knowledge-graph-memory](../knowledge-graph-memory/README.md).
    `openclaw_locomo.py` sets the OpenClaw version to 2026.11.7 over that runner's older pin.
-
 2. Questions and fixtures: `python3 -I $B/scripts/pick_questions.py`, then `cp $B/questions-50.json
    $B/questions.json` (or run `pick_more.py` for all 200), then `python3 -I $B/scripts/locomo_fixture.py`.
 3. Agents: Hermes Agent at `caafe538` in `$B/hermes-agent` with its venv, and the memory plugins with

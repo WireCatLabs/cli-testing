@@ -51,9 +51,9 @@ It runs in two layers:
   - **30 old questions.** `tg` was tuned on them in earlier rounds, so they favour `tg`.
   - **15 fresh questions**, written after that tuning.
   - **20 held-out questions**, kept away from the tuning. Layer 2 uses only these 20.
+- **The owner read the questions** before the runs.
 - **Departures from AGENT-TESTS.md** (as in round 14, which first used the held-out set): no third agent added typos,
-  the owner did not vet the questions one by one, and the 20 held-out questions were used twice before (a held-out check of
-  round 13 and round 14 of [Experiment B](../../search/experiment-b-rounds-12-14/README.md)).
+  and the 20 held-out questions were used twice before (a held-out check of round 13 and round 14 of [Experiment B](../../search/experiment-b-rounds-12-14/README.md)).
 
 ## Setup
 
