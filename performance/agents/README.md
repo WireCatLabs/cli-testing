@@ -39,6 +39,12 @@ A test on the owner's real data follows [Testing agents on real data](../../docs
   (−6.7) are below files by the paired test. Other models with WireCat: Gemini +3.7 over DeepSeek Flash on one
   run, Grok partial at 19 questions (2026-11-25).
 
+- [telegram-search-agents](telegram-search-agents/README.md) — the owner's real Telegram archive (954,242 messages,
+  376 chats), 65 questions as he asks them, totals only: one search finds the answer in the top 20 for 42 with WireCat
+  tg, 33 with qmd, 1 with Telegram's own search and 0 with jackwener/tg-cli. With an agent on 20 held-out questions,
+  3 runs, tg with its skill ties qmd with its skill (Sonnet 15.7 against 16.4, Haiku 13.25 against 14.5) and reaches
+  the grep ceiling; Anthropic models only (2026-11-26).
+
 - [source-coverage](source-coverage/README.md) — a real personal Telegram account, WireCat against telegram-mcp and a
   plain export, on clean questions over 10 chats (2026-11-13). The setup was simpler than real use; read
   [AGENT-TESTS.md](../../docs/dev/AGENT-TESTS.md) before quoting it.
