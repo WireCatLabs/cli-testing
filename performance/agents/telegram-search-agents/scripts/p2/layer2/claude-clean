@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Copy of the owner's claude-clean-run skill script (2026-11-24) with two changes for layer 2:
+# --allow may repeat and each value is one pattern (the original word-splits "Bash(tg personal search:*)" into three),
+# CLAUDE_RUNNER replaces `claude` (budget.py, so its timer kills claude itself), and --permission-mode dontAsk: without it
+# the child inherited bypassPermissions (init event of the first smoke session) and --allowedTools restricted nothing.
+# Usage: claude-clean --tools "Bash,Read" [--model M] [--allow "Bash(tg personal search:*)"]... [--add-dir D] \
+#          [--out transcript.jsonl] -- "<prompt>"
+set -euo pipefail
+skills=0 tools="" sys="" mcp="" model="claude-sonnet-5-5" effort="" out="/dev/stdout" dirs=() allow=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --tools) tools="$2"; shift 2 ;;
+    --system-prompt-file) sys="$2"; shift 2 ;;
+    --mcp-config) mcp="$2"; shift 2 ;;
+    --model) model="$2"; shift 2 ;;
+    --effort) effort="$2"; shift 2 ;;
+    --allow) allow+=("$2"); shift 2 ;;
+    --add-dir) dirs+=(--add-dir "$2"); shift 2 ;;
+    --out) out="$2"; shift 2 ;;
+    --project-skills) skills=1; shift ;;
+    --) shift; break ;;
+    *) echo "unknown option: $1" >&2; exit 2 ;;
+  esac
+done
+[ $# -eq 1 ] || { echo "the prompt goes after --" >&2; exit 2; }
+# --project-skills (tg-skill arm): --safe-mode hides the project's .claude/skills and --disable-slash-commands removes the
+# Skill tool (init events, 2026-11-24), so that arm loads project settings only, as round 14's ask.sh did.
+if [ "$skills" = 1 ]; then clean=(--setting-sources project); else clean=(--safe-mode --disable-slash-commands); fi
+args=(-p "$1" "${clean[@]}" --strict-mcp-config --tools "$tools" --model "$model"
+      --output-format stream-json --verbose --no-session-persistence --permission-mode dontAsk "${dirs[@]}")
+[ -n "$sys" ] && args+=(--system-prompt-file "$(realpath "$sys")")
+[ -n "$mcp" ] && args+=(--mcp-config "$(realpath "$mcp")")
+[ -n "$effort" ] && args+=(--effort "$effort")
+[ ${#allow[@]} -gt 0 ] && args+=(--allowedTools "${allow[@]}")
+# Settings put the owner's mod folders into the environment, and a child claude would load them.
+# shellcheck disable=SC2086
+env -u CLAUDE_CODE_PLUGIN_DIRS ${CLAUDE_RUNNER:-claude} "${args[@]}" < /dev/null > "$out"

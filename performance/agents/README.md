@@ -33,12 +33,26 @@ A test on the owner's real data follows [Testing agents on real data](../../docs
   With search limited to records from before each question: Gemma 77.7% micro, 74.5% macro (unchanged).
   Run-to-run noise: 49 of 280 verdicts change on a plain rerun (17.5%), the total holds to about a point.
 
+- [locomo-memory-agents](locomo-memory-agents/README.md) — 50 public LoCoMo questions (200 for Claude Code), Hermes,
+  OpenClaw and Claude Code, each with plain files, WireCat memo, Hindsight, Honcho, Mem0 and Supermemory: no engine
+  beat files, WireCat is within noise of files on the 50 questions in every arm, and below files on 200
+  questions with Claude (3 runs: 175.3 against 181.3, −6.0, interval −11.0 to −1.3), and with DeepSeek Flash in Hermes Hindsight (−5.0), Honcho (−3.0) and Mem0
+  (−6.7) are below files by the paired test. Other models with WireCat: Gemini +3.7 over DeepSeek Flash on one
+  run, Grok partial at 19 questions (2026-11-25).
+
+- [telegram-search-agents](telegram-search-agents/README.md) — the owner's real Telegram archive (954,242 messages,
+  376 chats), 65 questions as he asks them, totals only: one search finds the answer in the top 20 for 42 with WireCat
+  tg, 33 with qmd, 1 with Telegram's own search and 0 with jackwener/tg-cli. With an agent on 20 held-out questions,
+  3 runs, tg with its skill ties qmd with its skill (Sonnet 15.7 against 16.4, Haiku 13.25 against 14.5) and reaches
+  the grep ceiling; Anthropic models only (2026-11-26).
+
 - [source-coverage](source-coverage/README.md) — a real personal Telegram account, WireCat against telegram-mcp and a
   plain export, on clean questions over 10 chats (2026-11-13). The setup was simpler than real use; read
   [AGENT-TESTS.md](../../docs/dev/AGENT-TESTS.md) before quoting it.
 
 - [openclaw-skills](openclaw-skills/README.md) — OpenClaw lists the six WireCat skills from `~/.agents/skills`
   and marks one not ready when its CLI is missing (2026-10-29).
+
 - [mcp-short-listing](mcp-short-listing/README.md) — an agent succeeds as often with the short MCP answer schema
   (3,323 characters for the three tools) as with the full one (17,278), on half the input tokens (2026-11-09).
 

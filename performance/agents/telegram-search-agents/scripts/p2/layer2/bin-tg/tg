@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""tg for the layer-2 tg arm: released tg-cli 0.135.0 on a throwaway copy of the r9 store, always --offline, read
+commands only, keyring unreachable, embedding model pinned as in layer 1, one tg call on the machine at a time.
+TG_READ_ONLY must not be set (tg reads it from ancestors too): in 0.135.0 it also refuses the OpenAI question embedding (permission_error
+"it cannot send the query to api.openai.com"), which would leave tg without its meaning search. --offline, this
+allowlist and the throwaway copy keep the run off the account instead."""
+import fcntl, os, subprocess, sys, time
+EXP = os.environ.get("EXP") or os.path.expanduser("~/.cache/wirecat-experiment-b")  # the private run folder
+LOCK = f"{EXP}/r12/tg.lock"
+TG = f"{EXP}/p2/tg/node_modules/@wirecat/tg-cli/dist/bin/tg.js"
+STATE = f"{EXP}/p2/layer2/tgstate"
+CONFIG = f"{EXP}/lib/tg-config"
+LOG = os.environ.get("L2_CALL_LOG", f"{EXP}/p2/layer2/tgcalls.log")
+READ = {("skill", "show"), ("commands",), ("guide",), ("help",),
+        ("personal", "search", "conversations"), ("personal", "search", "messages"), ("personal", "search", "all"),
+        ("personal", "messages", "list"), ("personal", "messages", "context"), ("personal", "messages", "show"),
+        ("personal", "messages", "link"), ("personal", "chats", "list"), ("personal", "chats", "show")}
+args = sys.argv[1:]
+
+def allowed():
+  if any(a in ("--sync-first", "--yes", "-y", "--sync") for a in args): return False
+  for i, a in enumerate(args):
+    v = a.split("=", 1)[1] if a.startswith("--backend=") else (args[i + 1] if a == "--backend" and i + 1 < len(args) else None)
+    if v is not None and v != "archive": return False
+  if "--help" in args or "-h" in args: return True
+  words = [a for a in args if not a.startswith("-")]
+  return any(tuple(words[:len(p)]) == p for p in READ)
+
+def log(code, started, waited):
+  with open(LOG, "a") as f:
+    f.write(f"{time.strftime('%H:%M:%S')}\t{round(time.monotonic() - started, 1)}\twait={round(waited, 1)}\texit={code}\t{' '.join(args[:4])}\n")
+
+if not allowed():
+  print("tg: this command is not available in this test (read commands of profile 'personal' only, local archive only)", file=sys.stderr)
+  log("refused", time.monotonic(), 0.0)
+  sys.exit(2)
+env = {k: v for k, v in os.environ.items() if not k.startswith(("WIRECAT_EXP_", "L2_", "TG_READ_ONLY"))}
+env.update({"WIRECAT_STATE_DIR": STATE, "TG_CONFIG_DIR": CONFIG, "TG_OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
+            "TG_EMBEDDING_PROVIDER": "openai", "TG_EMBEDDING_MODEL": "text-embedding-3-small", "TG_EMBEDDING_DIMS": "768",
+            "DBUS_SESSION_BUS_ADDRESS": "disabled:"})
+env.pop("OPENAI_API_KEY", None)
+if "--offline" not in args:
+  args.append("--offline")
+with open(LOCK, "w") as lock:
+  t0 = time.monotonic()
+  fcntl.flock(lock, fcntl.LOCK_EX)
+  waited = time.monotonic() - t0
+  started = time.monotonic()
+  r = subprocess.run(["node", TG, *args], env=env, cwd="/var/tmp")
+log(r.returncode, started, waited)
+sys.exit(r.returncode)

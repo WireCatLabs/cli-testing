@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""qmd for the layer-2 qmd arm: qmd 2.9.0 over the per-chat-per-day Markdown of the r9 copy (env of p2/qmd/env.sh).
+Read commands only (search, query when enabled, get, multi-get, ls, status, skill show, --help). Every call logged."""
+import os, subprocess, sys, time
+EXP = os.environ.get("EXP") or os.path.expanduser("~/.cache/wirecat-experiment-b")  # the private run folder
+QMD = f"{EXP}/p2/qmd/pkg/node_modules/.bin/qmd"
+P = f"{EXP}/p2/qmd"
+LOG = os.environ.get("L2_CALL_LOG", f"{EXP}/p2/layer2/qmdcalls.log")
+READ = {"search", "get", "multi-get", "ls", "status"} | ({"query", "vsearch"} if os.environ.get("L2_QMD_QUERY") == "1" else set())
+args = sys.argv[1:]
+words = [a for a in args if not a.startswith("-")]
+docs = words[:2] in (["skill", "show"], ["skills", "list"], ["skills", "get"])
+ok = (words[:1] and words[0] in READ) or docs or args in (["--help"], ["-h"], ["help"])
+started = time.monotonic()
+if not ok:
+  print(f"qmd: this command is not available in this test (read commands only: {', '.join(sorted(READ))})", file=sys.stderr)
+  code = "refused"
+else:
+  env = {k: v for k, v in os.environ.items() if not k.startswith("L2_")}
+  env.update({"XDG_CACHE_HOME": f"{P}/big/cache", "QMD_CONFIG_DIR": f"{P}/big/config", "QMD_FORCE_CPU": "1"})
+  code = subprocess.run([QMD, *args], env=env, cwd=P).returncode
+with open(LOG, "a") as f:
+  f.write(f"{time.strftime('%H:%M:%S')}\t{round(time.monotonic() - started, 1)}\texit={code}\t{' '.join(args[:3])}\n")
+sys.exit(2 if code == "refused" else code)
