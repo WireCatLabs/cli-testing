@@ -92,8 +92,9 @@ Setups:
   LoCoMo's token F1.
 - **An empty answer is wrong** and is not sent to the judge. gpt-4o-mini labelled an empty answer CORRECT about 7
   times in 10.
-- **A dataset fetch is wrong.** An answer whose agent downloaded the LoCoMo dataset (it holds the gold answers)
-  counts as wrong ([net_scan.py](scripts/post1/scripts/net_scan.py)).
+- **A dataset look-up is wrong.** An answer whose agent went after the LoCoMo dataset (it holds the gold answers),
+  online or on the disk, counts as wrong. [net_scan.py](scripts/post1/scripts/net_scan.py) flags any tool call
+  that names LoCoMo.
 - **Cited** counts the questions where the answer cites at least one of LoCoMo's evidence sessions.
 - **The judge, checked by hand.** 60 judged answers drawn at random (seed 20261126, 2 from each arm and setup, empty
   answers left out) were labelled again by hand. The hand label matched in 57 of 60. The 3 others were dates near
@@ -127,13 +128,13 @@ paired difference compares its one run with the mean of files' 3 runs.
 
 ### OpenClaw + DeepSeek Flash, 3 runs of 50 (sandboxed rerun)
 
-| Setup | Correct (range) | 95% interval | vs files (paired) | Cited | $/run | Median s | Dataset fetches |
+| Setup | Correct (range) | 95% interval | vs files (paired) | Cited | $/run | Median s | Dataset look-ups |
 | --- | ---: | --- | --- | ---: | ---: | ---: | ---: |
 | files | 41.7 (39–43) | 37.3–45.7 | | 43.3 | 0.312 | 38 | 5 |
 | WireCat | 40.7 (39–43) | 35.7–45.3 | −1.0 (−3.3…+1.3) | 44.0 | 0.542 | 73 | 9 |
 
-The dataset fetches are among the 300 answers and are counted wrong, so both rows slightly understate an agent that
-does not go online.
+The dataset look-ups are among the 300 answers and are counted wrong, so both rows slightly understate an agent
+that does not look for the answers.
 
 ### Claude Code + Claude Sonnet 5.5, 1 run of 50
 
@@ -212,7 +213,7 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
   likely, not settled.
 - **Qwen's lead is noise.** Its first run gave 45, its second 41.
 - **Grok is partial.** The runner stops before a chunk that could pass the $15 budget, so Grok stopped at 19 of its
-  planned 25 questions. One Grok answer fetched the dataset and counts as wrong.
+  planned 25 questions. One Grok answer searched the disk for the dataset and counts as wrong (the judge had marked it wrong anyway).
 - Cost of run 1 is OpenRouter's credit change per chunk. That counter lags, so a model's cost shifts a little to its
   neighbour in the run order. GLM's real cost is likely nearer its estimate, $0.39. The second runs of Qwen and GLM
   cost about $1.4 and $0.75 by Hermes's estimate.
@@ -229,8 +230,9 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
   and every file that holds gold answers are hidden, and one lane runs at a time.
   [iso_owner_check.py](scripts/post1/scripts/iso_owner_check.py) found 0 host paths in any tool call after each lane.
   Against the old runs, Flash lost 1.6 (files) and 2.3 (WireCat) questions, and V4 Pro gained 1 each.
-- **Agents fetched the dataset from the internet.** OpenClaw + Flash downloaded LoCoMo from GitHub in 14 of 300
-  answers. Grok did it once. Those answers count as wrong. Hermes went online 3 times without reaching the dataset;
+- **Agents went after the dataset.** OpenClaw + Flash did it in 14 of 300 answers: 6 went online for it (GitHub or
+  a web search: 1 files, 5 WireCat), 8 searched the disk and the benchmark's own scripts for it. Grok searched the
+  disk once. Those answers count as wrong. Hermes went online 3 times without reaching the dataset;
   those stay scored.
 - **Supermemory's Hermes plugin writes to its store while it answers.** `auto_capture: false` does not stop it: it
   mirrors the agent's built-in memory writes, and the agent called `supermemory-forget` itself. Hermes cannot turn
@@ -250,8 +252,8 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
 - **Adversarial questions** (LoCoMo category 5).
 - **A larger history.** Each conversation fits comfortably in files that grep can search. That favours files.
 - **Run-to-run spread** for Claude Code, V4 Pro, Mem0 and three of the post 3 models (1 run each).
-- **Judge accuracy.** The labels are not checked by hand yet. The interval counts each label as fixed, so judge
-  noise is not in it.
+- **Judge accuracy beyond the hand check.** Only 60 labels were checked by hand (above). The interval counts each
+  label as fixed, so judge noise is not in it.
 - **Other agents with other engines.** OpenClaw ran only files and WireCat. Post 3 ran only Hermes + WireCat.
 - **Tuned engine settings.** Every engine ran with its plugin's or MCP server's defaults. Supermemory's documented
   `search_mode: documents` was not tried.
@@ -259,7 +261,7 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
 
 ## Files
 
-- [data/post1-answers.jsonl](data/post1-answers.jsonl): 1,760 answers, one per line. Fields: `stage`, `arm`,
+- [data/post1-answers.jsonl](data/post1-answers.jsonl): 2,060 answers, one per line. Fields: `stage`, `arm`,
   `setup`, `run`, `conversation`, `id`, `category`, `answer`, `label`, `correct`, `network` (`dataset` or `web` when
   the agent went online), `sessions_cited`, `seconds`, `cost_usd`, `tool_calls` (a count) and `tools`. `tools` maps
   each tool name to its count, except in OpenClaw rows: OpenClaw reports only the distinct names, so there it is a
