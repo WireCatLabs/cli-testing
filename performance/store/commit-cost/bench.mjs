@@ -1,8 +1,8 @@
 // The cost of one commit in cli-core's store settings (WAL, default synchronous=FULL) against NORMAL,
 // on the disk BENCH_DIR is on. Writes only to its own folder.
-import { DatabaseSync } from "node:sqlite"
 import { mkdirSync, rmSync } from "node:fs"
 import { loadavg } from "node:os"
+import { DatabaseSync } from "node:sqlite"
 
 const DIR = process.env.BENCH_DIR ?? "/tmp/commit-cost-bench"
 const COMMITS = Number(process.env.COMMITS ?? 200)
@@ -28,6 +28,8 @@ const run = (synchronous) => {
   return { synchronous, median_ms: pick(0.5), p90_ms: pick(0.9), max_ms: times.at(-1).toFixed(2) }
 }
 
-console.log(JSON.stringify({ load: loadavg().map((n) => n.toFixed(1)), commits: COMMITS, rows_per_commit: 100 }))
-for (const mode of ["FULL", "NORMAL", "FULL", "NORMAL"]) console.log(JSON.stringify(run(mode)))
+const print = (value) => process.stdout.write(`${JSON.stringify(value)}\n`)
+
+print({ load: loadavg().map((n) => n.toFixed(1)), commits: COMMITS, rows_per_commit: 100 })
+for (const mode of ["FULL", "NORMAL", "FULL", "NORMAL"]) print(run(mode))
 rmSync(DIR, { recursive: true, force: true })
