@@ -23,13 +23,13 @@ def rows(name):
     return [json.loads(line) for line in (DATA / name).read_text().splitlines()]
 
 
-def post1(stage, answers):
+def post1(stage, answers, also=None, arms=None):
     rng = random.Random(1)
     scores = defaultdict(lambda: defaultdict(list))
     for r in answers:
-        if r["stage"] == stage:
+        if r["stage"] in (stage, also) and (arms is None or (r["arm"], r["setup"]) in arms):
             scores[(r["arm"], r["setup"])][r["id"]].append(0 if r["network"] == "dataset" else r["correct"])
-    print(f"\nPost 1, stage {stage}\n")
+    print(f"\nPost 1, stage {stage}{' + ' + also if also else ''}\n")
     print("| Arm | Setup | Questions | Runs | Correct | 95% interval | vs files (paired) |")
     print("|---|---|---:|---:|---:|---|---|")
     for (arm, setup), per_q in sorted(scores.items()):
@@ -73,4 +73,5 @@ if __name__ == "__main__":
     first = rows("post1-answers.jsonl")
     post1("full", first)
     post1("full-iso2", first)
+    post1("full", first, also="ext", arms={("claude-sonnet", "files"), ("claude-sonnet", "wirecat")})
     post3(rows("post3-answers.jsonl"), first)

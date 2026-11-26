@@ -11,7 +11,9 @@ from collections import Counter
 from pathlib import Path
 
 # Post 1 publishes stage "full" for every arm except OpenClaw, whose rows come from the sandboxed rerun "full-iso2".
-POST1 = {"full": lambda arm: not arm.startswith("openclaw-"), "full-iso2": lambda arm: arm.startswith("openclaw-")}
+POST1 = {"full": lambda arm: not arm.startswith("openclaw-"), "full-iso2": lambda arm: arm.startswith("openclaw-"),
+         # The 150 extension questions, Claude Code only.
+         "ext": lambda arm: arm.startswith("claude-")}
 # Post 3's runner flags these markers in tool-call arguments; these three mean the agent fetched the dataset.
 P3_NET = ("curl", "wget", "http://", "https://", "git clone", "pip ", "locomo", "huggingface", "urllib", "requests")
 P3_DATASET = ("locomo", "huggingface", "git clone")

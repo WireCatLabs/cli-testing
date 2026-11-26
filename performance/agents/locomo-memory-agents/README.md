@@ -17,12 +17,13 @@ The data is LoCoMo, a public synthetic set. No real person's data was used.
 ## Short answer
 
 - **No engine beat plain files.** In every agent and model, files scored highest or tied.
-- **WireCat memo ties with files** in every arm: the paired difference is within noise each time (−1.3 at worst, with
-  an interval that crosses 0).
+- **WireCat memo ties with files on the 50 questions** in every arm (−1.3 at worst, with an interval that crosses
+  0). On 200 questions with Claude Sonnet it is 7 below files (175 against 182), with an interval of −15 to +1: just
+  inside noise, and most of the gap is on open-domain questions.
 - **Hermes + DeepSeek Flash:** Hindsight (−5.0), Honcho (−3.0) and Mem0 (−6.7) are below files by the paired test.
   Their intervals stay below 0. Supermemory is far below (−34), for reasons in [Known issues](#known-issues-found-and-fixed).
-- **Claude Code + Claude Sonnet:** every engine is within noise of files (files 42, WireCat 42, Hindsight 41, Honcho
-  40, Mem0 and Supermemory 38).
+- **Claude Code + Claude Sonnet:** on the 50 questions every engine is within noise of files (files 42, WireCat 42,
+  Hindsight 41, Honcho 40, Mem0 and Supermemory 38).
 - **Scope:** each LoCoMo conversation has 19 to 32 sessions, 370 to 690 turns, 44,000 to 90,000 characters of text.
   That is small enough for grep over the files to find most answers, and this favours plain files. A larger history
   may change the result.
@@ -74,7 +75,8 @@ Setups:
 - The category names come from LoCoMo's own scorer: 1 multi-hop, 2 temporal, 3 open-domain, 4 single-hop. Category 5
   (adversarial) is left out, as Mem0's evaluation does.
 - [pick_more.py](scripts/post1/scripts/pick_more.py) adds 150 more questions (seed 20261125) for a larger run.
-  That run is in progress. This page has no results for it.
+  15 per conversation, dealt 4/4/3/4 by category (conv-30 gives its open-domain share to single-hop): 40 multi-hop,
+  40 temporal, 27 open-domain, 43 single-hop. Only Claude Code with files and WireCat ran them.
 - The question and gold-answer text is not in this folder. LoCoMo is CC BY-NC 4.0, so the picker regenerates it
   from the dataset.
 
@@ -93,6 +95,11 @@ Setups:
 - **A dataset fetch is wrong.** An answer whose agent downloaded the LoCoMo dataset (it holds the gold answers)
   counts as wrong ([net_scan.py](scripts/post1/scripts/net_scan.py)).
 - **Cited** counts the questions where the answer cites at least one of LoCoMo's evidence sessions.
+- **The judge, checked by hand.** 60 judged answers drawn at random (seed 20261126, 2 from each arm and setup, empty
+  answers left out) were labelled again by hand. The hand label matched in 57 of 60. The 3 others were dates near
+  the gold that the judge accepted. The judge was never too strict, but it called only 6 non-`unknown` answers
+  wrong, so that check is weak. One sampled question has a wrong gold answer: `conv-48-c4-1` asks what Jolene
+  played, and in the chat (D27:12) it is Deborah who played it.
 
 ### Machine
 
@@ -140,6 +147,19 @@ does not go online.
 | Supermemory | 38 | 32.0–44.0 | −4.0 (−10.0…+1.0) | 35 | 2.231 | 11 |
 | no memory | 0 | 0–0 | −42.0 (−47.0…−37.0) | 0 | 0.180 | 3 |
 
+### Claude Code + Claude Sonnet 5.5, files and WireCat on 200 questions, 1 run
+
+The 50 questions above plus the 150 extension questions.
+
+| Setup | Correct | 95% interval | vs files (paired) | Median s, extension |
+| --- | ---: | --- | --- | ---: |
+| files | 182 | 173–189 | | 8 |
+| WireCat | 175 | 165–184 | −7 (−15…+1) | 42 |
+
+By category (correct of asked): multi-hop 50/53 for both, temporal 47/53 files and 46/53 WireCat, open-domain 31/39
+and 27/39, single-hop 54/55 and 52/55. On the extension, WireCat missed 10 questions that files answered and answered
+3 that files missed. Half of the 10 are open-domain questions, whose gold answer is an inference from the chat.
+
 ### DeepSeek V4 Pro, 1 run of 20
 
 | Agent | Setup | Correct | 95% interval | vs files (paired) | $/run |
@@ -162,8 +182,9 @@ conversations, measured on its server. Its `reflect` tool adds about $0.01 per q
 - **Plain files are a strong baseline on LoCoMo.** No engine beat them in any arm. With Claude Sonnet the engines
   are all within noise of files. With the cheaper DeepSeek Flash in Hermes, three engines fall below files by the
   paired test: Hindsight, Honcho and Mem0.
-- **WireCat memo is the one engine that never falls below files.** It ties with files in Hermes, OpenClaw and Claude
-  Code, with both DeepSeek models.
+- **WireCat memo is the one engine that never falls below files by the paired test.** It ties with files in Hermes,
+  OpenClaw and Claude Code on the 50 questions. On 200 questions with Claude Sonnet it trails files by 7, an interval
+  that only just reaches 0; with more runs this may turn out a real gap.
 - **Citations differ more than answers.** Hindsight and Mem0 answer many questions without citing an evidence session
   (25.7 and 6.0 cited of 50 in Hermes). A likely reason: their tools return extracted facts, not whole sessions.
 - **The models do not know LoCoMo by heart.** Both no-memory controls, told to answer only what they already know,
@@ -224,7 +245,8 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
 
 ## Not measured
 
-- **The 150 extension questions.** The picker is here; that run is in progress.
+- **The 150 extension questions with other engines, agents and models.** Only Claude Code with files and WireCat ran
+  them.
 - **Adversarial questions** (LoCoMo category 5).
 - **A larger history.** Each conversation fits comfortably in files that grep can search. That favours files.
 - **Run-to-run spread** for Claude Code, V4 Pro, Mem0 and three of the post 3 models (1 run each).
