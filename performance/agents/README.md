@@ -35,8 +35,8 @@ A test on the owner's real data follows [Testing agents on real data](../../docs
 
 - [locomo-memory-agents](locomo-memory-agents/README.md) — 50 public LoCoMo questions (200 for Claude Code), Hermes,
   OpenClaw and Claude Code, each with plain files, WireCat memo, Hindsight, Honcho, Mem0 and Supermemory: no engine
-  beat files, WireCat is within noise of files in every arm (Claude on 200 questions: 175 against 182, −7, interval
-  −15 to +1), and with DeepSeek Flash in Hermes Hindsight (−5.0), Honcho (−3.0) and Mem0
+  beat files, WireCat is within noise of files on the 50 questions in every arm, and below files on 200
+  questions with Claude (3 runs: 175.3 against 181.3, −6.0, interval −11.0 to −1.3), and with DeepSeek Flash in Hermes Hindsight (−5.0), Honcho (−3.0) and Mem0
   (−6.7) are below files by the paired test. Other models with WireCat: Gemini +3.7 over DeepSeek Flash on one
   run, Grok partial at 19 questions (2026-11-25).
 

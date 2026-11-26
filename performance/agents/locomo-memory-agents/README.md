@@ -18,8 +18,8 @@ The data is LoCoMo, a public synthetic set. No real person's data was used.
 
 - **No engine beat plain files.** In every agent and model, files scored highest or tied.
 - **WireCat memo ties with files on the 50 questions** in every arm (−1.3 at worst, with an interval that crosses
-  0). On 200 questions with Claude Sonnet it is 7 below files (175 against 182), with an interval of −15 to +1: just
-  inside noise, and most of the gap is on open-domain questions.
+  0). On 200 questions with Claude Sonnet, 3 runs, it is 6.0 below files (175.3 against 181.3), interval −11.0 to
+  −1.3: a real gap. All of it is on the 150 extension questions (−6.0, −10.7…−1.7). On the first 50 the two tie.
 - **Hermes + DeepSeek Flash:** Hindsight (−5.0), Honcho (−3.0) and Mem0 (−6.7) are below files by the paired test.
   Their intervals stay below 0. Supermemory is far below (−34), for reasons in [Known issues](#known-issues-found-and-fixed).
 - **Claude Code + Claude Sonnet:** on the 50 questions every engine is within noise of files (files 42, WireCat 42,
@@ -48,8 +48,9 @@ Arms (agent + model):
 
 - **Hermes + DeepSeek Flash** (`deepseek-flash`, DeepSeek's API): every setup, 3 runs of 50 questions (Mem0: 1 run).
 - **OpenClaw + DeepSeek Flash:** files and WireCat, 3 runs of 50.
-- **Claude Code + Claude Sonnet 5.5:** every setup, 1 run of 50. It ran on a subscription, so its costs below are list
-  prices, not money spent.
+- **Claude Code + Claude Sonnet 5.5:** every setup, 1 run of 50. Files and WireCat also on 200 questions (the 50 plus
+  150), 3 runs ([claude_repeat.py](scripts/post1/scripts/claude_repeat.py) for runs 2 and 3). It ran on a
+  subscription, so its costs below are list prices, not money spent.
 - **Hermes and OpenClaw + DeepSeek V4 Pro:** 1 run of the 20 questions in
   [data/strong-subset-ids.txt](data/strong-subset-ids.txt). This keeps the agent fixed and changes only the model.
 - **No memory:** Claude Code with no tools, and DeepSeek Flash called directly with no agent, both told to answer only
@@ -148,18 +149,23 @@ that does not look for the answers.
 | Supermemory | 38 | 32.0–44.0 | −4.0 (−10.0…+1.0) | 35 | 2.231 | 11 |
 | no memory | 0 | 0–0 | −42.0 (−47.0…−37.0) | 0 | 0.180 | 3 |
 
-### Claude Code + Claude Sonnet 5.5, files and WireCat on 200 questions, 1 run
+### Claude Code + Claude Sonnet 5.5, files and WireCat on 200 questions, 3 runs
 
 The 50 questions above plus the 150 extension questions.
 
-| Setup | Correct | 95% interval | vs files (paired) | Median s, extension |
-| --- | ---: | --- | --- | ---: |
-| files | 182 | 173–189 | | 8 |
-| WireCat | 175 | 165–184 | −7 (−15…+1) | 42 |
+Run 1 (2026-11-25) and runs 2 and 3 (2026-11-26), same harness and judge. Mean of 3 runs, the interval is a
+bootstrap over questions of the per-question mean, the paired column is WireCat minus files.
 
-By category (correct of asked): multi-hop 50/53 for both, temporal 47/53 files and 46/53 WireCat, open-domain 31/39
-and 27/39, single-hop 54/55 and 52/55. On the extension, WireCat missed 10 questions that files answered and answered
-3 that files missed. Half of the 10 are open-domain questions, whose gold answer is an inference from the chat.
+| Setup | Runs | Correct, mean (range) | 95% interval | vs files (paired) | Median s, runs 2–3 | $/run of 200 (list price), runs 2–3 |
+| --- | ---: | --- | --- | --- | ---: | ---: |
+| files | 182, 180, 182 | 181.3 (180–182) | 174.0–188.0 | | 6.5 | 2.99 |
+| WireCat | 175, 175, 176 | 175.3 (175–176) | 167.0–183.0 | **−6.0 (−11.0…−1.3)** | 39.9 | 6.55 |
+
+Split: on the first 50 questions files 42, 43, 44 and WireCat 42, 44, 43 (paired 0.0, −1.7…+1.7). On the 150
+extension questions files 140, 137, 138 and WireCat 133, 131, 133 (paired −6.0, −10.7…−1.7). By category, mean of 3
+runs (correct of asked): multi-hop 49.3 and 49.0 of 53, temporal 48.0 and 46.0 of 53, open-domain 30.0 and 28.3 of
+39, single-hop 54.0 and 52.0 of 55: the gap is spread over three categories, not only open-domain. No empty answers
+and no dataset look-ups in runs 2 and 3.
 
 ### DeepSeek V4 Pro, 1 run of 20
 
@@ -251,7 +257,7 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
   them.
 - **Adversarial questions** (LoCoMo category 5).
 - **A larger history.** Each conversation fits comfortably in files that grep can search. That favours files.
-- **Run-to-run spread** for Claude Code, V4 Pro, Mem0 and three of the post 3 models (1 run each).
+- **Run-to-run spread** for Claude Code's engines other than files and WireCat, V4 Pro, Mem0 and three of the post 3 models (1 run each).
 - **Judge accuracy beyond the hand check.** Only 60 labels were checked by hand (above). The interval counts each
   label as fixed, so judge noise is not in it.
 - **Other agents with other engines.** OpenClaw ran only files and WireCat. Post 3 ran only Hermes + WireCat.
@@ -261,7 +267,7 @@ same prompt, judge and rules. The reference is Hermes + DeepSeek Flash + WireCat
 
 ## Files
 
-- [data/post1-answers.jsonl](data/post1-answers.jsonl): 2,060 answers, one per line. Fields: `stage`, `arm`,
+- [data/post1-answers.jsonl](data/post1-answers.jsonl): 2,860 answers, one per line (`stage` `repeat` is Claude runs 2 and 3 on 200). Fields: `stage`, `arm`,
   `setup`, `run`, `conversation`, `id`, `category`, `answer`, `label`, `correct`, `network` (`dataset` or `web` when
   the agent went online), `sessions_cited`, `seconds`, `cost_usd`, `tool_calls` (a count) and `tools`. `tools` maps
   each tool name to its count, except in OpenClaw rows: OpenClaw reports only the distinct names, so there it is a
