@@ -8,5 +8,7 @@ How long the WireCat repositories' pull-request checks take, and where that time
   (they do not), and the cost they pay instead: loading cli-core's `cli` entry in each test file (2026-10-18).
 - [test-shards](test-shards/README.md): splitting tg-cli's and max-cli's test runs across 4 runners — the tests take
   half the time, but the whole run barely moves while every job waits for one of the account's 20 runners (2026-10-26).
+- [github-actions](github-actions/README.md): cli-core's pull-request runs after #3386: what weighted shards, a
+  docs-only path and removed builds saved, and what still costs most (2026-11-26).
 - [lazy-store-and-services](../startup/lazy-store-and-services/README.md): whether loading cli-core's store and
   services on first use shortens the consumers' test steps (it does not, measurably; the change was not merged) and their start (2026-10-18).
