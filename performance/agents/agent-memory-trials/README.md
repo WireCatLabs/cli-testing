@@ -248,7 +248,8 @@ likes. These rows lift that restriction and keep everything else: the same corpu
   input tokens (445K for 6 sessions) and memo the most (1.6M on EmbeddingGemma, 1.5M on e5-small). Agent input
   tokens add up the whole conversation at
   every turn, so long tool outputs early in a session cost again at each later turn. memo's `search --json` output
-  is the most verbose of the tools (928K characters of tool output over 6 sessions, against 131K for grep).
+  is the most verbose of the tools: 1.06M characters of tool output over 6 sessions on EmbeddingGemma and 928K on
+  e5-small, against 131K for grep.
 - OpenViking sessions ran about three times longer than the others. Per-query search time was not recorded, so the
   cause is likely, not measured: its search plus reading each record file.
 - `Old version inactive` is not shown: the agent reads old versions on purpose to find the latest one, so the stage
@@ -462,7 +463,7 @@ What changed in the reading:
   tokens and 207 tool calls on EmbeddingGemma).
 - **Across sessions and in the corrections gate, nothing changes**: 48 of 48 and 44 of 44 on both models.
 - **The supersession gap is still there.** The cancelled e-mail permission beat its cancellation in one wording
-  (t2.p1, 2 wrong concrete).
+  (t2.p2, 2 wrong concrete). In t2.p1 neither version reached the top 5 and the agent wrote UNKNOWN.
 
 A second fault turned up in the rerun. The store build ran the `memo` on the machine's PATH, not the pinned
 install. That was 0.154.0 when the first rows ran (store schema 76, checked in the kept builds), and is 0.156.0
@@ -501,8 +502,8 @@ review. Output: [results/slots.md](results/slots.md) and [results/slots.json](re
 ## Every losing row for memo
 
 The rows below are memo on **e5-small (not default)**. On EmbeddingGemma memo lost 32 known checks in his design (30
-not retrieved, 2 missed available on rule R1) and 17 in ours (15 not retrieved, 2 wrong concrete: the cancelled
-e-mail permission R7 in t2.p1). Per-check rows:
+not retrieved, 2 missed available on rule R1, explained below) and 17 in ours (15 not retrieved, 2 wrong concrete: the cancelled
+e-mail permission R7 in t2.p2). Per-check rows:
 [results/e1-his-memo-embeddinggemma.csv](results/e1-his-memo-embeddinggemma.csv) and
 [results/e1-ours-memo-embeddinggemma.csv](results/e1-ours-memo-embeddinggemma.csv).
 
@@ -653,8 +654,9 @@ memo lost no unknown check. Every known check it did not apply, with the rule's 
 R7 masks e-mail addresses in an export. Its source s11 replaced s10, which sent full addresses. In all three
 wordings of t2 memo's top 5 held s10 and not s11, so the agent kept full addresses (wrong concrete). That is the
 missing supersession from experiment 3 in action. R1 is the HTTP timeout: 7 seconds (s02) replaced 30 (s01). In
-wording p2 only s01 reached the top 5 and the agent wrote 30. In p0 both did, and the agent left the value UNKNOWN
-rather than pick one (missed available).
+wording p2 only s01 reached the top 5 and the agent wrote 30. In p0 both did, and the agent wrote 7. It still lost
+the 2 `request_options()['timeout']` checks (missed available): it left the attempts count UNKNOWN, so
+`request_options()` raised before it returned the timeout. EmbeddingGemma lost the same 2 checks the same way.
 
 ## Pre-registered hypotheses, scored
 
@@ -685,8 +687,8 @@ The round config set these before any data. Experiment 1, his design:
 4. **When the agent may search itself, every engine reaches 77 or 78 of 78**, memo included. The engines then
    differ in cost, not answers: grep over files used the fewest tokens, memo the most (1.6M).
 5. **memo's real gap is supersession.** A corrected note is fine (experiment 3: 44 of 44). Two separate notes, one
-   replacing the other, are not linked: in experiment 1 the cancelled e-mail permission kept beating its
-   cancellation. That is roadmap step 5.
+   replacing the other, are not linked. In experiment 1 the cancelled e-mail permission beat its cancellation in
+   all three wordings on e5-small and in one wording (t2.p2) on EmbeddingGemma. That is roadmap step 5.
 6. **Learning from conversation works for memo.** memo with agent-written notes and memo fed the transcripts both
    carried every rule across sessions (48 of 48). The agent's own notes file scored 46 and OpenViking 44 and 46.
 7. **Danil's own Memory Bank applies every rule (78 of 78, 48 of 48 across sessions), and so does memo when the
