@@ -60,4 +60,70 @@ Claims checked and found not to hold:
 - More than one sample after the change. Shard timings vary by about 40 s between runs of the same tree.
 - Wall clock after the change: the account's queue was full during the run (span 1,365 s, 6 own jobs at the peak).
 - The docs path on a live run: no docs-only pull request has run since the merge.
-- Batching the downstream parity jobs and a template database for tests (#3386 items 1 and 2). Not built.
+- Batching the downstream parity jobs (#3386 item 2). Not built. The template database for tests is in the
+  follow-up below.
+
+## Follow-up: the tests themselves (cli-core #3412, 2026-11-27)
+
+### Why we ran it
+
+The two test shards are about 90% of a pull request's critical path. #3386 named two costs inside them: every test
+file that opened a store migrated an empty one again (vitest's `isolate: true` resets the module that held the
+migrated copy), and a list of slow files. The question: what do the tests waste, and what does cutting it save? The
+answer decided what [cli-core #3412](https://github.com/WireCatLabs/cli-core/pull/3412) changed. The 2026-10-18 page
+[cli-core-test-speed](../cli-core-test-speed/README.md) introduced the per-file copy; this moves it to once per run.
+
+### Setup
+
+- **Local.** AMD Ryzen AI 9 HX 370 (24 threads), Node 24.19.0, Vitest 5.0.5, one worker. cli-core main at
+  7cbf47f6e against the change, shards run alternately (before 1, after 1, before 2, after 2). Other agents ran
+  suites on the same machine, so the load moved between 4.6 and 42 during the runs.
+- **Command**, per shard and tree:
+
+  ```sh
+  VITEST_MAX_WORKERS=1 VITEST_MAX_FORKS=1 VITEST_MAX_THREADS=1 \
+    pnpm exec vitest run --maxWorkers=1 --shard=<i>/2 --reporter=default --reporter=json --outputFile.json=<report>
+  python3 test-file-times.py <before report> <after report>
+  ```
+
+  The environment variables matter: `VITEST_MAX_WORKERS` overrides both `--maxWorkers` and `maxWorkers` in the
+  config. With it set to 6 in the shell, `--maxWorkers=1` ran 6 workers, and even `fileParallelism: false` ran four
+  files at once (checked with four files that each block for 2 s).
+- [`test-file-times.py`](test-file-times.py) sums each file's test time (`endTime - startTime` in the JSON report),
+  which leaves out imports and the wait for a machine test slot.
+- **CI.** Run 45923719189 of #3412 against six pull request runs of the same evening (45918755869, 45917730969,
+  45916992986, 45916201468, 45915926591, 45915781071).
+
+### Results
+
+| Local, one worker | shard 1/2 | shard 2/2 |
+|---|---|---|
+| Tests' own time, before → after | 678 → 511 s (−25%) | 663 → 492 s (−26%) |
+| Vitest `Duration`, before → after | 1,187 → 992 s | 1,173 → 1,329 s |
+| Load at start → end, before | 9.2 → 8.3 | 4.6 → 13.0 |
+| Load at start → end, after | 8.3 → 4.6 | 13.0 → 25.2, 42 in between |
+
+- The median file's tests got 0.2 s faster. The biggest single file was `note-vectors.test.ts`, 15.7 → 8.0 s: it
+  no longer finds mentions in its 6,000-note store, which none of its tests reads.
+- Shard 2's `Duration` rose because the after run waited for test slots under load 42 (setup 23% of it, against 3%
+  before). The tests' own time fell by the same share in both shards, under rising and falling load alike.
+- A full run with coverage, one worker, passed above the floor (lines 95.62%).
+- **CI, one sample:** shards 284 / 418 s, 702 s together. The six other runs: 621 to 914 s together (median 742 s),
+  with shard pairs from 318 / 318 to 479 / 434 s. One sample cannot be told apart from that spread.
+
+### What it showed
+
+- The per-file migration was the one clear waste: a quarter of the tests' own time on one worker.
+- The other slow files spend their time on what they check. Each `version-*.test.ts` spends about 1.2 s rolling a
+  store back (61 `ALTER TABLE … DROP COLUMN`, about 20 ms each, since SQLite checks the whole 991-object schema
+  each time) and about 1.4 s on the real upgrade through migration 73. `rollback-copy.test.ts` migrates on purpose.
+  The 200,000-message, 100,000-line and 10,001-hit files are load tests.
+- In `mcp/mcp.test.ts` (199 tests, about 0.6 s each), a third of the CPU goes to `resolveSettings`, which the server
+  calls on every tool call to refresh permissions. That is product code, left as a finding.
+- `isolate: false` is not safe in cli-core today: in a reused worker only the first file got cli-base's sandbox, and
+  the next three files saw the real home folder.
+
+### Not measured
+
+- More CI samples: CI shard times vary by about 300 s between runs of similar trees.
+- The change in import time: the same modules are evaluated as before; the saving is in running the migration.
