@@ -227,7 +227,7 @@ the words and pieces, 2 ms typing. Most of the rest of a save was the commit's s
   53–155 ms on a read-only open too. Until that sync runs, a read-only `type:` search still works the types out in
   memory, 2.3–2.5 s here.
 - **The time limit did not stop the read-only search.** The 2 s limit was passed (2.3–2.8 s) with no "out of time"
-  in both builds. Why was not checked.
+  in both builds. The cause and the fix are in the next section.
 
 ### Not measured
 
@@ -241,3 +241,59 @@ the words and pieces, 2 ms typing. Most of the rest of a save was the commit's s
 - Other writers than `saveThreads` and `saveThread` (deletes, restores, flags, mail rules) still leave their changes
   for the next drain or catch-up.
 - Stores over 100,000 emails.
+
+## A type search held to one time limit
+
+### Why it was run
+
+The run above saw a read-only `type:` search on an upgraded store take 2.3–2.8 s with no "out of time", against the
+search's 2 s limit. The question: why does the limit not hold there, and can the search be made faster cheaply? The
+answers decided cli-core [#3415](https://github.com/WireCatLabs/cli-core/pull/3415).
+
+### What was wrong
+
+An instrumented run showed two passes that worked out every untyped email in memory per search, 0.9–1.2 s each.
+The search runs one query for its page and one for its total. Each query started its own 2 s clock and worked the
+types out again, so neither query passed 2 s while the search took twice that. The fix gives the total only the time
+the page left (and leaves the total out when none is left), and keeps the types worked out per connection until the
+store changes.
+
+### Setup
+
+- Machine: as above. Load average 14 to 22 during the runs.
+- Code: cli-core `main` at 7c03c78eb (before) and branch `perf/mail-type-search-budget` (after), built with
+  `pnpm build`.
+- Data: 100,000 synthetic emails seeded by [type-search-budget.mjs](type-search-budget.mjs) (lists, shops, orders and
+  people, subjects only), then every type cleared, as the upgrade to version 76 leaves a store. The script runs three
+  read-only searches, each on a fresh open, then three on one open, as an MCP server keeps it.
+
+```sh
+node type-search-budget.mjs <cli-core checkout> 100000
+```
+
+### Results
+
+One run each.
+
+| Read-only search | Before | After |
+| --- | ---: | ---: |
+| `type:order`, fresh open | 2,506 ms | 1,210 ms |
+| `hello reach:direct`, fresh open | 2,389 ms | 1,275 ms |
+| `type:order`, fresh open, again | 1,919 ms | 1,079 ms |
+| one open: `type:order`, `hello reach:direct`, `type:order` | not run | 1,226, 189, 77 ms |
+
+A second run of the script after the fix gave 950–1,246 ms on fresh opens and 1,168, 229 and 97 ms on one open.
+
+### What it showed
+
+- **The search did the same work twice.** Working the types out once halves the first search, to about 1.2 s.
+- **The limit now covers the whole search.** A total that would pass the limit is left out, and the page still
+  comes back.
+- **The first pass still costs about 1.1 s on 100,000 untyped emails.** A profile put about 0.4 s in the SQL that
+  reads each email's inputs (every subquery uses an index) and the rest in JavaScript. Mail sync's catch-up stores
+  the types once, and searches after it take about 60 ms.
+
+### Not measured
+
+- More than two runs. The load moved between runs.
+- Real mail, and stores over 100,000 emails.
