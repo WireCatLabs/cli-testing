@@ -1,0 +1,276 @@
+{
+  "template_files": 119,
+  "template_markdown_files": 103,
+  "template_markdown_words": 64913,
+  "template_markdown_tokens_o200k": 117621,
+  "memory-bank": [
+    {
+      "session": "t1.p0.a1",
+      "template_files_read": 16,
+      "adr_files_read": 12,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 21920,
+        "sources": 4103,
+        "other": 14977
+      }
+    },
+    {
+      "session": "t1.p0.a2",
+      "template_files_read": 10,
+      "adr_files_read": 12,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 17795,
+        "sources": 4103,
+        "other": 9058
+      }
+    },
+    {
+      "session": "t2.p0.a1",
+      "template_files_read": 7,
+      "adr_files_read": 12,
+      "intake_read": true,
+      "tool_result_tokens": {
+        "template": 9943,
+        "sources": 4922,
+        "other": 14405
+      }
+    },
+    {
+      "session": "t2.p0.a2",
+      "template_files_read": 10,
+      "adr_files_read": 14,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 16783,
+        "sources": 4401,
+        "other": 13139
+      }
+    },
+    {
+      "session": "t3.p0.a1",
+      "template_files_read": 8,
+      "adr_files_read": 5,
+      "intake_read": true,
+      "tool_result_tokens": {
+        "template": 14975,
+        "sources": 2555,
+        "other": 11238
+      }
+    },
+    {
+      "session": "t3.p0.a2",
+      "template_files_read": 4,
+      "adr_files_read": 6,
+      "intake_read": true,
+      "tool_result_tokens": {
+        "template": 5674,
+        "sources": 2886,
+        "other": 16017
+      }
+    }
+  ],
+  "u-memory-bank": [
+    {
+      "session": "t1.p0.a1",
+      "template_files_read": 4,
+      "adr_files_read": 5,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 7811,
+        "sources": 1734,
+        "other": 22108
+      }
+    },
+    {
+      "session": "t1.p0.a2",
+      "template_files_read": 4,
+      "adr_files_read": 12,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 4875,
+        "sources": 4103,
+        "other": 22688
+      }
+    },
+    {
+      "session": "t2.p0.a1",
+      "template_files_read": 4,
+      "adr_files_read": 11,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 4875,
+        "sources": 3762,
+        "other": 23019
+      }
+    },
+    {
+      "session": "t2.p0.a2",
+      "template_files_read": 3,
+      "adr_files_read": 12,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 4322,
+        "sources": 4103,
+        "other": 17318
+      }
+    },
+    {
+      "session": "t3.p0.a1",
+      "template_files_read": 5,
+      "adr_files_read": 12,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 5934,
+        "sources": 4103,
+        "other": 11345
+      }
+    },
+    {
+      "session": "t3.p0.a2",
+      "template_files_read": 6,
+      "adr_files_read": 12,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 9423,
+        "sources": 4103,
+        "other": 23876
+      }
+    }
+  ],
+  "memory-bank-agent": [
+    {
+      "session": "r.r1/A",
+      "template_files_read": 17,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 22212,
+        "sources": 0,
+        "other": 4117
+      }
+    },
+    {
+      "session": "r.r1/B",
+      "template_files_read": 14,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 16868,
+        "sources": 0,
+        "other": 4761
+      }
+    },
+    {
+      "session": "r.r1/C",
+      "template_files_read": 12,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 12962,
+        "sources": 0,
+        "other": 8881
+      }
+    },
+    {
+      "session": "r.r2/A",
+      "template_files_read": 16,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 19372,
+        "sources": 0,
+        "other": 4281
+      }
+    },
+    {
+      "session": "r.r2/B",
+      "template_files_read": 11,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 12235,
+        "sources": 0,
+        "other": 1131
+      }
+    },
+    {
+      "session": "r.r2/C",
+      "template_files_read": 14,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 14540,
+        "sources": 0,
+        "other": 12353
+      }
+    },
+    {
+      "session": "w.r1/A",
+      "template_files_read": 11,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 12923,
+        "sources": 0,
+        "other": 1341
+      }
+    },
+    {
+      "session": "w.r1/B",
+      "template_files_read": 13,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 13094,
+        "sources": 0,
+        "other": 4807
+      }
+    },
+    {
+      "session": "w.r1/C",
+      "template_files_read": 10,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 10185,
+        "sources": 0,
+        "other": 3318
+      }
+    },
+    {
+      "session": "w.r2/A",
+      "template_files_read": 16,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 21760,
+        "sources": 0,
+        "other": 1537
+      }
+    },
+    {
+      "session": "w.r2/B",
+      "template_files_read": 10,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 8791,
+        "sources": 0,
+        "other": 2636
+      }
+    },
+    {
+      "session": "w.r2/C",
+      "template_files_read": 10,
+      "adr_files_read": 0,
+      "intake_read": false,
+      "tool_result_tokens": {
+        "template": 11728,
+        "sources": 0,
+        "other": 2898
+      }
+    }
+  ]
+}
