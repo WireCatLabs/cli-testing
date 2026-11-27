@@ -1,0 +1,279 @@
+{
+  "store": "openviking-evo",
+  "passed": 44,
+  "total": 44,
+  "gate": true,
+  "by_check": {
+    "stored_current": 11,
+    "stored_old_gone": 11,
+    "retrieved_current": 11,
+    "retrieved_old_absent": 11
+  },
+  "rows": [
+    {
+      "store": "openviking-evo",
+      "rule": "C01",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C01",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C01",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C01",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C02",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C02",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C02",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C02",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C03",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C03",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C03",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C03",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C04",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C04",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C04",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C04",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C05",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C05",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C05",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C05",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C06",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C06",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C06",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C06",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C07",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C07",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C07",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C07",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C08",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C08",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C08",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C08",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C09",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C09",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C09",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C09",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C10",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C10",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C10",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C10",
+      "check": "retrieved_old_absent",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C11",
+      "check": "stored_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C11",
+      "check": "stored_old_gone",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C11",
+      "check": "retrieved_current",
+      "pass": true
+    },
+    {
+      "store": "openviking-evo",
+      "rule": "C11",
+      "check": "retrieved_old_absent",
+      "pass": true
+    }
+  ],
+  "finished": "2026-11-27T01:38:45.435910+00:00"
+}

@@ -45,3 +45,9 @@ A test on the owner's real data follows [Testing agents on real data](../../docs
 - [tools-search](tools-search/README.md) — `memo_tools_search` over a real stdio MCP server: task phrases found
   6 of 13 commands when every word had to match, 13 of 13 when ranked by the words that match; short phrases
   unchanged at 13 of 13 (2026-11-12).
+
+- [agent-memory-trials](agent-memory-trials/README.md): Danil Pismenny's agent memory design on synthetic Russian
+  rules, Hermes with gpt-5.6-terra: with one frozen top-5 search memo applies 30 of 78 known rules (Mem0 and
+  OpenViking with Agent Evolution 54, files with every rule 78). When the agent searches memory itself every engine
+  reaches 77 or 78 of 78, and they differ in tokens. Corrections gate (no agent): memo, Hindsight and OpenViking 44
+  of 44, Mem0 and AgentMemory 22. Rules learned from conversation: memo 48 of 48 (2026-11-27).
