@@ -210,10 +210,13 @@ likes. These rows lift that restriction and keep everything else: the same corpu
   `u-memo` uses the memo CLI and is told to read `memo skill show` first: memo's own skill counts as the product.
   Every other engine gets a thin `search '<query>' [--k N]` command (up to 20 whole records) that calls the
   engine's own search through a local proxy, so no API key enters the sandbox.
-- **Tuned on a separate dev set only.** `rules-trial-dev`: generator seed 20261127, other projects, rules and values,
-  task d1 with 7 known and 2 unknown checks. Version 1 of the prompt scored 7/7 and 2/2 in all 4 dev sessions on
-  `u-archive`, `u-memo` and `u-files-top5`, so it was frozen with no revision and then run once on the test tasks.
-  It is recorded in the round config (`STRATEGY_VERSION` 1).
+- **Tuned on a separate dev set only.** `rules-trial-dev`: generator seed 20261127, the same target project, look-alike
+  project and people as the test set, but a new task (cache and queue policy) and new rules and values. Task d1 has
+  7 known and 2 unknown checks. Version 1 of the prompt scored 7/7 and 2/2 in all 4 dev sessions on `u-archive`,
+  `u-memo` and `u-files-top5`, so it was frozen with no revision and then run once on the test tasks. It is
+  recorded in the round config (`STRATEGY_VERSION` 1).
+- **Where the prompt came from.** It was written by the author of the test corpus after the experiment 1 results
+  were known. The dev set only confirmed it, it did not shape it. Read the unrestricted rows with that in mind.
 - Labelled **ours, unrestricted**, apart from his design. His design rows above are unchanged.
 
 | Variant | Applied (known) | Unknown | Wrong | Seconds (6 sessions) | Agent tokens in/out | Tool calls | Memory searches per session |
@@ -467,6 +470,20 @@ missing supersession from experiment 3 in action. R1 is the HTTP timeout: 7 seco
 wording p2 only s01 reached the top 5 and the agent wrote 30. In p0 both did, and the agent left the value UNKNOWN
 rather than pick one (missed available).
 
+## Pre-registered hypotheses, scored
+
+The round config set these before any data. Experiment 1, his design:
+
+- **h1, memo applies known rules about as well as files and as well as or better than every other system: fails.**
+  The threshold was within 4 of the files row with no more wrong concrete answers. memo applied 30 of 78 against
+  78, with 4 wrong concrete answers against 0, and is below AgentMemory, Mem0, Hindsight and OpenViking.
+- **h2, memo loses old-version checks because it has no supersession: confirmed**, 12 of 48. Every other engine
+  scored 12 of 48 too (files-top5 22), so this does not single memo out in this design.
+- **h3, the unknown checks do not separate variants: confirmed**, 30 of 30 everywhere.
+- **Admission gates: all pass.** Oracle: files-his, which gets the answer key's rules as a file, scores 78 of 78
+  and 30 of 30. Too easy: no memory scores 0 of 78 (the limit was 10). Stored: every store holds at least 66 of
+  78 (the limit was 60), so every store is ranked.
+
 ## What it showed
 
 1. **In his design memo lands low: 30 of 78 known checks applied, 60 of 108 in his table.** Mem0 and OpenViking
@@ -493,8 +510,9 @@ rather than pick one (missed available).
 - Speed and cost of the engines at scale. 36 sources only.
 - Hindsight's full image (with its local reranker) and OpenViking's default Volcengine models.
 - A sealed network. The sandbox shares the host network so Hermes can reach the model, which also lets a session
-  reach services on localhost. The unrestricted proxy listens there on purpose. Nothing blocked a session from
-  reaching other local services, and the transcripts were scanned only for the forbidden paths, not for that.
+  reach services on localhost. The unrestricted proxy listens there on purpose. Nothing blocked other local
+  services. A scan of all 4,017 tool calls in 332 sessions found no localhost address, port, `curl`, `wget`, database
+  client or URL. Every memo result the agents saw was one of the round's own synthetic notes.
 - A strategy prompt free of the generator's style. It names correction words («поправка», «отменяем», «отзываем»)
   that our generator uses in both the dev and the test set. A real corpus may word corrections differently.
 
@@ -507,7 +525,7 @@ input, $2.00 output per million tokens, text-embedding-3-small $0.02, checked 20
 
 | Spend | Tokens | Source | USD |
 |---|---|---|---:|
-| Hindsight, e1 and e3 banks | 376K in (218K cached), 30K out, 132K reasoning | Hindsight `/llm-requests/stats` | about 0.37 |
+| Hindsight, e1 and e3 banks | 376K in (218K cached), 30K out, 132K reasoning | Hindsight `/llm-requests/stats`, read after every session (its searches made no model call) | about 0.37 |
 | OpenViking, 4 builds | about 58K in and 47K out each | OpenViking usage audit | about 0.44 |
 | Mem0, e1 build | about 611K in, 70K out | worker log | about 0.29 |
 | Mem0, e3 gate | not counted | estimate from the e1 build | about 0.25 |
