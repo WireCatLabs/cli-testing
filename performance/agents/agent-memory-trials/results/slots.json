@@ -1,0 +1,172 @@
+{
+  "files-top5": {
+    "p0": {
+      "lite": 6,
+      "old_on": 3,
+      "sapsan": 3,
+      "needed": 2,
+      "company": 1
+    },
+    "p1": {
+      "lite": 4,
+      "old_on": 5,
+      "old_off": 1,
+      "company": 1,
+      "needed": 2,
+      "sapsan": 1,
+      "other_target": 1
+    },
+    "p2": {
+      "lite": 4,
+      "needed": 5,
+      "old_on": 2,
+      "sapsan": 2,
+      "company": 1,
+      "other_target": 1
+    }
+  },
+  "memo, EmbeddingGemma (default)": {
+    "p0": {
+      "needed": 5,
+      "old_on": 3,
+      "lite": 6,
+      "sapsan": 1
+    },
+    "p1": {
+      "needed": 6,
+      "old_on": 3,
+      "lite": 5,
+      "old_off": 1
+    },
+    "p2": {
+      "lite": 3,
+      "needed": 7,
+      "old_on": 4,
+      "sapsan": 1
+    }
+  },
+  "memo, e5-small (not default)": {
+    "p0": {
+      "lite": 7,
+      "old_on": 4,
+      "needed": 3,
+      "other_target": 1
+    },
+    "p1": {
+      "needed": 6,
+      "lite": 4,
+      "other_target": 1,
+      "old_on": 3,
+      "old_off": 1
+    },
+    "p2": {
+      "lite": 5,
+      "needed": 4,
+      "old_on": 4,
+      "sapsan": 1,
+      "old_off": 1
+    }
+  },
+  "agentmemory": {
+    "p0": {
+      "old_on": 4,
+      "needed": 5,
+      "lite": 3,
+      "sapsan": 2,
+      "old_off": 1
+    },
+    "p1": {
+      "old_on": 5,
+      "lite": 5,
+      "needed": 4,
+      "other_target": 1
+    },
+    "p2": {
+      "needed": 6,
+      "lite": 3,
+      "old_on": 5,
+      "old_off": 1
+    }
+  },
+  "mem0-oss": {
+    "p0": {
+      "old_on": 4,
+      "lite": 4,
+      "needed": 5,
+      "sapsan": 2
+    },
+    "p1": {
+      "needed": 5,
+      "lite": 4,
+      "old_on": 5,
+      "sapsan": 1
+    },
+    "p2": {
+      "needed": 6,
+      "old_on": 5,
+      "lite": 4
+    }
+  },
+  "hindsight-slim": {
+    "p0": {
+      "old_on": 5,
+      "lite": 5,
+      "needed": 4,
+      "sapsan": 1
+    },
+    "p1": {
+      "old_off": 2,
+      "lite": 6,
+      "other_target": 1,
+      "sapsan": 3,
+      "old_on": 2,
+      "needed": 1
+    },
+    "p2": {
+      "lite": 5,
+      "needed": 4,
+      "old_on": 3,
+      "other_target": 1,
+      "sapsan": 2
+    }
+  },
+  "openviking-evo-off": {
+    "p0": {
+      "lite": 3,
+      "old_on": 4,
+      "needed": 6,
+      "sapsan": 2
+    },
+    "p1": {
+      "needed": 6,
+      "old_on": 5,
+      "lite": 3,
+      "old_off": 1
+    },
+    "p2": {
+      "needed": 7,
+      "lite": 3,
+      "old_on": 5
+    }
+  },
+  "openviking-evo-on": {
+    "p0": {
+      "lite": 3,
+      "needed": 6,
+      "old_on": 4,
+      "sapsan": 2
+    },
+    "p1": {
+      "needed": 6,
+      "lite": 3,
+      "old_on": 5,
+      "old_off": 1
+    },
+    "p2": {
+      "needed": 5,
+      "lite": 4,
+      "old_on": 5,
+      "sapsan": 1
+    }
+  }
+}

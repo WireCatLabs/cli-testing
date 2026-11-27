@@ -9,12 +9,17 @@ import csv
 import json
 import shutil
 import sqlite3
+import subprocess
 from pathlib import Path
 
 RUN = Path("/var/tmp/wcat-dapi/wcatbench-home/runs/e1")
 PREFIX_RUN = Path("/var/tmp/wcat-dapi/wcatbench-home/runs/e1-prefix")
 MB_RUN = Path("/home/leemour/.cache/wcat-dapi-mb/wcatbench-home/runs/e1")
-ROUND_CONFIG = Path("/home/leemour/Projects/AI/wcatbench-wt-memory-bank/configs/rounds/rules-trial.yml")
+GEMMA_RUN = Path("/home/leemour/.cache/wcat-dapi-gemma/wcatbench-home/runs/e1")
+# The round config at the wcatbench commit that ran these rows, read from git, so no worktree has to exist.
+WCATBENCH_REPO = Path("/home/leemour/Projects/AI/wcatbench")
+ROUND_CONFIG_COMMIT = "92799243d9cde6291b220726ac207c21c93a0d0d"
+ROUND_CONFIG_PATH = "configs/rounds/rules-trial.yml"
 OUT = Path(__file__).resolve().parent / "results"
 
 ROWS = {
@@ -25,6 +30,9 @@ ROWS = {
     "e1-unrestricted.csv": RUN / "rows-unrestricted-his.jsonl",
     "e1-his-memory-bank.csv": MB_RUN / "rows-his.jsonl",
     "e1-unrestricted-memory-bank.csv": MB_RUN / "rows-unrestricted-his.jsonl",
+    "e1-his-memo-embeddinggemma.csv": GEMMA_RUN / "rows-his.jsonl",
+    "e1-ours-memo-embeddinggemma.csv": GEMMA_RUN / "rows-ours.jsonl",
+    "e1-unrestricted-memo-embeddinggemma.csv": GEMMA_RUN / "rows-unrestricted-his.jsonl",
 }
 TABLES = {
     "e1-his.md": RUN / "summary-his.md",
@@ -37,7 +45,11 @@ TABLES = {
     "e1-his-memory-bank.md": MB_RUN / "summary-his.md",
     "e1-unrestricted-memory-bank.md": MB_RUN / "summary-unrestricted-his.md",
     "e2-memory-bank.md": MB_RUN / "e2" / "summary.md",
-    "round-config.yml": ROUND_CONFIG,
+    "e1-his-memo-embeddinggemma.md": GEMMA_RUN / "summary-his.md",
+    "e1-ours-memo-embeddinggemma.md": GEMMA_RUN / "summary-ours.md",
+    "e1-unrestricted-memo-embeddinggemma.md": GEMMA_RUN / "summary-unrestricted-his.md",
+    "e2-memo-embeddinggemma.md": GEMMA_RUN / "e2" / "summary.md",
+    "e3-memo-embeddinggemma.md": GEMMA_RUN / "e3" / "summary.md",
 }
 E3_RESULTS = RUN / "e3"
 MEMORY_BANK = Path("/home/leemour/.cache/wcat-dapi-mb/src")
@@ -151,6 +163,14 @@ def main() -> None:
             print(f"{name}: copied")
     for result in sorted(E3_RESULTS.glob("*/result.json")):
         shutil.copyfile(result, OUT / f"e3-{result.parent.name}.json")
+    if (GEMMA_RUN / "e3" / "memo" / "result.json").exists():
+        shutil.copyfile(GEMMA_RUN / "e3" / "memo" / "result.json", OUT / "e3-memo-embeddinggemma.json")
+    config = subprocess.run(
+        ["git", "-C", str(WCATBENCH_REPO), "show", f"{ROUND_CONFIG_COMMIT}:{ROUND_CONFIG_PATH}"],
+        capture_output=True, text=True, check=True,
+    ).stdout
+    (OUT / "round-config.yml").write_text(config)
+    print(f"round-config.yml: wcatbench {ROUND_CONFIG_COMMIT}")
     if MEMORY_BANK.exists():
         (OUT / "memory-bank-cost.json").write_text(json.dumps(memory_bank_cost(), indent=2) + "\n")
         print("memory-bank-cost.json: written")

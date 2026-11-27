@@ -7,7 +7,7 @@ come from his pages and ours from a different corpus.
 - His pages: [agent memory trials](https://pismenny.ru/articles/agent-memory-trials.html) and
   [evaluating agent memory](https://pismenny.ru/articles/evaluating-agent-memory.html).
 - Harness: [wcatbench](https://github.com/WireCatLabs/wcatbench), round `rules-trial`, round config
-  [configs/rounds/rules-trial.yml](https://github.com/WireCatLabs/wcatbench/blob/main/configs/rounds/rules-trial.yml), copied here as [results/round-config.yml](results/round-config.yml).
+  [configs/rounds/rules-trial.yml](https://github.com/WireCatLabs/wcatbench/blob/92799243d9cde6291b220726ac207c21c93a0d0d/configs/rounds/rules-trial.yml), copied here as [results/round-config.yml](results/round-config.yml).
 - Per-check rows and the summary tables: [results/](results/), copied by [collect.py](collect.py).
 
 ## Why it was run
@@ -45,11 +45,13 @@ against these systems. Honesty beats a good-looking result: every losing row is 
   in the context (regex) and the rule's source id among the hits (needed for Mem0 and Hindsight, which rewrite text
   into English facts).
 - **Write model.** Systems that extract facts use OpenAI gpt-5-mini, systems that embed through an API use
-  text-embedding-3-small. memo uses its local multilingual-e5-small.
+  text-embedding-3-small. memo uses its local EmbeddingGemma 300M, its default at 0.154.0. The first memo rows ran
+  on e5-small, its default before 8 Nov 2026, by mistake. They are kept and labelled **e5-small (not default)**,
+  and the reruns are described in [memo on its default model](#memo-on-its-default-model).
 
 | System | Version | Pointed to |
 |---|---|---|
-| memo | @wirecat/cli-memo 0.154.0 | notes folder plus `sync`, local e5-small |
+| memo | @wirecat/cli-memo 0.154.0 | notes folder plus `sync`, local EmbeddingGemma (default), first rows e5-small |
 | AgentMemory | 0.9.30, iii engine 0.22.1 | OpenAI embeddings, no LLM key (zero-LLM mode) |
 | Mem0 OSS | mem0ai 2.2.1 | gpt-5-mini, text-embedding-3-small, local Qdrant, telemetry off |
 | Hindsight | ghcr.io/vectorize-io/hindsight:1.0.0-slim | gpt-5-mini, OpenAI embeddings, `rrf` reranker |
@@ -90,7 +92,8 @@ python3 collect.py
 | AgentMemory | 84 | 74 | 44/78 | 30/30 | 4 |
 | Mem0 OSS | 50 | 84 | 54/78 | 30/30 | 4 |
 | Hindsight slim | not ranked (failed his pre-check) | 64 | 34/78 | 30/30 | 0 |
-| memo (ours) | not run | 60 | 30/78 | 30/30 | 4 |
+| memo, EmbeddingGemma (ours, default) | not run | 76 | 46/78 | 30/30 | 0 |
+| memo, e5-small (ours, not default) | not run | 60 | 30/78 | 30/30 | 4 |
 
 Every variant declined all 30 unknown checks, as in his table, so the unknown column does not separate systems.
 The known checks do.
@@ -104,7 +107,8 @@ the top 5.
 | Variant | Stored | Retrieved | Old inactive | Applied | Missed available | Not retrieved | Wrong | Agent tokens in/out | Tool calls |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | files-top5 | 78/78 | 28/78 | 22/48 | 28/78 | 0 | 44 | 6 | 172,489/7,677 | 52 |
-| memo | 78/78 | 32/78 | 12/48 | 30/78 | 2 | 42 | 4 | 182,362/7,942 | 53 |
+| memo, EmbeddingGemma | 78/78 | 48/78 | 16/48 | 46/78 | 2 | 30 | 0 | 206,907/8,851 | 54 |
+| memo, e5-small (not default) | 78/78 | 32/78 | 12/48 | 30/78 | 2 | 42 | 4 | 182,362/7,942 | 53 |
 | agentmemory | 78/78 | 46/78 | 12/48 | 44/78 | 2 | 28 | 4 | 156,837/6,888 | 47 |
 | mem0-oss | 66/78 | 54/78 | 12/48 | 54/78 | 0 | 20 | 4 | 163,392/7,046 | 49 |
 | hindsight-slim | 68/78 | 36/78 | 12/48 | 34/78 | 2 | 42 | 0 | 174,139/8,469 | 51 |
@@ -123,14 +127,15 @@ draws its own top 5, so this shows how much one frozen search depends on the wor
 | Variant | Applied (known) | Unknown | Total (of 108) | Retrieved | Not retrieved | Wrong |
 |---|---:|---:|---:|---:|---:|---:|
 | files-top5 | 36/78 | 30/30 | 66 | 36/78 | 37 | 5 |
-| memo | 52/78 | 30/30 | 82 | 52/78 | 20 | 6 |
+| memo, EmbeddingGemma | 61/78 | 30/30 | 91 | 61/78 | 15 | 2 |
+| memo, e5-small (not default) | 52/78 | 30/30 | 82 | 52/78 | 20 | 6 |
 | agentmemory | 46/78 | 30/30 | 76 | 47/78 | 27 | 4 |
 | mem0-oss | 58/78 | 30/30 | 88 | 58/78 | 12 | 8 |
 | hindsight-slim | 26/78 | 30/30 | 56 | 27/78 | 46 | 5 |
 | openviking-evo-off | 57/78 | 30/30 | 87 | 57/78 | 19 | 2 |
 | openviking-evo-on | 54/78 | 30/30 | 84 | 54/78 | 19 | 5 |
 
-memo moves from 30 to 52 applied between wordings. Every other engine moves too. The ranking between engines is
+memo on EmbeddingGemma moves from 46 to 61 applied between wordings (on e5-small from 30 to 52). Every other engine moves too. The ranking between engines is
 not stable across wordings of the same task.
 
 ## Pre-fix and fixed rows
@@ -139,7 +144,7 @@ Two adapters were wrong at first. Both were fixed, the sessions rerun, and both 
 
 | Variant | Design | Pre-fix applied | Fixed applied | Pre-fix total | Fixed total |
 |---|---|---:|---:|---:|---:|
-| memo | his | 34/78 | 30/78 | 64 | 60 |
+| memo, e5-small (not default) | his | 34/78 | 30/78 | 64 | 60 |
 | OpenViking, evo off | his | 36/78 | 44/78 | 66 | 74 |
 | OpenViking, evo on | his | 32/78 | 54/78 | 62 | 84 |
 | OpenViking, evo off | ours | 43/78 | 57/78 | 73 | 87 |
@@ -179,7 +184,8 @@ old versions that took a place, per wording:
 | Engine | p0 needed | p0 old | p1 needed | p1 old | p2 needed | p2 old |
 |---|---:|---:|---:|---:|---:|---:|
 | files-top5 | 2/11 | 3 | 2/11 | 5 | 5/11 | 2 |
-| memo | 3/11 | 4 | 6/11 | 3 | 4/11 | 4 |
+| memo, EmbeddingGemma | 5/11 | 3 | 6/11 | 3 | 7/11 | 4 |
+| memo, e5-small (not default) | 3/11 | 4 | 6/11 | 3 | 4/11 | 4 |
 | AgentMemory | 5/11 | 4 | 4/11 | 5 | 6/11 | 5 |
 | Mem0 OSS | 5/11 | 4 | 5/11 | 5 | 6/11 | 5 |
 | Hindsight slim | 4/11 | 4 | 1/11 | 2 | 4/11 | 3 |
@@ -226,7 +232,8 @@ likes. These rows lift that restriction and keep everything else: the same corpu
 |---|---:|---:|---:|---:|---:|---:|---|
 | u-archive (grep over files) | 78/78 | 30/30 | 0 | 639 | 445,187/18,394 | 273 | 21 to 25 grep calls |
 | u-memory-bank (grep over the bank) | 78/78 | 30/30 | 0 | 761 | 1,414,514/25,169 | 306 | 17 to 45 search_files calls |
-| u-memo | 78/78 | 30/30 | 0 | 972 | 1,498,008/17,062 | 165 | see note |
+| u-memo, EmbeddingGemma | 78/78 | 30/30 | 0 | 927 | 1,600,075/18,683 | 207 | see note |
+| u-memo, e5-small (not default) | 78/78 | 30/30 | 0 | 972 | 1,498,008/17,062 | 165 | see note |
 | u-files-top5 (FTS) | 77/78 | 30/30 | 1 | 639 | 856,075/15,745 | 106 | 25 to 74 |
 | u-agentmemory | 78/78 | 30/30 | 0 | 700 | 1,147,490/16,011 | 123 | 24 to 60 |
 | u-mem0-oss | 78/78 | 30/30 | 0 | 821 | 811,717/14,630 | 92 | 14 to 40 |
@@ -238,7 +245,8 @@ likes. These rows lift that restriction and keep everything else: the same corpu
   Hindsight store fewer rules by our regex (66 and 68 of 78), but the agent still found every value. The likely
   reason: the regex misses some of their English rewrites, and the agent does not.
 - **So unrestricted rows do not separate engines on this corpus, the cost does.** grep over files used the fewest
-  input tokens (445K for 6 sessions) and memo the most (1.5M). Agent input tokens add up the whole conversation at
+  input tokens (445K for 6 sessions) and memo the most (1.6M on EmbeddingGemma, 1.5M on e5-small). Agent input
+  tokens add up the whole conversation at
   every turn, so long tool outputs early in a session cost again at each later turn. memo's `search --json` output
   is the most verbose of the tools (928K characters of tool output over 6 sessions, against 131K for grep).
 - OpenViking sessions ran about three times longer than the others. Per-query search time was not recorded, so the
@@ -268,8 +276,10 @@ counts checks in B and C whose rule was corrected or cancelled: the old version 
 |---|---:|---:|---:|---:|---:|---:|---:|
 | none | 6/48 | 4/16 | 24/24 | 28/28 | 0 | 4 | 351,943/11,716 |
 | files-agent (his Markdown) | 46/48 | 16/16 | 23/24 | 28/28 | 3 | 0 | 381,703/13,912 |
-| memo-agent | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 418,543/14,354 |
-| memo-transcript | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 320,701/9,252 |
+| memo-agent, EmbeddingGemma | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 462,187/15,998 |
+| memo-transcript, EmbeddingGemma | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 316,719/9,278 |
+| memo-agent, e5-small (not default) | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 418,543/14,354 |
+| memo-transcript, e5-small (not default) | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 320,701/9,252 |
 | OpenViking, evo off | 44/48 | 15/16 | 24/24 | 28/28 | 0 | 0 | 320,104/9,540 |
 | OpenViking, evo on | 46/48 | 15/16 | 24/24 | 28/28 | 1 | 0 | 342,778/9,205 |
 | memory-bank-agent (his Memory Bank) | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 1,801,814/34,602 |
@@ -334,7 +344,7 @@ decision records, not notes. So:
 | memory-bank, his design (the bank in the workspace) | 78/78 | 30/30 | 0 | 611 | 1,234,506/19,190 | 218 |
 | memory-bank-files (its 27 written files whole in `memory/context.md`) | 78/78 | 30/30 | 0 | 311 | 392,775/8,909 | 52 |
 | u-memory-bank (unrestricted, frozen strategy v1) | 78/78 | 30/30 | 0 | 761 | 1,414,514/25,169 | 306 |
-| u-memo (unrestricted, for reference) | 78/78 | 30/30 | 0 | 972 | 1,498,008/17,062 | 165 |
+| u-memo, EmbeddingGemma (unrestricted, for reference) | 78/78 | 30/30 | 0 | 927 | 1,600,075/18,683 | 207 |
 
 - **Every Memory Bank row applies 78 of 78 and declines all 30 unknown checks.** So does every control that puts
   all 36 sources in reach of the agent. The bank is files the agent greps, like `archive-in-workspace`. It is not
@@ -346,11 +356,12 @@ decision records, not notes. So:
   of tool output, reads of the ADRs and intake file 22,970, and searches over whole folders 78,834 (those mix
   both). Each turn sends the whole conversation again, so early reads cost again at every later turn. In his
   design the bank used 3.3 times the input tokens of the same sources as plain files (1.23M against 379K).
-- **Unrestricted, the bank costs about what memo costs** (1.41M against 1.50M input tokens), with more tool calls
-  (306 against 165). The strategy prompt was not retuned for it.
-- **The whole-files control is the cheapest full score**: the 27 written files, without the template, in one
-  context file. It shows the information was all there, and the extra tokens in the bank row are the reading the
-  bank's rules ask for.
+- **Unrestricted, the bank costs about what memo costs** (1.41M against 1.60M input tokens), with more tool calls
+  (306 against 207). The strategy prompt was not retuned for it.
+- **The whole-files control gets the full score at 393K**, about what grep over the 36 sources costs (379K): the
+  27 written files, without the template, in one context file. It shows the information was all there, and the
+  extra tokens in the bank row are the reading the bank's rules ask for. The cheapest full score on the page is
+  still files-his, the 8 current rules in one file, at 171K.
 
 **Experiment 2, the agent keeps the bank itself.** Each chain starts with a clean install. The note says the bank is
 the agent's memory between conversations, that `AGENTS.md` says how to use it, and to save what helps later by its
@@ -362,8 +373,8 @@ session, as a repository would keep them.
 - In all 4 chains the agent kept the rules in one place, `domain/rules.md`, his owner for business rules, rewriting
   the template's placeholder tables into a policy row per rule. It created no ADR, feature pack or research package.
 - Each session opened 10 to 17 template files, which returned 176,670 tokens of tool output over 12 sessions
-  (folder searches 52,061 more). Input tokens were 1.80M for 12 sessions, against 419K for memo-agent
-  and 382K for files-agent: about 4.3 times memo-agent.
+  (folder searches 52,061 more). Input tokens were 1.80M for 12 sessions, against 462K for memo-agent
+  and 382K for files-agent: about 3.9 times memo-agent.
 
 **Experiment 3 was not run for it, because it does not map fairly.** The gate writes three versions of each rule into
 a store and checks, with no agent, which version the store's own search returns. The bank has no write path and no
@@ -402,7 +413,8 @@ version is in that top 5.
 | Store | Gate (44/44) | Passed | Stored current | Old gone from store | Retrieved current | Old absent from top 5 |
 |---|---|---:|---:|---:|---:|---:|
 | fts | fail | 43/44 | 11/11 | 11/11 | 10/11 | 11/11 |
-| memo | pass | 44/44 | 11/11 | 11/11 | 11/11 | 11/11 |
+| memo, EmbeddingGemma | pass | 44/44 | 11/11 | 11/11 | 11/11 | 11/11 |
+| memo, e5-small (not default) | pass | 44/44 | 11/11 | 11/11 | 11/11 | 11/11 |
 | AgentMemory | fail | 22/44 | 11/11 | 0/11 | 11/11 | 0/11 |
 | Mem0 OSS | fail | 22/44 | 11/11 | 0/11 | 11/11 | 0/11 |
 | Hindsight slim | pass | 44/44 | 11/11 | 11/11 | 11/11 | 11/11 |
@@ -411,14 +423,88 @@ version is in that top 5.
 
 - His OpenViking gate scored 36 and 42 of 44. Ours passes 44 of 44 on our rules.
 - **memo passes because a corrected note replaces the old text.** It has no supersession between two separate
-  notes yet: experiment 1 feeds old versions as separate sources, and there memo's `old inactive` is 12 of 48.
+  notes yet: experiment 1 feeds old versions as separate sources, and there memo's `old inactive` is 16 of 48 on EmbeddingGemma
+  (12 on e5-small).
 - AgentMemory (zero-LLM mode) and Mem0 keep every version as its own statement and return them side by side. Mem0
   did not merge the versions into one fact on our data.
 - Two first runs were wrong and are kept apart: a Hindsight run read before its queue finished (2 of 44), and a
   pattern set that was Russian only and failed a correct Hindsight paraphrase and Mem0's English text. The gate now
   scores from the saved store text and hits, so a pattern fix needs no rebuild.
 
+## memo on its default model
+
+The post review found that the first memo rows ran on e5-small. The default of the pinned @wirecat/cli-memo 0.154.0
+is EmbeddingGemma 300M: `DEFAULT_TEXT_MODEL = "embeddinggemma"` in its cli-core 1.1.0
+(`dist/embeddings/models.js`, line 128), its README says to download `embeddinggemma` for search by meaning, and
+`memo models list` marks it `default: true`. e5-small was the default before 8 Nov 2026. So every memo row was rerun
+on EmbeddingGemma on 2026-11-27: experiment 1 in all 3 wordings, u-memo with the frozen strategy v1, memo-agent and
+memo-transcript, and the experiment 3 gate. Same dataset, seeds, prompts and session counts. The e5-small rows stay,
+labelled **e5-small (not default)**. Embeddings run locally, so the reruns cost $0.
+
+| Row | e5-small (not default) | EmbeddingGemma (default) |
+|---|---:|---:|
+| Experiment 1, his design, applied (total of 108) | 30/78 (60) | 46/78 (76) |
+| Experiment 1, his design, wrong concrete | 4 | 0 |
+| Experiment 1, his design, retrieved / old inactive | 32/78, 12/48 | 48/78, 16/48 |
+| Experiment 1, ours design, applied (total of 108) | 52/78 (82) | 61/78 (91) |
+| Unrestricted u-memo, applied / tokens in / tool calls | 78/78, 1.50M, 165 | 78/78, 1.60M, 207 |
+| Experiment 2, memo-agent transfer / tokens in | 48/48, 419K | 48/48, 462K |
+| Experiment 2, memo-transcript transfer / tokens in | 48/48, 321K | 48/48, 317K |
+| Experiment 3, gate | 44/44 | 44/44 |
+
+What changed in the reading:
+
+- **In his design memo moves from the bottom group to the middle**: above AgentMemory and OpenViking with evo off
+  (44), Hindsight (34) and files-top5 (28), below Mem0 and OpenViking with evo on (54). In the two other wordings it
+  is first (61, against 57 and 58). The frozen top 5 is still the limit: 30 of its 32 losses are rules that never
+  reached the top 5.
+- **With the agent searching, nothing changes in answers**: 78 of 78 either way, at a little more cost (1.60M input
+  tokens and 207 tool calls on EmbeddingGemma).
+- **Across sessions and in the corrections gate, nothing changes**: 48 of 48 and 44 of 44 on both models.
+- **The supersession gap is still there.** The cancelled e-mail permission beat its cancellation in one wording
+  (t2.p1, 2 wrong concrete).
+
+A second fault turned up in the rerun. The store build ran the `memo` on the machine's PATH, not the pinned
+install. That was 0.154.0 when the first rows ran (store schema 76, checked in the kept builds), and is 0.156.0
+now (schema 78), which the pinned 0.154.0 in the unrestricted sandbox cannot read: every u-memo search failed and
+all 6 sessions applied 0. The harness now always runs the pinned install. Everything was rerun on it, and the
+0.156.0 data is kept apart. Its frozen top 5 was the same as 0.154.0's in every context compared.
+
+Tables: [his design](results/e1-his-memo-embeddinggemma.md), [ours design](results/e1-ours-memo-embeddinggemma.md),
+[unrestricted](results/e1-unrestricted-memo-embeddinggemma.md), [experiment 2](results/e2-memo-embeddinggemma.md) and
+[experiment 3](results/e3-memo-embeddinggemma.md), with per-check CSV rows beside them.
+
+### Top-5 slot counts, every engine
+
+What fills the 45 places of the frozen top 5 (3 tasks x 3 wordings x 5 hits), counted by each hit's first source:
+`needed` is a source the task's checks rest on, `old_on` an older version of a rule the task needs, `old_off` an
+older version of another task's rule, `other_target` another source of the target project, `lite` and `sapsan` the
+look-alike projects, `company` the company-wide notes. Script: [slots.py](slots.py), first written for the post
+review. Output: [results/slots.md](results/slots.md) and [results/slots.json](results/slots.json).
+
+| Engine | needed | old_on | old_off | other_target | lite | sapsan | company | needed by wording (p0, p1, p2) |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| files-top5 | 9 | 10 | 1 | 2 | 14 | 6 | 3 | 2, 2, 5 |
+| memo, EmbeddingGemma (default) | 18 | 10 | 1 | 0 | 14 | 2 | 0 | 5, 6, 7 |
+| memo, e5-small (not default) | 13 | 11 | 2 | 2 | 16 | 1 | 0 | 3, 6, 4 |
+| agentmemory | 15 | 14 | 2 | 1 | 11 | 2 | 0 | 5, 4, 6 |
+| mem0-oss | 16 | 14 | 0 | 0 | 12 | 3 | 0 | 5, 5, 6 |
+| hindsight-slim | 9 | 10 | 2 | 2 | 16 | 6 | 0 | 4, 1, 4 |
+| openviking-evo-off | 19 | 14 | 1 | 0 | 9 | 2 | 0 | 6, 6, 7 |
+| openviking-evo-on | 17 | 14 | 1 | 0 | 10 | 3 | 0 | 6, 6, 5 |
+
+- memo on EmbeddingGemma puts 18 needed sources in its 45 places, against 13 on e5-small. Only OpenViking with evo
+  off (19) puts more. Every engine still gives 10 to 14 places to old versions of the task's own rules.
+- The look-alike project Сокол-Лайт takes 9 to 16 places in every engine. That is the corpus doing its job: one
+  search on the task text cannot tell the two projects apart.
+
 ## Every losing row for memo
+
+The rows below are memo on **e5-small (not default)**. On EmbeddingGemma memo lost 32 known checks in his design (30
+not retrieved, 2 missed available on rule R1) and 17 in ours (15 not retrieved, 2 wrong concrete: the cancelled
+e-mail permission R7 in t2.p1). Per-check rows:
+[results/e1-his-memo-embeddinggemma.csv](results/e1-his-memo-embeddinggemma.csv) and
+[results/e1-ours-memo-embeddinggemma.csv](results/e1-ours-memo-embeddinggemma.csv).
 
 memo lost no unknown check. Every known check it did not apply, with the rule's source in or out of the top 5:
 
@@ -575,10 +661,11 @@ rather than pick one (missed available).
 The round config set these before any data. Experiment 1, his design:
 
 - **h1, memo applies known rules about as well as files and as well as or better than every other system: fails.**
-  The threshold was within 4 of the files row with no more wrong concrete answers. memo applied 30 of 78 against
-  78, with 4 wrong concrete answers against 0, and is below AgentMemory, Mem0, Hindsight and OpenViking.
-- **h2, memo loses old-version checks because it has no supersession: confirmed**, 12 of 48. Every other engine
-  scored 12 of 48 too (files-top5 22), so this does not single memo out in this design.
+  The threshold was within 4 of the files row with no more wrong concrete answers. On its default EmbeddingGemma
+  memo applied 46 of 78 against 78, with 0 wrong. That is above AgentMemory, OpenViking with evo off and Hindsight,
+  and below Mem0 and OpenViking with evo on (54). On e5-small (not default) it applied 30 with 4 wrong.
+- **h2, memo loses old-version checks because it has no supersession: confirmed**, 16 of 48 on EmbeddingGemma (12
+  on e5-small). Every other engine scored 12 of 48 (files-top5 22), so this does not single memo out in this design.
 - **h3, the unknown checks do not separate variants: confirmed**, 30 of 30 everywhere.
 - **Admission gates: all pass.** Oracle: files-his, which gets the answer key's rules as a file, scores 78 of 78
   and 30 of 30. Too easy: no memory scores 0 of 78 (the limit was 10). Stored: every store holds at least 66 of
@@ -586,15 +673,17 @@ The round config set these before any data. Experiment 1, his design:
 
 ## What it showed
 
-1. **In his design memo lands low: 30 of 78 known checks applied, 60 of 108 in his table.** Mem0 and OpenViking
-   with Agent Evolution on are top at 54 of 78. Plain files given all 8 rules apply 78 of 78. In two other wordings
-   memo applies 52 of 78, so its rank moves with the wording of the task.
+1. **In his design memo on its default model lands in the middle: 46 of 78 known checks applied, 76 of 108 in his
+   table.** Mem0 and OpenViking with Agent Evolution on are top at 54 of 78. Plain files given all 8 rules apply 78
+   of 78. In two other wordings memo applies 61 of 78, the best of every engine there (OpenViking evo off 57, Mem0
+   58). On e5-small, which is not its default, memo applied 30 and 52: the first version of this page measured memo
+   off its default.
 2. **His result does not carry over to our corpus.** His OpenViking 108 becomes 74 to 87, his Mem0 50 becomes 84
    to 88, his AgentMemory 84 becomes 74 to 76. Only the controls hold: no memory 30, files 108.
 3. **The frozen top-5 search is the bottleneck, not storage or the agent.** files-top5 stores everything and still
    applies 28 of 78. Almost every loss in every engine is a rule that never reached the top 5.
 4. **When the agent may search itself, every engine reaches 77 or 78 of 78**, memo included. The engines then
-   differ in cost, not answers: grep over files used the fewest tokens, memo the most.
+   differ in cost, not answers: grep over files used the fewest tokens, memo the most (1.6M).
 5. **memo's real gap is supersession.** A corrected note is fine (experiment 3: 44 of 44). Two separate notes, one
    replacing the other, are not linked: in experiment 1 the cancelled e-mail permission kept beating its
    cancellation. That is roadmap step 5.
@@ -602,7 +691,7 @@ The round config set these before any data. Experiment 1, his design:
    carried every rule across sessions (48 of 48). The agent's own notes file scored 46 and OpenViking 44 and 46.
 7. **Danil's own Memory Bank applies every rule (78 of 78, 48 of 48 across sessions), and so does memo when the
    agent may search.** The difference is cost: the bank's template is 117,621 tokens of rules for the agent, and
-   its sessions used 3.3 times the input tokens of plain files in experiment 1 and 4.3 times memo-agent in
+   its sessions used 3.3 times the input tokens of plain files in experiment 1 and 3.9 times memo-agent in
    experiment 2.
 
 ## What was not measured
@@ -617,8 +706,10 @@ The round config set these before any data. Experiment 1, his design:
   reach services on localhost. The unrestricted proxy listens there on purpose. Nothing blocked other local
   services. A scan of all 4,017 tool calls in 332 sessions found no localhost address, port, `curl`, `wget`, database
   client or URL. Every memo result the agents saw was one of the round's own synthetic notes.
-- A strategy prompt free of the generator's style. It names correction words («поправка», «отменяем», «отзываем»)
-  that our generator uses in both the dev and the test set. A real corpus may word corrections differently.
+- A strategy prompt free of the generator's style. It tells the agent to look for correction words («поправка»,
+  «теперь», «отменяем», «отзываем», «больше не»). The experiment 1 corpus has three of them: «поправка» once,
+  «теперь» once and «больше не» twice. «отменяем» and «отзываем» are not in it, and the dev set has «отзываем» once.
+  The prompt was written after reading the corpus, so a real corpus may word corrections differently.
 
 ## Cost
 
@@ -636,5 +727,6 @@ input, $2.00 output per million tokens, text-embedding-3-small $0.02, checked 20
 | OpenViking, experiment 2 (every try) | 251K in, 67K out, 34K embedding | OpenViking usage audit | about 0.20 |
 | Embeddings, every engine and search | well under 1M | estimate | under 0.02 |
 | Memory Bank, all 30 sessions | none outside the agent | no model call | 0 |
+| memo reruns on EmbeddingGemma, 48 sessions and the gate | none outside the agent | local embeddings | 0 |
 
 Total: about $1.6, against a cap of $20.
