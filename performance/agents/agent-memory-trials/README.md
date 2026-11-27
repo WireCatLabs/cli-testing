@@ -19,6 +19,7 @@ AgentMemory 84 and Mem0 50. WireCat memo was not in it. The questions were:
 2. Does his result hold on another corpus, or is it a property of his data?
 3. What changes when the agent may search memory itself, as it does in real use, instead of getting one frozen
    top-5 block?
+4. How does memo compare with Danil's own memory system, Memory Bank? Added later, at the owner's request.
 
 The answers feed memo's roadmap (supersession of old versions, step 5) and what we may say in public about memo
 against these systems. Honesty beats a good-looking result: every losing row is shown.
@@ -81,6 +82,8 @@ python3 collect.py
 | files-his (all 8 rules in a file) | 108 | 108 | 78/78 | 30/30 | 0 |
 | files-history (ours: rules plus old versions) | not run | 108 | 78/78 | 30/30 | 0 |
 | archive-in-workspace (ours: 36 sources to grep) | not run | 108 | 78/78 | 30/30 | 0 |
+| memory-bank (his own memory: files the agent greps, no top 5, compare with archive-in-workspace) | not run | 108 | 78/78 | 30/30 | 0 |
+| memory-bank-files (ours: its 27 written files whole, no top 5) | not run | 108 | 78/78 | 30/30 | 0 |
 | files-top5 (ours: the same files through top 5) | not run | 58 | 28/78 | 30/30 | 6 |
 | OpenViking, Agent Evolution off | 108 | 74 | 44/78 | 30/30 | 4 |
 | OpenViking, Agent Evolution on (ours) | not run | 84 | 54/78 | 30/30 | 4 |
@@ -222,6 +225,7 @@ likes. These rows lift that restriction and keep everything else: the same corpu
 | Variant | Applied (known) | Unknown | Wrong | Seconds (6 sessions) | Agent tokens in/out | Tool calls | Memory searches per session |
 |---|---:|---:|---:|---:|---:|---:|---|
 | u-archive (grep over files) | 78/78 | 30/30 | 0 | 639 | 445,187/18,394 | 273 | 21 to 25 grep calls |
+| u-memory-bank (grep over the bank) | 78/78 | 30/30 | 0 | 761 | 1,414,514/25,169 | 306 | 17 to 45 search_files calls |
 | u-memo | 78/78 | 30/30 | 0 | 972 | 1,498,008/17,062 | 165 | see note |
 | u-files-top5 (FTS) | 77/78 | 30/30 | 1 | 639 | 856,075/15,745 | 106 | 25 to 74 |
 | u-agentmemory | 78/78 | 30/30 | 0 | 700 | 1,147,490/16,011 | 123 | 24 to 60 |
@@ -268,6 +272,7 @@ counts checks in B and C whose rule was corrected or cancelled: the old version 
 | memo-transcript | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 320,701/9,252 |
 | OpenViking, evo off | 44/48 | 15/16 | 24/24 | 28/28 | 0 | 0 | 320,104/9,540 |
 | OpenViking, evo on | 46/48 | 15/16 | 24/24 | 28/28 | 1 | 0 | 342,778/9,205 |
+| memory-bank-agent (his Memory Bank) | 48/48 | 16/16 | 24/24 | 28/28 | 0 | 0 | 1,801,814/34,602 |
 
 - `none` keeps no memory between sessions. It still passes 6 of 48 transfer checks, because the B sessions restate
   part of the context. Treat 6 as the floor.
@@ -289,6 +294,101 @@ counts checks in B and C whose rule was corrected or cancelled: the old version 
   worker read the task status from the wrong field, so one commit waited 20 minutes for nothing. One earlier try
   also hit a 10-minute model timeout inside OpenViking's extraction. The rows above are from the clean reruns.
 - Full table: [results/e2.md](results/e2.md).
+
+## Danil's own memory: Memory Bank
+
+Added on 2026-11-27 at the owner's request, after every other row had run, for a public comparison of memo with
+Danil's own system. [dapi/memory-bank](https://github.com/dapi/memory-bank) at commit
+[e1b428d](https://github.com/dapi/memory-bank/tree/e1b428dd7aed66eda99b3cbc6073c29f7da921de) (2026-09-13). Same
+harness, agent, model, dataset, seeds and session counts as the rows above. No API spend: no model call outside the
+agent.
+
+To reproduce: `git clone https://github.com/dapi/memory-bank`, `git -C memory-bank checkout e1b428d`, and set
+`WCATBENCH_MEMORY_BANK` to the clone before the wcatbench commands above, with the variants `memory-bank`,
+`memory-bank-files`, `u-memory-bank` and `memory-bank-agent`.
+
+**How it was installed.** As its README says: `template/memory-bank/` became `memory-bank/` and `template/init.sh`
+became `./init.sh`, byte for byte. The root `AGENTS.md` got the routing block that memory-bank-cli writes, copied
+from [docs/agent-instructions.md](https://github.com/dapi/memory-bank/blob/e1b428dd7aed66eda99b3cbc6073c29f7da921de/docs/agent-instructions.md):
+read `memory-bank/README.md`, `dna/README.md` and `flows/routing.md` before substantial work. Hermes loads
+`AGENTS.md` into its system prompt, checked in a session's stored system prompt. The install refuses a clone at
+another commit.
+
+**How the 36 sources were written into it (experiment 1).** His
+[brownfield protocol](https://github.com/dapi/memory-bank/blob/e1b428dd7aed66eda99b3cbc6073c29f7da921de/docs/brownfield-adaptation-protocol.md)
+says how existing project sources enter the bank: historical ADRs for decisions already taken (step 6), and an
+intake document outside `memory-bank/` for the rest (step 2). `adr/README.md` says the ADR folder holds only real
+decision records, not notes. So:
+
+- The 26 decisions became 26 ADRs from his ADR template's frontmatter (`status: active`,
+  `decision_status: accepted`, the date and author as decision maker), with the source text as the decision.
+- The 5 chats, 4 notes and 1 meeting stayed as evidence in `brownfield-intake-prd.md` at the workspace root, each
+  with its type, date and author.
+- No ADR is marked `superseded`. Linking a correction to the decision it replaces is the exact answer the test
+  checks, and no other store got that done for it. Every store got the raw records, so the bank got them raw too.
+
+| Variant | Applied (known) | Unknown | Wrong | Seconds (6 sessions) | Agent tokens in/out | Tool calls |
+|---|---:|---:|---:|---:|---:|---:|
+| files-his (8 rules in one file, his) | 78/78 | 30/30 | 0 | 381 | 171,093/8,311 | 51 |
+| archive-in-workspace (36 sources to grep, ours) | 78/78 | 30/30 | 0 | 603 | 378,820/13,500 | 150 |
+| memory-bank, his design (the bank in the workspace) | 78/78 | 30/30 | 0 | 611 | 1,234,506/19,190 | 218 |
+| memory-bank-files (its 27 written files whole in `memory/context.md`) | 78/78 | 30/30 | 0 | 311 | 392,775/8,909 | 52 |
+| u-memory-bank (unrestricted, frozen strategy v1) | 78/78 | 30/30 | 0 | 761 | 1,414,514/25,169 | 306 |
+| u-memo (unrestricted, for reference) | 78/78 | 30/30 | 0 | 972 | 1,498,008/17,062 | 165 |
+
+- **Every Memory Bank row applies 78 of 78 and declines all 30 unknown checks.** So does every control that puts
+  all 36 sources in reach of the agent. The bank is files the agent greps, like `archive-in-workspace`. It is not
+  a top-5 search engine, so his design's frozen block does not apply to it, and its row compares with the file
+  controls, not with Mem0, OpenViking or memo in his design.
+- **The extra cost is most likely the template.** Its `memory-bank/` holds 103 Markdown files, 64,913 words,
+  117,621 tokens (o200k_base). The 26 ADRs and the intake file add 6,561 tokens, and the `AGENTS.md` block 67.
+  Sessions opened 4 to 16 template files each. Over the 6 sessions, reads of template files returned 87,090 tokens
+  of tool output, reads of the ADRs and intake file 22,970, and searches over whole folders 78,834 (those mix
+  both). Each turn sends the whole conversation again, so early reads cost again at every later turn. In his
+  design the bank used 3.3 times the input tokens of the same sources as plain files (1.23M against 379K).
+- **Unrestricted, the bank costs about what memo costs** (1.41M against 1.50M input tokens), with more tool calls
+  (306 against 165). The strategy prompt was not retuned for it.
+- **The whole-files control is the cheapest full score**: the 27 written files, without the template, in one
+  context file. It shows the information was all there, and the extra tokens in the bank row are the reading the
+  bank's rules ask for.
+
+**Experiment 2, the agent keeps the bank itself.** Each chain starts with a clean install. The note says the bank is
+the agent's memory between conversations, that `AGENTS.md` says how to use it, and to save what helps later by its
+rules (the same shape as the files-agent and memo-agent notes). The bank and `AGENTS.md` carry from session to
+session, as a repository would keep them.
+
+- 48 of 48 transfer checks and 16 of 16 old versions kept out, with no wrong answer, like memo-agent and
+  memo-transcript. files-agent scored 46.
+- In all 4 chains the agent kept the rules in one place, `domain/rules.md`, his owner for business rules, rewriting
+  the template's placeholder tables into a policy row per rule. It created no ADR, feature pack or research package.
+- Each session opened 10 to 17 template files, which returned 176,670 tokens of tool output over 12 sessions
+  (folder searches 52,061 more). Input tokens were 1.80M for 12 sessions, against 419K for memo-agent
+  and 382K for files-agent: about 4.3 times memo-agent.
+
+**Experiment 3 was not run for it, because it does not map fairly.** The gate writes three versions of each rule into
+a store and checks, with no agent, which version the store's own search returns. The bank has no write path and no
+search of its own: the agent reads files.
+
+- An edit in place plus grep is the `fts` row (43 of 44), so it would add nothing.
+- Writing each version as a new ADR leaves "which one is current" to whoever sets `superseded`. That is curation
+  by a person or an agent, which experiment 2 already tests (16 of 16 old versions kept out).
+
+**What is not fair or not comparable.**
+
+- The source mapping is ours. His protocol expects an agent to study the repository and adapt the bank from
+  evidence. We wrote the sources mechanically, so a real adoption may differ, most of all in whether it marks
+  superseded ADRs.
+- His README runs the bank with the Codex CLI. Here it runs in Hermes on the same model as every other row.
+- Memory Bank is a development process system (governance, routing, feature packs), not a store of facts from
+  messages. This corpus tests only the part that keeps project rules. Its processes are not measured.
+- Danil wrote both the trial design and the bank. His pages do not test Memory Bank (checked 2026-11-27), so
+  there is no number of his to set beside it. Every row here is run by us on our corpus.
+- Per-check rows: [results/e1-his-memory-bank.csv](results/e1-his-memory-bank.csv) and
+  [results/e1-unrestricted-memory-bank.csv](results/e1-unrestricted-memory-bank.csv). Tables:
+  [results/e1-his-memory-bank.md](results/e1-his-memory-bank.md),
+  [results/e1-unrestricted-memory-bank.md](results/e1-unrestricted-memory-bank.md) and
+  [results/e2-memory-bank.md](results/e2-memory-bank.md). Template size and files read per session:
+  [results/memory-bank-cost.json](results/memory-bank-cost.json).
 
 ## Experiment 3: the corrections gate (no agent)
 
@@ -500,6 +600,10 @@ The round config set these before any data. Experiment 1, his design:
    cancellation. That is roadmap step 5.
 6. **Learning from conversation works for memo.** memo with agent-written notes and memo fed the transcripts both
    carried every rule across sessions (48 of 48). The agent's own notes file scored 46 and OpenViking 44 and 46.
+7. **Danil's own Memory Bank applies every rule (78 of 78, 48 of 48 across sessions), and so does memo when the
+   agent may search.** The difference is cost: the bank's template is 117,621 tokens of rules for the agent, and
+   its sessions used 3.3 times the input tokens of plain files in experiment 1 and 4.3 times memo-agent in
+   experiment 2.
 
 ## What was not measured
 
@@ -529,23 +633,8 @@ input, $2.00 output per million tokens, text-embedding-3-small $0.02, checked 20
 | OpenViking, 4 builds | about 58K in and 47K out each | OpenViking usage audit | about 0.44 |
 | Mem0, e1 build | about 611K in, 70K out | worker log | about 0.29 |
 | Mem0, e3 gate | not counted | estimate from the e1 build | about 0.25 |
-| OpenViking, experiment 2 | - OpenViking (his third variant): each finished conversation is committed as an OpenViking session, which extracts
-  memories with gpt-5-mini. The next session gets OpenViking's top 5 for its task, frozen. It lost 4 checks in one
-  chain: the memory extracted from session B was a summary card that listed the earlier values as unknown, and
-  session C followed the card. With Agent Evolution on it lost 2 (one old value, 365, came back).
-- OpenViking needed two fixes before it ran, both kept apart in /var/tmp/wcat-dapi/superseded-e2-ov-loop: in
-  0.4.17.1 the SDK client's `commit_session` runs on a different event loop from its other calls and fails, and our
-  worker read the task status from the wrong field, so one commit waited 20 minutes for nothing. One earlier try
-  also hit a 10-minute model timeout inside OpenViking's extraction. The rows above are from the clean reruns.
-- Full table: [results/e2.md](results/e2.md).-TOKENS | OpenViking usage audit | - OpenViking (his third variant): each finished conversation is committed as an OpenViking session, which extracts
-  memories with gpt-5-mini. The next session gets OpenViking's top 5 for its task, frozen. It lost 4 checks in one
-  chain: the memory extracted from session B was a summary card that listed the earlier values as unknown, and
-  session C followed the card. With Agent Evolution on it lost 2 (one old value, 365, came back).
-- OpenViking needed two fixes before it ran, both kept apart in /var/tmp/wcat-dapi/superseded-e2-ov-loop: in
-  0.4.17.1 the SDK client's `commit_session` runs on a different event loop from its other calls and fails, and our
-  worker read the task status from the wrong field, so one commit waited 20 minutes for nothing. One earlier try
-  also hit a 10-minute model timeout inside OpenViking's extraction. The rows above are from the clean reruns.
-- Full table: [results/e2.md](results/e2.md).-USD |
+| OpenViking, experiment 2 (every try) | 251K in, 67K out, 34K embedding | OpenViking usage audit | about 0.20 |
 | Embeddings, every engine and search | well under 1M | estimate | under 0.02 |
+| Memory Bank, all 30 sessions | none outside the agent | no model call | 0 |
 
 Total: about $1.6, against a cap of $20.
