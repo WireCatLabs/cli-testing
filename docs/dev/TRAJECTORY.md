@@ -30,8 +30,8 @@ fixtures in [`src/cases/trajectory/`](../../src/cases/trajectory/).
 
 ## The checks
 
-A list of checks in JSON. Each one has exactly one of `called`, `sequence` or `calls`. A **matcher** names one kind
-of call:
+A list of checks in JSON. Each one has exactly one of `called`, `sequence`, `calls` or `turns`. A **matcher** names
+one kind of call:
 
 | Field | Matches | Default |
 | --- | --- | --- |
@@ -49,6 +49,7 @@ were no writes fails on an attempt.
 | `{"sequence": [<matcher>, ...]}` | The matchers match calls in this order. Other calls may come between them |
 | `{"sequence": [...], "exact": true}` | The calls are exactly these, one for one, and no more |
 | `{"calls": {"min": 1, "max": 6}}` | The number of all tool calls is within the bounds |
+| `{"turns": 2}` | The conversation had exactly this many user messages |
 
 For the WireCat MCP servers, the tool is one of `<cli>_read`, `<cli>_write` and `<cli>_tools_search`. The command
 the agent ran is the `command` field of the input and its options are `arguments`, so the path is matched on input.
@@ -76,8 +77,8 @@ cli-testing agent trajectory <transcript.jsonl> <checks.json>
 ```
 
 It prints one JSON report and exits 0 when every check passed, 1 when one failed and 2 when the transcript or the
-checks cannot be read, or the transcript has no final result. The report gives the number of turns and calls and, for each failed check, a reason built from
-the check itself: the matcher, the expected count and the count found. It never copies a call's input or the agent's
+checks cannot be read, or the transcript has no final result. The report gives the number of turns and calls and,
+for each failed check, a reason built from the check itself: the matcher, the expected count and the count found. It never copies a call's input or the agent's
 text, so a report from a run on real data shows no query or message.
 
 In the live agent suite, a case takes the checks as `trajectory` in its plan
@@ -92,10 +93,9 @@ From code, `readTranscript`, `parseTrajectoryChecks` and `checkTrajectory` are e
 
 - **The answer.** Whether the agent was right is the job of the expected fragment in the live suite and of blind
   scoring in [agent tests on real data](AGENT-TESTS.md).
-- **A confirmation in the live suite.** `scripts/agent/run-agent` sends one prompt, so all calls are in turn 0, and
-  the suite passes a case only when the agent attempted no write. A turn-based check of "write only after yes" works
-  on a transcript of a conversation with two or more user messages, offline. In the live suite it also needs a new
-  pass rule, since there the confirmed write is the right behaviour.
+- **Which write command ran, before it ran.** In a live confirmation case
+  ([the agent test](../security/AGENT-TEST.md#confirmation-cases)) the checks see the write after it happened; the
+  server's permission keys are what stop a wrong one.
 - **Subagents.** Calls made inside a subagent are not counted or matched.
 - **Other agents.** Only the Claude Code transcript format is read. An agent with another format needs its own
   reader to the same list of calls.

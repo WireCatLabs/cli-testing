@@ -21,6 +21,7 @@
     "scripts/security/socket",
     "scripts/agent/run-agent",
     "scripts/agent/run-payload",
+    "scripts/agent/run-confirm",
     "scripts/agent/cast.env.example"
   ],
   "exports": {

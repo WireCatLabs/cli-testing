@@ -28,6 +28,7 @@ export type TrajectoryCheck =
   | { called: CallMatcher; min?: number; max?: number }
   | { sequence: CallMatcher[]; exact?: boolean }
   | { calls: { min?: number; max?: number } }
+  | { turns: number }
 
 export interface TrajectoryResult {
   passed: boolean
@@ -161,11 +162,14 @@ export const parseTrajectoryChecks = (value: unknown): TrajectoryCheck[] => {
   return value.map((item, index): TrajectoryCheck => {
     const where = `trajectory check ${index}`
     const check = record(item)
-    const kinds = check ? ["called", "sequence", "calls"].filter((key) => Object.hasOwn(check, key)) : []
-    if (!check || kinds.length !== 1) throw new Error(`${where}: use exactly one of called, sequence, calls`)
-    const allowed = { called: ["called", "min", "max"], sequence: ["sequence", "exact"], calls: ["calls"] }[
-      kinds[0] as "called" | "sequence" | "calls"
-    ]
+    const kinds = check ? ["called", "sequence", "calls", "turns"].filter((key) => Object.hasOwn(check, key)) : []
+    if (!check || kinds.length !== 1) throw new Error(`${where}: use exactly one of called, sequence, calls, turns`)
+    const allowed = {
+      called: ["called", "min", "max"],
+      sequence: ["sequence", "exact"],
+      calls: ["calls"],
+      turns: ["turns"],
+    }[kinds[0] as "called" | "sequence" | "calls" | "turns"]
     const extra = Object.keys(check).filter((key) => !allowed.includes(key))
     if (extra.length > 0) throw new Error(`${where}: unknown field ${extra[0]}`)
     if (check.called !== undefined) {
@@ -186,6 +190,11 @@ export const parseTrajectoryChecks = (value: unknown): TrajectoryCheck[] => {
         ...(check.exact === undefined ? {} : { exact: check.exact }),
       }
     }
+    if (check.turns !== undefined) {
+      if (!Number.isInteger(check.turns) || (check.turns as number) < 1)
+        throw new Error(`${where}: turns is a whole number from 1`)
+      return { turns: check.turns as number }
+    }
     const calls = record(check.calls)
     if (!calls || Object.keys(calls).some((key) => key !== "min" && key !== "max"))
       throw new Error(`${where}: calls takes min and max`)
@@ -200,7 +209,8 @@ const within = (found: number, min: number | undefined, max: number | undefined)
 const range = (min: number | undefined, max: number | undefined) =>
   min === undefined ? `at most ${max}` : max === undefined ? `at least ${min}` : `${min} to ${max}`
 
-const runCheck = (calls: ToolCall[], check: TrajectoryCheck): string | undefined => {
+const runCheck = ({ calls, turns }: Transcript, check: TrajectoryCheck): string | undefined => {
+  if ("turns" in check) return turns === check.turns ? undefined : `turns: expected ${check.turns}, found ${turns}`
   if ("called" in check) {
     const min = check.min === undefined && check.max === undefined ? 1 : check.min
     const found = calls.filter((call) => matches(call, check.called)).length
@@ -230,7 +240,7 @@ const runCheck = (calls: ToolCall[], check: TrajectoryCheck): string | undefined
 
 export const checkTrajectory = (transcript: Transcript, checks: TrajectoryCheck[]): TrajectoryResult => {
   const results = checks.map((check, index) => {
-    const reason = runCheck(transcript.calls, check)
+    const reason = runCheck(transcript, check)
     return reason === undefined ? { index, passed: true } : { index, passed: false, reason }
   })
   return {
