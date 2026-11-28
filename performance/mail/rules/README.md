@@ -77,7 +77,7 @@ senders in the same write as the rule; run 4 is the shipped code, which moves th
 
 ### Why
 
-Three gaps in store version 77, fixed in cli-core branch `fix/mail-rules-owner`: the owner's rules must win across
+Three gaps in store version 77, fixed in cli-core#3369 (merged 2026-11-26): the owner's rules must win across
 levels; a removed or undone sender rule put its senders back with the owner as author, so the program never sorted
 them again; and removal and undo moved senders back in one write. The owner asked for 100 senders per write, as the
 add does, so the lock stays under about 1 s and other writers do not give up after 5 s. The question: what does the
