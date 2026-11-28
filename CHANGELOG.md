@@ -6,6 +6,19 @@ Notable changes to `@wirecat/cli-testing`, one section per version, newest first
 Every entry says what changed as a caller sees it, why, and what to watch for — the rules are
 [`docs/dev/CONVENTIONS.md`](docs/dev/CONVENTIONS.md#the-changelog).
 
+## Unreleased
+
+### Added
+
+- **Checks of the path an agent took, not only of its answer.** `cli-testing agent trajectory <transcript.jsonl>
+  <checks.json>` reads a Claude Code `stream-json` transcript into tool calls (name, input, status, turn) and checks
+  them: a tool called with given input fields (`called`, with `min` and `max`), calls in order with others between
+  or exactly (`sequence`), and the number of calls (`calls`). A call the host denied still counts, so a refused
+  write fails a "no write" check. A live agent plan's case takes the same checks as `trajectory`, and the runner
+  writes `<case>.trajectory.json` for every model. The report never copies a call's input or the agent's text. See
+  [docs/dev/TRAJECTORY.md](docs/dev/TRAJECTORY.md). The live suite sends one prompt, so a check of a write after
+  the user's confirmation needs a transcript with two or more user messages, which the live suite does not write yet.
+
 ## 0.7.4 — 19.11.2026
 
 ### Fixed

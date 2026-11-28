@@ -71,6 +71,8 @@ A result is only as wide as its questions and data. Each rule below comes from o
   agent, the key, and one rule for every contestant. When one answer is scored for one contestant, score the same
   answer the same way for all.
 - Count correct with source, confidently wrong, time, cost and tool calls.
+- Check the path as well as the answer: `cli-testing agent trajectory` checks each transcript's tool calls, their
+  order and count, the same way for every contestant ([TRAJECTORY.md](TRAJECTORY.md)).
 - **Write the thresholds before the run**, and the decision for each outcome.
 - One run on one account is noise at 1 or 2 answers of 20. Say so instead of drawing a claim.
 

@@ -78,7 +78,8 @@ The plan is private and is never copied into this package:
       "id": "synthetic-read",
       "prompt": "Read the latest synthetic fixture and quote its fixture marker.",
       "expected": "SYNTHETIC-FIXTURE",
-      "send": ["SYNTHETIC-FIXTURE: a synthetic test message"]
+      "send": ["SYNTHETIC-FIXTURE: a synthetic test message"],
+      "trajectory": [{ "called": { "tool": "*_write" }, "max": 0 }, { "calls": { "max": 6 } }]
     }
   ]
 }
@@ -95,6 +96,9 @@ be a unique synthetic label present in that fixture's text. Readback matches exa
 deletion uses the sender's own ID and verifies the label is absent on the owner's side.
 Each payload is checked from the owner's side and deleted after model runs, including failed runs.
 A nonzero cleanup result or a message still visible to the owner is a runtime failure.
+`trajectory` is optional: checks of each model's tool calls, written to `<case>.trajectory.json` beside the summary.
+A failed one makes the case an observation, and a case with checks but no readable transcript leaves the run
+incomplete. The checks are in [checking the path an agent took](../dev/TRAJECTORY.md).
 
 ```sh
 cli-testing agent <private-run-dir> <private-plan.json> --live [--previous <run>]
