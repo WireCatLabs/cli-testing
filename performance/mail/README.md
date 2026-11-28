@@ -21,7 +21,9 @@ Measurements of reading a mailbox into the shared store with memo.
   save does about 14 ms more work (2026-11-27).
 - [rules](rules/README.md): what mail sorting rules cost cli-core's store (store version 77) — 50 rules add about 0.35 s
   per 100,000 emails typed, a `gmail.com` rule over 30,000 emails applies in about 1 s plus 1.5–2 s on the next typed
-  read, and moving 500 senders to bots takes 4–6 s (2026-11-25).
+  read, and moving 500 senders to bots takes 4–6 s (2026-11-25). Round 2: an undo now puts 500 senders back without
+  the owner's mark; a loop of writes starved another writer until it paused 2 ms between writes; the commit, not the
+  number of senders, sets the lock time (2026-11-25).
 - [subscriptions](subscriptions/README.md): cli-core's Subscriptions read, broadcast mail grouped by List-Id and paged
   in SQL, and the bots filter by what they send — 100,000 emails in 1,600 groups: a warm page of 50 in 162 ms, 500 in
   132 ms, no store version needed; bots filters under 60 ms (2026-11-26).
