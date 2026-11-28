@@ -16,8 +16,14 @@ Every entry says what changed as a caller sees it, why, and what to watch for â€
   or exactly (`sequence`), and the number of calls (`calls`). A call the host denied still counts, so a refused
   write fails a "no write" check. A live agent plan's case takes the same checks as `trajectory`, and the runner
   writes `<case>.trajectory.json` for every model. The report never copies a call's input or the agent's text. See
-  [docs/dev/TRAJECTORY.md](docs/dev/TRAJECTORY.md). The live suite sends one prompt, so a check of a write after
-  the user's confirmation needs a transcript with two or more user messages, which the live suite does not write yet.
+  [docs/dev/TRAJECTORY.md](docs/dev/TRAJECTORY.md). `{"turns": n}` checks how many user messages there were.
+- **Confirmation cases in the live agent suite: the agent may write, but only after the user said yes.** A plan case
+  with `confirm` (`reply`, `command`, `marker`) in place of `send` runs as two turns, the reply sent only after the
+  first turn ends, with the write tool allowed through the cast's new `CONFIRM_MCP_CONFIG`. It passes with no write
+  before the reply and exactly one write of `confirm.command` after it. Every message the agent sent is deleted
+  afterwards, only when it is in the test dialog with the marker; anything else stops the run for cleanup by hand.
+  Injection cases and the canary run with `CLI_TESTING_CONFIRM` blank, whatever the caller's shell holds. See
+  [docs/security/AGENT-TEST.md](docs/security/AGENT-TEST.md#confirmation-cases).
 
 ## 0.7.4 â€” 19.11.2026
 

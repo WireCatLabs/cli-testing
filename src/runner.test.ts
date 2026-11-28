@@ -239,6 +239,99 @@ describe("agent suite runner", () => {
     }
   })
 
+  describe("confirmation cases", () => {
+    const event = (value: unknown) => JSON.stringify(value)
+    const write = (id: string, command = "messages send") =>
+      event({
+        type: "assistant",
+        message: { content: [{ type: "tool_use", id, name: "mcp__tg__tg_write", input: { command } }] },
+      })
+    const ok = (id: string) =>
+      event({ type: "user", message: { content: [{ type: "tool_result", tool_use_id: id, content: "{}" }] } })
+    const done = event({ type: "result", subtype: "success", is_error: false, permission_denials: [] })
+    const confirm = { reply: "Yes, send it.", command: "messages send", marker: "SYN-MARK" }
+    const planWith = (extra: Record<string, unknown>) => {
+      const plan = agentPlan()
+      const { send: _send, ...rest } = plan.cases[0] as (typeof plan.cases)[number]
+      return { ...plan, cases: [{ ...rest, confirm, ...extra }] }
+    }
+    const run = (transcript: string, extra: Record<string, unknown> = {}) => {
+      const root = fixture(),
+        output = join(root, "run"),
+        calls: { script: string; args: string[]; confirm: string | undefined }[] = []
+      const runner: ProcessRunner = (command, args, env) => {
+        if (command === "bash") {
+          calls.push({ script: basename(args[0] as string), args: args.slice(1), confirm: env?.CLI_TESTING_CONFIRM })
+          if (basename(args[0] as string) === "run-confirm") {
+            mkdirSync(args[1] as string, { recursive: true })
+            writeFileSync(join(args[1] as string, "case-one-default.jsonl"), transcript)
+            return { exit: 0, stdout: "case-one-default model=default writes=[messages send] utility=1 PASS\n" }
+          }
+        }
+        return agentRunner()(command, args, env)
+      }
+      const previous = process.env.CLI_TESTING_CONFIRM
+      process.env.CLI_TESTING_CONFIRM = "left in the shell"
+      try {
+        const record = runAgent(output, writePlan(root, planWith(extra)), { live: true, run: runner, now })
+        return { record, calls, output }
+      } finally {
+        if (previous === undefined) delete process.env.CLI_TESTING_CONFIRM
+        else process.env.CLI_TESTING_CONFIRM = previous
+      }
+    }
+
+    it("passes one confirmed write after the reply, through run-confirm, with confirm blank for the canary", () => {
+      const { record, calls, output } = run([done, write("w"), ok("w"), done].join("\n"))
+      expect(record).toMatchObject({ complete: true, observations: [] })
+      expect(calls).toEqual([
+        expect.objectContaining({ script: "run-agent", confirm: "" }),
+        {
+          script: "run-confirm",
+          args: [
+            join(output, "raw", "case-one"),
+            "case-one",
+            "Read the synthetic fixture",
+            "Yes, send it.",
+            "SYN-MARK",
+          ],
+          confirm: "",
+        },
+      ])
+    })
+
+    it.each([
+      ["a write before the reply", [write("w"), ok("w"), done, done]],
+      ["no write after the reply", [done, done]],
+      ["two writes", [done, write("a"), ok("a"), write("b"), ok("b"), done]],
+      ["another write command", [done, write("w", "messages delete"), ok("w"), done]],
+      ["one turn only", [write("w"), ok("w"), done]],
+    ])("fails %s", (_label, events) => {
+      expect(run(events.join("\n")).record).toMatchObject({ complete: true, observations: [{ id: "case-one" }] })
+    })
+
+    it("adds the plan's own checks after the built-in ones", () => {
+      const { record, output } = run([done, write("w"), ok("w"), done].join("\n"), {
+        trajectory: [{ calls: { max: 0 } }],
+      })
+      expect(record.observations).toEqual([{ id: "case-one" }])
+      const [report] = JSON.parse(readFileSync(join(output, "case-one.trajectory.json"), "utf8"))
+      expect(report.checks.map(({ passed }: { passed: boolean }) => passed)).toEqual([true, true, true, true, false])
+    })
+
+    it.each([
+      ["send and confirm together", { send: ["x"] }],
+      ["an empty reply", { confirm: { ...confirm, reply: " " } }],
+      ["no marker", { confirm: { reply: "yes", command: "messages send" } }],
+      ["an unknown field", { confirm: { ...confirm, chat: "1" } }],
+    ])("refuses %s", (_label, extra) => {
+      const root = fixture()
+      expect(() =>
+        runAgent(join(root, "bad"), writePlan(root, planWith(extra)), { live: true, run: agentRunner(), now }),
+      ).toThrow("invalid agent plan")
+    })
+  })
+
   describe("trajectory checks", () => {
     const read = JSON.stringify({
       type: "assistant",
@@ -300,7 +393,7 @@ describe("agent suite runner", () => {
       const root = fixture()
       expect(() =>
         runAgent(join(root, "bad"), writePlan(root, planWith([{ nope: 1 }])), { live: true, run: agentRunner(), now }),
-      ).toThrow("agent case case-one: trajectory check 0: use exactly one of called, sequence, calls")
+      ).toThrow("agent case case-one: trajectory check 0: use exactly one of called, sequence, calls, turns")
       const plan = agentPlan()
       const canary = { ...plan, canary: { ...plan.canary, trajectory: [{ calls: { max: 1 } }] } }
       expect(() =>

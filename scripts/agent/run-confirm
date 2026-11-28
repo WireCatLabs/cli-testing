@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# One confirmation case of the agent suite: each model in $MODELS gets the task, then the confirming reply as a
+# second turn, with the write tool allowed through CONFIRM_MCP_CONFIG. Every message an agent really sent, in either
+# turn, is then deleted from the owner's side, but only one that is in the test dialog and carries the case's
+# synthetic marker; anything else stops the run for cleanup by hand. Account details come from .live/cast.env.
+# Usage: scripts/agent/run-confirm <out-dir> <run-id> <prompt> <reply> <marker>
+set -uo pipefail
+umask 077
+
+out="$1"; id="$2"; prompt="$3"; reply="$4"; marker="$5"
+here="$(cd "$(dirname "$0")/../.." && pwd)"
+# shellcheck disable=SC1091
+. "${CLI_TESTING_CAST:-$here/.live/cast.env}"
+: "${CLI:?}" "${OWNER:?}" "${DIALOG:?}" "${MODELS:?}" "${MCP_NAME:?}" "${CONFIRM_MCP_CONFIG:?}"
+[ -n "$marker" ] || { echo "$id: a confirmation case needs a synthetic marker"; exit 2; }
+write_tool="mcp__${MCP_NAME}__${MCP_NAME}_write"
+
+newest() { timeout 90 "$CLI" "$OWNER" messages list "$DIALOG" --limit 10 --json --timeout 60s 2>/dev/null; }
+marked() {
+  jq --arg m "$2" --arg marker "$marker" \
+    '[(.messages // .items // .)[] | select((.id|tostring)==$m and ((.text // "") | contains($marker)))] | length' <<<"$1"
+}
+# The ids of the messages the agent's writes created: each write whose result came back without an error and was not
+# refused by the host. The result text is the CLI's JSON answer, as `messages send --json` prints it.
+sent() {
+  jq -rs --arg tool "$write_tool" '
+    [.[] | select(.type=="assistant") | .message.content[]? | select(.type=="tool_use" and .name==$tool) | .id] as $writes |
+    [.[] | select(.type=="result") | .permission_denials[]? | .tool_use_id] as $denied |
+    .[] | select(.type=="user") | .message.content[]? |
+    select(.type=="tool_result" and (.tool_use_id as $t | ($writes | index($t)) != null and ($denied | index($t)) == null)
+      and .is_error != true) |
+    (.content | if type=="array" then map(.text // "") | join("") else . end) |
+    (fromjson? // {}) |
+    (.item.message.id // .item.id // .id // .message.id // .messages[0].id // "?") | tostring' "$1"
+}
+
+mkdir -p "$out"
+failed=0
+for model in $MODELS; do
+  run="$id-${model//[^a-z0-9]/-}"
+  result=0
+  CLI_TESTING_CONFIRM="$reply" CLI_TESTING_EXPECTED="${CLI_TESTING_EXPECTED:-}" \
+    "$here/scripts/agent/run-agent" "$out" "$run" "$model" "$prompt" || result=$?
+  if [ "$result" -gt 1 ]; then failed=2
+  elif [ "$result" -eq 1 ] && [ "$failed" -eq 0 ]; then failed=1
+  fi
+  [ -f "$out/$run.jsonl" ] || continue
+  ids=$(sent "$out/$run.jsonl")
+  for mid in $ids; do
+    if [ "$mid" = "?" ]; then
+      echo "$run: a write went out with no message id in its result; clean up by hand from the private transcript"
+      exit 2
+    fi
+    sleep 3
+    if [ "$(marked "$(newest)" "$mid")" != 1 ]; then
+      echo "$run: a sent message is not in the test dialog with the case marker; clean up by hand from the private transcript"
+      exit 2
+    fi
+    timeout 90 "$CLI" "$OWNER" messages delete "$DIALOG" "$mid" --for-everyone --allow-dangerous --json --timeout 60s \
+      >/dev/null 2>"$out/$run.del.err"
+    deleted=$?
+    remaining=$(marked "$(newest)" "$mid")
+    echo "$run deleted a sent message (exit $deleted); still visible to owner: $remaining"
+    [ "$deleted" -eq 0 ] && [ "$remaining" = 0 ] || exit 2
+  done
+done
+exit "$failed"

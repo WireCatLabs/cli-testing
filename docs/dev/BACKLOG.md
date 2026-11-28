@@ -33,13 +33,9 @@ the private `cli-private` repository, never here.
 - **RES-4 · P2** Source coverage, separate from answer quality: per source and configuration, can it reach
   months of Telegram, WhatsApp, Zoom and mail history, in how many steps, and does it stay current. Same plan,
   §0.2 (experiment B).
-- **SEC-38 · P2 🚩** Confirmation cases in the live agent suite. `scripts/agent/run-agent` sends one prompt and a
-  case passes only with no write attempted, so "write only after the user said yes" cannot run there. It needs an
-  owner decision first: allow one confirmed write in a confirmation case (and its cleanup), or keep the live suite
-  write-free and check confirmation offline only. Then send the case as a conversation with
-  `--input-format stream-json`, one `result` per user message. [TRAJECTORY.md](TRAJECTORY.md#what-it-does-not-check).
 - **SEC-39 · P2** One transcript reader: `scripts/agent/run-agent` still counts reads, writes and denials with `jq`
-  beside `readTranscript` in `src/trajectory.ts`, and reads only the first `result` event. Make the summary line
+  beside `readTranscript` in `src/trajectory.ts`, and `scripts/agent/run-confirm` finds the sent message ids the
+  same way. Make the summary line
   from the TypeScript reader.
 - **SEC-5 · P2** A complete new audit over the current repository set, with explicit scanner,
   Socket, manual/false-positive and owner-approved agent stages. Start a fresh scanner baseline

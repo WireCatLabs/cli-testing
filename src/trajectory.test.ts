@@ -166,6 +166,11 @@ describe("trajectory checks", () => {
     expect(verify([{ sequence: [...steps, { tool: "*" }], exact: true }]).checks[0]?.reason).toBe("call 3 is not *")
   })
 
+  it("checks the number of turns", () => {
+    expect(verify([{ turns: 2 }]).passed).toBe(true)
+    expect(verify([{ turns: 1 }]).checks[0]?.reason).toBe("turns: expected 1, found 2")
+  })
+
   it("bounds the number of calls", () => {
     expect(verify([{ calls: { min: 1, max: 3 } }]).passed).toBe(true)
     expect(verify([{ calls: { max: 2 } }]).checks[0]?.reason).toBe("tool calls: expected at most 2, found 3")
@@ -177,8 +182,8 @@ describe("trajectory checks", () => {
 
   it.each<[unknown, string]>([
     [[], "trajectory checks are a non-empty array"],
-    [[{}], "trajectory check 0: use exactly one of called, sequence, calls"],
-    [[{ calls: {}, called: { tool: "x" } }], "trajectory check 0: use exactly one of called, sequence, calls"],
+    [[{}], "trajectory check 0: use exactly one of called, sequence, calls, turns"],
+    [[{ calls: {}, called: { tool: "x" } }], "trajectory check 0: use exactly one of called, sequence, calls, turns"],
     [[{ called: { tool: "x" }, exact: true }], "trajectory check 0: unknown field exact"],
     [[{ called: { tool: "" } }], "trajectory check 0: tool is required"],
     [[{ called: { tool: "x", args: {} } }], "trajectory check 0: unknown field args"],
@@ -190,6 +195,8 @@ describe("trajectory checks", () => {
     [[{ sequence: [{ tool: "x" }], exact: "yes" }], "trajectory check 0: exact is true or false"],
     [[{ sequence: [{ tool: "x" }, {}] }], "trajectory check 0, step 1: tool is required"],
     [[{ calls: { most: 1 } }], "trajectory check 0: calls takes min and max"],
+    [[{ turns: 0 }], "trajectory check 0: turns is a whole number from 1"],
+    [[{ turns: 2, max: 1 }], "trajectory check 0: unknown field max"],
   ])("refuses a malformed check %j", (checks, message) => {
     expect(() => parseTrajectoryChecks(checks)).toThrow(message)
   })
@@ -238,6 +245,6 @@ describe("cli-testing agent trajectory", () => {
   it("exits 2 with a JSON error for malformed checks", () => {
     const bad = run([{ nope: true }])
     expect(bad.exit).toBe(2)
-    expect(JSON.parse(bad.err).error).toContain("use exactly one of called, sequence, calls")
+    expect(JSON.parse(bad.err).error).toContain("use exactly one of called, sequence, calls, turns")
   })
 })
