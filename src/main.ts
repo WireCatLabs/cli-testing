@@ -8,6 +8,7 @@ import { scanLeaks } from "./leaks.js"
 import { securityPreflight } from "./preflight.js"
 import { type ProcessRunner, runAgent, runSecurity } from "./runner.js"
 import { readRun } from "./runs.js"
+import { checkTrajectory, parseTrajectoryChecks, readTranscript } from "./trajectory.js"
 import type { InstallPlan, installProcess } from "./ux.js"
 import { runInstallSuite } from "./ux.js"
 
@@ -16,6 +17,7 @@ cli-testing security scan <output> <checkout>... [--previous <run>]
 cli-testing security socket <output> <checkout>...
 cli-testing security no-leak <root> <policy.json>
 cli-testing agent <output> <plan.json> --live [--previous <run>]
+cli-testing agent trajectory <transcript.jsonl> <checks.json>
 cli-testing compare <suite> <run-a> <run-b>
 cli-testing ux install <output> <plan.json>
 
@@ -71,6 +73,11 @@ export const runCli = (
       ...(values.previous === undefined ? {} : { previous: values.previous }),
     })
     return { exit: record.complete ? 0 : 1, output: `${JSON.stringify(record)}\n` }
+  }
+  if (args[0] === "agent" && args[1] === "trajectory" && args.length === 4) {
+    const checks = parseTrajectoryChecks(JSON.parse(readFileSync(resolve(args[3] as string), "utf8")))
+    const report = checkTrajectory(readTranscript(readFileSync(resolve(args[2] as string), "utf8")), checks)
+    return { exit: report.passed ? 0 : 1, output: `${JSON.stringify(report)}\n` }
   }
   if (args[0] === "agent" && args.length === 3) {
     const record = runAgent(args[1] as string, args[2] as string, {

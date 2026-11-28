@@ -1,0 +1,8 @@
+{"type":"system","subtype":"init","claude_code_version":"2.1.332","permissionMode":"default"}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"thinking","thinking":"synthetic"}]}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"tool_use","id":"toolu_01PmEbe7eyuQnHmchMzHmsp4","name":"Read","input":{"file_path":"synthetic"}}]}}
+{"type":"user","message":{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01PmEbe7eyuQnHmchMzHmsp4","content":"synthetic"}]}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"tool_use","id":"toolu_01YAakzbxGRU7Bn1FCWc6Fty","name":"Write","input":{"file_path":"synthetic","content":"synthetic"}}]}}
+{"type":"user","message":{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01YAakzbxGRU7Bn1FCWc6Fty","content":"synthetic"}]}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"synthetic"}]}}
+{"type":"result","subtype":"success","is_error":false,"num_turns":3,"result":"synthetic","permission_denials":[]}

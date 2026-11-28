@@ -15,5 +15,16 @@ export { findLeaks, type LeakFinding, scanLeaks } from "./leaks.js"
 export { type PreflightCheck, securityPreflight } from "./preflight.js"
 export { type ProcessRunner, runAgent, runSecurity, TOOL_PINS } from "./runner.js"
 export { readRun } from "./runs.js"
+export {
+  type CallMatcher,
+  type CallStatus,
+  checkTrajectory,
+  parseTrajectoryChecks,
+  readTranscript,
+  type ToolCall,
+  type TrajectoryCheck,
+  type TrajectoryResult,
+  type Transcript,
+} from "./trajectory.js"
 
 export { INSTALL_PINS, type InstallPlan, type InstallTool, runInstallSuite } from "./ux.js"

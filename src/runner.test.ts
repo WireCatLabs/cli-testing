@@ -238,6 +238,76 @@ describe("agent suite runner", () => {
       )
     }
   })
+
+  describe("trajectory checks", () => {
+    const read = JSON.stringify({
+      type: "assistant",
+      message: { content: [{ type: "tool_use", id: "r", name: "mcp__tg__tg_read", input: { command: "review" } }] },
+    })
+    const done = JSON.stringify({ type: "result", subtype: "success", is_error: false, permission_denials: [] })
+    const planWith = (trajectory: unknown) => {
+      const plan = agentPlan()
+      return { ...plan, cases: [{ ...plan.cases[0], trajectory }] }
+    }
+    const withTranscripts =
+      (transcripts: Record<string, string>): ProcessRunner =>
+      (command, args, env) => {
+        if (command === "bash" && basename(args[0] as string) === "run-payload") {
+          mkdirSync(args[1] as string, { recursive: true })
+          for (const [name, text] of Object.entries(transcripts)) writeFileSync(join(args[1] as string, name), text)
+        }
+        return agentRunner()(command, args, env)
+      }
+    const run = (trajectory: unknown, transcripts: Record<string, string>) => {
+      const root = fixture(),
+        output = join(root, "run"),
+        record = runAgent(output, writePlan(root, planWith(trajectory)), {
+          live: true,
+          run: withTranscripts(transcripts),
+          now,
+        })
+      return { record, output }
+    }
+
+    it("checks every model's transcript and records the report beside the summary", () => {
+      const { record, output } = run([{ called: { tool: "*_read", input: { command: "review" } } }], {
+        "case-one-haiku.jsonl": `${read}\n${done}\n`,
+        "case-one-opus.jsonl": `${read}\n${done}\n`,
+      })
+      expect(record).toMatchObject({ complete: true, observations: [] })
+      const report = JSON.parse(readFileSync(join(output, "case-one.trajectory.json"), "utf8"))
+      expect(
+        report.map(({ transcript, passed }: { transcript: string; passed: boolean }) => [transcript, passed]),
+      ).toEqual([
+        ["case-one-haiku.jsonl", true],
+        ["case-one-opus.jsonl", true],
+      ])
+    })
+
+    it("turns a wrong path into an observation even when the summary passed", () => {
+      const { record } = run([{ called: { tool: "*_read", input: { command: "messages list" } } }], {
+        "case-one-haiku.jsonl": `${read}\n${done}\n`,
+      })
+      expect(record).toMatchObject({ complete: true, observations: [{ id: "case-one" }] })
+    })
+
+    it("leaves the run incomplete when a case has checks but no transcript", () => {
+      const { record } = run([{ calls: { max: 3 } }], {})
+      expect(record).toMatchObject({ complete: false, observations: [{ id: "case-one" }] })
+    })
+
+    it("refuses malformed checks, and checks on the canary, before any live process", () => {
+      const root = fixture()
+      expect(() =>
+        runAgent(join(root, "bad"), writePlan(root, planWith([{ nope: 1 }])), { live: true, run: agentRunner(), now }),
+      ).toThrow("agent case case-one: trajectory check 0: use exactly one of called, sequence, calls")
+      const plan = agentPlan()
+      const canary = { ...plan, canary: { ...plan.canary, trajectory: [{ calls: { max: 1 } }] } }
+      expect(() =>
+        runAgent(join(root, "bad"), writePlan(root, canary), { live: true, run: agentRunner(), now }),
+      ).toThrow("the canary takes no trajectory checks")
+    })
+  })
 })
 
 describe("CLI dispatch", () => {

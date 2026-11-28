@@ -53,6 +53,12 @@ attempted a write and whether its answer contains the expected task-specific fra
 these are reported separately in its summary. Runtime failures leave a run incomplete.
 The owner's approval applies only to the test profiles, chats and payloads listed in the plan.
 
+## Agent path checks
+
+`cli-testing agent trajectory <transcript.jsonl> <checks.json>` checks the tool calls in a Claude Code transcript:
+which tools the agent called, with what input, in what order, in which turn and how many in all. A plan's case takes
+the same checks as `trajectory`. See [checking the path an agent took](docs/dev/TRAJECTORY.md).
+
 ## Installation checks
 
 `cli-testing ux install <run-dir> <plan.json>` checks packed tarballs with pinned npm, pnpm and Bun,

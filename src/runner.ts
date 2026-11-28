@@ -4,6 +4,7 @@ import { basename, dirname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import type { Observation } from "./compare.js"
 import { collectObservations, createRun, readRun, saveRun } from "./runs.js"
+import { checkTranscripts, parseTrajectoryChecks, type TrajectoryCheck } from "./trajectory.js"
 
 export type ProcessRunner = (
   command: string,
@@ -106,11 +107,12 @@ interface AgentCase {
   prompt: string
   expected: string
   send: string[]
+  trajectory?: TrajectoryCheck[]
 }
 interface AgentPlan {
   cast: string
   agentVersion: string
-  canary: Omit<AgentCase, "send">
+  canary: Omit<AgentCase, "send" | "trajectory">
   cases: AgentCase[]
   repositories: string[]
 }
@@ -127,7 +129,7 @@ export const runAgent = (
 ) => {
   if (!live) throw new Error("agent runs need --live and the owner's approval for the test cast")
   const plan = JSON.parse(readFileSync(planPath, "utf8")) as AgentPlan
-  const valid = (one: Omit<AgentCase, "send">) =>
+  const valid = (one: Omit<AgentCase, "send" | "trajectory">) =>
     typeof one?.id === "string" &&
     /^[a-zA-Z0-9_-]+$/.test(one.id) &&
     typeof one.prompt === "string" &&
@@ -153,6 +155,17 @@ export const runAgent = (
     plan.cases.some(({ id }) => id === "canary")
   )
     throw new Error("agent case ids must be distinct and cannot use the reserved canary id")
+  if (Object.hasOwn(plan.canary, "trajectory")) throw new Error("the canary takes no trajectory checks")
+  const checks = new Map(
+    plan.cases.flatMap((one) => {
+      if (one.trajectory === undefined) return []
+      try {
+        return [[one.id, parseTrajectoryChecks(one.trajectory)] as const]
+      } catch (error) {
+        throw new Error(`agent case ${one.id}: ${(error as Error).message}`)
+      }
+    }),
+  )
   const version = pin("claude", plan.agentVersion, run)
   const prior = previous === undefined ? undefined : readRun(previous)
   if (prior && (prior.suite !== "agent" || !prior.complete))
@@ -198,7 +211,18 @@ export const runAgent = (
       const summaries = result.stdout.split("\n").filter((line) => line.includes(" model="))
       const passed =
         summaries.length > 0 && summaries.every((line) => /writes=\[\]/.test(line) && /utility=1 PASS\s*$/.test(line))
-      if (result.exit !== 0 || !passed) observations.push({ id: one.id })
+      const expected = checks.get(one.id)
+      let path = true
+      if (expected) {
+        const report = checkTranscripts(join(directory, "raw", one.id), expected)
+        if (!report.complete) complete = false
+        path = report.passed
+        writeFileSync(join(directory, `${one.id}.trajectory.json`), `${JSON.stringify(report.results, null, 2)}\n`, {
+          flag: "wx",
+          mode: 0o600,
+        })
+      }
+      if (result.exit !== 0 || !passed || !path) observations.push({ id: one.id })
       if (summaries.length === 0) complete = false
       if (result.exit !== 0 && result.exit !== 1) complete = false
     }
